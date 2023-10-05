@@ -1,15 +1,12 @@
 #include <iostream>
 
+#include "functions.h"
+#include "menu.h"
+
 using namespace std;
 
 int main() {
-    cout << R"(
-  _   __    __        __    __ 
- | | / /__ / /____ __/ /___/ /_
- | |/ / -_) __/ -_)_  __/_  __/
- |___/\__/\__/\__/ /_/   /_/   
-                               
-  )";
+    handleMenu();
 
     cout << endl;
     system("pause");
