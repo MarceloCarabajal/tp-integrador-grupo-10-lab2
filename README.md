@@ -1,4 +1,5 @@
 Sistema de Gestión Veterinaria
+
 Este repositorio contiene el código fuente y la documentación para un sistema de gestión veterinaria desarrollado en C++. El sistema permite administrar clientes, mascotas, inventario de productos, ventas, consultas veterinarias y más.
 
 *Funcionalidades Principales
