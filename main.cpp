@@ -1,5 +1,6 @@
 #include <iostream>
 
+#include "VppFile.h"
 #include "functions.h"
 #include "menu.h"
 
@@ -7,9 +8,6 @@ using namespace std;
 
 int main() {
     handleMenu();
-
-    cout << endl;
-    cout <<endl;
     system("pause");
     return 0;
 }

@@ -1,1 +1,5 @@
+# ignorar .exe generado por el compilador
 *.exe
+
+# Ignorar carpeta de configuracion de vscode
+.vscode/
