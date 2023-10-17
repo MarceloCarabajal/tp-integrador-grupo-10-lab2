@@ -53,10 +53,7 @@ class Client {
  +load(): void
 }
 
-/'	con este comando las siguientes clases 
-	se renderizan en un pagina nueva
-'/
-newpage
+'newpage
 
 class Appointment {
  -appId: int
@@ -152,7 +149,7 @@ class PetRelations {
  +getOwner(): bool
 }
 
-newpage
+'newpage
 
 class Product {
  -productId: int
@@ -226,7 +223,7 @@ class Time {
  +getSec(): int
 }
 
-newpage
+'newpage
 
 class Sale {
 
@@ -309,7 +306,7 @@ class ItemSale {
  +load(): void
 }
 
-newpage
+'newpage
 
 Transaction <|-- Income
 Transaction <|-- Expense
