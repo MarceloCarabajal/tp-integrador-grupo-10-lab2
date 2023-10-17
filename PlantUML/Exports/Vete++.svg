@@ -1,0 +1,749 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentStyleType="text/css" height="1550.7038px" preserveAspectRatio="none" style="width:1959px;height:1550px;background:#FFFFFF;" version="1.1" viewBox="0 0 1959 1550" width="1959.7513px" zoomAndPan="magnify"><defs/><g><!--MD5=[09ce52be0ee7de43c61b6e2d59bf108b]
+class Person--><g id="elem_Person"><rect codeLine="8" fill="#F1F1F1" height="173.6154" id="Person" rx="2.298" ry="2.298" style="stroke:#181818;stroke-width:0.4596039622309325;" width="230.7212" x="1121.4337" y="136.0428"/><ellipse cx="1212.2055" cy="150.7501" fill="#ADD1B2" rx="10.1113" ry="10.1113" style="stroke:#181818;stroke-width:0.919207924461865;"/><path d="M1214.7476,146.9584 Q1214.8913,146.7573 1215.0636,146.6568 Q1215.236,146.5562 1215.437,146.5562 Q1215.7817,146.5562 1215.9972,146.8004 Q1216.2126,147.0302 1216.2126,147.5903 L1216.2126,148.926 Q1216.2126,149.4862 1215.9972,149.7304 Q1215.7817,149.9745 1215.437,149.9745 Q1215.1211,149.9745 1214.9343,149.7878 Q1214.7476,149.6155 1214.6471,149.1415 Q1214.604,148.8111 1214.4317,148.6388 Q1214.13,148.2941 1213.5699,148.093 Q1213.0098,147.8919 1212.4353,147.8919 Q1211.7315,147.8919 1211.1426,148.1936 Q1210.5681,148.4952 1210.1085,149.1846 Q1209.6633,149.874 1209.6633,150.8219 L1209.6633,151.8273 Q1209.6633,152.9619 1210.4819,153.7232 Q1211.3006,154.47 1212.7656,154.47 Q1213.6274,154.47 1214.2306,154.2402 Q1214.5896,154.0966 1214.9774,153.6944 Q1215.2216,153.4503 1215.3509,153.3785 Q1215.4945,153.3066 1215.6812,153.3066 Q1215.9828,153.3066 1216.2126,153.5508 Q1216.4568,153.7806 1216.4568,154.0966 Q1216.4568,154.4126 1216.1408,154.786 Q1215.6812,155.3174 1214.9487,155.619 Q1213.9577,156.0355 1212.7656,156.0355 Q1211.3724,156.0355 1210.2665,155.461 Q1209.3617,155.0014 1208.7297,154.0248 Q1208.0977,153.0338 1208.0977,151.856 L1208.0977,150.7932 Q1208.0977,149.5724 1208.6579,148.5239 Q1209.2324,147.4611 1210.2378,146.9009 Q1211.2432,146.3264 1212.3778,146.3264 Q1213.0528,146.3264 1213.6417,146.4844 Q1214.2449,146.628 1214.7476,146.9584 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="41.3644" x="1231.0492" y="156.0158">Person</text><line style="stroke:#181818;stroke-width:0.4596039622309325;" x1="1122.3529" x2="1351.2356" y1="165.4574" y2="165.4574"/><rect fill="none" height="5.5152" style="stroke:#C82930;stroke-width:0.919207924461865;" width="5.5152" x="1128.7873" y="175.8488"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="71.6982" x="1139.8178" y="182.4933">personId: int</text><rect fill="none" height="5.5152" style="stroke:#C82930;stroke-width:0.919207924461865;" width="5.5152" x="1128.7873" y="192.0355"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="71.6982" x="1139.8178" y="198.68">name: string</text><rect fill="none" height="5.5152" style="stroke:#C82930;stroke-width:0.919207924461865;" width="5.5152" x="1128.7873" y="208.2221"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="92.84" x="1139.8178" y="214.8666">lastName: string</text><line style="stroke:#181818;stroke-width:0.4596039622309325;" x1="1122.3529" x2="1351.2356" y1="221.3711" y2="221.3711"/><ellipse cx="1131.545" cy="234.5201" fill="#84BE84" rx="2.7576" ry="2.7576" style="stroke:#038048;stroke-width:0.919207924461865;"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="162.6998" x="1139.8178" y="238.407">setName(name: string): void</text><ellipse cx="1131.545" cy="250.7068" fill="#84BE84" rx="2.7576" ry="2.7576" style="stroke:#038048;stroke-width:0.919207924461865;"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="206.8218" x="1139.8178" y="254.5937">setLastname(lastname: string): void</text><ellipse cx="1131.545" cy="266.8935" fill="#84BE84" rx="2.7576" ry="2.7576" style="stroke:#038048;stroke-width:0.919207924461865;"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="100.1937" x="1139.8178" y="270.7803">getName(): string</text><ellipse cx="1131.545" cy="283.0801" fill="#84BE84" rx="2.7576" ry="2.7576" style="stroke:#038048;stroke-width:0.919207924461865;"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="124.0931" x="1139.8178" y="286.967">getLastname(): string</text><ellipse cx="1131.545" cy="299.2668" fill="#84BE84" rx="2.7576" ry="2.7576" style="stroke:#038048;stroke-width:0.919207924461865;"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="65.2638" x="1139.8178" y="303.1537">load(): void</text></g><!--MD5=[ed6624c6556d5e7b1bd23032162d20b7]
+class Client--><g id="elem_Client"><rect codeLine="33" fill="#F1F1F1" height="351.6688" id="Client" rx="2.298" ry="2.298" style="stroke:#181818;stroke-width:0.4596039622309325;" width="216.0139" x="929.3192" y="591.5103"/><ellipse cx="1016.8738" cy="606.2176" fill="#ADD1B2" rx="10.1113" ry="10.1113" style="stroke:#181818;stroke-width:0.919207924461865;"/><path d="M1019.416,602.4259 Q1019.5596,602.2248 1019.7319,602.1243 Q1019.9043,602.0237 1020.1054,602.0237 Q1020.4501,602.0237 1020.6655,602.2679 Q1020.8809,602.4977 1020.8809,603.0578 L1020.8809,604.3936 Q1020.8809,604.9537 1020.6655,605.1979 Q1020.4501,605.442 1020.1054,605.442 Q1019.7894,605.442 1019.6027,605.2553 Q1019.416,605.083 1019.3154,604.609 Q1019.2723,604.2787 1019.1,604.1063 Q1018.7984,603.7616 1018.2382,603.5605 Q1017.6781,603.3595 1017.1036,603.3595 Q1016.3998,603.3595 1015.8109,603.6611 Q1015.2364,603.9627 1014.7768,604.6521 Q1014.3316,605.3415 1014.3316,606.2894 L1014.3316,607.2948 Q1014.3316,608.4295 1015.1503,609.1907 Q1015.9689,609.9375 1017.4339,609.9375 Q1018.2957,609.9375 1018.8989,609.7077 Q1019.258,609.5641 1019.6458,609.162 Q1019.8899,608.9178 1020.0192,608.846 Q1020.1628,608.7742 1020.3495,608.7742 Q1020.6511,608.7742 1020.8809,609.0183 Q1021.1251,609.2481 1021.1251,609.5641 Q1021.1251,609.8801 1020.8091,610.2535 Q1020.3495,610.7849 1019.617,611.0866 Q1018.626,611.5031 1017.4339,611.5031 Q1016.0407,611.5031 1014.9348,610.9286 Q1014.03,610.469 1013.398,609.4923 Q1012.7661,608.5013 1012.7661,607.3235 L1012.7661,606.2607 Q1012.7661,605.0399 1013.3262,603.9914 Q1013.9007,602.9286 1014.9061,602.3684 Q1015.9115,601.7939 1017.0461,601.7939 Q1017.7212,601.7939 1018.31,601.9519 Q1018.9133,602.0956 1019.416,602.4259 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="33.0915" x="1035.7175" y="611.4833">Client</text><line style="stroke:#181818;stroke-width:0.4596039622309325;" x1="930.2384" x2="1144.4139" y1="620.925" y2="620.925"/><rect fill="none" height="5.5152" style="stroke:#C82930;stroke-width:0.919207924461865;" width="5.5152" x="936.6729" y="631.3163"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="61.5869" x="947.7034" y="637.9608">clientId: int</text><rect fill="none" height="5.5152" style="stroke:#C82930;stroke-width:0.919207924461865;" width="5.5152" x="936.6729" y="647.503"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="86.4055" x="947.7034" y="654.1475">address: string</text><rect fill="none" height="5.5152" style="stroke:#C82930;stroke-width:0.919207924461865;" width="5.5152" x="936.6729" y="663.6897"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="76.2943" x="947.7034" y="670.3342">phone: string</text><rect fill="none" height="5.5152" style="stroke:#C82930;stroke-width:0.919207924461865;" width="5.5152" x="936.6729" y="679.8763"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="69.8598" x="947.7034" y="686.5209">email: string</text><line style="stroke:#181818;stroke-width:0.4596039622309325;" x1="930.2384" x2="1144.4139" y1="693.0253" y2="693.0253"/><ellipse cx="939.4305" cy="706.1743" fill="#84BE84" rx="2.7576" ry="2.7576" style="stroke:#038048;stroke-width:0.919207924461865;"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="99.2745" x="947.7034" y="710.0612">setId(id: int): void</text><ellipse cx="939.4305" cy="722.361" fill="#84BE84" rx="2.7576" ry="2.7576" style="stroke:#038048;stroke-width:0.919207924461865;"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="192.1145" x="947.7034" y="726.2479">setAddress(address: string): void</text><ellipse cx="939.4305" cy="738.5477" fill="#84BE84" rx="2.7576" ry="2.7576" style="stroke:#038048;stroke-width:0.919207924461865;"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="171.8919" x="947.7034" y="742.4345">setPhone(phone: string): void</text><ellipse cx="939.4305" cy="754.7343" fill="#84BE84" rx="2.7576" ry="2.7576" style="stroke:#038048;stroke-width:0.919207924461865;"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="159.023" x="947.7034" y="758.6212">setEmail(email: string): void</text><ellipse cx="939.4305" cy="770.921" fill="#84BE84" rx="2.7576" ry="2.7576" style="stroke:#038048;stroke-width:0.919207924461865;"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="114.901" x="947.7034" y="774.8079">getAddress(): string</text><ellipse cx="939.4305" cy="787.1077" fill="#84BE84" rx="2.7576" ry="2.7576" style="stroke:#038048;stroke-width:0.919207924461865;"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="104.7897" x="947.7034" y="790.9946">getPhone(): string</text><ellipse cx="939.4305" cy="803.2944" fill="#84BE84" rx="2.7576" ry="2.7576" style="stroke:#038048;stroke-width:0.919207924461865;"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="98.3552" x="947.7034" y="807.1813">getEmail(): string</text><ellipse cx="939.4305" cy="819.481" fill="#84BE84" rx="2.7576" ry="2.7576" style="stroke:#038048;stroke-width:0.919207924461865;"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="58.8293" x="947.7034" y="823.3679">getId(): int</text><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="3.6768" x="947.7034" y="839.5546"> </text><ellipse cx="939.4305" cy="851.8544" fill="#84BE84" rx="2.7576" ry="2.7576" style="stroke:#038048;stroke-width:0.919207924461865;"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="78.1327" x="947.7034" y="855.7413">addPet():void</text><ellipse cx="939.4305" cy="868.0411" fill="#84BE84" rx="2.7576" ry="2.7576" style="stroke:#038048;stroke-width:0.919207924461865;"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="95.5976" x="947.7034" y="871.928">deletePet(): void</text><ellipse cx="939.4305" cy="884.2278" fill="#84BE84" rx="2.7576" ry="2.7576" style="stroke:#038048;stroke-width:0.919207924461865;"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="113.0626" x="947.7034" y="888.1146">queryHistory(): void</text><ellipse cx="939.4305" cy="900.4144" fill="#84BE84" rx="2.7576" ry="2.7576" style="stroke:#038048;stroke-width:0.919207924461865;"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="144.3156" x="947.7034" y="904.3013">makeAppointment(): void</text><ellipse cx="939.4305" cy="916.6011" fill="#84BE84" rx="2.7576" ry="2.7576" style="stroke:#038048;stroke-width:0.919207924461865;"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="99.2745" x="947.7034" y="920.488">queryPets(): void</text><ellipse cx="939.4305" cy="932.7878" fill="#84BE84" rx="2.7576" ry="2.7576" style="stroke:#038048;stroke-width:0.919207924461865;"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="65.2638" x="947.7034" y="936.6747">load(): void</text></g><!--MD5=[3b77e19db5bb613d45c434242be1d280]
+class Vet--><g id="elem_Vet"><rect codeLine="19" fill="#F1F1F1" height="222.1754" id="Vet" rx="2.298" ry="2.298" style="stroke:#181818;stroke-width:0.4596039622309325;" width="229.802" x="1177.965" y="656.3145"/><ellipse cx="1279.3076" cy="671.0218" fill="#ADD1B2" rx="10.1113" ry="10.1113" style="stroke:#181818;stroke-width:0.919207924461865;"/><path d="M1281.8498,667.2301 Q1281.9934,667.029 1282.1658,666.9284 Q1282.3381,666.8279 1282.5392,666.8279 Q1282.8839,666.8279 1283.0994,667.0721 Q1283.3148,667.3019 1283.3148,667.862 L1283.3148,669.1977 Q1283.3148,669.7579 1283.0994,670.002 Q1282.8839,670.2462 1282.5392,670.2462 Q1282.2232,670.2462 1282.0365,670.0595 Q1281.8498,669.8871 1281.7493,669.4132 Q1281.7062,669.0828 1281.5338,668.9105 Q1281.2322,668.5658 1280.6721,668.3647 Q1280.1119,668.1636 1279.5374,668.1636 Q1278.8337,668.1636 1278.2448,668.4652 Q1277.6703,668.7669 1277.2107,669.4563 Q1276.7654,670.1457 1276.7654,671.0936 L1276.7654,672.099 Q1276.7654,673.2336 1277.5841,673.9948 Q1278.4028,674.7417 1279.8678,674.7417 Q1280.7295,674.7417 1281.3328,674.5119 Q1281.6918,674.3683 1282.0796,673.9661 Q1282.3238,673.722 1282.453,673.6501 Q1282.5967,673.5783 1282.7834,673.5783 Q1283.085,673.5783 1283.3148,673.8225 Q1283.559,674.0523 1283.559,674.3683 Q1283.559,674.6843 1283.243,675.0577 Q1282.7834,675.5891 1282.0509,675.8907 Q1281.0599,676.3072 1279.8678,676.3072 Q1278.4746,676.3072 1277.3687,675.7327 Q1276.4638,675.2731 1275.8319,674.2965 Q1275.1999,673.3054 1275.1999,672.1277 L1275.1999,671.0649 Q1275.1999,669.844 1275.7601,668.7956 Q1276.3346,667.7327 1277.3399,667.1726 Q1278.3453,666.5981 1279.48,666.5981 Q1280.155,666.5981 1280.7439,666.7561 Q1281.3471,666.8997 1281.8498,667.2301 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="19.3034" x="1298.1514" y="676.2875">Vet</text><line style="stroke:#181818;stroke-width:0.4596039622309325;" x1="1178.8842" x2="1406.8477" y1="685.7291" y2="685.7291"/><rect fill="none" height="5.5152" style="stroke:#C82930;stroke-width:0.919207924461865;" width="5.5152" x="1185.3186" y="696.1205"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="48.718" x="1196.3491" y="702.765">vetId: int</text><rect fill="none" height="5.5152" style="stroke:#C82930;stroke-width:0.919207924461865;" width="5.5152" x="1185.3186" y="712.3071"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="92.84" x="1196.3491" y="718.9517">speciality: string</text><line style="stroke:#181818;stroke-width:0.4596039622309325;" x1="1178.8842" x2="1406.8477" y1="725.4561" y2="725.4561"/><ellipse cx="1188.0762" cy="738.6051" fill="#84BE84" rx="2.7576" ry="2.7576" style="stroke:#038048;stroke-width:0.919207924461865;"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="137.8812" x="1196.3491" y="742.492">setIdVet(idVet: int): void</text><ellipse cx="1188.0762" cy="754.7918" fill="#84BE84" rx="2.7576" ry="2.7576" style="stroke:#038048;stroke-width:0.919207924461865;"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="205.9026" x="1196.3491" y="758.6787">setSpeciality(speciality: string): void</text><ellipse cx="1188.0762" cy="770.9785" fill="#84BE84" rx="2.7576" ry="2.7576" style="stroke:#038048;stroke-width:0.919207924461865;"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="78.1327" x="1196.3491" y="774.8654">getIdVet(): int</text><ellipse cx="1188.0762" cy="787.1651" fill="#84BE84" rx="2.7576" ry="2.7576" style="stroke:#038048;stroke-width:0.919207924461865;"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="122.2547" x="1196.3491" y="791.052">getSpeciality(): string</text><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="3.6768" x="1196.3491" y="807.2387"> </text><ellipse cx="1188.0762" cy="819.5385" fill="#84BE84" rx="2.7576" ry="2.7576" style="stroke:#038048;stroke-width:0.919207924461865;"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="113.0626" x="1196.3491" y="823.4254">queryHistory(): void</text><ellipse cx="1188.0762" cy="835.7252" fill="#84BE84" rx="2.7576" ry="2.7576" style="stroke:#038048;stroke-width:0.919207924461865;"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="137.8812" x="1196.3491" y="839.6121">assignTreatment(): void</text><ellipse cx="1188.0762" cy="851.9119" fill="#84BE84" rx="2.7576" ry="2.7576" style="stroke:#038048;stroke-width:0.919207924461865;"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="127.7699" x="1196.3491" y="855.7987">issueDiagnosis(): void</text><ellipse cx="1188.0762" cy="868.0985" fill="#84BE84" rx="2.7576" ry="2.7576" style="stroke:#038048;stroke-width:0.919207924461865;"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="65.2638" x="1196.3491" y="871.9854">load(): void</text></g><!--MD5=[c508b5b6bbe276ff5e2700b6641f837f]
+class Appointment--><g id="elem_Appointment"><rect codeLine="60" fill="#F1F1F1" height="400.2289" id="Appointment" rx="2.298" ry="2.298" style="stroke:#181818;stroke-width:0.4596039622309325;" width="217.8523" x="26.657" y="22.9802"/><ellipse cx="95.3678" cy="37.6875" fill="#ADD1B2" rx="10.1113" ry="10.1113" style="stroke:#181818;stroke-width:0.919207924461865;"/><path d="M97.91,33.8958 Q98.0536,33.6947 98.226,33.5942 Q98.3983,33.4936 98.5994,33.4936 Q98.9441,33.4936 99.1596,33.7378 Q99.375,33.9676 99.375,34.5277 L99.375,35.8635 Q99.375,36.4236 99.1596,36.6678 Q98.9441,36.9119 98.5994,36.9119 Q98.2834,36.9119 98.0967,36.7252 Q97.91,36.5529 97.8095,36.0789 Q97.7664,35.7486 97.594,35.5762 Q97.2924,35.2315 96.7323,35.0304 Q96.1721,34.8294 95.5976,34.8294 Q94.8939,34.8294 94.305,35.131 Q93.7305,35.4326 93.2709,36.122 Q92.8256,36.8114 92.8256,37.7593 L92.8256,38.7647 Q92.8256,39.8994 93.6443,40.6606 Q94.463,41.4074 95.928,41.4074 Q96.7897,41.4074 97.393,41.1776 Q97.752,41.034 98.1398,40.6319 Q98.384,40.3877 98.5132,40.3159 Q98.6569,40.2441 98.8436,40.2441 Q99.1452,40.2441 99.375,40.4882 Q99.6192,40.718 99.6192,41.034 Q99.6192,41.35 99.3032,41.7234 Q98.8436,42.2548 98.1111,42.5565 Q97.1201,42.973 95.928,42.973 Q94.5348,42.973 93.4289,42.3985 Q92.524,41.9389 91.8921,40.9622 Q91.2601,39.9712 91.2601,38.7934 L91.2601,37.7306 Q91.2601,36.5098 91.8203,35.4613 Q92.3948,34.3985 93.4001,33.8383 Q94.4055,33.2638 95.5402,33.2638 Q96.2152,33.2638 96.8041,33.4218 Q97.4073,33.5655 97.91,33.8958 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="72.6174" x="114.2116" y="42.9532">Appointment</text><line style="stroke:#181818;stroke-width:0.4596039622309325;" x1="27.5762" x2="243.5901" y1="52.3949" y2="52.3949"/><rect fill="none" height="5.5152" style="stroke:#C82930;stroke-width:0.919207924461865;" width="5.5152" x="34.0107" y="62.7862"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="53.3141" x="45.0412" y="69.4307">appId: int</text><rect fill="none" height="5.5152" style="stroke:#C82930;stroke-width:0.919207924461865;" width="5.5152" x="34.0107" y="78.9729"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="60.6677" x="45.0412" y="85.6174">date: Date</text><rect fill="none" height="5.5152" style="stroke:#C82930;stroke-width:0.919207924461865;" width="5.5152" x="34.0107" y="95.1596"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="59.7485" x="45.0412" y="101.8041">time: Time</text><rect fill="none" height="5.5152" style="stroke:#C82930;stroke-width:0.919207924461865;" width="5.5152" x="34.0107" y="111.3462"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="88.244" x="45.0412" y="117.9908">urgencyCat: int</text><rect fill="none" height="5.5152" style="stroke:#C82930;stroke-width:0.919207924461865;" width="5.5152" x="34.0107" y="127.5329"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="79.9711" x="45.0412" y="134.1774">reason: string</text><rect fill="none" height="5.5152" style="stroke:#C82930;stroke-width:0.919207924461865;" width="5.5152" x="34.0107" y="143.7196"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="83.6479" x="45.0412" y="150.3641">attended: bool</text><rect fill="none" height="5.5152" style="stroke:#C82930;stroke-width:0.919207924461865;" width="5.5152" x="34.0107" y="159.9063"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="61.5869" x="45.0412" y="166.5508">clientId: int</text><rect fill="none" height="5.5152" style="stroke:#C82930;stroke-width:0.919207924461865;" width="5.5152" x="34.0107" y="176.0929"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="49.6372" x="45.0412" y="182.7375">petId: int</text><line style="stroke:#181818;stroke-width:0.4596039622309325;" x1="27.5762" x2="243.5901" y1="189.2419" y2="189.2419"/><ellipse cx="36.7683" cy="202.3909" fill="#84BE84" rx="2.7576" ry="2.7576" style="stroke:#038048;stroke-width:0.919207924461865;"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="122.2547" x="45.0412" y="206.2778">setAppId(id: int): void</text><ellipse cx="36.7683" cy="218.5776" fill="#84BE84" rx="2.7576" ry="2.7576" style="stroke:#038048;stroke-width:0.919207924461865;"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="146.1541" x="45.0412" y="222.4645">setDate(date: Date): void</text><ellipse cx="36.7683" cy="234.7643" fill="#84BE84" rx="2.7576" ry="2.7576" style="stroke:#038048;stroke-width:0.919207924461865;"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="146.1541" x="45.0412" y="238.6512">setTime(time: Time): void</text><ellipse cx="36.7683" cy="250.9509" fill="#84BE84" rx="2.7576" ry="2.7576" style="stroke:#038048;stroke-width:0.919207924461865;"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="164.5382" x="45.0412" y="254.8378">setUrgencyCat(cat: int): void</text><ellipse cx="36.7683" cy="267.1376" fill="#84BE84" rx="2.7576" ry="2.7576" style="stroke:#038048;stroke-width:0.919207924461865;"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="182.9224" x="45.0412" y="271.0245">setReason(reason: string): void</text><ellipse cx="36.7683" cy="283.3243" fill="#84BE84" rx="2.7576" ry="2.7576" style="stroke:#038048;stroke-width:0.919207924461865;"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="193.9529" x="45.0412" y="287.2112">setAttended(attended: bool): void</text><ellipse cx="36.7683" cy="299.511" fill="#84BE84" rx="2.7576" ry="2.7576" style="stroke:#038048;stroke-width:0.919207924461865;"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="81.8095" x="45.0412" y="303.3979">getAppId(): int</text><ellipse cx="36.7683" cy="315.6977" fill="#84BE84" rx="2.7576" ry="2.7576" style="stroke:#038048;stroke-width:0.919207924461865;"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="90.0824" x="45.0412" y="319.5845">getDate(): Date</text><ellipse cx="36.7683" cy="331.8843" fill="#84BE84" rx="2.7576" ry="2.7576" style="stroke:#038048;stroke-width:0.919207924461865;"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="91.9208" x="45.0412" y="335.7712">getTime(): Time</text><ellipse cx="36.7683" cy="348.071" fill="#84BE84" rx="2.7576" ry="2.7576" style="stroke:#038048;stroke-width:0.919207924461865;"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="116.7394" x="45.0412" y="351.9579">getUrgencyCat(): int</text><ellipse cx="36.7683" cy="364.2577" fill="#84BE84" rx="2.7576" ry="2.7576" style="stroke:#038048;stroke-width:0.919207924461865;"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="112.1434" x="45.0412" y="368.1446">getReason(): string</text><ellipse cx="36.7683" cy="380.4444" fill="#84BE84" rx="2.7576" ry="2.7576" style="stroke:#038048;stroke-width:0.919207924461865;"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="112.1434" x="45.0412" y="384.3312">getAttended(): bool</text><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="3.6768" x="45.0412" y="400.5179"> </text><ellipse cx="36.7683" cy="412.8177" fill="#84BE84" rx="2.7576" ry="2.7576" style="stroke:#038048;stroke-width:0.919207924461865;"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="65.2638" x="45.0412" y="416.7046">load(): void</text></g><!--MD5=[219c5b5127d04dcb79d069b79c448e72]
+class VetVisits--><g id="elem_VetVisits"><rect codeLine="86" fill="#F1F1F1" height="432.6022" id="VetVisits" rx="2.298" ry="2.298" style="stroke:#181818;stroke-width:0.4596039622309325;" width="233.4788" x="277.1412" y="6.4345"/><ellipse cx="365.1553" cy="21.1418" fill="#ADD1B2" rx="10.1113" ry="10.1113" style="stroke:#181818;stroke-width:0.919207924461865;"/><path d="M367.6975,17.35 Q367.8412,17.149 368.0135,17.0484 Q368.1859,16.9479 368.3869,16.9479 Q368.7316,16.9479 368.9471,17.1921 Q369.1625,17.4219 369.1625,17.982 L369.1625,19.3177 Q369.1625,19.8779 368.9471,20.122 Q368.7316,20.3662 368.3869,20.3662 Q368.071,20.3662 367.8842,20.1795 Q367.6975,20.0071 367.597,19.5332 Q367.5539,19.2028 367.3816,19.0305 Q367.0799,18.6858 366.5198,18.4847 Q365.9597,18.2836 365.3851,18.2836 Q364.6814,18.2836 364.0925,18.5852 Q363.518,18.8869 363.0584,19.5763 Q362.6132,20.2657 362.6132,21.2136 L362.6132,22.219 Q362.6132,23.3536 363.4318,24.1148 Q364.2505,24.8617 365.7155,24.8617 Q366.5772,24.8617 367.1805,24.6319 Q367.5395,24.4883 367.9273,24.0861 Q368.1715,23.842 368.3008,23.7701 Q368.4444,23.6983 368.6311,23.6983 Q368.9327,23.6983 369.1625,23.9425 Q369.4067,24.1723 369.4067,24.4883 Q369.4067,24.8043 369.0907,25.1777 Q368.6311,25.7091 367.8986,26.0107 Q366.9076,26.4272 365.7155,26.4272 Q364.3223,26.4272 363.2164,25.8527 Q362.3115,25.3931 361.6796,24.4165 Q361.0476,23.4254 361.0476,22.2477 L361.0476,21.1849 Q361.0476,19.964 361.6078,18.9156 Q362.1823,17.8527 363.1877,17.2926 Q364.1931,16.7181 365.3277,16.7181 Q366.0027,16.7181 366.5916,16.8761 Q367.1948,17.0197 367.6975,17.35 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="49.6372" x="383.9991" y="26.4075">VetVisits</text><line style="stroke:#181818;stroke-width:0.4596039622309325;" x1="278.0604" x2="509.7008" y1="35.8491" y2="35.8491"/><rect fill="none" height="5.5152" style="stroke:#C82930;stroke-width:0.919207924461865;" width="5.5152" x="284.4949" y="46.2405"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="53.3141" x="295.5253" y="52.885">visitId: int</text><rect fill="none" height="5.5152" style="stroke:#C82930;stroke-width:0.919207924461865;" width="5.5152" x="284.4949" y="62.4271"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="69.8598" x="295.5253" y="69.0717">date: Fecha</text><rect fill="none" height="5.5152" style="stroke:#C82930;stroke-width:0.919207924461865;" width="5.5152" x="284.4949" y="78.6138"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="79.9711" x="295.5253" y="85.2583">reason: string</text><rect fill="none" height="5.5152" style="stroke:#C82930;stroke-width:0.919207924461865;" width="5.5152" x="284.4949" y="94.8005"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="94.6784" x="295.5253" y="101.445">diagnosis: string</text><rect fill="none" height="5.5152" style="stroke:#C82930;stroke-width:0.919207924461865;" width="5.5152" x="284.4949" y="110.9872"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="48.718" x="295.5253" y="117.6317">vetId: int</text><rect fill="none" height="5.5152" style="stroke:#C82930;stroke-width:0.919207924461865;" width="5.5152" x="284.4949" y="127.1739"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="61.5869" x="295.5253" y="133.8184">clientId: int</text><rect fill="none" height="5.5152" style="stroke:#C82930;stroke-width:0.919207924461865;" width="5.5152" x="284.4949" y="143.3605"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="49.6372" x="295.5253" y="150.005">petId: int</text><rect fill="none" height="5.5152" style="stroke:#C82930;stroke-width:0.919207924461865;" width="5.5152" x="284.4949" y="159.5472"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="55.1525" x="295.5253" y="166.1917">saleId: int</text><line style="stroke:#181818;stroke-width:0.4596039622309325;" x1="278.0604" x2="509.7008" y1="172.6962" y2="172.6962"/><ellipse cx="287.2525" cy="185.8452" fill="#84BE84" rx="2.7576" ry="2.7576" style="stroke:#038048;stroke-width:0.919207924461865;"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="123.1739" x="295.5253" y="189.7321">setVisitId(id: int): void</text><ellipse cx="287.2525" cy="202.0318" fill="#84BE84" rx="2.7576" ry="2.7576" style="stroke:#038048;stroke-width:0.919207924461865;"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="161.7806" x="295.5253" y="205.9187">setDate(fecha: Fecha): void</text><ellipse cx="287.2525" cy="218.2185" fill="#84BE84" rx="2.7576" ry="2.7576" style="stroke:#038048;stroke-width:0.919207924461865;"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="182.9224" x="295.5253" y="222.1054">setReason(reason: string): void</text><ellipse cx="287.2525" cy="234.4052" fill="#84BE84" rx="2.7576" ry="2.7576" style="stroke:#038048;stroke-width:0.919207924461865;"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="209.5794" x="295.5253" y="238.2921">setDiagnosis(diagnosis: string): void</text><ellipse cx="287.2525" cy="250.5919" fill="#84BE84" rx="2.7576" ry="2.7576" style="stroke:#038048;stroke-width:0.919207924461865;"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="118.5778" x="295.5253" y="254.4788">setVetId(id: int): void</text><ellipse cx="287.2525" cy="266.7786" fill="#84BE84" rx="2.7576" ry="2.7576" style="stroke:#038048;stroke-width:0.919207924461865;"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="132.3659" x="295.5253" y="270.6654">setClientId(id: int): void</text><ellipse cx="287.2525" cy="282.9652" fill="#84BE84" rx="2.7576" ry="2.7576" style="stroke:#038048;stroke-width:0.919207924461865;"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="118.5778" x="295.5253" y="286.8521">setPetId(id: int): void</text><ellipse cx="287.2525" cy="299.1519" fill="#84BE84" rx="2.7576" ry="2.7576" style="stroke:#038048;stroke-width:0.919207924461865;"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="82.7287" x="295.5253" y="303.0388">getVisitId(): int</text><ellipse cx="287.2525" cy="315.3386" fill="#84BE84" rx="2.7576" ry="2.7576" style="stroke:#038048;stroke-width:0.919207924461865;"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="99.2745" x="295.5253" y="319.2255">getDate(): Fecha</text><ellipse cx="287.2525" cy="331.5253" fill="#84BE84" rx="2.7576" ry="2.7576" style="stroke:#038048;stroke-width:0.919207924461865;"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="112.1434" x="295.5253" y="335.4121">getReason(): string</text><ellipse cx="287.2525" cy="347.7119" fill="#84BE84" rx="2.7576" ry="2.7576" style="stroke:#038048;stroke-width:0.919207924461865;"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="124.0931" x="295.5253" y="351.5988">getDiagnosis(): string</text><ellipse cx="287.2525" cy="363.8986" fill="#84BE84" rx="2.7576" ry="2.7576" style="stroke:#038048;stroke-width:0.919207924461865;"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="78.1327" x="295.5253" y="367.7855">getVetId(): int</text><ellipse cx="287.2525" cy="380.0853" fill="#84BE84" rx="2.7576" ry="2.7576" style="stroke:#038048;stroke-width:0.919207924461865;"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="91.9208" x="295.5253" y="383.9722">getClientId(): int</text><ellipse cx="287.2525" cy="396.272" fill="#84BE84" rx="2.7576" ry="2.7576" style="stroke:#038048;stroke-width:0.919207924461865;"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="78.1327" x="295.5253" y="400.1589">getPetId(): int</text><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="3.6768" x="295.5253" y="416.3455"> </text><ellipse cx="287.2525" cy="428.6453" fill="#84BE84" rx="2.7576" ry="2.7576" style="stroke:#038048;stroke-width:0.919207924461865;"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="126.8507" x="295.5253" y="432.5322">isValidRelation(): bool</text></g><!--MD5=[9cfa872a99fa8e70a8c023fe905238fd]
+class Pet--><g id="elem_Pet"><rect codeLine="114" fill="#F1F1F1" height="416.4156" id="Pet" rx="2.298" ry="2.298" style="stroke:#181818;stroke-width:0.4596039622309325;" width="270.2471" x="542.7923" y="14.7073"/><ellipse cx="664.3575" cy="29.4147" fill="#ADD1B2" rx="10.1113" ry="10.1113" style="stroke:#181818;stroke-width:0.919207924461865;"/><path d="M666.8997,25.6229 Q667.0433,25.4218 667.2157,25.3213 Q667.388,25.2208 667.5891,25.2208 Q667.9338,25.2208 668.1493,25.4649 Q668.3647,25.6947 668.3647,26.2549 L668.3647,27.5906 Q668.3647,28.1507 668.1493,28.3949 Q667.9338,28.6391 667.5891,28.6391 Q667.2731,28.6391 667.0864,28.4524 Q666.8997,28.28 666.7992,27.806 Q666.7561,27.4757 666.5837,27.3033 Q666.2821,26.9586 665.722,26.7576 Q665.1618,26.5565 664.5873,26.5565 Q663.8836,26.5565 663.2947,26.8581 Q662.7202,27.1597 662.2606,27.8491 Q661.8153,28.5385 661.8153,29.4865 L661.8153,30.4919 Q661.8153,31.6265 662.634,32.3877 Q663.4527,33.1346 664.9177,33.1346 Q665.7794,33.1346 666.3827,32.9048 Q666.7417,32.7611 667.1295,32.359 Q667.3737,32.1148 667.5029,32.043 Q667.6466,31.9712 667.8333,31.9712 Q668.1349,31.9712 668.3647,32.2154 Q668.6089,32.4452 668.6089,32.7611 Q668.6089,33.0771 668.2929,33.4506 Q667.8333,33.982 667.1008,34.2836 Q666.1098,34.7001 664.9177,34.7001 Q663.5245,34.7001 662.4186,34.1256 Q661.5137,33.666 660.8818,32.6893 Q660.2498,31.6983 660.2498,30.5206 L660.2498,29.4577 Q660.2498,28.2369 660.81,27.1884 Q661.3845,26.1256 662.3898,25.5655 Q663.3952,24.991 664.5299,24.991 Q665.2049,24.991 665.7938,25.149 Q666.397,25.2926 666.8997,25.6229 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="19.3034" x="683.2013" y="34.6804">Pet</text><line style="stroke:#181818;stroke-width:0.4596039622309325;" x1="543.7115" x2="812.1202" y1="44.122" y2="44.122"/><rect fill="none" height="5.5152" style="stroke:#C82930;stroke-width:0.919207924461865;" width="5.5152" x="550.1459" y="54.5133"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="49.6372" x="561.1764" y="61.1578">petId: int</text><rect fill="none" height="5.5152" style="stroke:#C82930;stroke-width:0.919207924461865;" width="5.5152" x="550.1459" y="70.7"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="71.6982" x="561.1764" y="77.3445">name: string</text><rect fill="none" height="5.5152" style="stroke:#C82930;stroke-width:0.919207924461865;" width="5.5152" x="550.1459" y="86.8867"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="77.2135" x="561.1764" y="93.5312">specie: string</text><rect fill="none" height="5.5152" style="stroke:#C82930;stroke-width:0.919207924461865;" width="5.5152" x="550.1459" y="103.0734"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="73.5366" x="561.1764" y="109.7179">breed: string</text><rect fill="none" height="5.5152" style="stroke:#C82930;stroke-width:0.919207924461865;" width="5.5152" x="550.1459" y="119.26"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="97.436" x="561.1764" y="125.9046">birthDate: Fecha</text><rect fill="none" height="5.5152" style="stroke:#C82930;stroke-width:0.919207924461865;" width="5.5152" x="550.1459" y="135.4467"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="66.183" x="561.1764" y="142.0912">ownerId: int</text><rect fill="none" height="5.5152" style="stroke:#C82930;stroke-width:0.919207924461865;" width="5.5152" x="550.1459" y="151.6334"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="137.8812" x="561.1764" y="158.2779">currentDiagnosis: string</text><line style="stroke:#181818;stroke-width:0.4596039622309325;" x1="543.7115" x2="812.1202" y1="164.7824" y2="164.7824"/><ellipse cx="552.9036" cy="177.9314" fill="#84BE84" rx="2.7576" ry="2.7576" style="stroke:#038048;stroke-width:0.919207924461865;"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="129.6083" x="561.1764" y="181.8183">setPetId(petId:int):void</text><ellipse cx="552.9036" cy="194.118" fill="#84BE84" rx="2.7576" ry="2.7576" style="stroke:#038048;stroke-width:0.919207924461865;"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="162.6998" x="561.1764" y="198.0049">setName(name: string): void</text><ellipse cx="552.9036" cy="210.3047" fill="#84BE84" rx="2.7576" ry="2.7576" style="stroke:#038048;stroke-width:0.919207924461865;"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="170.9727" x="561.1764" y="214.1916">setSpecie(specie: string):void</text><ellipse cx="552.9036" cy="226.4914" fill="#84BE84" rx="2.7576" ry="2.7576" style="stroke:#038048;stroke-width:0.919207924461865;"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="166.3766" x="561.1764" y="230.3783">setBreed(breed: string): void</text><ellipse cx="552.9036" cy="242.6781" fill="#84BE84" rx="2.7576" ry="2.7576" style="stroke:#038048;stroke-width:0.919207924461865;"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="155.3461" x="561.1764" y="246.565">setDate(date: Fecha): void</text><ellipse cx="552.9036" cy="258.8648" fill="#84BE84" rx="2.7576" ry="2.7576" style="stroke:#038048;stroke-width:0.919207924461865;"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="133.2851" x="561.1764" y="262.7516">setOwnerId(id: int):void</text><ellipse cx="552.9036" cy="275.0514" fill="#84BE84" rx="2.7576" ry="2.7576" style="stroke:#038048;stroke-width:0.919207924461865;"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="246.3477" x="561.1764" y="278.9383">setCurrentDiagnosis(diagnosis:string):void</text><ellipse cx="552.9036" cy="291.2381" fill="#84BE84" rx="2.7576" ry="2.7576" style="stroke:#038048;stroke-width:0.919207924461865;"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="78.1327" x="561.1764" y="295.125">getPetId(): int</text><ellipse cx="552.9036" cy="307.4248" fill="#84BE84" rx="2.7576" ry="2.7576" style="stroke:#038048;stroke-width:0.919207924461865;"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="100.1937" x="561.1764" y="311.3117">getName(): string</text><ellipse cx="552.9036" cy="323.6115" fill="#84BE84" rx="2.7576" ry="2.7576" style="stroke:#038048;stroke-width:0.919207924461865;"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="106.6281" x="561.1764" y="327.4983">getSpecie(): string</text><ellipse cx="552.9036" cy="339.7981" fill="#84BE84" rx="2.7576" ry="2.7576" style="stroke:#038048;stroke-width:0.919207924461865;"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="98.3552" x="561.1764" y="343.685">getBreed():string</text><ellipse cx="552.9036" cy="355.9848" fill="#84BE84" rx="2.7576" ry="2.7576" style="stroke:#038048;stroke-width:0.919207924461865;"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="95.5976" x="561.1764" y="359.8717">getDate():Fecha</text><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="3.6768" x="561.1764" y="376.0584"> </text><ellipse cx="552.9036" cy="388.3582" fill="#84BE84" rx="2.7576" ry="2.7576" style="stroke:#038048;stroke-width:0.919207924461865;"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="131.4467" x="561.1764" y="392.2451">addAppoinment(): void</text><ellipse cx="552.9036" cy="404.5448" fill="#84BE84" rx="2.7576" ry="2.7576" style="stroke:#038048;stroke-width:0.919207924461865;"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="61.5869" x="561.1764" y="408.4317">load():void</text><ellipse cx="552.9036" cy="420.7315" fill="#84BE84" rx="2.7576" ry="2.7576" style="stroke:#038048;stroke-width:0.919207924461865;"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="145.2349" x="561.1764" y="424.6184">recordVaccination(): void</text></g><!--MD5=[0f391253dc4c910d8c87c3c1fd264d41]
+class PetRelations--><g id="elem_PetRelations"><rect codeLine="141" fill="#F1F1F1" height="189.8021" id="PetRelations" rx="2.298" ry="2.298" style="stroke:#181818;stroke-width:0.4596039622309325;" width="186.5992" x="845.6713" y="128.2295"/><ellipse cx="898.2959" cy="142.9368" fill="#ADD1B2" rx="10.1113" ry="10.1113" style="stroke:#181818;stroke-width:0.919207924461865;"/><path d="M900.8381,139.1451 Q900.9818,138.944 901.1541,138.8435 Q901.3265,138.7429 901.5275,138.7429 Q901.8722,138.7429 902.0877,138.9871 Q902.3031,139.2169 902.3031,139.7771 L902.3031,141.1128 Q902.3031,141.6729 902.0877,141.9171 Q901.8722,142.1613 901.5275,142.1613 Q901.2116,142.1613 901.0248,141.9745 Q900.8381,141.8022 900.7376,141.3282 Q900.6945,140.9979 900.5222,140.8255 Q900.2205,140.4808 899.6604,140.2797 Q899.1003,140.0787 898.5257,140.0787 Q897.822,140.0787 897.2331,140.3803 Q896.6586,140.6819 896.199,141.3713 Q895.7538,142.0607 895.7538,143.0086 L895.7538,144.014 Q895.7538,145.1487 896.5724,145.9099 Q897.3911,146.6568 898.8561,146.6568 Q899.7178,146.6568 900.3211,146.4269 Q900.6801,146.2833 901.0679,145.8812 Q901.3121,145.637 901.4414,145.5652 Q901.585,145.4934 901.7717,145.4934 Q902.0733,145.4934 902.3031,145.7375 Q902.5473,145.9673 902.5473,146.2833 Q902.5473,146.5993 902.2313,146.9727 Q901.7717,147.5041 901.0392,147.8058 Q900.0482,148.2223 898.8561,148.2223 Q897.4629,148.2223 896.357,147.6478 Q895.4521,147.1882 894.8202,146.2115 Q894.1882,145.2205 894.1882,144.0428 L894.1882,142.9799 Q894.1882,141.7591 894.7484,140.7106 Q895.3229,139.6478 896.3283,139.0876 Q897.3336,138.5131 898.4683,138.5131 Q899.1433,138.5131 899.7322,138.6711 Q900.3354,138.8148 900.8381,139.1451 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="73.5366" x="917.1397" y="148.2025">PetRelations</text><line style="stroke:#181818;stroke-width:0.4596039622309325;" x1="846.5905" x2="1031.3513" y1="157.6442" y2="157.6442"/><rect fill="none" height="5.5152" style="stroke:#C82930;stroke-width:0.919207924461865;" width="5.5152" x="853.025" y="168.0355"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="49.6372" x="864.0554" y="174.68">petId: int</text><rect fill="none" height="5.5152" style="stroke:#C82930;stroke-width:0.919207924461865;" width="5.5152" x="853.025" y="184.2222"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="61.5869" x="864.0554" y="190.8667">clientId: int</text><rect fill="none" height="5.5152" style="stroke:#C82930;stroke-width:0.919207924461865;" width="5.5152" x="853.025" y="200.4089"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="67.1022" x="864.0554" y="207.0534">owner: bool</text><line style="stroke:#181818;stroke-width:0.4596039622309325;" x1="846.5905" x2="1031.3513" y1="213.5579" y2="213.5579"/><ellipse cx="855.7826" cy="226.7068" fill="#84BE84" rx="2.7576" ry="2.7576" style="stroke:#038048;stroke-width:0.919207924461865;"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="118.5778" x="864.0554" y="230.5937">setPetId(id: int): void</text><ellipse cx="855.7826" cy="242.8935" fill="#84BE84" rx="2.7576" ry="2.7576" style="stroke:#038048;stroke-width:0.919207924461865;"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="132.3659" x="864.0554" y="246.7804">setClientId(id: int): void</text><ellipse cx="855.7826" cy="259.0802" fill="#84BE84" rx="2.7576" ry="2.7576" style="stroke:#038048;stroke-width:0.919207924461865;"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="162.6998" x="864.0554" y="262.9671">setOwner(owner: bool): void</text><ellipse cx="855.7826" cy="275.2669" fill="#84BE84" rx="2.7576" ry="2.7576" style="stroke:#038048;stroke-width:0.919207924461865;"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="78.1327" x="864.0554" y="279.1538">getPetId(): int</text><ellipse cx="855.7826" cy="291.4535" fill="#84BE84" rx="2.7576" ry="2.7576" style="stroke:#038048;stroke-width:0.919207924461865;"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="91.9208" x="864.0554" y="295.3404">getClientId(): int</text><ellipse cx="855.7826" cy="307.6402" fill="#84BE84" rx="2.7576" ry="2.7576" style="stroke:#038048;stroke-width:0.919207924461865;"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="97.436" x="864.0554" y="311.5271">getOwner(): bool</text></g><!--MD5=[72136138052d025cffdce3c22fbd185f]
+class Product--><g id="elem_Product"><rect codeLine="156" fill="#F1F1F1" height="545.909" id="Product" rx="2.298" ry="2.298" style="stroke:#181818;stroke-width:0.4596039622309325;" width="258.2974" x="6.4345" y="494.5339"/><ellipse cx="109.1559" cy="509.2412" fill="#ADD1B2" rx="10.1113" ry="10.1113" style="stroke:#181818;stroke-width:0.919207924461865;"/><path d="M111.6981,505.4495 Q111.8418,505.2484 112.0141,505.1478 Q112.1865,505.0473 112.3875,505.0473 Q112.7322,505.0473 112.9477,505.2915 Q113.1631,505.5213 113.1631,506.0814 L113.1631,507.4171 Q113.1631,507.9773 112.9477,508.2214 Q112.7322,508.4656 112.3875,508.4656 Q112.0716,508.4656 111.8848,508.2789 Q111.6981,508.1065 111.5976,507.6326 Q111.5545,507.3022 111.3821,507.1299 Q111.0805,506.7852 110.5204,506.5841 Q109.9602,506.383 109.3857,506.383 Q108.682,506.383 108.0931,506.6846 Q107.5186,506.9863 107.059,507.6757 Q106.6138,508.3651 106.6138,509.313 L106.6138,510.3184 Q106.6138,511.453 107.4324,512.2143 Q108.2511,512.9611 109.7161,512.9611 Q110.5778,512.9611 111.1811,512.7313 Q111.5401,512.5877 111.9279,512.1855 Q112.1721,511.9414 112.3014,511.8696 Q112.445,511.7977 112.6317,511.7977 Q112.9333,511.7977 113.1631,512.0419 Q113.4073,512.2717 113.4073,512.5877 Q113.4073,512.9037 113.0913,513.2771 Q112.6317,513.8085 111.8992,514.1101 Q110.9082,514.5266 109.7161,514.5266 Q108.3229,514.5266 107.217,513.9521 Q106.3121,513.4925 105.6802,512.5159 Q105.0482,511.5248 105.0482,510.3471 L105.0482,509.2843 Q105.0482,508.0635 105.6084,507.015 Q106.1829,505.9521 107.1883,505.392 Q108.1936,504.8175 109.3283,504.8175 Q110.0033,504.8175 110.5922,504.9755 Q111.1954,505.1191 111.6981,505.4495 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="45.0412" x="127.9997" y="514.5069">Product</text><line style="stroke:#181818;stroke-width:0.4596039622309325;" x1="7.3537" x2="263.8127" y1="523.9485" y2="523.9485"/><rect fill="none" height="5.5152" style="stroke:#C82930;stroke-width:0.919207924461865;" width="5.5152" x="13.7881" y="534.3399"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="75.375" x="24.8186" y="540.9844">productId: int</text><rect fill="none" height="5.5152" style="stroke:#C82930;stroke-width:0.919207924461865;" width="5.5152" x="13.7881" y="550.5266"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="116.7394" x="24.8186" y="557.1711">productName: string</text><rect fill="none" height="5.5152" style="stroke:#C82930;stroke-width:0.919207924461865;" width="5.5152" x="13.7881" y="566.7132"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="102.9513" x="24.8186" y="573.3577">description: string</text><rect fill="none" height="5.5152" style="stroke:#C82930;stroke-width:0.919207924461865;" width="5.5152" x="13.7881" y="582.8999"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="67.1022" x="24.8186" y="589.5444">quantity: int</text><rect fill="none" height="5.5152" style="stroke:#C82930;stroke-width:0.919207924461865;" width="5.5152" x="13.7881" y="599.0866"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="51.4756" x="24.8186" y="605.7311">stock: int</text><rect fill="none" height="5.5152" style="stroke:#C82930;stroke-width:0.919207924461865;" width="5.5152" x="13.7881" y="615.2733"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="60.6677" x="24.8186" y="621.9178">price: float</text><rect fill="none" height="5.5152" style="stroke:#C82930;stroke-width:0.919207924461865;" width="5.5152" x="13.7881" y="631.4599"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="73.5366" x="24.8186" y="638.1044">brand: string</text><rect fill="none" height="5.5152" style="stroke:#C82930;stroke-width:0.919207924461865;" width="5.5152" x="13.7881" y="647.6466"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="109.3857" x="24.8186" y="654.2911">productType:string</text><rect fill="none" height="5.5152" style="stroke:#C82930;stroke-width:0.919207924461865;" width="5.5152" x="13.7881" y="663.8333"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="158.1038" x="24.8186" y="670.4778">productCategory: Category</text><line style="stroke:#181818;stroke-width:0.4596039622309325;" x1="7.3537" x2="263.8127" y1="676.9823" y2="676.9823"/><ellipse cx="16.5457" cy="690.1313" fill="#84BE84" rx="2.7576" ry="2.7576" style="stroke:#038048;stroke-width:0.919207924461865;"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="144.3156" x="24.8186" y="694.0181">setProductId(id: int): void</text><ellipse cx="16.5457" cy="706.3179" fill="#84BE84" rx="2.7576" ry="2.7576" style="stroke:#038048;stroke-width:0.919207924461865;"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="159.023" x="24.8186" y="710.2048">setName(name:string): void</text><ellipse cx="16.5457" cy="722.5046" fill="#84BE84" rx="2.7576" ry="2.7576" style="stroke:#038048;stroke-width:0.919207924461865;"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="226.1251" x="24.8186" y="726.3915">setDescription(description: string): void</text><ellipse cx="16.5457" cy="738.6913" fill="#84BE84" rx="2.7576" ry="2.7576" style="stroke:#038048;stroke-width:0.919207924461865;"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="145.2349" x="24.8186" y="742.5782">setQuantity(qty: int): void</text><ellipse cx="16.5457" cy="754.878" fill="#84BE84" rx="2.7576" ry="2.7576" style="stroke:#038048;stroke-width:0.919207924461865;"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="137.8812" x="24.8186" y="758.7648">setStock(stock:int): void</text><ellipse cx="16.5457" cy="771.0646" fill="#84BE84" rx="2.7576" ry="2.7576" style="stroke:#038048;stroke-width:0.919207924461865;"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="144.3156" x="24.8186" y="774.9515">setPrice(price:float): void</text><ellipse cx="16.5457" cy="787.2513" fill="#84BE84" rx="2.7576" ry="2.7576" style="stroke:#038048;stroke-width:0.919207924461865;"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="166.3766" x="24.8186" y="791.1382">setBrand(brand: string): void</text><ellipse cx="16.5457" cy="803.438" fill="#84BE84" rx="2.7576" ry="2.7576" style="stroke:#038048;stroke-width:0.919207924461865;"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="196.7105" x="24.8186" y="807.3249">setProductType(type: string): void</text><ellipse cx="16.5457" cy="819.6247" fill="#84BE84" rx="2.7576" ry="2.7576" style="stroke:#038048;stroke-width:0.919207924461865;"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="234.398" x="24.8186" y="823.5116">setProductCategory(cat: Category): void</text><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="3.6768" x="24.8186" y="839.6982"> </text><ellipse cx="16.5457" cy="851.998" fill="#84BE84" rx="2.7576" ry="2.7576" style="stroke:#038048;stroke-width:0.919207924461865;"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="103.8705" x="24.8186" y="855.8849">getProductId(): int</text><ellipse cx="16.5457" cy="868.1847" fill="#84BE84" rx="2.7576" ry="2.7576" style="stroke:#038048;stroke-width:0.919207924461865;"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="100.1937" x="24.8186" y="872.0716">getName(): string</text><ellipse cx="16.5457" cy="884.3714" fill="#84BE84" rx="2.7576" ry="2.7576" style="stroke:#038048;stroke-width:0.919207924461865;"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="97.436" x="24.8186" y="888.2583">getQuantity(): int</text><ellipse cx="16.5457" cy="900.5581" fill="#84BE84" rx="2.7576" ry="2.7576" style="stroke:#038048;stroke-width:0.919207924461865;"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="80.8903" x="24.8186" y="904.4449">getStock(): int</text><ellipse cx="16.5457" cy="916.7447" fill="#84BE84" rx="2.7576" ry="2.7576" style="stroke:#038048;stroke-width:0.919207924461865;"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="89.1632" x="24.8186" y="920.6316">getPrice(): float</text><ellipse cx="16.5457" cy="932.9314" fill="#84BE84" rx="2.7576" ry="2.7576" style="stroke:#038048;stroke-width:0.919207924461865;"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="98.3552" x="24.8186" y="936.8183">getBrand():string</text><ellipse cx="16.5457" cy="949.1181" fill="#84BE84" rx="2.7576" ry="2.7576" style="stroke:#038048;stroke-width:0.919207924461865;"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="141.558" x="24.8186" y="953.005">getProductType(): string</text><ellipse cx="16.5457" cy="965.3048" fill="#84BE84" rx="2.7576" ry="2.7576" style="stroke:#038048;stroke-width:0.919207924461865;"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="186.5992" x="24.8186" y="969.1917">getProductCategory(): Category</text><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="3.6768" x="24.8186" y="985.3783"> </text><ellipse cx="16.5457" cy="997.6781" fill="#84BE84" rx="2.7576" ry="2.7576" style="stroke:#038048;stroke-width:0.919207924461865;"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="107.5473" x="24.8186" y="1001.565">addProduct(): void</text><ellipse cx="16.5457" cy="1013.8648" fill="#84BE84" rx="2.7576" ry="2.7576" style="stroke:#038048;stroke-width:0.919207924461865;"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="123.1739" x="24.8186" y="1017.7517">DeleteProduct(): void</text><ellipse cx="16.5457" cy="1030.0515" fill="#84BE84" rx="2.7576" ry="2.7576" style="stroke:#038048;stroke-width:0.919207924461865;"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="113.0626" x="24.8186" y="1033.9384">updateStock(): void</text></g><!--MD5=[a1db4bf20df23ac2cd9366d22a9e2860]
+class ProductCategory--><g id="elem_ProductCategory"><rect codeLine="191" fill="#F1F1F1" height="173.6154" id="ProductCategory" rx="2.298" ry="2.298" style="stroke:#181818;stroke-width:0.4596039622309325;" width="206.8218" x="296.9042" y="680.6735"/><ellipse cx="347.2308" cy="695.3808" fill="#ADD1B2" rx="10.1113" ry="10.1113" style="stroke:#181818;stroke-width:0.919207924461865;"/><path d="M349.773,691.5891 Q349.9166,691.388 350.089,691.2874 Q350.2613,691.1869 350.4624,691.1869 Q350.8071,691.1869 351.0225,691.4311 Q351.238,691.6609 351.238,692.221 L351.238,693.5567 Q351.238,694.1169 351.0225,694.361 Q350.8071,694.6052 350.4624,694.6052 Q350.1464,694.6052 349.9597,694.4185 Q349.773,694.2461 349.6724,693.7722 Q349.6294,693.4418 349.457,693.2695 Q349.1554,692.9248 348.5952,692.7237 Q348.0351,692.5226 347.4606,692.5226 Q346.7568,692.5226 346.168,692.8242 Q345.5935,693.1259 345.1339,693.8153 Q344.6886,694.5047 344.6886,695.4526 L344.6886,696.458 Q344.6886,697.5926 345.5073,698.3539 Q346.3259,699.1007 347.7909,699.1007 Q348.6527,699.1007 349.2559,698.8709 Q349.615,698.7273 350.0028,698.3251 Q350.2469,698.081 350.3762,698.0092 Q350.5198,697.9373 350.7065,697.9373 Q351.0082,697.9373 351.238,698.1815 Q351.4821,698.4113 351.4821,698.7273 Q351.4821,699.0433 351.1662,699.4167 Q350.7065,699.9481 349.9741,700.2497 Q348.983,700.6662 347.7909,700.6662 Q346.3978,700.6662 345.2918,700.0917 Q344.387,699.6321 343.755,698.6555 Q343.1231,697.6645 343.1231,696.4867 L343.1231,695.4239 Q343.1231,694.2031 343.6832,693.1546 Q344.2577,692.0918 345.2631,691.5316 Q346.2685,690.9571 347.4031,690.9571 Q348.0782,690.9571 348.6671,691.1151 Q349.2703,691.2587 349.773,691.5891 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="98.3552" x="366.0746" y="700.6465">ProductCategory</text><line style="stroke:#181818;stroke-width:0.4596039622309325;" x1="297.8234" x2="502.8067" y1="710.0881" y2="710.0881"/><rect fill="none" height="5.5152" style="stroke:#C82930;stroke-width:0.919207924461865;" width="5.5152" x="304.2578" y="720.4795"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="48.718" x="315.2883" y="727.124">catId: int</text><rect fill="none" height="5.5152" style="stroke:#C82930;stroke-width:0.919207924461865;" width="5.5152" x="304.2578" y="736.6662"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="90.0824" x="315.2883" y="743.3107">catName: string</text><line style="stroke:#181818;stroke-width:0.4596039622309325;" x1="297.8234" x2="502.8067" y1="749.8151" y2="749.8151"/><ellipse cx="307.0154" cy="762.9641" fill="#84BE84" rx="2.7576" ry="2.7576" style="stroke:#038048;stroke-width:0.919207924461865;"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="119.497" x="315.2883" y="766.851">setCatId(id: int): void</text><ellipse cx="307.0154" cy="779.1508" fill="#84BE84" rx="2.7576" ry="2.7576" style="stroke:#038048;stroke-width:0.919207924461865;"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="182.9224" x="315.2883" y="783.0377">setCatName(name: string): void</text><ellipse cx="307.0154" cy="795.3375" fill="#84BE84" rx="2.7576" ry="2.7576" style="stroke:#038048;stroke-width:0.919207924461865;"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="79.0519" x="315.2883" y="799.2244">getCatId(): int</text><ellipse cx="307.0154" cy="811.5242" fill="#84BE84" rx="2.7576" ry="2.7576" style="stroke:#038048;stroke-width:0.919207924461865;"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="120.4162" x="315.2883" y="815.411">getCatName(): string</text><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="3.6768" x="315.2883" y="831.5977"> </text><ellipse cx="307.0154" cy="843.8975" fill="#84BE84" rx="2.7576" ry="2.7576" style="stroke:#038048;stroke-width:0.919207924461865;"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="65.2638" x="315.2883" y="847.7844">load(): void</text></g><!--MD5=[7829b64950ce38e0487c4015ea331f97]
+class Date--><g id="elem_Date"><rect codeLine="202" fill="#F1F1F1" height="189.8021" id="Date" rx="2.298" ry="2.298" style="stroke:#181818;stroke-width:0.4596039622309325;" width="174.6495" x="536.3578" y="672.8602"/><ellipse cx="605.9878" cy="687.5675" fill="#ADD1B2" rx="10.1113" ry="10.1113" style="stroke:#181818;stroke-width:0.919207924461865;"/><path d="M608.53,683.7758 Q608.6736,683.5747 608.846,683.4742 Q609.0183,683.3736 609.2194,683.3736 Q609.5641,683.3736 609.7796,683.6178 Q609.995,683.8476 609.995,684.4078 L609.995,685.7435 Q609.995,686.3036 609.7796,686.5478 Q609.5641,686.7919 609.2194,686.7919 Q608.9034,686.7919 608.7167,686.6052 Q608.53,686.4329 608.4295,685.9589 Q608.3864,685.6286 608.214,685.4562 Q607.9124,685.1115 607.3523,684.9104 Q606.7921,684.7094 606.2176,684.7094 Q605.5139,684.7094 604.925,685.011 Q604.3505,685.3126 603.8909,686.002 Q603.4456,686.6914 603.4456,687.6393 L603.4456,688.6447 Q603.4456,689.7794 604.2643,690.5406 Q605.083,691.2874 606.548,691.2874 Q607.4097,691.2874 608.013,691.0576 Q608.372,690.914 608.7598,690.5119 Q609.004,690.2677 609.1332,690.1959 Q609.2769,690.1241 609.4636,690.1241 Q609.7652,690.1241 609.995,690.3682 Q610.2392,690.598 610.2392,690.914 Q610.2392,691.23 609.9232,691.6034 Q609.4636,692.1348 608.7311,692.4365 Q607.7401,692.853 606.548,692.853 Q605.1548,692.853 604.0489,692.2785 Q603.144,691.8189 602.5121,690.8422 Q601.8801,689.8512 601.8801,688.6734 L601.8801,687.6106 Q601.8801,686.3898 602.4403,685.3413 Q603.0148,684.2785 604.0201,683.7183 Q605.0255,683.1438 606.1602,683.1438 Q606.8352,683.1438 607.4241,683.3018 Q608.0273,683.4455 608.53,683.7758 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="27.5762" x="624.8316" y="692.8332">Date</text><line style="stroke:#181818;stroke-width:0.4596039622309325;" x1="537.277" x2="710.0881" y1="702.2749" y2="702.2749"/><rect fill="none" height="5.5152" style="stroke:#C82930;stroke-width:0.919207924461865;" width="5.5152" x="543.7115" y="712.6662"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="42.2836" x="554.742" y="719.3107">day: int</text><rect fill="none" height="5.5152" style="stroke:#C82930;stroke-width:0.919207924461865;" width="5.5152" x="543.7115" y="728.8529"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="53.3141" x="554.742" y="735.4974">month:int</text><rect fill="none" height="5.5152" style="stroke:#C82930;stroke-width:0.919207924461865;" width="5.5152" x="543.7115" y="745.0396"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="46.8796" x="554.742" y="751.6841">year: int</text><line style="stroke:#181818;stroke-width:0.4596039622309325;" x1="537.277" x2="710.0881" y1="758.1885" y2="758.1885"/><ellipse cx="546.4691" cy="771.3375" fill="#84BE84" rx="2.7576" ry="2.7576" style="stroke:#038048;stroke-width:0.919207924461865;"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="123.1739" x="554.742" y="775.2244">setDay(day: int): void</text><ellipse cx="546.4691" cy="787.5242" fill="#84BE84" rx="2.7576" ry="2.7576" style="stroke:#038048;stroke-width:0.919207924461865;"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="150.7501" x="554.742" y="791.4111">setMonth(month: int): void</text><ellipse cx="546.4691" cy="803.7109" fill="#84BE84" rx="2.7576" ry="2.7576" style="stroke:#038048;stroke-width:0.919207924461865;"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="136.0428" x="554.742" y="807.5978">setYear (year: int): void</text><ellipse cx="546.4691" cy="819.8976" fill="#84BE84" rx="2.7576" ry="2.7576" style="stroke:#038048;stroke-width:0.919207924461865;"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="71.6982" x="554.742" y="823.7844">getDay(): int</text><ellipse cx="546.4691" cy="836.0842" fill="#84BE84" rx="2.7576" ry="2.7576" style="stroke:#038048;stroke-width:0.919207924461865;"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="84.5671" x="554.742" y="839.9711">getMonth(): int</text><ellipse cx="546.4691" cy="852.2709" fill="#84BE84" rx="2.7576" ry="2.7576" style="stroke:#038048;stroke-width:0.919207924461865;"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="76.2943" x="554.742" y="856.1578">getYear(): int</text></g><!--MD5=[2e42295458bb0bec21c9622a623eb29e]
+class Time--><g id="elem_Time"><rect codeLine="215" fill="#F1F1F1" height="189.8021" id="Time" rx="2.298" ry="2.298" style="stroke:#181818;stroke-width:0.4596039622309325;" width="153.5077" x="743.6392" y="672.8602"/><ellipse cx="802.2387" cy="687.5675" fill="#ADD1B2" rx="10.1113" ry="10.1113" style="stroke:#181818;stroke-width:0.919207924461865;"/><path d="M804.7809,683.7758 Q804.9245,683.5747 805.0969,683.4742 Q805.2692,683.3736 805.4703,683.3736 Q805.815,683.3736 806.0304,683.6178 Q806.2459,683.8476 806.2459,684.4078 L806.2459,685.7435 Q806.2459,686.3036 806.0304,686.5478 Q805.815,686.7919 805.4703,686.7919 Q805.1543,686.7919 804.9676,686.6052 Q804.7809,686.4329 804.6804,685.9589 Q804.6373,685.6286 804.4649,685.4562 Q804.1633,685.1115 803.6032,684.9104 Q803.043,684.7094 802.4685,684.7094 Q801.7647,684.7094 801.1759,685.011 Q800.6014,685.3126 800.1418,686.002 Q799.6965,686.6914 799.6965,687.6393 L799.6965,688.6447 Q799.6965,689.7794 800.5152,690.5406 Q801.3339,691.2874 802.7989,691.2874 Q803.6606,691.2874 804.2638,691.0576 Q804.6229,690.914 805.0107,690.5119 Q805.2549,690.2677 805.3841,690.1959 Q805.5278,690.1241 805.7145,690.1241 Q806.0161,690.1241 806.2459,690.3682 Q806.4901,690.598 806.4901,690.914 Q806.4901,691.23 806.1741,691.6034 Q805.7145,692.1348 804.982,692.4365 Q803.991,692.853 802.7989,692.853 Q801.4057,692.853 800.2998,692.2785 Q799.3949,691.8189 798.763,690.8422 Q798.131,689.8512 798.131,688.6734 L798.131,687.6106 Q798.131,686.3898 798.6911,685.3413 Q799.2657,684.2785 800.271,683.7183 Q801.2764,683.1438 802.4111,683.1438 Q803.0861,683.1438 803.675,683.3018 Q804.2782,683.4455 804.7809,683.7758 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="28.4954" x="821.0825" y="692.8332">Time</text><line style="stroke:#181818;stroke-width:0.4596039622309325;" x1="744.5584" x2="896.2277" y1="702.2749" y2="702.2749"/><rect fill="none" height="5.5152" style="stroke:#C82930;stroke-width:0.919207924461865;" width="5.5152" x="750.9929" y="712.6662"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="47.7988" x="762.0234" y="719.3107">hour: int</text><rect fill="none" height="5.5152" style="stroke:#C82930;stroke-width:0.919207924461865;" width="5.5152" x="750.9929" y="728.8529"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="37.6875" x="762.0234" y="735.4974">min:int</text><rect fill="none" height="5.5152" style="stroke:#C82930;stroke-width:0.919207924461865;" width="5.5152" x="750.9929" y="745.0396"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="41.3644" x="762.0234" y="751.6841">sec: int</text><line style="stroke:#181818;stroke-width:0.4596039622309325;" x1="744.5584" x2="896.2277" y1="758.1885" y2="758.1885"/><ellipse cx="753.7505" cy="771.3375" fill="#84BE84" rx="2.7576" ry="2.7576" style="stroke:#038048;stroke-width:0.919207924461865;"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="129.6083" x="762.0234" y="775.2244">setHour(hour: int):void</text><ellipse cx="753.7505" cy="787.5242" fill="#84BE84" rx="2.7576" ry="2.7576" style="stroke:#038048;stroke-width:0.919207924461865;"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="119.497" x="762.0234" y="791.4111">setMin(min: int): void</text><ellipse cx="753.7505" cy="803.7109" fill="#84BE84" rx="2.7576" ry="2.7576" style="stroke:#038048;stroke-width:0.919207924461865;"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="125.0123" x="762.0234" y="807.5978">setSec (sec: int): void</text><ellipse cx="753.7505" cy="819.8976" fill="#84BE84" rx="2.7576" ry="2.7576" style="stroke:#038048;stroke-width:0.919207924461865;"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="76.2943" x="762.0234" y="823.7844">getHour(): int</text><ellipse cx="753.7505" cy="836.0842" fill="#84BE84" rx="2.7576" ry="2.7576" style="stroke:#038048;stroke-width:0.919207924461865;"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="68.9406" x="762.0234" y="839.9711">getMin(): int</text><ellipse cx="753.7505" cy="852.2709" fill="#84BE84" rx="2.7576" ry="2.7576" style="stroke:#038048;stroke-width:0.919207924461865;"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="70.779" x="762.0234" y="856.1578">getSec(): int</text></g><!--MD5=[e0bd77868626c22cfc0c5aeed1b8d67f]
+class Sale--><g id="elem_Sale"><rect codeLine="230" fill="#F1F1F1" height="448.7889" id="Sale" rx="2.298" ry="2.298" style="stroke:#181818;stroke-width:0.4596039622309325;" width="258.2974" x="6.4345" y="1095.6958"/><ellipse cx="118.8076" cy="1110.4032" fill="#ADD1B2" rx="10.1113" ry="10.1113" style="stroke:#181818;stroke-width:0.919207924461865;"/><path d="M121.3498,1106.6114 Q121.4934,1106.4104 121.6658,1106.3098 Q121.8381,1106.2093 122.0392,1106.2093 Q122.3839,1106.2093 122.5994,1106.4535 Q122.8148,1106.6833 122.8148,1107.2434 L122.8148,1108.5791 Q122.8148,1109.1393 122.5994,1109.3834 Q122.3839,1109.6276 122.0392,1109.6276 Q121.7232,1109.6276 121.5365,1109.4409 Q121.3498,1109.2685 121.2493,1108.7946 Q121.2062,1108.4642 121.0338,1108.2919 Q120.7322,1107.9472 120.1721,1107.7461 Q119.6119,1107.545 119.0374,1107.545 Q118.3337,1107.545 117.7448,1107.8466 Q117.1703,1108.1482 116.7107,1108.8376 Q116.2654,1109.5271 116.2654,1110.475 L116.2654,1111.4804 Q116.2654,1112.615 117.0841,1113.3762 Q117.9028,1114.1231 119.3678,1114.1231 Q120.2295,1114.1231 120.8328,1113.8933 Q121.1918,1113.7497 121.5796,1113.3475 Q121.8238,1113.1033 121.953,1113.0315 Q122.0967,1112.9597 122.2834,1112.9597 Q122.585,1112.9597 122.8148,1113.2039 Q123.059,1113.4337 123.059,1113.7497 Q123.059,1114.0656 122.743,1114.4391 Q122.2834,1114.9705 121.5509,1115.2721 Q120.5599,1115.6886 119.3678,1115.6886 Q117.9746,1115.6886 116.8687,1115.1141 Q115.9638,1114.6545 115.3319,1113.6779 Q114.6999,1112.6868 114.6999,1111.5091 L114.6999,1110.4463 Q114.6999,1109.2254 115.2601,1108.177 Q115.8346,1107.1141 116.8399,1106.554 Q117.8453,1105.9795 118.98,1105.9795 Q119.655,1105.9795 120.2439,1106.1375 Q120.8471,1106.2811 121.3498,1106.6114 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="25.7378" x="137.6514" y="1115.6689">Sale</text><line style="stroke:#181818;stroke-width:0.4596039622309325;" x1="7.3537" x2="263.8127" y1="1125.1105" y2="1125.1105"/><rect fill="none" height="5.5152" style="stroke:#C82930;stroke-width:0.919207924461865;" width="5.5152" x="13.7881" y="1135.5019"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="55.1525" x="24.8186" y="1142.1464">saleId: int</text><rect fill="none" height="5.5152" style="stroke:#C82930;stroke-width:0.919207924461865;" width="5.5152" x="13.7881" y="1151.6885"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="101.1129" x="24.8186" y="1158.333">totalAmount: float</text><rect fill="none" height="5.5152" style="stroke:#C82930;stroke-width:0.919207924461865;" width="5.5152" x="13.7881" y="1167.8752"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="132.3659" x="24.8186" y="1174.5197">paymentMethod: string</text><rect fill="none" height="5.5152" style="stroke:#C82930;stroke-width:0.919207924461865;" width="5.5152" x="13.7881" y="1184.0619"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="86.4055" x="24.8186" y="1190.7064">saleDate: Date</text><rect fill="none" height="5.5152" style="stroke:#C82930;stroke-width:0.919207924461865;" width="5.5152" x="13.7881" y="1200.2486"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="88.244" x="24.8186" y="1206.8931">saleTime: Time</text><rect fill="none" height="5.5152" style="stroke:#C82930;stroke-width:0.919207924461865;" width="5.5152" x="13.7881" y="1216.4352"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="67.1022" x="24.8186" y="1223.0798">quantity: int</text><rect fill="none" height="5.5152" style="stroke:#C82930;stroke-width:0.919207924461865;" width="5.5152" x="13.7881" y="1232.6219"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="65.2638" x="24.8186" y="1239.2664">isVisit: bool</text><rect fill="none" height="5.5152" style="stroke:#C82930;stroke-width:0.919207924461865;" width="5.5152" x="13.7881" y="1248.8086"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="95.5976" x="24.8186" y="1255.4531">transactionId: int</text><line style="stroke:#181818;stroke-width:0.4596039622309325;" x1="7.3537" x2="263.8127" y1="1261.9576" y2="1261.9576"/><ellipse cx="16.5457" cy="1275.1066" fill="#84BE84" rx="2.7576" ry="2.7576" style="stroke:#038048;stroke-width:0.919207924461865;"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="121.3354" x="24.8186" y="1278.9934">setSaleId(id:int): void</text><ellipse cx="16.5457" cy="1291.2932" fill="#84BE84" rx="2.7576" ry="2.7576" style="stroke:#038048;stroke-width:0.919207924461865;"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="177.4071" x="24.8186" y="1295.1801">setAmount(amount: float): void</text><ellipse cx="16.5457" cy="1307.4799" fill="#84BE84" rx="2.7576" ry="2.7576" style="stroke:#038048;stroke-width:0.919207924461865;"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="234.398" x="24.8186" y="1311.3668">setPaymentMethod(method: string): void</text><ellipse cx="16.5457" cy="1323.6666" fill="#84BE84" rx="2.7576" ry="2.7576" style="stroke:#038048;stroke-width:0.919207924461865;"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="146.1541" x="24.8186" y="1327.5535">setDate(date: Date): void</text><ellipse cx="16.5457" cy="1339.8533" fill="#84BE84" rx="2.7576" ry="2.7576" style="stroke:#038048;stroke-width:0.919207924461865;"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="146.1541" x="24.8186" y="1343.7402">setTime(time: Time): void</text><ellipse cx="16.5457" cy="1356.0399" fill="#84BE84" rx="2.7576" ry="2.7576" style="stroke:#038048;stroke-width:0.919207924461865;"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="145.2349" x="24.8186" y="1359.9268">setQuantity(qty: int): void</text><ellipse cx="16.5457" cy="1372.2266" fill="#84BE84" rx="2.7576" ry="2.7576" style="stroke:#038048;stroke-width:0.919207924461865;"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="156.2653" x="24.8186" y="1376.1135">setIsVisit(isVisit: bool): void</text><ellipse cx="16.5457" cy="1388.4133" fill="#84BE84" rx="2.7576" ry="2.7576" style="stroke:#038048;stroke-width:0.919207924461865;"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="168.2151" x="24.8186" y="1392.3002">setTransactionId(id: int): void</text><ellipse cx="16.5457" cy="1404.6" fill="#84BE84" rx="2.7576" ry="2.7576" style="stroke:#038048;stroke-width:0.919207924461865;"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="84.5671" x="24.8186" y="1408.4869">getSaleId(): int</text><ellipse cx="16.5457" cy="1420.7867" fill="#84BE84" rx="2.7576" ry="2.7576" style="stroke:#038048;stroke-width:0.919207924461865;"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="103.8705" x="24.8186" y="1424.6735">getAmount(): float</text><ellipse cx="16.5457" cy="1436.9733" fill="#84BE84" rx="2.7576" ry="2.7576" style="stroke:#038048;stroke-width:0.919207924461865;"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="160.8614" x="24.8186" y="1440.8602">getPaymentMethod(): string</text><ellipse cx="16.5457" cy="1453.16" fill="#84BE84" rx="2.7576" ry="2.7576" style="stroke:#038048;stroke-width:0.919207924461865;"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="90.0824" x="24.8186" y="1457.0469">getDate(): Date</text><ellipse cx="16.5457" cy="1469.3467" fill="#84BE84" rx="2.7576" ry="2.7576" style="stroke:#038048;stroke-width:0.919207924461865;"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="91.9208" x="24.8186" y="1473.2336">getTime(): Time</text><ellipse cx="16.5457" cy="1485.5334" fill="#84BE84" rx="2.7576" ry="2.7576" style="stroke:#038048;stroke-width:0.919207924461865;"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="97.436" x="24.8186" y="1489.4202">getQuantity(): int</text><ellipse cx="16.5457" cy="1501.72" fill="#84BE84" rx="2.7576" ry="2.7576" style="stroke:#038048;stroke-width:0.919207924461865;"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="93.7592" x="24.8186" y="1505.6069">getIsVisit(): Bool</text><ellipse cx="16.5457" cy="1517.9067" fill="#84BE84" rx="2.7576" ry="2.7576" style="stroke:#038048;stroke-width:0.919207924461865;"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="127.7699" x="24.8186" y="1521.7936">getTransactionId(): int</text><ellipse cx="16.5457" cy="1534.0934" fill="#84BE84" rx="2.7576" ry="2.7576" style="stroke:#038048;stroke-width:0.919207924461865;"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="65.2638" x="24.8186" y="1537.9803">load(): void</text></g><!--MD5=[1b48d0ef5a7c29d7e5a89853be8ba8a7]
+class Buy--><g id="elem_Buy"><rect codeLine="263" fill="#F1F1F1" height="448.7889" id="Buy" rx="2.298" ry="2.298" style="stroke:#181818;stroke-width:0.4596039622309325;" width="264.7319" x="297.3638" y="1095.6958"/><ellipse cx="414.7926" cy="1110.4032" fill="#ADD1B2" rx="10.1113" ry="10.1113" style="stroke:#181818;stroke-width:0.919207924461865;"/><path d="M417.3348,1106.6114 Q417.4784,1106.4104 417.6507,1106.3098 Q417.8231,1106.2093 418.0242,1106.2093 Q418.3689,1106.2093 418.5843,1106.4535 Q418.7997,1106.6833 418.7997,1107.2434 L418.7997,1108.5791 Q418.7997,1109.1393 418.5843,1109.3834 Q418.3689,1109.6276 418.0242,1109.6276 Q417.7082,1109.6276 417.5215,1109.4409 Q417.3348,1109.2685 417.2342,1108.7946 Q417.1911,1108.4642 417.0188,1108.2919 Q416.7172,1107.9472 416.157,1107.7461 Q415.5969,1107.545 415.0224,1107.545 Q414.3186,1107.545 413.7297,1107.8466 Q413.1552,1108.1482 412.6956,1108.8376 Q412.2504,1109.5271 412.2504,1110.475 L412.2504,1111.4804 Q412.2504,1112.615 413.0691,1113.3762 Q413.8877,1114.1231 415.3527,1114.1231 Q416.2145,1114.1231 416.8177,1113.8933 Q417.1768,1113.7497 417.5646,1113.3475 Q417.8087,1113.1033 417.938,1113.0315 Q418.0816,1112.9597 418.2683,1112.9597 Q418.5699,1112.9597 418.7997,1113.2039 Q419.0439,1113.4337 419.0439,1113.7497 Q419.0439,1114.0656 418.7279,1114.4391 Q418.2683,1114.9705 417.5358,1115.2721 Q416.5448,1115.6886 415.3527,1115.6886 Q413.9595,1115.6886 412.8536,1115.1141 Q411.9488,1114.6545 411.3168,1113.6779 Q410.6849,1112.6868 410.6849,1111.5091 L410.6849,1110.4463 Q410.6849,1109.2254 411.245,1108.177 Q411.8195,1107.1141 412.8249,1106.554 Q413.8303,1105.9795 414.9649,1105.9795 Q415.64,1105.9795 416.2288,1106.1375 Q416.8321,1106.2811 417.3348,1106.6114 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="22.061" x="433.6363" y="1115.6689">Buy</text><line style="stroke:#181818;stroke-width:0.4596039622309325;" x1="298.283" x2="561.1764" y1="1125.1105" y2="1125.1105"/><rect fill="none" height="5.5152" style="stroke:#C82930;stroke-width:0.919207924461865;" width="5.5152" x="304.7174" y="1135.5019"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="52.3949" x="315.7479" y="1142.1464">buyId: int</text><rect fill="none" height="5.5152" style="stroke:#C82930;stroke-width:0.919207924461865;" width="5.5152" x="304.7174" y="1151.6885"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="101.1129" x="315.7479" y="1158.333">totalAmount: float</text><rect fill="none" height="5.5152" style="stroke:#C82930;stroke-width:0.919207924461865;" width="5.5152" x="304.7174" y="1167.8752"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="132.3659" x="315.7479" y="1174.5197">paymentMethod: string</text><rect fill="none" height="5.5152" style="stroke:#C82930;stroke-width:0.919207924461865;" width="5.5152" x="304.7174" y="1184.0619"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="92.84" x="315.7479" y="1190.7064">buyDate: Fecha</text><rect fill="none" height="5.5152" style="stroke:#C82930;stroke-width:0.919207924461865;" width="5.5152" x="304.7174" y="1200.2486"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="85.4863" x="315.7479" y="1206.8931">buyTime: Time</text><rect fill="none" height="5.5152" style="stroke:#C82930;stroke-width:0.919207924461865;" width="5.5152" x="304.7174" y="1216.4352"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="75.375" x="315.7479" y="1223.0798">productId: int</text><rect fill="none" height="5.5152" style="stroke:#C82930;stroke-width:0.919207924461865;" width="5.5152" x="304.7174" y="1232.6219"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="67.1022" x="315.7479" y="1239.2664">quantity: int</text><rect fill="none" height="5.5152" style="stroke:#C82930;stroke-width:0.919207924461865;" width="5.5152" x="304.7174" y="1248.8086"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="95.5976" x="315.7479" y="1255.4531">transactionId: int</text><line style="stroke:#181818;stroke-width:0.4596039622309325;" x1="298.283" x2="561.1764" y1="1261.9576" y2="1261.9576"/><ellipse cx="307.4751" cy="1275.1066" fill="#84BE84" rx="2.7576" ry="2.7576" style="stroke:#038048;stroke-width:0.919207924461865;"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="170.9727" x="315.7479" y="1278.9934">setBuyId(item:Inventory): void</text><ellipse cx="307.4751" cy="1291.2932" fill="#84BE84" rx="2.7576" ry="2.7576" style="stroke:#038048;stroke-width:0.919207924461865;"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="166.3766" x="315.7479" y="1295.1801">setAmount(importe: int): void</text><ellipse cx="307.4751" cy="1307.4799" fill="#84BE84" rx="2.7576" ry="2.7576" style="stroke:#038048;stroke-width:0.919207924461865;"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="240.8325" x="315.7479" y="1311.3668">setpaymentMethod (method : string): void</text><ellipse cx="307.4751" cy="1323.6666" fill="#84BE84" rx="2.7576" ry="2.7576" style="stroke:#038048;stroke-width:0.919207924461865;"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="146.1541" x="315.7479" y="1327.5535">setDate (date: Date):void</text><ellipse cx="307.4751" cy="1339.8533" fill="#84BE84" rx="2.7576" ry="2.7576" style="stroke:#038048;stroke-width:0.919207924461865;"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="149.8309" x="315.7479" y="1343.7402">setTime (time: Time): void</text><ellipse cx="307.4751" cy="1356.0399" fill="#84BE84" rx="2.7576" ry="2.7576" style="stroke:#038048;stroke-width:0.919207924461865;"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="193.0337" x="315.7479" y="1359.9268">setProductId (ProductId: int): void</text><ellipse cx="307.4751" cy="1372.2266" fill="#84BE84" rx="2.7576" ry="2.7576" style="stroke:#038048;stroke-width:0.919207924461865;"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="145.2349" x="315.7479" y="1376.1135">setQuantity(qty: int): void</text><ellipse cx="307.4751" cy="1388.4133" fill="#84BE84" rx="2.7576" ry="2.7576" style="stroke:#038048;stroke-width:0.919207924461865;"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="171.8919" x="315.7479" y="1392.3002">setTransactionId (id: int): void</text><ellipse cx="307.4751" cy="1404.6" fill="#84BE84" rx="2.7576" ry="2.7576" style="stroke:#038048;stroke-width:0.919207924461865;"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="80.8903" x="315.7479" y="1408.4869">getBuyId(): int</text><ellipse cx="307.4751" cy="1420.7867" fill="#84BE84" rx="2.7576" ry="2.7576" style="stroke:#038048;stroke-width:0.919207924461865;"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="133.2851" x="315.7479" y="1424.6735">getTotalAmount(): float</text><ellipse cx="307.4751" cy="1436.9733" fill="#84BE84" rx="2.7576" ry="2.7576" style="stroke:#038048;stroke-width:0.919207924461865;"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="157.1846" x="315.7479" y="1440.8602">getPaymentMethod():string</text><ellipse cx="307.4751" cy="1453.16" fill="#84BE84" rx="2.7576" ry="2.7576" style="stroke:#038048;stroke-width:0.919207924461865;"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="111.2242" x="315.7479" y="1457.0469">getbuyDate(): Date</text><ellipse cx="307.4751" cy="1469.3467" fill="#84BE84" rx="2.7576" ry="2.7576" style="stroke:#038048;stroke-width:0.919207924461865;"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="113.0626" x="315.7479" y="1473.2336">getbuyTime(): Time</text><ellipse cx="307.4751" cy="1485.5334" fill="#84BE84" rx="2.7576" ry="2.7576" style="stroke:#038048;stroke-width:0.919207924461865;"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="107.5473" x="315.7479" y="1489.4202">getProductId (): int</text><ellipse cx="307.4751" cy="1501.72" fill="#84BE84" rx="2.7576" ry="2.7576" style="stroke:#038048;stroke-width:0.919207924461865;"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="103.8705" x="315.7479" y="1505.6069">getQuiantity (): int</text><ellipse cx="307.4751" cy="1517.9067" fill="#84BE84" rx="2.7576" ry="2.7576" style="stroke:#038048;stroke-width:0.919207924461865;"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="121.3354" x="315.7479" y="1521.7936">getTransaction (): int</text><ellipse cx="307.4751" cy="1534.0934" fill="#84BE84" rx="2.7576" ry="2.7576" style="stroke:#038048;stroke-width:0.919207924461865;"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="65.2638" x="315.7479" y="1537.9803">load(): void</text></g><!--MD5=[d8d90d3e7f904d75e402700c697b639e]
+class ItemSale--><g id="elem_ItemSale"><rect codeLine="293" fill="#F1F1F1" height="270.7355" id="ItemSale" rx="2.298" ry="2.298" style="stroke:#181818;stroke-width:0.4596039622309325;" width="212.337" x="594.7275" y="1184.3994"/><ellipse cx="672.1708" cy="1199.1067" fill="#ADD1B2" rx="10.1113" ry="10.1113" style="stroke:#181818;stroke-width:0.919207924461865;"/><path d="M674.713,1195.315 Q674.8566,1195.1139 675.029,1195.0134 Q675.2013,1194.9129 675.4024,1194.9129 Q675.7471,1194.9129 675.9625,1195.157 Q676.178,1195.3868 676.178,1195.947 L676.178,1197.2827 Q676.178,1197.8428 675.9625,1198.087 Q675.7471,1198.3312 675.4024,1198.3312 Q675.0864,1198.3312 674.8997,1198.1444 Q674.713,1197.9721 674.6124,1197.4981 Q674.5694,1197.1678 674.397,1196.9954 Q674.0954,1196.6507 673.5352,1196.4497 Q672.9751,1196.2486 672.4006,1196.2486 Q671.6968,1196.2486 671.108,1196.5502 Q670.5335,1196.8518 670.0739,1197.5412 Q669.6286,1198.2306 669.6286,1199.1786 L669.6286,1200.1839 Q669.6286,1201.3186 670.4473,1202.0798 Q671.2659,1202.8267 672.7309,1202.8267 Q673.5927,1202.8267 674.1959,1202.5969 Q674.555,1202.4532 674.9428,1202.0511 Q675.1869,1201.8069 675.3162,1201.7351 Q675.4598,1201.6633 675.6465,1201.6633 Q675.9482,1201.6633 676.178,1201.9074 Q676.4221,1202.1373 676.4221,1202.4532 Q676.4221,1202.7692 676.1062,1203.1426 Q675.6465,1203.6741 674.9141,1203.9757 Q673.923,1204.3922 672.7309,1204.3922 Q671.3378,1204.3922 670.2318,1203.8177 Q669.327,1203.3581 668.695,1202.3814 Q668.0631,1201.3904 668.0631,1200.2127 L668.0631,1199.1498 Q668.0631,1197.929 668.6232,1196.8805 Q669.1977,1195.8177 670.2031,1195.2576 Q671.2085,1194.683 672.3431,1194.683 Q673.0182,1194.683 673.6071,1194.841 Q674.2103,1194.9847 674.713,1195.315 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="49.6372" x="691.0146" y="1204.3724">ItemSale</text><line style="stroke:#181818;stroke-width:0.4596039622309325;" x1="595.6467" x2="806.1453" y1="1213.8141" y2="1213.8141"/><rect fill="none" height="5.5152" style="stroke:#C82930;stroke-width:0.919207924461865;" width="5.5152" x="602.0812" y="1224.2054"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="75.375" x="613.1117" y="1230.8499">productId: int</text><rect fill="none" height="5.5152" style="stroke:#C82930;stroke-width:0.919207924461865;" width="5.5152" x="602.0812" y="1240.3921"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="67.1022" x="613.1117" y="1247.0366">quantity: int</text><rect fill="none" height="5.5152" style="stroke:#C82930;stroke-width:0.919207924461865;" width="5.5152" x="602.0812" y="1256.5788"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="82.7287" x="613.1117" y="1263.2233">unitPrice: float</text><rect fill="none" height="5.5152" style="stroke:#C82930;stroke-width:0.919207924461865;" width="5.5152" x="602.0812" y="1272.7655"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="55.1525" x="613.1117" y="1279.41">saleId: int</text><line style="stroke:#181818;stroke-width:0.4596039622309325;" x1="595.6467" x2="806.1453" y1="1285.9144" y2="1285.9144"/><ellipse cx="604.8388" cy="1299.0634" fill="#84BE84" rx="2.7576" ry="2.7576" style="stroke:#038048;stroke-width:0.919207924461865;"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="188.4376" x="613.1117" y="1302.9503">setProductId(productId: int): void</text><ellipse cx="604.8388" cy="1315.2501" fill="#84BE84" rx="2.7576" ry="2.7576" style="stroke:#038048;stroke-width:0.919207924461865;"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="170.0535" x="613.1117" y="1319.137">setQuantity(quantity int): void</text><ellipse cx="604.8388" cy="1331.4368" fill="#84BE84" rx="2.7576" ry="2.7576" style="stroke:#038048;stroke-width:0.919207924461865;"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="166.3766" x="613.1117" y="1335.3237">setUnitPrice(total: float): void</text><ellipse cx="604.8388" cy="1347.6234" fill="#84BE84" rx="2.7576" ry="2.7576" style="stroke:#038048;stroke-width:0.919207924461865;"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="145.2349" x="613.1117" y="1351.5103">setSaleId(saleId: int) void</text><ellipse cx="604.8388" cy="1363.8101" fill="#84BE84" rx="2.7576" ry="2.7576" style="stroke:#038048;stroke-width:0.919207924461865;"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="103.8705" x="613.1117" y="1367.697">getProductId(): int</text><ellipse cx="604.8388" cy="1379.9968" fill="#84BE84" rx="2.7576" ry="2.7576" style="stroke:#038048;stroke-width:0.919207924461865;"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="93.7592" x="613.1117" y="1383.8837">getQuantity():int</text><ellipse cx="604.8388" cy="1396.1835" fill="#84BE84" rx="2.7576" ry="2.7576" style="stroke:#038048;stroke-width:0.919207924461865;"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="111.2242" x="613.1117" y="1400.0704">getUnitPrice(): float</text><ellipse cx="604.8388" cy="1412.3702" fill="#84BE84" rx="2.7576" ry="2.7576" style="stroke:#038048;stroke-width:0.919207924461865;"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="84.5671" x="613.1117" y="1416.257">getSaleId(): int</text><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="3.6768" x="613.1117" y="1432.4437"> </text><ellipse cx="604.8388" cy="1444.7435" fill="#84BE84" rx="2.7576" ry="2.7576" style="stroke:#038048;stroke-width:0.919207924461865;"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="65.2638" x="613.1117" y="1448.6304">load(): void</text></g><!--MD5=[4555bb1b0911a5adf28ce6dbe60fed2e]
+class Transaction--><g id="elem_Transaction"><rect codeLine="316" fill="#F1F1F1" height="286.9221" id="Transaction" rx="2.298" ry="2.298" style="stroke:#181818;stroke-width:0.4596039622309325;" width="214.1754" x="1595.745" y="79.5115"/><ellipse cx="1664.4557" cy="94.2188" fill="#ADD1B2" rx="10.1113" ry="10.1113" style="stroke:#181818;stroke-width:0.919207924461865;"/><path d="M1666.9979,90.4271 Q1667.1416,90.226 1667.3139,90.1255 Q1667.4863,90.0249 1667.6873,90.0249 Q1668.032,90.0249 1668.2475,90.2691 Q1668.4629,90.4989 1668.4629,91.059 L1668.4629,92.3948 Q1668.4629,92.9549 1668.2475,93.1991 Q1668.032,93.4432 1667.6873,93.4432 Q1667.3714,93.4432 1667.1846,93.2565 Q1666.9979,93.0842 1666.8974,92.6102 Q1666.8543,92.2799 1666.682,92.1075 Q1666.3803,91.7628 1665.8202,91.5617 Q1665.2601,91.3607 1664.6856,91.3607 Q1663.9818,91.3607 1663.3929,91.6623 Q1662.8184,91.9639 1662.3588,92.6533 Q1661.9136,93.3427 1661.9136,94.2906 L1661.9136,95.296 Q1661.9136,96.4307 1662.7322,97.1919 Q1663.5509,97.9387 1665.0159,97.9387 Q1665.8776,97.9387 1666.4809,97.7089 Q1666.8399,97.5653 1667.2277,97.1632 Q1667.4719,96.919 1667.6012,96.8472 Q1667.7448,96.7754 1667.9315,96.7754 Q1668.2331,96.7754 1668.4629,97.0195 Q1668.7071,97.2493 1668.7071,97.5653 Q1668.7071,97.8813 1668.3911,98.2547 Q1667.9315,98.7861 1667.199,99.0877 Q1666.208,99.5043 1665.0159,99.5043 Q1663.6227,99.5043 1662.5168,98.9298 Q1661.6119,98.4701 1660.98,97.4935 Q1660.348,96.5025 1660.348,95.3247 L1660.348,94.2619 Q1660.348,93.0411 1660.9082,91.9926 Q1661.4827,90.9298 1662.4881,90.3696 Q1663.4935,89.7951 1664.6281,89.7951 Q1665.3031,89.7951 1665.892,89.9531 Q1666.4952,90.0967 1666.9979,90.4271 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="68.9406" x="1683.2995" y="99.4845">Transaction</text><line style="stroke:#181818;stroke-width:0.4596039622309325;" x1="1596.6642" x2="1809.0012" y1="108.9261" y2="108.9261"/><rect fill="none" height="5.5152" style="stroke:#C82930;stroke-width:0.919207924461865;" width="5.5152" x="1603.0986" y="119.3175"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="100.1937" x="1614.1291" y="125.962">idTransaction: int</text><rect fill="none" height="5.5152" style="stroke:#C82930;stroke-width:0.919207924461865;" width="5.5152" x="1603.0986" y="135.5042"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="60.6677" x="1614.1291" y="142.1487">date: Date</text><rect fill="none" height="5.5152" style="stroke:#C82930;stroke-width:0.919207924461865;" width="5.5152" x="1603.0986" y="151.6909"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="59.7485" x="1614.1291" y="158.3354">time: Time</text><rect fill="none" height="5.5152" style="stroke:#C82930;stroke-width:0.919207924461865;" width="5.5152" x="1603.0986" y="167.8775"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="102.9513" x="1614.1291" y="174.522">description: string</text><rect fill="none" height="5.5152" style="stroke:#C82930;stroke-width:0.919207924461865;" width="5.5152" x="1603.0986" y="184.0642"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="75.375" x="1614.1291" y="190.7087">amount: float</text><line style="stroke:#181818;stroke-width:0.4596039622309325;" x1="1596.6642" x2="1809.0012" y1="197.2132" y2="197.2132"/><ellipse cx="1605.8562" cy="210.3622" fill="#84BE84" rx="2.7576" ry="2.7576" style="stroke:#038048;stroke-width:0.919207924461865;"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="186.5992" x="1614.1291" y="214.2491">setIdTransaction(idTrx: int): void</text><ellipse cx="1605.8562" cy="226.5488" fill="#84BE84" rx="2.7576" ry="2.7576" style="stroke:#038048;stroke-width:0.919207924461865;"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="146.1541" x="1614.1291" y="230.4357">setDate(date: Date): void</text><ellipse cx="1605.8562" cy="242.7355" fill="#84BE84" rx="2.7576" ry="2.7576" style="stroke:#038048;stroke-width:0.919207924461865;"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="153.5077" x="1614.1291" y="246.6224">setTime (time : Time): void</text><ellipse cx="1605.8562" cy="258.9222" fill="#84BE84" rx="2.7576" ry="2.7576" style="stroke:#038048;stroke-width:0.919207924461865;"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="190.276" x="1614.1291" y="262.8091">setDescription(desc: string): void</text><ellipse cx="1605.8562" cy="275.1089" fill="#84BE84" rx="2.7576" ry="2.7576" style="stroke:#038048;stroke-width:0.919207924461865;"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="177.4071" x="1614.1291" y="278.9958">setAmount(amount: float): void</text><ellipse cx="1605.8562" cy="291.2956" fill="#84BE84" rx="2.7576" ry="2.7576" style="stroke:#038048;stroke-width:0.919207924461865;"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="127.7699" x="1614.1291" y="295.1824">getIdTransaction(): int</text><ellipse cx="1605.8562" cy="307.4822" fill="#84BE84" rx="2.7576" ry="2.7576" style="stroke:#038048;stroke-width:0.919207924461865;"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="99.2745" x="1614.1291" y="311.3691">getDate(): Fecha</text><ellipse cx="1605.8562" cy="323.6689" fill="#84BE84" rx="2.7576" ry="2.7576" style="stroke:#038048;stroke-width:0.919207924461865;"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="91.9208" x="1614.1291" y="327.5558">getTime(): Time</text><ellipse cx="1605.8562" cy="339.8556" fill="#84BE84" rx="2.7576" ry="2.7576" style="stroke:#038048;stroke-width:0.919207924461865;"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="132.3659" x="1614.1291" y="343.7425">getDescription(): string</text><ellipse cx="1605.8562" cy="356.0423" fill="#84BE84" rx="2.7576" ry="2.7576" style="stroke:#038048;stroke-width:0.919207924461865;"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="103.8705" x="1614.1291" y="359.9291">getAmount(): float</text></g><!--MD5=[ca8d74022477d15c65f63391dcd50b2e]
+class Income--><g id="elem_Income"><rect codeLine="338" fill="#F1F1F1" height="141.242" id="Income" rx="2.298" ry="2.298" style="stroke:#181818;stroke-width:0.4596039622309325;" width="253.7014" x="1439.9392" y="696.7596"/><ellipse cx="1542.2011" cy="711.4669" fill="#ADD1B2" rx="10.1113" ry="10.1113" style="stroke:#181818;stroke-width:0.919207924461865;"/><path d="M1544.7433,707.6752 Q1544.8869,707.4741 1545.0593,707.3736 Q1545.2316,707.273 1545.4327,707.273 Q1545.7774,707.273 1545.9928,707.5172 Q1546.2083,707.747 1546.2083,708.3072 L1546.2083,709.6429 Q1546.2083,710.203 1545.9928,710.4472 Q1545.7774,710.6914 1545.4327,710.6914 Q1545.1167,710.6914 1544.93,710.5046 Q1544.7433,710.3323 1544.6427,709.8583 Q1544.5997,709.528 1544.4273,709.3556 Q1544.1257,709.0109 1543.5655,708.8098 Q1543.0054,708.6088 1542.4309,708.6088 Q1541.7271,708.6088 1541.1383,708.9104 Q1540.5638,709.212 1540.1042,709.9014 Q1539.6589,710.5908 1539.6589,711.5387 L1539.6589,712.5441 Q1539.6589,713.6788 1540.4776,714.44 Q1541.2962,715.1869 1542.7612,715.1869 Q1543.623,715.1869 1544.2262,714.9571 Q1544.5853,714.8134 1544.9731,714.4113 Q1545.2172,714.1671 1545.3465,714.0953 Q1545.4901,714.0235 1545.6769,714.0235 Q1545.9785,714.0235 1546.2083,714.2676 Q1546.4524,714.4974 1546.4524,714.8134 Q1546.4524,715.1294 1546.1365,715.5028 Q1545.6769,716.0342 1544.9444,716.3359 Q1543.9533,716.7524 1542.7612,716.7524 Q1541.3681,716.7524 1540.2621,716.1779 Q1539.3573,715.7183 1538.7253,714.7416 Q1538.0934,713.7506 1538.0934,712.5729 L1538.0934,711.51 Q1538.0934,710.2892 1538.6535,709.2407 Q1539.228,708.1779 1540.2334,707.6178 Q1541.2388,707.0432 1542.3734,707.0432 Q1543.0485,707.0432 1543.6374,707.2012 Q1544.2406,707.3449 1544.7433,707.6752 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="41.3644" x="1561.0449" y="716.7326">Income</text><line style="stroke:#181818;stroke-width:0.4596039622309325;" x1="1440.8584" x2="1692.7214" y1="726.1743" y2="726.1743"/><rect fill="none" height="5.5152" style="stroke:#C82930;stroke-width:0.919207924461865;" width="5.5152" x="1447.2929" y="736.5656"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="51.4756" x="1458.3234" y="743.2101">saleId:int</text><rect fill="none" height="5.5152" style="stroke:#C82930;stroke-width:0.919207924461865;" width="5.5152" x="1447.2929" y="752.7523"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="132.3659" x="1458.3234" y="759.3968">paymentMethod: string</text><line style="stroke:#181818;stroke-width:0.4596039622309325;" x1="1440.8584" x2="1692.7214" y1="765.9013" y2="765.9013"/><ellipse cx="1450.0505" cy="779.0503" fill="#84BE84" rx="2.7576" ry="2.7576" style="stroke:#038048;stroke-width:0.919207924461865;"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="145.2349" x="1458.3234" y="782.9371">setSaleId(saleId int): void</text><ellipse cx="1450.0505" cy="795.2369" fill="#84BE84" rx="2.7576" ry="2.7576" style="stroke:#038048;stroke-width:0.919207924461865;"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="229.802" x="1458.3234" y="799.1238">setpaymentMethod(method:string): void</text><ellipse cx="1450.0505" cy="811.4236" fill="#84BE84" rx="2.7576" ry="2.7576" style="stroke:#038048;stroke-width:0.919207924461865;"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="80.8903" x="1458.3234" y="815.3105">getSaleId():int</text><ellipse cx="1450.0505" cy="827.6103" fill="#84BE84" rx="2.7576" ry="2.7576" style="stroke:#038048;stroke-width:0.919207924461865;"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="160.8614" x="1458.3234" y="831.4972">getPaymentMethod(): string</text></g><!--MD5=[a2ad7e4cdba1172ef4ee8a887a0d466e]
+class Expense--><g id="elem_Expense"><rect codeLine="349" fill="#F1F1F1" height="141.242" id="Expense" rx="2.298" ry="2.298" style="stroke:#181818;stroke-width:0.4596039622309325;" width="227.0444" x="1726.2725" y="696.7596"/><ellipse cx="1811.0694" cy="711.4669" fill="#ADD1B2" rx="10.1113" ry="10.1113" style="stroke:#181818;stroke-width:0.919207924461865;"/><path d="M1813.6116,707.6752 Q1813.7552,707.4741 1813.9276,707.3736 Q1814.0999,707.273 1814.301,707.273 Q1814.6457,707.273 1814.8611,707.5172 Q1815.0766,707.747 1815.0766,708.3072 L1815.0766,709.6429 Q1815.0766,710.203 1814.8611,710.4472 Q1814.6457,710.6914 1814.301,710.6914 Q1813.985,710.6914 1813.7983,710.5046 Q1813.6116,710.3323 1813.5111,709.8583 Q1813.468,709.528 1813.2956,709.3556 Q1812.994,709.0109 1812.4339,708.8098 Q1811.8737,708.6088 1811.2992,708.6088 Q1810.5954,708.6088 1810.0066,708.9104 Q1809.4321,709.212 1808.9725,709.9014 Q1808.5272,710.5908 1808.5272,711.5387 L1808.5272,712.5441 Q1808.5272,713.6788 1809.3459,714.44 Q1810.1646,715.1869 1811.6296,715.1869 Q1812.4913,715.1869 1813.0945,714.9571 Q1813.4536,714.8134 1813.8414,714.4113 Q1814.0856,714.1671 1814.2148,714.0953 Q1814.3585,714.0235 1814.5452,714.0235 Q1814.8468,714.0235 1815.0766,714.2676 Q1815.3207,714.4974 1815.3207,714.8134 Q1815.3207,715.1294 1815.0048,715.5028 Q1814.5452,716.0342 1813.8127,716.3359 Q1812.8217,716.7524 1811.6296,716.7524 Q1810.2364,716.7524 1809.1305,716.1779 Q1808.2256,715.7183 1807.5937,714.7416 Q1806.9617,713.7506 1806.9617,712.5729 L1806.9617,711.51 Q1806.9617,710.2892 1807.5218,709.2407 Q1808.0964,708.1779 1809.1017,707.6178 Q1810.1071,707.0432 1811.2418,707.0432 Q1811.9168,707.0432 1812.5057,707.2012 Q1813.1089,707.3449 1813.6116,707.6752 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="49.6372" x="1829.9132" y="716.7326">Expense</text><line style="stroke:#181818;stroke-width:0.4596039622309325;" x1="1727.1917" x2="1952.3976" y1="726.1743" y2="726.1743"/><rect fill="none" height="5.5152" style="stroke:#C82930;stroke-width:0.919207924461865;" width="5.5152" x="1733.6261" y="736.5656"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="52.3949" x="1744.6566" y="743.2101">buyId: int</text><rect fill="none" height="5.5152" style="stroke:#C82930;stroke-width:0.919207924461865;" width="5.5152" x="1733.6261" y="752.7523"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="132.3659" x="1744.6566" y="759.3968">paymentMethod: string</text><line style="stroke:#181818;stroke-width:0.4596039622309325;" x1="1727.1917" x2="1952.3976" y1="765.9013" y2="765.9013"/><ellipse cx="1736.3838" cy="779.0503" fill="#84BE84" rx="2.7576" ry="2.7576" style="stroke:#038048;stroke-width:0.919207924461865;"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="121.3354" x="1744.6566" y="782.9371">setBuyId(id: int): void</text><ellipse cx="1736.3838" cy="795.2369" fill="#84BE84" rx="2.7576" ry="2.7576" style="stroke:#038048;stroke-width:0.919207924461865;"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="203.145" x="1744.6566" y="799.1238">setPaymentMethod(method: string)</text><ellipse cx="1736.3838" cy="811.4236" fill="#84BE84" rx="2.7576" ry="2.7576" style="stroke:#038048;stroke-width:0.919207924461865;"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="80.8903" x="1744.6566" y="815.3105">getBuyId(): int</text><ellipse cx="1736.3838" cy="827.6103" fill="#84BE84" rx="2.7576" ry="2.7576" style="stroke:#038048;stroke-width:0.919207924461865;"/><text fill="#000000" font-family="sans-serif" font-size="12.8689" lengthAdjust="spacing" textLength="160.8614" x="1744.6566" y="831.4972">getPaymentMethod(): string</text></g><!--MD5=[35a029bab52a5cb0a1cf00b40393beba]
+reverse link Person to Client--><g id="link_Person_Client"><path codeLine="5" d="M1198.8034,327.2013 C1171.4018,401.7674 1133.7602,504.2131 1101.7075,591.4276 " fill="none" id="Person-backto-Client" style="stroke:#181818;stroke-width:0.919207924461865;"/><polygon fill="none" points="1192.8102,324.8665,1205.1919,309.8374,1204.8886,329.3062,1192.8102,324.8665" style="stroke:#181818;stroke-width:0.919207924461865;"/></g><!--MD5=[bc5144ed411431c59eaf1a7c0a99d78b]
+reverse link Person to Vet--><g id="link_Person_Vet"><path codeLine="6" d="M1247.5858,328.3319 C1257.311,422.422 1271.5495,560.2572 1281.4494,656.1398 " fill="none" id="Person-backto-Vet" style="stroke:#181818;stroke-width:0.919207924461865;"/><polygon fill="none" points="1241.1697,328.7823,1245.683,309.8374,1253.9651,327.4586,1241.1697,328.7823" style="stroke:#181818;stroke-width:0.919207924461865;"/></g><!--MD5=[5ace37cf147cc64c9423bd0b9d7a7aba]
+reverse link Transaction to Income--><g id="link_Transaction_Income"><path codeLine="313" d="M1662.5622,384.4955 C1636.5578,488.2465 1604.027,618.0386 1584.356,696.5298 " fill="none" id="Transaction-backto-Income" style="stroke:#181818;stroke-width:0.919207924461865;"/><polygon fill="none" points="1656.3759,382.7122,1667.0847,366.4422,1668.8588,385.8375,1656.3759,382.7122" style="stroke:#181818;stroke-width:0.919207924461865;"/></g><!--MD5=[f025f19b9840e2969dc2879b67b16b04]
+reverse link Transaction to Expense--><g id="link_Transaction_Expense"><path codeLine="314" d="M1743.3789,384.4955 C1769.5488,488.2465 1802.3002,618.0386 1822.1091,696.5298 " fill="none" id="Transaction-backto-Expense" style="stroke:#181818;stroke-width:0.919207924461865;"/><polygon fill="none" points="1737.0732,385.8375,1738.8197,366.4422,1749.556,382.6938,1737.0732,385.8375" style="stroke:#181818;stroke-width:0.919207924461865;"/></g><!--MD5=[f1929d3a0df4d770f4c033728e897134]
+@startuml Vete++
+
+scale 1280 width
+scale 1550 height
+
+Person <|- - Client
+Person <|- - Vet
+
+class Person {
+ -personId: int
+ -name: string
+ -lastName: string
+ +setName(name: string): void
+ +setLastname(lastname: string): void
+ +getName(): string
+ +getLastname(): string
+ +load(): void
+}
+
+class Vet {
+ -vetId: int
+ -speciality: string
+ +setIdVet(idVet: int): void
+ +setSpeciality(speciality: string): void
+ +getIdVet(): int
+ +getSpeciality(): string
+
+ +queryHistory(): void
+ +assignTreatment(): void
+ +issueDiagnosis(): void
+ +load(): void
+}
+
+class Client {
+ -clientId: int
+ -address: string
+ -phone: string
+ -email: string
+ +setId(id: int): void
+ +setAddress(address: string): void
+ +setPhone(phone: string): void
+ +setEmail(email: string): void
+ +getAddress(): string
+ +getPhone(): string
+ +getEmail(): string
+ +getId(): int
+
+ +addPet():void
+ +deletePet(): void
+ +queryHistory(): void
+ +makeAppointment(): void
+ +queryPets(): void
+ +load(): void
+}
+
+/'	con este comando las siguientes clases 
+	se renderizan en un pagina nueva
+'/
+'newpage
+
+class Appointment {
+ -appId: int
+ -date: Date
+ -time: Time
+ -urgencyCat: int
+ -reason: string
+ -attended: bool
+ -clientId: int
+ -petId: int
+
+ +setAppId(id: int): void
+ +setDate(date: Date): void
+ +setTime(time: Time): void
+ +setUrgencyCat(cat: int): void
+ +setReason(reason: string): void
+ +setAttended(attended: bool): void
+ +getAppId(): int
+ +getDate(): Date
+ +getTime(): Time
+ +getUrgencyCat(): int
+ +getReason(): string
+ +getAttended(): bool
+ 
+ +load(): void
+}
+
+class VetVisits {
+ -visitId: int
+ -date: Fecha
+ -reason: string
+ -diagnosis: string
+ -vetId: int   
+ -clientId: int
+ -petId: int
+ -saleId: int
+
+ +setVisitId(id: int): void
+ +setDate(fecha: Fecha): void
+ +setReason(reason: string): void
+ +setDiagnosis(diagnosis: string): void
+ +setVetId(id: int): void
+ +setClientId(id: int): void
+ +setPetId(id: int): void
+ +getVisitId(): int
+ +getDate(): Fecha
+ +getReason(): string
+ +getDiagnosis(): string
+ +getVetId(): int
+ +getClientId(): int
+ +getPetId(): int
+
+ +isValidRelation(): bool
+}
+
+class Pet {
+ -petId: int
+ -name: string
+ -specie: string
+ -breed: string
+ -birthDate: Fecha
+ -ownerId: int
+ -currentDiagnosis: string
+
+ +setPetId(petId:int):void
+ +setName(name: string): void
+ +setSpecie(specie: string):void
+ +setBreed(breed: string): void
+ +setDate(date: Fecha): void 
+ +setOwnerId(id: int):void
+ +setCurrentDiagnosis(diagnosis:string):void 
+ +getPetId(): int
+ +getName(): string
+ +getSpecie(): string
+ +getBreed():string
+ +getDate():Fecha
+
+ +addAppoinment(): void
+ +load():void
+ +recordVaccination(): void
+}
+
+class PetRelations {
+ -petId: int
+ -clientId: int
+ -owner: bool
+
+ +setPetId(id: int): void
+ +setClientId(id: int): void
+ +setOwner(owner: bool): void
+ +getPetId(): int
+ +getClientId(): int
+ +getOwner(): bool
+}
+
+'newpage
+
+class Product {
+ -productId: int
+ -productName: string
+ -description: string
+ -quantity: int 
+ -stock: int
+ -price: float
+ -brand: string
+ -productType:string 
+ -productCategory: Category
+
+ +setProductId(id: int): void
+ +setName(name:string): void
+ +setDescription(description: string): void
+ +setQuantity(qty: int): void
+ +setStock(stock:int): void
+ +setPrice(price:float): void
+ +setBrand(brand: string): void
+ +setProductType(type: string): void
+ +setProductCategory(cat: Category): void
+ 
+ +getProductId(): int
+ +getName(): string
+ +getQuantity(): int
+ +getStock(): int
+ +getPrice(): float
+ +getBrand():string
+ +getProductType(): string
+ +getProductCategory(): Category
+ 
+ +addProduct(): void
+ +DeleteProduct(): void
+ +updateStock(): void
+}
+
+class ProductCategory {
+ -catId: int
+ -catName: string
+ +setCatId(id: int): void
+ +setCatName(name: string): void
+ +getCatId(): int
+ +getCatName(): string
+
+ +load(): void
+}
+
+class Date {
+ -day: int
+ -month:int
+ -year: int
+
+ +setDay(day: int): void
+ +setMonth(month: int): void
+ +setYear (year: int): void
+ +getDay(): int
+ +getMonth(): int
+ +getYear(): int
+}
+
+class Time {
+ -hour: int
+ -min:int
+ -sec: int
+
+ +setHour(hour: int):void
+ +setMin(min: int): void
+ +setSec (sec: int): void
+ +getHour(): int
+ +getMin(): int
+ +getSec(): int
+}
+
+'newpage
+
+class Sale {
+
+-saleId: int
+-totalAmount: float
+-paymentMethod: string
+-saleDate: Date
+-saleTime: Time
+-quantity: int
+-isVisit: bool
+-transactionId: int
+
++setSaleId(id:int): void
++setAmount(amount: float): void
++setPaymentMethod(method: string): void
++setDate(date: Date): void
++setTime(time: Time): void
++setQuantity(qty: int): void
++setIsVisit(isVisit: bool): void
++setTransactionId(id: int): void
++getSaleId(): int
++getAmount(): float
++getPaymentMethod(): string
++getDate(): Date
++getTime(): Time
++getQuantity(): int
++getIsVisit(): Bool
++getTransactionId(): int
++load(): void
+
+
+} 
+
+
+class Buy {
+-buyId: int
+-totalAmount: float
+-paymentMethod: string
+-buyDate: Fecha
+-buyTime: Time
+-productId: int
+-quantity: int
+-transactionId: int 
+
++setBuyId(item:Inventory): void
++setAmount(importe: int): void
++setpaymentMethod (method : string): void
++setDate (date: Date):void
++setTime (time: Time): void
++setProductId (ProductId: int): void
++setQuantity(qty: int): void
++setTransactionId (id: int): void
++getBuyId(): int
++getTotalAmount(): float
++getPaymentMethod():string
++getbuyDate(): Date
++getbuyTime(): Time
++getProductId (): int
++getQuiantity (): int
++getTransaction (): int
++load(): void
+
+}
+
+class ItemSale {
+ -productId: int
+ -quantity: int
+ -unitPrice: float
+ -saleId: int
+
+ +setProductId(productId: int): void
+ +setQuantity(quantity int): void
+ +setUnitPrice(total: float): void
+ +setSaleId(saleId: int) void
+ +getProductId(): int
+ +getQuantity():int
+ +getUnitPrice(): float
+ +getSaleId(): int
+
+ +load(): void
+}
+
+'newpage
+
+Transaction <|- - Income
+Transaction <|- - Expense
+
+class Transaction {
+
+-idTransaction: int
+-date: Date
+-time: Time
+-description: string
+-amount: float
+
+
++setIdTransaction(idTrx: int): void
++setDate(date: Date): void
++setTime (time : Time): void
++setDescription(desc: string): void
++setAmount(amount: float): void
++getIdTransaction(): int
++getDate(): Fecha
++getTime(): Time
++getDescription(): string
++getAmount(): float
+
+}
+
+class Income {
+
+-saleId:int
+-paymentMethod: string
+
++setSaleId(saleId int): void
++setpaymentMethod(method:string): void
++getSaleId():int
++getPaymentMethod(): string
+}
+
+class Expense {
+	
+-buyId: int
+-paymentMethod: string
+
+
++setBuyId(id: int): void
++setPaymentMethod(method: string)
++getBuyId(): int
++getPaymentMethod(): string
+
+}
+@enduml
+
+@startuml Vete++
+
+scale 1280 width
+scale 1550 height
+
+Person <|- - Client
+Person <|- - Vet
+
+class Person {
+ -personId: int
+ -name: string
+ -lastName: string
+ +setName(name: string): void
+ +setLastname(lastname: string): void
+ +getName(): string
+ +getLastname(): string
+ +load(): void
+}
+
+class Vet {
+ -vetId: int
+ -speciality: string
+ +setIdVet(idVet: int): void
+ +setSpeciality(speciality: string): void
+ +getIdVet(): int
+ +getSpeciality(): string
+
+ +queryHistory(): void
+ +assignTreatment(): void
+ +issueDiagnosis(): void
+ +load(): void
+}
+
+class Client {
+ -clientId: int
+ -address: string
+ -phone: string
+ -email: string
+ +setId(id: int): void
+ +setAddress(address: string): void
+ +setPhone(phone: string): void
+ +setEmail(email: string): void
+ +getAddress(): string
+ +getPhone(): string
+ +getEmail(): string
+ +getId(): int
+
+ +addPet():void
+ +deletePet(): void
+ +queryHistory(): void
+ +makeAppointment(): void
+ +queryPets(): void
+ +load(): void
+}
+
+
+class Appointment {
+ -appId: int
+ -date: Date
+ -time: Time
+ -urgencyCat: int
+ -reason: string
+ -attended: bool
+ -clientId: int
+ -petId: int
+
+ +setAppId(id: int): void
+ +setDate(date: Date): void
+ +setTime(time: Time): void
+ +setUrgencyCat(cat: int): void
+ +setReason(reason: string): void
+ +setAttended(attended: bool): void
+ +getAppId(): int
+ +getDate(): Date
+ +getTime(): Time
+ +getUrgencyCat(): int
+ +getReason(): string
+ +getAttended(): bool
+ 
+ +load(): void
+}
+
+class VetVisits {
+ -visitId: int
+ -date: Fecha
+ -reason: string
+ -diagnosis: string
+ -vetId: int   
+ -clientId: int
+ -petId: int
+ -saleId: int
+
+ +setVisitId(id: int): void
+ +setDate(fecha: Fecha): void
+ +setReason(reason: string): void
+ +setDiagnosis(diagnosis: string): void
+ +setVetId(id: int): void
+ +setClientId(id: int): void
+ +setPetId(id: int): void
+ +getVisitId(): int
+ +getDate(): Fecha
+ +getReason(): string
+ +getDiagnosis(): string
+ +getVetId(): int
+ +getClientId(): int
+ +getPetId(): int
+
+ +isValidRelation(): bool
+}
+
+class Pet {
+ -petId: int
+ -name: string
+ -specie: string
+ -breed: string
+ -birthDate: Fecha
+ -ownerId: int
+ -currentDiagnosis: string
+
+ +setPetId(petId:int):void
+ +setName(name: string): void
+ +setSpecie(specie: string):void
+ +setBreed(breed: string): void
+ +setDate(date: Fecha): void 
+ +setOwnerId(id: int):void
+ +setCurrentDiagnosis(diagnosis:string):void 
+ +getPetId(): int
+ +getName(): string
+ +getSpecie(): string
+ +getBreed():string
+ +getDate():Fecha
+
+ +addAppoinment(): void
+ +load():void
+ +recordVaccination(): void
+}
+
+class PetRelations {
+ -petId: int
+ -clientId: int
+ -owner: bool
+
+ +setPetId(id: int): void
+ +setClientId(id: int): void
+ +setOwner(owner: bool): void
+ +getPetId(): int
+ +getClientId(): int
+ +getOwner(): bool
+}
+
+
+class Product {
+ -productId: int
+ -productName: string
+ -description: string
+ -quantity: int 
+ -stock: int
+ -price: float
+ -brand: string
+ -productType:string 
+ -productCategory: Category
+
+ +setProductId(id: int): void
+ +setName(name:string): void
+ +setDescription(description: string): void
+ +setQuantity(qty: int): void
+ +setStock(stock:int): void
+ +setPrice(price:float): void
+ +setBrand(brand: string): void
+ +setProductType(type: string): void
+ +setProductCategory(cat: Category): void
+ 
+ +getProductId(): int
+ +getName(): string
+ +getQuantity(): int
+ +getStock(): int
+ +getPrice(): float
+ +getBrand():string
+ +getProductType(): string
+ +getProductCategory(): Category
+ 
+ +addProduct(): void
+ +DeleteProduct(): void
+ +updateStock(): void
+}
+
+class ProductCategory {
+ -catId: int
+ -catName: string
+ +setCatId(id: int): void
+ +setCatName(name: string): void
+ +getCatId(): int
+ +getCatName(): string
+
+ +load(): void
+}
+
+class Date {
+ -day: int
+ -month:int
+ -year: int
+
+ +setDay(day: int): void
+ +setMonth(month: int): void
+ +setYear (year: int): void
+ +getDay(): int
+ +getMonth(): int
+ +getYear(): int
+}
+
+class Time {
+ -hour: int
+ -min:int
+ -sec: int
+
+ +setHour(hour: int):void
+ +setMin(min: int): void
+ +setSec (sec: int): void
+ +getHour(): int
+ +getMin(): int
+ +getSec(): int
+}
+
+
+class Sale {
+
+-saleId: int
+-totalAmount: float
+-paymentMethod: string
+-saleDate: Date
+-saleTime: Time
+-quantity: int
+-isVisit: bool
+-transactionId: int
+
++setSaleId(id:int): void
++setAmount(amount: float): void
++setPaymentMethod(method: string): void
++setDate(date: Date): void
++setTime(time: Time): void
++setQuantity(qty: int): void
++setIsVisit(isVisit: bool): void
++setTransactionId(id: int): void
++getSaleId(): int
++getAmount(): float
++getPaymentMethod(): string
++getDate(): Date
++getTime(): Time
++getQuantity(): int
++getIsVisit(): Bool
++getTransactionId(): int
++load(): void
+
+
+} 
+
+
+class Buy {
+-buyId: int
+-totalAmount: float
+-paymentMethod: string
+-buyDate: Fecha
+-buyTime: Time
+-productId: int
+-quantity: int
+-transactionId: int 
+
++setBuyId(item:Inventory): void
++setAmount(importe: int): void
++setpaymentMethod (method : string): void
++setDate (date: Date):void
++setTime (time: Time): void
++setProductId (ProductId: int): void
++setQuantity(qty: int): void
++setTransactionId (id: int): void
++getBuyId(): int
++getTotalAmount(): float
++getPaymentMethod():string
++getbuyDate(): Date
++getbuyTime(): Time
++getProductId (): int
++getQuiantity (): int
++getTransaction (): int
++load(): void
+
+}
+
+class ItemSale {
+ -productId: int
+ -quantity: int
+ -unitPrice: float
+ -saleId: int
+
+ +setProductId(productId: int): void
+ +setQuantity(quantity int): void
+ +setUnitPrice(total: float): void
+ +setSaleId(saleId: int) void
+ +getProductId(): int
+ +getQuantity():int
+ +getUnitPrice(): float
+ +getSaleId(): int
+
+ +load(): void
+}
+
+
+Transaction <|- - Income
+Transaction <|- - Expense
+
+class Transaction {
+
+-idTransaction: int
+-date: Date
+-time: Time
+-description: string
+-amount: float
+
+
++setIdTransaction(idTrx: int): void
++setDate(date: Date): void
++setTime (time : Time): void
++setDescription(desc: string): void
++setAmount(amount: float): void
++getIdTransaction(): int
++getDate(): Fecha
++getTime(): Time
++getDescription(): string
++getAmount(): float
+
+}
+
+class Income {
+
+-saleId:int
+-paymentMethod: string
+
++setSaleId(saleId int): void
++setpaymentMethod(method:string): void
++getSaleId():int
++getPaymentMethod(): string
+}
+
+class Expense {
+	
+-buyId: int
+-paymentMethod: string
+
+
++setBuyId(id: int): void
++setPaymentMethod(method: string)
++getBuyId(): int
++getPaymentMethod(): string
+
+}
+@enduml
+
+PlantUML version 1.2022.7(Mon Aug 22 14:01:30 ART 2022)
+(GPL source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Default Encoding: UTF-8
+Language: en
+Country: US
+--></g></svg>
