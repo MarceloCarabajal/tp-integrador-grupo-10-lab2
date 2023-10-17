@@ -228,6 +228,38 @@ class Time {
  +getSec(): int
 }
 
+class Sale {
+
+-saleId: int
+-totalAmount: float
+-paymentMethod: string
+-saleDate: Date
+-saleTime: Time
+-quantity: int
+-isVisit: bool
+-transactionId: int
+
++setSaleId(id:int): void
++setAmount(amount: float): void
++setPaymentMethod(method: string): void
++setDate(date: Date): void
++setTime(time: Time): void
++setQuantity(qty: int): void
++setIsVisit(isVisit: bool): void
++setTransactionId(id: int): void
++getSaleId(): int
++getAmount(): float
++getPaymentMethod(): string
++getDate(): Date
++getTime(): Time
++getQuantity(): int
++getIsVisit(): Bool
++getTransactionId(): int
++load(): void
+
+
+} 
+
 class ItemSale {
  -productId: int
  -quantity: int
@@ -245,5 +277,38 @@ class ItemSale {
 
  +load(): void
 }
+
+class Buy {
+-buyId: int
+-totalAmount: float
+-paymentMethod: string
+-buyDate: Fecha
+-buyTime: Time
+-productId: int
+-quantity: int
+-transactionId: int 
+
++setBuyId(item:Inventory): void
++setAmount(importe: int): void
++setpaymentMethod (method : string): void
++setDate (date: Date):void
++setTime (time: Time): void
++setProductId (ProductId: int): void
++setQuantity(qty: int): void
++setTransactionId (id: int): void
++getBuyId(): int
++getTotalAmount(): float
++getPaymentMethod():string
++getbuyDate(): Date
++getbuyTime(): Time
++getProductId (): int
++getQuiantity (): int
++getTransaction (): int
++load(): void
+
+
+
+}
+
 
 @enduml
