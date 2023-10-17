@@ -279,6 +279,7 @@ class ItemSale {
 }
 
 class Buy {
+	
 -buyId: int
 -totalAmount: float
 -paymentMethod: string
