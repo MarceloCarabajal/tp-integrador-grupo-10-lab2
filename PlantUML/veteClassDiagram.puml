@@ -306,9 +306,51 @@ class Buy {
 +getTransaction (): int
 +load(): void
 
+}
 
+class Transaction {
+
+-idTransaction: int
+-date: Date
+-time: Time
+-description: string
+-amount: float
+
+
++setIdTransaction(idTrx: int): void
++setDate(date: Date): void
++setTime (time : Time): void
++setDescription(desc: string): void
++setAmount(amount: float): void
++getIdTransaction(): int
++getDate(): Fecha
++getTime(): Time
++getDescription(): string
++getAmount(): float
 
 }
 
+class Income {
 
+-saleId:int
+-paymentMethod: string
+
++setSaleId(saleId int): void
++setpaymentMethod(method:string): void
++getSaleId():int
++getPaymentMethod(): string
+}
+
+class Expense {
+	
+-buyId: int
+-paymentMethod: string
+
+
++setBuyId(id: int): void
++setPaymentMethod(method: string)
++getBuyId(): int
++getPaymentMethod(): string
+
+}
 @enduml
