@@ -156,22 +156,39 @@ class PetRelations {
 
 newpage
 
-class ItemSale {
+class Product {
  -productId: int
- -quantity: int
- -unitPrice: float
- -saleId:  int
+ -productName: string
+ -description: string
+ -quantity: int 
+ -stock: int
+ -price: float
+ -brand: string
+ -productType:string 
+ -productCategory: Category
 
- +setProductId(productId int): void
- +setQuantity(quantity int): void
- +setUnitPrice( total: float): void
- +setSaleId (saleId: int) void
+ +setProductId(id: int): void
+ +setName(name:string): void
+ +setDescription(description: string): void
+ +setQuantity(qty: int): void
+ +setStock(stock:int): void
+ +setPrice(price:float): void
+ +setBrand(brand: string): void
+ +setProductType(type: string): void
+ +setProductCategory(cat: Category): void
+ 
  +getProductId(): int
- +getQuantity():int
- +getUnitPrice(): float
- +getSaleId(): int
-
- +load: void
+ +getName(): string
+ +getQuantity(): int
+ +getStock(): int
+ +getPrice(): float
+ +getBrand():string
+ +getProductType(): string
+ +getProductCategory(): Category
+ 
+ +addProduct(): void
+ +DeleteProduct(): void
+ +updateStock(): void
 }
 
 class ProductCategory {
@@ -181,6 +198,50 @@ class ProductCategory {
  +setCatName(name: string): void
  +getCatId(): int
  +getCatName(): string
+
+ +load(): void
+}
+
+class Date {
+ -day: int
+ -month:int
+ -year: int
+
+ +setDay(day: int): void
+ +setMonth(month: int): void
+ +setYear (year: int): void
+ +getDay(): int
+ +getMonth(): int
+ +getYear(): int
+}
+
+class Time {
+ -hour: int
+ -min:int
+ -sec: int
+
+ +setHour(hour: int):void
+ +setMin(min: int): void
+ +setSec (sec: int): void
+ +getHour(): int
+ +getMin(): int
+ +getSec(): int
+}
+
+class ItemSale {
+ -productId: int
+ -quantity: int
+ -unitPrice: float
+ -saleId: int
+
+ +setProductId(productId: int): void
+ +setQuantity(quantity int): void
+ +setUnitPrice(total: float): void
+ +setSaleId(saleId: int) void
+ +getProductId(): int
+ +getQuantity():int
+ +getUnitPrice(): float
+ +getSaleId(): int
 
  +load(): void
 }
