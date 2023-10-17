@@ -1,0 +1,188 @@
+@startuml Vete++
+
+scale 1280 width
+scale 1550 height
+
+Person <|-- Client
+Person <|-- Vet
+'Transaction <|-- Income
+'Transaction <|-- Expense
+
+class Person {
+ -personId: int
+ -name: string
+ -lastName: string
+ +setName(name: string): void
+ +setLastname(lastname: string): void
+ +getName(): string
+ +getLastname(): string
+ +load(): void
+}
+
+class Vet {
+ -vetId: int
+ -speciality: string
+ +setIdVet(idVet: int): void
+ +setSpeciality(speciality: string): void
+ +getIdVet(): int
+ +getSpeciality(): string
+
+ +queryHistory(): void
+ +assignTreatment(): void
+ +issueDiagnosis(): void
+ +load(): void
+}
+
+class Client {
+ -clientId: int
+ -address: string
+ -phone: string
+ -email: string
+ +setId(id: int): void
+ +setAddress(address: string): void
+ +setPhone(phone: string): void
+ +setEmail(email: string): void
+ +getAddress(): string
+ +getPhone(): string
+ +getEmail(): string
+ +getId(): int
+
+ +addPet():void
+ +deletePet(): void
+ +queryHistory(): void
+ +makeAppointment(): void
+ +queryPets(): void
+ +load(): void
+}
+
+/'	con este comando las siguientes clases 
+	se renderizan en un pagina nueva
+'/
+newpage
+
+class Appointment {
+ -appId: int
+ -date: Date
+ -time: Time
+ -urgencyCat: int
+ -reason: string
+ -attended: bool
+ -clientId: int
+ -petId: int
+
+ +setAppId(id: int): void
+ +setDate(date: Date): void
+ +setTime(time: Time): void
+ +setUrgencyCat(cat: int): void
+ +setReason(reason: string): void
+ +setAttended(attended: bool): void
+ +getAppId(): int
+ +getDate(): Date
+ +getTime(): Time
+ +getUrgencyCat(): int
+ +getReason(): string
+ +getAttended(): bool
+ 
+ +load(): void
+}
+
+class VetVisits {
+ -visitId: int
+ -date: Fecha
+ -reason: string
+ -diagnosis: string
+ -vetId: int   
+ -clientId: int
+ -petId: int
+ -saleId: int
+
+ +setVisitId(id: int): void
+ +setDate(fecha: Fecha): void
+ +setReason(reason: string): void
+ +setDiagnosis(diagnosis: string): void
+ +setVetId(id: int): void
+ +setClientId(id: int): void
+ +setPetId(id: int): void
+ +getVisitId(): int
+ +getDate(): Fecha
+ +getReason(): string
+ +getDiagnosis(): string
+ +getVetId(): int
+ +getClientId(): int
+ +getPetId(): int
+
+ +isValidRelation(): bool
+}
+
+class Pet {
+ -petId: int
+ -name: string
+ -specie: string
+ -breed: string
+ -birthDate: Fecha
+ -ownerId: int
+ -currentDiagnosis: string
+
+ +setPetId(petId:int):void
+ +setName(name: string): void
+ +setSpecie(specie: string):void
+ +setBreed(breed: string): void
+ +setDate(date: Fecha): void 
+ +setOwnerId(id: int):void
+ +setCurrentDiagnosis(diagnosis:string):void 
+ +getPetId(): int
+ +getName(): string
+ +getSpecie(): string
+ +getBreed():string
+ +getDate():Fecha
+
+ +addAppoinment(): void
+ +load():void
+ +recordVaccination(): void
+}
+
+class PetRelations {
+ -petId: int
+ -clientId: int
+ -owner: bool
+
+ +setPetId(id: int): void
+ +setClientId(id: int): void
+ +setOwner(owner: bool): void
+ +getPetId(): int
+ +getClientId(): int
+ +getOwner(): bool
+}
+
+newpage
+
+class ItemSale {
+ -productId: int
+ -quantity: int
+ -unitPrice: float
+ -saleId:  int
+
+ +setProductId(productId int): void
+ +setQuantity(quantity int): void
+ +setUnitPrice( total: float): void
+ +setSaleId (saleId: int) void
+ +getProductId(): int
+ +getQuantity():int
+ +getUnitPrice(): float
+ +getSaleId(): int
+
+ +load: void
+}
+
+class ProductCategory {
+ -catId: int
+ -catName: string
+ +setCatId(id: int): void
+ +setCatName(name: string): void
+ +getCatId(): int
+ +getCatName(): string
+
+ +load(): void
+}
+
+@enduml
