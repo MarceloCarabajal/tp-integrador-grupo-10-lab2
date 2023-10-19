@@ -1,6 +1,6 @@
 /**
  * @file VppFile_def.h
- * @authors Bertello Ana, Carabajal Marcelo, Masino Facundo, Tola Lucas
+ * @authors Bertello Ana, Carabajal Marcelo, Masino Facundo
  * @brief Definiciones de VppFile
  *	Van dentro de un .h porque en C++ no es posible separar los
  *  prototipos de las definiciones en .h y .cpp cuando se utilizan templates
@@ -15,8 +15,17 @@
 
 #include "VppFile.h"
 
+/**
+ * @brief Constructor de la clase VppFile.
+ * @param fileName Nombre del archivo a manejar.
+ */
 VppFile::VppFile(std::string fileName) { _fileName = fileName; }
 
+/**
+ * @brief Obtiene el número total de registros en el archivo.
+ * @tparam vppClass Tipo de registro a considerar.
+ * @return Número total de registros en el archivo.
+ */
 template <class vppClass>
 int VppFile::getTotalRegisters() {
     FILE *pFile = fopen(_fileName.c_str(), "rb");
@@ -50,6 +59,13 @@ vppClass VppFile::readFile(int regNumber) {
     return reg;
 }
 
+/**
+ * @brief Lee múltiples registros del archivo y los almacena en un vector.
+ * @tparam vppClass Tipo de registro a leer.
+ * @param reg Puntero al vector en el que se almacenarán los registros leídos.
+ * @param totalToRead Cantidad de registros a leer.
+ * @return `true` si la lectura fue exitosa, `false` en caso contrario.
+ */
 template <class vppClass>
 bool VppFile::readFile(vppClass *reg, int totalToRead) {
     FILE *pFile = fopen(_fileName.c_str(), "rb");
@@ -59,6 +75,12 @@ bool VppFile::readFile(vppClass *reg, int totalToRead) {
     return success;
 }
 
+/**
+ * @brief Escribe un registro en el archivo.
+ * @tparam vppClass Tipo de registro a escribir.
+ * @param reg Registro a escribir en el archivo.
+ * @return `true` si la escritura fue exitosa, `false` en caso contrario.
+ */
 template <class vppClass>
 bool VppFile::writeFile(vppClass reg) {
     FILE *pFile = fopen(_fileName.c_str(), "ab");

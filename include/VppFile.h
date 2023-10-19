@@ -29,6 +29,9 @@ public:
     bool readFile(vppClass *reg, int totalToRead);
     template <class vppClass>
     bool writeFile(vppClass reg);
+    // template <class vppClass>
+    // bool updateFile(int regNumber, bool *fCallback); // TODO: desarrollo
+    // pendiente
 
 private:
     std::string _fileName;
