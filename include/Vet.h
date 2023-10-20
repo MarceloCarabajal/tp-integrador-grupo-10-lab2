@@ -3,8 +3,8 @@
 
 class Vet {
 private: 
- int vetId;
- std:: string speciality;
+ int _vetId;
+ std:: string _speciality;
 
 public: 
  void setIdVet( int idVet);
