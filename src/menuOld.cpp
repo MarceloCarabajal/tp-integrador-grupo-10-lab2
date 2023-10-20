@@ -1,4 +1,4 @@
-#include "menu.h"
+#include "menuOld.h"
 
 #include "functions.h"
 
@@ -15,14 +15,10 @@ void handleMenu() {
             case 14:
                 if (currentSelect > 1) currentSelect--;
                 printMenu(currentSelect);
-                // cout << usrKey << endl;
-                // cout << currentSelect << endl;
                 break;
             case 15:
                 if (currentSelect < maxSelect) currentSelect++;
                 printMenu(currentSelect);
-                // cout << usrKey << endl;
-                // cout << currentSelect << endl;
                 break;
         }
     }
