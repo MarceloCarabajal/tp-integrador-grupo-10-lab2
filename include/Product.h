@@ -8,7 +8,7 @@ private:
     int _productID, _quantity, _stock;
     float _price;
     std::string _productName, _description, _brand, _productType;
-    ProductCategory _productCategory
+    ProductCategory _productCategory;
 public:
     void setProductId(int productId);
     void setProductName(std::string productName);
@@ -21,13 +21,13 @@ public:
     void setProductCategory(ProductCategory category);
 
     int getProductId();
-    std::string getName();
+    std::string getProductName();
     int getQuantity();
     int getStock();
     float getPrice();
     std::string getBrand();
     std::string getProductType();
-    std::string getProductCategory();
+    ProductCategory getProductCategory();
 
     void addProduct();
     void deleteProduct();
