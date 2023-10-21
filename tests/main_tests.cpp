@@ -14,9 +14,9 @@
 
 #include <iostream>
 
+#include "Menu.h"
 #include "VppFile.h"
-#include "functions.h"
-#include "menu.h"
+// #include "functions.h"
 
 using namespace std;
 
@@ -29,21 +29,38 @@ public:
     int getNumero() { return numero; }
 };
 
+void hola() {
+    cout << "hola" << endl;
+    system("pause");
+}
+void chau() {
+    cout << "chau" << endl;
+    system("pause");
+}
+
 int main() {
     // handleMenu();
-    Prueba ppp;
-    ppp.setNumero(101);
+    /*     Prueba ppp;
+        ppp.setNumero(101);
 
-    VppFile test("test.vpp");
+        VppFile test("test.vpp");
 
-    test.writeFile(ppp);
+        test.writeFile(ppp);
 
-    cout << test.readFile<Prueba>(0).getNumero();
+        cout << test.readFile<Prueba>(0).getNumero();
 
-    cout << endl << test.getTotalRegisters<Prueba>();
+        cout << endl << test.getTotalRegisters<Prueba>();
 
-    cout << endl;
-    cout << endl;
+        cout << endl;
+        cout << endl; */
+
+    Menu test;
+
+    test.addOption("1. Hola", hola);
+    test.addOption("2. Chau", chau);
+    test.addOption("3. Otro chau", chau);
+    test.showMenu();
+
     system("pause");
     return 0;
 }
