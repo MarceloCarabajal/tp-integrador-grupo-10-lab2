@@ -1,5 +1,7 @@
 #pragma once
 #include <string>
+#include "Date.h"
+#include "Time.h"
 
 
 class VetVisits {
@@ -15,10 +17,10 @@ public:
  void setVetId( int id);
  void setClientId( int id);
  void setPetId( int id);
- void setsaleId (int id)
+ void setsaleId (int id);
  void setDate( Date fecha);
- void setReason( std:: string reason);
- void setDiagnosis( std:: string diagnosis);
+ void setReason( std::string reason);
+ void setDiagnosis( std::string diagnosis);
 
 int getVisitId();
 Date getDate();
@@ -28,6 +30,6 @@ int getVetId();
 int getClientId(); 
 int getPetId(); 
 
-bool isValidRelation(): 
+bool isValidRelation();
 
 };

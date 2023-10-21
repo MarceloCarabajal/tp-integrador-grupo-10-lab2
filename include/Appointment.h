@@ -1,5 +1,7 @@
 #pragma once
 #include <string>
+#include "Date.h"
+#include "Time.h"
 
 
 class Appointment {
