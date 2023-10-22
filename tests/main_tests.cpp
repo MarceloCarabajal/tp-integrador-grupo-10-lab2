@@ -29,20 +29,16 @@ public:
     int getNumero() { return numero; }
 };
 
-void hola() {
-    cout << "hola" << endl;
-    system("pause");
-}
-void chau() {
-    cout << "chau" << endl;
+void funcCualquier() {
+    cout << "funcion que hace cualquier cosa\n";
     system("pause");
 }
 
 void funcSubMenu() {
     Menu subMenu("Otro Menu", true);
 
-    subMenu.addOption("1. Cualquier cosa", hola);
-    subMenu.addOption("2. Otra cualquier cosa", chau);
+    subMenu.addOption("1. Cualquier cosa", funcCualquier);
+    subMenu.addOption("2. Otra cualquier cosa", funcCualquier);
     subMenu.showMenu();
 }
 
@@ -64,10 +60,9 @@ int main() {
 
     Menu test;
 
-    test.addOption("1. Hola", hola);
-    test.addOption("2. Chau", chau);
-    test.addOption("3. Otro chau", chau);
-    test.addOption("4. Ir a otro menu", funcSubMenu);
+    test.addOption("1. Gestion de Clientes", funcSubMenu);
+    test.addOption("2. Gestion de Turnos", funcSubMenu);
+    test.addOption("3. Gestion de Inventarios", funcSubMenu);
     test.showMenu();
 
     system("pause");
