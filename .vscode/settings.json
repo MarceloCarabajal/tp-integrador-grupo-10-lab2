@@ -58,6 +58,9 @@
 		"sstream": "cpp",
 		"functional": "cpp",
 		"list": "cpp",
-		"xhash": "cpp"
+		"xhash": "cpp",
+		"iomanip": "cpp",
+		"xlocmon": "cpp",
+		"xloctime": "cpp"
 	}
 }

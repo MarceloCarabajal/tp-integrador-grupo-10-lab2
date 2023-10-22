@@ -38,6 +38,14 @@ void chau() {
     system("pause");
 }
 
+void funcSubMenu() {
+    Menu subMenu("Otro Menu", true);
+
+    subMenu.addOption("1. Cualquier cosa", hola);
+    subMenu.addOption("2. Otra cualquier cosa", chau);
+    subMenu.showMenu();
+}
+
 int main() {
     // handleMenu();
     /*     Prueba ppp;
@@ -59,6 +67,7 @@ int main() {
     test.addOption("1. Hola", hola);
     test.addOption("2. Chau", chau);
     test.addOption("3. Otro chau", chau);
+    test.addOption("4. Ir a otro menu", funcSubMenu);
     test.showMenu();
 
     system("pause");
