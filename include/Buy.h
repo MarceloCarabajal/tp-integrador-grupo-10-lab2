@@ -1,10 +1,10 @@
 #pragma once
 #include <string>
 #include "Date.h"
-#include "Time.h"
+#include "TimeCls.h"
 
 
-class Buy {
+class Buy { 
 
 private: 
 
