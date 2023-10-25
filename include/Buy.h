@@ -18,7 +18,7 @@ Time _buyTime ;
 public: 
 
 
-void setBuyId( Inventory item);    ///PENDIENTE CORREGIR INVENTORY
+void setBuyId( int  id);    
 void setAmount( float  importe);    ///CORREGÍ TIPO DE DATO, ESTABA INT
 void setpaymentMethod (std::string method);
 void setDate ( Date date);

@@ -1,7 +1,7 @@
 #include "Buy.h"
 
 
-void setBuyId( Inventory item){///PENDIENTE CORREGIR INVENTORY
+void setBuyId( int  id){///PENDIENTE CORREGIR INVENTORY
 
 
 
@@ -72,5 +72,5 @@ int getTransaction (){
 void load(){
 
 
-    
+
 }
