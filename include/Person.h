@@ -1,6 +1,7 @@
 #pragma once
 #include <string>
 
+
 class Person {
 private:
     int _personId;
@@ -8,6 +9,7 @@ private:
 
 public:
     Person();
+    void setIdPerson(int id);
     void setName(std::string name);
     void setLastname(std::string lastname);
 

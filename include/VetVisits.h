@@ -1,7 +1,7 @@
 #pragma once
 #include <string>
 #include "Date.h"
-#include "Time.h"
+
 
 
 class VetVisits {
@@ -18,7 +18,7 @@ public:
  void setClientId( int id);
  void setPetId( int id);
  void setsaleId (int id);
- void setDate( Date fecha);
+ void setDate( Date dat);
  void setReason( std::string reason);
  void setDiagnosis( std::string diagnosis);
 
