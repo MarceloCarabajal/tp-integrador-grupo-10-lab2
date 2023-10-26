@@ -13,6 +13,8 @@ public:
     void setName(std::string name);
     void setLastname(std::string lastname);
 
+
+    int getIdPerson ();
     std::string getName();
     std::string getLastname();
     void load();
