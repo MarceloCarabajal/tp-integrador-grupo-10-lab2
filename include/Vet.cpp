@@ -4,22 +4,22 @@ using namespace std;
 
 
 
-void setIdVet( int vetId){ _vetId = vetId;}
-void setSpeciality( std:: string speciality){ _speciality = speciality; }
+void Vet::setIdVet( int vetId){ _vetId = vetId;}
+void Vet::setSpeciality( std:: string speciality){ _speciality = speciality; }
 
-int  getIdVet(){return _vetId;  }
-std:: string getSpeciality(){ return _speciality; }
+int  Vet::getIdVet(){return _vetId;  }
+std:: string Vet::getSpeciality(){ return _speciality; }
 
-void queryHistory(){
+void Vet::queryHistory(){
     
 }
-void assignTreatment(){
+void Vet::assignTreatment(){
     
 }
-void issueDiagnosis(){
+void Vet::issueDiagnosis(){
     
 }
-void load(){
+void Vet::load(){
 
 Person::load();
 
