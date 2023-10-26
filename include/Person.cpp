@@ -1,20 +1,33 @@
+#include<iostream>
 #include "Person.h"
 
-//CONSTRUCTOR ????
+using namespace std;
 
-void setName(std::string name){
+//CONSTRUCTOR ????int _personId;
+    int _personId;
+    std::string _name, _lastname;
 
-}
-void setLastname(std::string lastname){
+void setIdPerson(int personId){_personId= personId;}
+void setName(std::string name){ std::string _name=name;}
+void setLastname(std::string lastname){ std::string _lastname=lastname;}
 
-}
+std::string getName(){return _name;}
+std::string getLastname(){ return  _lastname;}
 
-std::string getName(){
-
-}
-std::string getLastname(){
-
-}
 void load(){
+    int personId;
+    std::string name, lastname;
+
+    cout<<"Ingrese ID de persona:";
+    cin>>personId;
+    setIdPerson(personId);
+
+    cout<<"Ingrese Nombre:";
+    cin>>name;
+    setName(name);
+
+    cout <<"Ingrese Apellido:";
+    cin>>lastname;
+    setLastname(lastname);
     
 }

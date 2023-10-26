@@ -1,32 +1,40 @@
+#include<iostream>
 #include "Client.h"
 
-
-void setAddress(std::string address){
-
-
-}
-void setPhone(std::string phone){
-
-
-}
-void setEmail(std::string email){
+using namespace std;
+ 
+void Client::setClientId(int clienteId ){ _clientId = clienteId; }
+void Client::setAddress(std::string address){ std::string _address=address;}
+void Client::setPhone(std::string phone){std::string _phone=phone;}
+void Client::setEmail(std::string email){std::string _email=email;}
 
 
-}
-
-std::string getAddress(){
-
-
-}
-std::string getPhone(){
+int Client::getClientId (){return _clientId;}
+std::string Client::getAddress(){return _address;}
+std::string Client::getPhone(){return _phone; }
+std::string Client::getEmail(){return _email;}
 
 
- }
-std::string getEmail(){
-
-
-}
 void load(){
 
+   Person::load();
 
+int clientId;
+std::string address, phone, email;
+
+cout<<"Ingrese Id Cliente:";
+cin>> clientId;
+ 
+
+cout<<"Ingrese Direccion:";
+cin>>address;
+setAddress(address);
+
+cout<<"Ingrese Telefono:";
+cin>>phone;
+setPhone(phone);
+
+cout<<"Ingrese E-mail:";
+cin>>email;
+setEmail(email);
 }
