@@ -3,3 +3,6 @@
 
 # Ignorar carpeta de configuracion de vscode
 .vscode/
+
+# Ignorar datos sensibles
+include/Credentials.h

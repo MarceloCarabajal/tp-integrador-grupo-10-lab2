@@ -6,6 +6,7 @@ set includes=-I include/
 set lib=-L lib/ -lquickmail 
 set output=bin/vetepp.exe
 cd ..
+del bin\vetepp.exe
 echo g++ %flags% %includes% *.cpp src/*.cpp %lib% -o %output%
 g++ %flags% %includes% *.cpp src/*.cpp %lib% -o %output%
 echo:

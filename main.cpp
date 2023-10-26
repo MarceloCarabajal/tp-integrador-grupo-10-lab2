@@ -22,8 +22,8 @@ void sendTestEmail() {
     cout << "Enviando email..\n";
     bool isSent = sendEmail(
         "facujmasino@gmail.com", "Prueba VETE++",
-        "La recepcion de este email implica la aprobacion directa del "
-        "grupo 10.");
+        "<b>La recepcion de este email implica la aprobacion directa del "
+        "grupo 10.</b>");
 
     if (isSent) {
         cout << "\n EMAIL ENVIADO!.\n";

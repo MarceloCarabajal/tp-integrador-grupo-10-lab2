@@ -9,17 +9,25 @@
 using namespace std;
 
 // Credenciales SMTP
-#define SMTP_HOST "smtp-relay.brevo.com"
-#define SMTP_PORT 587
-#define SMTP_USR "joaqfm@gmail.com"
-#define SMTP_PWD "GPX8Z3Wh964TLAtw"
+#include "Credentials.h"
 
-bool sendEmail(string to, string subject, string body) {
+bool sendEmail(string to, string subject, string body, bool isHTML) {
     quickmail_initialize();
     quickmail mailObj =
         quickmail_create("facujmasino@gmail.com", subject.c_str());
 
-    quickmail_set_body(mailObj, body.c_str());
+    char *cBody = &body[0];
+
+    // HEADERS:
+    quickmail_add_header(mailObj, "Reply-To: Vete++ <facujmasino@gmail.com");
+    quickmail_add_header(mailObj,
+                         "Organization: Vete++ <facujmasino@gmail.com");
+    quickmail_add_header(mailObj, "MIME-Version: 1.0");
+    quickmail_add_header(mailObj, "X-Priority: 3");
+
+    // Prueba html
+    quickmail_add_body_memory(mailObj, "text/html", cBody, body.length(), 0);
+    // quickmail_set_body(mailObj, body.c_str());
     quickmail_add_to(mailObj, to.c_str());
     const char *errmsg =
         quickmail_send(mailObj, SMTP_HOST, SMTP_PORT, SMTP_USR, SMTP_PWD);
