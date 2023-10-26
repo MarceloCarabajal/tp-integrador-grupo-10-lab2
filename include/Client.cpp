@@ -24,7 +24,7 @@ std::string address, phone, email;
 
 cout<<"Ingrese Id Cliente:";
 cin>> clientId;
- 
+setClientId(clientId);
 
 cout<<"Ingrese Direccion:";
 cin>>address;
