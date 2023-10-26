@@ -18,6 +18,8 @@ private:
 
  public: 
  void setAppId( int id);
+ void setUrgencyCat (int urg);
+ void setpetId (int idpet;)
  void setDate( Date date);
  void setTime( Time time);
  void setUrgencyCat( int cat);
@@ -25,6 +27,8 @@ private:
  void setAttended( bool attended);
 
  int getAppId();
+ int getUrgencyCat ();
+ int getpetId ();
  Date getDate();
  Time getTime();
  int getUrgencyCat();
