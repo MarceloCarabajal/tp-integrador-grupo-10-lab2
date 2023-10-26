@@ -1,6 +1,7 @@
 #include<iostream>
 #include "Client.h"
 
+
 using namespace std;
  
 void Client::setClientId(int clienteId ){ _clientId = clienteId; }

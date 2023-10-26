@@ -1,5 +1,6 @@
 #pragma once
 #include <string>
+#include "Person.h"
 
 class Vet :  Person {
 private: 
@@ -16,6 +17,7 @@ std:: string getSpeciality();
  void queryHistory();
  void assignTreatment();
  void issueDiagnosis();
- void load();
+ 
+ void load( );
 
 };
