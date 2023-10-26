@@ -19,7 +19,7 @@ private:
  public: 
  void setAppId( int id);
  void setUrgencyCat (int urg);
- void setpetId (int idpet;)
+ void setpetId (int idpet);
  void setDate( Date date);
  void setTime( Time time);
  void setUrgencyCat( int cat);
