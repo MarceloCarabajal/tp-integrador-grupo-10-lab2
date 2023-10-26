@@ -1,7 +1,7 @@
 #pragma once
 #include <string>
 
-class Vet {
+class Vet :  Person {
 private: 
  int _vetId;
  std:: string _speciality;
