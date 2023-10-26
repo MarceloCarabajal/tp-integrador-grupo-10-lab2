@@ -1,7 +1,6 @@
 #include<iostream>
 #include "Client.h"
 
-
 using namespace std;
  
 void Client::setClientId(int clienteId ){ _clientId = clienteId; }
@@ -16,7 +15,7 @@ std::string Client::getPhone(){return _phone; }
 std::string Client::getEmail(){return _email;}
 
 
-void load(){
+void Client::load(){
 
    Person::load();
 
