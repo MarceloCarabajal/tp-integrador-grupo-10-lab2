@@ -33,7 +33,7 @@ std:: string getPaymentMethod();
 Date getbuyDate(); 
 Time getbuyTime(); 
 int getProductId (); 
-int getQuiantity (); 
+int getQuantity (); 
 int getTransaction (); 
 void load();
 
