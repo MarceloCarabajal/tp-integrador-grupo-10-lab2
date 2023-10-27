@@ -52,20 +52,31 @@ cout<<"Ingrese metodo de pago:";
 cin>>paymentMethod;
 setpaymentMethod(paymentMethod);
 
-cout<<"Ingrese Fecha de la compra:";
-cin>>buyDate;
-setDate(buyDate);
+int auxDia,auxMes,auxAnio,auxHour,auxMinutes, auxSeconds;
+
+cout<<"Ingrese Dia  de la compra:";
+cin>>auxDia;
+buyDate.setDay(auxDia);
+
+cout <<"Ingrese Mes de la compra:";
+cin>>auxMes;
+buyDate.setMonth(auxMes);
+
+cout <<"Ingrese Anio de la compra:";
+cin>>auxAnio;
+buyDate.setYear(auxAnio);
+
 
 cout<<"Ingrese Hora de la compra:";
-cin>>buyTime;
-setTime(buyTime);
+cin>>auxHour;
+buyTime.setHour(auxHour);
 
+cout<<"Ingrese Minutos de la compra:";
+cin>>auxMinutes;
+buyTime.setMin(auxMinutes);
 
-
-//TODO: ver tema del ID Transaccion, habiamos dicho que venia de otro lado?   
-/*cout<<
-cin>>
-set
-*/
+cout<<"Ingrese Segundos de la compra:";
+cin>>auxSeconds;
+buyTime.setSec(auxSeconds);
 
 }
