@@ -1,8 +1,10 @@
 #include <iostream>
 
 #include "Menu.h"
-#include "VppFile.h"
+// #include "VppFile.h"
+
 #include "functions.h"
+
 using namespace std;
 
 void funcCualquier() {
@@ -18,14 +20,21 @@ void funcSubMenu() {
 }
 
 void sendTestEmail() {
+    std::string emailTo;
     // TODO: Probar cuerpo HTML de Email
+
+    cout << "Destinatario: ";
+    cin >> emailTo;
     cout << "Enviando email..\n";
     bool isSent = sendEmail(
-        "facujmasino@gmail.com", "Prueba VETE++",
-        "<b>La recepcion de este email implica la aprobacion directa del "
-        "grupo 10.</b>");
+        emailTo.c_str(), "VETE++ - Notificacion Recibida",
+        "<h1>Vete++ - Sistema de gestion</h1>"
+        "<p>Texto de prueba... 1 2 3</p>"
+        "<i>La recepcion de este email implica la aprobacion directa del "
+        "grupo 10.</i>");
 
     if (isSent) {
+        notifSound();
         cout << "\n EMAIL ENVIADO!.\n";
     } else {
         cout << "Ocurrio un error :(\n";
