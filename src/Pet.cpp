@@ -25,6 +25,11 @@ void Pet::addAppoinment(){
 }
 void Pet::loadPet(){
 
+int petId, ownerId, auxDay, auxMonth, auxYear;
+std::string name, specie, breed, currentDiagnosis; 
+Date birthDate;
+
+
 cout<<"Ingrese ID de la mascota:";
 cin>>petId;
 setPetId(petId);
@@ -34,11 +39,11 @@ cout<<"Ingrese ID del dueño:";
 cin>>ownerId; 
 setOwnerId(ownerId);
 
-cout<<"Ingrese Nombre de la Mascota:"
+cout<<"Ingrese Nombre de la Mascota:";
 cin>>name;
 setName(name);
 
-cout<<"Ingrese Especie;"
+cout<<"Ingrese Especie:";
 cin>>specie;
 setSpecie(specie);
 
@@ -51,9 +56,17 @@ cin>>currentDiagnosis;
 setCurrentDiagnosis(currentDiagnosis);
 
 
-cout<<"Ingrese Fecha de Nacimiento:"
-cin>>bithdate; 
-setBirthDate(_birthDate;)
+cout<<"Ingrese Dia  de nacimiento:";
+cin>>auxDay;
+birthDate.setDay(auxDay);
+
+cout <<"Ingrese Mes  de nacimiento:";
+cin>>auxMonth;
+birthDate.setMonth(auxMonth);
+
+cout <<"Ingrese Anio de naciiento:";
+cin>>auxYear;
+birthDate.setYear(auxYear);
 
     
 }
