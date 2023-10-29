@@ -10,6 +10,7 @@ void Vet::setSpeciality( std:: string speciality){ _speciality = speciality; }
 int  Vet::getIdVet(){return _vetId;  }
 std:: string Vet::getSpeciality(){ return _speciality; }
 
+//TODO Completar metodos 
 void Vet::queryHistory(){
     
 }

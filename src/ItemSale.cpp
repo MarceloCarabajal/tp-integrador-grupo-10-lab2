@@ -1,32 +1,34 @@
+#include <iostream>
 #include "ItemSale.h"
+using namespace std;
 
-void setProductId( int productId){
+void ItemSale::setProductId( int productId){_productId=productId;}
+void ItemSale::setQuantity( int quantity){_quantity=quantity;}
+void ItemSale::setUnitPrice( float total){_unitPrice=total;}
+void ItemSale::setSaleId( int saleId){_saleId=saleId;}
 
-}
- void setQuantity( int quantity){
+int ItemSale::getProductId(){return _productId;}
+int ItemSale::getQuantity(){return _quantity;}
+float ItemSale::getUnitPrice(){return _unitPrice;}
+int ItemSale::getSaleId(){return _saleId;}
 
- }
- void setUnitPrice( float total){
-
- }
- void setSaleId( int saleId){
-
- }
-
-
- int getProductId(){
-
- }
- int getQuantity(){
-
- }
- float getUnitPrice(){
-
- }
- int getSaleId(){
-
- }
-
-void load(){
+void ItemSale::load(){
     
+int productId, quantity, saleId;
+ float unitPrice;
+
+ 
+cout<<"Ingrese ID de la venta:";
+cin>>saleId;
+
+cout<<"Ingrese ID del producto:";
+cin>>productId;
+
+cout<<"Ingrese cantidad vendida:";
+cin>>quantity;
+
+cout<<"Ingrese PrecioUnitario:";
+cin>>unitPrice;
+
+
 }
