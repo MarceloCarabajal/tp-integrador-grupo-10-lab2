@@ -1,8 +1,9 @@
 #pragma once
 #include <string>
+#include "Transaction.h"
 
 
-class Income {
+class Income : Transaction {
 
 private:
 
@@ -17,5 +18,7 @@ void setpaymentMethod(std::string method);
 
 int  getSaleId();
 std:: string getPaymentMethod();
+
+void load();
 
 };

@@ -11,6 +11,9 @@ int  Expense::getBuyId(){return _buyId;}
 std:: string Expense::getPaymentMethod(){return _paymentMethod; }
 
 void Expense::load (){
+
+Transaction::load();
+
 int buyId;
 std:: string paymentMethod;
 

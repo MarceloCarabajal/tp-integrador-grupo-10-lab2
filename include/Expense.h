@@ -1,8 +1,9 @@
 #pragma once
 #include <string>
+#include "Transaction.h"
 
 
-class Expense {
+class Expense: Transaction {
 
 private: 	
 int _buyId;
