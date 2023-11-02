@@ -1,37 +1,40 @@
+#include<iostream>
 #include "Client.h"
 
-/**
- * @brief Establece la dirección del cliente.
- * @param address La dirección del cliente.
- */
-void Client::setAddress(std::string address) { _address = address; }
+using namespace std;
+ 
+void Client::setClientId(int clienteId ){ _clientId = clienteId; }
+void Client::setAddress(std::string address){ std::string _address=address;}
+void Client::setPhone(std::string phone){std::string _phone=phone;}
+void Client::setEmail(std::string email){std::string _email=email;}
 
-/**
- * @brief Obtiene la dirección del cliente.
- * @return La dirección del cliente.
- */
-std::string Client::getAddress() { return _address; }
 
-/**
- * @brief Establece el teléfono del cliente.
- * @param phone El número de teléfono del cliente.
- */
-void Client::setPhone(std::string phone) { _phone = phone; }
+int Client::getClientId (){return _clientId;}
+std::string Client::getAddress(){return _address;}
+std::string Client::getPhone(){return _phone; }
+std::string Client::getEmail(){return _email;}
 
-/**
- * @brief Obtiene el teléfono del cliente.
- * @return El número de teléfono del cliente.
- */
-std::string Client::getPhone() { return _phone; }
 
-/**
- * @brief Establece el correo electrónico del cliente.
- * @param email El correo electrónico del cliente.
- */
-void Client::setEmail(std::string email) { _email = email; }
+void Client::load(){
 
-/**
- * @brief Obtiene el correo electrónico del cliente.
- * @return El correo electrónico del cliente.
- */
-std::string Client::getEmail() { return _email; }
+   Person::load();
+
+int clientId;
+std::string address, phone, email;
+
+cout<<"Ingrese Id Cliente:";
+cin>> clientId;
+setClientId(clientId);
+
+cout<<"Ingrese Direccion:";
+cin>>address;
+setAddress(address);
+
+cout<<"Ingrese Telefono:";
+cin>>phone;
+setPhone(phone);
+
+cout<<"Ingrese E-mail:";
+cin>>email;
+setEmail(email);
+}
