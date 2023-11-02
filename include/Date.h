@@ -1,5 +1,7 @@
 #pragma once
 
+#include <iostream>
+
 class Date {
 private:
     int _day, _month, _year;

@@ -1,68 +1,21 @@
 #include "VetVisits.h"
 
-void setVisitId( int id ){
-    
-}
-void setVetId( int id){
-    
-}
-void setClientId( int id){
-    
-}
-void setPetId( int id){
-    
-}
-void setsaleId (int id){
+void VetVisits::setVisitId(int id) {}
+void VetVisits::setVetId(int id) {}
+void VetVisits::setClientId(int id) {}
+void VetVisits::setPetId(int id) {}
+void VetVisits::setSaleId(int id) {}
+void VetVisits::setDate(Date dat) {}
+void VetVisits::setReason(std::string reason) {}
+void VetVisits::setDiagnosis(std::string diagnosis) {}
 
-    
-}
-void setDate( Date dat){
+int VetVisits::getVisitId() {}
+Date VetVisits::getDate() {}
+std::string VetVisits::getReason() {}
+std::string VetVisits::getDiagnosis() {}
+int VetVisits::getVetId() {}
+int VetVisits::getClientId() {}
+int VetVisits::getPetId() {}
+int VetVisits::getSaleId() {}
 
-    
-}
-void setReason( std::string reason){
-
-    
-}
-void setDiagnosis( std::string diagnosis){
-
-    
-}
-
-int getVisitId(){
-
-    
-}
-Date getDate(){
-
-    
-}
-std::string getReason(){
-
-    
-}
-std::string getDiagnosis(){
-
-    
-}
-int getVetId(){
-
-    
-}
-int getClientId(){
-
-    
-} 
-int getPetId(){
-
-    
-} 
-int getsaleId(){
-
-
-}
-
-bool isValidRelation(){
-
-    
-}
+bool VetVisits::isValidRelation() {}

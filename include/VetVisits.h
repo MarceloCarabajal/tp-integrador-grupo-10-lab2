@@ -1,35 +1,32 @@
 #pragma once
 #include <string>
+
 #include "Date.h"
 
-
-
 class VetVisits {
+private:
+    int _visitId, _vetId, _clientId, _petId, _saleId;
+    Date _date;
+    std::string _reason, _diagnosis;
 
-private:  
- int  _visitId,_vetId,_clientId, _petId,_saleId; 
- Date _date;
- std::string _reason, _diagnosis;
- 
-public: 
+public:
+    void setVisitId(int id);
+    void setVetId(int id);
+    void setClientId(int id);
+    void setPetId(int id);
+    void setSaleId(int id);
+    void setDate(Date dat);
+    void setReason(std::string reason);
+    void setDiagnosis(std::string diagnosis);
 
- void setVisitId( int id );
- void setVetId( int id);
- void setClientId( int id);
- void setPetId( int id);
- void setsaleId (int id);
- void setDate( Date dat);
- void setReason( std::string reason);
- void setDiagnosis( std::string diagnosis);
+    int getVisitId();
+    Date getDate();
+    std::string getReason();
+    std::string getDiagnosis();
+    int getVetId();
+    int getClientId();
+    int getPetId();
+    int getSaleId();
 
-int getVisitId();
-Date getDate();
-std::string getReason();
-std::string getDiagnosis();
-int getVetId();
-int getClientId(); 
-int getPetId(); 
-
-bool isValidRelation();
-
+    bool isValidRelation();
 };
