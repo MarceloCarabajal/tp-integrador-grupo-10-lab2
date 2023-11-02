@@ -26,6 +26,8 @@ public:
     VppClass readFile(int regNumber);
     bool readFile(VppClass *reg, int totalToRead);
     bool writeFile(VppClass reg);
+    bool updateFile(VppClass reg, int regPos);
+    int searchReg(bool (*fCallback)(VppClass));
     // bool updateFile(int regNumber, bool *fCallback); // TODO: desarrollo
     // pendiente
 

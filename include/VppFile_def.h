@@ -92,3 +92,63 @@ bool VppFile<VppClass>::writeFile(VppClass reg) {
     fclose(pFile);
     return success;
 }
+
+/**
+ * @brief Actualiza un registro en el archivo.
+ *
+ * Esta función permite actualizar un registro en un archivo binario en una
+ * posición específica.
+ *
+ * @tparam VppClass El tipo de datos del registro.
+ * @param reg El registro que se desea actualizar.
+ * @param regPos La posición del registro que se desea actualizar.
+ * @return `true` si la actualización se realiza con éxito, de lo contrario,
+ * `false`.
+ */
+template <class VppClass>
+bool VppFile<VppClass>::updateFile(VppClass reg, int regPos) {
+    FILE *pFile = fopen(_fileName.c_str(), "rb+");
+    if (pFile == NULL) return false;
+    fseek(pFile, sizeof(reg) * regPos, SEEK_SET);
+    bool success = fwrite(&reg, sizeof(reg), 1, pFile);
+    fclose(pFile);
+    return success;
+}
+
+/**
+ * @brief Busca un registro en el archivo.
+ *
+ * Esta función busca un registro en un archivo binario y utiliza una función de
+ * callback para determinar si se encuentra el registro deseado.
+ *
+ * @tparam VppClass El tipo de datos del registro.
+ * @param fCallback Un puntero a una función de callback que se utiliza para
+ * evaluar si se ha encontrado el registro deseado.
+ * @return La posición del registro si se encuentra, de lo contrario, retorna
+ * -1.
+ *
+ * @see getTotalRegisters() para obtener el número total de registros en el
+ * archivo.
+ */
+template <class VppClass>
+int VppFile<VppClass>::searchReg(bool (*fCallback)(VppClass)) {
+    VppClass auxReg;
+    int totalToRead = getTotalRegisters();
+    FILE *pFile = fopen(_fileName.c_str(), "rb");
+    if (pFile == NULL) return -1;
+    for (int i = 0; i < totalToRead; i++) {
+        // Si ocurre un error al leer, devuelve -1
+        if (!fread(auxReg, sizeof(auxReg), 1, pFile)) {
+            fclose(pFile);
+            return -1;
+        }
+        // Si la funcion callback devuelve true, se encontro
+        // lo buscado en el registro y se devuelve la posicion
+        if ((fCallback)(auxReg)) {
+            fclose(pFile);
+            return i;
+        }
+    }
+    fclose(pFile);
+    return -1;
+}
