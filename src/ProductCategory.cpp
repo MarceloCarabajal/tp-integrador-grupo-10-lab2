@@ -1,19 +1,24 @@
+#include <iostream>
 #include "ProductCategory.h"
 
-void setCatId(int id ){
+using namespace std;
 
-}
-void setCatName(std:: string name ){
-    
-}
+void ProductCategory::setCatId(int id ){_catId=id;}
+void ProductCategory::setCatName(std:: string name ){_catName=name;   }
 
-int getCatId(){
-    
-}
-std::string getCatName(){
-    
-}
+int ProductCategory::getCatId(){return _catId;}
+std::string ProductCategory::getCatName(){return _catName;}
 
-void load(){
-    
+void ProductCategory::load(){
+int catId;
+std:: string catName;
+
+cout <<"Ingrese ID de categoria:";
+cin>>catId;
+setCatId (catId);
+
+cout<<"Ingrese nombre de la categoria:";
+cin>>catName;
+setCatName(catName);
+
 }

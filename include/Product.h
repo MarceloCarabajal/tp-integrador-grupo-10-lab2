@@ -9,6 +9,7 @@ private:
     float _price;
     std::string _productName, _description, _brand, _productType;
     ProductCategory _productCategory;
+
 public:
     void setProductId(int productId);
     void setProductName(std::string productName);
@@ -22,6 +23,7 @@ public:
 
     int getProductId();
     std::string getProductName();
+    std::string getDescription ();
     int getQuantity();
     int getStock();
     float getPrice();

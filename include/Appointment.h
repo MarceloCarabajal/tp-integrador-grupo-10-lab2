@@ -7,8 +7,8 @@
 class Appointment {
 private:
     int _appId, _urgencyCat, _petId;
-    Date _date;
-    Time _time;
+    Date _dateApp;
+    Time _timeApp;
 
     std::string _reason;
     bool _attended;

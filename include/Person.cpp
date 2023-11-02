@@ -14,6 +14,7 @@ int Person::getIdPerson(){return _personId;}
 std::string Person::getName(){return _name;}
 std::string Person::getLastname(){ return  _lastname;}
 
+
 void Person::load(){
     int personId;
     std::string name, lastname;
