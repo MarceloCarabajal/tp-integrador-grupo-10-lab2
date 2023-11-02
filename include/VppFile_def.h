@@ -19,15 +19,18 @@
  * @brief Constructor de la clase VppFile.
  * @param fileName Nombre del archivo a manejar.
  */
-VppFile::VppFile(std::string fileName) { _fileName = fileName; }
+template <class VppClass>
+VppFile<VppClass>::VppFile(std::string fileName) {
+    _fileName = fileName;
+}
 
 /**
  * @brief Obtiene el número total de registros en el archivo.
- * @tparam vppClass Tipo de registro a considerar.
+ * @tparam VppClass Tipo de registro a considerar.
  * @return Número total de registros en el archivo.
  */
-template <class vppClass>
-int VppFile::getTotalRegisters() {
+template <class VppClass>
+int VppFile<VppClass>::getTotalRegisters() {
     FILE *pFile = fopen(_fileName.c_str(), "rb");
     if (pFile == NULL) return -1;
     // Posicionarnos al final del archivo desde el inicio
@@ -38,17 +41,17 @@ int VppFile::getTotalRegisters() {
     // Devolver cantidad de registros calculados
     // Obtiene el tamanio del tipo instanciado al llamar
     // a la funcion getTotalRegisters<Tipo>()
-    return totalBytes / sizeof(vppClass);
+    return totalBytes / sizeof(VppClass);
 }
 
 /** @brief Lee 1 registro y lo devuelve, segun el nro pasado por parametro
- *	@tparam vppClass
+ *	@tparam VppClass
  *	@param regNumber Nro de registro a leer
  *	@return Registro leido, del tipo que se instancia
  */
-template <class vppClass>
-vppClass VppFile::readFile(int regNumber) {
-    vppClass reg;  // Se crea un registro del tipo instanciado
+template <class VppClass>
+VppClass VppFile<VppClass>::readFile(int regNumber) {
+    VppClass reg;  // Se crea un registro del tipo instanciado
     FILE *pFile = fopen(_fileName.c_str(), "rb");  // abrir en modo lectura
     if (pFile == NULL) return reg;  // si no se pudo abrir, devolver reg vacio
     // posicionar el puntero pFile en regNumber, moviendolo la cantidad de bytes
@@ -61,31 +64,31 @@ vppClass VppFile::readFile(int regNumber) {
 
 /**
  * @brief Lee múltiples registros del archivo y los almacena en un vector.
- * @tparam vppClass Tipo de registro a leer.
+ * @tparam VppClass Tipo de registro a leer.
  * @param reg Puntero al vector en el que se almacenarán los registros leídos.
  * @param totalToRead Cantidad de registros a leer.
  * @return `true` si la lectura fue exitosa, `false` en caso contrario.
  */
-template <class vppClass>
-bool VppFile::readFile(vppClass *reg, int totalToRead) {
+template <class VppClass>
+bool VppFile<VppClass>::readFile(VppClass *reg, int totalToRead) {
     FILE *pFile = fopen(_fileName.c_str(), "rb");
     if (pFile == NULL) return false;
-    bool success = fread(reg, sizeof(vppClass), totalToRead, pFile);
+    bool success = fread(reg, sizeof(VppClass), totalToRead, pFile);
     fclose(pFile);
     return success;
 }
 
 /**
  * @brief Escribe un registro en el archivo.
- * @tparam vppClass Tipo de registro a escribir.
+ * @tparam VppClass Tipo de registro a escribir.
  * @param reg Registro a escribir en el archivo.
  * @return `true` si la escritura fue exitosa, `false` en caso contrario.
  */
-template <class vppClass>
-bool VppFile::writeFile(vppClass reg) {
+template <class VppClass>
+bool VppFile<VppClass>::writeFile(VppClass reg) {
     FILE *pFile = fopen(_fileName.c_str(), "ab");
     if (pFile == NULL) return false;
-    bool success = fwrite(&reg, sizeof(vppClass), 1, pFile);
+    bool success = fwrite(&reg, sizeof(VppClass), 1, pFile);
     fclose(pFile);
     return success;
 }

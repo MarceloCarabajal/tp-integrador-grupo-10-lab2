@@ -17,19 +17,15 @@
 
 #include <string>
 
+template <class VppClass>
 class VppFile {
 public:
     VppFile(std::string fileName);
 
-    template <class vppClass>
     int getTotalRegisters();
-    template <class vppClass>
-    vppClass readFile(int regNumber);
-    template <class vppClass>
-    bool readFile(vppClass *reg, int totalToRead);
-    template <class vppClass>
-    bool writeFile(vppClass reg);
-    // template <class vppClass>
+    VppClass readFile(int regNumber);
+    bool readFile(VppClass *reg, int totalToRead);
+    bool writeFile(VppClass reg);
     // bool updateFile(int regNumber, bool *fCallback); // TODO: desarrollo
     // pendiente
 
