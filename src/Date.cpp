@@ -9,6 +9,12 @@ Date::Date() {
     _year = 2000;
 }
 
+Date::Date(int day, int month, int year) {
+    setDay(day);
+    setMonth(month);
+    setYear(year);
+}
+
 void Date::setDay(int day) {
     if (day >= 1 && day <= 31) {
         _day = day;

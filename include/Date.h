@@ -8,6 +8,7 @@ private:
 
 public:
     Date();
+    Date(int day, int month, int year);
 
     void setDay(int day);
     void setMonth(int month);

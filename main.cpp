@@ -1,8 +1,12 @@
 #include <iostream>
+#include <string>
 
 #include "Menu.h"
+
 // #include "VppFile.h"
 
+#include "Date.h"
+#include "EmailTemplate.h"
 #include "functions.h"
 
 using namespace std;
@@ -21,17 +25,20 @@ void funcSubMenu() {
 
 void sendTestEmail() {
     std::string emailTo;
-    // TODO: Probar cuerpo HTML de Email
+    EmailTemplate emailHTML("data\\notification.html");
+    bool successFormat = emailHTML.setEmailData("Facundo", "Nueva notificacion",
+                                                Date(2, 11, 2023));
+    if (!successFormat) {
+        cout << "Error al crear email\n";
+        system("pause");
+        return;
+    }
 
     cout << "Destinatario: ";
     cin >> emailTo;
     cout << "Enviando email..\n";
-    bool isSent = sendEmail(
-        emailTo.c_str(), "VETE++ - Notificacion Recibida",
-        "<h1>Vete++ - Sistema de gestion</h1>"
-        "<p>Texto de prueba... 1 2 3</p>"
-        "<i>La recepcion de este email implica la aprobacion directa del "
-        "grupo 10.</i>");
+    bool isSent =
+        sendEmail(emailTo.c_str(), "Nueva notificacion", emailHTML.getHTML());
 
     if (isSent) {
         notifSound();
@@ -44,6 +51,8 @@ void sendTestEmail() {
 
 int main() {
     Menu test;
+
+    // TODO: verificar que exista la carpeta data antes de iniciar todo
 
     test.addOption("1. Gestion de Clientes", funcSubMenu);
     test.addOption("2. Gestion de Turnos", funcSubMenu);

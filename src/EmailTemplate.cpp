@@ -29,6 +29,8 @@ EmailTemplate::EmailTemplate(std::string templateFile) {
 bool EmailTemplate::setEmailData(std::string recipientName,
                                  std::string bodyTitle, Date expDate) {
     bool success;
+    // Si el length es 0 entonces no se pudo abrir el archivo html
+    if (_HTMLData.length() == 0) return false;
     success = replaceParameter("{recipientName}", recipientName);
     success += replaceParameter("{bodyTitle}", bodyTitle);
     success += replaceParameter("{expDate}", expDate.toString());
@@ -52,7 +54,7 @@ std::string EmailTemplate::getHTML() { return _HTMLData; }
  * almacena internamente en la instancia de EmailTemplate.
  */
 void EmailTemplate::getHTMlTemplate() {
-    std::string strHTML;
+    std::string strHTML = "";
     FILE *pHTML = fopen(_templateFile.c_str(), "rb");
     if (pHTML == NULL) return;
     // Obtener el tamanio

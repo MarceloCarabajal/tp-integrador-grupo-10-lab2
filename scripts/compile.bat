@@ -14,5 +14,6 @@ g++ %flags% %includes% *.cpp src/*.cpp %lib% -o %output%
 ::g++ %flags% %includes% *.cpp src/provisional/*.cpp %lib% -o %output%
 echo:
 echo Ejecutando vetepp.exe...
-start bin/vetepp.exe
+cd bin
+start vetepp.exe
 pause

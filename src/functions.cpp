@@ -4,6 +4,7 @@
 
 #include <iomanip>
 #include <iostream>
+#include <string>
 
 #pragma comment(lib, "winmm.lib")  // playSound()
 
@@ -15,28 +16,45 @@ using namespace std;
 // Credenciales SMTP
 #include "Credentials.h"
 
+std::string getCurrentDirectory() {
+    char buffer[MAX_PATH];
+    GetModuleFileNameA(NULL, buffer, MAX_PATH);
+    std::string::size_type pos = std::string(buffer).find_last_of("\\/");
+    return std::string(buffer).substr(0, pos);
+}
+// TODO: quizas sea necesaria esta funcion
+void setWorkingDirectory() {
+    std::string strPath = getCurrentDirectory();
+    TCHAR *Tpath = new TCHAR[strPath.size() + 1];
+    Tpath[strPath.size()] = 0;
+
+    std::copy(strPath.begin(), strPath.end(), Tpath);
+    SetCurrentDirectory(Tpath);
+}
+
 void notifSound() {
     PlaySound("notification.wav", NULL, SND_FILENAME | SND_ASYNC);
 }
 
-bool sendEmail(string to, string subject, string body, bool isHTML) {
+bool sendEmail(string to, string subject, string body) {
     quickmail_initialize();
     quickmail mailObj =
-        quickmail_create("info@facundomasino.com", subject.c_str());
+        quickmail_create("notificacion@vetegestion.com.ar", subject.c_str());
 
     char *cBody = &body[0];
 
     // HEADERS:
-    quickmail_add_header(mailObj, "Reply-To: Vete++ <info@facundomasino.com");
     quickmail_add_header(mailObj,
-                         "Organization: Vete++ <info@facundomasino.com");
+                         "From: veteName <notificacion@vetegestion.com.ar>");
+    quickmail_add_header(
+        mailObj, "Reply-To: veteName <notificacion@vetegestion.com.ar>");
+    quickmail_add_header(
+        mailObj, "Organization: veteName <notificacion@vetegestion.com.ar>");
     quickmail_add_header(mailObj, "MIME-Version: 1.0");
     quickmail_add_header(mailObj, "X-Priority: 3");
 
-    // Prueba html
     quickmail_add_body_memory(mailObj, "text/html", cBody, body.length(), 0);
-    quickmail_add_attachment_file(mailObj, "C:\\pdf.pdf", "application/pdf");
-    // quickmail_set_body(mailObj, body.c_str());
+    // quickmail_add_attachment_file(mailObj, "C:\\pdf.pdf", "application/pdf");
     quickmail_add_to(mailObj, to.c_str());
     const char *errmsg =
         quickmail_send(mailObj, SMTP_HOST, SMTP_PORT, SMTP_USR, SMTP_PWD);
