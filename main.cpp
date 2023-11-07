@@ -8,6 +8,7 @@
 #include "Date.h"
 #include "EmailTemplate.h"
 #include "functions.h"
+#include "isvalid.h"
 
 using namespace std;
 
@@ -54,11 +55,12 @@ int main() {
 
     // TODO: verificar que exista la carpeta data antes de iniciar todo
 
-    test.addOption("1. Gestion de Clientes", funcSubMenu);
-    test.addOption("2. Gestion de Turnos", funcSubMenu);
-    test.addOption("3. Gestion de Inventarios", funcSubMenu);
-    test.addOption("4. Enviar email", sendTestEmail);
-    test.showMenu();
+    /*     test.addOption("1. Gestion de Clientes", funcSubMenu);
+        test.addOption("2. Gestion de Turnos", funcSubMenu);
+        test.addOption("3. Gestion de Inventarios", funcSubMenu);
+        test.addOption("4. Enviar email", sendTestEmail);
+        test.showMenu(); */
+
     system("pause");
     return 0;
 }
