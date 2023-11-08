@@ -2,22 +2,27 @@
 #include <iostream>
 
 namespace isvalid {
+    /*NOTA: se usa la palabra clave inline en cada funcion para evitar multiples
+     * definiciones al ser incluido el archivo .h, inline indica al compilador
+     * que debe insertar el contenido de la funcion directamente desde donde se
+     * llama
+     */
 
     // Validar que un caracter perteneza al alfabeto
-    bool letter(char l) {
+    inline bool letter(char l) {
         if (l < 'A' || (l > 'Z' && l < 'a')) return false;
         if (l > 'z') return false;
         return true;
     }
 
     // Validar que un caracter sea un numero
-    bool number(char n) {
-        if (n >= 0 && n <= 9) return true;
+    inline bool number(char n) {
+        if (n >= '0' && n <= '9') return true;
         return false;
     }
 
     // Validar un email (validacion basica)
-    bool email(std::string str) {
+    inline bool email(std::string str) {
         // Validar que la primer letra sea del alfabeto
         char c0 = str[0];
         int atPos = str.find('@');
@@ -35,9 +40,17 @@ namespace isvalid {
     }
 
     // Verificar que una cadena solo contenga letras
-    bool onlyLetters(std::string str) {
+    inline bool onlyLetters(std::string str) {
         for (size_t i = 0; i < str.length(); i++) {
             if (!letter(str[i])) return false;
+        }
+        return true;
+    }
+
+    // Verifica que una cadena solo contenga numeros enteros
+    inline bool onlyIntegers(std::string str) {
+        for (size_t i = 0; i < str.length(); i++) {
+            if (!number(str[i])) return false;
         }
         return true;
     }
