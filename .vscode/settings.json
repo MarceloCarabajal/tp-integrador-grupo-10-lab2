@@ -61,6 +61,10 @@
 		"xhash": "cpp",
 		"iomanip": "cpp",
 		"xlocmon": "cpp",
-		"xloctime": "cpp"
+		"xloctime": "cpp",
+		"numeric": "cpp",
+		"random": "cpp",
+		"numbers": "cpp",
+		"cinttypes": "cpp"
 	}
 }
