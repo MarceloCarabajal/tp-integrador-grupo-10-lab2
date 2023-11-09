@@ -15,15 +15,18 @@
 #include <iostream>
 using namespace std;
 
+#include "ClientsManager.h"
 #include "InputForm_tests.cpp"
 #include "isvalid_tests.cpp"
 #include "listview_tests.cpp"
 
 int main() {
     // isvalidEmailTest();
-    inputFormTest();
+    // inputFormTest();
     // listviewTest();
-
+    ClientsManager clients;
+    clients.load();
+    clients.show();
     cout << endl;
     system("pause");
 

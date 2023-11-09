@@ -30,7 +30,7 @@ namespace isvalid {
     inline bool email(std::string str) {
         // Validar que la primer letra sea del alfabeto
         char c0 = str[0];
-        int atPos = str.find('@');
+        size_t atPos = str.find('@');
         if (!letter(c0)) return false;
         // Validar que el @ exista
         if (atPos == std::string::npos) return false;

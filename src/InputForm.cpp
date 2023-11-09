@@ -5,6 +5,8 @@
 #include "isvalid.h"
 #include "rlutil.h"
 
+// TODO: Crear documentacion para las funciones
+
 void InputForm::setStrField(std::string fieldName,
                             std::string& strDestination) {
     _strFields.push_back(fieldName);
