@@ -21,8 +21,8 @@ using namespace std;
 
 int main() {
     // isvalidEmailTest();
-    // inputFormTest();
-    listviewTest();
+    inputFormTest();
+    // listviewTest();
 
     cout << endl;
     system("pause");

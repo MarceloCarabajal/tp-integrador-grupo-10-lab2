@@ -33,8 +33,8 @@ bool InputForm::requestStrFields() {
             if (attempts > 0) {
                 if (!askToRetry(strField)) return false;
             }
-            std::cout << "Ingrese " << _strFields[i] << " ";
-            std::cin >> *_strVars[i];
+            std::cout << "Ingrese " << _strFields[i] << ": ";
+            std::getline(std::cin, *_strVars[i]);
             attempts++;  // se suma un intento
         } while (!isvalid::onlyLetters(*_strVars[i]));
     }
@@ -49,10 +49,9 @@ bool InputForm::requestIntFields() {
             if (attempts > 0) {
                 if (!askToRetry(intField)) return false;
             }
-            std::cout << "Ingrese " << _intFields[i] << " ";
-            std::cin >> tempStr;
+            std::cout << "Ingrese " << _intFields[i] << ": ";
+            std::getline(std::cin, tempStr);
             attempts++;  // se suma un intento
-
         } while (!isvalid::onlyIntegers(tempStr));
         *_intVars[i] = stoi(tempStr);
     }
@@ -66,9 +65,24 @@ bool InputForm::requestEmailField() {
             if (!askToRetry(emailField)) return false;
         }
         std::cout << "Ingrese Email: ";
-        std::cin >> *_emailVar;
+        std::getline(std::cin, *_emailVar);
         attempts++;  // se suma un intento
     } while (!isvalid::email(*_emailVar));
+    return true;
+}
+
+bool InputForm::requestAlphanumFields() {
+    int attempts = 0;  // lleva la cuenta de los intentos
+    for (size_t i = 0; i < _alphanumFields.size(); i++) {
+        do {
+            if (attempts > 0) {
+                if (!askToRetry(alnField)) return false;
+            }
+            std::cout << "Ingrese " << _alphanumFields[i] << ": ";
+            std::getline(std::cin, *_alphanumVars[i]);
+            attempts++;  // se suma un intento
+        } while (!isvalid::alphanumeric(*_alphanumVars[i]));
+    }
     return true;
 }
 
@@ -102,6 +116,7 @@ bool InputForm::askToRetry(fieldType fType) {
 
 bool InputForm::fill() {
     if (!requestStrFields()) return false;
+    if (!requestAlphanumFields()) return false;
     if (!requestIntFields()) return false;
     if (_emailVar != NULL) {
         if (!requestEmailField()) return false;

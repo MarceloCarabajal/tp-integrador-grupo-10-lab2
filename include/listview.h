@@ -60,7 +60,7 @@ namespace listview {
         for (int i = 0; i < total; i++) {
             std::cout << std::setw(colsW[i]) << cols[i];
         }
-        cout << endl;
+        std::cout << std::endl;
         printBorderW(listW);
     }
 

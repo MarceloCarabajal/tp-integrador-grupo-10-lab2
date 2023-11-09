@@ -18,4 +18,8 @@ void isvalidEmailTest() {
     cout << "pepito@pepito: " << isvalid::email("pepito@pepito") << endl;
     cout << "facu_j@gmail.: " << isvalid::email("facu_@gmail.") << endl;
     cout << "facu_j@gmail.com: " << isvalid::email("facu_j@gmail.com") << endl;
+    cout << "abc 123: " << isvalid::alphanumeric("abc 123") << endl;
+    cout << "abc123: " << isvalid::alphanumeric("abc123") << endl;
+    cout << "abc. 123: " << isvalid::alphanumeric("abc. 123") << endl;
+    cout << "abc: " << isvalid::alphanumeric("abc") << endl;
 }

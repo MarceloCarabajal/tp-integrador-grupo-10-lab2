@@ -21,7 +21,7 @@ private:
     bool requestStrFields();
     bool requestEmailField();
     bool requestIntFields();
-    // bool requestAlphanumFields(); //TODO: metodo para alfanumericos
+    bool requestAlphanumFields();  // TODO: metodo para alfanumericos
     // bool requestIntRangeFields(); //TODO: hacer metodo para rangos
     bool askToRetry(fieldType fType);
 
