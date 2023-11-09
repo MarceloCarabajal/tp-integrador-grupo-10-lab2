@@ -1,5 +1,5 @@
 #include <iostream>
-
+#include <cstring>
 #include "Transaction.h"
 using namespace std;
 
@@ -7,15 +7,22 @@ using namespace std;
 void Transaction::setIdTransaction(int idTrx ){_idTransaction=idTrx;}
 void Transaction::setDateTrans( Date transDate){_transDate=transDate;   }
 void Transaction::setTimeTrans ( Time transTime){_transTime=transTime;}
-void Transaction::setDescription(std:: string desc ){_description=desc;}
+void Transaction::setDescription(const char* desc ){strcpy (_description,desc);}
 void Transaction::setAmount(float amount ){_amount=amount;    }
+void Transaction::setPaymentMethod (const char * met){strcpy (_paymentMethod, met);}
+
 
 int Transaction::getIdTransaction(){return _idTransaction;}
 Date Transaction::getDateTrans(){return _transDate;}
 Time Transaction::getTimeTrans(){return _transTime;}
-std::string Transaction::getDescription(){return _description  ;  }
+const char* Transaction::getDescription(){return _description  ;  }
 float Transaction::getAmount(){return _amount;}
+const char * Transaction::getPaymentMehod(){return _paymentMethod;}
 
+
+
+
+/*
 
 void Transaction::load (){
 //TODO: ver TIME de transaccion. Si lo agregamos en LOAD o lo sacamos de atributo/set/get
@@ -56,4 +63,4 @@ setAmount (amount);
 
 
 
-}
+}*/
