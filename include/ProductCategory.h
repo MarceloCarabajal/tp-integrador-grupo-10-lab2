@@ -7,16 +7,16 @@ class ProductCategory {
 private: 
 
 int _catId;
-std:: string _catName; 
+char _catName[30]; 
 
 
 public: 
 
 void setCatId(int id );
-void setCatName(std:: string name );
+void setCatName(const char* name );
 
 int getCatId();
-std::string getCatName();
+const char* getCatName();
 
 void load();
 
