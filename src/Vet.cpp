@@ -1,26 +1,20 @@
-#include<iostream>
 #include "Vet.h"
+
+#include <iostream>
+
 using namespace std;
 
+void Vet::setIdVet(int vetId) { _vetId = vetId; }
+void Vet::setSpeciality(std::string speciality) { _speciality = speciality; }
 
+int Vet::getIdVet() { return _vetId; }
+std::string Vet::getSpeciality() { return _speciality; }
 
-void Vet::setIdVet( int vetId){ _vetId = vetId;}
-void Vet::setSpeciality( std:: string speciality){ _speciality = speciality; }
-
-int  Vet::getIdVet(){return _vetId;  }
-std:: string Vet::getSpeciality(){ return _speciality; }
-
-//TODO Completar metodos 
-void Vet::queryHistory(){
-    
-}
-void Vet::assignTreatment(){
-    
-}
-void Vet::issueDiagnosis(){
-    
-}
-void Vet::load(){
+// TODO Completar metodos
+void Vet::queryHistory() {}
+void Vet::assignTreatment() {}
+void Vet::issueDiagnosis() {}
+/* void Vet::load(){
 
 Person::load();
 
@@ -35,4 +29,4 @@ std:: string speciality;
     cin>>speciality;
     setSpeciality(speciality);
 
-}
+} */

@@ -15,11 +15,11 @@ void ClientsManager::load() {
     clientForm.setIntField("DNI", DNI);
     if (clientForm.fill()) {
         Client auxClient;
-        auxClient.setName(name);
-        auxClient.setLastname(lastname);
-        auxClient.setAddress(address);
-        auxClient.setPhone(phone);
-        auxClient.setEmail(email);
+        auxClient.setName(name.c_str());
+        auxClient.setLastname(lastname.c_str());
+        auxClient.setAddress(address.c_str());
+        auxClient.setPhone(phone.c_str());
+        auxClient.setEmail(email.c_str());
         auxClient.setIdPerson(DNI);
         if (_clientsFile.writeFile(auxClient)) {
             std::cout << "Cliente agregado con exito!\n";
@@ -31,40 +31,34 @@ void ClientsManager::load() {
 
 void ClientsManager::show() {
     int totalRegs = _clientsFile.getTotalRegisters();
-    std::cout << "total obtenido" << totalRegs << ".\n" << std::endl;
+    int totalCells = totalRegs * _clientsFields;
+    // std::cout << "total obtenido" << totalRegs << ".\n" << std::endl;
     if (totalRegs < 0) {
         std::cout << "Ocurrio un error al leer los registros.\n";
         system("pause");  // TODO: usar rlutil ?
         return;
     }
-    std::string *cells = new std::string[totalRegs * _clientsFields];
+    std::string *cells = new std::string[totalCells];
     if (cells == NULL) {
         std::cout << "No hay memoria suficiente para mostrar los clientes.\n";
         return;
     }
     int cellPos = 0;
-    Client auxClient = _clientsFile.readFile(0);
-    std::cout << auxClient.getName();
-    /*     for (int i = 0; i < totalRegs; i++) {
-            std::cout << "cellPos: " << cellPos << "de "
-                      << totalRegs * _clientsFields << std::endl;
-            auxClient = _clientsFile.readFile(i);
-            std::cout << auxClient.getAddress();
-            cells[i] = auxClient.getAddress();
-                     cells[cellPos + 1] = auxClient.getLastname();
-                    cells[cellPos + 2] =
-       std::to_string(auxClient.getIdPerson()); cells[cellPos + 3] =
-       auxClient.getAddress(); cells[cellPos + 4] = auxClient.getPhone();
-                    cells[cellPos + 5] = auxClient.getEmail();
-            cellPos += _clientsFields;
-            std::cout << "fin vuelta " << i << std::endl;
-            std::cout << cells[i] << std::endl;
-        } */
+    for (int i = 0; i < totalRegs; i++) {
+        Client auxClient = _clientsFile.readFile(i);
+        cells[cellPos] = auxClient.getAddress();
+        cells[cellPos + 1] = auxClient.getLastname();
+        cells[cellPos + 2] = std::to_string(auxClient.getIdPerson());
+        cells[cellPos + 3] = auxClient.getAddress();
+        cells[cellPos + 4] = auxClient.getPhone();
+        cells[cellPos + 5] = auxClient.getEmail();
+        cellPos += _clientsFields;
+    }
+    std::cout << cells[1] << cells[2] << std::endl;  // test
     std::string columns[6] = {"Nombre",    "Apellido", "DNI",
                               "Direccion", "Telefono", "Email"};
     int colsWidth[6] = {15, 15, 9, 30, 15, 30};
-    listview::printAll("CLIENTES", columns, cells, totalRegs, _clientsFields,
+    listview::printAll("CLIENTES", columns, cells, totalCells, _clientsFields,
                        colsWidth);
-
     delete[] cells;
 }

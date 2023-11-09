@@ -4,16 +4,16 @@
 class Person {
 private:
     int _personId;
-    std::string _name, _lastname;
+    char _name[30], _lastname[30];
 
 public:
     // Person(); //TODO: Constructor
     void setIdPerson(int id);
-    void setName(std::string name);
-    void setLastname(std::string lastname);
+    void setName(const char *name);
+    void setLastname(const char *lastname);
 
     int getIdPerson();
-    const std::string getName();
-    std::string getLastname();
-    void load();
+    const char *getName();
+    const char *getLastname();
+    // void load(); //TODO: Eliminar
 };
