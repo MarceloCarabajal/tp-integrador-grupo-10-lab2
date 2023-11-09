@@ -1,14 +1,13 @@
-#include "Vet.h"
-
 #include <iostream>
-
+#include <cstring>
+#include "Vet.h"
 using namespace std;
 
 void Vet::setIdVet(int vetId) { _vetId = vetId; }
-void Vet::setSpeciality(std::string speciality) { _speciality = speciality; }
+void Vet::setSpeciality(const char* speciality) { strcpy(_speciality , speciality); }
 
 int Vet::getIdVet() { return _vetId; }
-std::string Vet::getSpeciality() { return _speciality; }
+const char* Vet::getSpeciality() { return _speciality; }
 
 // TODO Completar metodos
 void Vet::queryHistory() {}

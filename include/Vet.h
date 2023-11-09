@@ -1,18 +1,17 @@
 #pragma once
-#include <string>
 #include "Person.h"
 
 class Vet :  Person {
 private: 
  int _vetId;
- std:: string _speciality;
+ char _speciality[15];
 
 public: 
  void setIdVet( int idVet);
- void setSpeciality( std:: string speciality); 
+ void setSpeciality(const char* speciality); 
 
  int  getIdVet();
-std:: string getSpeciality();
+const char* getSpeciality();
 
  void queryHistory();
  void assignTreatment();

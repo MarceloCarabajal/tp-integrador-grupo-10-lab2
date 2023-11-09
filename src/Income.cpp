@@ -5,12 +5,15 @@ using namespace std;
 
 
 void Income::setSaleId( int saleId){_saleId=saleId;}
-void  Income::setpaymentMethod(std::string method){ _paymentMethod=method;}
+
 
 int   Income::getSaleId(){return _saleId;}
-std:: string  Income::getPaymentMethod(){return _paymentMethod;}
 
+
+/*
 void Income::load (){
+
+
 
 Transaction::load();
 
@@ -25,4 +28,4 @@ cout<<"Ingrese Metodo de pago recibido:";
 cin>>method;
 setpaymentMethod(method);
 
-}
+}*/

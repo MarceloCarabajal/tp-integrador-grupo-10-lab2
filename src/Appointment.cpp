@@ -1,4 +1,5 @@
 #include<iostream>
+#include <cstring>
 #include "Appointment.h"
 using namespace std;
 /**
@@ -23,7 +24,7 @@ void Appointment::setTime(Time time) { _timeApp = time; }
 
 void Appointment::setUrgencyCat(int cat) { _urgencyCat = cat; }
 
-void Appointment::setReason(std::string reason) { _reason = reason; }
+void Appointment::setReason(const char *reason) {strcpy(_reason, reason); }
 
 void Appointment::setAttended(bool attended) { _attended = attended; }
 
@@ -32,9 +33,9 @@ int Appointment::getpetId() { return _petId; }
 Date Appointment::getDate() { return _dateApp; }
 Time Appointment::getTime() { return _timeApp; }
 int Appointment::getUrgencyCat() { return _urgencyCat; }
-std::string Appointment::getReason() { return _reason; }
+const char *Appointment::getReason() {return _reason; }
 bool Appointment::getAttended() { return _attended; }
-
+/*
 void Appointment::load() {
 
 int petId, appId, urgencyCat;
@@ -89,4 +90,4 @@ cin>>attended;
 setAttended(attended);
 
 
-}
+}*/

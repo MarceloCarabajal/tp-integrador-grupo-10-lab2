@@ -1,5 +1,4 @@
 #pragma once
-#include <string>
 
 #include "Date.h"
 #include "TimeCls.h"
@@ -10,7 +9,7 @@ private:
     Date _dateApp;
     Time _timeApp;
 
-    std::string _reason;
+    char _reason[30];
     bool _attended;
     int _clientId;
 
@@ -20,7 +19,7 @@ public:
     void setDate(Date date);
     void setTime(Time time);
     void setUrgencyCat(int cat);
-    void setReason(std::string reason);
+    void setReason(const char *reason);
     void setAttended(bool attended);
 
     int getAppId();
@@ -28,7 +27,7 @@ public:
     int getpetId();
     Date getDate();
     Time getTime();
-    std::string getReason();
+    const char* getReason();
     bool getAttended();
 
     void load();

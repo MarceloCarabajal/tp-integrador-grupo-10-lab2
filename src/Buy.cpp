@@ -1,12 +1,12 @@
 #include "Buy.h"
-
+#include <cstring>
 #include <iostream>
-
 using namespace std;
+
 
 void Buy::setBuyId(int id) { _buyId = id; }
 void Buy::setAmount(float importe) { _totalAmount = importe; }
-void Buy::setpaymentMethod(std::string method) { _paymentMethod = method; }
+void Buy::setpaymentMethod(const char *method) { strcpy(_paymentMethod, method); }
 void Buy::setDate(Date date) { _buyDate = date; }
 void Buy::setTime(Time time) { _buyTime = time; }
 void Buy::setProductId(int ProductId) { _productId = ProductId; }
@@ -15,13 +15,13 @@ void Buy::setTransactionId(int id) { _transactionId = id; }
 
 int Buy::getBuyId() { return _buyId; }
 float Buy::getTotalAmount() { return _totalAmount; }
-std::string Buy::getPaymentMethod() { return _paymentMethod; }
+const char *Buy::getPaymentMethod() { return _paymentMethod; }
 Date Buy::getbuyDate() { return _buyDate; }
 Time Buy::getbuyTime() { return _buyTime; }
 int Buy::getProductId() { return _productId; }
 int Buy::getQuantity() { return _quantity; }
 int Buy::getTransaction() { return _transactionId; }
-
+/*
 void Buy::load() {
     int buyId, productId, quantity, transactionId;
     float totalAmount;
@@ -74,4 +74,4 @@ void Buy::load() {
     cout << "Ingrese Segundos de la compra:";
     cin >> auxSeconds;
     buyTime.setSec(auxSeconds);
-}
+}*/

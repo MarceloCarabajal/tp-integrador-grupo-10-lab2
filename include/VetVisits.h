@@ -7,7 +7,7 @@ class VetVisits {
 private:
     int _visitId, _vetId, _clientId, _petId, _saleId;
     Date _date;
-    std::string _reason, _diagnosis;
+    char  _reason[30], _diagnosis[240];
 
 public:
     void setVisitId(int id);
@@ -16,13 +16,13 @@ public:
     void setPetId(int id);
     void setSaleId(int id);
     void setDate(Date dat);
-    void setReason(std::string reason);
-    void setDiagnosis(std::string diagnosis);
+    void setReason(const char* reason);
+    void setDiagnosis(const char* diagnosis);
 
     int getVisitId();
     Date getDate();
-    std::string getReason();
-    std::string getDiagnosis();
+    const char* getReason();
+    const char* getDiagnosis();
     int getVetId();
     int getClientId();
     int getPetId();
