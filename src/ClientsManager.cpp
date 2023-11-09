@@ -7,12 +7,15 @@ void ClientsManager::load() {
     InputForm clientForm;
     std::string name, lastname, address, phone, email;
     int DNI;
-    clientForm.setStrField("Nombre", name);
-    clientForm.setStrField("Apellido", lastname);
-    clientForm.setAlphanumeric("Direccion", address);
-    clientForm.setStrField("Telefono", phone);
-    clientForm.setEmailField(email);
-    clientForm.setIntField("DNI", DNI);
+    clientForm.setStrField("Nombre", name, 30);
+    clientForm.setStrField("Apellido", lastname, 30);
+    clientForm.setAlphanumeric("Direccion", address, 45);
+    clientForm.setStrField("Telefono[Sin 0 ni 15]", phone,
+                           15);  // TODO: Crear metodo para telefonos
+    // clientForm.setIntField("Telefono[Sin 0 ni 15]", phone, 15); // stoi out
+    // of range, arreglar
+    clientForm.setEmailField(email, 45);
+    clientForm.setIntField("DNI", DNI, 8);
     if (clientForm.fill()) {
         Client auxClient;
         auxClient.setName(name.c_str());
@@ -57,7 +60,7 @@ void ClientsManager::show() {
     std::cout << cells[1] << cells[2] << std::endl;  // test
     std::string columns[6] = {"Nombre",    "Apellido", "DNI",
                               "Direccion", "Telefono", "Email"};
-    int colsWidth[6] = {15, 15, 9, 30, 15, 30};
+    int colsWidth[6] = {30, 30, 8, 45, 15, 45};
     listview::printAll("CLIENTES", columns, cells, totalCells, _clientsFields,
                        colsWidth);
     delete[] cells;

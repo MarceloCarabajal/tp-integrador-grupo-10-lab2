@@ -44,7 +44,7 @@ namespace listview {
     inline int calcWidth(int *colsW, int total) {
         int listW = 0;
         for (int i = 0; i < total; i++) {
-            listW += colsW[i];
+            listW += colsW[i] + 1;  // se le suma 1 para separarlas
         }
         return listW;
     }
@@ -58,7 +58,8 @@ namespace listview {
     inline void printColumns(std::string *cols, int *colsW, int total) {
         int listW = calcWidth(colsW, total);
         for (int i = 0; i < total; i++) {
-            std::cout << std::setw(colsW[i]) << cols[i];
+            // colsW + 1 para la separacion
+            std::cout << std::setw(colsW[i] + 1) << cols[i];
         }
         std::cout << std::endl;
         printBorderW(listW);
@@ -73,12 +74,13 @@ namespace listview {
      */
     inline void printRows(std::string *cells, int nCells, int nCols,
                           int *colsW) {
-        int nRows = nCells / nCols;
-        int curCell = 0;  // current cell acumulador
+        int nRows = nCells / nCols;  // calc numero de filas
+        int curCell = 0;             // current cell acumulador
 
         for (int i = 0; i < nRows; i++) {
             for (int j = 0; j < nCols; j++) {
-                std::cout << std::setw(colsW[j]) << cells[curCell];
+                // colsW + 1 para la separacion
+                std::cout << std::setw(colsW[j] + 1) << cells[curCell];
                 curCell++;
             }
             std::cout << std::endl;
