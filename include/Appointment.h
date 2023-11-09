@@ -1,5 +1,4 @@
 #pragma once
-#include <string>
 
 #include "Date.h"
 #include "TimeCls.h"
