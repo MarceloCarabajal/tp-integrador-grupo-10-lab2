@@ -1,4 +1,5 @@
 #pragma once
+#include <string>
 #include "Date.h"
 #include "TimeCls.h"
 
@@ -19,7 +20,7 @@ public:
 
 void setBuyId( int  id);    
 void setAmount( float  importe);    ///CORREGÍ TIPO DE DATO, ESTABA INT
-void setpaymentMethod (const char* method);
+void setpaymentMethod (std::string method);
 void setDate ( Date date);
 void setTime ( Time time );
 void setProductId ( int ProductId);

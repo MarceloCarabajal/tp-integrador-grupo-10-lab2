@@ -1,5 +1,5 @@
 #pragma once
-
+#include <string>
 #include "Date.h"
 
 
@@ -13,10 +13,10 @@ public:
     Pet();
     void setPetId(int petId);
     void setOwnerId(int ownerId);
-    void setName(const char* name);
-    void setSpecie(const char* specie);
-    void setBreed(const char* breed);
-    void setCurrentDiagnosis(const char* currentDiagnosis);
+    void setName(std::string name);
+    void setSpecie(std::string specie);
+    void setBreed(std::string breed);
+    void setCurrentDiagnosis(std::string currentDiagnosis);
     void setBirthDate(Date birthdate);
 
     int getPetId();

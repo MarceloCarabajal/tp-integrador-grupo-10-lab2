@@ -24,7 +24,7 @@ void Appointment::setTime(Time time) { _timeApp = time; }
 
 void Appointment::setUrgencyCat(int cat) { _urgencyCat = cat; }
 
-void Appointment::setReason(const char *reason) {strcpy(_reason, reason); }
+void Appointment::setReason(std::string reason) {strcpy(_reason, reason.c_str()); }
 
 void Appointment::setAttended(bool attended) { _attended = attended; }
 

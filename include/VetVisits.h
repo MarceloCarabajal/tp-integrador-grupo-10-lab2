@@ -16,8 +16,8 @@ public:
     void setPetId(int id);
     void setSaleId(int id);
     void setDate(Date dat);
-    void setReason(const char* reason);
-    void setDiagnosis(const char* diagnosis);
+    void setReason(std::string reason);
+    void setDiagnosis(std::string diagnosis);
 
     int getVisitId();
     Date getDate();

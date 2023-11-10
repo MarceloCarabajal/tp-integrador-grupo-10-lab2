@@ -13,7 +13,7 @@ char _catName[30];
 public: 
 
 void setCatId(int id );
-void setCatName(const char* name );
+void setCatName(std::string name );
 
 int getCatId();
 const char* getCatName();
