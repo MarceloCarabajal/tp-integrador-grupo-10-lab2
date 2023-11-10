@@ -5,24 +5,21 @@
 
 void ClientsManager::load() {
     InputForm clientForm;
-    std::string name, lastname, address, phone, email;
+    std::string name, lastname, address, email, phone;
     int DNI;
     clientForm.setStrField("Nombre", name, 30);
     clientForm.setStrField("Apellido", lastname, 30);
     clientForm.setAlphanumeric("Direccion", address, 45);
-    clientForm.setStrField("Telefono[Sin 0 ni 15]", phone,
-                           15);  // TODO: Crear metodo para telefonos
-    // clientForm.setIntField("Telefono[Sin 0 ni 15]", phone, 15); // stoi out
-    // of range, arreglar
+    clientForm.setPhoneField(phone, 15);
     clientForm.setEmailField(email, 45);
     clientForm.setIntField("DNI", DNI, 8);
     if (clientForm.fill()) {
         Client auxClient;
-        auxClient.setName(name.c_str());
-        auxClient.setLastname(lastname.c_str());
-        auxClient.setAddress(address.c_str());
-        auxClient.setPhone(phone.c_str());
-        auxClient.setEmail(email.c_str());
+        auxClient.setName(name);
+        auxClient.setLastname(lastname);
+        auxClient.setAddress(address);
+        auxClient.setPhone(phone);
+        auxClient.setEmail(email);
         auxClient.setIdPerson(DNI);
         if (_clientsFile.writeFile(auxClient)) {
             std::cout << "Cliente agregado con exito!\n";
@@ -34,34 +31,43 @@ void ClientsManager::load() {
 
 void ClientsManager::show() {
     int totalRegs = _clientsFile.getTotalRegisters();
+    // calcular el total de celdas de nuestra lista, segun la cantidad de datos
+    // que contiene 1 registro
     int totalCells = totalRegs * _clientsFields;
-    // std::cout << "total obtenido" << totalRegs << ".\n" << std::endl;
+
     if (totalRegs < 0) {
         std::cout << "Ocurrio un error al leer los registros.\n";
         system("pause");  // TODO: usar rlutil ?
         return;
     }
+    // Se crea la variable que va a contener todas las celdas, segun la cantidad
+    // de registros
     std::string *cells = new std::string[totalCells];
     if (cells == NULL) {
         std::cout << "No hay memoria suficiente para mostrar los clientes.\n";
         return;
     }
-    int cellPos = 0;
+    int cellPos = 0;  // acumula la posicion actual a asignar
     for (int i = 0; i < totalRegs; i++) {
         Client auxClient = _clientsFile.readFile(i);
-        cells[cellPos] = auxClient.getAddress();
+        cells[cellPos] = auxClient.getName();
         cells[cellPos + 1] = auxClient.getLastname();
         cells[cellPos + 2] = std::to_string(auxClient.getIdPerson());
         cells[cellPos + 3] = auxClient.getAddress();
         cells[cellPos + 4] = auxClient.getPhone();
         cells[cellPos + 5] = auxClient.getEmail();
+        // se incrementa la posicion de la celda segun la cantidad de datos que
+        // contiene el registro, que equivale a una fila de la lista
         cellPos += _clientsFields;
     }
-    std::cout << cells[1] << cells[2] << std::endl;  // test
+    // Vector que contiene las columnas de nuestra lista
     std::string columns[6] = {"Nombre",    "Apellido", "DNI",
                               "Direccion", "Telefono", "Email"};
+
+    // Anchos maximos que van a ocupar cada dato de las columnas
     int colsWidth[6] = {30, 30, 8, 45, 15, 45};
+    // Se muestra todo el listado
     listview::printAll("CLIENTES", columns, cells, totalCells, _clientsFields,
                        colsWidth);
-    delete[] cells;
+    delete[] cells;  // liberar memoria!
 }

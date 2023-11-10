@@ -6,9 +6,11 @@
 using namespace std;
 
 void Client::setClientId(int clienteId) { _clientId = clienteId; }
-void Client::setAddress(const char *address) { strcpy(_address, address); }
-void Client::setPhone(const char *phone) { strcpy(_phone, phone); }
-void Client::setEmail(const char *email) { strcpy(_email, email); }
+void Client::setAddress(std::string address) {
+    strcpy(_address, address.c_str());
+}
+void Client::setPhone(std::string phone) { strcpy(_phone, phone.c_str()); }
+void Client::setEmail(std::string email) { strcpy(_email, email.c_str()); }
 
 int Client::getClientId() { return _clientId; }
 const char *Client::getAddress() { return _address; }

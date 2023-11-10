@@ -1,6 +1,9 @@
 #pragma once
 
+#include <string>
+
 #include "Person.h"
+
 
 class Client : public Person {
 private:
@@ -10,9 +13,9 @@ private:
 public:
     // Client(); //TODO: Constructor
     void setClientId(int clienteId);
-    void setAddress(const char *address);
-    void setPhone(const char *phone);
-    void setEmail(const char *email);
+    void setAddress(std::string address);
+    void setPhone(std::string phone);
+    void setEmail(std::string email);
 
     int getClientId();
     const char *getAddress();

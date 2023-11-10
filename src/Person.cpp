@@ -8,26 +8,11 @@ using namespace std;
 // CONSTRUCTOR ????
 
 void Person::setIdPerson(int personId) { _personId = personId; }
-void Person::setName(const char *name) { strcpy(_name, name); }
-void Person::setLastname(const char *lastname) { strcpy(_lastname, lastname); }
+void Person::setName(std::string name) { strcpy(_name, name.c_str()); }
+void Person::setLastname(std::string lastname) {
+    strcpy(_lastname, lastname.c_str());
+}
 
 int Person::getIdPerson() { return _personId; }
 const char *Person::getName() { return _name; }
 const char *Person::getLastname() { return _lastname; }
-
-/* void Person::load() {
-    int personId;
-    std::string name, lastname;
-
-    cout << "Ingrese ID de persona:";
-    cin >> personId;
-    setIdPerson(personId);
-
-    cout << "Ingrese Nombre:";
-    cin >> name;
-    setName(name);
-
-    cout << "Ingrese Apellido:";
-    cin >> lastname;
-    setLastname(lastname);
-} */

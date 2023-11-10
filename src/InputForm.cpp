@@ -33,6 +33,11 @@ void InputForm::setEmailField(std::string& strDestination, int maxLength) {
     _emailLimit = maxLength;
 }
 
+void InputForm::setPhoneField(std::string& strDestination, int maxLength) {
+    _phoneVar = &strDestination;
+    _phoneLimit = maxLength;
+}
+
 bool InputForm::requestStrFields() {
     for (size_t i = 0; i < _strFields.size(); i++) {
         int attempts = 0;  // lleva la cuenta de los intentos
@@ -45,7 +50,7 @@ bool InputForm::requestStrFields() {
             std::getline(std::cin, *_strVars[i]);
             attempts++;  // se suma un intento
             valid = isvalid::onlyLetters(*_strVars[i]) &&
-                    _strLimit[i] >= (*_strVars[i]).length();
+                    (size_t)_strLimit[i] >= (*_strVars[i]).length();
         } while (!valid);
     }
     return true;
@@ -64,10 +69,26 @@ bool InputForm::requestIntFields() {
             std::getline(std::cin, tempStr);
             attempts++;  // se suma un intento
             valid = isvalid::onlyIntegers(tempStr) &&
-                    _intLimit[i] >= tempStr.length();
+                    (size_t)_intLimit[i] >= tempStr.length();
         } while (!valid);
         *_intVars[i] = stoi(tempStr);
     }
+    return true;
+}
+
+bool InputForm::requestPhoneField() {
+    int attempts = 0;  // lleva la cuenta de los intentos
+    bool valid;
+    do {
+        if (attempts > 0) {
+            if (!askToRetry(phoneField, _phoneLimit)) return false;
+        }
+        std::cout << "Ingrese Telefono: ";
+        std::getline(std::cin, *_phoneVar);
+        attempts++;  // se suma un intento
+        valid = isvalid::onlyIntegers(*_phoneVar) &&
+                (size_t)_phoneLimit >= (*_phoneVar).length();
+    } while (!valid);
     return true;
 }
 
@@ -81,8 +102,8 @@ bool InputForm::requestEmailField() {
         std::cout << "Ingrese Email: ";
         std::getline(std::cin, *_emailVar);
         attempts++;  // se suma un intento
-        valid =
-            isvalid::email(*_emailVar) && _emailLimit >= (*_emailVar).length();
+        valid = isvalid::email(*_emailVar) &&
+                (size_t)_emailLimit >= (*_emailVar).length();
     } while (!valid);
     return true;
 }
@@ -99,7 +120,7 @@ bool InputForm::requestAlphanumFields() {
             std::getline(std::cin, *_alphanumVars[i]);
             attempts++;  // se suma un intento
             valid = isvalid::alphanumeric(*_alphanumVars[i]) &&
-                    _alnLimit[i] >= (*_alphanumVars[i]).length();
+                    (size_t)_alnLimit[i] >= (*_alphanumVars[i]).length();
         } while (!valid);
     }
     return true;
@@ -109,20 +130,22 @@ bool InputForm::askToRetry(fieldType fType, int maxLimit) {
     std::cout << "El ingreso es invalido, debe tener el formato de: ";
     switch (fType) {
         case strField:
-            std::cout << "solo letras, hasta " << maxLimit << "caracteres.\n";
+            std::cout << "solo letras, hasta " << maxLimit << " caracteres.\n";
             break;
         case intField:
-            std::cout << "solo numeros enteros, hasta." << maxLimit
-                      << "digitos. \n";
+            std::cout << "solo numeros enteros, hasta " << maxLimit
+                      << " digitos. \n";
             break;
         case alnField:
             std::cout << "solo numeros y letras, hasta " << maxLimit
-                      << "caracteres.\n";
+                      << " caracteres.\n";
             break;
         case emailField:
             std::cout << "tuemail@email.com || tu_email@email.com || "
                          "tu.email@email.com hasta "
-                      << maxLimit << "caracteres.\n";
+                      << maxLimit << " caracteres.\n";
+        case phoneField:
+            std::cout << "solo numeros, hasta " << maxLimit << " digitos. \n";
         default:
             break;
     }
@@ -140,8 +163,12 @@ bool InputForm::fill() {
     if (!requestStrFields()) return false;
     if (!requestAlphanumFields()) return false;
     if (!requestIntFields()) return false;
+    // Si se asigno la variable, pedir campo
     if (_emailVar != NULL) {
         if (!requestEmailField()) return false;
+    }
+    if (_phoneVar != NULL) {
+        if (!requestPhoneField()) return false;
     }
     return true;
 }

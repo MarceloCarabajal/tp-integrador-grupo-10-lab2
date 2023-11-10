@@ -12,6 +12,7 @@ private:
 public:
     void load();
     void show();
+    void menu();
 };
 
 #endif /* CLIENTSMANAGER_INCLUDED */
