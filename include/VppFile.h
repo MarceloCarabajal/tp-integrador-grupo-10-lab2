@@ -27,7 +27,8 @@ public:
     bool readFile(VppClass *reg, int totalToRead);
     bool writeFile(VppClass reg);
     bool updateFile(VppClass reg, int regPos);
-    int searchReg(bool (*fCallback)(VppClass));
+    template <typename AnyType>
+    int searchReg(bool (*fCallback)(VppClass reg, AnyType id), AnyType id);
     // bool updateFile(int regNumber, bool *fCallback); // TODO: desarrollo
     // pendiente
 

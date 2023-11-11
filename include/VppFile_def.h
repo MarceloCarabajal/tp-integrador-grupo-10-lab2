@@ -131,20 +131,22 @@ bool VppFile<VppClass>::updateFile(VppClass reg, int regPos) {
  * archivo.
  */
 template <class VppClass>
-int VppFile<VppClass>::searchReg(bool (*fCallback)(VppClass)) {
+template <typename AnyType>
+int VppFile<VppClass>::searchReg(bool (*fCallback)(VppClass reg, AnyType id),
+                                 AnyType id) {
     VppClass auxReg;
     int totalToRead = getTotalRegisters();
     FILE *pFile = fopen(_fileName.c_str(), "rb");
     if (pFile == NULL) return -1;
     for (int i = 0; i < totalToRead; i++) {
         // Si ocurre un error al leer, devuelve -1
-        if (!fread(auxReg, sizeof(auxReg), 1, pFile)) {
+        if (!fread(&auxReg, sizeof(auxReg), 1, pFile)) {
             fclose(pFile);
             return -1;
         }
         // Si la funcion callback devuelve true, se encontro
         // lo buscado en el registro y se devuelve la posicion
-        if ((fCallback)(auxReg)) {
+        if ((fCallback)(auxReg, id)) {
             fclose(pFile);
             return i;
         }

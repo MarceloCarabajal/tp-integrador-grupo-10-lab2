@@ -6,7 +6,8 @@ private:
     char _name[30], _lastname[30];
 
 public:
-    // Person(); //TODO: Constructor
+    Person();
+    Person(int id, std::string name, std::string lastname);
     void setIdPerson(int id);
     void setName(std::string name);
     void setLastname(std::string lastname);

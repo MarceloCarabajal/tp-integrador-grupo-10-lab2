@@ -6,7 +6,11 @@
 #include "rlutil.h"
 
 // TODO: Crear documentacion para las funciones
-// TODO: Agregar posibilidad de limite de caracteres en los campos
+
+InputForm::InputForm(bool isEditing) { _editing = isEditing; }
+
+void InputForm::setEditMode(bool editMode) { _editing = editMode; }
+
 void InputForm::setStrField(std::string fieldName, std::string& strDestination,
                             int maxLength) {
     _strFields.push_back(fieldName);
@@ -42,16 +46,21 @@ bool InputForm::requestStrFields() {
     for (size_t i = 0; i < _strFields.size(); i++) {
         int attempts = 0;  // lleva la cuenta de los intentos
         bool valid;
+        std::string temp = "";
         do {
             if (attempts > 0) {
                 if (!askToRetry(strField, _strLimit[i])) return false;
             }
-            std::cout << "Ingrese " << _strFields[i] << ": ";
-            std::getline(std::cin, *_strVars[i]);
+            if (_editing)
+                std::cout << _strFields[i] << " actual: " << *_strVars[i];
+            std::cout << (_editing ? "\nNuevo/a " : "Ingrese ") << _strFields[i]
+                      << ": ";
+            std::getline(std::cin, temp);
             attempts++;  // se suma un intento
-            valid = isvalid::onlyLetters(*_strVars[i]) &&
-                    (size_t)_strLimit[i] >= (*_strVars[i]).length();
+            valid = isvalid::onlyLetters(temp) &&
+                    (size_t)_strLimit[i] >= temp.length();
         } while (!valid);
+        *_strVars[i] = temp;
     }
     return true;
 }
@@ -65,7 +74,10 @@ bool InputForm::requestIntFields() {
             if (attempts > 0) {
                 if (!askToRetry(intField, _intLimit[i])) return false;
             }
-            std::cout << "Ingrese " << _intFields[i] << ": ";
+            if (_editing)
+                std::cout << _intFields[i] << " actual: " << *_intVars[i];
+            std::cout << (_editing ? "\nNuevo/a " : "Ingrese ") << _intFields[i]
+                      << ": ";
             std::getline(std::cin, tempStr);
             attempts++;  // se suma un intento
             valid = isvalid::onlyIntegers(tempStr) &&
@@ -79,32 +91,37 @@ bool InputForm::requestIntFields() {
 bool InputForm::requestPhoneField() {
     int attempts = 0;  // lleva la cuenta de los intentos
     bool valid;
+    std::string temp;
     do {
         if (attempts > 0) {
             if (!askToRetry(phoneField, _phoneLimit)) return false;
         }
-        std::cout << "Ingrese Telefono: ";
-        std::getline(std::cin, *_phoneVar);
+        if (_editing) std::cout << "Telefono actual: " << *_phoneVar;
+        std::cout << (_editing ? "\nNuevo/a " : "Ingrese ") << "Telefono: ";
+        std::getline(std::cin, temp);
         attempts++;  // se suma un intento
-        valid = isvalid::onlyIntegers(*_phoneVar) &&
-                (size_t)_phoneLimit >= (*_phoneVar).length();
+        valid =
+            isvalid::onlyIntegers(temp) && (size_t)_phoneLimit >= temp.length();
     } while (!valid);
+    *_phoneVar = temp;
     return true;
 }
 
 bool InputForm::requestEmailField() {
     int attempts = 0;  // lleva la cuenta de los intentos
     bool valid;
+    std::string temp;
     do {
         if (attempts > 0) {
             if (!askToRetry(emailField, _emailLimit)) return false;
         }
-        std::cout << "Ingrese Email: ";
-        std::getline(std::cin, *_emailVar);
+        if (_editing) std::cout << "Email actual: " << *_emailVar;
+        std::cout << (_editing ? "\nNuevo/a " : "Ingrese ") << "Email: ";
+        std::getline(std::cin, temp);
         attempts++;  // se suma un intento
-        valid = isvalid::email(*_emailVar) &&
-                (size_t)_emailLimit >= (*_emailVar).length();
+        valid = isvalid::email(temp) && (size_t)_emailLimit >= temp.length();
     } while (!valid);
+    *_emailVar = temp;
     return true;
 }
 
@@ -112,16 +129,22 @@ bool InputForm::requestAlphanumFields() {
     for (size_t i = 0; i < _alphanumFields.size(); i++) {
         int attempts = 0;  // lleva la cuenta de los intentos
         bool valid;
+        std::string temp;
         do {
             if (attempts > 0) {
                 if (!askToRetry(alnField, _alnLimit[i])) return false;
             }
-            std::cout << "Ingrese " << _alphanumFields[i] << ": ";
-            std::getline(std::cin, *_alphanumVars[i]);
+            if (_editing)
+                std::cout << _alphanumFields[i]
+                          << " actual: " << *_alphanumVars[i];
+            std::cout << (_editing ? "\nNuevo/a " : "Ingrese ")
+                      << _alphanumFields[i] << ": ";
+            std::getline(std::cin, temp);
             attempts++;  // se suma un intento
-            valid = isvalid::alphanumeric(*_alphanumVars[i]) &&
-                    (size_t)_alnLimit[i] >= (*_alphanumVars[i]).length();
+            valid = isvalid::alphanumeric(temp) &&
+                    (size_t)_alnLimit[i] >= temp.length();
         } while (!valid);
+        *_alphanumVars[i] = temp;
     }
     return true;
 }
@@ -171,4 +194,17 @@ bool InputForm::fill() {
         if (!requestPhoneField()) return false;
     }
     return true;
+}
+
+// limpia todos los vectores
+void InputForm::clearAll() {
+    _strFields.clear();
+    _intFields.clear();
+    _alphanumFields.clear();
+    _strLimit.clear();
+    _intLimit.clear();
+    _alnLimit.clear();
+    _strVars.clear();
+    _intVars.clear();
+    _alphanumVars.clear();
 }
