@@ -1,5 +1,5 @@
 #pragma once
-
+#include <string>
 #include "Date.h"
 #include "TimeCls.h"
 
@@ -19,7 +19,7 @@ public:
     void setDate(Date date);
     void setTime(Time time);
     void setUrgencyCat(int cat);
-    void setReason(const char *reason);
+    void setReason(std::string reason);
     void setAttended(bool attended);
 
     int getAppId();

@@ -1,4 +1,5 @@
 #pragma once
+#include <string>
 #include "Date.h"
 #include "TimeCls.h"
 
@@ -18,9 +19,9 @@ public:
 void setIdTransaction(int idTrx );
 void setDateTrans( Date date);
 void setTimeTrans ( Time time);
-void setDescription(const char* desc );
+void setDescription(std::string desc );
 void setAmount(float amount );
-void setPaymentMethod (const char * met);
+void setPaymentMethod (std::string met);
 
 int getIdTransaction();
 Date getDateTrans();

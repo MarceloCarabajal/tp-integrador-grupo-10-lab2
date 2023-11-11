@@ -1,4 +1,5 @@
 #pragma once
+#include <string>
 #include "Person.h"
 
 class Vet :  Person {
@@ -8,7 +9,7 @@ private:
 
 public: 
  void setIdVet( int idVet);
- void setSpeciality(const char* speciality); 
+ void setSpeciality(std::string speciality); 
 
  int  getIdVet();
 const char* getSpeciality();

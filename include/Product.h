@@ -1,5 +1,5 @@
 #pragma once
-
+#include <string>
 #include "ProductCategory.h"
 
 class Product{
@@ -11,13 +11,13 @@ private:
 
 public:
     void setProductId(int productId);
-    void setProductName(const char * productName);
-    void setDescription(const char *description);
+    void setProductName(std::string productName);
+    void setDescription(std::string description);
     void setQuantity(int quantity);
     void setStock(int stock);
     void setPrice(float price);
-    void setBrand(const char * brand);
-    void setProductType(const char * productType);
+    void setBrand(std::string brand);
+    void setProductType(std::string productType);
     void setProductCategory(ProductCategory category);
 
     int getProductId();
