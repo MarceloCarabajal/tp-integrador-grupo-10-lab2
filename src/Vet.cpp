@@ -4,7 +4,7 @@
 using namespace std;
 
 void Vet::setIdVet(int vetId) { _vetId = vetId; }
-void Vet::setSpeciality(const char* speciality) { strcpy(_speciality , speciality); }
+void Vet::setSpeciality(std::string speciality) { strcpy(_speciality , speciality.c_str()); }
 
 int Vet::getIdVet() { return _vetId; }
 const char* Vet::getSpeciality() { return _speciality; }

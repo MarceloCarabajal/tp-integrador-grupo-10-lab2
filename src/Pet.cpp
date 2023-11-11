@@ -7,10 +7,10 @@ using namespace std;
 
 void Pet::setPetId(int petId){_petId=petId;}
 void Pet::setOwnerId(int ownerId){_ownerId=ownerId;}
-void Pet::setName(const char* name){strcpy(_name,name);  }
-void Pet::setSpecie(const char* specie){strcpy(_specie,specie);   }
-void Pet::setBreed(const char* breed) {strcpy(_breed,breed);}
-void Pet::setCurrentDiagnosis(const char* currentDiagnosis){strcpy(_currentDiagnosis,currentDiagnosis);}
+void Pet::setName(std::string name){strcpy(_name,name.c_str());  }
+void Pet::setSpecie(std::string specie){strcpy(_specie,specie.c_str());   }
+void Pet::setBreed(std::string breed) {strcpy(_breed,breed.c_str());}
+void Pet::setCurrentDiagnosis(std::string currentDiagnosis){strcpy(_currentDiagnosis,currentDiagnosis.c_str());}
 void Pet::setBirthDate(Date birthdate){_birthDate=birthdate;}
 
 int Pet::getPetId(){return _petId;}

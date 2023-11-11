@@ -9,8 +9,8 @@ void VetVisits::setClientId(int id) {_clientId=id;}
 void VetVisits::setPetId(int id) {_petId=id;}
 void VetVisits::setSaleId(int id) {_saleId=id;}
 void VetVisits::setDate(Date dat) {_date=dat;}
-void VetVisits::setReason(const char* reason) {strcpy(_reason,reason);}
-void VetVisits::setDiagnosis(const char* diagnosis) {strcpy(_diagnosis,diagnosis);}
+void VetVisits::setReason(std::string reason) {strcpy(_reason,reason.c_str());}
+void VetVisits::setDiagnosis(std::string diagnosis) {strcpy(_diagnosis,diagnosis.c_str());}
 
 int VetVisits::getVisitId() {return _visitId;}
 Date VetVisits::getDate() {return _date;}

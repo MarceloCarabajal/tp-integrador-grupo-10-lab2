@@ -7,9 +7,9 @@ using namespace std;
 void Transaction::setIdTransaction(int idTrx ){_idTransaction=idTrx;}
 void Transaction::setDateTrans( Date transDate){_transDate=transDate;   }
 void Transaction::setTimeTrans ( Time transTime){_transTime=transTime;}
-void Transaction::setDescription(const char* desc ){strcpy (_description,desc);}
+void Transaction::setDescription(std::string desc ){strcpy (_description,desc.c_str());}
 void Transaction::setAmount(float amount ){_amount=amount;    }
-void Transaction::setPaymentMethod (const char * met){strcpy (_paymentMethod, met);}
+void Transaction::setPaymentMethod (std::string met){strcpy (_paymentMethod, met.c_str());}
 
 
 int Transaction::getIdTransaction(){return _idTransaction;}

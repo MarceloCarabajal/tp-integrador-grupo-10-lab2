@@ -6,7 +6,7 @@ using namespace std;
 
 void Buy::setBuyId(int id) { _buyId = id; }
 void Buy::setAmount(float importe) { _totalAmount = importe; }
-void Buy::setpaymentMethod(const char *method) { strcpy(_paymentMethod, method); }
+void Buy::setpaymentMethod (std::string method) { strcpy(_paymentMethod, method.c_str()); }
 void Buy::setDate(Date date) { _buyDate = date; }
 void Buy::setTime(Time time) { _buyTime = time; }
 void Buy::setProductId(int ProductId) { _productId = ProductId; }

@@ -5,7 +5,7 @@
 using namespace std;
 
 void ProductCategory::setCatId(int id ){_catId=id;}
-void ProductCategory::setCatName(const char* name ){strcpy(_catName,name);   }
+void ProductCategory::setCatName(std::string name ){strcpy(_catName,name.c_str());   }
 
 int ProductCategory::getCatId(){return _catId;}
 const char * ProductCategory::getCatName(){return _catName;}

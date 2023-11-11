@@ -19,7 +19,7 @@ public:
 
 void setSaleId(int id);
 void setAmount(float amount); 
-void setPaymentMethod( const char * method); 
+void setPaymentMethod( std::string method); 
 void setDate( Date date); 
 void setTime( Time time); 
 void setQuantity( int qty); 

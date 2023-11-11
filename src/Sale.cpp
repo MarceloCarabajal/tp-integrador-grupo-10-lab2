@@ -8,7 +8,7 @@ void Sale::setSaleId(int id){_saleId=id;}
 void Sale::setQuantity( int qty){_quantit=qty;}
 void Sale::setTransactionId( int id){_transactionId=id;}
 void Sale::setAmount(float amount){_totalAmount=amount;} 
-void Sale::setPaymentMethod( const char * method){strcpy(_paymentMethod,method);}
+void Sale::setPaymentMethod(std::string method){strcpy(_paymentMethod,method.c_str());}
 void Sale::setDate( Date date){_saleDate=date;}
 void Sale::setTime( Time time){_saleTime=time;}
 void Sale::setIsVisit( bool Visit){_isVisit=false;}

@@ -17,8 +17,7 @@ Person::Person(int id, std::string name, std::string lastname) {
 
 void Person::setIdPerson(int personId) { _personId = personId; }
 void Person::setName(std::string name) { strcpy(_name, name.c_str()); }
-void Person::setLastname(std::string lastname) {
-    strcpy(_lastname, lastname.c_str());
+void Person::setLastname(std::string lastname) { strcpy(_lastname, lastname.c_str());
 }
 
 int Person::getIdPerson() { return _personId; }
