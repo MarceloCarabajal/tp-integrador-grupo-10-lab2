@@ -31,6 +31,8 @@ private:
     std::string *_emailVar = NULL;
     std::string *_phoneVar = NULL;
 
+    bool _editing;
+
     bool requestStrFields();
     bool requestEmailField();
     bool requestIntFields();
@@ -40,6 +42,8 @@ private:
     bool askToRetry(fieldType fType, int maxLimit);
 
 public:
+    InputForm(bool isEditing = false);
+
     void setStrField(std::string fieldName, std::string &strDestination,
                      int maxLength);
     void setIntField(std::string fieldName, int &intDestination, int maxLength);
@@ -47,7 +51,9 @@ public:
                          int maxLength);
     void setEmailField(std::string &strDestination, int maxLength);
     void setPhoneField(std::string &strDestination, int maxLength);
+    void setEditMode(bool editMode);
     bool fill();
+    void clearAll();
 };
 
 #endif /* INPUTFORM_INCLUDED */

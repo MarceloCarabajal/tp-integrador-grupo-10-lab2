@@ -63,12 +63,19 @@ void showClients() {
     system("pause");
 }
 
+void editClients() {
+    ClientsManager clients;
+    clients.edit();
+    system("pause");
+}
+
 void subMenuClientes() {
     Menu subMenu("CLIENTES", true);
     ClientsManager clients;
 
     subMenu.addOption("1. Cargar Cliente", loadClient);
     subMenu.addOption("2. Mostrar Clientes", showClients);
+    subMenu.addOption("3. Editar cliente", editClients);
     subMenu.showMenu();
 }
 
