@@ -6,3 +6,6 @@
 
 # Ignorar datos sensibles
 include/Credentials.h
+
+# ignora los archivos de registros vpp
+*.vpp
