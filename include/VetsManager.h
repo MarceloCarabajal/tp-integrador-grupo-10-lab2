@@ -5,7 +5,7 @@
 
 class VetsManager {
 private:
-    VppFile<Vet> _petsFile = VppFile<Vet>("Vets.vpp");
+    VppFile<Vet> _vetsFile = VppFile<Vet>("Vets.vpp");
     const int _vetsFields = 5;  // total de datos de un regisro Pet
    Vet loadForm();
    Vet editForm(int regPos);
