@@ -1,7 +1,7 @@
 #include "PetsManager.h"
 
 #include <iostream>
-
+#include "Date.h"
 #include "InputForm.h"
 #include "listview.h"
 #include "rlutil.h"
@@ -40,36 +40,32 @@ void PetsManager::load() {
     }
 }
 
- //////////int _petId, _ownerId;
-   ////////char  _name[30], _specie[15], _breed[30], _currentDiagnosis[45];
-  ////////////  Date _birthDate;
-
-
 
 Pet PetsManager::loadForm() {
     InputForm petForm;
     Pet auxPet;
     std::string name, specie, breed, currentDiagnosis;
     Date birthDate; 
-    int ownerId;
+    int ownerId, petId;
 
     petForm.setStrField("Nombre", name, 30);
     petForm.setStrField("Especie", specie, 15);
     petForm.setStrField("Raza", breed, 30);
     petForm.setStrField("Diagnostico actual",currentDiagnosis, 45);
-    //TODO: VER LOS DOS SIGUIENTES: 
-    petForm.setEmailField("Fecha de nacimiento", birthDate, 45);
-    petForm.setIntField("ID Dueño", ownerId, 8);
+    //TODO: VER fechafield :
+    petForm.setFechaField("Fecha de nacimiento", birthDate, xxxxxxxxxxxxxxx);
+    petForm.setIntField("ID Dueño", ownerId, 4);
     if (!petForm.fill()) return auxPet;
 
 
-   //TODO: PET ID se seteaba mas arriba no? o hay que agregarlo?
+
     auxPet.setName(name);
     auxPet.setSpecie(specie);
     auxPet.setBreed(breed);
     auxPet.setCurrentDiagnosis(currentDiagnosis);
     auxPet.setBirthDate(birthDate);
     auxPet.setOwnerId(ownerId);
+   //TODO: PET ID se seteaba mas arriba no? o hay que agregarlo?
     return auxPet;
 
 }
@@ -88,7 +84,7 @@ Pet PetsManager::editForm(int regPos) {
     Date birthDate;
 
     auxPet = _petsFile.readFile(regPos);
-    if (auxPet.getOwnerId() == 0) {
+    if (auxPet.getPetId() == 0) {
         std::cout << "Ocurrio un error al leer los registros.\n";
         return auxPet;
     }
@@ -110,15 +106,14 @@ Pet PetsManager::editForm(int regPos) {
     petForm.setStrField("Raza", breed, 30);
     petForm.setStrField("Diagnostico actual",currentDiagnosis, 45);
     //TODO: VER LOS DOS SIGUIENTES: 
-    petForm.setEmailField("Fecha de nacimiento", birthDate, 45);
-    petForm.setIntField("ID Dueño", ownerId, 8);
-
+    petForm.setFechaField("Fecha de nacimiento", birthDate, XXXXXXXXXXXXXX);
+    petForm.setIntField("ID Dueño", ownerId, 4);
 
     // completar form
     bool success = petForm.fill();
     if (success) {  // si se completa
-    //TODO: VER PET ID
-        auxPet.setPetId(petId);
+    //TODO: VER PET ID? no va para mi
+       
         auxPet.setName(name);
         auxPet.setBreed(breed);
         auxPet.setSpecie(specie);
@@ -136,7 +131,7 @@ void PetsManager::edit() {
     int nId;
     show();
     std::cout << "\nIngrese el ID de la mascota a modificar.\n";
-    search.setIntField("ID Mascota, nId, 4);
+    search.setIntField("ID Mascota", nId, 4);
     if (!search.fill()) return;  // si no se completa, salir
     int regPos = _petsFile.searchReg(searchById, nId);
     if (regPos == -1) {
@@ -154,7 +149,7 @@ void PetsManager::edit() {
     }
 
     // guardar mascota actualizada
-    if (_petsfile.updateFile(auxPet, regPos)) {
+    if (_petsFile.updateFile(auxPet, regPos)) {
         std::cout << "Mascota editada con exito!\n";
     } else {
         std::cout << "Ocurrio un error al guardar el registro.\n";
