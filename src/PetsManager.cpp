@@ -196,9 +196,10 @@ void PetsManager::show() {
                               "Diagnostico", "ID Dueño", "F. nacimiento"};
 
     // Anchos maximos que van a ocupar cada dato de las columnas
-    int colsWidth[7] = {5, 30, 30, 8, 45, 15, 45};
+    int colsWidth[7] = {5, 30, 15, 30, 45, 5, 10};
     // Se muestra todo el listado
     listview::printAll("MASCOTAS", columns, cells, totalCells, _petsFields,
                        colsWidth);
     delete[] cells;  // liberar memoria!
 }
+
