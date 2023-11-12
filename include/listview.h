@@ -14,7 +14,6 @@ namespace listview {
      * @brief Imprime un borde horizontal con el ancho especificado.
      * @param w El ancho del borde.
      */
-
     inline void printBorderW(int w) {
         std::cout << std::left;
         std::cout << std::setfill('-') << std::setw(w) << ""
@@ -87,6 +86,23 @@ namespace listview {
         }
     }
 
+    inline void setMaxWidths(std::string *cells, std::string *cols, int nCells,
+                             int *colsW, int nCols) {
+        int nRows = nCells / nCols;  // calcular cuantas filas hay
+        // recorrrer para cada columna, todas las celdas
+        for (int i = 0; i < nCols; i++) {
+            colsW[i] = cols[i].length();  // guarda ancho del nombre de columna
+                                          // para luego comparar si es el mayor
+            int cellPos = 0;              // posicion de la celda
+            for (int j = 0; j < nRows; j++) {
+                cellPos += j;
+                int cellW = cells[j].length();
+                if (cellW > colsW[i]) colsW[i] = cellW;
+                cellPos += nCols;  // moverse a la fila de abajo
+            }
+        }
+    }
+
     /**
      * @brief Imprime una vista de lista completa con título, columnas y filas.
      * @param title El título de la vista de lista.
@@ -100,6 +116,7 @@ namespace listview {
                          std::string *cells, int nCells, int nCols,
                          int *colsW) {
         int listW = calcWidth(colsW, nCols);
+        setMaxWidths(cells, cols, nCells, colsW, nCols);
         printTitle(title, listW);
         printColumns(cols, colsW, nCols);
         printRows(cells, nCells, nCols, colsW);
