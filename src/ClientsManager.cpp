@@ -23,7 +23,8 @@ void ClientsManager::load() {
         idForm.setIntField("ID Cliente", nId, 4);
         // si no completa el form, salir
         if (!idForm.fill()) return;
-        alreadyExists = _clientsFile.searchReg(searchById, nId);
+        alreadyExists =
+            _clientsFile.searchReg(searchById, nId) >= 0 ? true : false;
         idForm.clearAll();  // limpiar form
     } while (alreadyExists);
 
@@ -31,6 +32,7 @@ void ClientsManager::load() {
     // Si no se completo el form, salir
     if (auxClient.getIdPerson() == 0) return;
 
+    auxClient.setClientId(nId);  // set del Id ingresado anteriormente
     if (_clientsFile.writeFile(auxClient)) {
         std::cout << "Cliente guardado con exito!\n";
     } else {
@@ -42,9 +44,8 @@ Client ClientsManager::loadForm() {
     InputForm clientForm;
     Client auxClient;
     std::string name, lastname, address, email, phone;
-    int DNI, nId;
+    int DNI;
 
-    clientForm.setIntField("ID Cliente", nId, 4);
     clientForm.setStrField("Nombre", name, 30);
     clientForm.setStrField("Apellido", lastname, 30);
     clientForm.setAlphanumeric("Direccion", address, 45);
@@ -53,7 +54,6 @@ Client ClientsManager::loadForm() {
     clientForm.setIntField("DNI", DNI, 8);
     if (!clientForm.fill()) return auxClient;
 
-    auxClient.setClientId(nId);
     auxClient.setName(name);
     auxClient.setLastname(lastname);
     auxClient.setAddress(address);
@@ -166,22 +166,23 @@ void ClientsManager::show() {
     int cellPos = 0;  // acumula la posicion actual a asignar
     for (int i = 0; i < totalRegs; i++) {
         Client auxClient = _clientsFile.readFile(i);
-        cells[cellPos] = auxClient.getName();
-        cells[cellPos + 1] = auxClient.getLastname();
-        cells[cellPos + 2] = std::to_string(auxClient.getIdPerson());
-        cells[cellPos + 3] = auxClient.getAddress();
-        cells[cellPos + 4] = auxClient.getPhone();
-        cells[cellPos + 5] = auxClient.getEmail();
+        cells[cellPos] = std::to_string(auxClient.getClientId());
+        cells[cellPos + 1] = auxClient.getName();
+        cells[cellPos + 2] = auxClient.getLastname();
+        cells[cellPos + 3] = std::to_string(auxClient.getIdPerson());
+        cells[cellPos + 4] = auxClient.getAddress();
+        cells[cellPos + 5] = auxClient.getPhone();
+        cells[cellPos + 6] = auxClient.getEmail();
         // se incrementa la posicion de la celda segun la cantidad de datos que
         // contiene el registro, que equivale a una fila de la lista
         cellPos += _clientsFields;
     }
     // Vector que contiene las columnas de nuestra lista
-    std::string columns[6] = {"Nombre",    "Apellido", "DNI",
+    std::string columns[7] = {"ID",        "Nombre",   "Apellido", "DNI",
                               "Direccion", "Telefono", "Email"};
 
     // Anchos maximos que van a ocupar cada dato de las columnas
-    int colsWidth[6] = {30, 30, 8, 45, 15, 45};
+    int colsWidth[7] = {5, 30, 30, 8, 45, 15, 45};
     // Se muestra todo el listado
     listview::printAll("CLIENTES", columns, cells, totalCells, _clientsFields,
                        colsWidth);

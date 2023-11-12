@@ -1,12 +1,15 @@
 #include "Buy.h"
+
 #include <cstring>
 #include <iostream>
-using namespace std;
 
+using namespace std;
 
 void Buy::setBuyId(int id) { _buyId = id; }
 void Buy::setAmount(float importe) { _totalAmount = importe; }
-void Buy::setpaymentMethod (std::string method) { strcpy(_paymentMethod, method.c_str()); }
+void Buy::setpaymentMethod(std::string method) {
+    strcpy(_paymentMethod, method.c_str());
+}
 void Buy::setDate(Date date) { _buyDate = date; }
 void Buy::setTime(Time time) { _buyTime = time; }
 void Buy::setProductId(int ProductId) { _productId = ProductId; }
@@ -21,57 +24,3 @@ Time Buy::getbuyTime() { return _buyTime; }
 int Buy::getProductId() { return _productId; }
 int Buy::getQuantity() { return _quantity; }
 int Buy::getTransaction() { return _transactionId; }
-/*
-void Buy::load() {
-    int buyId, productId, quantity, transactionId;
-    float totalAmount;
-    std::string paymentMethod;
-    Date buyDate;
-    Time buyTime;
-
-    cout << "Ingrese Id de la Compra:";
-    cin >> buyId;
-    setBuyId(buyId);
-
-    cout << "Ingrese Id del producto:";
-    cin >> productId;
-    setProductId(productId);
-
-    cout << "Ingrese cantidad comprada:";
-    cin >> quantity;
-    setQuantity(quantity);
-
-    cout << "Ingrese importe total:";
-    cin >> totalAmount;
-    setAmount(totalAmount);
-
-    cout << "Ingrese metodo de pago:";
-    cin >> paymentMethod;
-    setpaymentMethod(paymentMethod);
-
-    int auxDia, auxMes, auxAnio, auxHour, auxMinutes, auxSeconds;
-
-    cout << "Ingrese Dia  de la compra:";
-    cin >> auxDia;
-    buyDate.setDay(auxDia);
-
-    cout << "Ingrese Mes de la compra:";
-    cin >> auxMes;
-    buyDate.setMonth(auxMes);
-
-    cout << "Ingrese Anio de la compra:";
-    cin >> auxAnio;
-    buyDate.setYear(auxAnio);
-
-    cout << "Ingrese Hora de la compra:";
-    cin >> auxHour;
-    buyTime.setHour(auxHour);
-
-    cout << "Ingrese Minutos de la compra:";
-    cin >> auxMinutes;
-    buyTime.setMin(auxMinutes);
-
-    cout << "Ingrese Segundos de la compra:";
-    cin >> auxSeconds;
-    buyTime.setSec(auxSeconds);
-}*/

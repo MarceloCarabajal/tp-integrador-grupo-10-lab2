@@ -7,7 +7,7 @@
 class ClientsManager {
 private:
     VppFile<Client> _clientsFile = VppFile<Client>("clients.vpp");
-    const int _clientsFields = 6;  // total de datos de un regisro Client
+    const int _clientsFields = 7;  // total de datos de un regisro Client
     Client loadForm();
     Client editForm(int regPos);
 

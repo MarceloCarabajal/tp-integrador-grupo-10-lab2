@@ -6,7 +6,7 @@
 using namespace std;
 
 Client::Client() : Person() {
-    _clientId = 0;
+    _clientId = -1;
     strcpy(_address, "");
     strcpy(_phone, "");
     strcpy(_email, "");
