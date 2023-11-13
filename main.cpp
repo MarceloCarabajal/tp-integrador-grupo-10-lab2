@@ -6,6 +6,8 @@
 // #include "VppFile.h"
 
 #include "ClientsManager.h"
+#include "VetsManager.h"
+#include "PetsManager.h"
 #include "Date.h"
 #include "EmailTemplate.h"
 #include "functions.h"
@@ -79,6 +81,66 @@ void subMenuClientes() {
     subMenu.showMenu();
 }
 
+
+void loadVet (){
+    VetsManager vets;
+    vets.load();
+    system("pause");
+}
+void showVets(){
+    VetsManager vets;
+    vets.show();
+    system("pause");
+}
+void editVets(){
+    VetsManager vets;
+    vets.edit();
+    system("pause");
+
+}
+
+
+void subMenuVeterinarios() {
+    Menu subMenu ("VETERINARIOS", true);
+    VetsManager vets;
+
+    subMenu.addOption("1. Cargar Veterinario", loadVet);
+    subMenu.addOption("2. Mostrar Veterinarios", showVets);
+    subMenu.addOption("3. Editar Veterinario", editVets);
+    subMenu.showMenu();
+
+}
+
+
+void loadPet(){
+    PetsManager pets;
+    pets.load();
+    system("pause");
+}
+void showPets (){
+    PetsManager  pets;
+    pets.show();
+    system("pause");
+}
+
+void editPets(){
+    PetsManager  pets;
+     pets.edit();
+    system("pause");
+}
+
+
+void subMenuMascotas() {
+    Menu subMenu ("MASCOTAS", true);
+    PetsManager pets;
+
+    subMenu.addOption("1. Cargar Mascota", loadPet);
+    subMenu.addOption("2. Mostrar Mascotas", showPets);
+    subMenu.addOption("3. Editar Mascota", editPets);
+    subMenu.showMenu();
+
+}
+
 int main() {
     Menu test;
 
@@ -88,6 +150,8 @@ int main() {
     test.addOption("2. Gestion de Turnos", funcSubMenu);
     test.addOption("3. Gestion de Inventarios", funcSubMenu);
     test.addOption("4. Enviar email", sendTestEmail);
+    test.addOption("5. Gestion de Veterinarios", subMenuVeterinarios);
+    test.addOption("6. Gestion de Mascotas", subMenuMascotas);
     test.showMenu();
 
     system("pause");
