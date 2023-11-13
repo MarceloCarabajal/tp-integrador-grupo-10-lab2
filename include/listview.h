@@ -8,13 +8,21 @@
 #include <iomanip>
 #include <iostream>
 
+#include "rlutil.h"
+
 namespace listview {
+
+    inline void locateCenter(int w) {
+        int center = rlutil::tcols() / 2 - (w / 2) - (w % 2);
+        rlutil::locate(center, 1);
+    }
 
     /**
      * @brief Imprime un borde horizontal con el ancho especificado.
      * @param w El ancho del borde.
      */
     inline void printBorderW(int w) {
+        locateCenter(w);
         std::cout << std::left;
         std::cout << std::setfill('-') << std::setw(w) << ""
                   << std::setfill(' ') << std::endl;
@@ -29,6 +37,7 @@ namespace listview {
         // calcular la posicion de inicio de titulo
         int startPos = (w / 2) - title.length() / 2 - (title.length() % 2);
         printBorderW(w);
+        locateCenter(w);
         std::cout << std::setw(startPos) << "";
         std::cout << title << std::endl;
         printBorderW(w);
@@ -56,6 +65,7 @@ namespace listview {
      */
     inline void printColumns(std::string *cols, int *colsW, int total) {
         int listW = calcWidth(colsW, total);
+        locateCenter(listW);
         for (int i = 0; i < total; i++) {
             // colsW + 1 para la separacion
             std::cout << std::setw(colsW[i] + 1) << cols[i];
@@ -71,11 +81,11 @@ namespace listview {
      * @param nCols El número de columnas.
      * @param colsW Un array de anchos de columna.
      */
-    inline void printRows(std::string *cells, int nCells, int nCols,
-                          int *colsW) {
+    inline void printRows(std::string *cells, int nCells, int nCols, int *colsW,
+                          int listW) {
         int nRows = nCells / nCols;  // calc numero de filas
         int curCell = 0;             // current cell acumulador
-
+        locateCenter(listW);
         for (int i = 0; i < nRows; i++) {
             for (int j = 0; j < nCols; j++) {
                 // colsW + 1 para la separacion
@@ -93,10 +103,10 @@ namespace listview {
         for (int i = 0; i < nCols; i++) {
             colsW[i] = cols[i].length();  // guarda ancho del nombre de columna
                                           // para luego comparar si es el mayor
-            int cellPos = 0;              // posicion de la celda
+            int cellPos = i;              // posicion de la celda
             for (int j = 0; j < nRows; j++) {
                 cellPos += j;
-                int cellW = cells[j].length();
+                int cellW = cells[cellPos].length();
                 if (cellW > colsW[i]) colsW[i] = cellW;
                 cellPos += nCols;  // moverse a la fila de abajo
             }
@@ -115,11 +125,11 @@ namespace listview {
     inline void printAll(std::string title, std::string *cols,
                          std::string *cells, int nCells, int nCols,
                          int *colsW) {
-        int listW = calcWidth(colsW, nCols);
         setMaxWidths(cells, cols, nCells, colsW, nCols);
+        int listW = calcWidth(colsW, nCols);
         printTitle(title, listW);
         printColumns(cols, colsW, nCols);
-        printRows(cells, nCells, nCols, colsW);
+        printRows(cells, nCells, nCols, colsW, listW);
         printBorderW(listW);
     }
 }  // namespace listview

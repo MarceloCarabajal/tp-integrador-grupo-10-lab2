@@ -3,7 +3,7 @@
 #include <iostream>
 
 #include "InputForm.h"
-#include "listview.h"
+#include "ListViewc.h"
 #include "rlutil.h"
 
 void ClientsManager::load() {
@@ -181,10 +181,10 @@ void ClientsManager::show() {
     std::string columns[7] = {"ID",        "Nombre",   "Apellido", "DNI",
                               "Direccion", "Telefono", "Email"};
 
-    // Anchos maximos que van a ocupar cada dato de las columnas
-    int colsWidth[7] = {5, 30, 30, 8, 45, 15, 45};
-    // Se muestra todo el listado
-    listview::printAll("CLIENTES", columns, cells, totalCells, _clientsFields,
-                       colsWidth);
+    ListView clientsList;
+    clientsList.addCells(cells, totalCells);
+    clientsList.addCols(columns, 7);
+    clientsList.setTitle("CLIENTES");
+    clientsList.show();
     delete[] cells;  // liberar memoria!
 }
