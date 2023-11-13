@@ -2,7 +2,7 @@
 #include <string>
 #include "Person.h"
 
-class Vet :  Person {
+class Vet : public Person {
 private: 
  int _vetId;
  char _speciality[15];
