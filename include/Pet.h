@@ -1,16 +1,16 @@
 #pragma once
 #include <string>
-#include "Date.h"
 
+#include "Date.h"
 
 class Pet {
 private:
     int _petId, _ownerId;
-   char  _name[30], _specie[15], _breed[30], _currentDiagnosis[45];
+    char _name[30], _specie[15], _breed[30], _currentDiagnosis[45];
     Date _birthDate;
 
 public:
-    Pet();
+    // Pet();
     void setPetId(int petId);
     void setOwnerId(int ownerId);
     void setName(std::string name);

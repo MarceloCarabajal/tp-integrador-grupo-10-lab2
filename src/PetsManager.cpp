@@ -1,6 +1,7 @@
 #include "PetsManager.h"
 
 #include <iostream>
+
 #include "Date.h"
 #include "InputForm.h"
 #include "listview.h"
@@ -8,7 +9,7 @@
 
 void PetsManager::load() {
     InputForm idForm;
-    Pet  auxPet;
+    Pet auxPet;
     int nId = 0;
     bool alreadyExists = false;
 
@@ -30,9 +31,9 @@ void PetsManager::load() {
 
     auxPet = loadForm();
     // Si no se completo el form, salir
-    if (auxPet. getPetId() == 0) return;
+    if (auxPet.getPetId() == 0) return;
 
-     auxPet.setPetId(nId);  // set del Id ingresado anteriormente
+    auxPet.setPetId(nId);  // set del Id ingresado anteriormente
     if (_petsFile.writeFile(auxPet)) {
         std::cout << "Mascota guardada con exito!\n";
     } else {
@@ -40,24 +41,21 @@ void PetsManager::load() {
     }
 }
 
-
 Pet PetsManager::loadForm() {
     InputForm petForm;
     Pet auxPet;
     std::string name, specie, breed, currentDiagnosis;
-    Date birthDate; 
+    Date birthDate;
     int ownerId, petId;
 
     petForm.setStrField("Nombre", name, 30);
     petForm.setStrField("Especie", specie, 15);
     petForm.setStrField("Raza", breed, 30);
-    petForm.setStrField("Diagnostico actual",currentDiagnosis, 45);
-    //TODO: VER fechafield :
-    petForm.setFechaField("Fecha de nacimiento", birthDate, xxxxxxxxxxxxxxx);
+    petForm.setStrField("Diagnostico actual", currentDiagnosis, 45);
+    // TODO: VER fechafield :
+    // petForm.setFechaField("Fecha de nacimiento", birthDate, xxxxxxxxxxxxxxx);
     petForm.setIntField("ID Dueño", ownerId, 4);
     if (!petForm.fill()) return auxPet;
-
-
 
     auxPet.setName(name);
     auxPet.setSpecie(specie);
@@ -65,9 +63,8 @@ Pet PetsManager::loadForm() {
     auxPet.setCurrentDiagnosis(currentDiagnosis);
     auxPet.setBirthDate(birthDate);
     auxPet.setOwnerId(ownerId);
-   //TODO: PET ID se seteaba mas arriba no? o hay que agregarlo?
+    // TODO: PET ID se seteaba mas arriba no? o hay que agregarlo?
     return auxPet;
-
 }
 
 // Solo compara si coincide el id
@@ -80,7 +77,7 @@ Pet PetsManager::editForm(int regPos) {
     InputForm petForm;
     Pet auxPet;
     std::string name, specie, breed, currentDiagnosis;
-    int  nId, ownerId;
+    int nId, ownerId;
     Date birthDate;
 
     auxPet = _petsFile.readFile(regPos);
@@ -96,7 +93,6 @@ Pet PetsManager::editForm(int regPos) {
     nId = auxPet.getPetId();
     currentDiagnosis = auxPet.getCurrentDiagnosis();
     birthDate = auxPet.getBirthDate();
- 
 
     std::cout << "Editando Mascota #" << nId << std::endl;
     // configurar form
@@ -104,16 +100,16 @@ Pet PetsManager::editForm(int regPos) {
     petForm.setStrField("Nombre", name, 30);
     petForm.setStrField("Especie", specie, 15);
     petForm.setStrField("Raza", breed, 30);
-    petForm.setStrField("Diagnostico actual",currentDiagnosis, 45);
-    //TODO: VER LOS DOS SIGUIENTES: 
-    petForm.setFechaField("Fecha de nacimiento", birthDate, XXXXXXXXXXXXXX);
+    petForm.setStrField("Diagnostico actual", currentDiagnosis, 45);
+    // TODO: VER LOS DOS SIGUIENTES:
+    // petForm.setFechaField("Fecha de nacimiento", birthDate, XXXXXXXXXXXXXX);
     petForm.setIntField("ID Dueño", ownerId, 4);
 
     // completar form
     bool success = petForm.fill();
     if (success) {  // si se completa
-    //TODO: VER PET ID? no va para mi
-       
+                    // TODO: VER PET ID? no va para mi
+
         auxPet.setName(name);
         auxPet.setBreed(breed);
         auxPet.setSpecie(specie);
@@ -140,7 +136,7 @@ void PetsManager::edit() {
         return;
     }
     // Si se encontro, pedir datos
-   Pet auxPet = editForm(regPos);
+    Pet auxPet = editForm(regPos);
     // Si no se completo el formulario, salir
     if (auxPet.getPetId() == 0) {
         std::cout << "No se realizara la edicion.\n";
@@ -177,22 +173,21 @@ void PetsManager::show() {
     }
     int cellPos = 0;  // acumula la posicion actual a asignar
     for (int i = 0; i < totalRegs; i++) {
-       Pet auxPet = _petsFile.readFile(i);
+        Pet auxPet = _petsFile.readFile(i);
         cells[cellPos] = std::to_string(auxPet.getPetId());
         cells[cellPos + 1] = auxPet.getName();
-        cells[cellPos + 2] = auxPet.getSpecie() ;
+        cells[cellPos + 2] = auxPet.getSpecie();
         cells[cellPos + 3] = auxPet.getBreed();
         cells[cellPos + 4] = auxPet.getCurrentDiagnosis();
         cells[cellPos + 5] = std::to_string(auxPet.getOwnerId());
         cells[cellPos + 6] = auxPet.getBirthDate().toString();
 
-    
         // se incrementa la posicion de la celda segun la cantidad de datos que
         // contiene el registro, que equivale a una fila de la lista
         cellPos += _petsFields;
     }
     // Vector que contiene las columnas de nuestra lista
-    std::string columns[7] = {"ID",        "Nombre",   "Especie", "Raza",
+    std::string columns[7] = {"ID",          "Nombre",   "Especie",      "Raza",
                               "Diagnostico", "ID Dueño", "F. nacimiento"};
 
     // Anchos maximos que van a ocupar cada dato de las columnas
