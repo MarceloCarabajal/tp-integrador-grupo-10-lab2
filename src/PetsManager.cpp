@@ -4,7 +4,7 @@
 
 #include "Date.h"
 #include "InputForm.h"
-#include "listview.h"
+#include "ListViewc.h"
 #include "rlutil.h"
 
 void PetsManager::load() {
@@ -190,11 +190,11 @@ void PetsManager::show() {
     std::string columns[7] = {"ID",          "Nombre",   "Especie",      "Raza",
                               "Diagnostico", "ID Dueño", "F. nacimiento"};
 
-    // Anchos maximos que van a ocupar cada dato de las columnas
-    int colsWidth[7] = {5, 30, 15, 30, 45, 5, 10};
-    // Se muestra todo el listado
-    listview::printAll("MASCOTAS", columns, cells, totalCells, _petsFields,
-                       colsWidth);
+    ListView petsList;
+    petsList.addCells(cells, totalCells);
+    petsList.addCols(columns, 7);
+    petsList.setTitle("MASCOTAS");
+    petsList.show();
     delete[] cells;  // liberar memoria!
 }
 

@@ -3,7 +3,7 @@
 #include <iostream>
 
 #include "InputForm.h"
-#include "listview.h"
+#include "ListViewc.h"
 #include "rlutil.h"
 
 void VetsManager::load() {  
@@ -173,10 +173,12 @@ void VetsManager::show() {
     std::string columns[5] = {"ID",    "Nombre",   "Apellido", "DNI",
                               "Especialidad"};
 
-    // Anchos maximos que van a ocupar cada dato de las columnas
-    int colsWidth[5] = {5, 30, 30, 8, 15};
-    // Se muestra todo el listado
-    listview::printAll("VETERINARIOS", columns, cells, totalCells, _vetsFields,
-                       colsWidth);
-    delete[] cells;  // liberar memoria!
-}
+    
+    ListView vetsList;
+    vetsList.addCells(cells, totalCells);
+    vetsList.addCols(columns, 5);
+    vetsList.setTitle("VETERINARIOS");
+    vetsList.show();
+    delete[] cells;  // liberar memoria!  
+    
+    }
