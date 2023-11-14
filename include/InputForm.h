@@ -41,6 +41,9 @@ private:
     // bool requestIntRangeFields(); //TODO: hacer metodo para rangos
     bool askToRetry(fieldType fType, int maxLimit);
 
+    // utils
+    std::string trim(std::string str);
+
 public:
     InputForm(bool isEditing = false);
 

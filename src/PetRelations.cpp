@@ -1,22 +1,9 @@
 #include "PetRelations.h"
 
+void PetRelations::setPetId(int id) {}
+void PetRelations::setClientId(int id) {}
+void PetRelations::setOwner(bool owner) {}
 
-void setPetId(int id){
-
-}
-void setClientId( int id) {
-    
-}
-void  setOwner( bool owner){
-    
-}
-
-int  getPetId(){
-    
-}
-int  getClientId(){
-    
-}
-bool  getOwner(){
-    
-}
+int PetRelations::getPetId() {}
+int PetRelations::getClientId() {}
+bool PetRelations::getOwner() {}

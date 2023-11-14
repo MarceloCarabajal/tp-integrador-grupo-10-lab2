@@ -55,6 +55,11 @@ namespace isvalid {
         return temp;
     }
 
+    inline bool alphanumeric(char c) {
+        if (!letter(c) && !number(c)) return false;
+        return true;
+    }
+
     inline bool alphanumeric(std::string str) {
         std::string temp = removeSpaces(str);
         if (str.length() == 0) return false;  // si la cadena esta vacia
@@ -67,6 +72,7 @@ namespace isvalid {
 
     // Verificar que una cadena solo contenga letras
     inline bool onlyLetters(std::string str) {
+        str = removeSpaces(str);              // quitar espacios
         if (str.length() == 0) return false;  // si esta vacia, es invalida
         for (size_t i = 0; i < str.length(); i++) {
             if (!letter(str[i])) return false;

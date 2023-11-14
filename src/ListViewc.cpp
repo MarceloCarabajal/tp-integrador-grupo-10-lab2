@@ -59,17 +59,22 @@ void ListView::printRows() {
 
 void ListView::setMaxWidths() {
     size_t nRows = _cells.size() / _cols.size();  // calcular cuantas filas hay
-    // recorrrer para cada columna, todas las celdas
+    // recorrrer cada columna
     for (size_t i = 0; i < _cols.size(); i++) {
         // setear ancho del nombre de la columna actual
         // +1 para la separacion
         _colsW.push_back(_cols[i].length() + 1);
-        size_t cellPos = i;  // posicion de la celda
+        size_t cellPos = i;  // posicion de la celda = columna actual
+        // recorrer para cada fila, la celda correlativa a la columna
         for (size_t j = 0; j < nRows; j++) {
-            cellPos += j;
+            // setear ancho de celda
             int cellW = _cells[cellPos].length() + 1;  // +1 para separarlas
+            // comparar ancho de celda con ancho de columna
+            // si es mayor, se reasigna el ancho de columna
             if (cellW > _colsW[i]) _colsW[i] = cellW;
-            cellPos += _cols.size();  // moverse a la fila de abajo
+            // moverse nCeldas segun cantidad de columnas
+            // para ir a la prox. fila y a la celda correlativa con la columna
+            cellPos += _cols.size();
         }
     }
 }

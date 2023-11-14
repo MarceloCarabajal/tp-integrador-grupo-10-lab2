@@ -52,6 +52,7 @@ void Menu::showMenu() {
             case 1:  // ENTER
                 if (currentSelect == maxSelect) return;
                 rlutil::cls();
+                rlutil::showcursor();  // volver a mostrar cursor
                 (_functions[currentSelect - 1])();
                 printBase();
                 printMenu(currentSelect);
