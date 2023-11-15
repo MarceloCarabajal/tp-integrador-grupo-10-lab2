@@ -8,6 +8,7 @@
 #include "ClientsManager.h"
 #include "VetsManager.h"
 #include "PetsManager.h"
+#include "RelationsManager.h"
 #include "Date.h"
 #include "EmailTemplate.h"
 #include "functions.h"
@@ -141,6 +142,40 @@ void subMenuMascotas() {
 
 }
 
+
+void loadRelation (){
+    RelationsManager petsRelations;
+    petsRelations.load();
+    system("pause");
+}
+
+
+void showRelations (){
+    RelationsManager petsRelations;
+    petsRelations.show();
+    system("pause");
+}
+
+
+void editRelation (){
+    RelationsManager petsRelations;
+    petsRelations.edit();
+    system("pause");
+
+}
+
+void subMenuRelaciones(){
+Menu subMenu ("RELACIONES", true);
+    RelationsManager petsRelations;
+
+    subMenu.addOption("1. Cargar Relacion", loadRelation);
+    subMenu.addOption("2. Mostrar Mascotas", showRelations);
+    subMenu.addOption("3. Editar Mascota", editRelation);
+    subMenu.showMenu();
+
+
+}
+
 int main() {
     Menu test;
 
@@ -152,6 +187,7 @@ int main() {
     test.addOption("4. Enviar email", sendTestEmail);
     test.addOption("5. Gestion de Veterinarios", subMenuVeterinarios);
     test.addOption("6. Gestion de Mascotas", subMenuMascotas);
+    test.addOption("7. Gestion de Relaciones", subMenuRelaciones);                         
     test.showMenu();
 
     system("pause");
