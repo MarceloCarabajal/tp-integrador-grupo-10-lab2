@@ -127,7 +127,7 @@ void RelationsManager::edit() {
         << "\nIngrese el ID de la relacion a modificar.\n";
     search.setIntField("ID Relacion", nId, 4);
     if (!search.fill()) return;  // si no se completa, salir
-    int regPos;                  // eliminar esta linea
+
     int regPos = _petRelationsFile.searchReg(searchById, nId);
     if (regPos == -1) {
         std::cout << "No se encontraron resultados.\n";
