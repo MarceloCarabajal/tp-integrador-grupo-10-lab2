@@ -8,7 +8,7 @@ private:
     VppFile<PetRelations> _petRelationsFile =
         VppFile<PetRelations>("PetRelations.vpp");
     const int _petRelationsFields =
-        3;  // total de datos de un regisro PetRelations
+        5;  // total de datos de un regisro PetRelations
     PetRelations loadForm();
     PetRelations editForm(int regPos);
 
@@ -22,5 +22,5 @@ public:
     // objeto de tipo "RelationsManager", eso permite que se pueda pasar por
     // parametro un puntero a esta funcion, lo que es necesario para la busqueda
     // de registros con VppFile
-    // static bool searchById(PetRelations reg, int nId);
+    static bool searchById(PetRelations reg, int nId);
 };
