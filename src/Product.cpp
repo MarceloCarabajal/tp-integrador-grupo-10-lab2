@@ -32,3 +32,17 @@ void deleteProduct(){
 void updateStock(){
     
 }
+
+
+//TODO: VER COMO INCLUIMOS PRODUCT CATEGORY
+void Product::toVecString(std::string vStr[9]) {
+    vStr[0] = std::to_string(_productID);
+    vStr[1] = _productName;
+    vStr[2] = _description;
+    vStr[3] = _brand;
+    vStr[4] = _productType;
+    vStr[5] =std::to_string(_quantity);
+    vStr[6] = std::to_string(_price);
+    vStr[7] = std::to_string(_stock);
+    ////vStr[8] = _productCategory;
+}

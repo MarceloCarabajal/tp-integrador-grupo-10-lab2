@@ -33,4 +33,7 @@ public:
     void addProduct();
     void deleteProduct();
     void updateStock();
+
+
+        void toVecString(std::string vStr[9]);
 };
