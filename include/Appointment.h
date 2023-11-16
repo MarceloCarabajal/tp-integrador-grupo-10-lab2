@@ -15,6 +15,8 @@ private:
     int _clientId;
 
 public:
+
+
     void setAppId(int id);
     void setpetId(int idpet);
     void setDate(Date date);

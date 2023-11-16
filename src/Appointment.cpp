@@ -42,8 +42,8 @@ int Appointment::getClientId (){return _clientId;}
 void Appointment::toVecString(std::string vStr[7]) {
     vStr[0] = std::to_string( _appId);
     vStr[1] = std::to_string(_petId);
-   // vStr[2] = _dateApp;
-   // vStr[3] =_timeApp;
+    vStr[2] = _dateApp.toString();
+    vStr[3] = _timeApp.toString();
     vStr[4] =_reason;
     vStr[5] = _attended;
     vStr[6] = std::to_string( _clientId);
