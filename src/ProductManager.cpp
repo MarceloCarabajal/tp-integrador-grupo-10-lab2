@@ -1,24 +1,24 @@
 #include "ProductManager.h"
-#include "ProductCategory.h"
+
 #include <iostream>
 
 #include "InputForm.h"
-#include "ListViewc.h"
+#include "ListView.h"
+#include "ProductCategory.h"
 #include "rlutil.h"
-
-
 
 void ProductManager::load() {
     InputForm idForm;
-   Product auxProduct;
+    Product auxProduct;
     int nId = 0;
     bool alreadyExists = false;
 
     // pedir y buscar si el id ingresado existe
     do {
         if (alreadyExists) {
-            std::cout << "El ID del producto ya existe, presione cualquier tecla "
-                         "para reintentar o ESC para salir.\n";
+            std::cout
+                << "El ID del producto ya existe, presione cualquier tecla "
+                   "para reintentar o ESC para salir.\n";
             if (rlutil::getkey() == rlutil::KEY_ESCAPE) return;
             rlutil::cls();
         }
@@ -52,21 +52,20 @@ Product ProductManager::loadForm() {
     std::string productName, description, brand, productType;
     float price;
     int quantity, stock;
-//TODO: Ver si está bien incluirlo asi
+    // TODO: Ver si está bien incluirlo asi
     ProductCategory productCategory;
 
-    productForm.setStrField("Nombre",productName, 30);
+    productForm.setStrField("Nombre", productName, 30);
     productForm.setStrField("Descripcion", description, 45);
     productForm.setStrField("Marca", brand, 15);
     productForm.setStrField("Tipo Producto", productType, 30);
-     productForm. setIntField ("Cantidad",quantity, 4 );
-     productForm. setIntField ("Stock",stock, 4 );
-//TODO: Ver como metemos float y product category
+    productForm.setIntField("Cantidad", quantity, 4);
+    productForm.setIntField("Stock", stock, 4);
+    // TODO: Ver como metemos float y product category
 
-  ////productForm.setFFFFFFFFFFFFFF ("Precio", price, XXXXXXX)
-  ////productForm. PRODUCT CATEGORY
-  
-  
+    ////productForm.setFFFFFFFFFFFFFF ("Precio", price, XXXXXXX)
+    ////productForm. PRODUCT CATEGORY
+
     if (!productForm.fill()) return auxProduct;
 
     auxProduct.setProductName(productName);
@@ -102,42 +101,40 @@ Product ProductManager::editForm(int regPos) {
     // Se cargan los datos para mostrarlas en el form.
     productName = auxProduct.getProductName();
     description = auxProduct.getDescription();
-    brand  = auxProduct.getBrand();
+    brand = auxProduct.getBrand();
     nId = auxProduct.getProductId();
     productType = auxProduct.getProductType();
     /////price = auxProduct.getPrice();
     quantity = auxProduct.getQuantity();
-    stock =auxProduct.getStock();
+    stock = auxProduct.getStock();
     productcategory = auxProduct.getProductCategory();
 
     std::cout << "Editando producto #" << nId << std::endl;
     // configurar form
     productForm.setEditMode(true);  // modo edicion
-    productForm.setStrField("Nombre",productName, 30);
+    productForm.setStrField("Nombre", productName, 30);
     productForm.setStrField("Descripcion", description, 45);
     productForm.setStrField("Marca", brand, 15);
     productForm.setStrField("Tipo Producto", productType, 30);
-    productForm. setIntField ("Cantidad",quantity, 4 );
-    productForm. setIntField ("Stock",stock, 4 );
+    productForm.setIntField("Cantidad", quantity, 4);
+    productForm.setIntField("Stock", stock, 4);
 
-     //TODO: Ver como metemos float y product category
+    // TODO: Ver como metemos float y product category
 
-     ////productForm.setFFFFFFFFFFFFFF ("Precio", price, XXXXXXX)
-     ////productForm. PRODUCT CATEGORY
-
+    ////productForm.setFFFFFFFFFFFFFF ("Precio", price, XXXXXXX)
+    ////productForm. PRODUCT CATEGORY
 
     // completar form
-    bool success =  productForm.fill();
+    bool success = productForm.fill();
     if (success) {  // si se completa
-    auxProduct.setProductName(productName);
-    auxProduct.setDescription(description);
-    auxProduct.setBrand(brand);
-    auxProduct.setProductType(productType);
-   ///// auxProduct.setPrice(price);
-    auxProduct.setQuantity(quantity);
-    auxProduct.setStock(stock);
-    /////auxProduct.setProductCategory(productCategory);
-
+        auxProduct.setProductName(productName);
+        auxProduct.setDescription(description);
+        auxProduct.setBrand(brand);
+        auxProduct.setProductType(productType);
+        ///// auxProduct.setPrice(price);
+        auxProduct.setQuantity(quantity);
+        auxProduct.setStock(stock);
+        /////auxProduct.setProductCategory(productCategory);
 
         return auxProduct;
     }
@@ -209,8 +206,9 @@ void ProductManager::show() {
         cellPos += _productFields;
     }
     // Vector que contiene las columnas de nuestra lista
-    std::string columns[9] = {"ID",        "Nombre",   "Descripcion", "Marca",
-                              "Tipo de producto", "Cantidad", "Precio", "Stock", "Categoria" };
+    std::string columns[9] = {
+        "ID",       "Nombre", "Descripcion", "Marca",    "Tipo de producto",
+        "Cantidad", "Precio", "Stock",       "Categoria"};
 
     ListView productsList;
     productsList.addCells(cells, totalCells);

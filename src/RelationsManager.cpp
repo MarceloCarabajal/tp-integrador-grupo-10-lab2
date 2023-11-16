@@ -3,7 +3,7 @@
 #include <iostream>
 
 #include "InputForm.h"
-#include "ListViewc.h"
+#include "ListView.h"
 #include "rlutil.h"
 
 void RelationsManager::load() {
@@ -11,23 +11,23 @@ void RelationsManager::load() {
     PetRelations auxPetR;
     int nId = 0;
     bool alreadyExists = false;
-    
-        // pedir y buscar si el id ingresado existe
-        do {
-            if (alreadyExists) {
-                std::cout << "El ID de relación ya existe, presione cualquier tecla "
-                 "para reintentar o ESC para salir.\n"; 
-                 if (rlutil::getkey() ==rlutil::KEY_ESCAPE) return;
-                  rlutil::cls();
-            }
-            idForm.setIntField("ID Relacion", nId, 4);
-            // si no completa el form, salir
-            if (!idForm.fill()) return;
-            alreadyExists =
-                _petRelationsFile.searchReg(searchById, nId) >= 0 ? true : false;
-            idForm.clearAll();  // limpiar form
-        } while (alreadyExists);
-        
+
+    // pedir y buscar si el id ingresado existe
+    do {
+        if (alreadyExists) {
+            std::cout
+                << "El ID de relación ya existe, presione cualquier tecla "
+                   "para reintentar o ESC para salir.\n";
+            if (rlutil::getkey() == rlutil::KEY_ESCAPE) return;
+            rlutil::cls();
+        }
+        idForm.setIntField("ID Relacion", nId, 4);
+        // si no completa el form, salir
+        if (!idForm.fill()) return;
+        alreadyExists =
+            _petRelationsFile.searchReg(searchById, nId) >= 0 ? true : false;
+        idForm.clearAll();  // limpiar form
+    } while (alreadyExists);
 
     auxPetR = loadForm();
     // Si no se completo el form, salir
@@ -41,28 +41,23 @@ void RelationsManager::load() {
     }
 }
 
-
-
 PetRelations RelationsManager::loadForm() {
     InputForm petRelationsForm;
     PetRelations auxPetR;
-    bool owner;// estatus;
+    bool owner;  // estatus;
     int clientId, petId;
-   
-  
+
     petRelationsForm.setIntField("ID Mascota", petId, 4);
     petRelationsForm.setIntField("ID Cliente", clientId, 4);
-  
- 
-   ////////// petRelationsForm.setIntField("Estado", estatus, xxxxxxxx);
+
+    ////////// petRelationsForm.setIntField("Estado", estatus, xxxxxxxx);
     ////petRelationsForm.setIntField("¿Es propietario?", owner, xxxxxxxxxxx);
     if (!petRelationsForm.fill()) return auxPetR;
 
     auxPetR.setPetId(petId);
     auxPetR.setClientId(clientId);
     auxPetR.setOwner(owner);
-    //auxPetR.setEstatus(estatus);
-
+    // auxPetR.setEstatus(estatus);
 
     return auxPetR;
 }
@@ -77,7 +72,7 @@ PetRelations RelationsManager::editForm(int regPos) {
     InputForm petRelationsForm;
     PetRelations auxPetR;
 
-    int petId, clientId,nId;
+    int petId, clientId, nId;
     bool owner, estatus;
 
     auxPetR = _petRelationsFile.readFile(regPos);
@@ -86,11 +81,11 @@ PetRelations RelationsManager::editForm(int regPos) {
         return auxPetR;
     }
     // Se cargan los datos para mostrarlas en el form.
-    nId= auxPetR.getRelationId(); 
+    nId = auxPetR.getRelationId();
     petId = auxPetR.getPetId();
     clientId = auxPetR.getClientId();
     owner = auxPetR.getOwner();
-    estatus= auxPetR. getEstatus();
+    estatus = auxPetR.getEstatus();
     // TODO: VER PARA LLAMAR A LA FUNCION QUE MODIFICA EL ARCHIVO DE MASCOTA SI
     // SE ESTA CARGANDO UN REGISTRO DONDE
     /// OWNER ES TRUE Y MODIFICAR ESE ARCHIVO (EL DE PET)
@@ -103,7 +98,7 @@ PetRelations RelationsManager::editForm(int regPos) {
     petRelationsForm.setIntField("ID Cliente", clientId, 4);
     // TODO: Ver como validamos BOOL
     ////petRelationsForm.setIntField("¿Es propietario?", owner, xxxxxxxxxxx;
-////petRelationsForm.serIntField("Estado", estatus, xxxxxxx);
+    ////petRelationsForm.serIntField("Estado", estatus, xxxxxxx);
     // completar form
     bool success = petRelationsForm.fill();
     if (success) {  // si se completa
@@ -123,8 +118,7 @@ void RelationsManager::edit() {
     InputForm search;
     int nId;
     show();
-    std::cout
-        << "\nIngrese el ID de la relacion a modificar.\n";
+    std::cout << "\nIngrese el ID de la relacion a modificar.\n";
     search.setIntField("ID Relacion", nId, 4);
     if (!search.fill()) return;  // si no se completa, salir
 
@@ -173,7 +167,7 @@ void RelationsManager::show() {
     int cellPos = 0;  // acumula la posicion actual a asignar
     for (int i = 0; i < totalRegs; i++) {
         PetRelations auxPetR = _petRelationsFile.readFile(i);
-         // Obtener todas las propiedades del cliente
+        // Obtener todas las propiedades del cliente
         // Guardarlas en un vector de string
         std::string vecStr[4];
         auxPetR.toVecString(vecStr);
@@ -188,7 +182,8 @@ void RelationsManager::show() {
         cellPos += _petRelationsFields;
     }
     // Vector que contiene las columnas de nuestra lista
-    std::string columns[4] = {"ID RELACION", "ID MASCOTA", "ID CLIENTE", "ES DUENIO?"};
+    std::string columns[4] = {"ID RELACION", "ID MASCOTA", "ID CLIENTE",
+                              "ES DUENIO?"};
 
     ListView petsRelationsList;
     petsRelationsList.addCells(cells, totalCells);

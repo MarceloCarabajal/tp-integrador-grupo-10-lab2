@@ -4,7 +4,7 @@
 
 #include "Date.h"
 #include "InputForm.h"
-#include "ListViewc.h"
+#include "ListView.h"
 #include "rlutil.h"
 
 void PetsManager::load() {
@@ -174,14 +174,13 @@ void PetsManager::show() {
     int cellPos = 0;  // acumula la posicion actual a asignar
     for (int i = 0; i < totalRegs; i++) {
         Pet auxPet = _petsFile.readFile(i);
-      // Obtener todas las propiedades de la Mascota
+        // Obtener todas las propiedades de la Mascota
         // Guardarlas en un vector de string
         std::string vecStr[7];
         auxPet.toVecString(vecStr);
         for (int cell = 0; cell < _petsFields; cell++) {
             cells[cellPos + cell] = vecStr[cell];
         }
-       
 
         // se incrementa la posicion de la celda segun la cantidad de datos que
         // contiene el registro, que equivale a una fila de la lista
@@ -198,4 +197,3 @@ void PetsManager::show() {
     petsList.show();
     delete[] cells;  // liberar memoria!
 }
-

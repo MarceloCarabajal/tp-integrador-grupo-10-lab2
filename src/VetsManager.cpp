@@ -3,10 +3,10 @@
 #include <iostream>
 
 #include "InputForm.h"
-#include "ListViewc.h"
+#include "ListView.h"
 #include "rlutil.h"
 
-void VetsManager::load() {  
+void VetsManager::load() {
     InputForm idForm;
     Vet auxVet;
     int nId = 0;
@@ -15,8 +15,9 @@ void VetsManager::load() {
     // pedir y buscar si el id ingresado existe
     do {
         if (alreadyExists) {
-            std::cout << "El ID del veterinario ya existe, presione cualquier tecla "
-                         "para reintentar o ESC para salir.\n";
+            std::cout
+                << "El ID del veterinario ya existe, presione cualquier tecla "
+                   "para reintentar o ESC para salir.\n";
             if (rlutil::getkey() == rlutil::KEY_ESCAPE) return;
             rlutil::cls();
         }
@@ -43,21 +44,21 @@ void VetsManager::load() {
 Vet VetsManager::loadForm() {
     InputForm vetForm;
     Vet auxVet;
-    std::string name, lastname,speciality;
+    std::string name, lastname, speciality;
     int DNI;
 
     vetForm.setStrField("Nombre", name, 30);
     vetForm.setStrField("Apellido", lastname, 30);
     vetForm.setStrField("Especialidad", speciality, 15);
     vetForm.setIntField("DNI", DNI, 8);
-   
+
     if (!vetForm.fill()) return auxVet;
 
     auxVet.setName(name);
     auxVet.setLastname(lastname);
     auxVet.setIdPerson(DNI);
     auxVet.setSpeciality(speciality);
-    return  auxVet;
+    return auxVet;
 }
 
 // Solo compara si coincide el id
@@ -69,7 +70,7 @@ bool VetsManager::searchById(Vet reg, int nId) {
 Vet VetsManager::editForm(int regPos) {
     InputForm vetForm;
     Vet auxVet;
-    std::string name, lastname,speciality;
+    std::string name, lastname, speciality;
     int DNI, nId;
 
     auxVet = _vetsFile.readFile(regPos);
@@ -82,15 +83,15 @@ Vet VetsManager::editForm(int regPos) {
     name = auxVet.getName();
     lastname = auxVet.getLastname();
     nId = auxVet.getIdVet();
-    speciality= auxVet.getSpeciality();
+    speciality = auxVet.getSpeciality();
 
     std::cout << "Editando Veterinario #" << nId << std::endl;
     // configurar form
-   vetForm.setEditMode(true);  // modo edicion
-   vetForm.setStrField("Nombre", name, 30);
-   vetForm.setStrField("Apellido", lastname, 30);
-   vetForm.setIntField("DNI", DNI, 8);
-   vetForm.setStrField("Especialidad",speciality, 15);
+    vetForm.setEditMode(true);  // modo edicion
+    vetForm.setStrField("Nombre", name, 30);
+    vetForm.setStrField("Apellido", lastname, 30);
+    vetForm.setIntField("DNI", DNI, 8);
+    vetForm.setStrField("Especialidad", speciality, 15);
 
     // completar form
     bool success = vetForm.fill();
@@ -99,7 +100,7 @@ Vet VetsManager::editForm(int regPos) {
         auxVet.setName(name);
         auxVet.setLastname(lastname);
         auxVet.setSpeciality(speciality);
-    
+
         return auxVet;
     }
     // si no se completa, devolver  Vete vacio
@@ -152,13 +153,14 @@ void VetsManager::show() {
     // de registros
     std::string *cells = new std::string[totalCells];
     if (cells == NULL) {
-        std::cout << "No hay memoria suficiente para mostrar los veterinarios.\n";
+        std::cout
+            << "No hay memoria suficiente para mostrar los veterinarios.\n";
         return;
     }
     int cellPos = 0;  // acumula la posicion actual a asignar
     for (int i = 0; i < totalRegs; i++) {
-       Vet auxVet = _vetsFile.readFile(i);
-       // Obtener todas las propiedades del vete
+        Vet auxVet = _vetsFile.readFile(i);
+        // Obtener todas las propiedades del vete
         // Guardarlas en un vector de string
         std::string vecStr[5];
         auxVet.toVecString(vecStr);
@@ -171,15 +173,13 @@ void VetsManager::show() {
         cellPos += _vetsFields;
     }
     // Vector que contiene las columnas de nuestra lista
-    std::string columns[5] = {"ID",    "Nombre",   "Apellido", "DNI",
+    std::string columns[5] = {"ID", "Nombre", "Apellido", "DNI",
                               "Especialidad"};
 
-    
     ListView vetsList;
     vetsList.addCells(cells, totalCells);
     vetsList.addCols(columns, 5);
     vetsList.setTitle("VETERINARIOS");
     vetsList.show();
-    delete[] cells;  // liberar memoria!  
-    
-    }
+    delete[] cells;  // liberar memoria!
+}
