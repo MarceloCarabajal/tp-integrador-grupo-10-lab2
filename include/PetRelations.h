@@ -12,6 +12,9 @@ bool _estatus;
 
 
 public: 
+PetRelations();
+PetRelations(int relationId, int petId, int clientId, bool ownwer);
+
 
 void setPetId(int id);
 void setClientId( int id) ;
@@ -25,4 +28,5 @@ bool  getOwner();
 int getRelationId ();
 bool getEstatus ();
 
+ void toVecString(std::string vStr[4]);
 };

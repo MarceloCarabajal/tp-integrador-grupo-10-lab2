@@ -173,10 +173,14 @@ void RelationsManager::show() {
     int cellPos = 0;  // acumula la posicion actual a asignar
     for (int i = 0; i < totalRegs; i++) {
         PetRelations auxPetR = _petRelationsFile.readFile(i);
-        cells[cellPos] = std::to_string(auxPetR.getRelationId());
-        cells[cellPos+1] = std::to_string(auxPetR.getPetId());
-        cells[cellPos + 2] = std::to_string(auxPetR.getClientId());
-        // TODO: VER BOOL COMO LO PONEMOS
+         // Obtener todas las propiedades del cliente
+        // Guardarlas en un vector de string
+        std::string vecStr[4];
+        auxPetR.toVecString(vecStr);
+        for (int cell = 0; cell < _petRelationsFields; cell++) {
+            cells[cellPos + cell] = vecStr[cell];
+        }
+
         /// cells[cellPos + 2] = auxPet.getOwner();
 
         // se incrementa la posicion de la celda segun la cantidad de datos que
@@ -185,7 +189,7 @@ void RelationsManager::show() {
     }
     // Vector que contiene las columnas de nuestra lista
     std::string columns[4] = {"ID RELACION", "ID MASCOTA", "ID CLIENTE", "ES DUENIO?"};
-//TODO: Agregamos columna estado ??? 
+
     ListView petsRelationsList;
     petsRelationsList.addCells(cells, totalCells);
     petsRelationsList.addCols(columns, 4);
