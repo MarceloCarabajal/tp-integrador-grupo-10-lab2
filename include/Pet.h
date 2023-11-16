@@ -10,7 +10,12 @@ private:
     Date _birthDate;
 
 public:
-    // Pet();
+     Pet();
+
+     Pet(int petId, int ownerId, std::string name, std::string specie,
+           std::string breed, std::string currentDiagnosis, Date birthDate);
+
+
     void setPetId(int petId);
     void setOwnerId(int ownerId);
     void setName(std::string name);

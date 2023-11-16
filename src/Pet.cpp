@@ -3,7 +3,28 @@
 #include <cstring>
 using namespace std;
 
-//TODO:  CONSTRUCTOR ?
+Pet::Pet (){
+
+_petId=-1;
+_ownerId=-1;
+strcpy (_name, "");
+strcpy (_specie, "");
+strcpy (_breed, "");
+strcpy (_currentDiagnosis, "");
+_birthDate= Date(1,1,1990); 
+
+}
+
+Pet::Pet (int petId, int ownerId, std::string name, std::string specie,
+           std::string breed, std::string currentDiagnosis, Date birthDate){
+
+_petId=petId;
+_ownerId=ownerId;
+strcpy(_name,name.c_str());
+strcpy (_specie,specie.c_str());
+strcpy (_breed,breed.c_str());
+strcpy (_currentDiagnosis,currentDiagnosis.c_str());
+_birthDate=birthDate;}
 
 void Pet::setPetId(int petId){_petId=petId;}
 void Pet::setOwnerId(int ownerId){_ownerId=ownerId;}
@@ -30,7 +51,9 @@ void Pet::toVecString(std::string vStr[7]) {
     vStr[3] = _specie;
     vStr[4] = _breed;
     vStr[5] = _currentDiagnosis;
-    vStr[6] = _birthDate;
+    vStr[6] = _birthDate.toString();
+
+    
 }
 
 
