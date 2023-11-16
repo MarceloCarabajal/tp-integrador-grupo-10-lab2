@@ -8,6 +8,12 @@ private:
  char _speciality[15];
 
 public: 
+Vet();
+Vet(int vetId,std::string speciality,  int personId, std::string name, std::string lastname);
+
+
+
+
  void setIdVet( int idVet);
  void setSpeciality(std::string speciality); 
 
@@ -20,4 +26,5 @@ const char* getSpeciality();
  
  void load( );
 
+ void toVecString(std::string vStr[5]);
 };

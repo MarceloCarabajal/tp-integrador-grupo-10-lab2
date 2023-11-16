@@ -158,13 +158,14 @@ void VetsManager::show() {
     int cellPos = 0;  // acumula la posicion actual a asignar
     for (int i = 0; i < totalRegs; i++) {
        Vet auxVet = _vetsFile.readFile(i);
-        cells[cellPos] = std::to_string( auxVet.getIdVet());
-        cells[cellPos + 1] =  auxVet.getName();
-        cells[cellPos + 2] =  auxVet.getLastname();
-        cells[cellPos + 3] = std::to_string( auxVet.getIdPerson());
-        cells[cellPos + 4] =  auxVet.getSpeciality();
+       // Obtener todas las propiedades del vete
+        // Guardarlas en un vector de string
+        std::string vecStr[5];
+        auxVet.toVecString(vecStr);
+        for (int cell = 0; cell < _vetsFields; cell++) {
+            cells[cellPos + cell] = vecStr[cell];
+        }
 
- 
         // se incrementa la posicion de la celda segun la cantidad de datos que
         // contiene el registro, que equivale a una fila de la lista
         cellPos += _vetsFields;
