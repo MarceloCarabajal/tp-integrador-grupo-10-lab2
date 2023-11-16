@@ -184,7 +184,7 @@ void RelationsManager::show() {
         cellPos += _petRelationsFields;
     }
     // Vector que contiene las columnas de nuestra lista
-    std::string columns[4] = {"ID RELACION", "ID MASCOTA", "ID CLIENTE", "ES DUEÑO?"};
+    std::string columns[4] = {"ID RELACION", "ID MASCOTA", "ID CLIENTE", "ES DUENIO?"};
 //TODO: Agregamos columna estado ??? 
     ListView petsRelationsList;
     petsRelationsList.addCells(cells, totalCells);
