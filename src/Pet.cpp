@@ -21,9 +21,20 @@ const char* Pet::getBreed(){return _breed;}
 const char* Pet::getCurrentDiagnosis(){return _currentDiagnosis;}
 Date Pet::getBirthDate(){return _birthDate;}
 
-void Pet::addAppoinment(){
+void Pet::addAppoinment(){}
     
+void Pet::toVecString(std::string vStr[7]) {
+    vStr[0] = std::to_string(_petId);
+    vStr[1] = std::to_string(_ownerId);
+    vStr[2] = _name;
+    vStr[3] = _specie;
+    vStr[4] = _breed;
+    vStr[5] = _currentDiagnosis;
+    vStr[6] = _birthDate;
 }
+
+
+
 
 /*
 void Pet::loadPet(){

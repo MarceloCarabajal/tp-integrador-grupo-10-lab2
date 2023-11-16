@@ -174,13 +174,14 @@ void PetsManager::show() {
     int cellPos = 0;  // acumula la posicion actual a asignar
     for (int i = 0; i < totalRegs; i++) {
         Pet auxPet = _petsFile.readFile(i);
-        cells[cellPos] = std::to_string(auxPet.getPetId());
-        cells[cellPos + 1] = auxPet.getName();
-        cells[cellPos + 2] = auxPet.getSpecie();
-        cells[cellPos + 3] = auxPet.getBreed();
-        cells[cellPos + 4] = auxPet.getCurrentDiagnosis();
-        cells[cellPos + 5] = std::to_string(auxPet.getOwnerId());
-        cells[cellPos + 6] = auxPet.getBirthDate().toString();
+      // Obtener todas las propiedades de la Mascota
+        // Guardarlas en un vector de string
+        std::string vecStr[7];
+        auxPet.toVecString(vecStr);
+        for (int cell = 0; cell < _petsFields; cell++) {
+            cells[cellPos + cell] = vecStr[cell];
+        }
+       
 
         // se incrementa la posicion de la celda segun la cantidad de datos que
         // contiene el registro, que equivale a una fila de la lista

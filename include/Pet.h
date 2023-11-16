@@ -30,4 +30,6 @@ public:
     void addAppoinment();
     void loadPet();
     void recordVaccination();
+
+    void toVecString(std::string vStr[7]);
 };
