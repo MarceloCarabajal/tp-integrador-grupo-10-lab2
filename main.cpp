@@ -9,6 +9,7 @@
 #include "VetsManager.h"
 #include "PetsManager.h"
 #include "RelationsManager.h"
+#include "ProductManager.h"
 #include "Date.h"
 #include "EmailTemplate.h"
 #include "functions.h"
@@ -175,6 +176,38 @@ Menu subMenu ("RELACIONES", true);
 
 
 }
+void loadProduct (){
+    ProductManager products;
+    products.load();
+    system("pause");
+}
+
+
+void showProduct (){
+    ProductManager products;
+    products.show();
+    system("pause");
+}
+
+
+void editProduct (){
+    ProductManager products;
+    products.edit();
+    system("pause");
+
+}
+
+
+void subMenuProductos(){
+Menu subMenu ("PRODUCTOS", true);
+    ProductManager products;
+
+    subMenu.addOption("1. Cargar Producto", loadProduct);
+    subMenu.addOption("2. Mostrar producto", showProduct);
+    subMenu.addOption("3. Editar producto", editProduct);
+    subMenu.showMenu();
+
+}
 
 int main() {
     Menu test;
@@ -187,7 +220,8 @@ int main() {
     test.addOption("4. Enviar email", sendTestEmail);
     test.addOption("5. Gestion de Veterinarios", subMenuVeterinarios);
     test.addOption("6. Gestion de Mascotas", subMenuMascotas);
-    test.addOption("7. Gestion de Relaciones", subMenuRelaciones);                         
+    test.addOption("7. Gestion de Relaciones", subMenuRelaciones);     
+    test.addOption("8. Gestion de Productos", subMenuProductos);                    
     test.showMenu();
 
     system("pause");
