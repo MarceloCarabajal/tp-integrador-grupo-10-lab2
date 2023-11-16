@@ -46,14 +46,14 @@ void RelationsManager::load() {
 PetRelations RelationsManager::loadForm() {
     InputForm petRelationsForm;
     PetRelations auxPetR;
-    bool owner, estatus;
+    bool owner;// estatus;
     int clientId, petId;
    
   
     petRelationsForm.setIntField("ID Mascota", petId, 4);
     petRelationsForm.setIntField("ID Cliente", clientId, 4);
   
-    // TODO: Ver como validamos BOOL
+ 
    ////////// petRelationsForm.setIntField("Estado", estatus, xxxxxxxx);
     ////petRelationsForm.setIntField("¿Es propietario?", owner, xxxxxxxxxxx);
     if (!petRelationsForm.fill()) return auxPetR;
@@ -61,7 +61,7 @@ PetRelations RelationsManager::loadForm() {
     auxPetR.setPetId(petId);
     auxPetR.setClientId(clientId);
     auxPetR.setOwner(owner);
-    auxPetR.setEstatus(estatus);
+    //auxPetR.setEstatus(estatus);
 
 
     return auxPetR;

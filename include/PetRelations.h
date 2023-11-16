@@ -28,5 +28,5 @@ bool  getOwner();
 int getRelationId ();
 bool getEstatus ();
 
- void toVecString(std::string vStr[3]);
+ void toVecString(std::string vStr[4]);
 };
