@@ -166,13 +166,13 @@ void ClientsManager::show() {
     int cellPos = 0;  // acumula la posicion actual a asignar
     for (int i = 0; i < totalRegs; i++) {
         Client auxClient = _clientsFile.readFile(i);
-        cells[cellPos] = std::to_string(auxClient.getClientId());
-        cells[cellPos + 1] = auxClient.getName();
-        cells[cellPos + 2] = auxClient.getLastname();
-        cells[cellPos + 3] = std::to_string(auxClient.getIdPerson());
-        cells[cellPos + 4] = auxClient.getAddress();
-        cells[cellPos + 5] = auxClient.getPhone();
-        cells[cellPos + 6] = auxClient.getEmail();
+        // Obtener todas las propiedades del cliente
+        // Guardarlas en un vector de string
+        std::string vecStr[7];
+        auxClient.toVecString(vecStr);
+        for (int cell = 0; cell < _clientsFields; cell++) {
+            cells[cellPos + cell] = vecStr[cell];
+        }
         // se incrementa la posicion de la celda segun la cantidad de datos que
         // contiene el registro, que equivale a una fila de la lista
         cellPos += _clientsFields;

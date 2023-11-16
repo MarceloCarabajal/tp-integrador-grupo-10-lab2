@@ -33,3 +33,13 @@ int Client::getClientId() { return _clientId; }
 const char *Client::getAddress() { return _address; }
 const char *Client::getPhone() { return _phone; }
 const char *Client::getEmail() { return _email; }
+
+void Client::toVecString(std::string vStr[7]) {
+    vStr[0] = std::to_string(_clientId);
+    vStr[1] = Person::getName();
+    vStr[2] = Person::getLastname();
+    vStr[3] = std::to_string(Person::getIdPerson());
+    vStr[4] = _address;
+    vStr[5] = _phone;
+    vStr[6] = _email;
+}

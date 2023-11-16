@@ -22,4 +22,6 @@ public:
     const char *getAddress();
     const char *getPhone();
     const char *getEmail();
+
+    void toVecString(std::string vStr[7]);
 };
