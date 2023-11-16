@@ -10,6 +10,7 @@
 #include "PetsManager.h"
 #include "RelationsManager.h"
 #include "ProductManager.h"
+#include "AppointmentsManager.h"
 #include "Date.h"
 #include "EmailTemplate.h"
 #include "functions.h"
@@ -209,6 +210,38 @@ Menu subMenu ("PRODUCTOS", true);
 
 }
 
+void loadApp (){
+    AppointmentsManager appointment;
+   appointment.load();
+    system("pause");
+}
+
+
+void showApp (){
+    AppointmentsManager appointment;
+    appointment.show();
+    system("pause");
+}
+
+
+void editApp (){
+    AppointmentsManager appointment;
+    appointment.edit();
+    system("pause");
+
+}
+
+void subMenuTurnos() {
+    Menu subMenu ("TURNOS", true);
+    VetsManager vets;
+
+    subMenu.addOption("1. Cargar turno", loadApp);
+    subMenu.addOption("2. Mostrar turno", showApp);
+    subMenu.addOption("3. Editar turno", editApp);
+    subMenu.showMenu();
+
+}
+
 int main() {
     Menu test;
 
@@ -221,7 +254,8 @@ int main() {
     test.addOption("5. Gestion de Veterinarios", subMenuVeterinarios);
     test.addOption("6. Gestion de Mascotas", subMenuMascotas);
     test.addOption("7. Gestion de Relaciones", subMenuRelaciones);     
-    test.addOption("8. Gestion de Productos", subMenuProductos);                    
+    test.addOption("8. Gestion de Productos", subMenuProductos);   
+    test.addOption("9. Gestion de Turnos", subMenuTurnos);             
     test.showMenu();
 
     system("pause");
