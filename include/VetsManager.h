@@ -7,16 +7,13 @@ class VetsManager {
 private:
     VppFile<Vet> _vetsFile = VppFile<Vet>("Vets.vpp");
     const int _vetsFields = 5;  // total de datos de un regisro Pet
-   Vet loadForm();
-   Vet editForm(int regPos);
-
-
+    Vet loadForm();
+    Vet editForm(int regPos);
 
 public:
-    void load();
-    void edit();
-    void show();
-    void menu();
+    static void load();
+    static void edit();
+    static void show();
 
     // Al ser una funcion estatica se puede usar sin necesaidad de instanciar un
     // objeto de tipo "VetsManager", eso permite que se pueda pasar por

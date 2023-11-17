@@ -12,10 +12,9 @@ private:
     Client editForm(int regPos);
 
 public:
-    void load();
-    void edit();
-    void show();
-    void menu();
+    static void load();
+    static void edit();
+    static void show();
 
     // Al ser una funcion estatica se puede usar sin necesaidad de instanciar un
     // objeto de tipo "ClientsManager", eso permite que se pueda pasar por

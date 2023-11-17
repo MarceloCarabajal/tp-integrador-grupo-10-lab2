@@ -3,21 +3,17 @@
 #include "Product.h"
 #include "VppFile.h"
 
-
 class ProductManager {
 private:
     VppFile<Product> _productsFile = VppFile<Product>("Products.vpp");
     const int _productFields = 9;  // total de datos de un regisro Pet
-  Product loadForm();
-  Product editForm(int regPos);
-
-
+    Product loadForm();
+    Product editForm(int regPos);
 
 public:
-    void load();
-    void edit();
-    void show();
-    void menu();
+    static void load();
+    static void edit();
+    static void show();
 
     // Al ser una funcion estatica se puede usar sin necesaidad de instanciar un
     // objeto de tipo "ProductManager", eso permite que se pueda pasar por

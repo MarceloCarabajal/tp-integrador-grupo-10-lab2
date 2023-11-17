@@ -6,14 +6,15 @@
 // #include "VppFile.h"
 
 #include "ClientsManager.h"
-#include "VetsManager.h"
-#include "PetsManager.h"
-#include "RelationsManager.h"
-#include "ProductManager.h"
 #include "Date.h"
 #include "EmailTemplate.h"
+#include "PetsManager.h"
+#include "ProductManager.h"
+#include "RelationsManager.h"
+#include "VetsManager.h"
 #include "functions.h"
 #include "isvalid.h"
+
 
 using namespace std;
 
@@ -83,130 +84,112 @@ void subMenuClientes() {
     subMenu.showMenu();
 }
 
-
-void loadVet (){
+void loadVet() {
     VetsManager vets;
     vets.load();
     system("pause");
 }
-void showVets(){
+void showVets() {
     VetsManager vets;
     vets.show();
     system("pause");
 }
-void editVets(){
+void editVets() {
     VetsManager vets;
     vets.edit();
     system("pause");
-
 }
 
-
 void subMenuVeterinarios() {
-    Menu subMenu ("VETERINARIOS", true);
+    Menu subMenu("VETERINARIOS", true);
     VetsManager vets;
 
     subMenu.addOption("1. Cargar Veterinario", loadVet);
     subMenu.addOption("2. Mostrar Veterinarios", showVets);
     subMenu.addOption("3. Editar Veterinario", editVets);
     subMenu.showMenu();
-
 }
 
-
-void loadPet(){
+void loadPet() {
     PetsManager pets;
     pets.load();
     system("pause");
 }
-void showPets (){
-    PetsManager  pets;
+void showPets() {
+    PetsManager pets;
     pets.show();
     system("pause");
 }
 
-void editPets(){
-    PetsManager  pets;
-     pets.edit();
+void editPets() {
+    PetsManager pets;
+    pets.edit();
     system("pause");
 }
 
-
 void subMenuMascotas() {
-    Menu subMenu ("MASCOTAS", true);
+    Menu subMenu("MASCOTAS", true);
     PetsManager pets;
 
     subMenu.addOption("1. Cargar Mascota", loadPet);
     subMenu.addOption("2. Mostrar Mascotas", showPets);
     subMenu.addOption("3. Editar Mascota", editPets);
     subMenu.showMenu();
-
 }
 
-
-void loadRelation (){
+void loadRelation() {
     RelationsManager petsRelations;
     petsRelations.load();
     system("pause");
 }
 
-
-void showRelations (){
+void showRelations() {
     RelationsManager petsRelations;
     petsRelations.show();
     system("pause");
 }
 
-
-void editRelation (){
+void editRelation() {
     RelationsManager petsRelations;
     petsRelations.edit();
     system("pause");
-
 }
 
-void subMenuRelaciones(){
-Menu subMenu ("RELACIONES", true);
+void subMenuRelaciones() {
+    Menu subMenu("RELACIONES", true);
     RelationsManager petsRelations;
 
     subMenu.addOption("1. Cargar Relacion", loadRelation);
     subMenu.addOption("2. Mostrar Mascotas", showRelations);
     subMenu.addOption("3. Editar Mascota", editRelation);
     subMenu.showMenu();
-
-
 }
-void loadProduct (){
+void loadProduct() {
     ProductManager products;
     products.load();
     system("pause");
 }
 
-
-void showProduct (){
+void showProduct() {
     ProductManager products;
     products.show();
     system("pause");
 }
 
-
-void editProduct (){
+void editProduct() {
     ProductManager products;
     products.edit();
     system("pause");
-
 }
 
-
-void subMenuProductos(){
-Menu subMenu ("PRODUCTOS", true);
+void subMenuProductos() {
+    Menu subMenu("PRODUCTOS", true);
     ProductManager products;
 
     subMenu.addOption("1. Cargar Producto", loadProduct);
     subMenu.addOption("2. Mostrar producto", showProduct);
     subMenu.addOption("3. Editar producto", editProduct);
     subMenu.showMenu();
-
 }
 
 int main() {
@@ -220,8 +203,8 @@ int main() {
     test.addOption("4. Enviar email", sendTestEmail);
     test.addOption("5. Gestion de Veterinarios", subMenuVeterinarios);
     test.addOption("6. Gestion de Mascotas", subMenuMascotas);
-    test.addOption("7. Gestion de Relaciones", subMenuRelaciones);     
-    test.addOption("8. Gestion de Productos", subMenuProductos);                    
+    test.addOption("7. Gestion de Relaciones", subMenuRelaciones);
+    test.addOption("8. Gestion de Productos", subMenuProductos);
     test.showMenu();
 
     system("pause");
