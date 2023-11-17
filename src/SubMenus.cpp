@@ -1,12 +1,15 @@
 #include "SubMenus.h"
 
-void SubMenus::clients() {
-    Menu subMenu("CLIENTES", true);
+void SubMenus::loadClient() { _clientsManager.load(); }
+void SubMenus::showClients() { _clientsManager.show(); }
+void SubMenus::editClients() { _clientsManager.edit(); }
 
-    subMenu.addOption("1. Cargar Cliente", _clientsManager.load);
-    subMenu.addOption("2. Mostrar Clientes", _clientsManager.show);
-    subMenu.addOption("3. Editar cliente", _clientsManager.edit);
-    subMenu.showMenu();
+void SubMenus::clients() {
+    Menu mnuClients("CLIENTES", true);
+    mnuClients.addOption("1. Cargar Cliente", loadClient);
+    mnuClients.addOption("2. Mostrar Clientes", showClients);
+    mnuClients.addOption("3. Editar cliente", editClients);
+    mnuClients.showMenu();
 }
 
 void SubMenus::appointments() {
@@ -23,38 +26,54 @@ void SubMenus::inventory() {
         subMenu.showMenu(); */
 }
 
-void SubMenus::vets() {
-    Menu subMenu("VETERINARIOS", true);
+void SubMenus::loadVet() { _vetsManager.load(); }
+void SubMenus::showVets() { _vetsManager.show(); }
+void SubMenus::editVets() { _vetsManager.edit(); }
 
-    subMenu.addOption("1. Cargar Veterinario", _vetsManager.load);
-    subMenu.addOption("2. Mostrar Veterinarios", _vetsManager.show);
-    subMenu.addOption("3. Editar Veterinario", _vetsManager.edit);
-    subMenu.showMenu();
+void SubMenus::vets() {
+    Menu mnuVets("VETERINARIOS", true);
+
+    mnuVets.addOption("1. Cargar Veterinario", loadVet);
+    mnuVets.addOption("2. Mostrar Veterinarios", showVets);
+    mnuVets.addOption("3. Editar Veterinario", editVets);
+    mnuVets.showMenu();
 }
+
+void SubMenus::loadPet() { _petsManager.load(); }
+void SubMenus::showPets() { _petsManager.show(); }
+void SubMenus::editPets() { _petsManager.edit(); }
 
 void SubMenus::pets() {
-    Menu subMenu("MASCOTAS", true);
+    Menu mnuPets("MASCOTAS", true);
 
-    subMenu.addOption("1. Cargar Mascota", _petsManager.load);
-    subMenu.addOption("2. Mostrar Mascotas", _petsManager.show);
-    subMenu.addOption("3. Editar Mascota", _petsManager.edit);
-    subMenu.showMenu();
+    mnuPets.addOption("1. Cargar Mascota", loadPet);
+    mnuPets.addOption("2. Mostrar Mascotas", showPets);
+    mnuPets.addOption("3. Editar Mascota", editPets);
+    mnuPets.showMenu();
 }
+
+void SubMenus::loadRel() { _relsManager.load(); }
+void SubMenus::showRels() { _relsManager.show(); }
+void SubMenus::editRels() { _relsManager.edit(); }
 
 void SubMenus::relations() {
-    Menu subMenu("RELACIONES", true);
+    Menu mnuRels("RELACIONES", true);
 
-    subMenu.addOption("1. Cargar Relacion", _relationsManager.load);
-    subMenu.addOption("2. Mostrar Mascotas", _relationsManager.show);
-    subMenu.addOption("3. Editar Mascota", _relationsManager.edit);
-    subMenu.showMenu();
+    mnuRels.addOption("1. Cargar Relacion", loadRel);
+    mnuRels.addOption("2. Mostrar Relaciones", showRels);
+    mnuRels.addOption("3. Editar Relacion", editRels);
+    mnuRels.showMenu();
 }
 
-void SubMenus::products() {
-    Menu subMenu("PRODUCTOS", true);
+void SubMenus::loadProduct() { _productsManager.load(); }
+void SubMenus::showProducts() { _productsManager.show(); }
+void SubMenus::editProducts() { _productsManager.edit(); }
 
-    subMenu.addOption("1. Cargar Producto", _productManager.load);
-    subMenu.addOption("2. Mostrar producto", _productManager.show);
-    subMenu.addOption("3. Editar producto", _productManager.edit);
-    subMenu.showMenu();
+void SubMenus::products() {
+    Menu mnuProducts("PRODUCTOS", true);
+
+    mnuProducts.addOption("1. Cargar Producto", loadProduct);
+    mnuProducts.addOption("2. Mostrar producto", showProducts);
+    mnuProducts.addOption("3. Editar producto", editProducts);
+    mnuProducts.showMenu();
 }

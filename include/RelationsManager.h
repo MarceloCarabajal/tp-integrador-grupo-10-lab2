@@ -13,9 +13,9 @@ private:
     PetRelations editForm(int regPos);
 
 public:
-    static void load();
-    static void edit();
-    static void show();
+    void load();
+    void edit();
+    void show();
 
     // Al ser una funcion estatica se puede usar sin necesaidad de instanciar un
     // objeto de tipo "RelationsManager", eso permite que se pueda pasar por

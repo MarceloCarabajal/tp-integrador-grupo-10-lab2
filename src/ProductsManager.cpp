@@ -1,4 +1,4 @@
-#include "ProductManager.h"
+#include "ProductsManager.h"
 
 #include <iostream>
 
@@ -7,7 +7,7 @@
 #include "ProductCategory.h"
 #include "rlutil.h"
 
-void ProductManager::load() {
+void ProductsManager::load() {
     InputForm idForm;
     Product auxProduct;
     int nId = 0;
@@ -46,7 +46,7 @@ void ProductManager::load() {
     char _productName[30], _description[45], _brand[15], _productType[30];
     ProductCategory _productCategory;
 */
-Product ProductManager::loadForm() {
+Product ProductsManager::loadForm() {
     InputForm productForm;
     Product auxProduct;
     std::string productName, description, brand, productType;
@@ -80,12 +80,12 @@ Product ProductManager::loadForm() {
 }
 
 // Solo compara si coincide el id
-bool ProductManager::searchById(Product reg, int nId) {
+bool ProductsManager::searchById(Product reg, int nId) {
     if (reg.getProductId() == nId) return true;
     return false;
 }
 
-Product ProductManager::editForm(int regPos) {
+Product ProductsManager::editForm(int regPos) {
     InputForm productForm;
     Product auxProduct;
     std::string productName, description, brand, productType;
@@ -142,7 +142,7 @@ Product ProductManager::editForm(int regPos) {
     return auxProduct;
 }
 
-void ProductManager::edit() {
+void ProductsManager::edit() {
     InputForm search;
     int nId;
     show();
@@ -173,7 +173,7 @@ void ProductManager::edit() {
     system("pause");
 }
 
-void ProductManager::show() {
+void ProductsManager::show() {
     int totalRegs = _productsFile.getTotalRegisters();
     // calcular el total de celdas de nuestra lista, segun la cantidad de datos
     // que contiene 1 registro

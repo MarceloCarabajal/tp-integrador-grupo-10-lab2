@@ -5,19 +5,36 @@
 #include "Menu.h"
 #include "PetRelations.h"
 #include "PetsManager.h"
-#include "ProductManager.h"
+#include "ProductsManager.h"
 #include "RelationsManager.h"
 #include "VetsManager.h"
-
 
 class SubMenus {
 private:
     static ClientsManager _clientsManager;
+    static void loadClient();
+    static void showClients();
+    static void editClients();
+
     static VetsManager _vetsManager;
-    static RelationsManager _relationsManager;
+    static void loadVet();
+    static void showVets();
+    static void editVets();
+
     static PetsManager _petsManager;
-    static PetRelations _petsRelations;
-    static ProductManager _productManager;
+    static void loadPet();
+    static void showPets();
+    static void editPets();
+
+    static RelationsManager _relsManager;
+    static void loadRel();
+    static void showRels();
+    static void editRels();
+
+    static ProductsManager _productsManager;
+    static void loadProduct();
+    static void showProducts();
+    static void editProducts();
 
 public:
     static void clients();

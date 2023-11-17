@@ -9,7 +9,7 @@
 #include "Date.h"
 #include "EmailTemplate.h"
 #include "PetsManager.h"
-#include "ProductManager.h"
+#include "ProductsManager.h"
 #include "RelationsManager.h"
 #include "VetsManager.h"
 #include "functions.h"
@@ -164,26 +164,26 @@ void subMenuRelaciones() {
     subMenu.showMenu();
 }
 void loadProduct() {
-    ProductManager products;
+    ProductsManager products;
     products.load();
     system("pause");
 }
 
 void showProduct() {
-    ProductManager products;
+    ProductsManager products;
     products.show();
     system("pause");
 }
 
 void editProduct() {
-    ProductManager products;
+    ProductsManager products;
     products.edit();
     system("pause");
 }
 
 void subMenuProductos() {
     Menu subMenu("PRODUCTOS", true);
-    ProductManager products;
+    ProductsManager products;
 
     subMenu.addOption("1. Cargar Producto", loadProduct);
     subMenu.addOption("2. Mostrar producto", showProduct);
