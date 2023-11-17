@@ -49,9 +49,10 @@ PetRelations RelationsManager::loadForm() {
 
     petRelationsForm.setIntField("ID Mascota", petId, 4);
     petRelationsForm.setIntField("ID Cliente", clientId, 4);
+    
 
     ////////// petRelationsForm.setIntField("Estado", estatus, xxxxxxxx);
-    ////petRelationsForm.setIntField("¿Es propietario?", owner, xxxxxxxxxxx);
+// petRelationsForm.setIntField("¿Es propietario?", owner);
     if (!petRelationsForm.fill()) return auxPetR;
 
     auxPetR.setPetId(petId);
