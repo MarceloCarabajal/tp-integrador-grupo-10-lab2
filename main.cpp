@@ -15,7 +15,6 @@
 #include "functions.h"
 #include "isvalid.h"
 
-
 using namespace std;
 
 void funcCualquier() {

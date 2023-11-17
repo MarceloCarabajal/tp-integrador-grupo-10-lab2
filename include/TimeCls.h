@@ -10,4 +10,7 @@ public:
     int getHour() const;  // Método constante para obtener la hora
     int getMin() const;   // Método constante para obtener los minutos
     int getSec() const;  // Método constante para obtener los segundos
+
+
+    std::string toString();
 };

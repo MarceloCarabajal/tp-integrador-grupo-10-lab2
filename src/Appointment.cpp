@@ -22,19 +22,34 @@ void Appointment::setDate(Date date) { _dateApp = date; }
 
 void Appointment::setTime(Time time) { _timeApp = time; }
 
-void Appointment::setUrgencyCat(int cat) { _urgencyCat = cat; }
+//void Appointment::setUrgencyCat(int cat) { _urgencyCat = cat; }
 
 void Appointment::setReason(std::string reason) {strcpy(_reason, reason.c_str()); }
 
 void Appointment::setAttended(bool attended) { _attended = attended; }
+void Appointment::setClientId (int idc) {_clientId=idc;}
 
 int Appointment::getAppId() { return _appId; }
 int Appointment::getpetId() { return _petId; }
 Date Appointment::getDate() { return _dateApp; }
 Time Appointment::getTime() { return _timeApp; }
-int Appointment::getUrgencyCat() { return _urgencyCat; }
+//int Appointment::getUrgencyCat() { return _urgencyCat; }
 const char *Appointment::getReason() {return _reason; }
 bool Appointment::getAttended() { return _attended; }
+int Appointment::getClientId (){return _clientId;}
+
+
+void Appointment::toVecString(std::string vStr[7]) {
+    vStr[0] = std::to_string( _appId);
+    vStr[1] = std::to_string(_petId);
+    vStr[2] = _dateApp.toString();
+    vStr[3] = _timeApp.toString();
+    vStr[4] =_reason;
+    vStr[5] = _attended;
+    vStr[6] = std::to_string( _clientId);
+}
+
+
 /*
 void Appointment::load() {
 
