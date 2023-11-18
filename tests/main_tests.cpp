@@ -19,6 +19,7 @@ using namespace std;
 #include "InputForm_tests.cpp"
 #include "isvalid_tests.cpp"
 #include "listview_tests.cpp"
+#include "utils.h"
 
 int main() {
     // isvalidEmailTest();
@@ -28,7 +29,7 @@ int main() {
     clients.load();
     clients.show();
     cout << endl;
-    system("pause");
+    utils::pause();
 
     return 0;
 }

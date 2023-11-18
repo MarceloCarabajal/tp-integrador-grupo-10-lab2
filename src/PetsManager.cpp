@@ -6,6 +6,7 @@
 #include "InputForm.h"
 #include "ListView.h"
 #include "rlutil.h"
+#include "utils.h"
 
 void PetsManager::load() {
     InputForm idForm;
@@ -132,7 +133,7 @@ void PetsManager::edit() {
     int regPos = _petsFile.searchReg(searchById, nId);
     if (regPos == -1) {
         std::cout << "No se encontraron resultados.\n";
-        system("pause");
+        utils::pause();
         return;
     }
     // Si se encontro, pedir datos
@@ -140,7 +141,7 @@ void PetsManager::edit() {
     // Si no se completo el formulario, salir
     if (auxPet.getPetId() == 0) {
         std::cout << "No se realizara la edicion.\n";
-        system("pause");
+        utils::pause();
         return;
     }
 
@@ -150,7 +151,7 @@ void PetsManager::edit() {
     } else {
         std::cout << "Ocurrio un error al guardar el registro.\n";
     }
-    system("pause");
+    utils::pause();
 }
 
 void PetsManager::show() {
@@ -161,7 +162,7 @@ void PetsManager::show() {
 
     if (totalRegs < 0) {
         std::cout << "Ocurrio un error al leer los registros.\n";
-        system("pause");  // TODO: usar rlutil ?
+        utils::pause();  // TODO: usar rlutil ?
         return;
     }
     // Se crea la variable que va a contener todas las celdas, segun la cantidad
