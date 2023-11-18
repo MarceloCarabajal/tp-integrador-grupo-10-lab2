@@ -6,6 +6,9 @@
 #include <iostream>
 #include <string>
 
+#include "EmailTemplate.h"
+#include "utils.h"
+
 #pragma comment(lib, "winmm.lib")  // playSound()
 
 #include "quickmail.h"
@@ -103,4 +106,30 @@ void printLogo() {
  | |/ / -_) __/ -_)_  __/_  __/
  |___/\__/\__/\__/ /_/   /_/   
                                )");
+}
+
+void sendTestEmail() {
+    std::string emailTo;
+    EmailTemplate emailHTML("data\\notification.html");
+    bool successFormat = emailHTML.setEmailData("Facundo", "Nueva notificacion",
+                                                Date(2, 11, 2023));
+    if (!successFormat) {
+        cout << "Error al crear email\n";
+        utils::pause();
+        return;
+    }
+
+    cout << "Destinatario: ";
+    cin >> emailTo;
+    cout << "Enviando email..\n";
+    bool isSent =
+        sendEmail(emailTo.c_str(), "Nueva notificacion", emailHTML.getHTML());
+
+    if (isSent) {
+        notifSound();
+        cout << "\n EMAIL ENVIADO!.\n";
+    } else {
+        cout << "Ocurrio un error :(\n";
+    }
+    utils::pause();
 }

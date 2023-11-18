@@ -1,9 +1,15 @@
 #include "SubMenus.h"
 
+#include "utils.h"
+
 ClientsManager SubMenus::_clientsManager = ClientsManager();
 void SubMenus::loadClient() { _clientsManager.load(); }
-void SubMenus::showClients() { _clientsManager.show(); }
 void SubMenus::editClients() { _clientsManager.edit(); }
+
+void SubMenus::showClients() {
+    _clientsManager.show();
+    utils::pause();
+}
 
 void SubMenus::clients() {
     Menu mnuClients("CLIENTES", true);
@@ -82,8 +88,6 @@ void SubMenus::products() {
     mnuProducts.addOption("3. Editar producto", editProducts);
     mnuProducts.showMenu();
 }
-
-
 
 VaccinationManager SubMenus::_vaccManager = VaccinationManager();
 void SubMenus::loadVaccination() { _vaccManager.load(); }

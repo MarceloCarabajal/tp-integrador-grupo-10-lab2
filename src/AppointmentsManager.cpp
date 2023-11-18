@@ -5,8 +5,9 @@
 #include "InputForm.h"
 #include "ListView.h"
 #include "rlutil.h"
+#include "utils.h"
 
-void AppointmentsManager::load() {  
+void AppointmentsManager::load() {
     InputForm idForm;
     Appointment auxAppointment;
     int nId = 0;
@@ -40,10 +41,6 @@ void AppointmentsManager::load() {
     }
 }
 
-
-
-
-
 Appointment AppointmentsManager::loadForm() {
     InputForm AppointmentForm;
     Appointment auxAppointment;
@@ -53,14 +50,13 @@ Appointment AppointmentsManager::loadForm() {
     bool attended;
     int clientId, petId;
 
-   // AppointmentForm.set   ("Fecha",dateApp);
-   // AppointmentForm.set   ("Hora", timeApp);
-   //AppointmentForm.set        ("Asistio",attended  );
+    // AppointmentForm.set   ("Fecha",dateApp);
+    // AppointmentForm.set   ("Hora", timeApp);
+    // AppointmentForm.set        ("Asistio",attended  );
     AppointmentForm.setStrField("Motivo", reason, 30);
     AppointmentForm.setIntField("Cliente ID", clientId, 4);
     AppointmentForm.setIntField("Mascota ID", petId, 4);
 
-   
     if (!AppointmentForm.fill()) return auxAppointment;
 
     auxAppointment.setpetId(petId);
@@ -70,11 +66,8 @@ Appointment AppointmentsManager::loadForm() {
     auxAppointment.setAttended(attended);
     auxAppointment.setClientId(clientId);
 
-
     return auxAppointment;
 }
-
-
 
 // Solo compara si coincide el id
 bool AppointmentsManager::searchById(Appointment reg, int nId) {
@@ -91,7 +84,6 @@ Appointment AppointmentsManager::editForm(int regPos) {
     bool attended;
     int clientId, petId, nId;
 
-
     auxAppointment = _appointmentsFile.readFile(regPos);
     if (auxAppointment.getAppId() == 0) {
         std::cout << "Ocurrio un error al leer los registros.\n";
@@ -103,34 +95,30 @@ Appointment AppointmentsManager::editForm(int regPos) {
     reason = auxAppointment.getReason();
     nId = auxAppointment.getAppId();
     attended = auxAppointment.getAttended();
-    petId=auxAppointment.getpetId();
-    clientId=auxAppointment.getClientId();
-
+    petId = auxAppointment.getpetId();
+    clientId = auxAppointment.getClientId();
 
     std::cout << "Editando Turno #" << nId << std::endl;
     // configurar form
-   AppointmentForm.setEditMode(true);  // modo edicion
+    AppointmentForm.setEditMode(true);  // modo edicion
 
-// AppointmentForm.set   ("Fecha",dateApp );
-   // AppointmentForm.set   ("Hora", timeApp);
-   //AppointmentForm.set        ("Asistio",attended );
+    // AppointmentForm.set   ("Fecha",dateApp );
+    // AppointmentForm.set   ("Hora", timeApp);
+    // AppointmentForm.set        ("Asistio",attended );
     AppointmentForm.setStrField("Motivo", reason, 30);
     AppointmentForm.setIntField("Cliente ID", clientId, 4);
     AppointmentForm.setIntField("Mascota ID", petId, 4);
-
-
-
 
     // completar form
     bool success = AppointmentForm.fill();
     if (success) {  // si se completa
 
-    auxAppointment.setpetId(petId);
-    auxAppointment.setDate(dateApp);
-    auxAppointment.setTime(timeApp);
-    auxAppointment.setReason(reason);
-    auxAppointment.setAttended(attended);
-    auxAppointment.setClientId(clientId);
+        auxAppointment.setpetId(petId);
+        auxAppointment.setDate(dateApp);
+        auxAppointment.setTime(timeApp);
+        auxAppointment.setReason(reason);
+        auxAppointment.setAttended(attended);
+        auxAppointment.setClientId(clientId);
 
         return auxAppointment;
     }
@@ -148,7 +136,7 @@ void AppointmentsManager::edit() {
     int regPos = _appointmentsFile.searchReg(searchById, nId);
     if (regPos == -1) {
         std::cout << "No se encontraron resultados.\n";
-        system("pause");
+        utils::pause();
         return;
     }
     // Si se encontro, pedir datos
@@ -156,7 +144,7 @@ void AppointmentsManager::edit() {
     // Si no se completo el formulario, salir
     if (auxAppointment.getAppId() == 0) {
         std::cout << "No se realizara la edicion.\n";
-        system("pause");
+        utils::pause();
         return;
     }
 
@@ -166,7 +154,7 @@ void AppointmentsManager::edit() {
     } else {
         std::cout << "Ocurrio un error al guardar el registro.\n";
     }
-    system("pause");
+    utils::pause();
 }
 
 void AppointmentsManager::show() {
@@ -177,20 +165,21 @@ void AppointmentsManager::show() {
 
     if (totalRegs < 0) {
         std::cout << "Ocurrio un error al leer los registros.\n";
-        system("pause");  // TODO: usar rlutil ?
+        utils::pause();  // TODO: usar rlutil ?
         return;
     }
     // Se crea la variable que va a contener todas las celdas, segun la cantidad
     // de registros
     std::string *cells = new std::string[totalCells];
     if (cells == NULL) {
-        std::cout << "No hay memoria suficiente para mostrar los turnos veterinarios.\n";
+        std::cout << "No hay memoria suficiente para mostrar los turnos "
+                     "veterinarios.\n";
         return;
     }
     int cellPos = 0;  // acumula la posicion actual a asignar
     for (int i = 0; i < totalRegs; i++) {
-       Appointment auxAppointment = _appointmentsFile.readFile(i);
-       // Obtener todas las propiedades del vete
+        Appointment auxAppointment = _appointmentsFile.readFile(i);
+        // Obtener todas las propiedades del vete
         // Guardarlas en un vector de string
         std::string vecStr[7];
         auxAppointment.toVecString(vecStr);
@@ -203,18 +192,13 @@ void AppointmentsManager::show() {
         cellPos += _AppointmentsFields;
     }
     // Vector que contiene las columnas de nuestra lista
-    std::string columns[8] = {"ID Turno",    "ID Mascota",   "Fecha", "Hora",
-                              "Motivo", "Asistio", "ID Cliente"};
+    std::string columns[8] = {"ID Turno", "ID Mascota", "Fecha",     "Hora",
+                              "Motivo",   "Asistio",    "ID Cliente"};
 
-    
     ListView vetsList;
     vetsList.addCells(cells, totalCells);
     vetsList.addCols(columns, 7);
     vetsList.setTitle("TURNOS");
     vetsList.show();
-    delete[] cells;  // liberar memoria!  
-    
-    }
-
-
-  
+    delete[] cells;  // liberar memoria!
+}

@@ -34,7 +34,6 @@ void Menu::showMenu() {
     }
 
     maxSelect = _options.size();
-    rlutil::hidecursor();  // ocultar cursor de consola
     printBase();
     printMenu(currentSelect);
 
@@ -93,6 +92,7 @@ void Menu::printMenu(int selected) {
     }
     std::cout
         << "\n\nElija una opcion y presione enter o escape para salir.\n ";
+    rlutil::hidecursor();  // ocultar cursor de consola
 }
 
 int Menu::getXPosCentered() {

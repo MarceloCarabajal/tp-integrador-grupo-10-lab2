@@ -5,6 +5,7 @@
 #include "InputForm.h"
 #include "ListView.h"
 #include "rlutil.h"
+#include "utils.h"
 
 void RelationsManager::load() {
     InputForm idForm;
@@ -49,10 +50,9 @@ PetRelations RelationsManager::loadForm() {
 
     petRelationsForm.setIntField("ID Mascota", petId, 4);
     petRelationsForm.setIntField("ID Cliente", clientId, 4);
-    
 
     ////////// petRelationsForm.setIntField("Estado", estatus, xxxxxxxx);
-// petRelationsForm.setIntField("¿Es propietario?", owner);
+    // petRelationsForm.setIntField("¿Es propietario?", owner);
     if (!petRelationsForm.fill()) return auxPetR;
 
     auxPetR.setPetId(petId);
@@ -126,7 +126,7 @@ void RelationsManager::edit() {
     int regPos = _petRelationsFile.searchReg(searchById, nId);
     if (regPos == -1) {
         std::cout << "No se encontraron resultados.\n";
-        system("pause");
+        utils::pause();
         return;
     }
     // Si se encontro, pedir datos
@@ -134,7 +134,7 @@ void RelationsManager::edit() {
     // Si no se completo el formulario, salir
     if (auxPetR.getRelationId() == 0) {
         std::cout << "No se realizara la edicion.\n";
-        system("pause");
+        utils::pause();
         return;
     }
 
@@ -144,7 +144,7 @@ void RelationsManager::edit() {
     } else {
         std::cout << "Ocurrio un error al guardar el registro.\n";
     }
-    system("pause");
+    utils::pause();
 }
 
 void RelationsManager::show() {
@@ -155,7 +155,7 @@ void RelationsManager::show() {
 
     if (totalRegs < 0) {
         std::cout << "Ocurrio un error al leer los registros.\n";
-        system("pause");  // TODO: usar rlutil ?
+        utils::pause();  // TODO: usar rlutil ?
         return;
     }
     // Se crea la variable que va a contener todas las celdas, segun la cantidad
