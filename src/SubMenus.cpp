@@ -83,6 +83,9 @@ void SubMenus::products() {
     mnuProducts.showMenu();
 }
 
+
+
+VaccinationManager SubMenus::_vaccManager = VaccinationManager();
 void SubMenus::loadVaccination() { _vaccManager.load(); }
 void SubMenus::showVaccinations() { _vaccManager.show(); }
 void SubMenus::editVaccination() { _vaccManager.edit(); }
