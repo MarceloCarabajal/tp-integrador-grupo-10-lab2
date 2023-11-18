@@ -7,7 +7,7 @@
 
 class MainManager {
 private:
-    Menu _mainMenu = Menu("MENU PRINCIPAL");
+    Menu _mainMenu = Menu("MENU PRINCIPAL:house:");
     SubMenus _subMenus;
 
 public:

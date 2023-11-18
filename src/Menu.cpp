@@ -4,11 +4,13 @@
 #include <iostream>
 #include <vector>
 
+#include "emoji.h"
 #include "functions.h"
+#include "utils.h"
 
 Menu::Menu(std::string title, bool isSubMenu) {
     _currentOption = 0;
-    _maxLength = 0;
+    _maxLength = (int)utils::removeEmoji(title).size() + 2;
     _title = " " + title + " ";
     _isSubMenu = isSubMenu;
 }
@@ -16,7 +18,7 @@ Menu::Menu(std::string title, bool isSubMenu) {
 void Menu::addOption(std::string option, void (*optFunc)()) {
     _options.push_back(option);
     _functions.push_back(optFunc);
-    updateMaxLength(option);
+    updateMaxLength(utils::removeEmoji(option));
 }
 
 void Menu::updateMaxLength(std::string str) {
@@ -28,9 +30,9 @@ void Menu::showMenu() {
     int currentSelect = 1, maxSelect;
 
     if (_isSubMenu) {
-        _options.push_back("0. VOLVER (ESC)");
+        _options.push_back("0. VOLVER (ESC) :arrow_backward:");
     } else {
-        _options.push_back("0. SALIR (ESC)");
+        _options.push_back("0. SALIR (ESC) :end:");
     }
 
     maxSelect = _options.size();
@@ -62,10 +64,11 @@ void Menu::showMenu() {
 
 void Menu::printBase() {
     int remainingWidth = 0, sidesWidth, xPos;
+    int titleSize = (int)utils::removeEmoji(_title).size();
     xPos = getXPosCentered();
-    sidesWidth = (_maxLength / 2) - (int)_title.size() / 2;
-    sidesWidth -= (int)_title.size() % 2;
-    if ((sidesWidth * 2) + (int)_title.size() < _maxLength) {
+    sidesWidth = (_maxLength / 2) - titleSize / 2;
+    sidesWidth -= titleSize % 2;
+    if ((sidesWidth * 2) + titleSize < _maxLength) {
         remainingWidth = 1;
     }
     // Limpiar todo
@@ -74,7 +77,8 @@ void Menu::printBase() {
     printLogo();
     // Titulo del menu
     rlutil::locate(xPos, _yPos - 1);
-    std::cout << std::setfill('#') << std::setw(sidesWidth) << "" << _title
+    std::cout << std::setfill('#') << std::setw(sidesWidth) << ""
+              << emojicpp::emojize(_title)
               << std::setw(sidesWidth + remainingWidth) << "";
     std::cout << std::setfill(' ');
     // Linea base del menu
@@ -105,7 +109,7 @@ void Menu::printHighlighted(std::string text, bool highlight, int color, int x,
     if (highlight) {
         rlutil::setBackgroundColor(color);
         if (x + y != 0) rlutil::locate(x, y);
-        std::cout << text;
+        std::cout << emojicpp::emojize(text);
         rlutil::setBackgroundColor(DEFAULT_BG);
         // La linea nueva se imprime despues de setear el
         // color de fondo para evitar el bug de cuando se borra la
@@ -114,6 +118,6 @@ void Menu::printHighlighted(std::string text, bool highlight, int color, int x,
     } else {
         rlutil::setBackgroundColor(DEFAULT_BG);
         if (x + y != 0) rlutil::locate(x, y);
-        std::cout << text << std::endl;
+        std::cout << emojicpp::emojize(text) << std::endl;
     }
 }

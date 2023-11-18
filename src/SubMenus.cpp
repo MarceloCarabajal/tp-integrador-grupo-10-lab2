@@ -12,10 +12,10 @@ void SubMenus::showClients() {
 }
 
 void SubMenus::clients() {
-    Menu mnuClients("CLIENTES", true);
-    mnuClients.addOption("1. Cargar Cliente", loadClient);
-    mnuClients.addOption("2. Mostrar Clientes", showClients);
-    mnuClients.addOption("3. Editar cliente", editClients);
+    Menu mnuClients("CLIENTES:busts_in_silhouette:", true);
+    mnuClients.addOption("1. Cargar Cliente :arrow_up_small:", loadClient);
+    mnuClients.addOption("2. Mostrar Clientes :page_facing_up:", showClients);
+    mnuClients.addOption("3. Editar cliente :pencil2:", editClients);
     mnuClients.showMenu();
 }
 
@@ -39,11 +39,11 @@ void SubMenus::showVets() { _vetsManager.show(); }
 void SubMenus::editVets() { _vetsManager.edit(); }
 
 void SubMenus::vets() {
-    Menu mnuVets("VETERINARIOS", true);
+    Menu mnuVets("VETERINARIOS:briefcase:", true);
 
-    mnuVets.addOption("1. Cargar Veterinario", loadVet);
-    mnuVets.addOption("2. Mostrar Veterinarios", showVets);
-    mnuVets.addOption("3. Editar Veterinario", editVets);
+    mnuVets.addOption("1. Cargar Veterinario :arrow_up_small:", loadVet);
+    mnuVets.addOption("2. Mostrar Veterinarios :page_facing_up:", showVets);
+    mnuVets.addOption("3. Editar Veterinario :pencil2:", editVets);
     mnuVets.showMenu();
 }
 
@@ -53,11 +53,11 @@ void SubMenus::showPets() { _petsManager.show(); }
 void SubMenus::editPets() { _petsManager.edit(); }
 
 void SubMenus::pets() {
-    Menu mnuPets("MASCOTAS", true);
+    Menu mnuPets("MASCOTAS:dog:", true);
 
-    mnuPets.addOption("1. Cargar Mascota", loadPet);
-    mnuPets.addOption("2. Mostrar Mascotas", showPets);
-    mnuPets.addOption("3. Editar Mascota", editPets);
+    mnuPets.addOption("1. Cargar Mascota :arrow_up_small:", loadPet);
+    mnuPets.addOption("2. Mostrar Mascotas :page_facing_up:", showPets);
+    mnuPets.addOption("3. Editar Mascota :pencil2:", editPets);
     mnuPets.showMenu();
 }
 
@@ -67,11 +67,11 @@ void SubMenus::showRels() { _relsManager.show(); }
 void SubMenus::editRels() { _relsManager.edit(); }
 
 void SubMenus::relations() {
-    Menu mnuRels("RELACIONES", true);
+    Menu mnuRels("RELACIONES:couple_with_heart:", true);
 
-    mnuRels.addOption("1. Cargar Relacion", loadRel);
-    mnuRels.addOption("2. Mostrar Relaciones", showRels);
-    mnuRels.addOption("3. Editar Relacion", editRels);
+    mnuRels.addOption("1. Cargar Relación :arrow_up_small:", loadRel);
+    mnuRels.addOption("2. Mostrar Relaciones :page_facing_up:", showRels);
+    mnuRels.addOption("3. Editar Relación :pencil2:", editRels);
     mnuRels.showMenu();
 }
 
@@ -81,11 +81,11 @@ void SubMenus::showProducts() { _productsManager.show(); }
 void SubMenus::editProducts() { _productsManager.edit(); }
 
 void SubMenus::products() {
-    Menu mnuProducts("PRODUCTOS", true);
+    Menu mnuProducts("PRODUCTOS:package:", true);
 
-    mnuProducts.addOption("1. Cargar Producto", loadProduct);
-    mnuProducts.addOption("2. Mostrar producto", showProducts);
-    mnuProducts.addOption("3. Editar producto", editProducts);
+    mnuProducts.addOption("1. Cargar Producto :arrow_up_small:", loadProduct);
+    mnuProducts.addOption("2. Mostrar producto :page_facing_up:", showProducts);
+    mnuProducts.addOption("3. Editar producto :pencil2:", editProducts);
     mnuProducts.showMenu();
 }
 
@@ -95,10 +95,12 @@ void SubMenus::showVaccinations() { _vaccManager.show(); }
 void SubMenus::editVaccination() { _vaccManager.edit(); }
 
 void SubMenus::vaccination() {
-    Menu mnuVaccination("VACUNACION", true);
+    Menu mnuVaccination("VACUNACIÓN:syringe:", true);
 
-    mnuVaccination.addOption("1. Cargar Vacunacion", loadVaccination);
-    mnuVaccination.addOption("2. Mostrar Vacunaciones", showVaccinations);
-    mnuVaccination.addOption("3. Editar Vacunacion", editVaccination);
+    mnuVaccination.addOption("1. Cargar Vacunación :arrow_up_small:",
+                             loadVaccination);
+    mnuVaccination.addOption("2. Mostrar Vacunaciones :page_facing_up:",
+                             showVaccinations);
+    mnuVaccination.addOption("3. Editar Vacunación :pencil2:", editVaccination);
     mnuVaccination.showMenu();
 }
