@@ -77,3 +77,16 @@ void SubMenus::products() {
     mnuProducts.addOption("3. Editar producto", editProducts);
     mnuProducts.showMenu();
 }
+
+void SubMenus::loadVaccination() { _vaccManager.load(); }
+void SubMenus::showVaccinations() { _vaccManager.show(); }
+void SubMenus::editVaccination() { _vaccManager.edit(); }
+
+void SubMenus::vaccination() {
+    Menu mnuVaccination("VACUNACION", true);
+
+    mnuVaccination.addOption("1. Cargar Vacunacion", loadVaccination);
+    mnuVaccination.addOption("2. Mostrar Vacunaciones", showVaccinations);
+    mnuVaccination.addOption("3. Editar Vacunacion", editVaccination);
+    mnuVaccination.showMenu();
+}
