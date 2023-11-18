@@ -6,7 +6,6 @@
 #include "ListView.h"
 #include "rlutil.h"
 
-
 void VaccinationManager::load() {
     InputForm idForm;
     Vaccination auxVaccination;
@@ -16,8 +15,9 @@ void VaccinationManager::load() {
     // pedir y buscar si el id ingresado existe
     do {
         if (alreadyExists) {
-            std::cout << "El ID de Vacunacion ya existe, presione cualquier tecla "
-                         "para reintentar o ESC para salir.\n";
+            std::cout
+                << "El ID de Vacunacion ya existe, presione cualquier tecla "
+                   "para reintentar o ESC para salir.\n";
             if (rlutil::getkey() == rlutil::KEY_ESCAPE) return;
             rlutil::cls();
         }
@@ -41,23 +41,23 @@ void VaccinationManager::load() {
     }
 }
 
-
-
 Vaccination VaccinationManager::loadForm() {
     InputForm vaccinationForm;
-   Vaccination auxVaccination;
+    Vaccination auxVaccination;
     std::string nameVaccine;
     Date dateAplication, dateRevaccination;
     int petId;
-    bool notified; 
+    bool notified;
 
-    vaccinationForm.setStrField(" Vacuna", nameVaccine, 15): 
+    vaccinationForm.setStrField(" Vacuna", nameVaccine, 15);
     vaccinationForm.setIntField("ID Mascota", petId, 4);
 
-     // TODO: VER LOS DOS SIGUIENTES:
-    // vaccinationForm.setFechaField("Fecha de aplicacion", dateAplication, XXXXXXXXXXXXXX);
-  // vaccinationForm.setFechaField("Fecha de revacunacion", dateRevaccination, XXXXXXXXXXXXXX);
- //vaccinationForm.setIntField("Notificado", notified);
+    // TODO: VER LOS DOS SIGUIENTES:
+    // vaccinationForm.setFechaField("Fecha de aplicacion", dateAplication,
+    // XXXXXXXXXXXXXX);
+    // vaccinationForm.setFechaField("Fecha de revacunacion", dateRevaccination,
+    // XXXXXXXXXXXXXX);
+    // vaccinationForm.setIntField("Notificado", notified);
     if (!vaccinationForm.fill()) return auxVaccination;
 
     auxVaccination.setNameVaccine(nameVaccine);
@@ -65,7 +65,7 @@ Vaccination VaccinationManager::loadForm() {
     auxVaccination.setDateAplication(dateAplication);
     auxVaccination.setDateRevaccination(dateRevaccination);
     auxVaccination.setNotified(notified);
-   
+
     return auxVaccination;
 }
 
@@ -77,11 +77,11 @@ bool VaccinationManager::searchById(Vaccination reg, int nId) {
 
 Vaccination VaccinationManager::editForm(int regPos) {
     InputForm vaccinationForm;
-    Vaccination  auxVaccination;
+    Vaccination auxVaccination;
     std::string nameVaccine;
     Date dateAplication, dateRevaccination;
-    int petId, nId; 
-    bool notified; 
+    int petId, nId;
+    bool notified;
 
     auxVaccination = _vaccinationFile.readFile(regPos);
     if (auxVaccination.getAplicationId() == 0) {
@@ -94,35 +94,32 @@ Vaccination VaccinationManager::editForm(int regPos) {
     dateAplication = auxVaccination.getDateAplication();
     dateRevaccination = auxVaccination.getDateRevaccination();
     notified = auxVaccination.getNottified();
-    petId= auxVaccination.getPeId();
+    petId = auxVaccination.getPeId();
 
     std::cout << "Editando vacunacion#" << nId << std::endl;
     // configurar form
     vaccinationForm.setEditMode(true);  // modo edicion
 
-
     vaccinationForm.setStrField(" Vacuna", nameVaccine, 15);
     vaccinationForm.setIntField("ID Mascota", petId, 4);
 
     // TODO: VER LOS DOS SIGUIENTES:
-    // vaccinationForm.setFechaField("Fecha de aplicacion", dateAplication, XXXXXXXXXXXXXX);
-    // vaccinationForm.setFechaField("Fecha de revacunacion", dateRevaccination, XXXXXXXXXXXXXX);
-    //vaccinationForm.setIntField("Notificado", notified);
-
-
-
+    // vaccinationForm.setFechaField("Fecha de aplicacion", dateAplication,
+    // XXXXXXXXXXXXXX); vaccinationForm.setFechaField("Fecha de revacunacion",
+    // dateRevaccination, XXXXXXXXXXXXXX);
+    // vaccinationForm.setIntField("Notificado", notified);
 
     // completar form
     bool success = vaccinationForm.fill();
     if (success) {  // si se completa
-   
-    auxVaccination.setNameVaccine(nameVaccine);
-    auxVaccination.setPetId(petId);
-    auxVaccination.setDateAplication(dateAplication);
-    auxVaccination.setDateRevaccination(dateRevaccination);
-    auxVaccination.setNotified(notified);
 
-    return auxVaccination;
+        auxVaccination.setNameVaccine(nameVaccine);
+        auxVaccination.setPetId(petId);
+        auxVaccination.setDateAplication(dateAplication);
+        auxVaccination.setDateRevaccination(dateRevaccination);
+        auxVaccination.setNotified(notified);
+
+        return auxVaccination;
     }
     // si no se completa, devolver Vaccination vacio
     return auxVaccination;
@@ -142,7 +139,7 @@ void VaccinationManager::edit() {
         return;
     }
     // Si se encontro, pedir datos
-   Vaccination auxVaccination = editForm(regPos);
+    Vaccination auxVaccination = editForm(regPos);
     // Si no se completo el formulario, salir
     if (auxVaccination.getAplicationId() == 0) {
         std::cout << "No se realizara la edicion.\n";
@@ -174,12 +171,13 @@ void VaccinationManager::show() {
     // de registros
     std::string *cells = new std::string[totalCells];
     if (cells == NULL) {
-        std::cout << "No hay memoria suficiente para mostrar las aplicaciones realizadas.\n";
+        std::cout << "No hay memoria suficiente para mostrar las aplicaciones "
+                     "realizadas.\n";
         return;
     }
     int cellPos = 0;  // acumula la posicion actual a asignar
     for (int i = 0; i < totalRegs; i++) {
-       Vaccination auxVaccination = _vaccinationFile.readFile(i);
+        Vaccination auxVaccination = _vaccinationFile.readFile(i);
         // Obtener todas las propiedades del cliente
         // Guardarlas en un vector de string
         std::string vecStr[6];
@@ -192,7 +190,8 @@ void VaccinationManager::show() {
         cellPos += _vaccinationFields;
     }
     // Vector que contiene las columnas de nuestra lista
-    std::string columns[6] = {"ID Aplicacion",        " Vacuna",   "Id Mascota ", "Fecha aplicacion",
+    std::string columns[6] = {"ID Aplicacion",      " Vacuna",
+                              "Id Mascota ",        "Fecha aplicacion",
                               "Fecha revacunacion", "¿Notificado?"};
 
     ListView VaccinationList;

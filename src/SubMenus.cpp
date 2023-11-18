@@ -1,5 +1,6 @@
 #include "SubMenus.h"
 
+ClientsManager SubMenus::_clientsManager = ClientsManager();
 void SubMenus::loadClient() { _clientsManager.load(); }
 void SubMenus::showClients() { _clientsManager.show(); }
 void SubMenus::editClients() { _clientsManager.edit(); }
@@ -26,6 +27,7 @@ void SubMenus::inventory() {
         subMenu.showMenu(); */
 }
 
+VetsManager SubMenus::_vetsManager = VetsManager();
 void SubMenus::loadVet() { _vetsManager.load(); }
 void SubMenus::showVets() { _vetsManager.show(); }
 void SubMenus::editVets() { _vetsManager.edit(); }
@@ -39,6 +41,7 @@ void SubMenus::vets() {
     mnuVets.showMenu();
 }
 
+PetsManager SubMenus::_petsManager = PetsManager();
 void SubMenus::loadPet() { _petsManager.load(); }
 void SubMenus::showPets() { _petsManager.show(); }
 void SubMenus::editPets() { _petsManager.edit(); }
@@ -52,6 +55,7 @@ void SubMenus::pets() {
     mnuPets.showMenu();
 }
 
+RelationsManager SubMenus::_relsManager = RelationsManager();
 void SubMenus::loadRel() { _relsManager.load(); }
 void SubMenus::showRels() { _relsManager.show(); }
 void SubMenus::editRels() { _relsManager.edit(); }
@@ -65,6 +69,7 @@ void SubMenus::relations() {
     mnuRels.showMenu();
 }
 
+ProductsManager SubMenus::_productsManager = ProductsManager();
 void SubMenus::loadProduct() { _productsManager.load(); }
 void SubMenus::showProducts() { _productsManager.show(); }
 void SubMenus::editProducts() { _productsManager.edit(); }
