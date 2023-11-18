@@ -189,6 +189,10 @@ bool InputForm::askToRetry(fieldType fType, int maxLimit) {
                       << maxLimit << " caracteres.\n";
         case phoneField:
             std::cout << "solo numeros, hasta " << maxLimit << " digitos. \n";
+            break; 
+        case boolField: 
+            std::cout <<" solo Si o No";
+            break;
         default:
             break;
     }
@@ -210,6 +214,7 @@ bool InputForm::fill() {
     if (!requestStrFields()) return false;
     if (!requestAlphanumFields()) return false;
     if (!requestIntFields()) return false;
+    if (!requestBoolFields()) return false;
     // Si se asigno la variable, pedir campo
     if (_emailVar != NULL) {
         if (!requestEmailField()) return false;
@@ -217,6 +222,7 @@ bool InputForm::fill() {
     if (_phoneVar != NULL) {
         if (!requestPhoneField()) return false;
     }
+    
     return true;
 }
 
@@ -225,12 +231,15 @@ void InputForm::clearAll() {
     _strFields.clear();
     _intFields.clear();
     _alphanumFields.clear();
+    _boolFields.clear();
     _strLimit.clear();
     _intLimit.clear();
     _alnLimit.clear();
     _strVars.clear();
     _intVars.clear();
     _alphanumVars.clear();
+     _boolVars.clear();
+
 }
 
 std::string InputForm::trim(std::string str) {

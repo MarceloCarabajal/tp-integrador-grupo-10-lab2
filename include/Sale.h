@@ -7,7 +7,7 @@ class Sale {
 
 private:
 
-int _saleId, _quantit, _transactionId;
+int _saleId,  _transactionId;
 float _totalAmount;
 char _paymentMethod[15];
 Date _saleDate; 
@@ -38,5 +38,5 @@ int getTransactionId();
 
 void load();
 
-
+    void toVecString(std::string vStr[7]);
 } ;

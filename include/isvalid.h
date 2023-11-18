@@ -88,4 +88,15 @@ namespace isvalid {
         }
         return true;
     }
+   // Verifica que una cadena solo contenga si o no
+    inline bool boolean(std::string cadena){
+    if (cadena.length() == 0) return false;
+    if (cadena == "si" || cadena == "no") return true;
+    return false;
+    }
+
+
+
+
+
 }  // namespace isvalid

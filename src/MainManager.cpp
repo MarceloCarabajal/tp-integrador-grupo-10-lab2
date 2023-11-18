@@ -17,5 +17,6 @@ void MainManager::mainMenu() {
     _mainMenu.addOption("6. Gestion de Mascotas", _subMenus.pets);
     _mainMenu.addOption("7. Gestion de Relaciones", _subMenus.relations);
     _mainMenu.addOption("8. Gestion de Productos", _subMenus.products);
+    _mainMenu.addOption("9. Gestion de Vacunacion", _subMenus.products);
     _mainMenu.showMenu();
 }
