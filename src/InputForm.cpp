@@ -52,8 +52,9 @@ bool InputForm::requestStrFields() {
             if (attempts > 0) {
                 if (!askToRetry(strField, _strLimit[i])) return false;
             }
-            if (_editing)
+            if (_editing) {
                 std::cout << _strFields[i] << " actual: " << *_strVars[i];
+            }
             std::cout << (_editing ? "\nNuevo/a " : "Ingrese ") << _strFields[i]
                       << ": ";
             std::getline(std::cin, temp);
@@ -62,10 +63,10 @@ bool InputForm::requestStrFields() {
             valid = isvalid::onlyLetters(temp) &&
                     (size_t)_strLimit[i] >= temp.length();
             // si esta en edicion y deja en blanco, es valido
-            if (_editing && temp.length() == 0) valid = true;
+            if (_editing && temp.empty()) valid = true;
         } while (!valid);
         // si esta en modo edicion, y deja vacio, no se reasigna
-        if (temp.length() > 0) *_strVars[i] = temp;
+        if (!temp.empty()) *_strVars[i] = temp;
     }
     return true;
 }
@@ -79,8 +80,9 @@ bool InputForm::requestIntFields() {
             if (attempts > 0) {
                 if (!askToRetry(intField, _intLimit[i])) return false;
             }
-            if (_editing)
+            if (_editing) {
                 std::cout << _intFields[i] << " actual: " << *_intVars[i];
+            }
             std::cout << (_editing ? "\nNuevo/a " : "Ingrese ") << _intFields[i]
                       << ": ";
             std::getline(std::cin, tempStr);
@@ -89,10 +91,10 @@ bool InputForm::requestIntFields() {
             valid = isvalid::onlyIntegers(tempStr) &&
                     (size_t)_intLimit[i] >= tempStr.length();
             // si esta en edicion y deja en blanco, es valido
-            if (_editing && tempStr.length() == 0) valid = true;
+            if (_editing && tempStr.empty()) valid = true;
         } while (!valid);
         // si esta en modo edicion, y deja vacio, no se reasigna
-        if (tempStr.length() > 0) *_intVars[i] = stoi(tempStr);
+        if (!tempStr.empty()) *_intVars[i] = stoi(tempStr);
     }
     return true;
 }
@@ -113,10 +115,10 @@ bool InputForm::requestPhoneField() {
         valid =
             isvalid::onlyIntegers(temp) && (size_t)_phoneLimit >= temp.length();
         // si esta en edicion y deja en blanco, es valido
-        if (_editing && temp.length() == 0) valid = true;
+        if (_editing && temp.empty()) valid = true;
     } while (!valid);
     // si esta en modo edicion, y deja vacio, no se reasigna
-    if (temp.length() > 0) *_phoneVar = temp;
+    if (!temp.empty()) *_phoneVar = temp;
     return true;
 }
 
@@ -135,10 +137,10 @@ bool InputForm::requestEmailField() {
         temp = utils::trim(temp);
         valid = isvalid::email(temp) && (size_t)_emailLimit >= temp.length();
         // si esta en edicion y deja en blanco, es valido
-        if (_editing && temp.length() == 0) valid = true;
+        if (_editing && temp.empty()) valid = true;
     } while (!valid);
     // si esta en modo edicion, y deja vacio, no se reasigna
-    if (temp.length() > 0) *_emailVar = temp;
+    if (!temp.empty()) *_emailVar = temp;
     return true;
 }
 
@@ -151,9 +153,10 @@ bool InputForm::requestAlphanumFields() {
             if (attempts > 0) {
                 if (!askToRetry(alnField, _alnLimit[i])) return false;
             }
-            if (_editing)
+            if (_editing) {
                 std::cout << _alphanumFields[i]
                           << " actual: " << *_alphanumVars[i];
+            }
             std::cout << (_editing ? "\nNuevo/a " : "Ingrese ")
                       << _alphanumFields[i] << ": ";
             std::getline(std::cin, temp);
@@ -162,10 +165,10 @@ bool InputForm::requestAlphanumFields() {
             valid = isvalid::alphanumeric(temp) &&
                     (size_t)_alnLimit[i] >= temp.length();
             // si esta en edicion y deja en blanco, es valido
-            if (_editing && temp.length() == 0) valid = true;
+            if (_editing && temp.empty()) valid = true;
         } while (!valid);
         // si esta en modo edicion, y deja vacio, no se reasigna
-        if (temp.length() > 0) *_alphanumVars[i] = temp;
+        if (!temp.empty()) *_alphanumVars[i] = temp;
     }
     return true;
 }
@@ -192,7 +195,7 @@ bool InputForm::askToRetry(fieldType fType, int maxLimit) {
             std::cout << "solo numeros, hasta " << maxLimit << " digitos. \n";
             break;
         case boolField:
-            std::cout << " solo Si o No";
+            std::cout << "solo Si o No.\n";
             break;
         default:
             break;
@@ -226,10 +229,10 @@ bool InputForm::requestBoolFields() {
             temp = utils::trim(temp);  // quitar espacios al inicio y final
             valid = isvalid::boolean(temp);
             // si esta en edicion y deja en blanco, es valido
-            if (_editing && temp.length() == 0) valid = true;
+            if (_editing && temp.empty()) valid = true;
         } while (!valid);
         // si esta en modo edicion, y deja vacio, no se reasigna
-        if (temp.length() > 0) *_boolVars[i] = utils::strToBool(temp);
+        if (!temp.empty()) *_boolVars[i] = utils::strToBool(temp);
     }
     return true;
 }
