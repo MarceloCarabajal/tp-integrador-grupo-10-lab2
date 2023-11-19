@@ -23,7 +23,7 @@ Date Buy::getbuyDate() { return _buyDate; }
 Time Buy::getbuyTime() { return _buyTime; }
 int Buy::getProductId() { return _productId; }
 int Buy::getQuantity() { return _quantity; }
-int Buy::getTransaction() { return _transactionId; }
+int Buy::getTransactionId() { return _transactionId; }
 
 
 void Buy::toVecString(std::string vStr[8]) {

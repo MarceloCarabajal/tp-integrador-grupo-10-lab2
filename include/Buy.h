@@ -35,7 +35,7 @@ Date getbuyDate();
 Time getbuyTime(); 
 int getProductId (); 
 int getQuantity (); 
-int getTransaction (); 
+int getTransactionId (); 
 void load();
 
 void toVecString(std::string vStr[8]);
