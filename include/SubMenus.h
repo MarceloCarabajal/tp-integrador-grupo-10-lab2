@@ -9,6 +9,7 @@
 #include "RelationsManager.h"
 #include "VetsManager.h"
 #include "VaccinationManager.h"
+#include "AppointmentsManager.h"
 
 class SubMenus {
 private:
@@ -16,6 +17,13 @@ private:
     static void loadClient();
     static void showClients();
     static void editClients();
+
+  static AppointmentsManager _appointmentsManager;
+    static void loadAppointment();
+    static void showAppointment();
+    static void editAppointment();
+
+
 
     static VetsManager _vetsManager;
     static void loadVet();
