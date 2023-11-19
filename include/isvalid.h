@@ -104,6 +104,45 @@ namespace isvalid {
         if (cad == "si" || cad == "sí" || cad == "no") return true;
         return false;
     }
+
+    inline bool floatType(std::string str) {
+        int dotFounds = 0;
+        if (str.length() == 0) return false;
+        for (size_t i = 0; i < str.length(); i++) {
+            if (!number(str[i]) && str[i] != '.') return false;
+            if (str[i] == '.') dotFounds++;
+            if (str[i] == '.' && i == str.length() - 1) return false;
+            if (str[i] == '.' && i == 0) return false;
+        }
+        if (dotFounds > 1 || dotFounds == (int)str.length()) return false;
+        return true;
+    }
+
+    // Intenta convertir una cadena a float
+    inline bool tryStof(std::string str) {
+        try {
+            std::stof(str);
+            return true;
+        } catch (...) {
+            // si por cualquier razon falla, devuelve false
+            return false;
+        }
+    }
+
+    inline bool dateFormat(std::string str) {
+        if (str.length() < 10) return false;
+        if (str[2] != '/' || str[5] != '/') return false;
+        for (size_t i = 0; i < str.length(); i++) {
+            // pos 2||5 son las /
+            if (i == 2 || i == 5) continue;
+            if (!number(str[i])) return false;
+        }
+        if (stoi(str.substr(0, 2)) > 31) return false;
+        if (stoi(str.substr(3, 2)) > 12) return false;
+        if (stoi(str.substr(6, 4)) < 1900) return false;
+        return true;
+    }
+
 }  // namespace isvalid
 
 #endif /* ISVALID_INCLUDED */

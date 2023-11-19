@@ -78,6 +78,19 @@ namespace utils {
         return "No";
     }
 
+    inline std::string replaceCommas(std::string str) {
+        std::string temp;
+        // si no hay comas, devolver str
+        if (str.find(',') == std::string::npos) return str;
+        for (size_t i = 0; i < str.length(); i++) {
+            if (str[i] == ',')
+                temp += '.';
+            else
+                temp += str[i];
+        }
+        return temp;
+    }
+
 }  // namespace utils
 
 #endif /* UTILS_INCLUDED */

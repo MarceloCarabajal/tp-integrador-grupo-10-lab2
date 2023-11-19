@@ -4,6 +4,8 @@
 #include <iostream>
 #include <vector>
 
+#include "Date.h"
+
 class InputForm {
 private:
     // enum para los mensajes de error de askToRetry()
@@ -13,13 +15,17 @@ private:
         alnField = 3,
         emailField = 4,
         phoneField = 5,
-        boolField = 6
+        boolField = 6,
+        floatField = 7,
+        dateField = 8
     };
     // vector con los nombres de los campos
     std::vector<std::string> _strFields;
     std::vector<std::string> _intFields;
     std::vector<std::string> _alphanumFields;
     std::vector<std::string> _boolFields;
+    std::vector<std::string> _floatFields;
+    std::vector<std::string> _dateFields;
 
     // vector con los limites de digitos/caracteres para los campos
     std::vector<int> _strLimit;
@@ -33,6 +39,8 @@ private:
     std::vector<int *> _intVars;
     std::vector<std::string *> _alphanumVars;
     std::vector<bool *> _boolVars;
+    std::vector<float *> _floatVars;
+    std::vector<Date *> _dateVars;
     std::string *_emailVar = NULL;
     std::string *_phoneVar = NULL;
 
@@ -44,6 +52,8 @@ private:
     bool requestPhoneField();
     bool requestAlphanumFields();
     bool requestBoolFields();
+    bool requestFloatFields();
+    bool requestDateFields();
     // bool requestIntRangeFields(); //TODO: hacer metodo para rangos
     bool askToRetry(fieldType fType, int maxLimit);
 
@@ -57,7 +67,10 @@ public:
                          int maxLength);
     void setEmailField(std::string &strDestination, int maxLength);
     void setPhoneField(std::string &strDestination, int maxLength);
-    void setBoolField(std::string &strDestination);
+    void setBoolField(std::string fieldName, bool &boolDestination);
+    void setFloatField(std::string fieldName, float &floatDestination,
+                       int maxLength);
+    void setDateField(std::string fieldName, Date &dateDestination);
 
     void setEditMode(bool editMode);
 

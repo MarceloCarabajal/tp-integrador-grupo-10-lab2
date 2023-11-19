@@ -2,6 +2,7 @@
 
 #include <iostream>
 
+#include "Date.h"
 #include "isvalid.h"
 #include "rlutil.h"
 #include "utils.h"
@@ -41,6 +42,17 @@ void InputForm::setEmailField(std::string& strDestination, int maxLength) {
 void InputForm::setPhoneField(std::string& strDestination, int maxLength) {
     _phoneVar = &strDestination;
     _phoneLimit = maxLength;
+}
+
+void InputForm::setBoolField(std::string fieldName, bool& boolDestination) {
+    _boolFields.push_back(fieldName);
+    _boolVars.push_back(&boolDestination);
+}
+
+void InputForm::setFloatField(std::string fieldName, float& floatDestination,
+                              int maxLength) {
+    _floatFields.push_back(fieldName);
+    _floatVars.push_back(&floatDestination);
 }
 
 bool InputForm::requestStrFields() {
@@ -173,7 +185,7 @@ bool InputForm::requestAlphanumFields() {
     return true;
 }
 
-bool InputForm::askToRetry(fieldType fType, int maxLimit) {
+bool InputForm::askToRetry(fieldType fType, int maxLimit = 0) {
     std::cout << "El ingreso es invalido, debe tener el formato de: ";
     switch (fType) {
         case strField:
@@ -197,6 +209,13 @@ bool InputForm::askToRetry(fieldType fType, int maxLimit) {
         case boolField:
             std::cout << "solo Si o No.\n";
             break;
+        case floatField:
+            std::cout
+                << "solo números enteros o decimales del tipo 0.00 / 0,00.\n";
+            break;
+        case dateField:
+            std::cout << "solo fechas del tipo dd/mm/aaaa.\n";
+            break;
         default:
             break;
     }
@@ -210,6 +229,38 @@ bool InputForm::askToRetry(fieldType fType, int maxLimit) {
     return true;
 }
 
+bool InputForm::requestDateFields() {
+    for (size_t i = 0; i < _dateFields.size(); i++) {
+        int attempts = 0;  // lleva la cuenta de los intentos
+        bool valid;
+        std::string temp;
+        do {
+            if (attempts > 0) {
+                if (!askToRetry(dateField)) return false;
+            }
+            if (_editing) {
+                std::cout << _dateFields[i]
+                          << " actual: " << (*_dateVars[i]).toString();
+            }
+            std::cout << (_editing ? "\nNuevo/a " : "Ingrese ")
+                      << _dateFields[i] << ": ";
+            std::getline(std::cin, temp);
+            attempts++;  // se suma un intento
+            temp = utils::trim(temp);
+            valid = isvalid::dateFormat(temp);
+            // si esta en edicion y deja en blanco, es valido
+            if (_editing && temp.empty()) valid = true;
+        } while (!valid);
+        // si esta en modo edicion, y deja vacio, no se reasigna
+        if (!temp.empty()) {
+            *_dateVars[i] =
+                Date(stoi(temp.substr(0, 2)), stoi(temp.substr(3, 2)),
+                     stoi(temp.substr(6, 4)));
+        }
+    }
+    return true;
+}
+
 bool InputForm::requestBoolFields() {
     for (size_t i = 0; i < _boolFields.size(); i++) {
         int attempts = 0;  // lleva la cuenta de los intentos
@@ -217,7 +268,7 @@ bool InputForm::requestBoolFields() {
         std::string temp = "";
         do {
             if (attempts > 0) {
-                if (!askToRetry(boolField, _strLimit[i])) return false;
+                if (!askToRetry(boolField)) return false;
             }
             if (_editing)
                 std::cout << _boolFields[i]
@@ -237,6 +288,34 @@ bool InputForm::requestBoolFields() {
     return true;
 }
 
+bool InputForm::requestFloatFields() {
+    for (size_t i = 0; i < _floatFields.size(); i++) {
+        int attempts = 0;  // lleva la cuenta de los intentos
+        bool valid;
+        std::string temp;
+        do {
+            if (attempts > 0) {
+                if (!askToRetry(floatField)) return false;
+            }
+            if (_editing) {
+                std::cout << _floatFields[i] << " actual: " << *_floatVars[i];
+            }
+            std::cout << (_editing ? "\nNuevo/a " : "Ingrese ")
+                      << _floatFields[i] << ": ";
+            std::getline(std::cin, temp);
+            attempts++;  // se suma un intento
+            temp = utils::trim(temp);
+            temp = utils::replaceCommas(temp);  // cambiar comas por puntos
+            valid = isvalid::floatType(temp) && isvalid::tryStof(temp);
+            // si esta en edicion y deja en blanco, es valido
+            if (_editing && temp.empty()) valid = true;
+        } while (!valid);
+        // si esta en modo edicion, y deja vacio, no se reasigna
+        if (!temp.empty()) *_floatVars[i] = stof(temp);
+    }
+    return true;
+}
+
 bool InputForm::fill() {
     if (_editing) {
         std::cout << "*Dejar los campos en blanco para mantener el valor "
@@ -246,6 +325,8 @@ bool InputForm::fill() {
     if (!requestAlphanumFields()) return false;
     if (!requestIntFields()) return false;
     if (!requestBoolFields()) return false;
+    if (!requestFloatFields()) return false;
+    if (!requestDateFields()) return false;
     // Si se asigno la variable, pedir campo
     if (_emailVar != NULL) {
         if (!requestEmailField()) return false;
@@ -255,6 +336,11 @@ bool InputForm::fill() {
     }
 
     return true;
+}
+
+void InputForm::setDateField(std::string fieldName, Date& dateDestination) {
+    _dateFields.push_back(fieldName);
+    _dateVars.push_back(&dateDestination);
 }
 
 // limpia todos los vectores
