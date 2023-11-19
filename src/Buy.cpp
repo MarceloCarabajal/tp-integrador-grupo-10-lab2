@@ -23,4 +23,16 @@ Date Buy::getbuyDate() { return _buyDate; }
 Time Buy::getbuyTime() { return _buyTime; }
 int Buy::getProductId() { return _productId; }
 int Buy::getQuantity() { return _quantity; }
-int Buy::getTransaction() { return _transactionId; }
+int Buy::getTransactionId() { return _transactionId; }
+
+
+void Buy::toVecString(std::string vStr[8]) {
+    vStr[0] = std::to_string(_buyId);
+    vStr[1] = std::to_string(_productId);
+    vStr[2] = std::to_string (_quantity);
+    vStr[3] = std::to_string(_transactionId);
+    vStr[4] = std::to_string(_totalAmount);
+    vStr[5] = _paymentMethod;
+    vStr[6] = _buyDate.toString();
+    vStr[7] = _buyTime.toString();
+}

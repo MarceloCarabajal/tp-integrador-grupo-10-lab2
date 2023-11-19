@@ -12,6 +12,8 @@ private:
     Date _buyDate;
     Time _buyTime;
 
+    /*Consideramos ingresar una compra por cada transaccion, es decir un
+    producto con su cantidad. Por eso no tenemos ItemBuy como en Sale */
 public:
     void setBuyId(int id);
     void setAmount(float importe);  /// CORREGÍ TIPO DE DATO, ESTABA INT
@@ -29,6 +31,8 @@ public:
     Time getbuyTime();
     int getProductId();
     int getQuantity();
-    int getTransaction();
+    int getTransactionId();
     void load();
+
+    void toVecString(std::string vStr[8]);
 };
