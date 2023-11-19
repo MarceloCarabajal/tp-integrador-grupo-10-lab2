@@ -1,5 +1,14 @@
-#pragma once
+#ifndef ISVALID_INCLUDED
+#define ISVALID_INCLUDED
 #include <iostream>
+
+// #include "utils.h" // no se incluye porque provoca una dependencia circular
+// Solucion:
+// Declarar el espacio de nombres utils y la funcion solamente
+namespace utils {
+    // Declaración forward de strLower utilizada por isvalid::boolean
+    std::string strLower(std::string str);
+}  // namespace utils
 
 namespace isvalid {
     /*NOTA: se usa la palabra clave inline en cada funcion para evitar multiples
@@ -88,15 +97,13 @@ namespace isvalid {
         }
         return true;
     }
-   // Verifica que una cadena solo contenga si o no
-    inline bool boolean(std::string cadena){
-    if (cadena.length() == 0) return false;
-    if (cadena == "si" || cadena == "no") return true;
-    return false;
+    // Verifica que una cadena solo contenga si o no
+    inline bool boolean(std::string cad) {
+        cad = utils::strLower(cad);
+        if (cad.length() == 0) return false;
+        if (cad == "si" || cad == "sí" || cad == "no") return true;
+        return false;
     }
-
-
-
-
-
 }  // namespace isvalid
+
+#endif /* ISVALID_INCLUDED */

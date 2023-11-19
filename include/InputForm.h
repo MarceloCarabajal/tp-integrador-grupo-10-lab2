@@ -13,18 +13,18 @@ private:
         alnField = 3,
         emailField = 4,
         phoneField = 5,
-        boolField =6
+        boolField = 6
     };
     // vector con los nombres de los campos
     std::vector<std::string> _strFields;
     std::vector<std::string> _intFields;
     std::vector<std::string> _alphanumFields;
-    std::vector<std::string> _boolFields; 
+    std::vector<std::string> _boolFields;
 
     // vector con los limites de digitos/caracteres para los campos
     std::vector<int> _strLimit;
     std::vector<int> _intLimit;
-    std::vector<int> _alnLimit; 
+    std::vector<int> _alnLimit;
     int _emailLimit;  // solo se pide 1 email, no hace falta un vector
     int _phoneLimit;  // solo se pide 1 telefono
 
@@ -32,10 +32,9 @@ private:
     std::vector<std::string *> _strVars;
     std::vector<int *> _intVars;
     std::vector<std::string *> _alphanumVars;
-    std::vector <bool *>_boolVars;
+    std::vector<bool *> _boolVars;
     std::string *_emailVar = NULL;
     std::string *_phoneVar = NULL;
-    
 
     bool _editing;
 
@@ -48,9 +47,6 @@ private:
     // bool requestIntRangeFields(); //TODO: hacer metodo para rangos
     bool askToRetry(fieldType fType, int maxLimit);
 
-    // utils
-    std::string trim(std::string str);
-
 public:
     InputForm(bool isEditing = false);
 
@@ -61,11 +57,10 @@ public:
                          int maxLength);
     void setEmailField(std::string &strDestination, int maxLength);
     void setPhoneField(std::string &strDestination, int maxLength);
-    void setBoolField (std::string &strDestination);
+    void setBoolField(std::string &strDestination);
 
     void setEditMode(bool editMode);
 
-    
     bool fill();
     void clearAll();
 };

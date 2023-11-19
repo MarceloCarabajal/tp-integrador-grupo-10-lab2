@@ -4,6 +4,7 @@
 
 #include "isvalid.h"
 #include "rlutil.h"
+#include "utils.h"
 
 // TODO: Crear documentacion para las funciones
 
@@ -56,8 +57,8 @@ bool InputForm::requestStrFields() {
             std::cout << (_editing ? "\nNuevo/a " : "Ingrese ") << _strFields[i]
                       << ": ";
             std::getline(std::cin, temp);
-            attempts++;         // se suma un intento
-            temp = trim(temp);  // quitar espacios al inicio y final
+            attempts++;                // se suma un intento
+            temp = utils::trim(temp);  // quitar espacios al inicio y final
             valid = isvalid::onlyLetters(temp) &&
                     (size_t)_strLimit[i] >= temp.length();
             // si esta en edicion y deja en blanco, es valido
@@ -84,7 +85,7 @@ bool InputForm::requestIntFields() {
                       << ": ";
             std::getline(std::cin, tempStr);
             attempts++;  // se suma un intento
-            tempStr = trim(tempStr);
+            tempStr = utils::trim(tempStr);
             valid = isvalid::onlyIntegers(tempStr) &&
                     (size_t)_intLimit[i] >= tempStr.length();
             // si esta en edicion y deja en blanco, es valido
@@ -108,7 +109,7 @@ bool InputForm::requestPhoneField() {
         std::cout << (_editing ? "\nNuevo/a " : "Ingrese ") << "Telefono: ";
         std::getline(std::cin, temp);
         attempts++;  // se suma un intento
-        temp = trim(temp);
+        temp = utils::trim(temp);
         valid =
             isvalid::onlyIntegers(temp) && (size_t)_phoneLimit >= temp.length();
         // si esta en edicion y deja en blanco, es valido
@@ -131,7 +132,7 @@ bool InputForm::requestEmailField() {
         std::cout << (_editing ? "\nNuevo/a " : "Ingrese ") << "Email: ";
         std::getline(std::cin, temp);
         attempts++;  // se suma un intento
-        temp = trim(temp);
+        temp = utils::trim(temp);
         valid = isvalid::email(temp) && (size_t)_emailLimit >= temp.length();
         // si esta en edicion y deja en blanco, es valido
         if (_editing && temp.length() == 0) valid = true;
@@ -157,7 +158,7 @@ bool InputForm::requestAlphanumFields() {
                       << _alphanumFields[i] << ": ";
             std::getline(std::cin, temp);
             attempts++;  // se suma un intento
-            temp = trim(temp);
+            temp = utils::trim(temp);
             valid = isvalid::alphanumeric(temp) &&
                     (size_t)_alnLimit[i] >= temp.length();
             // si esta en edicion y deja en blanco, es valido
@@ -189,9 +190,9 @@ bool InputForm::askToRetry(fieldType fType, int maxLimit) {
                       << maxLimit << " caracteres.\n";
         case phoneField:
             std::cout << "solo numeros, hasta " << maxLimit << " digitos. \n";
-            break; 
-        case boolField: 
-            std::cout <<" solo Si o No";
+            break;
+        case boolField:
+            std::cout << " solo Si o No";
             break;
         default:
             break;
@@ -203,6 +204,33 @@ bool InputForm::askToRetry(fieldType fType, int maxLimit) {
         return false;  // no reintentar
     }
     rlutil::cls();
+    return true;
+}
+
+bool InputForm::requestBoolFields() {
+    for (size_t i = 0; i < _boolFields.size(); i++) {
+        int attempts = 0;  // lleva la cuenta de los intentos
+        bool valid;
+        std::string temp = "";
+        do {
+            if (attempts > 0) {
+                if (!askToRetry(boolField, _strLimit[i])) return false;
+            }
+            if (_editing)
+                std::cout << _boolFields[i]
+                          << " actual: " << utils::boolToStr(*_boolVars[i]);
+            std::cout << (_editing ? "\nNuevo/a " : "Ingrese ")
+                      << _boolFields[i] << ": ";
+            std::getline(std::cin, temp);
+            attempts++;                // se suma un intento
+            temp = utils::trim(temp);  // quitar espacios al inicio y final
+            valid = isvalid::boolean(temp);
+            // si esta en edicion y deja en blanco, es valido
+            if (_editing && temp.length() == 0) valid = true;
+        } while (!valid);
+        // si esta en modo edicion, y deja vacio, no se reasigna
+        if (temp.length() > 0) *_boolVars[i] = utils::strToBool(temp);
+    }
     return true;
 }
 
@@ -222,7 +250,7 @@ bool InputForm::fill() {
     if (_phoneVar != NULL) {
         if (!requestPhoneField()) return false;
     }
-    
+
     return true;
 }
 
@@ -238,36 +266,5 @@ void InputForm::clearAll() {
     _strVars.clear();
     _intVars.clear();
     _alphanumVars.clear();
-     _boolVars.clear();
-
-}
-
-std::string InputForm::trim(std::string str) {
-    size_t lSpaces = 0, rSpaces = 0, strEnd = 0;
-    std::string temp;
-    // contar espacios desde la izquierda
-    for (size_t i = 0; i < str.length(); i++) {
-        // si es una letra, salir del for
-        if (isvalid::alphanumeric(str[i])) break;
-        if (str[i] == char(32)) lSpaces++;
-    }
-    // contar espacios desde la derecha
-    // se convierte length() a (int) porque i no puede ser de tipo size_t debido
-    // a que se usa decremento y al llegar a 0 y decrementar, un tipo size_t no
-    // puede ser negativo y vuelve a su valor maximo, generando un loop infinito
-    for (int i = (int)str.length(); i >= 0; i--) {
-        // si es una letra, salir del for
-        if (isvalid::alphanumeric(str[i - 1])) break;
-        if (str[i - 1] == char(32)) rSpaces++;
-    }
-    // Calcular tamanio total sin espacios L y R
-    strEnd = str.length() - rSpaces;
-    // copiar str desde lSpaces hasta strEnd
-    for (size_t i = lSpaces; i < strEnd; i++) {
-        temp += str[i];
-    }
-    // si no se detectaron espacios, devolver str
-    if (lSpaces + rSpaces == 0) return str;
-    // sino devolver str trimeado
-    return temp;
+    _boolVars.clear();
 }
