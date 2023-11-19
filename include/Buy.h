@@ -14,7 +14,8 @@ char _paymentMethod[15];
 Date _buyDate;
 Time _buyTime ;
 
-
+/*Consideramos ingresar una compra por cada transaccion, es decir un producto con su cantidad.
+Por eso no tenemos ItemBuy como en Sale */
 public: 
 
 
@@ -36,5 +37,7 @@ int getProductId ();
 int getQuantity (); 
 int getTransaction (); 
 void load();
+
+void toVecString(std::string vStr[8]);
 
 } ;
