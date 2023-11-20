@@ -9,6 +9,17 @@ void Income::setSaleId( int saleId){_saleId=saleId;}
 
 int   Income::getSaleId(){return _saleId;}
 
+void Income::toVecString(std::string vStr[7]) {
+    vStr[0] = std::to_string(Transaction::getIdTransaction());
+    vStr[1] = std::to_string(_saleId);
+    vStr[2] = Transaction::getDateTrans().toString();
+    vStr[3] = Transaction::getTimeTrans().toString();
+    vStr[4] = Transaction::getDescription();
+    vStr[5] = Transaction::getAmount();
+    vStr[6] = Transaction::getPaymentMehod();
+
+
+}
 
 /*
 void Income::load (){

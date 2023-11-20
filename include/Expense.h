@@ -2,7 +2,7 @@
 #include "Transaction.h"
 
 
-class Expense: Transaction {
+class Expense: public Transaction {
 
 private: 	
 int _buyId;
@@ -17,4 +17,7 @@ int  getBuyId();
 
 
 void load ();
+
+void toVecString(std::string vStr[7]);
+
 };
