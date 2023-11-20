@@ -45,20 +45,20 @@ void RelationsManager::load() {
 PetRelations RelationsManager::loadForm() {
     InputForm petRelationsForm;
     PetRelations auxPetR;
-    bool owner;  // estatus;
+    bool owner;  // status;
     int clientId, petId;
 
     petRelationsForm.setIntField("ID Mascota", petId, 4);
     petRelationsForm.setIntField("ID Cliente", clientId, 4);
 
-    ////////// petRelationsForm.setIntField("Estado", estatus, xxxxxxxx);
+    ////////// petRelationsForm.setIntField("Estado", status, xxxxxxxx);
     // petRelationsForm.setIntField("¿Es propietario?", owner);
     if (!petRelationsForm.fill()) return auxPetR;
 
     auxPetR.setPetId(petId);
     auxPetR.setClientId(clientId);
     auxPetR.setOwner(owner);
-    // auxPetR.setEstatus(estatus);
+    // auxPetR.setStatus(status);
 
     return auxPetR;
 }
@@ -74,7 +74,7 @@ PetRelations RelationsManager::editForm(int regPos) {
     PetRelations auxPetR;
 
     int petId, clientId, nId;
-    bool owner, estatus;
+    bool owner, status;
 
     auxPetR = _petRelationsFile.readFile(regPos);
     if (auxPetR.getRelationId() == 0) {
@@ -86,7 +86,7 @@ PetRelations RelationsManager::editForm(int regPos) {
     petId = auxPetR.getPetId();
     clientId = auxPetR.getClientId();
     owner = auxPetR.getOwner();
-    estatus = auxPetR.getEstatus();
+    status = auxPetR.getStatus();
     // TODO: VER PARA LLAMAR A LA FUNCION QUE MODIFICA EL ARCHIVO DE MASCOTA SI
     // SE ESTA CARGANDO UN REGISTRO DONDE
     /// OWNER ES TRUE Y MODIFICAR ESE ARCHIVO (EL DE PET)
@@ -97,9 +97,9 @@ PetRelations RelationsManager::editForm(int regPos) {
     petRelationsForm.setEditMode(true);  // modo edicion
     petRelationsForm.setIntField("ID Mascota", petId, 4);
     petRelationsForm.setIntField("ID Cliente", clientId, 4);
-    // TODO: Ver como validamos BOOL
-    ////petRelationsForm.setIntField("¿Es propietario?", owner, xxxxxxxxxxx;
-    ////petRelationsForm.serIntField("Estado", estatus, xxxxxxx);
+    petRelationsForm.setBoolField("¿Es propietario?", owner);
+    petRelationsForm.setBoolField("Activo?", status);
+
     // completar form
     bool success = petRelationsForm.fill();
     if (success) {  // si se completa
@@ -107,7 +107,7 @@ PetRelations RelationsManager::editForm(int regPos) {
         auxPetR.setClientId(clientId);
         auxPetR.setPetId(petId);
         auxPetR.setOwner(owner);
-        auxPetR.setEstatus(estatus);
+        auxPetR.setStatus(status);
 
         return auxPetR;
     }

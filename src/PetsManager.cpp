@@ -32,7 +32,7 @@ void PetsManager::load() {
 
     auxPet = loadForm();
     // Si no se completo el form, salir
-    if (auxPet.getPetId() == 0) return;
+    if (auxPet.getPetId() == -1) return;
 
     auxPet.setPetId(nId);  // set del Id ingresado anteriormente
     if (_petsFile.writeFile(auxPet)) {
@@ -47,14 +47,13 @@ Pet PetsManager::loadForm() {
     Pet auxPet;
     std::string name, specie, breed, currentDiagnosis;
     Date birthDate;
-    int ownerId, petId;
+    int ownerId;
 
     petForm.setStrField("Nombre", name, 30);
     petForm.setStrField("Especie", specie, 15);
     petForm.setStrField("Raza", breed, 30);
     petForm.setStrField("Diagnostico actual", currentDiagnosis, 45);
-    // TODO: VER fechafield :
-    // petForm.setFechaField("Fecha de nacimiento", birthDate, xxxxxxxxxxxxxxx);
+    petForm.setDateField("Fecha de nacimiento", birthDate);
     petForm.setIntField("ID Dueño", ownerId, 4);
     if (!petForm.fill()) return auxPet;
 
@@ -64,7 +63,6 @@ Pet PetsManager::loadForm() {
     auxPet.setCurrentDiagnosis(currentDiagnosis);
     auxPet.setBirthDate(birthDate);
     auxPet.setOwnerId(ownerId);
-    // TODO: PET ID se seteaba mas arriba no? o hay que agregarlo?
     return auxPet;
 }
 

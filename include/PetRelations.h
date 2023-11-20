@@ -7,23 +7,24 @@ private:
     int _petId;
     int _clientId;
     bool _owner;
-    bool _estatus;
+    bool _status;
 
 public:
     PetRelations();
-    PetRelations(int relationId, int petId, int clientId, bool ownwer);
+    PetRelations(int relationId, int petId, int clientId, bool ownwer,
+                 bool status);
 
     void setPetId(int id);
     void setClientId(int id);
     void setOwner(bool owner);
     void setRelationId(int rid);
-    void setEstatus(bool est);
+    void setStatus(bool est);
 
     int getPetId();
     int getClientId();
     bool getOwner();
     int getRelationId();
-    bool getEstatus();
+    bool getStatus();
 
     void toVecString(std::string vStr[4]);
 };

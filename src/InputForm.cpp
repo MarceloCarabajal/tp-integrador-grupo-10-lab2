@@ -49,10 +49,16 @@ void InputForm::setBoolField(std::string fieldName, bool& boolDestination) {
     _boolVars.push_back(&boolDestination);
 }
 
-void InputForm::setFloatField(std::string fieldName, float& floatDestination,
-                              int maxLength) {
+void InputForm::setFloatField(std::string fieldName, float& floatDestination) {
     _floatFields.push_back(fieldName);
     _floatVars.push_back(&floatDestination);
+}
+
+void InputForm::setRangeField(std::string fieldName, int& intDestination,
+                              int min, int max) {
+    _rangeFields.push_back(fieldName);
+    _rangeVars.push_back(&intDestination);
+    _rangeLimits.push_back(std::vector<int>{min, max});
 }
 
 bool InputForm::requestStrFields() {
@@ -185,50 +191,6 @@ bool InputForm::requestAlphanumFields() {
     return true;
 }
 
-bool InputForm::askToRetry(fieldType fType, int maxLimit = 0) {
-    std::cout << "El ingreso es invalido, debe tener el formato de: ";
-    switch (fType) {
-        case strField:
-            std::cout << "solo letras, hasta " << maxLimit << " caracteres.\n";
-            break;
-        case intField:
-            std::cout << "solo numeros enteros, hasta " << maxLimit
-                      << " digitos. \n";
-            break;
-        case alnField:
-            std::cout << "solo numeros y letras, hasta " << maxLimit
-                      << " caracteres.\n";
-            break;
-        case emailField:
-            std::cout << "tuemail@email.com || tu_email@email.com || "
-                         "tu.email@email.com hasta "
-                      << maxLimit << " caracteres.\n";
-        case phoneField:
-            std::cout << "solo numeros, hasta " << maxLimit << " digitos. \n";
-            break;
-        case boolField:
-            std::cout << "solo Si o No.\n";
-            break;
-        case floatField:
-            std::cout
-                << "solo números enteros o decimales del tipo 0.00 / 0,00.\n";
-            break;
-        case dateField:
-            std::cout << "solo fechas del tipo dd/mm/aaaa.\n";
-            break;
-        default:
-            break;
-    }
-    std::cout << "Presione cualquier tecla para reintentar o ESC para volver "
-                 "al menu.\n";
-    if (rlutil::getkey() == rlutil::KEY_ESCAPE) {
-        rlutil::cls();
-        return false;  // no reintentar
-    }
-    rlutil::cls();
-    return true;
-}
-
 bool InputForm::requestDateFields() {
     for (size_t i = 0; i < _dateFields.size(); i++) {
         int attempts = 0;  // lleva la cuenta de los intentos
@@ -316,6 +278,83 @@ bool InputForm::requestFloatFields() {
     return true;
 }
 
+bool InputForm::requestRangeFields() {
+    for (size_t i = 0; i < _rangeFields.size(); i++) {
+        int attempts = 0;  // lleva la cuenta de los intentos
+        bool valid;
+        std::string temp;
+        do {
+            if (attempts > 0) {
+                if (!askToRetry(rangeField, 0, _rangeLimits[i][0],
+                                _rangeLimits[i][1]))
+                    return false;
+            }
+            if (_editing) {
+                std::cout << _rangeFields[i] << " actual: " << *_rangeVars[i];
+            }
+            std::cout << (_editing ? "\nNuevo/a " : "Ingrese ")
+                      << _rangeFields[i] << ": ";
+            std::getline(std::cin, temp);
+            attempts++;  // se suma un intento
+            temp = utils::trim(temp);
+            valid =
+                isvalid::range(temp, _rangeLimits[i][0], _rangeLimits[i][1]);
+            // si esta en edicion y deja en blanco, es valido
+            if (_editing && temp.empty()) valid = true;
+        } while (!valid);
+        // si esta en modo edicion, y deja vacio, no se reasigna
+        if (!temp.empty()) *_rangeVars[i] = stoi(temp);
+    }
+    return true;
+}
+
+bool InputForm::askToRetry(fieldType fType, int maxLimit, int min, int max) {
+    std::cout << "El ingreso es invalido, debe tener el formato de: ";
+    switch (fType) {
+        case strField:
+            std::cout << "solo letras, hasta " << maxLimit << " caracteres.\n";
+            break;
+        case intField:
+            std::cout << "solo numeros enteros, hasta " << maxLimit
+                      << " digitos. \n";
+            break;
+        case alnField:
+            std::cout << "solo numeros y letras, hasta " << maxLimit
+                      << " caracteres.\n";
+            break;
+        case emailField:
+            std::cout << "tuemail@email.com || tu_email@email.com || "
+                         "tu.email@email.com hasta "
+                      << maxLimit << " caracteres.\n";
+        case phoneField:
+            std::cout << "solo numeros, hasta " << maxLimit << " digitos. \n";
+            break;
+        case boolField:
+            std::cout << "solo Si o No.\n";
+            break;
+        case floatField:
+            std::cout
+                << "solo números enteros o decimales del tipo 0.00 / 0,00.\n";
+            break;
+        case dateField:
+            std::cout << "solo fechas del tipo dd/mm/aaaa.\n";
+            break;
+        case rangeField:
+            std::cout << "Solo numeros enteros entre " << min << " y " << max
+                      << ".\n";
+        default:
+            break;
+    }
+    std::cout << "Presione cualquier tecla para reintentar o ESC para volver "
+                 "al menu.\n";
+    if (rlutil::getkey() == rlutil::KEY_ESCAPE) {
+        rlutil::cls();
+        return false;  // no reintentar
+    }
+    rlutil::cls();
+    return true;
+}
+
 bool InputForm::fill() {
     if (_editing) {
         std::cout << "*Dejar los campos en blanco para mantener el valor "
@@ -327,6 +366,7 @@ bool InputForm::fill() {
     if (!requestBoolFields()) return false;
     if (!requestFloatFields()) return false;
     if (!requestDateFields()) return false;
+    if (!requestRangeFields()) return false;
     // Si se asigno la variable, pedir campo
     if (_emailVar != NULL) {
         if (!requestEmailField()) return false;

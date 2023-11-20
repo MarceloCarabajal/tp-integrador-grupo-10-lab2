@@ -16,8 +16,9 @@ void BuysManager::load() {
     // pedir y buscar si el id ingresado existe
     do {
         if (alreadyExists) {
-            std::cout << "El ID de la compra ya existe, presione cualquier tecla "
-                         "para reintentar o ESC para salir.\n";
+            std::cout
+                << "El ID de la compra ya existe, presione cualquier tecla "
+                   "para reintentar o ESC para salir.\n";
             if (rlutil::getkey() == rlutil::KEY_ESCAPE) return;
             rlutil::cls();
         }
@@ -31,10 +32,10 @@ void BuysManager::load() {
 
     auxBuy = loadForm();
     // Si no se completo el form, salir
-    if (auxBuy .getBuyId() == 0) return;
+    if (auxBuy.getBuyId() == 0) return;
 
-    auxBuy .setBuyId(nId);  // set del Id ingresado anteriormente
-    if (_buysFile.writeFile(auxBuy )) {
+    auxBuy.setBuyId(nId);  // set del Id ingresado anteriormente
+    if (_buysFile.writeFile(auxBuy)) {
         std::cout << "Compra guardado con exito!\n";
     } else {
         std::cout << "Ocurrio un error al guardar la compra\n";
@@ -45,26 +46,26 @@ Buy BuysManager::loadForm() {
     InputForm buyForm;
     Buy auxBuy;
     std::string paymentMethod;
-    int productId,quantity,transactionId;
-    float totalAmount; 
+    int productId, quantity, trxId;
+    float totalAmount;
     Date buyDate;
-    Time buyTime ;
-
+    Time buyTime;
 
     buyForm.setStrField("Metodo Pago", paymentMethod, 15);
     buyForm.setIntField("ID producto", productId, 4);
-    buyForm.setIntField("ID Transacción", transactionId, 4);   //// este numero se copia en los objetos de la clase transaccion
-   ///// buyForm.setIntField("Cantidad", quantity) ; //TODO: Establecemos limite?
-    ///buyForm.setfloatField ("Total", totalAmount); //TODO: Establecemos limite? 
-    ///saleForm.setStrField("Fecha", buyDate 30);//TODO: FALTA FLOAT FIELD, TIME Y DATE
-    ////saleForm.setAlphanumeric("Hora, buyTime, 45);//TODO: FALTA FLOAT FIELD, TIME Y DATE
-
+    //// este numero se copia en los objetos de la clase transaccion
+    // TODO: Este es el que se tiene que generar solo?
+    buyForm.setIntField("ID Transacción", trxId, 4);
+    buyForm.setRangeField("Cantidad", quantity, 1, 1000);
+    buyForm.setFloatField("Total", totalAmount);
+    buyForm.setDateField("Fecha", buyDate);
+    ////saleForm.setAlphanumeric("Hora, buyTime, 45);//TODO: hace falta la hora?
 
     if (!buyForm.fill()) return auxBuy;
 
     auxBuy.setpaymentMethod(paymentMethod);
     auxBuy.setProductId(productId);
-    auxBuy.setTransactionId(transactionId);
+    auxBuy.setTransactionId(trxId);
     auxBuy.setQuantity(quantity);
     auxBuy.setDate(buyDate);
     auxBuy.setTime(buyTime);
@@ -81,11 +82,10 @@ Buy BuysManager::editForm(int regPos) {
     InputForm buyForm;
     Buy auxBuy;
     std::string paymentMethod;
-    int nId, productId,quantity,transactionId;
-    float totalAmount; 
+    int nId, productId, quantity, transactionId;
+    float totalAmount;
     Date buyDate;
-    Time buyTime;   
-  
+    Time buyTime;
 
     auxBuy = _buysFile.readFile(regPos);
     if (auxBuy.getBuyId() == 0) {
@@ -93,17 +93,15 @@ Buy BuysManager::editForm(int regPos) {
         return auxBuy;
     }
     // Se cargan los datos para mostrarlas en el form.
-   
+
     transactionId = auxBuy.getTransactionId();
     productId = auxBuy.getProductId();
     nId = auxBuy.getBuyId();
-    buyDate =auxBuy. getbuyDate();
-    buyTime=auxBuy.getbuyTime();
-    totalAmount=auxBuy.getTotalAmount();
-    quantity=auxBuy.getQuantity();
-    paymentMethod=auxBuy.getPaymentMethod();
-
-  
+    buyDate = auxBuy.getbuyDate();
+    buyTime = auxBuy.getbuyTime();
+    totalAmount = auxBuy.getTotalAmount();
+    quantity = auxBuy.getQuantity();
+    paymentMethod = auxBuy.getPaymentMethod();
 
     std::cout << "Editando compra #" << nId << std::endl;
     // configurar form
@@ -111,23 +109,26 @@ Buy BuysManager::editForm(int regPos) {
 
     buyForm.setStrField("Metodo Pago", paymentMethod, 15);
     buyForm.setIntField("ID producto", productId, 4);
-    buyForm.setIntField("ID Transacción", transactionId, 4);   //// este numero se copia en los objetos de la clase transaccion
-   /// buyForm.setIntField("Cantidad", quantity, xxxxxxx); //TODO: Establecemos limite?
-    ///buyForm.setfloatField ("Total", totalAmount); //TODO: Establecemos limite? 
-    ///saleForm.setStrField("Fecha", buyDate 30);//TODO: FALTA FLOAT FIELD, TIME Y DATE
-    ////saleForm.setAlphanumeric("Hora, buyTime, 45);//TODO: FALTA FLOAT FIELD, TIME Y DATE
+    buyForm.setIntField(
+        "ID Transacción", transactionId,
+        4);  //// este numero se copia en los objetos de la clase transaccion
+    /// buyForm.setIntField("Cantidad", quantity, xxxxxxx); //TODO: Establecemos
+    /// limite?
+    /// buyForm.setfloatField ("Total", totalAmount); //TODO: Establecemos
+    /// limite? saleForm.setStrField("Fecha", buyDate 30);//TODO: FALTA FLOAT
+    /// FIELD, TIME Y DATE /saleForm.setAlphanumeric("Hora, buyTime, 45);//TODO:
+    /// FALTA FLOAT FIELD, TIME Y DATE
 
     // completar form
     bool success = buyForm.fill();
     if (success) {  // si se completa
-    
-    auxBuy.setpaymentMethod(paymentMethod);
-    auxBuy.setProductId(productId);
-    auxBuy.setTransactionId(transactionId);
-    auxBuy.setQuantity(quantity);
-    auxBuy.setDate(buyDate);
-    auxBuy.setTime(buyTime);
 
+        auxBuy.setpaymentMethod(paymentMethod);
+        auxBuy.setProductId(productId);
+        auxBuy.setTransactionId(transactionId);
+        auxBuy.setQuantity(quantity);
+        auxBuy.setDate(buyDate);
+        auxBuy.setTime(buyTime);
 
         return auxBuy;
     }
@@ -186,7 +187,7 @@ void BuysManager::show() {
     }
     int cellPos = 0;  // acumula la posicion actual a asignar
     for (int i = 0; i < totalRegs; i++) {
-       Buy auxBuy = _buysFile.readFile(i);
+        Buy auxBuy = _buysFile.readFile(i);
         // Obtener todas las propiedades del cliente
         // Guardarlas en un vector de string
         std::string vecStr[8];
@@ -199,8 +200,9 @@ void BuysManager::show() {
         cellPos += _buysFields;
     }
     // Vector que contiene las columnas de nuestra lista
-    std::string columns[8] = {"ID",        "ID producto", "Cantidad",  "Id Transaccion", "Total $",
-                              "Metodo de pago", "Fecha", "Hora"};
+    std::string columns[8] = {
+        "ID",      "ID producto",    "Cantidad", "Id Transaccion",
+        "Total $", "Metodo de pago", "Fecha",    "Hora"};
 
     ListView buysList;
     buysList.addCells(cells, totalCells);
@@ -210,5 +212,3 @@ void BuysManager::show() {
 
     delete[] cells;  // liberar memoria!
 }
-
-

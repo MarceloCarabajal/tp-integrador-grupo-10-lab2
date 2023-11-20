@@ -92,7 +92,7 @@ Product ProductsManager::editForm(int regPos) {
     std::string productName, description, brand, productType;
     float price;
     int quantity, stock, nId;
-    ProductCategory productcategory;
+    ProductCategory productCategory;
 
     auxProduct = _productsFile.readFile(regPos);
     if (auxProduct.getProductId() == 0) {
@@ -105,10 +105,10 @@ Product ProductsManager::editForm(int regPos) {
     brand = auxProduct.getBrand();
     nId = auxProduct.getProductId();
     productType = auxProduct.getProductType();
-    /////price = auxProduct.getPrice();
+    price = auxProduct.getPrice();
     quantity = auxProduct.getQuantity();
     stock = auxProduct.getStock();
-    productcategory = auxProduct.getProductCategory();
+    productCategory = auxProduct.getProductCategory();
 
     std::cout << "Editando producto #" << nId << std::endl;
     // configurar form
@@ -121,8 +121,7 @@ Product ProductsManager::editForm(int regPos) {
     productForm.setIntField("Stock", stock, 4);
 
     // TODO: Ver como metemos float y product category
-
-    ////productForm.setFFFFFFFFFFFFFF ("Precio", price, XXXXXXX)
+    productForm.setFloatField("Precio", price);
     ////productForm. PRODUCT CATEGORY
 
     // completar form
@@ -132,10 +131,10 @@ Product ProductsManager::editForm(int regPos) {
         auxProduct.setDescription(description);
         auxProduct.setBrand(brand);
         auxProduct.setProductType(productType);
-        ///// auxProduct.setPrice(price);
+        auxProduct.setPrice(price);
         auxProduct.setQuantity(quantity);
         auxProduct.setStock(stock);
-        /////auxProduct.setProductCategory(productCategory);
+        auxProduct.setProductCategory(productCategory);
 
         return auxProduct;
     }
@@ -182,7 +181,7 @@ void ProductsManager::show() {
 
     if (totalRegs < 0) {
         std::cout << "Ocurrio un error al leer los registros.\n";
-        utils::pause();  // TODO: usar rlutil ?
+        utils::pause();
         return;
     }
     // Se crea la variable que va a contener todas las celdas, segun la cantidad

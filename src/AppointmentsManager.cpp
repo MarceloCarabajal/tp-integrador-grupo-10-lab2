@@ -50,9 +50,10 @@ Appointment AppointmentsManager::loadForm() {
     bool attended;
     int clientId, petId;
 
-    // AppointmentForm.set   ("Fecha",dateApp);
-    // AppointmentForm.set   ("Hora", timeApp);
-    // AppointmentForm.set        ("Asistio",attended  );
+    AppointmentForm.setDateField("Fecha", dateApp);
+    // AppointmentForm.set   ("Hora", timeApp); TODO: Creo que la hr no seria
+    // necesaria
+    AppointmentForm.setBoolField("Asistió", attended);
     AppointmentForm.setStrField("Motivo", reason, 30);
     AppointmentForm.setIntField("Cliente ID", clientId, 4);
     AppointmentForm.setIntField("Mascota ID", petId, 4);
@@ -102,9 +103,9 @@ Appointment AppointmentsManager::editForm(int regPos) {
     // configurar form
     AppointmentForm.setEditMode(true);  // modo edicion
 
-    // AppointmentForm.set   ("Fecha",dateApp );
-    // AppointmentForm.set   ("Hora", timeApp);
-    // AppointmentForm.set        ("Asistio",attended );
+    AppointmentForm.setDateField("Fecha", dateApp);
+    // AppointmentForm.set   ("Hora", timeApp); // TODO: es necesaria?
+    AppointmentForm.setBoolField("Asistio", attended);
     AppointmentForm.setStrField("Motivo", reason, 30);
     AppointmentForm.setIntField("Cliente ID", clientId, 4);
     AppointmentForm.setIntField("Mascota ID", petId, 4);

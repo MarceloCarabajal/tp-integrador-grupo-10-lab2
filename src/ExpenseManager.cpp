@@ -31,25 +31,23 @@ void ExpenseManager::load() {
 
     auxExpense = loadForm();
     // Si no se completo el form, salir
-    if (auxExpense .getIdTransaction() == 0) return;
+    if (auxExpense.getIdTransaction() == 0) return;
 
     auxExpense.setIdTransaction(nId);  // set del Id ingresado anteriormente
-    if (_expenseFile.writeFile(auxExpense )) {
+    if (_expenseFile.writeFile(auxExpense)) {
         std::cout << "Ingreso guardado con exito!\n";
     } else {
         std::cout << "Ocurrio un error al guardar el ingreso.\n";
     }
 }
 
-
 Expense ExpenseManager::loadForm() {
-  
     InputForm expenseForm;
     Expense auxExpense;
     std::string description, paymentMethod;
     int buyId;
     Date transDate;
-    Time transTime; 
+    Time transTime;
     float amount;
 
     expenseForm.setStrField("Descripción", description, 45);
@@ -57,10 +55,9 @@ Expense ExpenseManager::loadForm() {
     expenseForm.setDateField("Fecha", transDate);
     /////expenseForm.setTIME(phone, 15);
     expenseForm.setIntField("ID Gasto", buyId, 4);
-   /// expenseForm.setFloatField("Total", amount,XXXXXXXX );
+    expenseForm.setFloatField("Total", amount);
 
-    if (!expenseForm.fill()) return auxExpense ;
-
+    if (!expenseForm.fill()) return auxExpense;
 
     auxExpense.setDescription(description);
     auxExpense.setPaymentMethod(paymentMethod);
@@ -69,8 +66,7 @@ Expense ExpenseManager::loadForm() {
     auxExpense.setAmount(amount);
     auxExpense.setBuyId(buyId);
 
-
-    return auxExpense ;
+    return auxExpense;
 }
 
 // Solo compara si coincide el id
@@ -83,51 +79,50 @@ Expense ExpenseManager::editForm(int regPos) {
     InputForm expenseForm;
     Expense auxExpense;
     std::string description, paymentMethod;
-    int buyId,nId;
+    int buyId, nId;
     Date transDate;
-    Time transTime; 
-    float amount; 
+    Time transTime;
+    float amount;
 
-    auxExpense  = _expenseFile.readFile(regPos);
-    if (auxExpense .getIdTransaction() == 0) {
+    auxExpense = _expenseFile.readFile(regPos);
+    if (auxExpense.getIdTransaction() == 0) {
         std::cout << "Ocurrio un error al leer los registros.\n";
-        return auxExpense ;
+        return auxExpense;
     }
     // Se cargan los datos para mostrarlas en el form.
- 
-    description = auxExpense .getDescription();
-    paymentMethod = auxExpense .getPaymentMehod();
-    nId = auxExpense .getIdTransaction();
-    transDate= auxExpense .getDateTrans();
-    transTime = auxExpense .getTimeTrans();
+
+    description = auxExpense.getDescription();
+    paymentMethod = auxExpense.getPaymentMehod();
+    nId = auxExpense.getIdTransaction();
+    transDate = auxExpense.getDateTrans();
+    transTime = auxExpense.getTimeTrans();
     amount = auxExpense.getAmount();
-    buyId=auxExpense.getBuyId();
+    buyId = auxExpense.getBuyId();
 
     std::cout << "Editando egreso #" << nId << std::endl;
     // configurar form
     expenseForm.setEditMode(true);  // modo edicion
-
 
     expenseForm.setStrField("Descripción", description, 45);
     expenseForm.setStrField("Metodo de pago", paymentMethod, 15);
     expenseForm.setDateField("Fecha", transDate);
     /////expenseForm.setTIME(phone, 15);
     expenseForm.setIntField("ID Egreso", buyId, 4);
-   /// expenseForm.setFloatField("Total", amount,XXXXXXXX );
+    /// expenseForm.setFloatField("Total", amount,XXXXXXXX );
 
     // completar form
     bool success = expenseForm.fill();
     if (success) {  // si se completa
-    auxExpense.setDescription(description);
-    auxExpense.setPaymentMethod(paymentMethod);
-    auxExpense.setDateTrans(transDate);
-    auxExpense.setTimeTrans(transTime);
-    auxExpense.setAmount(amount);
-    auxExpense.setBuyId(buyId);
-        return auxExpense ;
+        auxExpense.setDescription(description);
+        auxExpense.setPaymentMethod(paymentMethod);
+        auxExpense.setDateTrans(transDate);
+        auxExpense.setTimeTrans(transTime);
+        auxExpense.setAmount(amount);
+        auxExpense.setBuyId(buyId);
+        return auxExpense;
     }
     // si no se completa, devolver Ingreso vacio
-    return auxExpense ;
+    return auxExpense;
 }
 
 void ExpenseManager::edit() {
@@ -144,7 +139,7 @@ void ExpenseManager::edit() {
         return;
     }
     // Si se encontro, pedir datos
-    Expense auxExpense  = editForm(regPos);
+    Expense auxExpense = editForm(regPos);
     // Si no se completo el formulario, salir
     if (auxExpense.getIdTransaction() == 0) {
         std::cout << "No se realizara la edicion.\n";
@@ -153,7 +148,7 @@ void ExpenseManager::edit() {
     }
 
     // guardar ingreso actualizado
-    if (_expenseFile.updateFile(auxExpense , regPos)) {
+    if (_expenseFile.updateFile(auxExpense, regPos)) {
         std::cout << "Egreso editado con exito!\n";
     } else {
         std::cout << "Ocurrio un error al guardar el registro.\n";
@@ -176,12 +171,13 @@ void ExpenseManager::show() {
     // de registros
     std::string *cells = new std::string[totalCells];
     if (cells == NULL) {
-        std::cout << "No hay memoria suficiente para mostrar las transacciones.\n";
+        std::cout
+            << "No hay memoria suficiente para mostrar las transacciones.\n";
         return;
     }
     int cellPos = 0;  // acumula la posicion actual a asignar
     for (int i = 0; i < totalRegs; i++) {
-        Expense auxExpense  = _expenseFile.readFile(i);
+        Expense auxExpense = _expenseFile.readFile(i);
         // Obtener todas las propiedades del cliente
         // Guardarlas en un vector de string
         std::string vecStr[7];
@@ -194,8 +190,9 @@ void ExpenseManager::show() {
         cellPos += _expenseFields;
     }
     // Vector que contiene las columnas de nuestra lista
-    std::string columns[7] = {"ID Transaccion",        "Id Gasto",   "Fecha", "Hora",
-                              "Descripción", "Total", "Metodo de pago"};
+    std::string columns[7] = {"ID Transaccion", "Id Gasto",    "Fecha",
+                              "Hora",           "Descripción", "Total",
+                              "Metodo de pago"};
 
     ListView expensesList;
     expensesList.addCells(cells, totalCells);

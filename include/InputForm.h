@@ -17,7 +17,8 @@ private:
         phoneField = 5,
         boolField = 6,
         floatField = 7,
-        dateField = 8
+        dateField = 8,
+        rangeField = 9
     };
     // vector con los nombres de los campos
     std::vector<std::string> _strFields;
@@ -26,11 +27,13 @@ private:
     std::vector<std::string> _boolFields;
     std::vector<std::string> _floatFields;
     std::vector<std::string> _dateFields;
+    std::vector<std::string> _rangeFields;
 
     // vector con los limites de digitos/caracteres para los campos
     std::vector<int> _strLimit;
     std::vector<int> _intLimit;
     std::vector<int> _alnLimit;
+    std::vector<std::vector<int>> _rangeLimits;  // [0] = min, [1] = max
     int _emailLimit;  // solo se pide 1 email, no hace falta un vector
     int _phoneLimit;  // solo se pide 1 telefono
 
@@ -41,6 +44,7 @@ private:
     std::vector<bool *> _boolVars;
     std::vector<float *> _floatVars;
     std::vector<Date *> _dateVars;
+    std::vector<int *> _rangeVars;
     std::string *_emailVar = NULL;
     std::string *_phoneVar = NULL;
 
@@ -54,8 +58,9 @@ private:
     bool requestBoolFields();
     bool requestFloatFields();
     bool requestDateFields();
-    // bool requestIntRangeFields(); //TODO: hacer metodo para rangos
-    bool askToRetry(fieldType fType, int maxLimit);
+    bool requestRangeFields();
+    bool askToRetry(fieldType fType, int maxLimit = 0, int min = 0,
+                    int max = 0);
 
 public:
     InputForm(bool isEditing = false);
@@ -68,9 +73,10 @@ public:
     void setEmailField(std::string &strDestination, int maxLength);
     void setPhoneField(std::string &strDestination, int maxLength);
     void setBoolField(std::string fieldName, bool &boolDestination);
-    void setFloatField(std::string fieldName, float &floatDestination,
-                       int maxLength);
+    void setFloatField(std::string fieldName, float &floatDestination);
     void setDateField(std::string fieldName, Date &dateDestination);
+    void setRangeField(std::string fieldName, int &intDestination, int min,
+                       int max);
 
     void setEditMode(bool editMode);
 

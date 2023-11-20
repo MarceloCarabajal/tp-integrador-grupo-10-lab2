@@ -1,15 +1,16 @@
 #ifndef SUBMENUS_INCLUDED
 #define SUBMENUS_INCLUDED
 
+#include "AppointmentsManager.h"
 #include "ClientsManager.h"
 #include "Menu.h"
 #include "PetRelations.h"
 #include "PetsManager.h"
 #include "ProductsManager.h"
 #include "RelationsManager.h"
-#include "VetsManager.h"
 #include "VaccinationManager.h"
-#include "AppointmentsManager.h"
+#include "VetsManager.h"
+
 
 class SubMenus {
 private:
@@ -18,12 +19,10 @@ private:
     static void showClients();
     static void editClients();
 
-  static AppointmentsManager _appointmentsManager;
+    static AppointmentsManager _appsManager;
     static void loadAppointment();
     static void showAppointment();
     static void editAppointment();
-
-
 
     static VetsManager _vetsManager;
     static void loadVet();

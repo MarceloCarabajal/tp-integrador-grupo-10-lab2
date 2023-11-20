@@ -16,8 +16,9 @@ void IncomeManager::load() {
     // pedir y buscar si el id ingresado existe
     do {
         if (alreadyExists) {
-            std::cout << "El ID del ingreso ya existe, presione cualquier tecla "
-                         "para reintentar o ESC para salir.\n";
+            std::cout
+                << "El ID del ingreso ya existe, presione cualquier tecla "
+                   "para reintentar o ESC para salir.\n";
             if (rlutil::getkey() == rlutil::KEY_ESCAPE) return;
             rlutil::cls();
         }
@@ -31,25 +32,23 @@ void IncomeManager::load() {
 
     auxIncome = loadForm();
     // Si no se completo el form, salir
-    if (auxIncome .getIdTransaction() == 0) return;
+    if (auxIncome.getIdTransaction() == 0) return;
 
     auxIncome.setIdTransaction(nId);  // set del Id ingresado anteriormente
-    if (_incomeFile.writeFile(auxIncome )) {
+    if (_incomeFile.writeFile(auxIncome)) {
         std::cout << "Ingreso guardado con exito!\n";
     } else {
         std::cout << "Ocurrio un error al guardar el ingreso.\n";
     }
 }
 
-
 Income IncomeManager::loadForm() {
-  
     InputForm incomeForm;
-    Income auxIncome ;
+    Income auxIncome;
     std::string description, paymentMethod;
     int saleId;
     Date transDate;
-    Time transTime; 
+    Time transTime;
     float amount;
 
     incomeForm.setStrField("Descripción", description, 45);
@@ -57,10 +56,9 @@ Income IncomeManager::loadForm() {
     incomeForm.setDateField("Fecha", transDate);
     /////incomeForm.setTIME(phone, 15);
     incomeForm.setIntField("ID Venta", saleId, 4);
-   /// incomeForm.setFloatField("Total", amount,XXXXXXXX );
+    incomeForm.setFloatField("Total", amount);
 
-    if (!incomeForm.fill()) return auxIncome ;
-
+    if (!incomeForm.fill()) return auxIncome;
 
     auxIncome.setDescription(description);
     auxIncome.setPaymentMethod(paymentMethod);
@@ -69,8 +67,7 @@ Income IncomeManager::loadForm() {
     auxIncome.setAmount(amount);
     auxIncome.setSaleId(saleId);
 
-
-    return auxIncome ;
+    return auxIncome;
 }
 
 // Solo compara si coincide el id
@@ -83,51 +80,50 @@ Income IncomeManager::editForm(int regPos) {
     InputForm incomeForm;
     Income auxIncome;
     std::string description, paymentMethod;
-    int saleId,nId;
+    int saleId, nId;
     Date transDate;
-    Time transTime; 
-    float amount; 
+    Time transTime;
+    float amount;
 
-    auxIncome  = _incomeFile.readFile(regPos);
-    if (auxIncome .getIdTransaction() == 0) {
+    auxIncome = _incomeFile.readFile(regPos);
+    if (auxIncome.getIdTransaction() == 0) {
         std::cout << "Ocurrio un error al leer los registros.\n";
-        return auxIncome ;
+        return auxIncome;
     }
     // Se cargan los datos para mostrarlas en el form.
- 
-    description = auxIncome .getDescription();
-    paymentMethod = auxIncome .getPaymentMehod();
-    nId = auxIncome .getIdTransaction();
-    transDate= auxIncome .getDateTrans();
-    transTime = auxIncome .getTimeTrans();
+
+    description = auxIncome.getDescription();
+    paymentMethod = auxIncome.getPaymentMehod();
+    nId = auxIncome.getIdTransaction();
+    transDate = auxIncome.getDateTrans();
+    transTime = auxIncome.getTimeTrans();
     amount = auxIncome.getAmount();
-    saleId=auxIncome.getSaleId();
+    saleId = auxIncome.getSaleId();
 
     std::cout << "Editando ingreso #" << nId << std::endl;
     // configurar form
     incomeForm.setEditMode(true);  // modo edicion
-
 
     incomeForm.setStrField("Descripción", description, 45);
     incomeForm.setStrField("Metodo de pago", paymentMethod, 15);
     incomeForm.setDateField("Fecha", transDate);
     /////incomeForm.setTIME(phone, 15);
     incomeForm.setIntField("ID Venta", saleId, 4);
-   /// incomeForm.setFloatField("Total", amount,XXXXXXXX );
+    /// incomeForm.setFloatField("Total", amount,XXXXXXXX );
 
     // completar form
     bool success = incomeForm.fill();
     if (success) {  // si se completa
-    auxIncome.setDescription(description);
-    auxIncome.setPaymentMethod(paymentMethod);
-    auxIncome.setDateTrans(transDate);
-    auxIncome.setTimeTrans(transTime);
-    auxIncome.setAmount(amount);
-    auxIncome.setSaleId(saleId);
-        return auxIncome ;
+        auxIncome.setDescription(description);
+        auxIncome.setPaymentMethod(paymentMethod);
+        auxIncome.setDateTrans(transDate);
+        auxIncome.setTimeTrans(transTime);
+        auxIncome.setAmount(amount);
+        auxIncome.setSaleId(saleId);
+        return auxIncome;
     }
     // si no se completa, devolver Ingreso vacio
-    return auxIncome ;
+    return auxIncome;
 }
 
 void IncomeManager::edit() {
@@ -144,7 +140,7 @@ void IncomeManager::edit() {
         return;
     }
     // Si se encontro, pedir datos
-    Income auxIncome  = editForm(regPos);
+    Income auxIncome = editForm(regPos);
     // Si no se completo el formulario, salir
     if (auxIncome.getIdTransaction() == 0) {
         std::cout << "No se realizara la edicion.\n";
@@ -153,7 +149,7 @@ void IncomeManager::edit() {
     }
 
     // guardar ingreso actualizado
-    if (_incomeFile.updateFile(auxIncome , regPos)) {
+    if (_incomeFile.updateFile(auxIncome, regPos)) {
         std::cout << "Ingreso editado con exito!\n";
     } else {
         std::cout << "Ocurrio un error al guardar el registro.\n";
@@ -176,12 +172,13 @@ void IncomeManager::show() {
     // de registros
     std::string *cells = new std::string[totalCells];
     if (cells == NULL) {
-        std::cout << "No hay memoria suficiente para mostrar las transacciones.\n";
+        std::cout
+            << "No hay memoria suficiente para mostrar las transacciones.\n";
         return;
     }
     int cellPos = 0;  // acumula la posicion actual a asignar
     for (int i = 0; i < totalRegs; i++) {
-        Income auxIncome  = _incomeFile.readFile(i);
+        Income auxIncome = _incomeFile.readFile(i);
         // Obtener todas las propiedades del cliente
         // Guardarlas en un vector de string
         std::string vecStr[7];
@@ -194,8 +191,9 @@ void IncomeManager::show() {
         cellPos += _incomesFields;
     }
     // Vector que contiene las columnas de nuestra lista
-    std::string columns[7] = {"ID Transaccion",        "Id Venta",   "Fecha", "Hora",
-                              "Descripción", "Total", "Metodo de pago"};
+    std::string columns[7] = {"ID Transaccion", "Id Venta",    "Fecha",
+                              "Hora",           "Descripción", "Total",
+                              "Metodo de pago"};
 
     ListView incomesList;
     incomesList.addCells(cells, totalCells);

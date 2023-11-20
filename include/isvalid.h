@@ -130,6 +130,23 @@ namespace isvalid {
         }
     }
 
+    // intenta convertir una cadena a integer
+    inline bool tryStoi(std::string str) {
+        try {
+            std::stoi(str);
+            return true;
+        } catch (...) {
+            return false;
+        }
+    }
+
+    inline bool range(std::string str, int start, int end) {
+        if (!tryStoi(str)) return false;
+        int n = std::stoi(str);
+        if (n >= start && n <= end) return true;
+        return false;
+    }
+
     inline bool dateFormat(std::string str) {
         if (str.length() < 10) return false;
         if (str[2] != '/' || str[5] != '/') return false;
