@@ -62,10 +62,9 @@ Product ProductsManager::loadForm() {
     productForm.setStrField("Tipo Producto", productType, 30);
     productForm.setIntField("Cantidad", quantity, 4);
     productForm.setIntField("Stock", stock, 4);
-    // TODO: Ver como metemos float y product category
-
-    ////productForm.setFFFFFFFFFFFFFF ("Precio", price, XXXXXXX)
-    ////productForm. PRODUCT CATEGORY
+    productForm.setFloatField ("Precio", price);
+    // TODO: Ver como metemos product category
+    ////productForm. PRODUCT CATEGORY (tiene ID y nombre)
 
     if (!productForm.fill()) return auxProduct;
 
@@ -119,11 +118,9 @@ Product ProductsManager::editForm(int regPos) {
     productForm.setStrField("Tipo Producto", productType, 30);
     productForm.setIntField("Cantidad", quantity, 4);
     productForm.setIntField("Stock", stock, 4);
-
-    // TODO: Ver como metemos float y product category
     productForm.setFloatField("Precio", price);
-    ////productForm. PRODUCT CATEGORY
-
+   // TODO: Ver como metemos product category
+   
     // completar form
     bool success = productForm.fill();
     if (success) {  // si se completa

@@ -123,7 +123,7 @@ Appointment AppointmentsManager::editForm(int regPos) {
 
         return auxAppointment;
     }
-    // si no se completa, devolver  Vete vacio
+    // si no se completa, devolver  Turno vacio
     return auxAppointment;
 }
 

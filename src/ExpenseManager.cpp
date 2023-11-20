@@ -57,6 +57,7 @@ Expense ExpenseManager::loadForm() {
     expenseForm.setIntField("ID Gasto", buyId, 4);
     expenseForm.setFloatField("Total", amount);
 
+
     if (!expenseForm.fill()) return auxExpense;
 
     auxExpense.setDescription(description);
@@ -108,7 +109,7 @@ Expense ExpenseManager::editForm(int regPos) {
     expenseForm.setDateField("Fecha", transDate);
     /////expenseForm.setTIME(phone, 15);
     expenseForm.setIntField("ID Egreso", buyId, 4);
-    /// expenseForm.setFloatField("Total", amount,XXXXXXXX );
+    expenseForm.setFloatField("Total", amount);
 
     // completar form
     bool success = expenseForm.fill();

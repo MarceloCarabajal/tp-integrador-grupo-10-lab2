@@ -109,15 +109,12 @@ Buy BuysManager::editForm(int regPos) {
 
     buyForm.setStrField("Metodo Pago", paymentMethod, 15);
     buyForm.setIntField("ID producto", productId, 4);
-    buyForm.setIntField(
-        "ID Transacción", transactionId,
-        4);  //// este numero se copia en los objetos de la clase transaccion
-    /// buyForm.setIntField("Cantidad", quantity, xxxxxxx); //TODO: Establecemos
-    /// limite?
-    /// buyForm.setfloatField ("Total", totalAmount); //TODO: Establecemos
-    /// limite? saleForm.setStrField("Fecha", buyDate 30);//TODO: FALTA FLOAT
-    /// FIELD, TIME Y DATE /saleForm.setAlphanumeric("Hora, buyTime, 45);//TODO:
-    /// FALTA FLOAT FIELD, TIME Y DATE
+    buyForm.setIntField("ID Transacción", transactionId, 4);  //// este numero se copia en los objetos de la clase transaccion
+    buyForm.setRangeField("Cantidad",quantity, 1, 1000); 
+    buyForm.setFloatField ("Total", totalAmount); 
+    buyForm.setDateField("Fecha", buyDate);
+    ///saleForm.setAlphanumeric("Hora, buyTime, 45);//TODO:
+
 
     // completar form
     bool success = buyForm.fill();
@@ -132,7 +129,7 @@ Buy BuysManager::editForm(int regPos) {
 
         return auxBuy;
     }
-    // si no se completa, devolver Client vacio
+    // si no se completa, devolver Compra vacia
     return auxBuy;
 }
 
@@ -188,7 +185,7 @@ void BuysManager::show() {
     int cellPos = 0;  // acumula la posicion actual a asignar
     for (int i = 0; i < totalRegs; i++) {
         Buy auxBuy = _buysFile.readFile(i);
-        // Obtener todas las propiedades del cliente
+        // Obtener todas las propiedades de la compra
         // Guardarlas en un vector de string
         std::string vecStr[8];
         auxBuy.toVecString(vecStr);

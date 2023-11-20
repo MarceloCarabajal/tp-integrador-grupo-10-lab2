@@ -52,13 +52,10 @@ Vaccination VaccinationManager::loadForm() {
 
     vaccinationForm.setStrField(" Vacuna", nameVaccine, 15);
     vaccinationForm.setIntField("ID Mascota", petId, 4);
+    vaccinationForm.setDateField("Fecha de aplicacion", dateAplication);
+    vaccinationForm.setDateField("Fecha de revacunacion", dateRevaccination);
+    vaccinationForm.setBoolField("Notificado", notified);
 
-    // TODO: VER LOS DOS SIGUIENTES:
-    // vaccinationForm.setFechaField("Fecha de aplicacion", dateAplication,
-    // XXXXXXXXXXXXXX);
-    // vaccinationForm.setFechaField("Fecha de revacunacion", dateRevaccination,
-    // XXXXXXXXXXXXXX);
-    // vaccinationForm.setIntField("Notificado", notified);
     if (!vaccinationForm.fill()) return auxVaccination;
 
     auxVaccination.setNameVaccine(nameVaccine);
@@ -103,12 +100,9 @@ Vaccination VaccinationManager::editForm(int regPos) {
 
     vaccinationForm.setStrField(" Vacuna", nameVaccine, 15);
     vaccinationForm.setIntField("ID Mascota", petId, 4);
-
-    // TODO: VER LOS DOS SIGUIENTES:
-    // vaccinationForm.setFechaField("Fecha de aplicacion", dateAplication,
-    // XXXXXXXXXXXXXX); vaccinationForm.setFechaField("Fecha de revacunacion",
-    // dateRevaccination, XXXXXXXXXXXXXX);
-    // vaccinationForm.setIntField("Notificado", notified);
+    vaccinationForm.setDateField("Fecha de aplicacion", dateAplication);
+    vaccinationForm.setDateField("Fecha de revacunacion",dateRevaccination);
+    vaccinationForm.setBoolField  ("Notificado", notified);
 
     // completar form
     bool success = vaccinationForm.fill();

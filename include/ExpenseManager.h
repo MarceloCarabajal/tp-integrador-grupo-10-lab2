@@ -16,7 +16,7 @@ public:
     void show();
 
     // Al ser una funcion estatica se puede usar sin necesaidad de instanciar un
-    // objeto de tipo "IncomeManager", eso permite que se pueda pasar por
+    // objeto de tipo "ExpenseManager", eso permite que se pueda pasar por
     // parametro un puntero a esta funcion, lo que es necesario para la busqueda
     // de registros con VppFile
     static bool searchById(Expense  reg, int nId);

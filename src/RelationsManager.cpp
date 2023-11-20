@@ -45,14 +45,14 @@ void RelationsManager::load() {
 PetRelations RelationsManager::loadForm() {
     InputForm petRelationsForm;
     PetRelations auxPetR;
-    bool owner;  // status;
+    bool owner, status;
     int clientId, petId;
 
     petRelationsForm.setIntField("ID Mascota", petId, 4);
     petRelationsForm.setIntField("ID Cliente", clientId, 4);
+    petRelationsForm.setBoolField("Estado", status);
+     petRelationsForm.setBoolField("¿Es propietario?", owner);
 
-    ////////// petRelationsForm.setIntField("Estado", status, xxxxxxxx);
-    // petRelationsForm.setIntField("¿Es propietario?", owner);
     if (!petRelationsForm.fill()) return auxPetR;
 
     auxPetR.setPetId(petId);
@@ -138,7 +138,7 @@ void RelationsManager::edit() {
         return;
     }
 
-    // guardar mascota actualizada
+    // guardar relacion de mascota actualizada
     if (_petRelationsFile.updateFile(auxPetR, regPos)) {
         std::cout << "Relación de la Mascota editada con exito!\n";
     } else {
@@ -175,8 +175,6 @@ void RelationsManager::show() {
         for (int cell = 0; cell < _petRelationsFields; cell++) {
             cells[cellPos + cell] = vecStr[cell];
         }
-
-        /// cells[cellPos + 2] = auxPet.getOwner();
 
         // se incrementa la posicion de la celda segun la cantidad de datos que
         // contiene el registro, que equivale a una fila de la lista

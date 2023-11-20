@@ -100,8 +100,7 @@ Pet PetsManager::editForm(int regPos) {
     petForm.setStrField("Especie", specie, 15);
     petForm.setStrField("Raza", breed, 30);
     petForm.setStrField("Diagnostico actual", currentDiagnosis, 45);
-    // TODO: VER LOS DOS SIGUIENTES:
-    // petForm.setFechaField("Fecha de nacimiento", birthDate, XXXXXXXXXXXXXX);
+    petForm.setDateField("Fecha de nacimiento", birthDate);
     petForm.setIntField("ID Dueño", ownerId, 4);
 
     // completar form

@@ -51,11 +51,11 @@ Sale SalesManager::loadForm() {
     bool isVisit;
 
     saleForm.setIntField("Id Transaccion", transactionId, 4);
-    ///saleForm.setStrField("Fecha", saleDate 30);
+    saleForm.setDateField("Fecha", saleDate);
     ////saleForm.setAlphanumeric("Hora, saleTime, 45);
     saleForm.setStrField("Metodo Pago", paymentMethod, 15);
-    //////saleForm.setEmailField("Total", , 45);
-   /// saleForm.setBoolField ("¿Es Consulta?", isVisit)
+    saleForm.setFloatField("Total", totalAmount);
+    saleForm.setBoolField ("¿Es Consulta?", isVisit)
 
 
     if (!saleForm.fill()) return auxSale;
@@ -103,15 +103,12 @@ Sale SalesManager::editForm(int regPos) {
     std::cout << "Editando Venta #" << nId << std::endl;
     // configurar form
     saleForm.setEditMode(true);  // modo edicion
-
     saleForm.setIntField("Id Transaccion", transactionId, 4);    ////TODO: DEBERIA VENIR AUTOMATICO
-    ///saleForm.setStrField("Fecha", saleDate 30);
-    ////saleForm.setAlphanumeric("Hora, saleTime, 45);
+    saleForm.setDateField("Fecha", saleDate);
     saleForm.setStrField("Metodo Pago", paymentMethod, 15);
-    //////saleForm.setEmailField("Total", , 45);
-   /// saleForm.setBoolField ("¿Es Consulta?", isVisit)
-
-
+    saleForm.setFloatField("Total", totalAmount);
+    saleForm.setBoolField ("¿Es Consulta?", isVisit);
+ ////TODO: saleForm.setHORARIO("Hora, saleTime, 45);
 
 
     // completar form
@@ -124,7 +121,7 @@ Sale SalesManager::editForm(int regPos) {
         auxSale.setAmount(totalAmount);
         return auxSale;
     }
-    // si no se completa, devolver Client vacio
+    // si no se completa, devolver Venta vacia
     return auxSale;
 }
 
