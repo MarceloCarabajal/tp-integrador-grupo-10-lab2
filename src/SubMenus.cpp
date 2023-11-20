@@ -19,7 +19,21 @@ void SubMenus::clients() {
     mnuClients.showMenu();
 }
 
+
+AppointmentsManager SubMenus::_appointmentsManager = AppointmentsManager();
+void SubMenus::loadVet() { _vetsManager.load(); }
+void SubMenus::showVets() { _vetsManager.show(); }
+void SubMenus::editVets() { _vetsManager.edit(); }
+
+
 void SubMenus::appointments() {
+     Menu mnuAppoint("TURNOS :busts_in_silhouette:", true);
+    mnuAppoint.addOption("1. Cargar Turno :arrow_up_small:", loadAppointment);
+    mnuAppoint.addOption("2. Mostrar Turnos :page_facing_up:", showAppointment);
+    mnuAppoint.addOption("3. Editar Turno :pencil2:", editAppointment);
+    mnuAppoint.showMenu();
+   
+   
     /* Menu subMenu("Otro Menu", true);
         subMenu.addOption("1. Cualquier cosa", funcCualquier);
         subMenu.addOption("2. Otra cualquier cosa", funcCualquier);

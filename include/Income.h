@@ -1,8 +1,7 @@
 #pragma once
 #include "Transaction.h"
-
-
-class Income : Transaction {
+ 
+class Income : public Transaction {
 
 private:
 
@@ -19,5 +18,7 @@ int  getSaleId();
 
 
 void load();
+
+void toVecString(std::string vStr[7]);
 
 };
