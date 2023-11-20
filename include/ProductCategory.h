@@ -20,4 +20,7 @@ const char* getCatName();
 
 void load();
 
+
+void toVecString(std::string vStr[2]);
+
 };

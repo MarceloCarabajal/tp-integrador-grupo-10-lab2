@@ -9,6 +9,13 @@ void ProductCategory::setCatName(std::string name ){strcpy(_catName,name.c_str()
 
 int ProductCategory::getCatId(){return _catId;}
 const char * ProductCategory::getCatName(){return _catName;}
+
+
+void ProductCategory::toVecString(std::string vStr[2]) {
+    vStr[0] = std::to_string(_catId);
+    vStr[1] = _catName;
+ 
+}
 /*
 void ProductCategory::load(){
 int catId;

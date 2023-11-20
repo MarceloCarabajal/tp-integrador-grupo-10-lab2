@@ -1,3 +1,4 @@
+#pragma once
 #include "Income.h"
 #include "VppFile.h"
 
