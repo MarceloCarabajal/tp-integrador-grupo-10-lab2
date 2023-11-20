@@ -1,6 +1,7 @@
 #ifndef ISVALID_INCLUDED
 #define ISVALID_INCLUDED
 #include <iostream>
+#include <string>
 
 // #include "utils.h" // no se incluye porque provoca una dependencia circular
 // Solucion:
@@ -114,7 +115,7 @@ namespace isvalid {
             if (str[i] == '.' && i == str.length() - 1) return false;
             if (str[i] == '.' && i == 0) return false;
         }
-        if (dotFounds > 1 || dotFounds == (int)str.length()) return false;
+        if (dotFounds > 1) return false;
         return true;
     }
 
@@ -137,9 +138,9 @@ namespace isvalid {
             if (i == 2 || i == 5) continue;
             if (!number(str[i])) return false;
         }
-        if (stoi(str.substr(0, 2)) > 31) return false;
-        if (stoi(str.substr(3, 2)) > 12) return false;
-        if (stoi(str.substr(6, 4)) < 1900) return false;
+        if (std::stoi(str.substr(0, 2)) > 31) return false;
+        if (std::stoi(str.substr(3, 2)) > 12) return false;
+        if (std::stoi(str.substr(6, 4)) < 1900) return false;
         return true;
     }
 
