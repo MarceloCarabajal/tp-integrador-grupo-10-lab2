@@ -14,7 +14,7 @@ Sale::Sale(){
      strcpy( _paymentMethod, " ");
     _saleDate= Date (1,1,1900);
     _saleTime=Time(0,0,0);
-    _isVisit="no";
+    _isVisit=false;
     
 }
 

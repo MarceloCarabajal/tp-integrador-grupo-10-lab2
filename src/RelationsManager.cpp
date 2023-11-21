@@ -32,7 +32,7 @@ void RelationsManager::load() {
 
     auxPetR = loadForm();
     // Si no se completo el form, salir
-    if (auxPetR.getRelationId() == 0) return;
+    if (auxPetR.getPetId() == -1) return;
 
     auxPetR.setRelationId(nId);  // set del Id ingresado anteriormente
     if (_petRelationsFile.writeFile(auxPetR)) {

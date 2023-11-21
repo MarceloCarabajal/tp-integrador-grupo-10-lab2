@@ -33,7 +33,7 @@ void ProductsManager::load() {
 
     auxProduct = loadForm();
     // Si no se completo el form, salir
-    if (auxProduct.getProductId() == 0) return;
+    if (auxProduct.getStock() == -1) return;
 
     auxProduct.setProductId(nId);  // set del Id ingresado anteriormente
     if (_productsFile.writeFile(auxProduct)) {
