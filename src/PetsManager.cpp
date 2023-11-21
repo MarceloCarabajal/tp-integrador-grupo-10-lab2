@@ -32,7 +32,7 @@ void PetsManager::load() {
 
     auxPet = loadForm();
     // Si no se completo el form, salir
-    if (auxPet.getPetId() == -1) return;
+    if (auxPet.getOwnerId() == -1) return;
 
     auxPet.setPetId(nId);  // set del Id ingresado anteriormente
     if (_petsFile.writeFile(auxPet)) {
@@ -106,7 +106,6 @@ Pet PetsManager::editForm(int regPos) {
     // completar form
     bool success = petForm.fill();
     if (success) {  // si se completa
-        
 
         auxPet.setName(name);
         auxPet.setBreed(breed);
@@ -159,7 +158,7 @@ void PetsManager::show() {
 
     if (totalRegs < 0) {
         std::cout << "Ocurrio un error al leer los registros.\n";
-        utils::pause(); 
+        utils::pause();
         return;
     }
     // Se crea la variable que va a contener todas las celdas, segun la cantidad
