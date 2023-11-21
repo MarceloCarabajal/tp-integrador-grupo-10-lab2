@@ -8,7 +8,7 @@ using namespace std;
 Appointment::Appointment (){
 
 _appId=-1;
-_petId-1;
+_petId=-1;
 strcpy (_reason, " ");
 _attended="no";
 _clientId=-1;
