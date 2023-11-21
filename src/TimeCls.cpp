@@ -1,14 +1,18 @@
 #include "TimeCls.h"
 
+#include <ctime>
+
 // #include <iostream>
 #include <string>
 
-
-
 Time::Time() {
-    _hour = 00;
-    _min = 00;
-    _sec= 00;
+    time_t rawTime;
+    struct tm* timeVars;
+    time(&rawTime);                  // obtiene la hora actual
+    timeVars = localtime(&rawTime);  // da formato
+    _hour = timeVars->tm_hour;
+    _min = timeVars->tm_min;
+    _sec = timeVars->tm_sec;
 }
 
 Time::Time(int hour, int min, int sec) {
@@ -16,7 +20,6 @@ Time::Time(int hour, int min, int sec) {
     setMin(min);
     setSec(sec);
 }
-
 
 void Time::setHour(int hour) { _hour = hour; }
 

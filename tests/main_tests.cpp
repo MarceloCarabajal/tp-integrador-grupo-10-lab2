@@ -16,7 +16,9 @@
 #include <iostream>
 #include <string>
 
+#include "TimeCls.h"
 #include "isvalid.h"
+
 
 using namespace std;
 
@@ -71,7 +73,9 @@ int main() {
         clients.load();
         clients.show();
         cout << endl; */
-    testFloatType();
+    // testFloatType();
+    Time test;
+    cout << test.toString() << endl;
     system("pause");
 
     return 0;
