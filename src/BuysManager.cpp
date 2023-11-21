@@ -32,7 +32,7 @@ void BuysManager::load() {
 
     auxBuy = loadForm();
     // Si no se completo el form, salir
-    if (auxBuy.getBuyId() == 0) return;
+    if (auxBuy.getTransactionId() == -1) return;
 
     auxBuy.setBuyId(nId);  // set del Id ingresado anteriormente
     if (_buysFile.writeFile(auxBuy)) {

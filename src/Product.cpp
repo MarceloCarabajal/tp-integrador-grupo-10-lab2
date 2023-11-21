@@ -4,7 +4,7 @@
 Product::Product(){
     _productID=-1;
      _quantity=0;
-    _stock=0;
+    _stock=-1;
     _price=0.00;
     strcpy(_productName, " ");
     strcpy(_description, " ");

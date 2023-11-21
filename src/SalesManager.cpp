@@ -30,7 +30,7 @@ void SalesManager::load() {
 
    auxSale = loadForm();
     // Si no se completo el form, salir
-    if (auxSale.getSaleId() == 0) return;
+    if (auxSale.getTransactionId() == -1) return;
 
    auxSale.setSaleId(nId);  // set del Id ingresado anteriormente
     if (_salesFile.writeFile(auxSale)) {
