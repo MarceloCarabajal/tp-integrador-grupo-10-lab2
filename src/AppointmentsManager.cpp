@@ -35,9 +35,9 @@ void AppointmentsManager::load() {
 
     auxAppointment.setAppId(nId);  // set del Id ingresado anteriormente
     if (_appointmentsFile.writeFile(auxAppointment)) {
-        std::cout << "Veterinario guardado con exito!\n";
+        std::cout << "Turno guardado con exito!\n";
     } else {
-        std::cout << "Ocurrio un error al guardar el veterinario.\n";
+        std::cout << "Ocurrio un error al guardar el turno.\n";
     }
 }
 
