@@ -12,11 +12,14 @@ private:
     Date _buyDate;
     Time _buyTime;
 
-    /*Consideramos ingresar una compra por cada transaccion, es decir un
-    producto con su cantidad. Por eso no tenemos ItemBuy como en Sale */
+//TODO: Consideramos ingresar una compra por cada transaccion, es decir un producto con su cantidad. Por eso no tenemos ItemBuy como en Sale */
 public:
+
+Buy();
+Buy (int buyid, int productid, int quantityid, int transaccionid,float totalamount, std::string paymentmethod, Date buydate, Time buytime);
+ 
     void setBuyId(int id);
-    void setAmount(float importe);  /// CORREGÍ TIPO DE DATO, ESTABA INT
+    void setAmount(float importe);
     void setpaymentMethod(std::string method);
     void setDate(Date date);
     void setTime(Time time);

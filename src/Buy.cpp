@@ -5,6 +5,31 @@
 
 using namespace std;
 
+Buy::Buy(){
+_buyId=-1;
+_productId=-1;
+_quantity=-1;
+_transactionId=-1;
+_totalAmount=0.00;
+strcpy (_paymentMethod, "");
+_buyDate= Date(1,1,1990);
+_buyTime=Time(00,00,00);
+
+}
+
+Buy::Buy (int buyid, int productid, int quantityid, int transaccionid,float totalamount, std::string paymentmethod, Date buydate, Time buytime){
+_buyId=buyid;
+_productId=productid;
+_quantity=quantityid;
+_transactionId=transaccionid;
+_totalAmount=totalamount;
+strcpy (_paymentMethod,paymentmethod.c_str());
+_buyDate=buydate;
+_buyTime=buytime;
+
+
+}
+
 void Buy::setBuyId(int id) { _buyId = id; }
 void Buy::setAmount(float importe) { _totalAmount = importe; }
 void Buy::setpaymentMethod(std::string method) {
