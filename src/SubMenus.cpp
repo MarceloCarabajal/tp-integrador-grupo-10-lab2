@@ -41,7 +41,7 @@ void SubMenus::inventory() {
 
 VetsManager SubMenus::_vetsManager = VetsManager();
 void SubMenus::loadVet() { _vetsManager.load(); }
-void SubMenus::showVets() { _vetsManager.show(); }
+void SubMenus::showVets() { _vetsManager.show(); utils::pause();}
 void SubMenus::editVets() { _vetsManager.edit(); }
 
 void SubMenus::vets() {
@@ -55,7 +55,7 @@ void SubMenus::vets() {
 
 PetsManager SubMenus::_petsManager = PetsManager();
 void SubMenus::loadPet() { _petsManager.load(); }
-void SubMenus::showPets() { _petsManager.show(); }
+void SubMenus::showPets() { _petsManager.show();utils::pause(); }
 void SubMenus::editPets() { _petsManager.edit(); }
 
 void SubMenus::pets() {
@@ -69,7 +69,7 @@ void SubMenus::pets() {
 
 RelationsManager SubMenus::_relsManager = RelationsManager();
 void SubMenus::loadRel() { _relsManager.load(); }
-void SubMenus::showRels() { _relsManager.show(); }
+void SubMenus::showRels() { _relsManager.show(); utils::pause();}
 void SubMenus::editRels() { _relsManager.edit(); }
 
 void SubMenus::relations() {
@@ -83,7 +83,7 @@ void SubMenus::relations() {
 
 ProductsManager SubMenus::_productsManager = ProductsManager();
 void SubMenus::loadProduct() { _productsManager.load(); }
-void SubMenus::showProducts() { _productsManager.show(); }
+void SubMenus::showProducts() { _productsManager.show();utils::pause(); }
 void SubMenus::editProducts() { _productsManager.edit(); }
 
 void SubMenus::products() {
@@ -97,7 +97,7 @@ void SubMenus::products() {
 
 VaccinationManager SubMenus::_vaccManager = VaccinationManager();
 void SubMenus::loadVaccination() { _vaccManager.load(); }
-void SubMenus::showVaccinations() { _vaccManager.show(); }
+void SubMenus::showVaccinations() { _vaccManager.show();utils::pause(); }
 void SubMenus::editVaccination() { _vaccManager.edit(); }
 
 void SubMenus::vaccination() {
@@ -113,7 +113,7 @@ void SubMenus::vaccination() {
 
 ProdCategoryManager SubMenus::_catprodManager = ProdCategoryManager();
 void SubMenus::loadProdCategory() { _catprodManager.load(); }
-void SubMenus::showProdCategory() { _catprodManager.show(); }
+void SubMenus::showProdCategory() { _catprodManager.show();utils::pause(); }
 void SubMenus::editProdCategory() { _catprodManager.edit(); }
 
  
