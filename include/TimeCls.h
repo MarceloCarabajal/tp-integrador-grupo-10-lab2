@@ -6,6 +6,10 @@ private:
     int _hour, _min, _sec;
 
 public:
+
+   Time();
+   Time(int hour, int min, int sec);
+
     void setHour(int hour);
     void setMin(int min);
     void setSec(int sec);

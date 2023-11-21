@@ -3,6 +3,21 @@
 // #include <iostream>
 #include <string>
 
+
+
+Time::Time() {
+    _hour = 00;
+    _min = 00;
+    _sec= 00;
+}
+
+Time::Time(int hour, int min, int sec) {
+    setHour(hour);
+    setMin(min);
+    setSec(sec);
+}
+
+
 void Time::setHour(int hour) { _hour = hour; }
 
 void Time::setMin(int min) { _min = min; }

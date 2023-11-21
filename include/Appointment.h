@@ -16,6 +16,15 @@ private:
     int _clientId;
 
 public:
+
+Appointment();
+
+Appointment(int appId, int petID, Date dateApp, Time timeApp, std::string reason,
+ bool  attended, int clientId);
+
+
+
+
     void setAppId(int id);
     void setpetId(int idpet);
     void setDate(Date date);

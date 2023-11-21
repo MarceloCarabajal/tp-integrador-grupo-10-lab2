@@ -106,7 +106,7 @@ Pet PetsManager::editForm(int regPos) {
     // completar form
     bool success = petForm.fill();
     if (success) {  // si se completa
-                    // TODO: VER PET ID? no va para mi
+        
 
         auxPet.setName(name);
         auxPet.setBreed(breed);
