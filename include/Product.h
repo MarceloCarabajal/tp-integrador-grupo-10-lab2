@@ -10,7 +10,12 @@ private:
     ProductCategory _productCategory;
 
 public:
-//TODO: FALTA CONSTRUCTOR
+Product();
+Product (int productid, int quantity, int stock,float price, std::string productname,
+ std::string description, std::string brand, std::string productype, ProductCategory productcategory);
+
+
+ 
     void setProductId(int productId);
     void setProductName(std::string productName);
     void setDescription(std::string description);

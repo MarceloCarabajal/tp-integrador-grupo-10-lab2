@@ -1,6 +1,33 @@
 #include "Product.h"
-
 #include <cstring>
+
+Product::Product(){
+    _productID=-1;
+     _quantity=0;
+    _stock=0;
+    _price=0.00;
+    strcpy(_productName, " ");
+    strcpy(_description, " ");
+    strcpy(_brand, " ");
+     strcpy(_productType,  " ");
+   //TODO: VER COMO IRIA ACA   _productCategory= XXXXXXXXXXXXX
+
+
+}
+Product::Product (int productid, int quantity, int stock,float price, std::string productname,
+ std::string description, std::string brand, std::string productype, ProductCategory productcategory){
+
+    _productID=productid;
+    _quantity=quantity;
+    _stock=stock;
+    _price=price;
+   strcpy(_productName,productname.c_str());
+   strcpy( _description, description.c_str());
+   strcpy( _brand, brand.c_str());
+   strcpy(_productType, productype.c_str());
+   _productCategory=productcategory;
+
+ }
 
 void Product::setProductId(int productId) { _productID = productId; }
 void Product::setProductName(std::string productName) {
