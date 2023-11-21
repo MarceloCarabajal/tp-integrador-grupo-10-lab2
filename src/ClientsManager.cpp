@@ -154,7 +154,7 @@ void ClientsManager::show() {
 
     if (totalRegs < 0) {
         std::cout << "Ocurrio un error al leer los registros.\n";
-        utils::pause();  // TODO: usar rlutil ?
+        utils::pause(); 
         return;
     }
     // Se crea la variable que va a contener todas las celdas, segun la cantidad

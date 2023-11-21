@@ -164,7 +164,7 @@ void SalesManager::show() {
 
     if (totalRegs < 0) {
         std::cout << "Ocurrio un error al leer los registros.\n";
-        system("pause");  // TODO: usar rlutil ?
+        system("pause"); 
         return;
     }
     // Se crea la variable que va a contener todas las celdas, segun la cantidad
