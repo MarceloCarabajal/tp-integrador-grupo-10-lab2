@@ -21,7 +21,7 @@ void SubMenus::clients() {
 
 AppointmentsManager SubMenus::_appsManager = AppointmentsManager();
 void SubMenus::loadAppointment() { _appsManager.load(); }
-void SubMenus::showAppointment() { _appsManager.show(); }
+void SubMenus::showAppointment() { _appsManager.show(); utils::pause(); }
 void SubMenus::editAppointment() { _appsManager.edit(); }
 
 void SubMenus::appointments() {
