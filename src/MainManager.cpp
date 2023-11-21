@@ -25,5 +25,7 @@ void MainManager::mainMenu() {
                         _subMenus.relations);
     _mainMenu.addOption("8. Gestión de Productos :package:",
                         _subMenus.products);
+       _mainMenu.addOption("9. Gestión de Categoria de Productos :package:",
+                        _subMenus.productcategory);                  
     _mainMenu.showMenu();
 }

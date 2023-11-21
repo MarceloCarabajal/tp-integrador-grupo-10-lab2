@@ -110,3 +110,21 @@ void SubMenus::vaccination() {
     mnuVaccination.addOption("3. Editar Vacunación :pencil2:", editVaccination);
     mnuVaccination.showMenu();
 }
+
+ProdCategoryManager SubMenus::_catprodManager = ProdCategoryManager();
+void SubMenus::loadProdCategory() { _catprodManager.load(); }
+void SubMenus::showProdCategory() { _catprodManager.show(); }
+void SubMenus::editProdCategory() { _catprodManager.edit(); }
+
+ 
+
+void SubMenus::productcategory() {
+    Menu mnuCatProd("CATEGORIA DE PRODUCTOS:syringe:", true);
+
+    mnuCatProd.addOption("1. Cargar Categoria :arrow_up_small:",
+                             loadProdCategory);
+    mnuCatProd.addOption("2. Mostrar Categorias :page_facing_up:",
+                             showProdCategory);
+    mnuCatProd.addOption("3. Editar Categoria :pencil2:", editProdCategory);
+    mnuCatProd.showMenu();
+}
