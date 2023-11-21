@@ -3,7 +3,14 @@
 
 using namespace std;
 
+ Income:: Income() :Transaction() {
+    _saleId = -1;
+}
 
+ Income:: Income (int saleId,  int idTransaction,Date transDate,Time transTime,std::string description,float amount,std::string paymentMethod)
+    : Transaction(idTransaction,transDate,transTime, description, amount,paymentMethod) {
+    _saleId=saleId;
+}
 void Income::setSaleId( int saleId){_saleId=saleId;}
 
 

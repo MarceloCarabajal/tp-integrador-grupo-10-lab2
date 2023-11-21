@@ -10,15 +10,14 @@ int _saleId;
 
 
 public: 
-//TODO: FALTA CONSTRUCTOR
+
+Income ();
+Income (int saleId, int idTransaction,Date transDate,Time transTime,std::string description,float amount,std::string paymentMethod);
+
 void setSaleId( int saleId);
-
-
 int  getSaleId();
 
-
 void load();
-
 void toVecString(std::string vStr[7]);
 
 };
