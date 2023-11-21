@@ -10,7 +10,7 @@ int _saleId;
 
 
 public: 
-
+//TODO: FALTA CONSTRUCTOR
 void setSaleId( int saleId);
 
 

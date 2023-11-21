@@ -14,6 +14,7 @@ private:
     bool _isVisit;
 
 public:
+//TODO: FALTA CONSTRUCTOR
     void setSaleId(int id);
     void setAmount(float amount);
     void setPaymentMethod(std::string method);

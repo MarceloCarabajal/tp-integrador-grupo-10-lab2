@@ -14,6 +14,7 @@ private:
     char _paymentMethod[15];
 
 public:
+//TODO: FALTA CONSTRUCTOR
     void setIdTransaction(int idTrx);
     void setDateTrans(Date date);
     void setTimeTrans(Time time);

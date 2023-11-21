@@ -10,6 +10,7 @@ private:
     ProductCategory _productCategory;
 
 public:
+//TODO: FALTA CONSTRUCTOR
     void setProductId(int productId);
     void setProductName(std::string productName);
     void setDescription(std::string description);
