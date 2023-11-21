@@ -22,10 +22,8 @@ void MainManager::mainMenu() {
                         _subMenus.vets);
     _mainMenu.addOption("6. Gestión de Mascotas :dog:", _subMenus.pets);
     _mainMenu.addOption("7. Gestión de Relaciones :couple_with_heart:",
-                        _subMenus.relations);/*/
-    _mainMenu.addOption("8. Gestión de Productos :package:",
-                        _subMenus.products);
-       _mainMenu.addOption("9. Gestión de Categoria de Productos :package:",
-                        _subMenus.productcategory);   */           
+                        _subMenus.relations);
+    _mainMenu.addOption("9. Gestión de Vacunación :", _subMenus.vaccination);
+         
     _mainMenu.showMenu();
 }
