@@ -9,7 +9,11 @@ private:
 
 
 public: 
-//TODO: FALTA CONSTRUCTOR
+
+ItemSale();
+
+ItemSale (int productid, int quantity, int saleid, float unitprice);
+
  void setProductId( int productId);
  void setQuantity( int quantity);
  void setUnitPrice( float total);
