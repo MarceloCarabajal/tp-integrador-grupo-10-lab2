@@ -3,7 +3,7 @@
 #include "utils.h"
 
 ClientsManager SubMenus::_clientsManager = ClientsManager();
-void SubMenus::loadClient() { _clientsManager.load(); }
+void SubMenus::loadClient() { _clientsManager.load();  utils::pause();}
 void SubMenus::editClients() { _clientsManager.edit(); }
 
 void SubMenus::showClients() {
