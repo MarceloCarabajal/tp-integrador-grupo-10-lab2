@@ -5,32 +5,26 @@
 
 using namespace std;
 
-Appointment::Appointment (){
-
-_appId=-1;
-_petId=-1;
-strcpy (_reason, " ");
-_attended="no";
-_clientId=-1;
-_dateApp= Date(1,1,1990); 
-_timeApp=Time (00,00,00);
-
+Appointment::Appointment() {
+    _appId = -1;
+    _petId = -1;
+    strcpy(_reason, "");
+    _attended = false;
+    _clientId = -1;
+    _dateApp = Date(1, 1, 1990);
+    _timeApp = Time();
 }
 
-Appointment::Appointment(int appId, int petID, Date dateApp, Time timeApp, std::string reason,
- bool  attended, int clientId){
-
-_petId=petID;
-_appId=appId;
-_clientId=clientId;
-_attended=attended;
-strcpy(_reason,reason.c_str());
-_dateApp=dateApp;
-_timeApp=timeApp;
-
-
+Appointment::Appointment(int appId, int petID, Date dateApp, Time timeApp,
+                         std::string reason, bool attended, int clientId) {
+    _petId = petID;
+    _appId = appId;
+    _clientId = clientId;
+    _attended = attended;
+    strcpy(_reason, reason.c_str());
+    _dateApp = dateApp;
+    _timeApp = timeApp;
 }
-
 
 /**
  * @brief

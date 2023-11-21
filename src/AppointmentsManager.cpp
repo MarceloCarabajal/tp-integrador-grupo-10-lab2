@@ -31,7 +31,7 @@ void AppointmentsManager::load() {
 
     auxAppointment = loadForm();
     // Si no se completo el form, salir
-    if (auxAppointment.getAppId() == 0) return;
+    if (strlen(auxAppointment.getReason()) == 0) return;
 
     auxAppointment.setAppId(nId);  // set del Id ingresado anteriormente
     if (_appointmentsFile.writeFile(auxAppointment)) {
@@ -166,7 +166,7 @@ void AppointmentsManager::show() {
 
     if (totalRegs < 0) {
         std::cout << "Ocurrio un error al leer los registros.\n";
-        utils::pause();  
+        utils::pause();
         return;
     }
     // Se crea la variable que va a contener todas las celdas, segun la cantidad
