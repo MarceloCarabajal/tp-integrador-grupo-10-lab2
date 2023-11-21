@@ -5,6 +5,31 @@
 
 using namespace std;
 
+
+Sale::Sale(){
+
+     _saleId=-1;
+     _transactionId=-1;
+     _totalAmount=0.00;
+     strcpy( _paymentMethod, " ");
+    _saleDate= Date (1,1,1900);
+    _saleTime=Time(0,0,0);
+    _isVisit="no";
+    
+}
+
+Sale::Sale (int saleid, int transactionid, float totalamount, std::string paymentmethod, Date saledate, Time saletime, bool isvisit)
+{
+_saleId=saleid;
+_transactionId=transactionid;
+_totalAmount=totalamount;
+strcpy(_paymentMethod, paymentmethod.c_str());
+_saleDate=saledate;
+_saleTime=saletime;
+_isVisit=isvisit;
+
+}
+
 void Sale::setSaleId(int id) { _saleId = id; }
 void Sale::setTransactionId(int id) { _transactionId = id; }
 void Sale::setAmount(float amount) { _totalAmount = amount; }
