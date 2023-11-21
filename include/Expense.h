@@ -9,7 +9,9 @@ int _buyId;
 
 
 public: 
-//TODO: FALTA CONSTRUCTOR
+Expense ();
+Expense (int buyid, int idTransaction,Date transDate,Time transTime,std::string description,float amount,std::string paymentMethod);
+
 void setBuyId( int id);
 int  getBuyId();
 
