@@ -56,7 +56,7 @@ mnuInventory.showMenu();
 }*/
 
 VetsManager SubMenus::_vetsManager = VetsManager();
-void SubMenus::loadVet() { _vetsManager.load(); }
+void SubMenus::loadVet() { _vetsManager.load();utils::pause(); }
 void SubMenus::showVets() { _vetsManager.show(); utils::pause();}
 void SubMenus::editVets() { _vetsManager.edit(); }
 
