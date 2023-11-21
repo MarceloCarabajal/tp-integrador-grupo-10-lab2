@@ -32,16 +32,28 @@ void SubMenus::appointments() {
     mnuAppoint.showMenu();
 }
 /*
-xxxxxxxxxxxxxxxxxx SubMenus::_appsManager = AppointmentsManager();
+AppointmentsManager SubMenus::_appsManager = AppointmentsManager();
 void SubMenus::loadAppointment() { _appsManager.load(); }
 void SubMenus::showAppointment() { _appsManager.show(); utils::pause(); }
 void SubMenus::editAppointment() { _appsManager.edit(); }*/
+
+
+
 void SubMenus::inventory() {
      Menu mnuInventory("INVENTARIO", true);
-        mnuInventory.addOption("1. Gestion de productos", funcCualquier);
-        mnuInventory.addOption("2. Gestion de categorias de productos", funcCualquier);
-         mnuInventory.showMenu(); 
+mnuInventory.addOption("1. Gestionar Productos", products);
+mnuInventory.addOption("2. Gestionar Categorías", productcategory);
+mnuInventory.showMenu();
 }
+/*/
+        mnuInventory.addOption("1. Cargar productos", loadProduct);
+        mnuInventory.addOption("2. Edita productos", editProducts);
+        mnuInventory.addOption("3. Mostrar productos", showProducts);      
+        mnuInventory.addOption("4. Cargar categoria ", loadProdCategory);
+        mnuInventory.addOption("5. Editar categoria ", editProdCategory);
+        mnuInventory.addOption("6. Mostrar categoria ", showProdCategory);
+        mnuInventory.showMenu(); 
+}*/
 
 VetsManager SubMenus::_vetsManager = VetsManager();
 void SubMenus::loadVet() { _vetsManager.load(); }
