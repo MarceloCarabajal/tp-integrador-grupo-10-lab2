@@ -55,7 +55,7 @@ Sale SalesManager::loadForm() {
     ////saleForm.setAlphanumeric("Hora, saleTime, 45);
     saleForm.setStrField("Metodo Pago", paymentMethod, 15);
     saleForm.setFloatField("Total", totalAmount);
-    saleForm.setBoolField ("¿Es Consulta?", isVisit)
+    saleForm.setBoolField ("¿Es Consulta?", isVisit);
 
 
     if (!saleForm.fill()) return auxSale;
