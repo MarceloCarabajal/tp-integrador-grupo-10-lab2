@@ -14,7 +14,11 @@ private:
     char _paymentMethod[15];
 
 public:
-//TODO: FALTA CONSTRUCTOR
+
+Transaction ();
+Transaction (int idtrans, Date transdate, Time transtime, std::string descrip, float amount,std::string payment);
+
+
     void setIdTransaction(int idTrx);
     void setDateTrans(Date date);
     void setTimeTrans(Time time);

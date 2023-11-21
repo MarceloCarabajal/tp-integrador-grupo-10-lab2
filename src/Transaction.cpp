@@ -4,6 +4,24 @@
 using namespace std;
 
 
+Transaction::Transaction (){
+ _idTransaction=-1;
+ _transDate= Date(1,1,1900);
+ _transTime=Time(00,00,00);
+ strcpy( _description, " ");
+_amount=0.00;
+ strcpy( _paymentMethod, " ");
+    
+}
+Transaction::Transaction (int idtrans, Date transdate, Time transtime, std::string descrip, float amount,std::string payment){
+_idTransaction=idtrans;
+_transDate=transdate;
+_transTime=transtime;
+strcpy(_description, descrip.c_str()) ;
+_amount=amount;
+strcpy(_paymentMethod,payment.c_str());
+}
+
 void Transaction::setIdTransaction(int idTrx ){_idTransaction=idTrx;}
 void Transaction::setDateTrans( Date transDate){_transDate=transDate;   }
 void Transaction::setTimeTrans ( Time transTime){_transTime=transTime;}
