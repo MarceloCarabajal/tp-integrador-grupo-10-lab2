@@ -11,6 +11,7 @@
 #include "VaccinationManager.h"
 #include "VetsManager.h"
 #include "ProdCategoryManager.h"
+#include "VetVisitsManager.h"
 
 
 class SubMenus {
@@ -56,6 +57,10 @@ private:
     static void showProdCategory();
     static void editProdCategory();
 
+ static VetVisitsManager _vetvisitsManager;
+    static void loadvetvisit();
+    static void showvetvisits();
+    static void editvetvisit();
 
 public:
     static void clients();
@@ -67,6 +72,7 @@ public:
     static void products();
     static void vaccination();
     static void productcategory();
+    static void vetvisits();
 };
 
 #endif /* SUBMENUS_INCLUDED */
