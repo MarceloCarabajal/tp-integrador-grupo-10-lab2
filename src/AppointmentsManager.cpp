@@ -196,10 +196,11 @@ void AppointmentsManager::show() {
     std::string columns[8] = {"ID Turno", "ID Mascota", "Fecha",     "Hora",
                               "Motivo",   "Asistio",    "ID Cliente"};
 
-    ListView vetsList;
-    vetsList.addCells(cells, totalCells);
-    vetsList.addCols(columns, 7);
-    vetsList.setTitle("TURNOS");
-    vetsList.show();
+    ListView appvetsList;
+    appvetsList.addCells(cells, totalCells);
+    appvetsList.addCols(columns, 7);
+    appvetsList.setTitle("TURNOS");
+    appvetsList.show();
+
     delete[] cells;  // liberar memoria!
 }
