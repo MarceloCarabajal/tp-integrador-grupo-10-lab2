@@ -31,12 +31,16 @@ void SubMenus::appointments() {
     mnuAppoint.addOption("3. Editar Turno :pencil2:", editAppointment);
     mnuAppoint.showMenu();
 }
-
+/*
+xxxxxxxxxxxxxxxxxx SubMenus::_appsManager = AppointmentsManager();
+void SubMenus::loadAppointment() { _appsManager.load(); }
+void SubMenus::showAppointment() { _appsManager.show(); utils::pause(); }
+void SubMenus::editAppointment() { _appsManager.edit(); }*/
 void SubMenus::inventory() {
-    /* Menu subMenu("Otro Menu", true);
-        subMenu.addOption("1. Cualquier cosa", funcCualquier);
-        subMenu.addOption("2. Otra cualquier cosa", funcCualquier);
-        subMenu.showMenu(); */
+     Menu mnuInventory("INVENTARIO", true);
+        mnuInventory.addOption("1. Gestion de productos", funcCualquier);
+        mnuInventory.addOption("2. Gestion de categorias de productos", funcCualquier);
+         mnuInventory.showMenu(); 
 }
 
 VetsManager SubMenus::_vetsManager = VetsManager();
