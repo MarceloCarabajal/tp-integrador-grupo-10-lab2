@@ -91,7 +91,7 @@ VetVisits VetVisitsManager::loadForm() {
     vetvisitsForm.setStrField("Diagnóstico", diagnosis, 240);
     vetvisitsForm.setDateField("Fecha", date);
     vetvisitsForm.setIntField("ID Venta", saleId, 4);
-    vetvisitsForm.setIntField("ID Vete", vetId, 4);
+   
 
     if (!vetvisitsForm.fill()) return auxVetVisits;
 
@@ -240,7 +240,7 @@ bool VetVisitsManager::searchById(VetVisits reg, int nId) {
 }
 
 bool VetVisitsManager::idExists(int nId) {
-    _vetVisitsFile.searchReg(searchById, nId) >= 0 ? true : false;
+   return _vetVisitsFile.searchReg(searchById, nId) >= 0 ? true : false;
 }
 
 
