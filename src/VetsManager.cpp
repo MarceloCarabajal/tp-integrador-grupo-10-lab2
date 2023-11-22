@@ -32,7 +32,7 @@ void VetsManager::load() {
 
     auxVet = loadForm();
     // Si no se completo el form, salir
-    if (strcmp (auxVet.getSpeciality(), "") == 0) return;
+    if (strcmp(auxVet.getSpeciality(), " ") == 0) return;
 
     auxVet.setIdVet(nId);  // set del Id ingresado anteriormente
     if (_vetsFile.writeFile(auxVet)) {
@@ -147,7 +147,7 @@ void VetsManager::show() {
 
     if (totalRegs < 0) {
         std::cout << "Ocurrio un error al leer los registros.\n";
-        utils::pause();  
+        utils::pause();
         return;
     }
     // Se crea la variable que va a contener todas las celdas, segun la cantidad

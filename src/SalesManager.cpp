@@ -15,8 +15,9 @@ void SalesManager::load() {
     // pedir y buscar si el id ingresado existe
     do {
         if (alreadyExists) {
-            std::cout << "El ID de la venta ya existe, presione cualquier tecla "
-                         "para reintentar o ESC para salir.\n";
+            std::cout
+                << "El ID de la venta ya existe, presione cualquier tecla "
+                   "para reintentar o ESC para salir.\n";
             if (rlutil::getkey() == rlutil::KEY_ESCAPE) return;
             rlutil::cls();
         }
@@ -28,11 +29,11 @@ void SalesManager::load() {
         idForm.clearAll();  // limpiar form
     } while (alreadyExists);
 
-   auxSale = loadForm();
+    auxSale = loadForm();
     // Si no se completo el form, salir
     if (auxSale.getTransactionId() == -1) return;
 
-   auxSale.setSaleId(nId);  // set del Id ingresado anteriormente
+    auxSale.setSaleId(nId);  // set del Id ingresado anteriormente
     if (_salesFile.writeFile(auxSale)) {
         std::cout << "Venta guardada con exito!\n";
     } else {
@@ -44,7 +45,7 @@ Sale SalesManager::loadForm() {
     InputForm saleForm;
     Sale auxSale;
     std::string paymentMethod;
-    int  transactionId;
+    int transactionId;
     float totalAmount;
     Date saleDate;
     Time saleTime;
@@ -55,16 +56,15 @@ Sale SalesManager::loadForm() {
     ////saleForm.setAlphanumeric("Hora, saleTime, 45);
     saleForm.setStrField("Metodo Pago", paymentMethod, 15);
     saleForm.setFloatField("Total", totalAmount);
-    saleForm.setBoolField ("¿Es Consulta?", isVisit);
-
+    saleForm.setBoolField("¿Es Consulta?", isVisit);
 
     if (!saleForm.fill()) return auxSale;
 
-   auxSale.setPaymentMethod(paymentMethod);
-   auxSale.setTransactionId(transactionId);
-   auxSale.setDate(saleDate);
-   auxSale.setTime(saleTime);
-   auxSale.setAmount(totalAmount);
+    auxSale.setPaymentMethod(paymentMethod);
+    auxSale.setTransactionId(transactionId);
+    auxSale.setDate(saleDate);
+    auxSale.setTime(saleTime);
+    auxSale.setAmount(totalAmount);
     return auxSale;
 }
 
@@ -77,45 +77,42 @@ bool SalesManager::searchById(Sale reg, int nId) {
 Sale SalesManager::editForm(int regPos) {
     InputForm saleForm;
     Sale auxSale;
-     std::string paymentMethod;
-    int  quantit, transactionId, nId;
+    std::string paymentMethod;
+    int transactionId, nId;
     float totalAmount;
     Date saleDate;
     Time saleTime;
     bool isVisit;
-    
-    
-   
 
-   auxSale = _salesFile.readFile(regPos);
+    auxSale = _salesFile.readFile(regPos);
     if (auxSale.getSaleId() == 0) {
         std::cout << "Ocurrio un error al leer los registros.\n";
         return auxSale;
     }
     // Se cargan los datos para mostrarlas en el form.
-    transactionId =auxSale.getTransactionId();
-    paymentMethod =auxSale.getPaymentMethod();
-    saleDate =auxSale.getDate();
-    nId =auxSale.getSaleId();
-    saleTime =auxSale.getTime();
-    isVisit =auxSale.getIsVisit();
-  
+    transactionId = auxSale.getTransactionId();
+    paymentMethod = auxSale.getPaymentMethod();
+    saleDate = auxSale.getDate();
+    nId = auxSale.getSaleId();
+    saleTime = auxSale.getTime();
+    isVisit = auxSale.getIsVisit();
+
     std::cout << "Editando Venta #" << nId << std::endl;
     // configurar form
     saleForm.setEditMode(true);  // modo edicion
-    saleForm.setIntField("Id Transaccion", transactionId, 4);    ////TODO: DEBERIA VENIR AUTOMATICO
+    saleForm.setIntField("Id Transaccion", transactionId,
+                         4);  ////TODO: DEBERIA VENIR AUTOMATICO
     saleForm.setDateField("Fecha", saleDate);
     saleForm.setStrField("Metodo Pago", paymentMethod, 15);
     saleForm.setFloatField("Total", totalAmount);
-    saleForm.setBoolField ("¿Es Consulta?", isVisit);
- ////TODO: saleForm.setHORARIO("Hora, saleTime, 45);
-
+    saleForm.setBoolField("¿Es Consulta?", isVisit);
+    ////TODO: saleForm.setHORARIO("Hora, saleTime, 45);
 
     // completar form
     bool success = saleForm.fill();
     if (success) {  // si se completa
-       auxSale.setPaymentMethod(paymentMethod);
-       auxSale.setTransactionId(transactionId);
+        auxSale.setPaymentMethod(paymentMethod);
+        auxSale.setTransactionId(transactionId);
         auxSale.setDate(saleDate);
         auxSale.setTime(saleTime);
         auxSale.setAmount(totalAmount);
@@ -164,7 +161,7 @@ void SalesManager::show() {
 
     if (totalRegs < 0) {
         std::cout << "Ocurrio un error al leer los registros.\n";
-        system("pause"); 
+        system("pause");
         return;
     }
     // Se crea la variable que va a contener todas las celdas, segun la cantidad
@@ -180,7 +177,7 @@ void SalesManager::show() {
         // Obtener todas las propiedades del cliente
         // Guardarlas en un vector de string
         std::string vecStr[7];
-       auxSale.toVecString(vecStr);
+        auxSale.toVecString(vecStr);
         for (int cell = 0; cell < _salesFields; cell++) {
             cells[cellPos + cell] = vecStr[cell];
         }
@@ -189,9 +186,9 @@ void SalesManager::show() {
         cellPos += _salesFields;
     }
     // Vector que contiene las columnas de nuestra lista
-    std::string columns[8] = {"ID Sale",      "ID Transaccion", "Total $",
-                              "Metodo de pago", "Fecha", "Hora", "¿Es Consulta?"};
-
+    std::string columns[8] = {"ID Sale",        "ID Transaccion", "Total $",
+                              "Metodo de pago", "Fecha",          "Hora",
+                              "¿Es Consulta?"};
 
     ListView salesList;
     salesList.addCells(cells, totalCells);
