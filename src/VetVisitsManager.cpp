@@ -85,7 +85,7 @@ VetVisits VetVisitsManager::editForm(int regPos) {
     int clientId, petId, saleId, vetId,nId;
 
     auxVetVisits = _vetVisitsFile.readFile(regPos);
-    if (auxVetVisits.getPetId() == 0) {
+    if (auxVetVisits.getVisitId() == -1) {
         std::cout << "Ocurrio un error al leer los registros.\n";
         return auxVetVisits;
     }
