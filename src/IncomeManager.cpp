@@ -70,12 +70,6 @@ Income IncomeManager::loadForm() {
     return auxIncome;
 }
 
-// Solo compara si coincide el id
-bool IncomeManager::searchById(Income reg, int nId) {
-    if (reg.getIdTransaction() == nId) return true;
-    return false;
-}
-
 Income IncomeManager::editForm(int regPos) {
     InputForm incomeForm;
     Income auxIncome;
@@ -165,7 +159,7 @@ void IncomeManager::show() {
 
     if (totalRegs < 0) {
         std::cout << "Ocurrio un error al leer los registros.\n";
-        utils::pause(); 
+        utils::pause();
         return;
     }
     // Se crea la variable que va a contener todas las celdas, segun la cantidad
@@ -202,4 +196,14 @@ void IncomeManager::show() {
     incomesList.show();
 
     delete[] cells;  // liberar memoria!
+}
+
+// Solo compara si coincide el id
+bool IncomeManager::searchById(Income reg, int nId) {
+    if (reg.getIdTransaction() == nId) return true;
+    return false;
+}
+
+bool IncomeManager::idExists(int nId) {
+    return _incomeFile.searchReg(searchById, nId) >= 0 ? true : false;
 }

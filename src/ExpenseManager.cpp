@@ -57,7 +57,6 @@ Expense ExpenseManager::loadForm() {
     expenseForm.setIntField("ID Gasto", buyId, 4);
     expenseForm.setFloatField("Total", amount);
 
-
     if (!expenseForm.fill()) return auxExpense;
 
     auxExpense.setDescription(description);
@@ -68,12 +67,6 @@ Expense ExpenseManager::loadForm() {
     auxExpense.setBuyId(buyId);
 
     return auxExpense;
-}
-
-// Solo compara si coincide el id
-bool ExpenseManager::searchById(Expense reg, int nId) {
-    if (reg.getIdTransaction() == nId) return true;
-    return false;
 }
 
 Expense ExpenseManager::editForm(int regPos) {
@@ -165,7 +158,7 @@ void ExpenseManager::show() {
 
     if (totalRegs < 0) {
         std::cout << "Ocurrio un error al leer los registros.\n";
-        utils::pause();  
+        utils::pause();
         return;
     }
     // Se crea la variable que va a contener todas las celdas, segun la cantidad
@@ -202,4 +195,14 @@ void ExpenseManager::show() {
     expensesList.show();
 
     delete[] cells;  // liberar memoria!
+}
+
+// Solo compara si coincide el id
+bool ExpenseManager::searchById(Expense reg, int nId) {
+    if (reg.getIdTransaction() == nId) return true;
+    return false;
+}
+
+bool ExpenseManager::idExists(int nId) {
+    return _expenseFile.searchReg(searchById, nId) >= 0 ? true : false;
 }

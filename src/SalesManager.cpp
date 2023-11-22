@@ -68,12 +68,6 @@ Sale SalesManager::loadForm() {
     return auxSale;
 }
 
-// Solo compara si coincide el id
-bool SalesManager::searchById(Sale reg, int nId) {
-    if (reg.getSaleId() == nId) return true;
-    return false;
-}
-
 Sale SalesManager::editForm(int regPos) {
     InputForm saleForm;
     Sale auxSale;
@@ -196,4 +190,14 @@ void SalesManager::show() {
     salesList.setTitle("VENTAS");
     salesList.show();
     delete[] cells;  // liberar memoria!
+}
+
+// Solo compara si coincide el id
+bool SalesManager::searchById(Sale reg, int nId) {
+    if (reg.getSaleId() == nId) return true;
+    return false;
+}
+
+bool SalesManager::idExists(int nId) {
+    _salesFile.searchReg(searchById, nId) >= 0 ? true : false;
 }

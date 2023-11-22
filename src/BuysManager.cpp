@@ -72,12 +72,6 @@ Buy BuysManager::loadForm() {
     return auxBuy;
 }
 
-// Solo compara si coincide el id
-bool BuysManager::searchById(Buy reg, int nId) {
-    if (reg.getBuyId() == nId) return true;
-    return false;
-}
-
 Buy BuysManager::editForm(int regPos) {
     InputForm buyForm;
     Buy auxBuy;
@@ -109,12 +103,13 @@ Buy BuysManager::editForm(int regPos) {
 
     buyForm.setStrField("Metodo Pago", paymentMethod, 15);
     buyForm.setIntField("ID producto", productId, 4);
-    buyForm.setIntField("ID Transacción", transactionId, 4);  //// este numero se copia en los objetos de la clase transaccion
-    buyForm.setRangeField("Cantidad",quantity, 1, 1000); 
-    buyForm.setFloatField ("Total", totalAmount); 
+    buyForm.setIntField(
+        "ID Transacción", transactionId,
+        4);  //// este numero se copia en los objetos de la clase transaccion
+    buyForm.setRangeField("Cantidad", quantity, 1, 1000);
+    buyForm.setFloatField("Total", totalAmount);
     buyForm.setDateField("Fecha", buyDate);
-    ///saleForm.setAlphanumeric("Hora, buyTime, 45);//TODO:
-
+    /// saleForm.setAlphanumeric("Hora, buyTime, 45);//TODO:
 
     // completar form
     bool success = buyForm.fill();
@@ -172,7 +167,7 @@ void BuysManager::show() {
 
     if (totalRegs < 0) {
         std::cout << "Ocurrio un error al leer los registros.\n";
-        utils::pause(); 
+        utils::pause();
         return;
     }
     // Se crea la variable que va a contener todas las celdas, segun la cantidad
@@ -208,4 +203,14 @@ void BuysManager::show() {
     buysList.show();
 
     delete[] cells;  // liberar memoria!
+}
+
+// Solo compara si coincide el id
+bool BuysManager::searchById(Buy reg, int nId) {
+    if (reg.getBuyId() == nId) return true;
+    return false;
+}
+
+bool BuysManager::idExists(int nId) {
+    _buysFile.searchReg(searchById, nId) >= 0 ? true : false;
 }
