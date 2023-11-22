@@ -6,11 +6,10 @@
 class RelationsManager {
 private:
     VppFile<PetRelations> _petRelationsFile =VppFile<PetRelations>("PetRelations.vpp");
-    const int _petRelationsFields =
-        5;  // total de datos de un regisro PetRelations
+    const int _petRelationsFields =5;  // total de datos de un regisro PetRelations
     PetRelations loadForm();
     PetRelations editForm(int regPos);
-     bool retryIfIdExists(bool exists);
+    bool retryIfIdExists(bool exists);
     bool retryIfIdNotExists(bool exists);
 
 
@@ -18,6 +17,7 @@ public:
     void load();
     void edit();
     void show();
+    void menu();
 
     // Al ser una funcion estatica se puede usar sin necesaidad de instanciar un
     // objeto de tipo "RelationsManager", eso permite que se pueda pasar por

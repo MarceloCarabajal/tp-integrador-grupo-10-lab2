@@ -57,7 +57,7 @@ private:
     static void showProdCategory();
     static void editProdCategory();
 
- static VetVisitsManager _vetvisitsManager;
+   static VetVisitsManager _vetvisitsManager;
     static void loadvetvisit();
     static void showvetvisits();
     static void editvetvisit();
