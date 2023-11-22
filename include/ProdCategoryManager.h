@@ -7,7 +7,7 @@
 class ProdCategoryManager {
 private:
     VppFile<ProductCategory> _prodcategoryFile = VppFile<ProductCategory>("ProductCategories.vpp");
-    const int _productscategoryFields = 7;  // total de datos de un registro Income
+    const int _productscategoryFields = 2;  // total de datos de un registro Income
    ProductCategory loadForm();
    ProductCategory  editForm(int regPos);
 

@@ -153,7 +153,7 @@ void ProdCategoryManager::show() {
         ProductCategory auxProdCategory = _prodcategoryFile.readFile(i);
         // Obtener todas las propiedades del cliente
         // Guardarlas en un vector de string
-        std::string vecStr[7];
+        std::string vecStr[2];
         auxProdCategory.toVecString(vecStr);
         for (int cell = 0; cell < _productscategoryFields; cell++) {
             cells[cellPos + cell] = vecStr[cell];
