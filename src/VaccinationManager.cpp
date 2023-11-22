@@ -22,7 +22,7 @@ void VaccinationManager::load() {
         if (!idForm.fill()) return; 
                   alreadyExists = idExists(nId); }
                   while (alreadyExists);
-        
+         // Si no existe el id de vac, pedir el resto de datos
     auxVaccination = loadForm();
     // Si no se completo el form, salir
     if (auxVaccination.getPeId() == -1) return;
@@ -58,7 +58,6 @@ Vaccination VaccinationManager::loadForm() {
 
 
     vaccinationForm.setStrField(" Vacuna", nameVaccine, 15);
-    vaccinationForm.setIntField("ID Mascota", petId, 4);
     vaccinationForm.setDateField("Fecha de aplicacion", dateAplication);
     vaccinationForm.setDateField("Fecha de revacunacion", dateRevaccination);
     // vaccinationForm.setBoolField("Notificado", notified);
