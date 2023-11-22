@@ -73,7 +73,7 @@ VetVisits VetVisitsManager::loadForm() {
 
 // Solo compara si coincide el id
 bool VetVisitsManager::searchById(VetVisits reg, int nId) {
-    if (reg.getPetId() == nId) return true;
+    if (reg.getVisitId() == nId) return true;
     return false;
 }
 
