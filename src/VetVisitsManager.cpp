@@ -242,3 +242,25 @@ bool VetVisitsManager::searchById(VetVisits reg, int nId) {
 bool VetVisitsManager::idExists(int nId) {
     _vetVisitsFile.searchReg(searchById, nId) >= 0 ? true : false;
 }
+
+
+
+bool VetVisitsManager::retryIfIdExists(bool exists) {
+    if (exists) {
+        std::cout << "El ID ingresado ya existe, presione cualquier tecla "
+                     "para reintentar o ESC para salir.\n";
+        if (rlutil::getkey() == rlutil::KEY_ESCAPE) return false;
+        rlutil::cls();
+    }
+    return true;
+}
+
+bool VetVisitsManager::retryIfIdNotExists(bool exists) {
+    if (!exists) {
+        std::cout << "El ID ingresado NO EXISTE, presione cualquier tecla "
+                     "para reintentar o ESC para salir.\n";
+        if (rlutil::getkey() == rlutil::KEY_ESCAPE) return false;
+        rlutil::cls();
+    }
+    return true;
+}
