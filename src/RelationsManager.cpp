@@ -8,6 +8,13 @@
 #include "rlutil.h"
 #include "utils.h"
 
+
+
+VppFile<PetRelations> _petRelationsFile =VppFile<PetRelations>("PetRelations.vpp");
+    const int _petRelationsFields =5;
+
+
+
 void RelationsManager::load() {
     InputForm idForm;
     PetRelations auxPetR;
@@ -215,7 +222,7 @@ bool RelationsManager::searchById(PetRelations reg, int nId) {
 }
 
 bool RelationsManager::idExists(int nId) {
-    _petRelationsFile.searchReg(searchById, nId) >= 0 ? true : false;
+   return _petRelationsFile.searchReg(searchById, nId) >= 0 ? true : false;
 }
 
 
