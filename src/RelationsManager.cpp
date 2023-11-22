@@ -9,12 +9,6 @@
 #include "utils.h"
 
 
-
-VppFile<PetRelations> _petRelationsFile =VppFile<PetRelations>("PetRelations.vpp");
-    const int _petRelationsFields =5;
-
-
-
 void RelationsManager::load() {
     InputForm idForm;
     PetRelations auxPetR;
@@ -53,7 +47,8 @@ PetRelations RelationsManager::loadForm() {
     PetRelations auxPetR;
     PetsManager petsManager;
     ClientsManager clientsManager;
-    bool owner, status;
+    bool owner;
+    // bool status;
     int clientId=0, petId=0;
     bool alreadyExists = true;
 
@@ -79,7 +74,7 @@ PetRelations RelationsManager::loadForm() {
     } while (!alreadyExists);  // si no existe, volver a pedir
 
    
-    petRelationsForm.setBoolField("Estado", status);
+    //petRelationsForm.setBoolField("Estado", status);
     petRelationsForm.setBoolField("¿Es propietario?", owner);
 
     if (!petRelationsForm.fill()) return auxPetR;
@@ -97,7 +92,8 @@ PetRelations RelationsManager::editForm(int regPos) {
     PetRelations auxPetR;
 
     int petId, clientId, nId;
-    bool owner, status;
+    bool owner;
+    //bool status;
 
     auxPetR = _petRelationsFile.readFile(regPos);
     if (auxPetR.getRelationId() == 0) {
@@ -109,7 +105,7 @@ PetRelations RelationsManager::editForm(int regPos) {
     petId = auxPetR.getPetId();
     clientId = auxPetR.getClientId();
     owner = auxPetR.getOwner();
-    status = auxPetR.getStatus();
+   // status = auxPetR.getStatus();
     // TODO: VER PARA LLAMAR A LA FUNCION QUE MODIFICA EL ARCHIVO DE MASCOTA SI
     // SE ESTA CARGANDO UN REGISTRO DONDE
     /// OWNER ES TRUE Y MODIFICAR ESE ARCHIVO (EL DE PET)
@@ -121,7 +117,7 @@ PetRelations RelationsManager::editForm(int regPos) {
     petRelationsForm.setIntField("ID Mascota", petId, 4);
     petRelationsForm.setIntField("ID Cliente", clientId, 4);
     petRelationsForm.setBoolField("¿Es propietario?", owner);
-    petRelationsForm.setBoolField("Activo?", status);
+   // petRelationsForm.setBoolField("Activo?", status);
 
     // completar form
     bool success = petRelationsForm.fill();
@@ -130,7 +126,7 @@ PetRelations RelationsManager::editForm(int regPos) {
         auxPetR.setClientId(clientId);
         auxPetR.setPetId(petId);
         auxPetR.setOwner(owner);
-        auxPetR.setStatus(status);
+       // auxPetR.setStatus(status);
 
         return auxPetR;
     }
