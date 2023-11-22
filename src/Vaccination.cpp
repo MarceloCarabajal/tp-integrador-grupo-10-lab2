@@ -46,7 +46,8 @@ void Vaccination::toVecString(std::string vStr[6]) {
     vStr[2] = _nameVaccine;
     vStr[3] = _dateAplication.toString();
     vStr[4] = _dateRevaccination.toString();
-    vStr[5] = _notified;
+    if (_notified== 'si'){
+    vStr[5] = "si"; }else {vStr[5] = "no"; }
 
 
     
