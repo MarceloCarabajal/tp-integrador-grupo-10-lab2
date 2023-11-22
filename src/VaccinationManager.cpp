@@ -48,13 +48,13 @@ Vaccination VaccinationManager::loadForm() {
     std::string nameVaccine;
     Date dateAplication, dateRevaccination;
     int petId;
-    bool notified;
+    //bool notified;
 
     vaccinationForm.setStrField(" Vacuna", nameVaccine, 15);
     vaccinationForm.setIntField("ID Mascota", petId, 4);
     vaccinationForm.setDateField("Fecha de aplicacion", dateAplication);
     vaccinationForm.setDateField("Fecha de revacunacion", dateRevaccination);
-    vaccinationForm.setBoolField("Notificado", notified);
+    //vaccinationForm.setBoolField("Notificado", notified);
 
     if (!vaccinationForm.fill()) return auxVaccination;
 
@@ -62,7 +62,7 @@ Vaccination VaccinationManager::loadForm() {
     auxVaccination.setPetId(petId);
     auxVaccination.setDateAplication(dateAplication);
     auxVaccination.setDateRevaccination(dateRevaccination);
-    auxVaccination.setNotified(notified);
+    //auxVaccination.setNotified(notified);
 
     return auxVaccination;
 }
