@@ -177,8 +177,8 @@ void PetsManager::show() {
         cellPos += _petsFields;
     }
     // Vector que contiene las columnas de nuestra lista
-    std::string columns[7] = {"ID",          "Nombre",   "Especie",      "Raza",
-                              "Diagnostico", "ID Dueño", "F. nacimiento"};
+    std::string columns[7] = {"ID",    "ID Dueño",      "Nombre",   "Especie",      "Raza",
+                              "Diagnostico", "F. nacimiento"};
 
     ListView petsList;
     petsList.addCells(cells, totalCells);
