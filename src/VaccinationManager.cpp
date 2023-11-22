@@ -48,13 +48,13 @@ Vaccination VaccinationManager::loadForm() {
     std::string nameVaccine;
     Date dateAplication, dateRevaccination;
     int petId;
-    //bool notified;
+    // bool notified;
 
     vaccinationForm.setStrField(" Vacuna", nameVaccine, 15);
     vaccinationForm.setIntField("ID Mascota", petId, 4);
     vaccinationForm.setDateField("Fecha de aplicacion", dateAplication);
     vaccinationForm.setDateField("Fecha de revacunacion", dateRevaccination);
-    //vaccinationForm.setBoolField("Notificado", notified);
+    // vaccinationForm.setBoolField("Notificado", notified);
 
     if (!vaccinationForm.fill()) return auxVaccination;
 
@@ -62,15 +62,9 @@ Vaccination VaccinationManager::loadForm() {
     auxVaccination.setPetId(petId);
     auxVaccination.setDateAplication(dateAplication);
     auxVaccination.setDateRevaccination(dateRevaccination);
-    //auxVaccination.setNotified(notified);
+    // auxVaccination.setNotified(notified);
 
     return auxVaccination;
-}
-
-// Solo compara si coincide el id
-bool VaccinationManager::searchById(Vaccination reg, int nId) {
-    if (reg.getAplicationId() == nId) return true;
-    return false;
 }
 
 Vaccination VaccinationManager::editForm(int regPos) {
@@ -101,8 +95,8 @@ Vaccination VaccinationManager::editForm(int regPos) {
     vaccinationForm.setStrField(" Vacuna", nameVaccine, 15);
     vaccinationForm.setIntField("ID Mascota", petId, 4);
     vaccinationForm.setDateField("Fecha de aplicacion", dateAplication);
-    vaccinationForm.setDateField("Fecha de revacunacion",dateRevaccination);
-    vaccinationForm.setBoolField  ("Notificado", notified);
+    vaccinationForm.setDateField("Fecha de revacunacion", dateRevaccination);
+    vaccinationForm.setBoolField("Notificado", notified);
 
     // completar form
     bool success = vaccinationForm.fill();
@@ -159,7 +153,7 @@ void VaccinationManager::show() {
 
     if (totalRegs < 0) {
         std::cout << "Ocurrio un error al leer los registros.\n";
-        utils::pause(); 
+        utils::pause();
         return;
     }
     // Se crea la variable que va a contener todas las celdas, segun la cantidad
@@ -185,9 +179,8 @@ void VaccinationManager::show() {
         cellPos += _vaccinationFields;
     }
     // Vector que contiene las columnas de nuestra lista
-    std::string columns[6] = {"ID Aplicacion",      "Id Mascota ",
-                              "Vacuna",        "Aplicacion",
-                              "Revacunacion", "¿Notificado?"};
+    std::string columns[6] = {"ID Aplicacion", "Id Mascota ",  "Vacuna",
+                              "Aplicacion",    "Revacunacion", "¿Notificado?"};
 
     ListView VaccinationList;
     VaccinationList.addCells(cells, totalCells);
@@ -196,4 +189,13 @@ void VaccinationManager::show() {
     VaccinationList.show();
 
     delete[] cells;  // liberar memoria!
+}
+// Solo compara si coincide el id
+bool VaccinationManager::searchById(Vaccination reg, int nId) {
+    if (reg.getAplicationId() == nId) return true;
+    return false;
+}
+
+bool VaccinationManager::idExists(int nId) {
+    return _vaccinationFile.searchReg(searchById, nId) >= 0 ? true : false;
 }

@@ -51,7 +51,7 @@ PetRelations RelationsManager::loadForm() {
     petRelationsForm.setIntField("ID Mascota", petId, 4);
     petRelationsForm.setIntField("ID Cliente", clientId, 4);
     petRelationsForm.setBoolField("Estado", status);
-     petRelationsForm.setBoolField("¿Es propietario?", owner);
+    petRelationsForm.setBoolField("¿Es propietario?", owner);
 
     if (!petRelationsForm.fill()) return auxPetR;
 
@@ -61,12 +61,6 @@ PetRelations RelationsManager::loadForm() {
     // auxPetR.setStatus(status);
 
     return auxPetR;
-}
-
-// Solo compara si coincide el id
-bool RelationsManager::searchById(PetRelations reg, int nId) {
-    if (reg.getPetId() == nId) return true;
-    return false;
 }
 
 PetRelations RelationsManager::editForm(int regPos) {
@@ -155,7 +149,7 @@ void RelationsManager::show() {
 
     if (totalRegs < 0) {
         std::cout << "Ocurrio un error al leer los registros.\n";
-        utils::pause();  
+        utils::pause();
         return;
     }
     // Se crea la variable que va a contener todas las celdas, segun la cantidad
@@ -190,4 +184,14 @@ void RelationsManager::show() {
     petsRelationsList.setTitle(" RELACIONES DE MASCOTAS");
     petsRelationsList.show();
     delete[] cells;  // liberar memoria!
+}
+
+// Solo compara si coincide el id
+bool RelationsManager::searchById(PetRelations reg, int nId) {
+    if (reg.getRelationId() == nId) return true;
+    return false;
+}
+
+bool RelationsManager::idExists(int nId) {
+    _petRelationsFile.searchReg(searchById, nId) >= 0 ? true : false;
 }

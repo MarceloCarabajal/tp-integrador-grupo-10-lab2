@@ -62,12 +62,6 @@ Vet VetsManager::loadForm() {
     return auxVet;
 }
 
-// Solo compara si coincide el id
-bool VetsManager::searchById(Vet reg, int nId) {
-    if (reg.getIdVet() == nId) return true;
-    return false;
-}
-
 Vet VetsManager::editForm(int regPos) {
     InputForm vetForm;
     Vet auxVet;
@@ -183,4 +177,14 @@ void VetsManager::show() {
     vetsList.setTitle("VETERINARIOS");
     vetsList.show();
     delete[] cells;  // liberar memoria!
+}
+
+// Solo compara si coincide el id
+bool VetsManager::searchById(Vet reg, int nId) {
+    if (reg.getIdVet() == nId) return true;
+    return false;
+}
+
+bool VetsManager::idExists(int nId) {
+    return _vetsFile.searchReg(searchById, nId) >= 0 ? true : false;
 }

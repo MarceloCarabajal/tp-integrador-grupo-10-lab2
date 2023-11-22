@@ -5,12 +5,10 @@
 
 class VetVisitsManager {
 private:
-    VppFile<VetVisits> _vetVisitsFile = VppFile <VetVisits>("VetVisits.vpp");
+    VppFile<VetVisits> _vetVisitsFile = VppFile<VetVisits>("VetVisits.vpp");
     const int _vetVisitsFields = 8;  // total de datos de un regisro VetVisit
- VetVisits loadForm();
-  VetVisits  editForm(int regPos);
-
-
+    VetVisits loadForm();
+    VetVisits editForm(int regPos);
 
 public:
     void load();
@@ -23,4 +21,6 @@ public:
     // parametro un puntero a esta funcion, lo que es necesario para la busqueda
     // de registros con VppFile
     static bool searchById(VetVisits reg, int nId);
+
+    bool idExists(int nId);
 };

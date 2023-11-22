@@ -62,7 +62,7 @@ Product ProductsManager::loadForm() {
     productForm.setStrField("Tipo Producto", productType, 30);
     productForm.setIntField("Cantidad", quantity, 4);
     productForm.setIntField("Stock", stock, 4);
-    productForm.setFloatField ("Precio", price);
+    productForm.setFloatField("Precio", price);
     // TODO: Ver como metemos product category
     ////productForm. PRODUCT CATEGORY (tiene ID y nombre)
 
@@ -77,12 +77,6 @@ Product ProductsManager::loadForm() {
     auxProduct.setStock(stock);
     auxProduct.setProductCategory(productCategory);
     return auxProduct;
-}
-
-// Solo compara si coincide el id
-bool ProductsManager::searchById(Product reg, int nId) {
-    if (reg.getProductId() == nId) return true;
-    return false;
 }
 
 Product ProductsManager::editForm(int regPos) {
@@ -119,8 +113,8 @@ Product ProductsManager::editForm(int regPos) {
     productForm.setIntField("Cantidad", quantity, 4);
     productForm.setIntField("Stock", stock, 4);
     productForm.setFloatField("Precio", price);
-   // TODO: Ver como metemos product category
-   
+    // TODO: Ver como metemos product category
+
     // completar form
     bool success = productForm.fill();
     if (success) {  // si se completa
@@ -213,4 +207,14 @@ void ProductsManager::show() {
     productsList.setTitle("PRODUCTOS");
     productsList.show();
     delete[] cells;  // liberar memoria!
+}
+
+// Solo compara si coincide el id
+bool ProductsManager::searchById(Product reg, int nId) {
+    if (reg.getProductId() == nId) return true;
+    return false;
+}
+
+bool ProductsManager::idExists(int nId) {
+    _productsFile.searchReg(searchById, nId) >= 0 ? true : false;
 }

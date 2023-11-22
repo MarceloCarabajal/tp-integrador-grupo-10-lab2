@@ -22,4 +22,6 @@ public:
     // parametro un puntero a esta funcion, lo que es necesario para la busqueda
     // de registros con VppFile
     static bool searchById(PetRelations reg, int nId);
+
+    bool idExists(int nId);
 };

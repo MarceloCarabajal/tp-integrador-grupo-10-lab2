@@ -10,15 +10,16 @@
 
 void VetVisitsManager::load() {
     InputForm idForm;
-   VetVisits auxVetVisits;
+    VetVisits auxVetVisits;
     int nId = 0;
     bool alreadyExists = false;
 
     // pedir y buscar si el id ingresado existe
     do {
         if (alreadyExists) {
-            std::cout << "El ID de la consulta ya existe, presione cualquier tecla "
-                         "para reintentar o ESC para salir.\n";
+            std::cout
+                << "El ID de la consulta ya existe, presione cualquier tecla "
+                   "para reintentar o ESC para salir.\n";
             if (rlutil::getkey() == rlutil::KEY_ESCAPE) return;
             rlutil::cls();
         }
@@ -49,7 +50,6 @@ VetVisits VetVisitsManager::loadForm() {
     Date date;
     int clientId, petId, saleId, vetId;
 
-
     vetvisitsForm.setStrField("Motivo", reason, 30);
     vetvisitsForm.setStrField("Diagnóstico", diagnosis, 240);
     vetvisitsForm.setDateField("Fecha", date);
@@ -67,14 +67,8 @@ VetVisits VetVisitsManager::loadForm() {
     auxVetVisits.setPetId(petId);
     auxVetVisits.setVetId(vetId);
     auxVetVisits.setSaleId(saleId);
-    
-    return auxVetVisits;
-}
 
-// Solo compara si coincide el id
-bool VetVisitsManager::searchById(VetVisits reg, int nId) {
-    if (reg.getVisitId() == nId) return true;
-    return false;
+    return auxVetVisits;
 }
 
 VetVisits VetVisitsManager::editForm(int regPos) {
@@ -82,7 +76,7 @@ VetVisits VetVisitsManager::editForm(int regPos) {
     VetVisits auxVetVisits;
     std::string reason, diagnosis;
     Date date;
-    int clientId, petId, saleId, vetId,nId;
+    int clientId, petId, saleId, vetId, nId;
 
     auxVetVisits = _vetVisitsFile.readFile(regPos);
     if (auxVetVisits.getVisitId() == -1) {
@@ -90,14 +84,14 @@ VetVisits VetVisitsManager::editForm(int regPos) {
         return auxVetVisits;
     }
     // Se cargan los datos para mostrarlas en el form.
-   clientId = auxVetVisits.getClientId();
-   saleId = auxVetVisits.getSaleId();
+    clientId = auxVetVisits.getClientId();
+    saleId = auxVetVisits.getSaleId();
     petId = auxVetVisits.getPetId();
     vetId = auxVetVisits.getVetId();
     nId = auxVetVisits.getVisitId();
-    reason= auxVetVisits.getReason();
-   date = auxVetVisits.getDate();
-   diagnosis=auxVetVisits.getDiagnosis();
+    reason = auxVetVisits.getReason();
+    date = auxVetVisits.getDate();
+    diagnosis = auxVetVisits.getDiagnosis();
 
     std::cout << "Editando Consulta #" << nId << std::endl;
     // configurar form
@@ -114,13 +108,13 @@ VetVisits VetVisitsManager::editForm(int regPos) {
     bool success = vetvisitsForm.fill();
     if (success) {  // si se completa
 
-    auxVetVisits.setReason(reason);
-    auxVetVisits.setDiagnosis(diagnosis);
-    auxVetVisits.setDate(date);
-    auxVetVisits.setClientId(clientId);
-    auxVetVisits.setPetId(petId);
-    auxVetVisits.setVetId(vetId);
-    auxVetVisits.setSaleId(saleId);
+        auxVetVisits.setReason(reason);
+        auxVetVisits.setDiagnosis(diagnosis);
+        auxVetVisits.setDate(date);
+        auxVetVisits.setClientId(clientId);
+        auxVetVisits.setPetId(petId);
+        auxVetVisits.setVetId(vetId);
+        auxVetVisits.setSaleId(saleId);
         return auxVetVisits;
     }
     // si no se completa, devolver Mascota vacia
@@ -141,7 +135,7 @@ void VetVisitsManager::edit() {
         return;
     }
     // Si se encontro, pedir datos
-   VetVisits auxVetVisits = editForm(regPos);
+    VetVisits auxVetVisits = editForm(regPos);
     // Si no se completo el formulario, salir
     if (auxVetVisits.getPetId() == -1) {
         std::cout << "No se realizara la edicion.\n";
@@ -178,7 +172,7 @@ void VetVisitsManager::show() {
     }
     int cellPos = 0;  // acumula la posicion actual a asignar
     for (int i = 0; i < totalRegs; i++) {
-       VetVisits auxVetVisits = _vetVisitsFile.readFile(i);
+        VetVisits auxVetVisits = _vetVisitsFile.readFile(i);
         // Obtener todas las propiedades de la consulta
         // Guardarlas en un vector de string
         std::string vecStr[8];
@@ -192,8 +186,9 @@ void VetVisitsManager::show() {
         cellPos += _vetVisitsFields;
     }
     // Vector que contiene las columnas de nuestra lista
-    std::string columns[8] = {"ID CONSULTA",     "ID VETE",   "ID CLIENTE",      "ID MASCOTA",
-                              "ID VENTA", "FECHA", "MOTIVO", "DIAGNÓSTICO"};
+    std::string columns[8] = {"ID CONSULTA", "ID VETE",    "ID CLIENTE",
+                              "ID MASCOTA",  "ID VENTA",   "FECHA",
+                              "MOTIVO",      "DIAGNÓSTICO"};
 
     ListView petsList;
     petsList.addCells(cells, totalCells);
@@ -201,4 +196,14 @@ void VetVisitsManager::show() {
     petsList.setTitle("CONSULTAS");
     petsList.show();
     delete[] cells;  // liberar memoria!
+}
+
+// Solo compara si coincide el id
+bool VetVisitsManager::searchById(VetVisits reg, int nId) {
+    if (reg.getVisitId() == nId) return true;
+    return false;
+}
+
+bool VetVisitsManager::idExists(int nId) {
+    _vetVisitsFile.searchReg(searchById, nId) >= 0 ? true : false;
 }
