@@ -5,11 +5,12 @@
 
 class VaccinationManager {
 private:
-    VppFile<Vaccination> _vaccinationFile =
-        VppFile<Vaccination>("vaccinations.vpp");
+    VppFile<Vaccination> _vaccinationFile = VppFile<Vaccination>("vaccinations.vpp");
     const int _vaccinationFields = 6;  // total de datos de un regisro Client
     Vaccination loadForm();
     Vaccination editForm(int regPos);
+   bool retryIfIdExists(bool exists);
+    bool retryIfIdNotExists(bool exists);
 
 public:
     void load();

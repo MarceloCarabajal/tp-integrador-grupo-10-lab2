@@ -2,6 +2,7 @@
 
 #include <iostream>
 
+#include "PetsManager.h"
 #include "InputForm.h"
 #include "ListView.h"
 #include "rlutil.h"
@@ -14,26 +15,19 @@ void VaccinationManager::load() {
     bool alreadyExists = false;
 
     // pedir y buscar si el id ingresado existe
+  idForm.setIntField("ID Vacunación", nId, 4);
     do {
-        if (alreadyExists) {
-            std::cout
-                << "El ID de Vacunacion ya existe, presione cualquier tecla "
-                   "para reintentar o ESC para salir.\n";
-            if (rlutil::getkey() == rlutil::KEY_ESCAPE) return;
-            rlutil::cls();
-        }
-        idForm.setIntField("ID Vacunacion", nId, 4);
-        // si no completa el form, salir
-        if (!idForm.fill()) return;
-        alreadyExists =
-            _vaccinationFile.searchReg(searchById, nId) >= 0 ? true : false;
-        idForm.clearAll();  // limpiar form
-    } while (alreadyExists);
-
+        if (!retryIfIdExists(alreadyExists)) return; 
+           // si no completa el form, salir
+        if (!idForm.fill()) return; 
+                  alreadyExists = idExists(nId); }
+                  while (alreadyExists);
+        
     auxVaccination = loadForm();
     // Si no se completo el form, salir
     if (auxVaccination.getPeId() == -1) return;
 
+ // setear id ingresado
     auxVaccination.setAplicationId(nId);  // set del Id ingresado anteriormente
     if (_vaccinationFile.writeFile(auxVaccination)) {
         std::cout << "Vacunacion guardada con exito!\n";
@@ -43,12 +37,25 @@ void VaccinationManager::load() {
 }
 
 Vaccination VaccinationManager::loadForm() {
-    InputForm vaccinationForm;
+    InputForm vaccinationForm,  petIdForm;
+    PetsManager petsManager;
     Vaccination auxVaccination;
     std::string nameVaccine;
     Date dateAplication, dateRevaccination;
-    int petId;
+    int petId=0;
+    bool alreadyExists=true;
     // bool notified;
+
+// pedir y buscar si el id mascota ingresado existe
+    petIdForm.setIntField("ID Mascota", petId, 4);
+ do {
+     // si no existe, preguntar si quiere reintentar
+        if (!retryIfIdNotExists(alreadyExists)) return auxVaccination;
+ // si no completa el form, salir
+        if (!petIdForm.fill()) return auxVaccination;
+         alreadyExists = petsManager.idExists(petId);
+    } while (!alreadyExists);  // si no existe, volver a pedir
+
 
     vaccinationForm.setStrField(" Vacuna", nameVaccine, 15);
     vaccinationForm.setIntField("ID Mascota", petId, 4);
@@ -198,4 +205,25 @@ bool VaccinationManager::searchById(Vaccination reg, int nId) {
 
 bool VaccinationManager::idExists(int nId) {
     return _vaccinationFile.searchReg(searchById, nId) >= 0 ? true : false;
+}
+
+
+bool VaccinationManager::retryIfIdExists(bool exists) {
+    if (exists) {
+        std::cout << "El ID ingresado ya existe, presione cualquier tecla "
+                     "para reintentar o ESC para salir.\n";
+        if (rlutil::getkey() == rlutil::KEY_ESCAPE) return false;
+        rlutil::cls();
+    }
+    return true;
+}
+
+bool VaccinationManager::retryIfIdNotExists(bool exists) {
+    if (!exists) {
+        std::cout << "El ID ingresado NO EXISTE, presione cualquier tecla "
+                     "para reintentar o ESC para salir.\n";
+        if (rlutil::getkey() == rlutil::KEY_ESCAPE) return false;
+        rlutil::cls();
+    }
+    return true;
 }
