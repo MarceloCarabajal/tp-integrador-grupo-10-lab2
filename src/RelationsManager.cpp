@@ -96,7 +96,7 @@ PetRelations RelationsManager::editForm(int regPos) {
     //bool status;
 
     auxPetR = _petRelationsFile.readFile(regPos);
-    if (auxPetR.getRelationId() == 1) {
+    if (auxPetR.getPetId() == -1) {
         std::cout << "Ocurrio un error al leer los registros.\n";
         return auxPetR;
     }
