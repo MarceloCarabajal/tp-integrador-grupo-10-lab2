@@ -1,9 +1,10 @@
 #include "RelationsManager.h"
 
 #include <iostream>
-
+#include "ClientsManager.h"
 #include "InputForm.h"
 #include "ListView.h"
+#include "PetsManager.h"
 #include "rlutil.h"
 #include "utils.h"
 
@@ -14,42 +15,63 @@ void RelationsManager::load() {
     bool alreadyExists = false;
 
     // pedir y buscar si el id ingresado existe
+    
+    idForm.setIntField("ID Relación", nId, 4);
     do {
-        if (alreadyExists) {
-            std::cout
-                << "El ID de relación ya existe, presione cualquier tecla "
-                   "para reintentar o ESC para salir.\n";
-            if (rlutil::getkey() == rlutil::KEY_ESCAPE) return;
-            rlutil::cls();
-        }
-        idForm.setIntField("ID Relacion", nId, 4);
+        if (!retryIfIdExists(alreadyExists)) return;
         // si no completa el form, salir
         if (!idForm.fill()) return;
-        alreadyExists =
-            _petRelationsFile.searchReg(searchById, nId) >= 0 ? true : false;
-        idForm.clearAll();  // limpiar form
+        alreadyExists = idExists(nId);
     } while (alreadyExists);
 
-    auxPetR = loadForm();
+    // Si no existe la relacion, pedir el resto de datos
+    auxPetR= loadForm();
     // Si no se completo el form, salir
-    if (auxPetR.getPetId() == -1) return;
+       if (auxPetR.getPetId() == -1) return;
 
-    auxPetR.setRelationId(nId);  // set del Id ingresado anteriormente
+
+    // setear id ingresado
+     auxPetR.setRelationId(nId);
     if (_petRelationsFile.writeFile(auxPetR)) {
-        std::cout << "Relación guardada con exito!\n";
+        std::cout << "Relacion guardada con exito!\n";
     } else {
-        std::cout << "Ocurrio un error al guardar la relacion.\n";
+        std::cout << "Ocurrio un error al guardar el turno.\n";
     }
 }
+    
+   
 
 PetRelations RelationsManager::loadForm() {
-    InputForm petRelationsForm;
+    InputForm petRelationsForm,petIdForm, clientIdForm;
     PetRelations auxPetR;
+    PetsManager petsManager;
+    ClientsManager clientsManager;
     bool owner, status;
-    int clientId, petId;
+    int clientId=0, petId=0;
+    bool alreadyExists = true;
 
-    petRelationsForm.setIntField("ID Mascota", petId, 4);
-    petRelationsForm.setIntField("ID Cliente", clientId, 4);
+ // pedir y buscar si el id mascota ingresado existe
+    petIdForm.setIntField("ID Mascota", petId, 4);
+    do {
+        // si no existe, preguntar si quiere reintentar
+        if (!retryIfIdNotExists(alreadyExists)) return auxPetR;
+        // si no completa el form, salir
+        if (!petIdForm.fill()) return auxPetR;
+        alreadyExists = petsManager.idExists(petId);
+    } while (!alreadyExists);  // si no existe, volver a pedir
+
+    // pedir y buscar si el id cliente ingresado existe
+    alreadyExists = true;
+    clientIdForm.setIntField("ID Cliente", clientId, 4);
+    do {
+        // si no existe, preguntar si quiere reintentar
+        if (!retryIfIdNotExists(alreadyExists)) return auxPetR;
+        // si no completa el form, salir
+        if (!clientIdForm.fill()) return auxPetR;
+        alreadyExists = clientsManager.idExists(clientId);
+    } while (!alreadyExists);  // si no existe, volver a pedir
+
+   
     petRelationsForm.setBoolField("Estado", status);
     petRelationsForm.setBoolField("¿Es propietario?", owner);
 
@@ -194,4 +216,25 @@ bool RelationsManager::searchById(PetRelations reg, int nId) {
 
 bool RelationsManager::idExists(int nId) {
     _petRelationsFile.searchReg(searchById, nId) >= 0 ? true : false;
+}
+
+
+bool RelationsManager::retryIfIdExists(bool exists) {
+    if (exists) {
+        std::cout << "El ID ingresado ya existe, presione cualquier tecla "
+                     "para reintentar o ESC para salir.\n";
+        if (rlutil::getkey() == rlutil::KEY_ESCAPE) return false;
+        rlutil::cls();
+    }
+    return true;
+}
+
+bool RelationsManager::retryIfIdNotExists(bool exists) {
+    if (!exists) {
+        std::cout << "El ID ingresado NO EXISTE, presione cualquier tecla "
+                     "para reintentar o ESC para salir.\n";
+        if (rlutil::getkey() == rlutil::KEY_ESCAPE) return false;
+        rlutil::cls();
+    }
+    return true;
 }
