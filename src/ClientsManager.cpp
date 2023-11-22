@@ -64,12 +64,6 @@ Client ClientsManager::loadForm() {
     return auxClient;
 }
 
-// Solo compara si coincide el id
-bool ClientsManager::searchById(Client reg, int nId) {
-    if (reg.getClientId() == nId) return true;
-    return false;
-}
-
 Client ClientsManager::editForm(int regPos) {
     InputForm clientForm;
     Client auxClient;
@@ -154,7 +148,7 @@ void ClientsManager::show() {
 
     if (totalRegs < 0) {
         std::cout << "Ocurrio un error al leer los registros.\n";
-        utils::pause(); 
+        utils::pause();
         return;
     }
     // Se crea la variable que va a contener todas las celdas, segun la cantidad
@@ -189,4 +183,14 @@ void ClientsManager::show() {
     clientsList.show();
 
     delete[] cells;  // liberar memoria!
+}
+
+// Solo compara si coincide el id
+bool ClientsManager::searchById(Client reg, int nId) {
+    if (reg.getClientId() == nId) return true;
+    return false;
+}
+
+bool ClientsManager::idExists(int nId) {
+    return _clientsFile.searchReg(searchById, nId) >= 0 ? true : false;
 }

@@ -25,8 +25,7 @@ void PetsManager::load() {
         idForm.setIntField("ID Mascota", nId, 4);
         // si no completa el form, salir
         if (!idForm.fill()) return;
-        alreadyExists =
-            _petsFile.searchReg(searchById, nId) >= 0 ? true : false;
+        alreadyExists = idExists(nId);
         idForm.clearAll();  // limpiar form
     } while (alreadyExists);
 
@@ -64,12 +63,6 @@ Pet PetsManager::loadForm() {
     auxPet.setBirthDate(birthDate);
     auxPet.setOwnerId(ownerId);
     return auxPet;
-}
-
-// Solo compara si coincide el id
-bool PetsManager::searchById(Pet reg, int nId) {
-    if (reg.getPetId() == nId) return true;
-    return false;
 }
 
 Pet PetsManager::editForm(int regPos) {
@@ -193,4 +186,15 @@ void PetsManager::show() {
     petsList.setTitle("MASCOTAS");
     petsList.show();
     delete[] cells;  // liberar memoria!
+}
+
+// Solo compara si coincide el id
+bool PetsManager::searchById(Pet reg, int nId) {
+    if (reg.getPetId() == nId) return true;
+    return false;
+}
+
+bool PetsManager::idExists(int nId) {
+    // Si devuelve un nro de posicion, existe
+    return _petsFile.searchReg(searchById, nId) >= 0 ? true : false;
 }

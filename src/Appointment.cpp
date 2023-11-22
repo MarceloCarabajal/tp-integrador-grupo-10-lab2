@@ -3,6 +3,8 @@
 #include <cstring>
 #include <iostream>
 
+#include "utils.h"
+
 using namespace std;
 
 Appointment::Appointment() {
@@ -39,7 +41,7 @@ void Appointment::setAppId(int id) { _appId = id; }
  * Esta función permite definir el ID de la mascota
  * @param idpet
  */
-void Appointment::setpetId(int idpet) { _petId = idpet; }
+void Appointment::setPetId(int idpet) { _petId = idpet; }
 
 void Appointment::setDate(Date date) { _dateApp = date; }
 
@@ -69,7 +71,7 @@ void Appointment::toVecString(std::string vStr[7]) {
     vStr[2] = _dateApp.toString();
     vStr[3] = _timeApp.toString();
     vStr[4] = _reason;
-    vStr[5] = _attended;
+    vStr[5] = utils::boolToStr(_attended);
     vStr[6] = std::to_string(_clientId);
 }
 
@@ -85,7 +87,7 @@ bool attended;
 
 cout<<"Ingrese Id de la Mascota:";
 cin>>petId;
-setpetId(petId);
+setPetId(petId);
 
 
 cout<<"Ingrese Id del turno ";

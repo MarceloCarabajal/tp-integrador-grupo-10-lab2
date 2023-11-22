@@ -5,12 +5,12 @@
 
 class AppointmentsManager {
 private:
-    VppFile<Appointment> _appointmentsFile = VppFile<Appointment>("Appointments.vpp");
-    const int _AppointmentsFields = 7;  // total de datos de un regisro Appointment
-  Appointment loadForm();
-  Appointment  editForm(int regPos);
-
-
+    VppFile<Appointment> _appsFile = VppFile<Appointment>("Appointments.vpp");
+    const int _appsFields = 7;  // total de datos de un regisro Appointment
+    Appointment loadForm();
+    Appointment editForm(int regPos);
+    bool retryIfIdExists(bool exists);
+    bool retryIfIdNotExists(bool exists);
 
 public:
     void load();
@@ -23,4 +23,5 @@ public:
     // parametro un puntero a esta funcion, lo que es necesario para la busqueda
     // de registros con VppFile
     static bool searchById(Appointment reg, int nId);
+    bool idExists(int nId);
 };
