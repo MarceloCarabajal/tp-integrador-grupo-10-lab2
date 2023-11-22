@@ -10,8 +10,7 @@ Product::Product(){
     strcpy(_description, " ");
     strcpy(_brand, " ");
      strcpy(_productType,  " ");
-   //TODO: VER COMO IRIA ACA   _productCategory= XXXXXXXXXXXXX
-
+   _productCategory= ProductCategory();
 
 }
 Product::Product (int productid, int quantity, int stock,float price, std::string productname,

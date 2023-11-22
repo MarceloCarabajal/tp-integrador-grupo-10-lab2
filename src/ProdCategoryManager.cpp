@@ -173,3 +173,9 @@ void ProdCategoryManager::show() {
 
     delete[] cells;  // liberar memoria!
 }
+
+bool ProdCategoryManager::idExists(int nId) {
+    // Si devuelve un nro de posición, existe
+    return _prodcategoryFile.searchReg(searchById, nId) >= 0 ? true : false;
+
+   }

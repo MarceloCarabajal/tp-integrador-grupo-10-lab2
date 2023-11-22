@@ -216,5 +216,5 @@ bool ProductsManager::searchById(Product reg, int nId) {
 }
 
 bool ProductsManager::idExists(int nId) {
-    _productsFile.searchReg(searchById, nId) >= 0 ? true : false;
+  return  _productsFile.searchReg(searchById, nId) >= 0 ? true : false;
 }

@@ -212,5 +212,5 @@ bool BuysManager::searchById(Buy reg, int nId) {
 }
 
 bool BuysManager::idExists(int nId) {
-    _buysFile.searchReg(searchById, nId) >= 0 ? true : false;
+   return _buysFile.searchReg(searchById, nId) >= 0 ? true : false;
 }

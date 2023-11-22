@@ -199,5 +199,5 @@ bool SalesManager::searchById(Sale reg, int nId) {
 }
 
 bool SalesManager::idExists(int nId) {
-    _salesFile.searchReg(searchById, nId) >= 0 ? true : false;
+  return  _salesFile.searchReg(searchById, nId) >= 0 ? true : false;
 }
