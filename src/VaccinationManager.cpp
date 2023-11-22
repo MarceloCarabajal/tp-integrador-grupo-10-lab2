@@ -186,8 +186,8 @@ void VaccinationManager::show() {
     }
     // Vector que contiene las columnas de nuestra lista
     std::string columns[6] = {"ID Aplicacion",      "Id Mascota ",
-                              "Vacuna",        "Fecha aplicacion",
-                              "Fecha revacunacion", "¿Notificado?"};
+                              "Vacuna",        "Aplicacion",
+                              "Revacunacion", "¿Notificado?"};
 
     ListView VaccinationList;
     VaccinationList.addCells(cells, totalCells);
