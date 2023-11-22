@@ -34,7 +34,7 @@ void VetVisitsManager::load() {
     // Si no se completo el form, salir
     if (auxVetVisits.getPetId() == -1) return;
 
-    auxVetVisits.setPetId(nId);  // set del Id ingresado anteriormente
+    auxVetVisits.setVisitId(nId);  // set del Id ingresado anteriormente
     if (_vetVisitsFile.writeFile(auxVetVisits)) {
         std::cout << "Consulta  guardada con exito!\n";
     } else {
