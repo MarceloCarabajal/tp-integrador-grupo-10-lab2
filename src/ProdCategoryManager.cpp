@@ -31,7 +31,7 @@ void ProdCategoryManager::load() {
 
     auxProdCategory = loadForm();
     // Si no se completo el form, salir
-    if (auxProdCategory.getCatId() == 0) return;
+    if (strcmp (auxProdCategory.getCatName(), " ") == 0) return;
 
     auxProdCategory.setCatId(nId);  // set del Id ingresado anteriormente
     if (_prodcategoryFile.writeFile(auxProdCategory)) {

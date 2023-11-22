@@ -32,7 +32,7 @@ void VaccinationManager::load() {
 
     auxVaccination = loadForm();
     // Si no se completo el form, salir
-    if (auxVaccination.getAplicationId() == 0) return;
+    if (auxVaccination.getPeId() == -1) return;
 
     auxVaccination.setAplicationId(nId);  // set del Id ingresado anteriormente
     if (_vaccinationFile.writeFile(auxVaccination)) {

@@ -31,7 +31,7 @@ void ExpenseManager::load() {
 
     auxExpense = loadForm();
     // Si no se completo el form, salir
-    if (auxExpense.getIdTransaction() == 0) return;
+    if (auxExpense.getIdTransaction() == -1) return;
 
     auxExpense.setIdTransaction(nId);  // set del Id ingresado anteriormente
     if (_expenseFile.writeFile(auxExpense)) {
@@ -86,7 +86,7 @@ Expense ExpenseManager::editForm(int regPos) {
     float amount;
 
     auxExpense = _expenseFile.readFile(regPos);
-    if (auxExpense.getIdTransaction() == 0) {
+    if (auxExpense.getIdTransaction() == -1) {
         std::cout << "Ocurrio un error al leer los registros.\n";
         return auxExpense;
     }

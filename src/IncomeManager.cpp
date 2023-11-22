@@ -32,7 +32,7 @@ void IncomeManager::load() {
 
     auxIncome = loadForm();
     // Si no se completo el form, salir
-    if (auxIncome.getIdTransaction() == 0) return;
+    if (auxIncome.getIdTransaction() == -1) return;
 
     auxIncome.setIdTransaction(nId);  // set del Id ingresado anteriormente
     if (_incomeFile.writeFile(auxIncome)) {
@@ -86,7 +86,7 @@ Income IncomeManager::editForm(int regPos) {
     float amount;
 
     auxIncome = _incomeFile.readFile(regPos);
-    if (auxIncome.getIdTransaction() == 0) {
+    if (auxIncome.getIdTransaction() == -1) {
         std::cout << "Ocurrio un error al leer los registros.\n";
         return auxIncome;
     }
