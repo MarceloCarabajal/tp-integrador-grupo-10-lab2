@@ -151,7 +151,7 @@ void RelationsManager::edit() {
     // Si se encontro, pedir datos
     PetRelations auxPetR = editForm(regPos);
     // Si no se completo el formulario, salir
-    if (auxPetR.getRelationId() == -1) {
+    if (auxPetR.getPetId() == -1) {
         std::cout << "No se realizara la edicion.\n";
         utils::pause();
         return;
