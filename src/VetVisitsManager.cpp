@@ -1,7 +1,9 @@
 #include "VetVisitsManager.h"
 
 #include <iostream>
-
+#include "ClientsManager.h"
+#include "PetsManager.h"
+#include "VetsManager.h"
 #include "Date.h"
 #include "InputForm.h"
 #include "ListView.h"
@@ -15,27 +17,26 @@ void VetVisitsManager::load() {
     bool alreadyExists = false;
 
     // pedir y buscar si el id ingresado existe
-    do {
-        if (alreadyExists) {
-            std::cout
-                << "El ID de la consulta ya existe, presione cualquier tecla "
-                   "para reintentar o ESC para salir.\n";
-            if (rlutil::getkey() == rlutil::KEY_ESCAPE) return;
-            rlutil::cls();
-        }
-        idForm.setIntField("ID Consulta", nId, 4);
+    idForm.setIntField("ID Consulta", nId, 4);
+
+
+
+do {
+        if (!retryIfIdExists(alreadyExists)) return;
         // si no completa el form, salir
         if (!idForm.fill()) return;
-        alreadyExists =
-            _vetVisitsFile.searchReg(searchById, nId) >= 0 ? true : false;
-        idForm.clearAll();  // limpiar form
+        alreadyExists = idExists(nId);
     } while (alreadyExists);
 
-    auxVetVisits = loadForm();
-    // Si no se completo el form, salir
-    if (auxVetVisits.getPetId() == -1) return;
+    // Si no existe el turno, pedir el resto de datos
+ auxVetVisits = loadForm();
+if (auxVetVisits.getPetId() == -1) return;
 
-    auxVetVisits.setVisitId(nId);  // set del Id ingresado anteriormente
+    
+       // setear id ingresado
+     auxVetVisits.setVisitId(nId);
+
+
     if (_vetVisitsFile.writeFile(auxVetVisits)) {
         std::cout << "Consulta  guardada con exito!\n";
     } else {
@@ -44,17 +45,51 @@ void VetVisitsManager::load() {
 }
 
 VetVisits VetVisitsManager::loadForm() {
-    InputForm vetvisitsForm;
+    InputForm vetvisitsForm, petIdForm, clientIdForm,vetForm;
     VetVisits auxVetVisits;
+    PetsManager petsManager;
+    ClientsManager clientsManager;
+    VetsManager vetsManager;
     std::string reason, diagnosis;
     Date date;
     int clientId, petId, saleId, vetId;
+    bool alreadyExists = true;
+
+// pedir y buscar si el id mascota ingresado existe
+    petIdForm.setIntField("ID Mascota", petId, 4);
+    do {
+        // si no existe, preguntar si quiere reintentar
+        if (!retryIfIdNotExists(alreadyExists)) return auxVetVisits;
+        // si no completa el form, salir
+        if (!petIdForm.fill()) return auxVetVisits;
+        alreadyExists = petsManager.idExists(petId);
+    } while (!alreadyExists);  // si no existe, volver a pedir
+
+    // pedir y buscar si el id cliente ingresado existe
+    alreadyExists = true;
+    clientIdForm.setIntField("ID Cliente", clientId, 4);
+    do {
+        // si no existe, preguntar si quiere reintentar
+        if (!retryIfIdNotExists(alreadyExists)) return auxVetVisits;
+        // si no completa el form, salir
+        if (!clientIdForm.fill()) return auxVetVisits;
+        alreadyExists = clientsManager.idExists(clientId);
+    } while (!alreadyExists);  // si no existe, volver a pedir
+
+// pedir y buscar si el id vete ingresado existe
+    alreadyExists = true;
+    vetForm.setIntField("ID vete", vetId, 4);
+    do {
+        // si no existe, preguntar si quiere reintentar
+        if (!retryIfIdNotExists(alreadyExists)) return auxVetVisits;
+        // si no completa el form, salir
+        if (!vetForm.fill()) return auxVetVisits;
+        alreadyExists = vetsManager.idExists(vetId);
+    } while (!alreadyExists);  // si no existe, volver a pedir
 
     vetvisitsForm.setStrField("Motivo", reason, 30);
     vetvisitsForm.setStrField("Diagnóstico", diagnosis, 240);
     vetvisitsForm.setDateField("Fecha", date);
-    vetvisitsForm.setIntField("ID Cliente", clientId, 4);
-    vetvisitsForm.setIntField("ID Mascota", petId, 4);
     vetvisitsForm.setIntField("ID Venta", saleId, 4);
     vetvisitsForm.setIntField("ID Vete", vetId, 4);
 

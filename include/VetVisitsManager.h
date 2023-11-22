@@ -9,7 +9,9 @@ private:
     const int _vetVisitsFields = 8;  // total de datos de un regisro VetVisit
     VetVisits loadForm();
     VetVisits editForm(int regPos);
-
+    bool retryIfIdExists(bool exists);
+    bool retryIfIdNotExists(bool exists);
+    
 public:
     void load();
     void edit();
