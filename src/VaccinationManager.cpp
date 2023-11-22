@@ -32,7 +32,7 @@ void VaccinationManager::load() {
 
     auxVaccination = loadForm();
     // Si no se completo el form, salir
-    if (auxVaccination.getAplicationId() == 0) return;
+    if (auxVaccination.getPeId() == -1) return;
 
     auxVaccination.setAplicationId(nId);  // set del Id ingresado anteriormente
     if (_vaccinationFile.writeFile(auxVaccination)) {
@@ -48,13 +48,13 @@ Vaccination VaccinationManager::loadForm() {
     std::string nameVaccine;
     Date dateAplication, dateRevaccination;
     int petId;
-    bool notified;
+    //bool notified;
 
     vaccinationForm.setStrField(" Vacuna", nameVaccine, 15);
     vaccinationForm.setIntField("ID Mascota", petId, 4);
     vaccinationForm.setDateField("Fecha de aplicacion", dateAplication);
     vaccinationForm.setDateField("Fecha de revacunacion", dateRevaccination);
-    vaccinationForm.setBoolField("Notificado", notified);
+    //vaccinationForm.setBoolField("Notificado", notified);
 
     if (!vaccinationForm.fill()) return auxVaccination;
 
@@ -62,7 +62,7 @@ Vaccination VaccinationManager::loadForm() {
     auxVaccination.setPetId(petId);
     auxVaccination.setDateAplication(dateAplication);
     auxVaccination.setDateRevaccination(dateRevaccination);
-    auxVaccination.setNotified(notified);
+    //auxVaccination.setNotified(notified);
 
     return auxVaccination;
 }
@@ -186,8 +186,8 @@ void VaccinationManager::show() {
     }
     // Vector que contiene las columnas de nuestra lista
     std::string columns[6] = {"ID Aplicacion",      "Id Mascota ",
-                              "Vacuna",        "Fecha aplicacion",
-                              "Fecha revacunacion", "¿Notificado?"};
+                              "Vacuna",        "Aplicacion",
+                              "Revacunacion", "¿Notificado?"};
 
     ListView VaccinationList;
     VaccinationList.addCells(cells, totalCells);

@@ -6,16 +6,27 @@ ClientsManager SubMenus::_clientsManager = ClientsManager();
 void SubMenus::loadClient() { _clientsManager.load();  utils::pause();}
 void SubMenus::editClients() { _clientsManager.edit(); }
 
-void SubMenus::showClients() {
-    _clientsManager.show();
-    utils::pause();
-}
+void SubMenus::showClients() { _clientsManager.show(); utils::pause();}
 
 void SubMenus::clients() {
     Menu mnuClients("CLIENTES:busts_in_silhouette:", true);
     mnuClients.addOption("1. Cargar Cliente :arrow_up_small:", loadClient);
     mnuClients.addOption("2. Mostrar Clientes :page_facing_up:", showClients);
     mnuClients.addOption("3. Editar cliente :pencil2:", editClients);
+    mnuClients.showMenu();
+}
+
+
+VetVisitsManager SubMenus::_vetvisitsManager = VetVisitsManager();
+void SubMenus::loadvetvisit() { _vetvisitsManager.load();  utils::pause();}
+void SubMenus::editvetvisit() { _vetvisitsManager.edit(); }
+void SubMenus::showvetvisits() { _vetvisitsManager.show(); utils::pause();}
+
+void SubMenus::vetvisits() {
+    Menu mnuClients("CONSULTAS VETERINARIAS:busts_in_silhouette:", true);
+    mnuClients.addOption("1. Cargar Consulta :arrow_up_small:", loadvetvisit);
+    mnuClients.addOption("2. Mostrar Consulta :page_facing_up:", showvetvisits);
+    mnuClients.addOption("3. Editar Consulta:pencil2:", editvetvisit);
     mnuClients.showMenu();
 }
 

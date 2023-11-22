@@ -10,6 +10,9 @@ private:
     char  _reason[30], _diagnosis[240];
 
 public:
+
+VetVisits ();
+VetVisits (int visitid, int vetid, int clientid, int petid, int saleid, Date date,std::string reason, std::string diagnosis );
     void setVisitId(int id);
     void setVetId(int id);
     void setClientId(int id);
@@ -29,4 +32,6 @@ public:
     int getSaleId();
 
     bool isValidRelation();
+
+     void toVecString(std::string vStr[8]);
 };

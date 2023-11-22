@@ -73,7 +73,7 @@ Pet PetsManager::editForm(int regPos) {
     Date birthDate;
 
     auxPet = _petsFile.readFile(regPos);
-    if (auxPet.getPetId() == 0) {
+    if (auxPet.getPetId() == -1) {
         std::cout << "Ocurrio un error al leer los registros.\n";
         return auxPet;
     }

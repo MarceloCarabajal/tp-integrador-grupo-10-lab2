@@ -32,7 +32,7 @@ void VetsManager::load() {
 
     auxVet = loadForm();
     // Si no se completo el form, salir
-    if (auxVet.getIdPerson() == 0) return;
+    if (strcmp (auxVet.getSpeciality(), "") == 0) return;
 
     auxVet.setIdVet(nId);  // set del Id ingresado anteriormente
     if (_vetsFile.writeFile(auxVet)) {
