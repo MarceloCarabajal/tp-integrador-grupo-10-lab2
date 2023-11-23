@@ -1,8 +1,23 @@
-#include <iostream>
-#include <cstring>
 #include "ProductCategory.h"
+#include <cstring>
 
+#include <iostream>
 using namespace std;
+
+ProductCategory::ProductCategory(){
+_catId= -1;
+strcpy (_catName, " ");
+}
+
+ProductCategory::ProductCategory(int catid, std::string catname){
+_catId=catid;
+
+strcpy(_catName, catname.c_str());
+
+
+}
+
+
 
 void ProductCategory::setCatId(int id ){_catId=id;}
 void ProductCategory::setCatName(std::string name ){strcpy(_catName,name.c_str());   }

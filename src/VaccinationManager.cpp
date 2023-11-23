@@ -82,7 +82,7 @@ Vaccination VaccinationManager::editForm(int regPos) {
     bool notified;
 
     auxVaccination = _vaccinationFile.readFile(regPos);
-    if (auxVaccination.getAplicationId() == 0) {
+    if (auxVaccination.getAplicationId() == -1) {
         std::cout << "Ocurrio un error al leer los registros.\n";
         return auxVaccination;
     }

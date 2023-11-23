@@ -88,7 +88,7 @@ Product ProductsManager::editForm(int regPos) {
     ProductCategory productCategory;
 
     auxProduct = _productsFile.readFile(regPos);
-    if (auxProduct.getProductId() == 0) {
+    if (auxProduct.getProductId() == -1) {
         std::cout << "Ocurrio un error al leer los registros.\n";
         return auxProduct;
     }

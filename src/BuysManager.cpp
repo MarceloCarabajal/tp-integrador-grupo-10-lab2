@@ -32,7 +32,7 @@ void BuysManager::load() {
 
     auxBuy = loadForm();
     // Si no se completo el form, salir
-    if (auxBuy.getTransactionId() == -1) return;
+    if (auxBuy.getProductId() == -1) return;
 
     auxBuy.setBuyId(nId);  // set del Id ingresado anteriormente
     if (_buysFile.writeFile(auxBuy)) {
@@ -82,7 +82,7 @@ Buy BuysManager::editForm(int regPos) {
     Time buyTime;
 
     auxBuy = _buysFile.readFile(regPos);
-    if (auxBuy.getBuyId() == 0) {
+    if (auxBuy.getBuyId() == -1) {
         std::cout << "Ocurrio un error al leer los registros.\n";
         return auxBuy;
     }

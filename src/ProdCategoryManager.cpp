@@ -71,7 +71,7 @@ ProductCategory ProdCategoryManager::editForm(int regPos) {
 
 
     auxProdCategory = _prodcategoryFile.readFile(regPos);
-    if (auxProdCategory.getCatId() == 0) {
+    if (auxProdCategory.getCatId() == -1) {
         std::cout << "Ocurrio un error al leer los registros.\n";
         return auxProdCategory;
     }

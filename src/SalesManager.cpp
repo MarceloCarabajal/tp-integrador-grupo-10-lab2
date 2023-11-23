@@ -79,7 +79,7 @@ Sale SalesManager::editForm(int regPos) {
     bool isVisit;
 
     auxSale = _salesFile.readFile(regPos);
-    if (auxSale.getSaleId() == 0) {
+    if (auxSale.getSaleId() == -1) {
         std::cout << "Ocurrio un error al leer los registros.\n";
         return auxSale;
     }

@@ -98,7 +98,7 @@ Appointment AppointmentsManager::editForm(int regPos) {
     int clientId, petId, nId;
 
     auxAppointment = _appsFile.readFile(regPos);
-    if (auxAppointment.getAppId() == 0) {
+    if (auxAppointment.getAppId() == -1) {
         std::cout << "Ocurrio un error al leer los registros.\n";
         return auxAppointment;
     }
