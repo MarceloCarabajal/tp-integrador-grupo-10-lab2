@@ -119,6 +119,7 @@ PetRelations RelationsManager::editForm(int regPos) {
     bool success = petRelationsForm.fill();
     if (success) {  // si se completa
 
+        auxFormR.setRelationId(nId);
         auxFormR.setClientId(clientId);
         auxFormR.setPetId(petId);
         auxFormR.setOwner(owner);
