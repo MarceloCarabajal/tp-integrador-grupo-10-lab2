@@ -81,7 +81,7 @@ Product ProductsManager::loadForm() {
 
 Product ProductsManager::editForm(int regPos) {
     InputForm productForm;
-    Product auxProduct;
+    Product auxProduct, auxForProduct;
     std::string productName, description, brand, productType;
     float price;
     int quantity, stock, nId;
@@ -118,19 +118,19 @@ Product ProductsManager::editForm(int regPos) {
     // completar form
     bool success = productForm.fill();
     if (success) {  // si se completa
-        auxProduct.setProductName(productName);
-        auxProduct.setDescription(description);
-        auxProduct.setBrand(brand);
-        auxProduct.setProductType(productType);
-        auxProduct.setPrice(price);
-        auxProduct.setQuantity(quantity);
-        auxProduct.setStock(stock);
-        auxProduct.setProductCategory(productCategory);
+        auxForProduct.setProductName(productName);
+        auxForProduct.setDescription(description);
+        auxForProduct.setBrand(brand);
+        auxForProduct.setProductType(productType);
+       auxForProduct.setPrice(price);
+       auxForProduct.setQuantity(quantity);
+        auxForProduct.setStock(stock);
+        auxForProduct.setProductCategory(productCategory);
 
-        return auxProduct;
+        return auxForProduct;
     }
     // si no se completa, devolver Producto vacio
-    return auxProduct;
+    return auxForProduct;
 }
 
 void ProductsManager::edit() {
@@ -149,7 +149,7 @@ void ProductsManager::edit() {
     // Si se encontro, pedir datos
     Product auxProduct = editForm(regPos);
     // Si no se completo el formulario, salir
-    if (auxProduct.getProductId() == 0) {
+    if (auxProduct.getProductId() == -1) {
         std::cout << "No se realizara la edicion.\n";
         utils::pause();
         return;

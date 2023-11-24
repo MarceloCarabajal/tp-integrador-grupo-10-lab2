@@ -90,7 +90,7 @@ Appointment AppointmentsManager::loadForm() {
 
 Appointment AppointmentsManager::editForm(int regPos) {
     InputForm AppointmentForm;
-    Appointment auxAppointment;
+    Appointment auxAppointment, auxFormAppointment;
     Date dateApp;
     Time timeApp;
     std::string reason;
@@ -126,17 +126,17 @@ Appointment AppointmentsManager::editForm(int regPos) {
     bool success = AppointmentForm.fill();
     if (success) {  // si se completa
 
-        auxAppointment.setPetId(petId);
-        auxAppointment.setDate(dateApp);
-        auxAppointment.setTime(timeApp);
-        auxAppointment.setReason(reason);
-        auxAppointment.setAttended(attended);
-        auxAppointment.setClientId(clientId);
+        auxFormAppointment.setPetId(petId);
+        auxFormAppointment.setDate(dateApp);
+        auxFormAppointment.setTime(timeApp);
+        auxFormAppointment.setReason(reason);
+        auxFormAppointment.setAttended(attended);
+        auxFormAppointment.setClientId(clientId);
 
-        return auxAppointment;
+        return auxFormAppointment;
     }
     // si no se completa, devolver  Turno vacio
-    return auxAppointment;
+    return auxFormAppointment;
 }
 
 void AppointmentsManager::edit() {
@@ -155,7 +155,7 @@ void AppointmentsManager::edit() {
     // Si se encontro, pedir datos
     Appointment auxAppointment = editForm(regPos);
     // Si no se completo el formulario, salir
-    if (auxAppointment.getAppId() == 0) {
+    if (auxAppointment.getAppId() == -1) {
         std::cout << "No se realizara la edicion.\n";
         utils::pause();
         return;

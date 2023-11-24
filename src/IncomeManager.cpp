@@ -72,7 +72,7 @@ Income IncomeManager::loadForm() {
 
 Income IncomeManager::editForm(int regPos) {
     InputForm incomeForm;
-    Income auxIncome;
+    Income auxIncome, auxFormIncome;
     std::string description, paymentMethod;
     int saleId, nId;
     Date transDate;
@@ -108,16 +108,16 @@ Income IncomeManager::editForm(int regPos) {
     // completar form
     bool success = incomeForm.fill();
     if (success) {  // si se completa
-        auxIncome.setDescription(description);
-        auxIncome.setPaymentMethod(paymentMethod);
-        auxIncome.setDateTrans(transDate);
-        auxIncome.setTimeTrans(transTime);
-        auxIncome.setAmount(amount);
-        auxIncome.setSaleId(saleId);
-        return auxIncome;
+        auxFormIncome.setDescription(description);
+        auxFormIncome.setPaymentMethod(paymentMethod);
+        auxFormIncome.setDateTrans(transDate);
+        auxFormIncome.setTimeTrans(transTime);
+        auxFormIncome.setAmount(amount);
+        auxFormIncome.setSaleId(saleId);
+        return auxFormIncome;
     }
     // si no se completa, devolver Ingreso vacio
-    return auxIncome;
+    return auxFormIncome;
 }
 
 void IncomeManager::edit() {
@@ -136,7 +136,7 @@ void IncomeManager::edit() {
     // Si se encontro, pedir datos
     Income auxIncome = editForm(regPos);
     // Si no se completo el formulario, salir
-    if (auxIncome.getIdTransaction() == 0) {
+    if (auxIncome.getIdTransaction() == -1) {
         std::cout << "No se realizara la edicion.\n";
         utils::pause();
         return;

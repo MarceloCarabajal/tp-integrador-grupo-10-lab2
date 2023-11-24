@@ -89,7 +89,7 @@ PetRelations RelationsManager::loadForm() {
 
 PetRelations RelationsManager::editForm(int regPos) {
     InputForm petRelationsForm;
-    PetRelations auxPetR;
+    PetRelations auxPetR, auxFormR;
 
     int petId, clientId, nId;
     bool owner;
@@ -123,15 +123,15 @@ PetRelations RelationsManager::editForm(int regPos) {
     bool success = petRelationsForm.fill();
     if (success) {  // si se completa
 
-        auxPetR.setClientId(clientId);
-        auxPetR.setPetId(petId);
-        auxPetR.setOwner(owner);
+        auxFormR.setClientId(clientId);
+        auxFormR.setPetId(petId);
+        auxFormR.setOwner(owner);
        // auxPetR.setStatus(status);
 
-        return auxPetR;
+        return auxFormR;
     }
     // si no se completa, devolver Relacion de la Mascota vacia
-    return auxPetR;
+    return auxFormR;
 }
 
 void RelationsManager::edit() {

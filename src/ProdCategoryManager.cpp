@@ -65,7 +65,7 @@ bool ProdCategoryManager::searchById(ProductCategory reg, int nId) {
 
 ProductCategory ProdCategoryManager::editForm(int regPos) {
     InputForm productCategForm;
-    ProductCategory auxProdCategory;
+    ProductCategory auxProdCategory, auxFormProdCategory;;
      std::string name;
     int  nId;
 
@@ -90,12 +90,12 @@ ProductCategory ProdCategoryManager::editForm(int regPos) {
     // completar form
     bool success = productCategForm.fill();
     if (success) {  // si se completa
-        auxProdCategory.setCatName(name);
+        auxFormProdCategory.setCatName(name);
      
-        return auxProdCategory;
+        return auxFormProdCategory;
     }
     // si no se completa, devolver Ingreso vacio
-    return auxProdCategory;
+    return auxFormProdCategory;
 }
 
 void ProdCategoryManager::edit() {
@@ -114,7 +114,7 @@ void ProdCategoryManager::edit() {
     // Si se encontro, pedir datos
     ProductCategory auxProdCategory = editForm(regPos);
     // Si no se completo el formulario, salir
-    if (auxProdCategory.getCatId() == 0) {
+    if (auxProdCategory.getCatId() == -1) {
         std::cout << "No se realizara la edicion.\n";
         utils::pause();
         return;

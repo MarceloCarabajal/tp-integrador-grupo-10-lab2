@@ -74,7 +74,7 @@ Buy BuysManager::loadForm() {
 
 Buy BuysManager::editForm(int regPos) {
     InputForm buyForm;
-    Buy auxBuy;
+    Buy auxBuy, auxFormBuy;
     std::string paymentMethod;
     int nId, productId, quantity, transactionId;
     float totalAmount;
@@ -115,17 +115,17 @@ Buy BuysManager::editForm(int regPos) {
     bool success = buyForm.fill();
     if (success) {  // si se completa
 
-        auxBuy.setpaymentMethod(paymentMethod);
-        auxBuy.setProductId(productId);
-        auxBuy.setTransactionId(transactionId);
-        auxBuy.setQuantity(quantity);
-        auxBuy.setDate(buyDate);
-        auxBuy.setTime(buyTime);
+        auxFormBuy.setpaymentMethod(paymentMethod);
+        auxFormBuy.setProductId(productId);
+        auxFormBuy.setTransactionId(transactionId);
+        auxFormBuy.setQuantity(quantity);
+        auxFormBuy.setDate(buyDate);
+        auxFormBuy.setTime(buyTime);
 
-        return auxBuy;
+        return auxFormBuy;
     }
     // si no se completa, devolver Compra vacia
-    return auxBuy;
+    return auxFormBuy;
 }
 
 void BuysManager::edit() {
@@ -144,7 +144,7 @@ void BuysManager::edit() {
     // Si se encontro, pedir datos
     Buy auxBuy = editForm(regPos);
     // Si no se completo el formulario, salir
-    if (auxBuy.getBuyId() == 0) {
+    if (auxBuy.getBuyId() == -1) {
         std::cout << "No se realizara la edicion.\n";
         utils::pause();
         return;

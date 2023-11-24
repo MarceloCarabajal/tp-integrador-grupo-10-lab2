@@ -67,7 +67,7 @@ Pet PetsManager::loadForm() {
 
 Pet PetsManager::editForm(int regPos) {
     InputForm petForm;
-    Pet auxPet;
+    Pet auxPet, auxFormPet; 
     std::string name, specie, breed, currentDiagnosis;
     int nId, ownerId;
     Date birthDate;
@@ -100,16 +100,16 @@ Pet PetsManager::editForm(int regPos) {
     bool success = petForm.fill();
     if (success) {  // si se completa
 
-        auxPet.setName(name);
-        auxPet.setBreed(breed);
-        auxPet.setSpecie(specie);
-        auxPet.setCurrentDiagnosis(currentDiagnosis);
-        auxPet.setBirthDate(birthDate);
-        auxPet.setOwnerId(ownerId);
-        return auxPet;
+        auxFormPet.setName(name);
+        auxFormPet.setBreed(breed);
+        auxFormPet.setSpecie(specie);
+        auxFormPet.setCurrentDiagnosis(currentDiagnosis);
+        auxFormPet.setBirthDate(birthDate);
+        auxFormPet.setOwnerId(ownerId);
+        return auxFormPet;
     }
     // si no se completa, devolver Mascota vacia
-    return auxPet;
+    return auxFormPet;;
 }
 
 void PetsManager::edit() {
@@ -128,7 +128,7 @@ void PetsManager::edit() {
     // Si se encontro, pedir datos
     Pet auxPet = editForm(regPos);
     // Si no se completo el formulario, salir
-    if (auxPet.getPetId() == 0) {
+    if (auxPet.getPetId() == -1) {
         std::cout << "No se realizara la edicion.\n";
         utils::pause();
         return;

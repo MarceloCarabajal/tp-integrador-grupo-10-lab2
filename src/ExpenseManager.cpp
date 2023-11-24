@@ -71,7 +71,7 @@ Expense ExpenseManager::loadForm() {
 
 Expense ExpenseManager::editForm(int regPos) {
     InputForm expenseForm;
-    Expense auxExpense;
+    Expense auxExpense, auxFormExpense;
     std::string description, paymentMethod;
     int buyId, nId;
     Date transDate;
@@ -107,16 +107,16 @@ Expense ExpenseManager::editForm(int regPos) {
     // completar form
     bool success = expenseForm.fill();
     if (success) {  // si se completa
-        auxExpense.setDescription(description);
-        auxExpense.setPaymentMethod(paymentMethod);
-        auxExpense.setDateTrans(transDate);
-        auxExpense.setTimeTrans(transTime);
-        auxExpense.setAmount(amount);
-        auxExpense.setBuyId(buyId);
-        return auxExpense;
+        auxFormExpense.setDescription(description);
+        auxFormExpense.setPaymentMethod(paymentMethod);
+        auxFormExpense.setDateTrans(transDate);
+        auxFormExpense.setTimeTrans(transTime);
+        auxFormExpense.setAmount(amount);
+        auxFormExpense.setBuyId(buyId);
+        return auxFormExpense;
     }
     // si no se completa, devolver Ingreso vacio
-    return auxExpense;
+    return auxFormExpense;
 }
 
 void ExpenseManager::edit() {
@@ -135,7 +135,7 @@ void ExpenseManager::edit() {
     // Si se encontro, pedir datos
     Expense auxExpense = editForm(regPos);
     // Si no se completo el formulario, salir
-    if (auxExpense.getIdTransaction() == 0) {
+    if (auxExpense.getIdTransaction() == -1) {
         std::cout << "No se realizara la edicion.\n";
         utils::pause();
         return;

@@ -66,7 +66,7 @@ Client ClientsManager::loadForm() {
 
 Client ClientsManager::editForm(int regPos) {
     InputForm clientForm;
-    Client auxClient;
+    Client auxClient, auxFormClient;
     std::string name, lastname, address, email, phone;
     int DNI, nId;
 
@@ -97,16 +97,16 @@ Client ClientsManager::editForm(int regPos) {
     // completar form
     bool success = clientForm.fill();
     if (success) {  // si se completa
-        auxClient.setIdPerson(DNI);
-        auxClient.setName(name);
-        auxClient.setLastname(lastname);
-        auxClient.setAddress(address);
-        auxClient.setPhone(phone);
-        auxClient.setEmail(email);
-        return auxClient;
+        auxFormClient.setIdPerson(DNI);
+        auxFormClient.setName(name);
+        auxFormClient.setLastname(lastname);
+        auxFormClient.setAddress(address);
+        auxFormClient.setPhone(phone);
+        auxFormClient.setEmail(email);
+        return auxFormClient;
     }
     // si no se completa, devolver Client vacio
-    return auxClient;
+    return auxFormClient;
 }
 
 void ClientsManager::edit() {
