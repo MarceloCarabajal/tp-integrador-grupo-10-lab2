@@ -54,7 +54,8 @@ Product ProductsManager::loadForm() {
 
     productForm.setStrField("Nombre", productName, 30);
     productForm.setStrField("Descripcion", description, 45);
-    productForm.setStrField("Marca", brand, 15);;
+    productForm.setStrField("Marca", brand, 15);
+    ;
     productForm.setIntField("Cantidad", quantity, 4);
     productForm.setIntField("Stock", stock, 4);
     productForm.setFloatField("Precio", price);
@@ -75,7 +76,7 @@ Product ProductsManager::loadForm() {
 
 Product ProductsManager::editForm(int regPos) {
     InputForm productForm;
-    Product auxProduct, auxForProduct;
+    Product auxProduct, auxFormProduct;
     std::string productName, description, brand;
     float price;
     int quantity, stock, nId;
@@ -109,19 +110,20 @@ Product ProductsManager::editForm(int regPos) {
 
     // completar form
     bool success = productForm.fill();
-    if (success) {  // si se completa
-        auxForProduct.setProductName(productName);
-        auxForProduct.setDescription(description);
-        auxForProduct.setBrand(brand);
-       auxForProduct.setPrice(price);
-       auxForProduct.setQuantity(quantity);
-        auxForProduct.setStock(stock);
-        auxForProduct.setProductCategory(productCategory);
+    if (success) {  // si se completa.
+        auxFormProduct.setProductId(nId);
+        auxFormProduct.setProductName(productName);
+        auxFormProduct.setDescription(description);
+        auxFormProduct.setBrand(brand);
+        auxFormProduct.setPrice(price);
+        auxFormProduct.setQuantity(quantity);
+        auxFormProduct.setStock(stock);
+        auxFormProduct.setProductCategory(productCategory);
 
-        return auxForProduct;
+        return auxFormProduct;
     }
     // si no se completa, devolver Producto vacio
-    return auxForProduct;
+    return auxFormProduct;
 }
 
 void ProductsManager::edit() {
@@ -188,9 +190,8 @@ void ProductsManager::show() {
         cellPos += _productFields;
     }
     // Vector que contiene las columnas de nuestra lista
-    std::string columns[8] = {
-        "ID",       "Nombre", "Descripcion", "Marca",  
-        "Cantidad", "Precio", "Stock",  "Categoria"};
+    std::string columns[8] = {"ID",       "Nombre", "Descripcion", "Marca",
+                              "Cantidad", "Precio", "Stock",       "Categoria"};
 
     ListView productsList;
     productsList.addCells(cells, totalCells);
@@ -207,5 +208,5 @@ bool ProductsManager::searchById(Product reg, int nId) {
 }
 
 bool ProductsManager::idExists(int nId) {
-  return  _productsFile.searchReg(searchById, nId) >= 0 ? true : false;
+    return _productsFile.searchReg(searchById, nId) >= 0 ? true : false;
 }
