@@ -67,7 +67,7 @@ Pet PetsManager::loadForm() {
 
 Pet PetsManager::editForm(int regPos) {
     InputForm petForm;
-    Pet auxPet, auxFormPet; 
+    Pet auxPet, auxFormPet;
     std::string name, specie, breed, currentDiagnosis;
     int nId, ownerId;
     Date birthDate;
@@ -110,7 +110,8 @@ Pet PetsManager::editForm(int regPos) {
         return auxFormPet;
     }
     // si no se completa, devolver Mascota vacia
-    return auxFormPet;;
+    return auxFormPet;
+    ;
 }
 
 void PetsManager::edit() {
@@ -178,8 +179,8 @@ void PetsManager::show() {
         cellPos += _petsFields;
     }
     // Vector que contiene las columnas de nuestra lista
-    std::string columns[7] = {"ID",    "ID Dueño",      "Nombre",   "Especie",      "Raza",
-                              "Diagnostico", "F. nacimiento"};
+    std::string columns[7] = {"ID",   "ID Dueño",    "Nombre",       "Especie",
+                              "Raza", "Diagnostico", "F. nacimiento"};
 
     ListView petsList;
     petsList.addCells(cells, totalCells);

@@ -16,8 +16,9 @@ void ProdCategoryManager::load() {
     // pedir y buscar si el id ingresado existe
     do {
         if (alreadyExists) {
-            std::cout << "El ID de la categoria ya existe, presione cualquier tecla "
-                         "para reintentar o ESC para salir.\n";
+            std::cout
+                << "El ID de la categoria ya existe, presione cualquier tecla "
+                   "para reintentar o ESC para salir.\n";
             if (rlutil::getkey() == rlutil::KEY_ESCAPE) return;
             rlutil::cls();
         }
@@ -31,7 +32,7 @@ void ProdCategoryManager::load() {
 
     auxProdCategory = loadForm();
     // Si no se completo el form, salir
-    if (strcmp (auxProdCategory.getCatName(), " ") == 0) return;
+    if (strcmp(auxProdCategory.getCatName(), " ") == 0) return;
 
     auxProdCategory.setCatId(nId);  // set del Id ingresado anteriormente
     if (_prodcategoryFile.writeFile(auxProdCategory)) {
@@ -46,13 +47,11 @@ ProductCategory ProdCategoryManager::loadForm() {
     ProductCategory auxProdCategory;
     std::string name;
 
-productCategForm.setStrField("Nombre", name, 45);
-
+    productCategForm.setStrField("Nombre", name, 45);
 
     if (!productCategForm.fill()) return auxProdCategory;
 
     auxProdCategory.setCatName(name);
-
 
     return auxProdCategory;
 }
@@ -65,10 +64,10 @@ bool ProdCategoryManager::searchById(ProductCategory reg, int nId) {
 
 ProductCategory ProdCategoryManager::editForm(int regPos) {
     InputForm productCategForm;
-    ProductCategory auxProdCategory, auxFormProdCategory;;
-     std::string name;
-    int  nId;
-
+    ProductCategory auxProdCategory, auxFormProdCategory;
+    ;
+    std::string name;
+    int nId;
 
     auxProdCategory = _prodcategoryFile.readFile(regPos);
     if (auxProdCategory.getCatId() == -1) {
@@ -80,7 +79,6 @@ ProductCategory ProdCategoryManager::editForm(int regPos) {
     name = auxProdCategory.getCatName();
     nId = auxProdCategory.getCatId();
 
-
     std::cout << "Editando Categoria #" << nId << std::endl;
     // configurar form
     productCategForm.setEditMode(true);  // modo edicion
@@ -90,6 +88,7 @@ ProductCategory ProdCategoryManager::editForm(int regPos) {
     // completar form
     bool success = productCategForm.fill();
     if (success) {  // si se completa
+        auxFormProdCategory.setCatId(nId);
         auxFormProdCategory.setCatName(name);
         auxFormProdCategory.setCatId(nId);
      
@@ -145,8 +144,8 @@ void ProdCategoryManager::show() {
     // de registros
     std::string *cells = new std::string[totalCells];
     if (cells == NULL) {
-        std::cout
-            << "No hay memoria suficiente para mostrar las categorias de producto.\n";
+        std::cout << "No hay memoria suficiente para mostrar las categorias de "
+                     "producto.\n";
         return;
     }
     int cellPos = 0;  // acumula la posicion actual a asignar
@@ -178,5 +177,4 @@ void ProdCategoryManager::show() {
 bool ProdCategoryManager::idExists(int nId) {
     // Si devuelve un nro de posición, existe
     return _prodcategoryFile.searchReg(searchById, nId) >= 0 ? true : false;
-
-   }
+}
