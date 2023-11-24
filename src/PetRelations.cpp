@@ -1,5 +1,7 @@
 #include "PetRelations.h"
 
+#include "utils.h"
+
 PetRelations::PetRelations() {
     _relationId = -1;
     _petId = -1;
@@ -32,5 +34,5 @@ void PetRelations::toVecString(std::string vStr[4]) {
     vStr[0] = std::to_string(_relationId);
     vStr[1] = std::to_string(_petId);
     vStr[2] = std::to_string(_clientId);
-    vStr[3] = _owner;
+    vStr[3] = utils::boolToStr(_owner);
 }

@@ -5,13 +5,14 @@
 
 class RelationsManager {
 private:
-    VppFile<PetRelations> _petRelationsFile =VppFile<PetRelations>("PetRelations.vpp");
-    const int _petRelationsFields =5;  // total de datos de un regisro PetRelations
+    VppFile<PetRelations> _petRelationsFile =
+        VppFile<PetRelations>("PetRelations.vpp");
+    const int _petRelationsFields =
+        4;  // total de datos de un regisro PetRelations
     PetRelations loadForm();
     PetRelations editForm(int regPos);
     bool retryIfIdExists(bool exists);
     bool retryIfIdNotExists(bool exists);
-
 
 public:
     void load();

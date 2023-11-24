@@ -1,13 +1,13 @@
 #include "RelationsManager.h"
 
 #include <iostream>
+
 #include "ClientsManager.h"
 #include "InputForm.h"
 #include "ListView.h"
 #include "PetsManager.h"
 #include "rlutil.h"
 #include "utils.h"
-
 
 void RelationsManager::load() {
     InputForm idForm;
@@ -16,7 +16,7 @@ void RelationsManager::load() {
     bool alreadyExists = false;
 
     // pedir y buscar si el id ingresado existe
-    
+
     idForm.setIntField("ID Relación", nId, 4);
     do {
         if (!retryIfIdExists(alreadyExists)) return;
@@ -26,33 +26,30 @@ void RelationsManager::load() {
     } while (alreadyExists);
 
     // Si no existe la relacion, pedir el resto de datos
-    auxPetR= loadForm();
+    auxPetR = loadForm();
     // Si no se completo el form, salir
-       if (auxPetR.getPetId() == -1) return;
-
+    if (auxPetR.getPetId() == -1) return;
 
     // setear id ingresado
-     auxPetR.setRelationId(nId);
+    auxPetR.setRelationId(nId);
     if (_petRelationsFile.writeFile(auxPetR)) {
         std::cout << "Relacion guardada con exito!\n";
     } else {
         std::cout << "Ocurrio un error al guardar el turno.\n";
     }
 }
-    
-   
 
 PetRelations RelationsManager::loadForm() {
-    InputForm petRelationsForm,petIdForm, clientIdForm;
+    InputForm petRelationsForm, petIdForm, clientIdForm;
     PetRelations auxPetR;
     PetsManager petsManager;
     ClientsManager clientsManager;
     bool owner;
     // bool status;
-    int clientId=0, petId=0;
+    int clientId = 0, petId = 0;
     bool alreadyExists = true;
 
- // pedir y buscar si el id mascota ingresado existe
+    // pedir y buscar si el id mascota ingresado existe
     petIdForm.setIntField("ID Mascota", petId, 4);
     do {
         // si no existe, preguntar si quiere reintentar
@@ -73,8 +70,7 @@ PetRelations RelationsManager::loadForm() {
         alreadyExists = clientsManager.idExists(clientId);
     } while (!alreadyExists);  // si no existe, volver a pedir
 
-   
-    //petRelationsForm.setBoolField("Estado", status);
+    // petRelationsForm.setBoolField("Estado", status);
     petRelationsForm.setBoolField("¿Es propietario?", owner);
 
     if (!petRelationsForm.fill()) return auxPetR;
@@ -93,7 +89,7 @@ PetRelations RelationsManager::editForm(int regPos) {
 
     int petId, clientId, nId;
     bool owner;
-    //bool status;
+    // bool status;
 
     auxPetR = _petRelationsFile.readFile(regPos);
     if (auxPetR.getPetId() == -1) {
@@ -105,7 +101,7 @@ PetRelations RelationsManager::editForm(int regPos) {
     petId = auxPetR.getPetId();
     clientId = auxPetR.getClientId();
     owner = auxPetR.getOwner();
-   // status = auxPetR.getStatus();
+    // status = auxPetR.getStatus();
     // TODO: VER PARA LLAMAR A LA FUNCION QUE MODIFICA EL ARCHIVO DE MASCOTA SI
     // SE ESTA CARGANDO UN REGISTRO DONDE
     /// OWNER ES TRUE Y MODIFICAR ESE ARCHIVO (EL DE PET)
@@ -117,7 +113,7 @@ PetRelations RelationsManager::editForm(int regPos) {
     petRelationsForm.setIntField("ID Mascota", petId, 4);
     petRelationsForm.setIntField("ID Cliente", clientId, 4);
     petRelationsForm.setBoolField("¿Es propietario?", owner);
-   // petRelationsForm.setBoolField("Activo?", status);
+    // petRelationsForm.setBoolField("Activo?", status);
 
     // completar form
     bool success = petRelationsForm.fill();
@@ -126,7 +122,7 @@ PetRelations RelationsManager::editForm(int regPos) {
         auxFormR.setClientId(clientId);
         auxFormR.setPetId(petId);
         auxFormR.setOwner(owner);
-       // auxPetR.setStatus(status);
+        // auxPetR.setStatus(status);
 
         return auxFormR;
     }
@@ -201,7 +197,7 @@ void RelationsManager::show() {
     }
     // Vector que contiene las columnas de nuestra lista
     std::string columns[4] = {"ID RELACION", "ID MASCOTA", "ID CLIENTE",
-                              "ES DUENIO?"};
+                              "DUEÑO?"};
 
     ListView petsRelationsList;
     petsRelationsList.addCells(cells, totalCells);
@@ -218,9 +214,8 @@ bool RelationsManager::searchById(PetRelations reg, int nId) {
 }
 
 bool RelationsManager::idExists(int nId) {
-   return _petRelationsFile.searchReg(searchById, nId) >= 0 ? true : false;
+    return _petRelationsFile.searchReg(searchById, nId) >= 0 ? true : false;
 }
-
 
 bool RelationsManager::retryIfIdExists(bool exists) {
     if (exists) {
