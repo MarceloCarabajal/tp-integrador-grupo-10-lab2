@@ -42,15 +42,11 @@ void ProductsManager::load() {
         std::cout << "Ocurrio un error al guardar el producto.\n";
     }
 }
-/*   int _productID, _quantity, _stock;
-    float _price;
-    char _productName[30], _description[45], _brand[15], _productType[30];
-    ProductCategory _productCategory;
-*/
+
 Product ProductsManager::loadForm() {
     InputForm productForm;
     Product auxProduct;
-    std::string productName, description, brand, productType;
+    std::string productName, description, brand;
     float price;
     int quantity, stock;
     // TODO: Ver si está bien incluirlo asi
@@ -58,8 +54,7 @@ Product ProductsManager::loadForm() {
 
     productForm.setStrField("Nombre", productName, 30);
     productForm.setStrField("Descripcion", description, 45);
-    productForm.setStrField("Marca", brand, 15);
-    productForm.setStrField("Tipo Producto", productType, 30);
+    productForm.setStrField("Marca", brand, 15);;
     productForm.setIntField("Cantidad", quantity, 4);
     productForm.setIntField("Stock", stock, 4);
     productForm.setFloatField("Precio", price);
@@ -71,7 +66,6 @@ Product ProductsManager::loadForm() {
     auxProduct.setProductName(productName);
     auxProduct.setDescription(description);
     auxProduct.setBrand(brand);
-    auxProduct.setProductType(productType);
     auxProduct.setPrice(price);
     auxProduct.setQuantity(quantity);
     auxProduct.setStock(stock);
@@ -82,7 +76,7 @@ Product ProductsManager::loadForm() {
 Product ProductsManager::editForm(int regPos) {
     InputForm productForm;
     Product auxProduct, auxForProduct;
-    std::string productName, description, brand, productType;
+    std::string productName, description, brand;
     float price;
     int quantity, stock, nId;
     ProductCategory productCategory;
@@ -97,7 +91,6 @@ Product ProductsManager::editForm(int regPos) {
     description = auxProduct.getDescription();
     brand = auxProduct.getBrand();
     nId = auxProduct.getProductId();
-    productType = auxProduct.getProductType();
     price = auxProduct.getPrice();
     quantity = auxProduct.getQuantity();
     stock = auxProduct.getStock();
@@ -109,7 +102,6 @@ Product ProductsManager::editForm(int regPos) {
     productForm.setStrField("Nombre", productName, 30);
     productForm.setStrField("Descripcion", description, 45);
     productForm.setStrField("Marca", brand, 15);
-    productForm.setStrField("Tipo Producto", productType, 30);
     productForm.setIntField("Cantidad", quantity, 4);
     productForm.setIntField("Stock", stock, 4);
     productForm.setFloatField("Precio", price);
@@ -121,7 +113,6 @@ Product ProductsManager::editForm(int regPos) {
         auxForProduct.setProductName(productName);
         auxForProduct.setDescription(description);
         auxForProduct.setBrand(brand);
-        auxForProduct.setProductType(productType);
        auxForProduct.setPrice(price);
        auxForProduct.setQuantity(quantity);
         auxForProduct.setStock(stock);
@@ -197,13 +188,13 @@ void ProductsManager::show() {
         cellPos += _productFields;
     }
     // Vector que contiene las columnas de nuestra lista
-    std::string columns[9] = {
-        "ID",       "Nombre", "Descripcion", "Marca",    "Tipo de producto",
-        "Cantidad", "Precio", "Stock",       "Categoria"};
+    std::string columns[8] = {
+        "ID",       "Nombre", "Descripcion", "Marca",  
+        "Cantidad", "Precio", "Stock",  "Categoria"};
 
     ListView productsList;
     productsList.addCells(cells, totalCells);
-    productsList.addCols(columns, 9);
+    productsList.addCols(columns, 8);
     productsList.setTitle("PRODUCTOS");
     productsList.show();
     delete[] cells;  // liberar memoria!

@@ -6,7 +6,7 @@
 class ProductsManager {
 private:
     VppFile<Product> _productsFile = VppFile<Product>("Products.vpp");
-    const int _productFields = 9;  // total de datos de un regisro Pet
+    const int _productFields = 8;  // total de datos de un regisro Product
     Product loadForm();
     Product editForm(int regPos);
 

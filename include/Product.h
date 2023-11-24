@@ -6,13 +6,13 @@ class Product{
 private:
     int _productID, _quantity, _stock;
     float _price;
-    char _productName[30], _description[45], _brand[15], _productType[30];
+    char _productName[30], _description[45], _brand[15];
     ProductCategory _productCategory;
 
 public:
 Product();
 Product (int productid, int quantity, int stock,float price, std::string productname,
- std::string description, std::string brand, std::string productype, ProductCategory productcategory);
+ std::string description, std::string brand, ProductCategory productcategory);
 
 
  
@@ -23,7 +23,6 @@ Product (int productid, int quantity, int stock,float price, std::string product
     void setStock(int stock);
     void setPrice(float price);
     void setBrand(std::string brand);
-    void setProductType(std::string productType);
     void setProductCategory(ProductCategory category);
 
     int getProductId();
@@ -33,7 +32,6 @@ Product (int productid, int quantity, int stock,float price, std::string product
     int getStock();
     float getPrice();
     const char * getBrand();
-   const char * getProductType();
     ProductCategory getProductCategory();
 
     void addProduct();
@@ -41,5 +39,5 @@ Product (int productid, int quantity, int stock,float price, std::string product
     void updateStock();
 
 
-        void toVecString(std::string vStr[9]);
+        void toVecString(std::string vStr[8]);
 };
