@@ -117,6 +117,7 @@ Product ProductsManager::editForm(int regPos) {
        auxForProduct.setQuantity(quantity);
         auxForProduct.setStock(stock);
         auxForProduct.setProductCategory(productCategory);
+        auxForProduct.setProductId(nId);
 
         return auxForProduct;
     }

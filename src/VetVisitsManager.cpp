@@ -142,7 +142,7 @@ VetVisits VetVisitsManager::editForm(int regPos) {
     // completar form
     bool success = vetvisitsForm.fill();
     if (success) {  // si se completa
-
+        auxVetVisits.setVisitId(nId);
         auxVetVisits.setReason(reason);
         auxVetVisits.setDiagnosis(diagnosis);
         auxVetVisits.setDate(date);
@@ -150,6 +150,7 @@ VetVisits VetVisitsManager::editForm(int regPos) {
         auxVetVisits.setPetId(petId);
         auxVetVisits.setVetId(vetId);
         auxVetVisits.setSaleId(saleId);
+        
         return auxVetVisits;
     }
     // si no se completa, devolver Mascota vacia

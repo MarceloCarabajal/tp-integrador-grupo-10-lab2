@@ -115,6 +115,7 @@ Buy BuysManager::editForm(int regPos) {
     bool success = buyForm.fill();
     if (success) {  // si se completa
 
+        auxFormBuy.setBuyId(nId);
         auxFormBuy.setpaymentMethod(paymentMethod);
         auxFormBuy.setProductId(productId);
         auxFormBuy.setTransactionId(transactionId);

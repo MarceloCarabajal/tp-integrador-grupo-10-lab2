@@ -91,6 +91,7 @@ ProductCategory ProdCategoryManager::editForm(int regPos) {
     bool success = productCategForm.fill();
     if (success) {  // si se completa
         auxFormProdCategory.setCatName(name);
+        auxFormProdCategory.setCatId(nId);
      
         return auxFormProdCategory;
     }

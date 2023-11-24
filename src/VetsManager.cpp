@@ -93,6 +93,7 @@ Vet VetsManager::editForm(int regPos) {
     // completar form
     bool success = vetForm.fill();
     if (success) {  // si se completa
+        auxVet.setIdVet(nId);
         auxVet.setIdPerson(DNI);
         auxVet.setName(name);
         auxVet.setLastname(lastname);

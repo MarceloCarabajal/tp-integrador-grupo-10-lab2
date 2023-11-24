@@ -105,6 +105,7 @@ Sale SalesManager::editForm(int regPos) {
     // completar form
     bool success = saleForm.fill();
     if (success) {  // si se completa
+        auxSale.setSaleId(nId);
         auxSale.setPaymentMethod(paymentMethod);
         auxSale.setTransactionId(transactionId);
         auxSale.setDate(saleDate);

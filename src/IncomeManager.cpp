@@ -108,6 +108,7 @@ Income IncomeManager::editForm(int regPos) {
     // completar form
     bool success = incomeForm.fill();
     if (success) {  // si se completa
+        auxFormIncome.setIdTransaction(nId);
         auxFormIncome.setDescription(description);
         auxFormIncome.setPaymentMethod(paymentMethod);
         auxFormIncome.setDateTrans(transDate);

@@ -97,6 +97,7 @@ Client ClientsManager::editForm(int regPos) {
     // completar form
     bool success = clientForm.fill();
     if (success) {  // si se completa
+        auxFormClient.setClientId(nId);
         auxFormClient.setIdPerson(DNI);
         auxFormClient.setName(name);
         auxFormClient.setLastname(lastname);

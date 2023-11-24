@@ -107,7 +107,7 @@ Vaccination VaccinationManager::editForm(int regPos) {
     // completar form
     bool success = vaccinationForm.fill();
     if (success) {  // si se completa
-
+        auxVaccination.setAplicationId(nId);
         auxVaccination.setNameVaccine(nameVaccine);
         auxVaccination.setPetId(petId);
         auxVaccination.setDateAplication(dateAplication);

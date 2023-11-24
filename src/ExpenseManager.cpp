@@ -107,6 +107,7 @@ Expense ExpenseManager::editForm(int regPos) {
     // completar form
     bool success = expenseForm.fill();
     if (success) {  // si se completa
+        auxFormExpense.setIdTransaction(nId);
         auxFormExpense.setDescription(description);
         auxFormExpense.setPaymentMethod(paymentMethod);
         auxFormExpense.setDateTrans(transDate);

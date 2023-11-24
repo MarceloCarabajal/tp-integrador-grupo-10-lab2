@@ -125,7 +125,7 @@ Appointment AppointmentsManager::editForm(int regPos) {
     // completar form
     bool success = AppointmentForm.fill();
     if (success) {  // si se completa
-
+        auxFormAppointment.setAppId(nId);
         auxFormAppointment.setPetId(petId);
         auxFormAppointment.setDate(dateApp);
         auxFormAppointment.setTime(timeApp);
