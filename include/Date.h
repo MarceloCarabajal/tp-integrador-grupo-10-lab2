@@ -18,4 +18,7 @@ public:
     int getYear();
 
     std::string toString();
+    bool operator<(const Date& d);
+    bool operator>(const Date& d);
+    bool operator==(const Date& d);
 };

@@ -39,7 +39,7 @@ void AppointmentsManager::load() {
 }
 
 Appointment AppointmentsManager::loadForm() {
-    InputForm AppointmentForm, petIdForm, clientIdForm;
+    InputForm AppointmentForm, petIdForm, clientIdForm, dateForm;
     Appointment auxAppointment;
     PetsManager petsManager;
     ClientsManager clientsManager;
@@ -63,14 +63,22 @@ Appointment AppointmentsManager::loadForm() {
     alreadyExists = true;
     clientIdForm.setIntField("ID Cliente", clientId, 4);
     do {
-        // si no existe, preguntar si quiere reintentar
         if (!retryIfIdNotExists(alreadyExists)) return auxAppointment;
-        // si no completa el form, salir
         if (!clientIdForm.fill()) return auxAppointment;
         alreadyExists = clientsManager.idExists(clientId);
-    } while (!alreadyExists);  // si no existe, volver a pedir
+    } while (!alreadyExists);
 
-    AppointmentForm.setDateField("Fecha", dateApp);
+    // pedir y validar fecha
+    dateForm.setDateField("Fecha", dateApp);
+    bool validDate = true;
+    do {
+        if (!validDate) {
+            std::cout << "La fecha debe ser mayor o igual a la actual.\n";
+        }
+        if (!dateForm.fill()) return auxAppointment;
+        validDate = validAppDate(dateApp);
+    } while (!validDate);
+
     // AppointmentForm.set   ("Hora", timeApp); TODO: Creo que la hr no seria
     // necesaria
     AppointmentForm.setBoolField("Asistió", attended);
@@ -245,5 +253,11 @@ bool AppointmentsManager::retryIfIdNotExists(bool exists) {
         if (rlutil::getkey() == rlutil::KEY_ESCAPE) return false;
         rlutil::cls();
     }
+    return true;
+}
+
+bool AppointmentsManager::validAppDate(Date date) {
+    Date today;
+    if (date < today) return false;
     return true;
 }

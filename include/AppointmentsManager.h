@@ -11,6 +11,7 @@ private:
     Appointment editForm(int regPos);
     bool retryIfIdExists(bool exists);
     bool retryIfIdNotExists(bool exists);
+    bool validAppDate(Date date);
 
 public:
     void load();

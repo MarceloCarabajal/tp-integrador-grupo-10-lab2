@@ -111,14 +111,14 @@ Product ProductsManager::editForm(int regPos) {
     // completar form
     bool success = productForm.fill();
     if (success) {  // si se completa
-        auxForProduct.setProductName(productName);
-        auxForProduct.setDescription(description);
-        auxForProduct.setBrand(brand);
-       auxForProduct.setPrice(price);
-       auxForProduct.setQuantity(quantity);
-        auxForProduct.setStock(stock);
-        auxForProduct.setProductCategory(productCategory);
-        auxForProduct.setProductId(nId);
+        auxFormProduct.setProductName(productName);
+        auxFormProduct.setDescription(description);
+        auxFormProduct.setBrand(brand);
+        auxFormProduct.setPrice(price);
+        auxFormProduct.setQuantity(quantity);
+        auxFormProduct.setStock(stock);
+        auxFormProduct.setProductCategory(productCategory);
+        auxFormProduct.setProductId(nId);
 
         return auxFormProduct;
     }
