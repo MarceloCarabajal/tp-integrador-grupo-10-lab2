@@ -58,7 +58,8 @@ Vaccination VaccinationManager::loadForm() {
 
 
     vaccinationForm.setStrField(" Vacuna", nameVaccine, 15);
-    vaccinationForm.setDateField("Fecha de aplicacion", dateAplication);
+
+    dateForm.setDateField("Fecha de Aplicacion", dateAplication);
     dateForm.setDateField("Fecha de revacunacion", dateRevaccination);
     bool validDate = true;
     do {
