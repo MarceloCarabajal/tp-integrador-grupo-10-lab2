@@ -249,6 +249,6 @@ bool VaccinationManager::validVaccRevaccDate (Date dateA, Date dateR) {
 int Year=dateA.getYear();
 Year++;
    if (dateA.getDay()== dateR.getDay() && dateA.getMonth()== dateR.getMonth() && dateR.getYear() == Year)
-  return true;
-   return false;  
+ { return true;}
+  else { return false;  }
 }
