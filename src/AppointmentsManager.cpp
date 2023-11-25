@@ -97,7 +97,7 @@ Appointment AppointmentsManager::loadForm() {
 }
 
 Appointment AppointmentsManager::editForm(int regPos) {
-    InputForm AppointmentForm;
+    InputForm AppointmentForm, dateForm;
     Appointment auxAppointment, auxFormAppointment;
     Date dateApp;
     Time timeApp;
@@ -124,6 +124,15 @@ Appointment AppointmentsManager::editForm(int regPos) {
     AppointmentForm.setEditMode(true);  // modo edicion
 
     AppointmentForm.setDateField("Fecha", dateApp);
+    bool validDate = true;
+    do {
+        if (!validDate) {
+            std::cout << "La fecha debe ser mayor o igual a la actual.\n";
+        }
+        if (!dateForm.fill()) return auxAppointment;
+        validDate = validAppDate(dateApp);
+    } while (!validDate);
+
     // AppointmentForm.set   ("Hora", timeApp); // TODO: es necesaria?
     AppointmentForm.setBoolField("Asistio", attended);
     AppointmentForm.setStrField("Motivo", reason, 30);
