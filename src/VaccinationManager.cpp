@@ -37,7 +37,7 @@ void VaccinationManager::load() {
 }
 
 Vaccination VaccinationManager::loadForm() {
-    InputForm vaccinationForm,  petIdForm;
+    InputForm vaccinationForm,  petIdForm,dateForm;
     PetsManager petsManager;
     Vaccination auxVaccination;
     std::string nameVaccine;
@@ -60,6 +60,15 @@ Vaccination VaccinationManager::loadForm() {
     vaccinationForm.setStrField(" Vacuna", nameVaccine, 15);
     vaccinationForm.setDateField("Fecha de aplicacion", dateAplication);
     vaccinationForm.setDateField("Fecha de revacunacion", dateRevaccination);
+    bool validDate = true;
+    do {
+        if (!validDate) {
+            std::cout << "La fecha debe ser un año posterior a la fecha de aplicación.\n";
+        }
+        if (!dateForm.fill()) return auxVaccination;
+        validDate = validVaccRevaccDate( dateRevaccination);
+    } while (!validDate);
+
     // vaccinationForm.setBoolField("Notificado", notified);
 
     if (!vaccinationForm.fill()) return auxVaccination;
@@ -102,6 +111,14 @@ Vaccination VaccinationManager::editForm(int regPos) {
     vaccinationForm.setIntField("ID Mascota", petId, 4);
     vaccinationForm.setDateField("Fecha de aplicacion", dateAplication);
     vaccinationForm.setDateField("Fecha de revacunacion", dateRevaccination);
+    bool validDate = true;
+    do {
+        if (!validDate) {
+            std::cout << "La fecha debe ser un año posterior a la fecha de aplicación.\n";
+        }
+        if (!dateForm.fill()) return auxVaccination;
+        validDate = validVaccRevaccDate( dateRevaccination);
+    } while (!validDate);
     vaccinationForm.setBoolField("Notificado", notified);
 
     // completar form
@@ -225,4 +242,14 @@ bool VaccinationManager::retryIfIdNotExists(bool exists) {
         rlutil::cls();
     }
     return true;
+}
+
+
+bool VaccinationManager::validVaccRevaccDate(Date date) {
+    Date dateaux;
+    dateaux.setDay(date.getDay());
+    dateaux.setMonth(date.getMonth());
+    dateaux.setYear(date.getYear()+1);
+    if (date == dateaux) return true;
+    return false;
 }

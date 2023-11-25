@@ -11,6 +11,7 @@ private:
     Vaccination editForm(int regPos);
    bool retryIfIdExists(bool exists);
     bool retryIfIdNotExists(bool exists);
+    bool validVaccRevaccDate(Date date);
 
 public:
     void load();
