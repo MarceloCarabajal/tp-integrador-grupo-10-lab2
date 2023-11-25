@@ -117,7 +117,7 @@ Vaccination VaccinationManager::editForm(int regPos) {
             std::cout << "La fecha debe ser un año posterior a la fecha de aplicación.\n";
         }
         if (!dateForm.fill()) return auxVaccination;
-        validDate = validVaccRevaccDate( dateRevaccination, dateRevaccination);
+        validDate = validVaccRevaccDate(dateAplication,  dateRevaccination );
     } while (!validDate);
     vaccinationForm.setBoolField("Notificado", notified);
 
@@ -246,7 +246,9 @@ bool VaccinationManager::retryIfIdNotExists(bool exists) {
 
 
 bool VaccinationManager::validVaccRevaccDate (Date dateA, Date dateR) {
-   if (dateA.getDay()== dateR.getDay() && dateA.getMonth()== dateR.getMonth() && dateA.getYear() == dateR.getYear()-1)
+int Year=dateA.getYear();
+Year++;
+   if (dateA.getDay()== dateR.getDay() && dateA.getMonth()== dateR.getMonth() && dateR.getYear() == Year)
   return true;
    return false;  
 }
