@@ -83,7 +83,7 @@ Vaccination VaccinationManager::loadForm() {
 }
 
 Vaccination VaccinationManager::editForm(int regPos) {
-    InputForm vaccinationForm;
+    InputForm vaccinationForm, dateForm;
     Vaccination auxVaccination;
     std::string nameVaccine;
     Date dateAplication, dateRevaccination;
