@@ -59,7 +59,7 @@ Vaccination VaccinationManager::loadForm() {
 
     vaccinationForm.setStrField(" Vacuna", nameVaccine, 15);
     vaccinationForm.setDateField("Fecha de aplicacion", dateAplication);
-    vaccinationForm.setDateField("Fecha de revacunacion", dateRevaccination);
+    dateForm.setDateField("Fecha de revacunacion", dateRevaccination);
     bool validDate = true;
     do {
         if (!validDate) {
@@ -118,6 +118,7 @@ Vaccination VaccinationManager::editForm(int regPos) {
         }
         if (!dateForm.fill()) return auxVaccination;
         validDate = validVaccRevaccDate(dateAplication,  dateRevaccination );
+
     } while (!validDate);
     vaccinationForm.setBoolField("Notificado", notified);
 
@@ -248,7 +249,8 @@ bool VaccinationManager::retryIfIdNotExists(bool exists) {
 bool VaccinationManager::validVaccRevaccDate (Date dateA, Date dateR) {
 int Year=dateA.getYear();
 Year++;
-   if (dateA.getDay()== dateR.getDay() && dateA.getMonth()== dateR.getMonth() && dateR.getYear() == Year)
+   if (dateA.getDay()== dateR.getDay() && dateA.getMonth()== 
+   dateR.getMonth() && dateR.getYear() == Year)
  { return true;}
   else { return false;  }
 }
