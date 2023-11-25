@@ -247,9 +247,12 @@ bool VaccinationManager::retryIfIdNotExists(bool exists) {
 
 bool VaccinationManager::validVaccRevaccDate(Date date) {
     Date dateaux;
+    int year;
     dateaux.setDay(date.getDay());
     dateaux.setMonth(date.getMonth());
-    dateaux.setYear(date.getYear()+1);
-    if (date == dateaux) return true;
-    return false;
+    year= date.getYear();
+    year= year++;
+    dateaux.setYear(year);
+    if (date == dateaux) {return true;}
+    else{ return false;}   
 }
