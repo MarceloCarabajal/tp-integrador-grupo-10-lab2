@@ -68,7 +68,3 @@ bool Date::operator==(const Date& d) {
     bool equal = _year == d._year && _month == d._month && _day == d._day;
     return equal;
 }
-bool Date::operator==(const Date& r, const Date& v) {
-    bool equal = _year == d._year && _month == d._month && _day == d._day;
-    return equal;
-}
