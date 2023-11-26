@@ -10,6 +10,6 @@
 - Contabilidad: Registro de ingresos y egresos del negocio.
 
 **Instrucciones de Uso**
-* Clona el repositorio: git clone https://github.com/tu-usuario/sistema-veterinario.git
+* Clona el repositorio: git clone https://github.com/MarceloCarabajal/tp-integrador-grupo-10-lab2.git
 * Compila el código fuente.
 * Ejecuta el programa y sigue las instrucciones en la interfaz de usuario para acceder a las diferentes funcionalidades.
