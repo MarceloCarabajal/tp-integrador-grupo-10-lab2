@@ -19,64 +19,27 @@
 #include "TimeCls.h"
 #include "isvalid.h"
 
-
 using namespace std;
+using namespace isvalid;
 
-inline bool number(char n) {
-    if (n >= '0' && n <= '9') return true;
-    return false;
-}
+void testTimeFormat() {
+    // Valid time format
+    assert(timeFormat("12:34") == true);
+    assert(timeFormat("00:00") == true);
+    assert(timeFormat("23:59") == true);
 
-inline bool floatType(std::string str) {
-    int dotFounds = 0;
-    if (str.length() == 0) return false;
-    for (size_t i = 0; i < str.length(); i++) {
-        if (!number(str[i]) && str[i] != '.') return false;
-        if (str[i] == '.') dotFounds++;
-        if (str[i] == '.' && i == str.length() - 1) return false;
-        if (str[i] == '.' && i == 0) return false;
-    }
-    if (dotFounds > 1) return false;
-    return true;
-}
-
-void testFloatType() {
-    // Test 1: Empty string
-    assert(floatType("") == false);
-
-    // Test 2: String with only digits
-    assert(floatType("12345") == true);
-
-    // Test 3: String with only a dot
-    assert(floatType(".") == false);
-
-    // Test 4: String with multiple dots
-    assert(floatType("12.34.56") == false);
-
-    // Test 5: String with a dot at the beginning
-    assert(floatType(".123") == false);
-
-    // Test 6: String with a dot at the end
-    assert(floatType("123.") == false);
-
-    // Test 7: Valid float number
-    assert(floatType("3.14") == true);
-
-    std::cout << "All tests passed!" << std::endl;
+    // Invalid time format
+    assert(timeFormat("123:45") == false);    // Length is not 5
+    assert(timeFormat("12:345") == false);    // Length is not 5
+    assert(timeFormat("12-34") == false);     // Separator is not ':'
+    assert(timeFormat("12:34:56") == false);  // Length is not 5
+    assert(timeFormat("24:00") == false);     // Hour is greater than 23
+    assert(timeFormat("12:60") == false);     // Minute is greater than 59
+    assert(timeFormat("-1:30") == false);     // Hour is negative
+    assert(timeFormat("12:-30") == false);    // Minute is negative
 }
 
 int main() {
-    // isvalidEmailTest();
-    // inputFormTest();
-    // listviewTest();
-    /*     ClientsManager clients;
-        clients.load();
-        clients.show();
-        cout << endl; */
-    // testFloatType();
-    Time test;
-    cout << test.toString() << endl;
-    system("pause");
-
+    testTimeFormat();
     return 0;
 }

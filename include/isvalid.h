@@ -161,6 +161,18 @@ namespace isvalid {
         return true;
     }
 
+    inline bool timeFormat(std::string str) {
+        if (str.length() != 5) return false;
+        std::string hr = str.substr(0, 2), min = str.substr(3, 2);
+        if (str[2] != ':') return false;
+        if (!onlyIntegers(hr)) return false;
+        if (!onlyIntegers(min)) return false;
+        int nHr = std::stoi(hr), nMin = std::stoi(min);
+        if (nHr > 23 || nHr < 0) return false;
+        if (nMin > 59 || nMin < 0) return false;
+        return true;
+    }
+
 }  // namespace isvalid
 
 #endif /* ISVALID_INCLUDED */

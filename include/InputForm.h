@@ -5,6 +5,7 @@
 #include <vector>
 
 #include "Date.h"
+#include "TimeCls.h"
 
 class InputForm {
 private:
@@ -18,7 +19,8 @@ private:
         boolField = 6,
         floatField = 7,
         dateField = 8,
-        rangeField = 9
+        rangeField = 9,
+        timeField = 10
     };
     // vector con los nombres de los campos
     std::vector<std::string> _strFields;
@@ -28,6 +30,7 @@ private:
     std::vector<std::string> _floatFields;
     std::vector<std::string> _dateFields;
     std::vector<std::string> _rangeFields;
+    std::vector<std::string> _timeFields;
 
     // vector con los limites de digitos/caracteres para los campos
     std::vector<int> _strLimit;
@@ -45,6 +48,7 @@ private:
     std::vector<float *> _floatVars;
     std::vector<Date *> _dateVars;
     std::vector<int *> _rangeVars;
+    std::vector<Time *> _timeVars;
     std::string *_emailVar = NULL;
     std::string *_phoneVar = NULL;
 
@@ -59,6 +63,7 @@ private:
     bool requestFloatFields();
     bool requestDateFields();
     bool requestRangeFields();
+    bool requestTimeFields();
     bool askToRetry(fieldType fType, int maxLimit = 0, int min = 0,
                     int max = 0);
 
@@ -77,6 +82,7 @@ public:
     void setDateField(std::string fieldName, Date &dateDestination);
     void setRangeField(std::string fieldName, int &intDestination, int min,
                        int max);
+    void setTimeField(std::string fieldName, Time &timeDestination);
 
     void setEditMode(bool editMode);
 

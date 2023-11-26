@@ -13,6 +13,11 @@ InputForm::InputForm(bool isEditing) { _editing = isEditing; }
 
 void InputForm::setEditMode(bool editMode) { _editing = editMode; }
 
+void InputForm::setTimeField(std::string fieldName, Time& timeDestination) {
+    _timeFields.push_back(fieldName);
+    _timeVars.push_back(&timeDestination);
+}
+
 void InputForm::setStrField(std::string fieldName, std::string& strDestination,
                             int maxLength) {
     _strFields.push_back(fieldName);
@@ -59,6 +64,11 @@ void InputForm::setRangeField(std::string fieldName, int& intDestination,
     _rangeFields.push_back(fieldName);
     _rangeVars.push_back(&intDestination);
     _rangeLimits.push_back(std::vector<int>{min, max});
+}
+
+void InputForm::setDateField(std::string fieldName, Date& dateDestination) {
+    _dateFields.push_back(fieldName);
+    _dateVars.push_back(&dateDestination);
 }
 
 bool InputForm::requestStrFields() {
@@ -308,6 +318,38 @@ bool InputForm::requestRangeFields() {
     return true;
 }
 
+bool InputForm::requestTimeFields() {
+    for (size_t i = 0; i < _timeFields.size(); i++) {
+        int attempts = 0;  // lleva la cuenta de los intentos
+        bool valid;
+        std::string temp;
+        do {
+            if (attempts > 0) {
+                if (!askToRetry(timeField)) return false;
+            }
+            if (_editing) {
+                std::cout << _timeFields[i]
+                          << " actual: " << (*_timeVars[i]).toString();
+            }
+            std::cout << (_editing ? "\nNuevo/a " : "Ingrese ")
+                      << _timeFields[i] << ": ";
+            std::getline(std::cin, temp);
+            attempts++;  // se suma un intento
+            temp = utils::trim(temp);
+            valid = isvalid::timeFormat(temp);
+            // si esta en edicion y deja en blanco, es valido
+            if (_editing && temp.empty()) valid = true;
+        } while (!valid);
+        // si esta en modo edicion, y deja vacio, no se reasigna
+        if (!temp.empty()) {
+            int h = stoi(temp.substr(0, 2));
+            int min = stoi(temp.substr(3, 2));
+            *_timeVars[i] = Time(h, min, 0);
+        }
+    }
+    return true;
+}
+
 bool InputForm::askToRetry(fieldType fType, int maxLimit, int min, int max) {
     std::cout << "El ingreso es invalido, debe tener el formato de: ";
     switch (fType) {
@@ -368,6 +410,7 @@ bool InputForm::fill() {
     if (!requestFloatFields()) return false;
     if (!requestDateFields()) return false;
     if (!requestRangeFields()) return false;
+    if (!requestTimeFields()) return false;
     // Si se asigno la variable, pedir campo
     if (_emailVar != NULL) {
         if (!requestEmailField()) return false;
@@ -379,22 +422,26 @@ bool InputForm::fill() {
     return true;
 }
 
-void InputForm::setDateField(std::string fieldName, Date& dateDestination) {
-    _dateFields.push_back(fieldName);
-    _dateVars.push_back(&dateDestination);
-}
-
 // limpia todos los vectores
 void InputForm::clearAll() {
     _strFields.clear();
     _intFields.clear();
     _alphanumFields.clear();
     _boolFields.clear();
+    _floatFields.clear();
+    _dateFields.clear();
+
     _strLimit.clear();
     _intLimit.clear();
     _alnLimit.clear();
+    _rangeLimits.clear();
+
     _strVars.clear();
     _intVars.clear();
     _alphanumVars.clear();
     _boolVars.clear();
+    _floatVars.clear();
+    _dateVars.clear();
+    _rangeVars.clear();
+    _timeVars.clear();
 }
