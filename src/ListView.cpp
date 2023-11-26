@@ -1,5 +1,6 @@
 #include "ListView.h"
 
+#include <codecvt>
 #include <iomanip>
 
 #include "rlutil.h"
@@ -51,9 +52,19 @@ void ListView::printRows() {
     for (size_t i = 0; i < nRows; i++) {
         locateCenter();
         for (size_t j = 0; j < _cols.size(); j++) {
+            int colW = _colsW[j];  // ancho maximo
+            int cellW = (int)_cells[curCell].length() + 1;
+            // Si el ancho de columna maximo es el de la palabra de la columna
+            // +1 para el espacio, la palabra podria contener caracteres
+            // especiales que calcularian mal la longitud real
+            if (colW == (int)_cols[j].length() + 1) {
+                // recalcular ancho por si tiene caracteres especiales
+                // solo si el ancho de la celda es menor al de la columna
+                if (cellW < colW) colW = getUTF8Length(_cols[j]) + 1;
+            }
             // solo imprimir celda si no está vacía
             if (!_cells[curCell].empty()) {
-                std::cout << std::setw(_colsW[j]) << _cells[curCell];
+                std::cout << std::setw(colW) << _cells[curCell];
             }
             if (_cells[curCell].empty()) emptyCells++;
             curCell++;
@@ -86,6 +97,7 @@ void ListView::setMaxWidths() {
             // para ir a la prox. fila y a la celda correlativa con la columna
             cellPos += _cols.size();
         }
+        // printf("Width Col #%d: %d\n", (int)i, (int)_colsW[i]);
     }
 }
 
@@ -102,6 +114,15 @@ void ListView::addCols(std::string* cols, int total) {
 }
 
 void ListView::setTitle(std::string title) { _title = title; }
+
+int ListView::getUTF8Length(std::string utf8) {
+    // the UTF-8 - UTF-32 standard conversion facet
+    std::wstring_convert<std::codecvt_utf8<char32_t>, char32_t> cvt;
+
+    // UTF-8 to UTF-32
+    std::u32string utf32 = cvt.from_bytes(utf8);
+    return utf32.size();
+}
 
 void ListView::show() {
     setMaxWidths();  // setear maximos x columna

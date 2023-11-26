@@ -269,8 +269,8 @@ void AppointmentsManager::show(bool showAndPause) {
         rowPos += _appsFields;
     }
     // Vector que contiene las columnas de nuestra lista
-    std::string columns[8] = {"ID",     "ID Mascota", "Fecha",     "Hora",
-                              "Motivo", "Asistio",    "ID Cliente"};
+    std::string columns[7] = {"ID",     "ID Mascota", "Fecha",     "Hora",
+                              "Motivo", "Asistió",    "ID Cliente"};
 
     ListView appvetsList;
     appvetsList.addCells(cells, totalCells);

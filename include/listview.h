@@ -18,6 +18,8 @@ private:
     void setMaxWidths();
     void locateCenter();
 
+    int getUTF8Length(std::string utf8);
+
 public:
     void addCells(std::string *cells, int total);
     void addCols(std::string *cols, int total);
