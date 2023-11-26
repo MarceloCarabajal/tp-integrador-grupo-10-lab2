@@ -11,7 +11,7 @@
 
 void AppointmentsManager::load() {
     InputForm appIdForm;
-    Appointment auxAppointment;
+    Appointment auxApp;
     int nId = 0;
     bool alreadyExists = false;
 
@@ -25,13 +25,13 @@ void AppointmentsManager::load() {
     } while (alreadyExists);
 
     // Si no existe el turno, pedir el resto de datos
-    auxAppointment = loadForm();
+    auxApp = loadForm();
     // Si no se completo el form, salir
-    if (strlen(auxAppointment.getReason()) == 0) return;
+    if (strlen(auxApp.getReason()) == 0) return;
 
     // setear id ingresado
-    auxAppointment.setAppId(nId);
-    if (_appsFile.writeFile(auxAppointment)) {
+    auxApp.setAppId(nId);
+    if (_appsFile.writeFile(auxApp)) {
         std::cout << "Turno guardado con exito!\n";
     } else {
         std::cout << "Ocurrio un error al guardar el turno.\n";
@@ -40,8 +40,8 @@ void AppointmentsManager::load() {
 }
 
 Appointment AppointmentsManager::loadForm() {
-    InputForm AppointmentForm, petIdForm, clientIdForm, dateForm, timeForm;
-    Appointment auxAppointment;
+    InputForm appForm, petIdForm, clientIdForm, dateForm, timeForm;
+    Appointment auxApp;
     PetsManager petsManager;
     ClientsManager clientsManager;
     Date appDate;
@@ -54,9 +54,9 @@ Appointment AppointmentsManager::loadForm() {
     petIdForm.setIntField("ID Mascota", petId, 4);
     do {
         // si no existe, preguntar si quiere reintentar
-        if (!retryIfIdNotExists(alreadyExists)) return auxAppointment;
+        if (!retryIfIdNotExists(alreadyExists)) return auxApp;
         // si no completa el form, salir
-        if (!petIdForm.fill()) return auxAppointment;
+        if (!petIdForm.fill()) return auxApp;
         alreadyExists = petsManager.idExists(petId);
     } while (!alreadyExists);  // si no existe, volver a pedir
 
@@ -64,106 +64,138 @@ Appointment AppointmentsManager::loadForm() {
     alreadyExists = true;
     clientIdForm.setIntField("ID Cliente", clientId, 4);
     do {
-        if (!retryIfIdNotExists(alreadyExists)) return auxAppointment;
-        if (!clientIdForm.fill()) return auxAppointment;
+        if (!retryIfIdNotExists(alreadyExists)) return auxApp;
+        if (!clientIdForm.fill()) return auxApp;
         alreadyExists = clientsManager.idExists(clientId);
     } while (!alreadyExists);
 
     // pedir y validar fecha
     dateForm.setDateField("Fecha", appDate);
-    bool validDate = true;
-    do {
-        if (!validDate) {
-            std::cout << "La fecha debe ser mayor o igual a la actual.\n";
-        }
-        if (!dateForm.fill()) return auxAppointment;
+    bool validDate = false;
+    while (!validDate) {
+        if (!dateForm.fill()) return auxApp;
         validDate = validAppDate(appDate);
-    } while (!validDate);
+        if (!retryInvalidDate(validDate)) return auxApp;
+    }
 
     // pedir y validar hora
     timeForm.setTimeField("Hora", appTime);
     bool validTime = false;
     while (!validTime) {
-        if (!timeForm.fill()) return auxAppointment;
+        if (!timeForm.fill()) return auxApp;
         validTime = validAppTime(appDate, appTime);
-        if (!retryInvalidTime(validTime)) return auxAppointment;
+        if (!retryInvalidTime(validTime)) return auxApp;
     }
 
-    AppointmentForm.setBoolField("Asistió", attended);
-    AppointmentForm.setStrField("Motivo", reason, 30);
+    appForm.setBoolField("Asistió", attended);
+    appForm.setStrField("Motivo", reason, 30);
 
-    if (!AppointmentForm.fill()) return auxAppointment;
+    if (!appForm.fill()) return auxApp;
 
-    auxAppointment.setDate(appDate);
-    auxAppointment.setTime(appTime);
-    auxAppointment.setReason(reason);
-    auxAppointment.setAttended(attended);
-    auxAppointment.setPetId(petId);
-    auxAppointment.setClientId(clientId);
-    auxAppointment.setStatus(true);
+    auxApp.setDate(appDate);
+    auxApp.setTime(appTime);
+    auxApp.setReason(reason);
+    auxApp.setAttended(attended);
+    auxApp.setPetId(petId);
+    auxApp.setClientId(clientId);
+    auxApp.setStatus(true);
 
-    return auxAppointment;
+    return auxApp;
 }
 
 Appointment AppointmentsManager::editForm(int regPos) {
-    InputForm AppointmentForm, dateForm;
-    Appointment auxAppointment, auxFormAppointment;
+    // Inicializar forms en modo edicion, solo 1 muestra el mensaje de "modo
+    // edicion"
+    InputForm appForm(true, false), petIdForm(true), clientIdForm(true, false),
+        dateForm(true, false), timeForm(true, false);
+    Appointment auxApp, auxFormApp;
+    PetsManager petsManager;
+    ClientsManager clientsManager;
     Date appDate;
     Time appTime;
     std::string reason;
-    bool attended;
+    bool attended, existentId;
     int clientId, petId, nId;
 
-    auxAppointment = _appsFile.readFile(regPos);
-    if (auxAppointment.getAppId() == -1) {
+    auxApp = _appsFile.readFile(regPos);
+    if (auxApp.getAppId() == -1) {
         std::cout << "Ocurrio un error al leer los registros.\n";
-        return auxAppointment;
+        return auxApp;
     }
-    // Se cargan los datos para mostrarlas en el form.
-    appDate = auxAppointment.getDate();
-    appTime = auxAppointment.getTime();
-    reason = auxAppointment.getReason();
-    nId = auxAppointment.getAppId();
-    attended = auxAppointment.getAttended();
-    petId = auxAppointment.getpetId();
-    clientId = auxAppointment.getClientId();
+    // Se cargan los datos para mostrarlos en el form.
+    appDate = auxApp.getDate();
+    appTime = auxApp.getTime();
+    reason = auxApp.getReason();
+    nId = auxApp.getAppId();
+    attended = auxApp.getAttended();
+    petId = auxApp.getpetId();
+    clientId = auxApp.getClientId();
 
+    rlutil::cls();  // limpiar pantalla
     std::cout << "Editando Turno #" << nId << std::endl;
-    // configurar form
-    AppointmentForm.setEditMode(true);  // modo edicion
 
-    AppointmentForm.setDateField("Fecha", appDate);
-    bool validDate = true;
-    do {
-        if (!validDate) {
-            std::cout << "La fecha debe ser mayor o igual a la actual.\n";
-        }
-        if (!dateForm.fill()) return auxAppointment;
+    // pedir y buscar si el id mascota ingresado existe
+    petIdForm.setIntField("ID Mascota", petId, 4);
+    while (!existentId) {
+        if (!petIdForm.fill()) return auxFormApp;
+        existentId = petsManager.idExists(petId);
+        if (!retryIfIdNotExists(existentId)) return auxFormApp;
+    }
+
+    // pedir y buscar id cliente
+    clientIdForm.setIntField("ID Cliente", clientId, 4);
+    existentId = false;
+    while (!existentId) {
+        if (!clientIdForm.fill()) return auxFormApp;
+        existentId = clientsManager.idExists(clientId);
+        if (!retryIfIdNotExists(existentId)) return auxFormApp;
+    }
+
+    // pedir y validar fecha
+    dateForm.setDateField("Fecha", appDate);
+    bool validDate = false;
+    while (!validDate) {
+        if (!dateForm.fill()) return auxFormApp;
         validDate = validAppDate(appDate);
-    } while (!validDate);
+        if (!retryInvalidDate(validDate)) return auxFormApp;
+        // si no fue una fecha valida, reasignar variable para mostrarla con el
+        // valor actual
+        if (!validDate) appDate = auxApp.getDate();
+    }
 
-    // AppointmentForm.set   ("Hora", appTime); // TODO: es necesaria?
-    AppointmentForm.setBoolField("Asistio", attended);
-    AppointmentForm.setStrField("Motivo", reason, 30);
-    AppointmentForm.setIntField("Cliente ID", clientId, 4);
-    AppointmentForm.setIntField("Mascota ID", petId, 4);
+    // pedir y validar hora
+    timeForm.setTimeField("Hora", appTime);
+    bool validTime = false;
+    while (!validTime) {
+        if (!timeForm.fill()) return auxFormApp;
+        validTime = validAppTime(appDate, appTime);
+        // si deja el mismo horario, es válido, no está duplicado
+        if (auxApp.getTime() == appTime) validTime = true;
+        if (!retryInvalidTime(validTime)) return auxFormApp;
+        // si no fue una hora valida, reasignar variable para mostrarla con el
+        // valor actual
+        if (!validTime) appTime = auxApp.getTime();
+    }
 
-    // completar form
-    bool success = AppointmentForm.fill();
-    if (success) {  // si se completa
-        auxFormAppointment.setAppId(nId);
-        auxFormAppointment.setPetId(petId);
-        auxFormAppointment.setDate(appDate);
-        auxFormAppointment.setTime(appTime);
-        auxFormAppointment.setReason(reason);
-        auxFormAppointment.setAttended(attended);
-        auxFormAppointment.setClientId(clientId);
-        auxFormAppointment.setStatus(true);
+    appForm.setBoolField("Asistio", attended);
+    appForm.setStrField("Motivo", reason, 30);
 
-        return auxFormAppointment;
+    // completar resto de datos
+    bool success = appForm.fill();
+    if (success) {  // si se completa, asignar objeto turno
+        auxFormApp.setAppId(nId);
+        auxFormApp.setPetId(petId);
+        auxFormApp.setDate(appDate);
+        auxFormApp.setTime(appTime);
+        auxFormApp.setReason(reason);
+        auxFormApp.setAttended(attended);
+        auxFormApp.setClientId(clientId);
+        auxFormApp.setStatus(true);
+
+        return auxFormApp;
     }
     // si no se completa, devolver  Turno vacio
-    return auxFormAppointment;
+    return auxFormApp;
 }
 
 void AppointmentsManager::edit() {
@@ -175,21 +207,21 @@ void AppointmentsManager::edit() {
     if (!search.fill()) return;  // si no se completa, salir
     int regPos = _appsFile.searchReg(searchById, nId);
     if (regPos == -1) {
-        std::cout << "No se encontraron resultados.\n";
+        std::cout << "No existe un turno con el ID ingresado.\n";
         utils::pause();
         return;
     }
     // Si se encontro, pedir datos
-    Appointment auxAppointment = editForm(regPos);
+    Appointment auxApp = editForm(regPos);
     // Si no se completo el formulario, salir
-    if (auxAppointment.getAppId() == -1) {
+    if (auxApp.getAppId() == -1) {
         std::cout << "No se realizara la edicion.\n";
         utils::pause();
         return;
     }
 
     // guardar turno actualizado
-    if (_appsFile.updateFile(auxAppointment, regPos)) {
+    if (_appsFile.updateFile(auxApp, regPos)) {
         std::cout << "Turno editado con exito!\n";
     } else {
         std::cout << "Ocurrio un error al guardar el registro.\n";
@@ -218,14 +250,14 @@ void AppointmentsManager::show() {
     }
     int rowPos = 0;  // acumula la posicion actual de la fila a asignar
     for (int i = 0; i < totalRegs; i++) {
-        Appointment auxAppointment = _appsFile.readFile(i);
+        Appointment auxApp = _appsFile.readFile(i);
         // Obtener todas las propiedades del vete
         // Guardarlas en un vector de string
         std::string vecStr[7];
-        auxAppointment.toVecString(vecStr);
+        auxApp.toVecString(vecStr);
         for (int cell = 0; cell < _appsFields; cell++) {
             // solo llena las celdas si es un registro activo
-            if (auxAppointment.getStatus()) {
+            if (auxApp.getStatus()) {
                 cells[rowPos + cell] = vecStr[cell];
             } else {
                 cells[rowPos + cell] = "";
@@ -343,6 +375,17 @@ bool AppointmentsManager::retryIfIdNotExists(bool exists) {
     if (!exists) {
         std::cout << "El ID ingresado NO EXISTE, presione cualquier tecla "
                      "para reintentar o ESC para salir.\n";
+        if (rlutil::getkey() == rlutil::KEY_ESCAPE) return false;
+        rlutil::cls();
+    }
+    return true;
+}
+
+bool AppointmentsManager::retryInvalidDate(bool valid) {
+    if (!valid) {
+        std::cout
+            << "La fecha debe ser mayor o igual a la actual.\n"
+               "Presione cualquier tecla para reintentar o ESC para salir.\n";
         if (rlutil::getkey() == rlutil::KEY_ESCAPE) return false;
         rlutil::cls();
     }

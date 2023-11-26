@@ -9,9 +9,15 @@
 
 // TODO: Crear documentacion para las funciones
 
-InputForm::InputForm(bool isEditing) { _editing = isEditing; }
+InputForm::InputForm(bool isEditing, bool showEditingMsg) {
+    _editing = isEditing;
+    _showEditingMsg = showEditingMsg;
+}
 
-void InputForm::setEditMode(bool editMode) { _editing = editMode; }
+void InputForm::setEditMode(bool editMode, bool showEditingMsg) {
+    _editing = editMode;
+    _showEditingMsg = showEditingMsg;
+}
 
 void InputForm::setTimeField(std::string fieldName, Time& timeDestination) {
     _timeFields.push_back(fieldName);
@@ -401,9 +407,9 @@ bool InputForm::askToRetry(fieldType fType, int maxLimit, int min, int max) {
 }
 
 bool InputForm::fill() {
-    if (_editing) {
-        std::cout << "*Dejar los campos en blanco para mantener el valor "
-                     "actual.\n";
+    if (_editing && _showEditingMsg) {
+        std::cout << "* Dejar los campos en blanco para mantener el valor "
+                     "actual.\n\n";
     }
     if (!requestStrFields()) return false;
     if (!requestAlphanumFields()) return false;

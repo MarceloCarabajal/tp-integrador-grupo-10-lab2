@@ -52,7 +52,7 @@ private:
     std::string *_emailVar = NULL;
     std::string *_phoneVar = NULL;
 
-    bool _editing;
+    bool _editing, _showEditingMsg;
 
     bool requestStrFields();
     bool requestEmailField();
@@ -68,7 +68,7 @@ private:
                     int max = 0);
 
 public:
-    InputForm(bool isEditing = false);
+    InputForm(bool isEditing = false, bool showEditingMsg = true);
 
     void setStrField(std::string fieldName, std::string &strDestination,
                      int maxLength);
@@ -84,7 +84,7 @@ public:
                        int max);
     void setTimeField(std::string fieldName, Time &timeDestination);
 
-    void setEditMode(bool editMode);
+    void setEditMode(bool editMode, bool showEditingMsg = true);
 
     bool fill();
     void clearAll();

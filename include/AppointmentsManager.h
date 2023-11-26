@@ -11,6 +11,7 @@ private:
     Appointment editForm(int regPos);
     bool retryIfIdExists(bool exists);
     bool retryIfIdNotExists(bool exists);
+    bool retryInvalidDate(bool valid);
     bool retryInvalidTime(bool invalid);
     bool validAppDate(Date date);
     bool validAppTime(const Date& date, const Time& time);
