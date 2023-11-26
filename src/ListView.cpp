@@ -47,13 +47,23 @@ void ListView::printColumns() {
 void ListView::printRows() {
     size_t nRows = _cells.size() / _cols.size();  // calc numero de filas
     int curCell = 0;                              // current cell acumulador
+    int emptyCells = 0;                           // acumula celdas vacías
     for (size_t i = 0; i < nRows; i++) {
         locateCenter();
         for (size_t j = 0; j < _cols.size(); j++) {
-            std::cout << std::setw(_colsW[j]) << _cells[curCell];
+            // solo imprimir celda si no está vacía
+            if (!_cells[curCell].empty()) {
+                std::cout << std::setw(_colsW[j]) << _cells[curCell];
+            }
+            if (_cells[curCell].empty()) emptyCells++;
             curCell++;
         }
-        std::cout << std::endl;
+        // si todas las celdas estaban vacías, no producir salto de linea
+        if (emptyCells != (int)_cols.size()) std::cout << std::endl;
+        // descontar 1 posicion de Y ya que esta fila no se imprime si está
+        // vacía
+        if (emptyCells == (int)_cols.size()) _curY--;
+        emptyCells = 0;  // reset
     }
 }
 

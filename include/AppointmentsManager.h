@@ -14,12 +14,15 @@ private:
     bool retryInvalidTime(bool invalid);
     bool validAppDate(Date date);
     bool validAppTime(const Date& date, const Time& time);
+    int getExpiredApps();
+    int deleteAllExpired();
 
 public:
     void load();
     void edit();
     void show();
-    void menu();
+    void clearExpired();
+    void clearDeleted();
 
     // Al ser una funcion estatica se puede usar sin necesaidad de instanciar un
     // objeto de tipo "AppointmentsManager", eso permite que se pueda pasar por

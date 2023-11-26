@@ -15,11 +15,13 @@ private:
     bool _attended;
     int _clientId;
 
+    bool _status;
+
 public:
     Appointment();
 
     Appointment(int appId, int petID, Date dateApp, Time timeApp,
-                std::string reason, bool attended, int clientId);
+                std::string reason, bool attended, int clientId, bool status);
 
     void setAppId(int id);
     void setPetId(int idpet);
@@ -29,6 +31,7 @@ public:
     void setReason(std::string reason);
     void setAttended(bool attended);
     void setClientId(int idc);
+    void setStatus(bool status);
 
     int getAppId();
     // int getUrgencyCat();
@@ -38,8 +41,7 @@ public:
     const char* getReason();
     bool getAttended();
     int getClientId();
-
-    void load();
+    bool getStatus();
 
     void toVecString(std::string vStr[7]);
 };

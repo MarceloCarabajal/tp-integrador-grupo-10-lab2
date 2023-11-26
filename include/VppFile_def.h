@@ -115,6 +115,60 @@ bool VppFile<VppClass>::updateFile(VppClass reg, int regPos) {
     return success;
 }
 
+template <class VppClass>
+bool VppFile<VppClass>::deleteReg(int regNumber) {
+    int total = getTotalRegisters();
+    if (total <= 0) return false;
+    VppClass *regs = new VppClass[total];
+    if (regs == NULL) return false;
+    bool okRead = readFile(regs, total);
+    if (!okRead) return false;
+    FILE *pFile = fopen(_fileName.c_str(), "wb");
+    if (pFile == NULL) return false;
+    for (int i = 0; i < total; i++) {
+        if (i == regNumber) continue;
+        bool success = fwrite(&regs[i], sizeof(VppClass), 1, pFile);
+        if (!success) {
+            fclose(pFile);
+            return false;
+        }
+    }
+    fclose(pFile);
+    return true;
+}
+
+template <class VppClass>
+bool VppFile<VppClass>::markForDelete(int regNumber) {
+    VppClass reg = readFile(regNumber);
+    if (!reg.getStatus()) return false;
+    reg.setStatus(false);
+    bool success = updateFile(reg, regNumber);
+    return success;
+}
+
+template <class VppClass>
+int VppFile<VppClass>::deleteAllMarked() {
+    int written = 0;  // acumulador registros escritos
+    int total = getTotalRegisters();
+    if (total <= 0) return -1;
+    VppClass *regs = new VppClass[total];
+    if (regs == NULL) return -1;
+    bool okRead = readFile(regs, total);
+    if (!okRead) return false;
+    FILE *pFile = fopen(_fileName.c_str(), "wb");
+    if (pFile == NULL) return -1;
+    for (int i = 0; i < total; i++) {
+        // si el registro esta marcado para eliminar, no escribirlo
+        if (!regs[i].getStatus()) continue;
+        // si esta activo, escribirlo de nuevo
+        bool success = fwrite(&regs[i], sizeof(VppClass), 1, pFile);
+        if (!success) return -1;
+        written++;
+    }
+    // devolver el total de registros eliminados
+    return total - written;
+}
+
 /**
  * @brief Busca un registro en el archivo.
  *

@@ -36,6 +36,7 @@ void AppointmentsManager::load() {
     } else {
         std::cout << "Ocurrio un error al guardar el turno.\n";
     }
+    utils::pause();
 }
 
 Appointment AppointmentsManager::loadForm() {
@@ -76,14 +77,15 @@ Appointment AppointmentsManager::loadForm() {
             std::cout << "La fecha debe ser mayor o igual a la actual.\n";
         }
         if (!dateForm.fill()) return auxAppointment;
-        validDate = validAppDate(appDate);
+        validDate = true;  // validAppDate(appDate);
     } while (!validDate);
 
+    // pedir y validar hora
     timeForm.setTimeField("Hora", appTime);
     bool validTime = false;
     while (!validTime) {
         if (!timeForm.fill()) return auxAppointment;
-        validTime = validAppTime(appDate, appTime);
+        validTime = true;  // validAppTime(appDate, appTime);
         if (!retryInvalidTime(validTime)) return auxAppointment;
     }
 
@@ -98,6 +100,7 @@ Appointment AppointmentsManager::loadForm() {
     auxAppointment.setAttended(attended);
     auxAppointment.setPetId(petId);
     auxAppointment.setClientId(clientId);
+    auxAppointment.setStatus(true);
 
     return auxAppointment;
 }
@@ -155,6 +158,7 @@ Appointment AppointmentsManager::editForm(int regPos) {
         auxFormAppointment.setReason(reason);
         auxFormAppointment.setAttended(attended);
         auxFormAppointment.setClientId(clientId);
+        auxFormAppointment.setStatus(true);
 
         return auxFormAppointment;
     }
@@ -212,7 +216,7 @@ void AppointmentsManager::show() {
                      "veterinarios.\n";
         return;
     }
-    int cellPos = 0;  // acumula la posicion actual a asignar
+    int rowPos = 0;  // acumula la posicion actual de la fila a asignar
     for (int i = 0; i < totalRegs; i++) {
         Appointment auxAppointment = _appsFile.readFile(i);
         // Obtener todas las propiedades del vete
@@ -220,12 +224,17 @@ void AppointmentsManager::show() {
         std::string vecStr[7];
         auxAppointment.toVecString(vecStr);
         for (int cell = 0; cell < _appsFields; cell++) {
-            cells[cellPos + cell] = vecStr[cell];
+            // solo llena las celdas si es un registro activo
+            if (auxAppointment.getStatus()) {
+                cells[rowPos + cell] = vecStr[cell];
+            } else {
+                cells[rowPos + cell] = "";
+            }
         }
 
         // se incrementa la posicion de la celda segun la cantidad de datos que
         // contiene el registro, que equivale a una fila de la lista
-        cellPos += _appsFields;
+        rowPos += _appsFields;
     }
     // Vector que contiene las columnas de nuestra lista
     std::string columns[8] = {"ID",     "ID Mascota", "Fecha",     "Hora",
@@ -238,6 +247,75 @@ void AppointmentsManager::show() {
     appvetsList.show();
 
     delete[] cells;  // liberar memoria!
+    utils::pause();
+}
+
+void AppointmentsManager::clearExpired() {
+    InputForm confirmForm;
+    bool confirm;
+    std::cout << "Buscando turnos expirados...\n";
+    int expired = getExpiredApps();
+    if (expired < 0) {
+        std::cout << "Ocurrió no error al leer los registros.\n";
+        utils::pause();
+        return;
+    }
+    if (expired == 0) {
+        std::cout << "No hay turnos expirados.\n";
+        utils::pause();
+        return;
+    }
+
+    std::cout << "Se encontraron " << expired << " turnos expirados.\n";
+    std::cout << "Desea eliminarlos? esta acción es irreversible.\n";
+    confirmForm.setBoolField("[Si/No]", confirm);
+    if (!confirmForm.fill()) return;
+    if (confirm) {
+        std::cout << "Eliminación en curso...\n";
+        int deleted = deleteAllExpired();
+        switch (deleted) {
+            case -1:
+                std::cout
+                    << "Ocurrió un error al intentar eliminar los registros.\n";
+                break;
+            case 0:
+                std::cout
+                    << "No se pudieron eliminar los turnos de los registros, "
+                       "pero ya no aparecerán en el listado.\n";
+                std::cout << "Puede intentar eliminarlos definitivamente desde "
+                             "el menu 'Limpiar registros'.\n";
+                break;
+            default:
+                printf("Se eliminaron %d turnos con exito.\n", deleted);
+                break;
+        }
+    }
+    utils::pause();
+}
+
+void AppointmentsManager::clearDeleted() {
+    InputForm confirmForm;
+    bool confirm;
+    std::cout << "Esta acción buscará turnos con eliminación pendiente e "
+                 "intentará eliminarlos definitivamente. Desea continuar?\n";
+    confirmForm.setBoolField("[SI/NO]", confirm);
+    if (!confirmForm.fill()) return;
+    if (!confirm) return;
+    std::cout << "Buscando registros...\n";
+    int deleted = _appsFile.deleteAllMarked();
+    switch (deleted) {
+        case 0:
+            std::cout
+                << "No se encontraron turnos con eliminación pendiente.\n";
+            break;
+        case -1:
+            std::cout << "Ocurrió un error al intentar eliminar los turnos.\n";
+            break;
+        default:
+            printf("Se eliminaron %d registros con éxito!\n", deleted);
+            break;
+    }
+    utils::pause();
 }
 
 // Solo compara si coincide el id
@@ -309,4 +387,45 @@ bool AppointmentsManager::validAppTime(const Date& date, const Time& time) {
         (now.getHour() >= time.getHour() && now.getMin() >= time.getMin());
     if (sameDay && oldTime) return false;
     return true;
+}
+
+int AppointmentsManager::getExpiredApps() {
+    Date today;
+    int total = _appsFile.getTotalRegisters();
+    int expired = 0;
+    if (total <= 0) return -1;
+    Appointment* apps = new Appointment[total];
+    if (apps == NULL) return -1;
+    if (!_appsFile.readFile(apps, total)) return -1;
+    for (int i = 0; i < total; i++) {
+        bool isActive = apps[i].getStatus();
+        if (isActive && apps[i].getDate() < today) {
+            expired++;
+        }
+    }
+    return expired;
+}
+
+int AppointmentsManager::deleteAllExpired() {
+    Date today;
+    int total = _appsFile.getTotalRegisters();
+    int deleted = 0;
+    if (total <= 0) return -1;
+    Appointment* apps = new Appointment[total];
+    if (apps == NULL) return -1;
+    if (!_appsFile.readFile(apps, total)) return -1;
+    // marcar registros a eliminar
+    for (int i = 0; i < total; i++) {
+        if (apps[i].getDate() < today) {
+            bool success = _appsFile.markForDelete(i);
+            if (!success) return -1;
+            deleted++;
+            // quitar comentario para debuggear
+            /* printf("Eliminando registro nro %d id %d.\n", i,
+                   apps[i].getAppId()); */
+        }
+    }
+    // eliminacion física, si da error devuelve 0
+    if (_appsFile.deleteAllMarked() == -1) return 0;
+    return deleted;
 }

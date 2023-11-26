@@ -15,10 +15,12 @@ Appointment::Appointment() {
     _clientId = -1;
     _dateApp = Date(1, 1, 1990);
     _timeApp = Time();
+    _status = false;
 }
 
 Appointment::Appointment(int appId, int petID, Date dateApp, Time timeApp,
-                         std::string reason, bool attended, int clientId) {
+                         std::string reason, bool attended, int clientId,
+                         bool status) {
     _petId = petID;
     _appId = appId;
     _clientId = clientId;
@@ -26,6 +28,7 @@ Appointment::Appointment(int appId, int petID, Date dateApp, Time timeApp,
     strcpy(_reason, reason.c_str());
     _dateApp = dateApp;
     _timeApp = timeApp;
+    _status = status;
 }
 
 /**
@@ -56,6 +59,8 @@ void Appointment::setReason(std::string reason) {
 void Appointment::setAttended(bool attended) { _attended = attended; }
 void Appointment::setClientId(int idc) { _clientId = idc; }
 
+void Appointment::setStatus(bool status) { _status = status; }
+
 int Appointment::getAppId() { return _appId; }
 int Appointment::getpetId() { return _petId; }
 Date Appointment::getDate() { return _dateApp; }
@@ -64,6 +69,8 @@ Time Appointment::getTime() { return _timeApp; }
 const char *Appointment::getReason() { return _reason; }
 bool Appointment::getAttended() { return _attended; }
 int Appointment::getClientId() { return _clientId; }
+
+bool Appointment::getStatus() { return _status; }
 
 void Appointment::toVecString(std::string vStr[7]) {
     vStr[0] = std::to_string(_appId);

@@ -393,7 +393,7 @@ bool InputForm::askToRetry(fieldType fType, int maxLimit, int min, int max) {
                  "al menu.\n";
     if (rlutil::getkey() == rlutil::KEY_ESCAPE) {
         rlutil::cls();
-        std::cout << "Se ha cancelado la carga de datos.\n";
+        std::cout << "Se ha cancelado la acción actual.\n";
         return false;  // no reintentar
     }
     rlutil::cls();

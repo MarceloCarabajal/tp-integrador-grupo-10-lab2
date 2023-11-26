@@ -27,6 +27,10 @@ public:
     bool readFile(VppClass *reg, int totalToRead);
     bool writeFile(VppClass reg);
     bool updateFile(VppClass reg, int regPos);
+    bool deleteReg(int regNumber);
+    bool markForDelete(int regNumber);
+    int deleteAllMarked();
+
     template <typename AnyType>
     int searchReg(bool (*fCallback)(VppClass reg, AnyType value),
                   AnyType value);

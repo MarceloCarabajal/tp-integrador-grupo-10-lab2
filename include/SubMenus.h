@@ -6,13 +6,12 @@
 #include "Menu.h"
 #include "PetRelations.h"
 #include "PetsManager.h"
+#include "ProdCategoryManager.h"
 #include "ProductsManager.h"
 #include "RelationsManager.h"
 #include "VaccinationManager.h"
-#include "VetsManager.h"
-#include "ProdCategoryManager.h"
 #include "VetVisitsManager.h"
-
+#include "VetsManager.h"
 
 class SubMenus {
 private:
@@ -25,6 +24,8 @@ private:
     static void loadAppointment();
     static void showAppointment();
     static void editAppointment();
+    static void clearAppointments();
+    static void clearDeleted();
 
     static VetsManager _vetsManager;
     static void loadVet();
@@ -51,13 +52,12 @@ private:
     static void showVaccinations();
     static void editVaccination();
 
-
     static ProdCategoryManager _catprodManager;
     static void loadProdCategory();
     static void showProdCategory();
     static void editProdCategory();
 
-   static VetVisitsManager _vetvisitsManager;
+    static VetVisitsManager _vetvisitsManager;
     static void loadvetvisit();
     static void showvetvisits();
     static void editvetvisit();
