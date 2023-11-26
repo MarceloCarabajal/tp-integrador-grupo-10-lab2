@@ -77,7 +77,7 @@ Appointment AppointmentsManager::loadForm() {
             std::cout << "La fecha debe ser mayor o igual a la actual.\n";
         }
         if (!dateForm.fill()) return auxAppointment;
-        validDate = true;  // validAppDate(appDate);
+        validDate = validAppDate(appDate);
     } while (!validDate);
 
     // pedir y validar hora
@@ -85,7 +85,7 @@ Appointment AppointmentsManager::loadForm() {
     bool validTime = false;
     while (!validTime) {
         if (!timeForm.fill()) return auxAppointment;
-        validTime = true;  // validAppTime(appDate, appTime);
+        validTime = validAppTime(appDate, appTime);
         if (!retryInvalidTime(validTime)) return auxAppointment;
     }
 
