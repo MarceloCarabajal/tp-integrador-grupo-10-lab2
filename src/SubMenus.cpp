@@ -45,6 +45,7 @@ AppointmentsManager SubMenus::_appsManager = AppointmentsManager();
 void SubMenus::loadAppointment() { _appsManager.load(); }
 void SubMenus::showAppointment() { _appsManager.show(); }
 void SubMenus::editAppointment() { _appsManager.edit(); }
+void SubMenus::cancelAppointment() { _appsManager.cancel(); }
 void SubMenus::clearAppointments() { _appsManager.clearExpired(); }
 void SubMenus::clearDeleted() { _appsManager.clearDeleted(); }
 void SubMenus::appointments() {
@@ -52,8 +53,9 @@ void SubMenus::appointments() {
     mnuAppoint.addOption("1. Cargar Turno :arrow_up_small:", loadAppointment);
     mnuAppoint.addOption("2. Mostrar Turnos :page_facing_up:", showAppointment);
     mnuAppoint.addOption("3. Editar Turno :pencil2:", editAppointment);
-    mnuAppoint.addOption("4. Eliminar expirados :x:", clearAppointments);
-    mnuAppoint.addOption("5. Limpiar registros :white_check_mark:",
+    mnuAppoint.addOption("4. Cancelar Turno :x:", cancelAppointment);
+    mnuAppoint.addOption("5. Eliminar expirados :x:", clearAppointments);
+    mnuAppoint.addOption("6. Limpiar registros :white_check_mark:",
                          clearDeleted);
     mnuAppoint.showMenu();
 }

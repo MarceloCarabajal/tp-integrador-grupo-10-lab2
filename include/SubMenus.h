@@ -24,6 +24,7 @@ private:
     static void loadAppointment();
     static void showAppointment();
     static void editAppointment();
+    static void cancelAppointment();
     static void clearAppointments();
     static void clearDeleted();
 

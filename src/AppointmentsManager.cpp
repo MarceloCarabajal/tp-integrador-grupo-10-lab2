@@ -201,7 +201,7 @@ Appointment AppointmentsManager::editForm(int regPos) {
 void AppointmentsManager::edit() {
     InputForm search;
     int nId;
-    show();
+    show(false);
     std::cout << "\nIngrese el ID del turno a modificar.\n";
     search.setIntField("ID Turno", nId, 4);
     if (!search.fill()) return;  // si no se completa, salir
@@ -229,7 +229,7 @@ void AppointmentsManager::edit() {
     utils::pause();
 }
 
-void AppointmentsManager::show() {
+void AppointmentsManager::show(bool showAndPause) {
     int totalRegs = _appsFile.getTotalRegisters();
     // calcular el total de celdas de nuestra lista, segun la cantidad de datos
     // que contiene 1 registro
@@ -279,7 +279,7 @@ void AppointmentsManager::show() {
     appvetsList.show();
 
     delete[] cells;  // liberar memoria!
-    utils::pause();
+    if (showAndPause) utils::pause();
 }
 
 void AppointmentsManager::clearExpired() {
@@ -346,6 +346,45 @@ void AppointmentsManager::clearDeleted() {
         default:
             printf("Se eliminaron %d registros con éxito!\n", deleted);
             break;
+    }
+    utils::pause();
+}
+
+void AppointmentsManager::cancel() {
+    InputForm searchId, confirmForm;
+    int nId;
+    bool confirm;
+    // mostrar turnos
+    show(false);
+
+    std::cout << "\nIngrese el ID del turno a cancelar.\n";
+    searchId.setIntField("ID Turno", nId, 4);
+    if (!searchId.fill()) return;  // si no se completa, salir
+    int regPos = _appsFile.searchReg(searchById, nId);
+    if (regPos == -1) {
+        std::cout << "No existe un turno con el ID ingresado.\n";
+        utils::pause();
+        return;
+    }
+
+    printf(
+        "Se seleccionó el turno #%d, confirma la cancelación? esta acción es "
+        "irreversible.\n",
+        nId);
+    confirmForm.setBoolField("[SI/NO]", confirm);
+    if (!confirmForm.fill()) return;
+    if (!confirm) {
+        std::cout << "No se realizará la cancelación.\n";
+        utils::pause();
+        return;
+    }
+
+    bool success = _appsFile.markForDelete(regPos);
+    int deleted = _appsFile.deleteAllMarked();
+    if (success && deleted > 0) {
+        std::cout << "Turno cancelado con éxito!\n";
+    } else {
+        std::cout << "Ocurrió un error al intentar cancelar el turno.\n";
     }
     utils::pause();
 }
