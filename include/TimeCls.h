@@ -6,9 +6,8 @@ private:
     int _hour, _min, _sec;
 
 public:
-
-   Time();
-   Time(int hour, int min, int sec);
+    Time();
+    Time(int hour, int min, int sec);
 
     void setHour(int hour);
     void setMin(int min);
@@ -18,4 +17,5 @@ public:
     int getSec() const;   // Método constante para obtener los segundos
 
     std::string toString();
+    bool operator==(const Time& t);
 };

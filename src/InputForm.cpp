@@ -384,6 +384,8 @@ bool InputForm::askToRetry(fieldType fType, int maxLimit, int min, int max) {
         case rangeField:
             std::cout << "Solo numeros enteros entre " << min << " y " << max
                       << ".\n";
+        case timeField:
+            std::cout << "Solo formato 24hs del tipo hs:min. Ej: 17:00.\n";
         default:
             break;
     }

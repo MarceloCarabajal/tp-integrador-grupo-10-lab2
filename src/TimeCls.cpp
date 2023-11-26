@@ -42,3 +42,9 @@ std::string Time::toString() {
     if (_sec < 10) sec = "0" + sec;
     return hour + ":" + min + ":" + sec;
 }
+
+bool Time::operator==(const Time& t) {
+    bool equal =
+        _hour == t.getHour() && _min == t.getMin() && _sec == t.getSec();
+    return equal;
+}

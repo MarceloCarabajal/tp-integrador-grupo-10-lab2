@@ -39,12 +39,12 @@ void AppointmentsManager::load() {
 }
 
 Appointment AppointmentsManager::loadForm() {
-    InputForm AppointmentForm, petIdForm, clientIdForm, dateForm;
+    InputForm AppointmentForm, petIdForm, clientIdForm, dateForm, timeForm;
     Appointment auxAppointment;
     PetsManager petsManager;
     ClientsManager clientsManager;
-    Date dateApp;
-    Time timeApp;
+    Date appDate;
+    Time appTime;
     std::string reason;
     int petId = 0, clientId = 0;
     bool attended, alreadyExists = true;
@@ -69,25 +69,31 @@ Appointment AppointmentsManager::loadForm() {
     } while (!alreadyExists);
 
     // pedir y validar fecha
-    dateForm.setDateField("Fecha", dateApp);
+    dateForm.setDateField("Fecha", appDate);
     bool validDate = true;
     do {
         if (!validDate) {
             std::cout << "La fecha debe ser mayor o igual a la actual.\n";
         }
         if (!dateForm.fill()) return auxAppointment;
-        validDate = validAppDate(dateApp);
+        validDate = validAppDate(appDate);
     } while (!validDate);
 
-    // AppointmentForm.set   ("Hora", timeApp); TODO: Creo que la hr no seria
-    // necesaria
+    timeForm.setTimeField("Hora", appTime);
+    bool validTime = false;
+    while (!validTime) {
+        if (!timeForm.fill()) return auxAppointment;
+        validTime = validAppTime(appDate, appTime);
+        if (!retryInvalidTime(validTime)) return auxAppointment;
+    }
+
     AppointmentForm.setBoolField("Asistió", attended);
     AppointmentForm.setStrField("Motivo", reason, 30);
 
     if (!AppointmentForm.fill()) return auxAppointment;
 
-    auxAppointment.setDate(dateApp);
-    auxAppointment.setTime(timeApp);
+    auxAppointment.setDate(appDate);
+    auxAppointment.setTime(appTime);
     auxAppointment.setReason(reason);
     auxAppointment.setAttended(attended);
     auxAppointment.setPetId(petId);
@@ -99,8 +105,8 @@ Appointment AppointmentsManager::loadForm() {
 Appointment AppointmentsManager::editForm(int regPos) {
     InputForm AppointmentForm, dateForm;
     Appointment auxAppointment, auxFormAppointment;
-    Date dateApp;
-    Time timeApp;
+    Date appDate;
+    Time appTime;
     std::string reason;
     bool attended;
     int clientId, petId, nId;
@@ -111,8 +117,8 @@ Appointment AppointmentsManager::editForm(int regPos) {
         return auxAppointment;
     }
     // Se cargan los datos para mostrarlas en el form.
-    dateApp = auxAppointment.getDate();
-    timeApp = auxAppointment.getTime();
+    appDate = auxAppointment.getDate();
+    appTime = auxAppointment.getTime();
     reason = auxAppointment.getReason();
     nId = auxAppointment.getAppId();
     attended = auxAppointment.getAttended();
@@ -123,17 +129,17 @@ Appointment AppointmentsManager::editForm(int regPos) {
     // configurar form
     AppointmentForm.setEditMode(true);  // modo edicion
 
-    AppointmentForm.setDateField("Fecha", dateApp);
+    AppointmentForm.setDateField("Fecha", appDate);
     bool validDate = true;
     do {
         if (!validDate) {
             std::cout << "La fecha debe ser mayor o igual a la actual.\n";
         }
         if (!dateForm.fill()) return auxAppointment;
-        validDate = validAppDate(dateApp);
+        validDate = validAppDate(appDate);
     } while (!validDate);
 
-    // AppointmentForm.set   ("Hora", timeApp); // TODO: es necesaria?
+    // AppointmentForm.set   ("Hora", appTime); // TODO: es necesaria?
     AppointmentForm.setBoolField("Asistio", attended);
     AppointmentForm.setStrField("Motivo", reason, 30);
     AppointmentForm.setIntField("Cliente ID", clientId, 4);
@@ -144,8 +150,8 @@ Appointment AppointmentsManager::editForm(int regPos) {
     if (success) {  // si se completa
         auxFormAppointment.setAppId(nId);
         auxFormAppointment.setPetId(petId);
-        auxFormAppointment.setDate(dateApp);
-        auxFormAppointment.setTime(timeApp);
+        auxFormAppointment.setDate(appDate);
+        auxFormAppointment.setTime(appTime);
         auxFormAppointment.setReason(reason);
         auxFormAppointment.setAttended(attended);
         auxFormAppointment.setClientId(clientId);
@@ -200,7 +206,7 @@ void AppointmentsManager::show() {
     }
     // Se crea la variable que va a contener todas las celdas, segun la cantidad
     // de registros
-    std::string *cells = new std::string[totalCells];
+    std::string* cells = new std::string[totalCells];
     if (cells == NULL) {
         std::cout << "No hay memoria suficiente para mostrar los turnos "
                      "veterinarios.\n";
@@ -265,8 +271,42 @@ bool AppointmentsManager::retryIfIdNotExists(bool exists) {
     return true;
 }
 
+bool AppointmentsManager::retryInvalidTime(bool valid) {
+    if (!valid) {
+        std::cout
+            << "La hora ingresada es inválida o ya "
+               "existe otro turno con el mismo horario.\n"
+               "Presione cualquier tecla para reintentar o ESC para salir.\n";
+        if (rlutil::getkey() == rlutil::KEY_ESCAPE) return false;
+        rlutil::cls();
+    }
+    return true;
+}
+
 bool AppointmentsManager::validAppDate(Date date) {
     Date today;
     if (date < today) return false;
+    return true;
+}
+
+bool AppointmentsManager::validAppTime(const Date& date, const Time& time) {
+    int total = _appsFile.getTotalRegisters();
+    if (total <= 0) return true;
+    // Verificar que el turno no esté duplicado
+    for (int i = 0; i < total; i++) {
+        Appointment auxApp = _appsFile.readFile(i);
+        if (auxApp.getAppId() == -1) return true;
+        Time auxTime = auxApp.getTime();
+        bool sameTime = auxTime.getHour() == time.getHour() &&
+                        auxTime.getMin() == time.getMin();
+        if (auxApp.getDate() == date && sameTime) return false;
+    }
+    // Verificar que no sea un horario pasado si es en el mismo dia
+    bool sameDay = Date() == date;
+    Time now;
+    bool oldTime =
+        now.getHour() > time.getHour() ||
+        (now.getHour() >= time.getHour() && now.getMin() >= time.getMin());
+    if (sameDay && oldTime) return false;
     return true;
 }
