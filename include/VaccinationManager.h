@@ -9,8 +9,10 @@ private:
     const int _vaccinationFields = 6;  // total de datos de un regisro Client
     Vaccination loadForm();
     Vaccination editForm(int regPos);
-   bool retryIfIdExists(bool exists);
+    bool retryIfIdExists(bool exists);
     bool retryIfIdNotExists(bool exists);
+    bool validVaccRevaccDate(Date dateV, Date dateR);
+    bool validAplicDate(Date date);
 
 public:
     void load();

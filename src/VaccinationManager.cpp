@@ -37,7 +37,7 @@ void VaccinationManager::load() {
 }
 
 Vaccination VaccinationManager::loadForm() {
-    InputForm vaccinationForm,  petIdForm;
+    InputForm vaccinationForm,  petIdForm,dateForm;
     PetsManager petsManager;
     Vaccination auxVaccination;
     std::string nameVaccine;
@@ -58,8 +58,27 @@ Vaccination VaccinationManager::loadForm() {
 
 
     vaccinationForm.setStrField(" Vacuna", nameVaccine, 15);
-    vaccinationForm.setDateField("Fecha de aplicacion", dateAplication);
-    vaccinationForm.setDateField("Fecha de revacunacion", dateRevaccination);
+
+    dateForm.setDateField("Fecha de Aplicacion", dateAplication);
+     bool validDate = true;
+    do {
+        if (!validDate) {
+            std::cout << "La fecha debe ser  igual a la de hoy.\n";
+        }
+        if (!dateForm.fill()) return auxVaccination;
+        validDate = validAplicDate(dateAplication);
+    } while (!validDate);
+
+    dateForm.setDateField("Fecha de revacunacion", dateRevaccination);
+    bool validDate = true;
+    do {
+        if (!validDate) {
+            std::cout << "La fecha debe ser un año posterior a la fecha de aplicación.\n";
+        }
+        if (!dateForm.fill()) return auxVaccination;
+        validDate = validVaccRevaccDate( dateAplication, dateRevaccination);
+    } while (!validDate);
+
     // vaccinationForm.setBoolField("Notificado", notified);
 
     if (!vaccinationForm.fill()) return auxVaccination;
@@ -74,7 +93,7 @@ Vaccination VaccinationManager::loadForm() {
 }
 
 Vaccination VaccinationManager::editForm(int regPos) {
-    InputForm vaccinationForm;
+    InputForm vaccinationForm, dateForm;
     Vaccination auxVaccination;
     std::string nameVaccine;
     Date dateAplication, dateRevaccination;
@@ -100,8 +119,28 @@ Vaccination VaccinationManager::editForm(int regPos) {
 
     vaccinationForm.setStrField(" Vacuna", nameVaccine, 15);
     vaccinationForm.setIntField("ID Mascota", petId, 4);
-    vaccinationForm.setDateField("Fecha de aplicacion", dateAplication);
-    vaccinationForm.setDateField("Fecha de revacunacion", dateRevaccination);
+    dateForm.setDateField("Fecha de aplicacion", dateAplication);
+
+  bool validDate = true;
+    do {
+        if (!validDate) {
+            std::cout << "La fecha debe ser  igual a la de hoy.\n";
+        }
+        if (!dateForm.fill()) return auxVaccination;
+        validDate = validAplicDate(dateAplication);
+    } while (!validDate);
+
+
+    dateForm.setDateField("Fecha de revacunacion", dateRevaccination);
+    bool validDate = true;
+    do {
+        if (!validDate) {
+            std::cout << "La fecha debe ser un año posterior a la fecha de aplicación.\n";
+        }
+        if (!dateForm.fill()) return auxVaccination;
+        validDate = validVaccRevaccDate(dateAplication,  dateRevaccination );
+
+    } while (!validDate);
     vaccinationForm.setBoolField("Notificado", notified);
 
     // completar form
@@ -225,4 +264,20 @@ bool VaccinationManager::retryIfIdNotExists(bool exists) {
         rlutil::cls();
     }
     return true;
+}
+
+
+bool VaccinationManager::validVaccRevaccDate (Date dateA, Date dateR) {
+int Year=dateA.getYear();
+Year++;
+   if (dateA.getDay()== dateR.getDay() && dateA.getMonth()== 
+   dateR.getMonth() && dateR.getYear() == Year)
+ { return true;}
+  else { return false;  }
+}
+
+bool VaccinationManager::validAplicDate(Date date) {
+    Date today;
+    if (date == today) return true;
+    return false;
 }
