@@ -37,7 +37,7 @@ void VaccinationManager::load() {
 }
 
 Vaccination VaccinationManager::loadForm() {
-    InputForm vaccinationForm, petIdForm, dateForm;
+    InputForm vaccinationForm, petIdForm, dateForm, dateFormR;
     PetsManager petsManager;
     Vaccination auxVaccination;
     std::string nameVaccine;
@@ -57,31 +57,20 @@ Vaccination VaccinationManager::loadForm() {
     } while (!alreadyExists);  // si no existe, volver a pedir
 
     vaccinationForm.setStrField(" Vacuna", nameVaccine, 15);
-
-    dateForm.setDateField("Fecha de Aplicacion", dateAplication);
+    vaccinationForm.setDateField("Fecha de Aplicacion", dateAplication);
+    if (!vaccinationForm.fill()) return auxVaccination;
+    dateFormR.setDateField("Fecha de revacunacion", dateRevaccination);
     bool validDate = true;
-    do {
-        if (!validDate) {
-            std::cout << "La fecha debe ser  igual a la de hoy.\n";
-        }
-        if (!dateForm.fill()) return auxVaccination;
-        validDate = validAplicDate(dateAplication);
-    } while (!validDate);
-
-    dateForm.setDateField("Fecha de revacunacion", dateRevaccination);
-    validDate = true;
     do {
         if (!validDate) {
             std::cout << "La fecha debe ser un año posterior a la fecha de "
                          "aplicación.\n";
         }
-        if (!dateForm.fill()) return auxVaccination;
+        if (!dateFormR.fill()) return auxVaccination;
         validDate = validVaccRevaccDate(dateAplication, dateRevaccination);
     } while (!validDate);
 
     // vaccinationForm.setBoolField("Notificado", notified);
-
-    if (!vaccinationForm.fill()) return auxVaccination;
 
     auxVaccination.setNameVaccine(nameVaccine);
     auxVaccination.setPetId(petId);
@@ -93,12 +82,15 @@ Vaccination VaccinationManager::loadForm() {
 }
 
 Vaccination VaccinationManager::editForm(int regPos) {
-    InputForm vaccinationForm, dateForm;
+    InputForm vaccinationForm, petIdForm(true), dateAForm(true, false),
+        dateRForm(true, false);
     Vaccination auxVaccination;
+    PetsManager petsManager;
+    Vaccination auxFormVacc;
     std::string nameVaccine;
     Date dateAplication, dateRevaccination;
     int petId, nId;
-    bool notified;
+    bool notified, existentId;
 
     auxVaccination = _vaccinationFile.readFile(regPos);
     if (auxVaccination.getAplicationId() == -1) {
@@ -113,50 +105,51 @@ Vaccination VaccinationManager::editForm(int regPos) {
     notified = auxVaccination.getNottified();
     petId = auxVaccination.getPeId();
 
+    rlutil::cls();  // limpiar pantalla
+
     std::cout << "Editando vacunacion#" << nId << std::endl;
-    // configurar form
-    vaccinationForm.setEditMode(true);  // modo edicion
 
-    vaccinationForm.setStrField(" Vacuna", nameVaccine, 15);
-    vaccinationForm.setIntField("ID Mascota", petId, 4);
-    dateForm.setDateField("Fecha de aplicacion", dateAplication);
+    // pedir y buscar si el id mascota ingresado existe
+    petIdForm.setIntField("ID Mascota", petId, 4);
+    existentId = false;
+    while (!existentId) {
+        if (!petIdForm.fill()) return auxFormVacc;
+        existentId = petsManager.idExists(petId);
+        if (!retryIfIdNotExists(existentId)) return auxFormVacc;
+    }
 
+    dateAForm.setDateField("Fecha de aplicacion", dateAplication);
+    if (!dateAForm.fill()) return auxFormVacc;
+
+    dateRForm.setDateField("Fecha de revacunacion", dateRevaccination);
     bool validDate = true;
     do {
         if (!validDate) {
-            std::cout << "La fecha debe ser  igual a la de hoy.\n";
-        }
-        if (!dateForm.fill()) return auxVaccination;
-        validDate = validAplicDate(dateAplication);
-    } while (!validDate);
-
-    dateForm.setDateField("Fecha de revacunacion", dateRevaccination);
-    validDate = true;
-    do {
-        if (!validDate) {
+            dateRevaccination = auxVaccination.getDateRevaccination();
             std::cout << "La fecha debe ser un año posterior a la fecha de "
                          "aplicación.\n";
         }
-        if (!dateForm.fill()) return auxVaccination;
+        if (!dateRForm.fill()) return auxFormVacc;
         validDate = validVaccRevaccDate(dateAplication, dateRevaccination);
 
     } while (!validDate);
+    vaccinationForm.setStrField(" Vacuna", nameVaccine, 15);
     vaccinationForm.setBoolField("Notificado", notified);
 
     // completar form
     bool success = vaccinationForm.fill();
     if (success) {  // si se completa
-        auxVaccination.setAplicationId(nId);
-        auxVaccination.setNameVaccine(nameVaccine);
-        auxVaccination.setPetId(petId);
-        auxVaccination.setDateAplication(dateAplication);
-        auxVaccination.setDateRevaccination(dateRevaccination);
-        auxVaccination.setNotified(notified);
+        auxFormVacc.setAplicationId(nId);
+        auxFormVacc.setNameVaccine(nameVaccine);
+        auxFormVacc.setPetId(petId);
+        auxFormVacc.setDateAplication(dateAplication);
+        auxFormVacc.setDateRevaccination(dateRevaccination);
+        auxFormVacc.setNotified(notified);
 
-        return auxVaccination;
+        return auxFormVacc;
     }
     // si no se completa, devolver Vaccination vacio
-    return auxVaccination;
+    return auxFormVacc;
 }
 
 void VaccinationManager::edit() {
