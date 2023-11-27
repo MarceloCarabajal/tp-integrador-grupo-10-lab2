@@ -2,11 +2,14 @@
 
 #include <windows.h>
 
+#include "StatusBar.h"
+
 // eliminar esto
 void funcSubMenutest() { system("pause"); }
 
 void MainManager::start() {
-    std::cout << "Iniciando..." << std::endl;
+    StatusBar statusBar;  // inicializa StatusBar
+    statusBar.update();
     SetConsoleOutputCP(65001);  // setear pagina de codigos UTF8 para emojis
     mainMenu();
 }

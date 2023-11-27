@@ -62,7 +62,10 @@ bool Date::operator<(const Date& d) {
     return false;
 }
 
-bool Date::operator>(const Date& d) { return (*this < d) ? false : true; }
+bool Date::operator>(const Date& d) {
+    // si es menor o igual, no es mayor
+    return (*this < d || *this == d) ? false : true;
+}
 
 bool Date::operator==(const Date& d) {
     bool equal = _year == d._year && _month == d._month && _day == d._day;

@@ -67,6 +67,10 @@
     "numbers": "cpp",
     "cinttypes": "cpp",
     "map": "cpp",
-    "xtree": "cpp"
+    "xtree": "cpp",
+    "codecvt": "cpp",
+    "locale": "cpp",
+    "xlocbuf": "cpp",
+    "xlocmes": "cpp"
   }
 }

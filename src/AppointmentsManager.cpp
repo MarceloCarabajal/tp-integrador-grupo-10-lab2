@@ -60,6 +60,7 @@ Appointment AppointmentsManager::loadForm() {
         alreadyExists = petsManager.idExists(petId);
     } while (!alreadyExists);  // si no existe, volver a pedir
 
+    // TODO: Validar que exista una relacion activa cliente/mascota ?
     // pedir y buscar si el id cliente ingresado existe
     alreadyExists = true;
     clientIdForm.setIntField("ID Cliente", clientId, 4);
@@ -387,6 +388,23 @@ void AppointmentsManager::cancel() {
         std::cout << "Ocurrió un error al intentar cancelar el turno.\n";
     }
     utils::pause();
+}
+
+int AppointmentsManager::getPendingApps() {
+    Date today;
+    int total = _appsFile.getTotalRegisters();
+    int pending = 0;
+    if (total <= 0) return -1;
+    Appointment* apps = new Appointment[total];
+    if (apps == NULL) return -1;
+    if (!_appsFile.readFile(apps, total)) return -1;
+    for (int i = 0; i < total; i++) {
+        bool isActive = apps[i].getStatus();
+        if (isActive && apps[i].getDate() > today) {
+            pending++;
+        }
+    }
+    return pending;
 }
 
 // Solo compara si coincide el id

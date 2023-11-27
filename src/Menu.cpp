@@ -4,6 +4,7 @@
 #include <iostream>
 #include <vector>
 
+#include "StatusBar.h"
 #include "emoji.h"
 #include "functions.h"
 #include "utils.h"
@@ -73,6 +74,8 @@ void Menu::printBase() {
     }
     // Limpiar todo
     rlutil::cls();
+    // Barra de estado
+    StatusBar::show();
     //  Logo
     printLogo();
     // Titulo del menu

@@ -10,7 +10,7 @@ const int DEFAULT_BG = rlutil::BLACK;
 
 class Menu {
 private:
-    int _currentOption, _maxLength, _yPos = 9;
+    int _currentOption, _maxLength, _yPos = 10;
     bool _isSubMenu;
     std::string _title;
     std::vector<std::string> _options;
