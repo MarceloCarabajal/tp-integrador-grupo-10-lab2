@@ -82,8 +82,8 @@ Vaccination VaccinationManager::loadForm() {
 }
 
 Vaccination VaccinationManager::editForm(int regPos) {
-    InputForm vaccinationForm, petIdForm(true), dateAForm(true, false),
-        dateRForm(true, false);
+    InputForm vaccinationForm(true), petIdForm(true, true), dateAForm(true),
+        dateRForm(true);
     Vaccination auxVaccination;
     PetsManager petsManager;
     Vaccination auxFormVacc;

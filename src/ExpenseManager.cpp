@@ -95,7 +95,7 @@ Expense ExpenseManager::editForm(int regPos) {
 
     std::cout << "Editando egreso #" << nId << std::endl;
     // configurar form
-    expenseForm.setEditMode(true);  // modo edicion
+    expenseForm.setEditMode(true, true);  // modo edicion
 
     expenseForm.setStrField("Descripción", description, 45);
     expenseForm.setStrField("Metodo de pago", paymentMethod, 15);

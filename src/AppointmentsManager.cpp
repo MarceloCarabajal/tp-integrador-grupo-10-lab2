@@ -107,8 +107,8 @@ Appointment AppointmentsManager::loadForm() {
 Appointment AppointmentsManager::editForm(int regPos) {
     // Inicializar forms en modo edicion, solo 1 muestra el mensaje de "modo
     // edicion"
-    InputForm appForm(true, false), petIdForm(true), clientIdForm(true, false),
-        dateForm(true, false), timeForm(true, false);
+    InputForm appForm(true), petIdForm(true, true), clientIdForm(true),
+        dateForm(true), timeForm(true);
     Appointment auxApp, auxFormApp;
     PetsManager petsManager;
     ClientsManager clientsManager;

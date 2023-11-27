@@ -109,7 +109,7 @@ PetRelations RelationsManager::editForm(int regPos) {
     std::cout << "Editando Relaciones de la Mascota #" << nId << std::endl;
     //  configurar form
 
-    petRelationsForm.setEditMode(true);  // modo edicion
+    petRelationsForm.setEditMode(true, true);  // modo edicion
     petRelationsForm.setIntField("ID Mascota", petId, 4);
     petRelationsForm.setIntField("ID Cliente", clientId, 4);
     petRelationsForm.setBoolField("¿Es propietario?", owner);

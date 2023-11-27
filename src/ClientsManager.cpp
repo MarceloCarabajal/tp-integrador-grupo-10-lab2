@@ -86,7 +86,7 @@ Client ClientsManager::editForm(int regPos) {
 
     std::cout << "Editando cliente #" << nId << std::endl;
     // configurar form
-    clientForm.setEditMode(true);  // modo edicion
+    clientForm.setEditMode(true, true);  // modo edicion
     clientForm.setStrField("Nombre", name, 30);
     clientForm.setStrField("Apellido", lastname, 30);
     clientForm.setAlphanumeric("Direccion", address, 45);

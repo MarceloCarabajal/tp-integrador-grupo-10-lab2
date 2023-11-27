@@ -32,9 +32,7 @@ void VetsManager::load() {
 
     auxVet = loadForm();
     // Si no se completo el form, salir
-    if (strcmp(auxVet.getSpeciality()," ") == 0) return;
-
-
+    if (strcmp(auxVet.getSpeciality(), " ") == 0) return;
 
     auxVet.setIdVet(nId);  // set del Id ingresado anteriormente
     if (_vetsFile.writeFile(auxVet)) {
@@ -84,7 +82,7 @@ Vet VetsManager::editForm(int regPos) {
 
     std::cout << "Editando Veterinario #" << nId << std::endl;
     // configurar form
-    vetForm.setEditMode(true);  // modo edicion
+    vetForm.setEditMode(true, true);  // modo edicion
     vetForm.setStrField("Nombre", name, 30);
     vetForm.setStrField("Apellido", lastname, 30);
     vetForm.setIntField("DNI", DNI, 8);

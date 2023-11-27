@@ -88,7 +88,7 @@ Pet PetsManager::editForm(int regPos) {
 
     std::cout << "Editando Mascota #" << nId << std::endl;
     // configurar form
-    petForm.setEditMode(true);  // modo edicion
+    petForm.setEditMode(true, true);  // modo edicion
     petForm.setStrField("Nombre", name, 30);
     petForm.setStrField("Especie", specie, 15);
     petForm.setStrField("Raza", breed, 30);

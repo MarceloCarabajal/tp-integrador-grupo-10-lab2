@@ -68,7 +68,7 @@ private:
                     int max = 0);
 
 public:
-    InputForm(bool isEditing = false, bool showEditingMsg = true);
+    InputForm(bool isEditing = false, bool showEditingMsg = false);
 
     void setStrField(std::string fieldName, std::string &strDestination,
                      int maxLength);

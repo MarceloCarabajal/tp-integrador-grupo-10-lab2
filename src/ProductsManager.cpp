@@ -99,7 +99,7 @@ Product ProductsManager::editForm(int regPos) {
 
     std::cout << "Editando producto #" << nId << std::endl;
     // configurar form
-    productForm.setEditMode(true);  // modo edicion
+    productForm.setEditMode(true, true);  // modo edicion
     productForm.setStrField("Nombre", productName, 30);
     productForm.setStrField("Descripcion", description, 45);
     productForm.setStrField("Marca", brand, 15);

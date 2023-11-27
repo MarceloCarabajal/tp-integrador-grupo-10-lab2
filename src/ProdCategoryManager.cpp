@@ -81,7 +81,7 @@ ProductCategory ProdCategoryManager::editForm(int regPos) {
 
     std::cout << "Editando Categoria #" << nId << std::endl;
     // configurar form
-    productCategForm.setEditMode(true);  // modo edicion
+    productCategForm.setEditMode(true, true);  // modo edicion
 
     productCategForm.setStrField("Nombre", name, 45);
 
@@ -91,7 +91,7 @@ ProductCategory ProdCategoryManager::editForm(int regPos) {
         auxFormProdCategory.setCatId(nId);
         auxFormProdCategory.setCatName(name);
         auxFormProdCategory.setCatId(nId);
-     
+
         return auxFormProdCategory;
     }
     // si no se completa, devolver Ingreso vacio

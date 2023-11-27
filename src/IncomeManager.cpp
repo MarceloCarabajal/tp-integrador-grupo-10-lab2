@@ -96,7 +96,7 @@ Income IncomeManager::editForm(int regPos) {
 
     std::cout << "Editando ingreso #" << nId << std::endl;
     // configurar form
-    incomeForm.setEditMode(true);  // modo edicion
+    incomeForm.setEditMode(true, true);  // modo edicion
 
     incomeForm.setStrField("Descripción", description, 45);
     incomeForm.setStrField("Metodo de pago", paymentMethod, 15);

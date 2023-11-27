@@ -93,7 +93,7 @@ Sale SalesManager::editForm(int regPos) {
 
     std::cout << "Editando Venta #" << nId << std::endl;
     // configurar form
-    saleForm.setEditMode(true);  // modo edicion
+    saleForm.setEditMode(true, true);  // modo edicion
     saleForm.setIntField("Id Transaccion", transactionId,
                          4);  ////TODO: DEBERIA VENIR AUTOMATICO
     saleForm.setDateField("Fecha", saleDate);
@@ -200,5 +200,5 @@ bool SalesManager::searchById(Sale reg, int nId) {
 }
 
 bool SalesManager::idExists(int nId) {
-  return  _salesFile.searchReg(searchById, nId) >= 0 ? true : false;
+    return _salesFile.searchReg(searchById, nId) >= 0 ? true : false;
 }

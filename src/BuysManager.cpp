@@ -99,7 +99,7 @@ Buy BuysManager::editForm(int regPos) {
 
     std::cout << "Editando compra #" << nId << std::endl;
     // configurar form
-    buyForm.setEditMode(true);  // modo edicion
+    buyForm.setEditMode(true, true);  // modo edicion
 
     buyForm.setStrField("Metodo Pago", paymentMethod, 15);
     buyForm.setIntField("ID producto", productId, 4);
@@ -213,5 +213,5 @@ bool BuysManager::searchById(Buy reg, int nId) {
 }
 
 bool BuysManager::idExists(int nId) {
-   return _buysFile.searchReg(searchById, nId) >= 0 ? true : false;
+    return _buysFile.searchReg(searchById, nId) >= 0 ? true : false;
 }

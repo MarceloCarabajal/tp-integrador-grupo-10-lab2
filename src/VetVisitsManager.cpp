@@ -1,14 +1,16 @@
 #include "VetVisitsManager.h"
 
 #include <iostream>
+
 #include "ClientsManager.h"
-#include "PetsManager.h"
-#include "VetsManager.h"
 #include "Date.h"
 #include "InputForm.h"
 #include "ListView.h"
+#include "PetsManager.h"
+#include "VetsManager.h"
 #include "rlutil.h"
 #include "utils.h"
+
 
 void VetVisitsManager::load() {
     InputForm idForm;
@@ -19,9 +21,7 @@ void VetVisitsManager::load() {
     // pedir y buscar si el id ingresado existe
     idForm.setIntField("ID Consulta", nId, 4);
 
-
-
-do {
+    do {
         if (!retryIfIdExists(alreadyExists)) return;
         // si no completa el form, salir
         if (!idForm.fill()) return;
@@ -29,13 +29,11 @@ do {
     } while (alreadyExists);
 
     // Si no existe el turno, pedir el resto de datos
- auxVetVisits = loadForm();
-if (auxVetVisits.getPetId() == -1) return;
+    auxVetVisits = loadForm();
+    if (auxVetVisits.getPetId() == -1) return;
 
-    
-       // setear id ingresado
-     auxVetVisits.setVisitId(nId);
-
+    // setear id ingresado
+    auxVetVisits.setVisitId(nId);
 
     if (_vetVisitsFile.writeFile(auxVetVisits)) {
         std::cout << "Consulta  guardada con exito!\n";
@@ -45,7 +43,7 @@ if (auxVetVisits.getPetId() == -1) return;
 }
 
 VetVisits VetVisitsManager::loadForm() {
-    InputForm vetvisitsForm, petIdForm, clientIdForm,vetForm;
+    InputForm vetvisitsForm, petIdForm, clientIdForm, vetForm;
     VetVisits auxVetVisits;
     PetsManager petsManager;
     ClientsManager clientsManager;
@@ -55,7 +53,7 @@ VetVisits VetVisitsManager::loadForm() {
     int clientId, petId, saleId, vetId;
     bool alreadyExists = true;
 
-// pedir y buscar si el id mascota ingresado existe
+    // pedir y buscar si el id mascota ingresado existe
     petIdForm.setIntField("ID Mascota", petId, 4);
     do {
         // si no existe, preguntar si quiere reintentar
@@ -76,7 +74,7 @@ VetVisits VetVisitsManager::loadForm() {
         alreadyExists = clientsManager.idExists(clientId);
     } while (!alreadyExists);  // si no existe, volver a pedir
 
-// pedir y buscar si el id vete ingresado existe
+    // pedir y buscar si el id vete ingresado existe
     alreadyExists = true;
     vetForm.setIntField("ID vete", vetId, 4);
     do {
@@ -91,7 +89,6 @@ VetVisits VetVisitsManager::loadForm() {
     vetvisitsForm.setStrField("Diagnóstico", diagnosis, 240);
     vetvisitsForm.setDateField("Fecha", date);
     vetvisitsForm.setIntField("ID Venta", saleId, 4);
-   
 
     if (!vetvisitsForm.fill()) return auxVetVisits;
 
@@ -130,7 +127,7 @@ VetVisits VetVisitsManager::editForm(int regPos) {
 
     std::cout << "Editando Consulta #" << nId << std::endl;
     // configurar form
-    vetvisitsForm.setEditMode(true);  // modo edicion
+    vetvisitsForm.setEditMode(true, true);  // modo edicion
     vetvisitsForm.setStrField("Motivo", reason, 30);
     vetvisitsForm.setStrField("Diagnóstico", diagnosis, 240);
     vetvisitsForm.setDateField("Fecha", date);
@@ -150,7 +147,7 @@ VetVisits VetVisitsManager::editForm(int regPos) {
         auxVetVisits.setPetId(petId);
         auxVetVisits.setVetId(vetId);
         auxVetVisits.setSaleId(saleId);
-        
+
         return auxVetVisits;
     }
     // si no se completa, devolver Mascota vacia
@@ -241,10 +238,8 @@ bool VetVisitsManager::searchById(VetVisits reg, int nId) {
 }
 
 bool VetVisitsManager::idExists(int nId) {
-   return _vetVisitsFile.searchReg(searchById, nId) >= 0 ? true : false;
+    return _vetVisitsFile.searchReg(searchById, nId) >= 0 ? true : false;
 }
-
-
 
 bool VetVisitsManager::retryIfIdExists(bool exists) {
     if (exists) {
