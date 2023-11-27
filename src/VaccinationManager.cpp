@@ -168,7 +168,7 @@ void VaccinationManager::edit() {
     // Si se encontro, pedir datos
     Vaccination auxVaccination = editForm(regPos);
     // Si no se completo el formulario, salir
-    if (auxVaccination.getAplicationId() == 0) {
+    if (auxVaccination.getPeId() == -1) {
         std::cout << "No se realizara la edicion.\n";
         utils::pause();
         return;
