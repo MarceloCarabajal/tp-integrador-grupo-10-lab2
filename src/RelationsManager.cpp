@@ -69,6 +69,15 @@ PetRelations RelationsManager::loadForm() {
         alreadyExists = clientsManager.idExists(clientId);
     } while (!alreadyExists);  // si no existe, volver a pedir
 
+    // Verificar que no sea una relación cliente/mascota existente
+    if (relationExists(petId, clientId)) {
+        std::cout << "Ya existe una relación entre la mascota y el cliente.\n";
+        std::cout
+            << "Si desea puede editarla desde el menú 'Editar relación'\n";
+        utils::pause();
+        return auxPetR;
+    }
+
     petRelsForm.setBoolField("¿Es propietario [SI/NO]?", owner);
 
     if (!petRelsForm.fill()) return auxPetR;
