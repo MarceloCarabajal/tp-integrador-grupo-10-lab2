@@ -217,6 +217,8 @@ void SubMenus::showProdCategory() {
     utils::pause();
 }
 void SubMenus::editProdCategory() { _catprodManager.edit(); }
+void SubMenus::cancelProdCategory() { _catprodManager.cancel(); }
+void SubMenus::clearPC() { _catprodManager.clearDeleted(); }
 
 void SubMenus::productcategory() {
     Menu mnuCatProd("CATEGORIA DE PRODUCTOS:syringe:", true);
@@ -226,6 +228,8 @@ void SubMenus::productcategory() {
     mnuCatProd.addOption("2. Mostrar Categorias :page_facing_up:",
                          showProdCategory);
     mnuCatProd.addOption("3. Editar Categoria :pencil2:", editProdCategory);
+    mnuCatProd.addOption("4. Baja Categoria :x:", cancelProdCategory);
+    mnuCatProd.addOption("5. Limpiar Registros :white_check_mark:", clearPC);
     mnuCatProd.showMenu();
 }
 

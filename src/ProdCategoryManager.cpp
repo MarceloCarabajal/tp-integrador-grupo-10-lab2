@@ -52,6 +52,7 @@ ProductCategory ProdCategoryManager::loadForm() {
     if (!productCategForm.fill()) return auxProdCategory;
 
     auxProdCategory.setCatName(name);
+    auxProdCategory.setStatus(true);
 
     return auxProdCategory;
 }
@@ -91,6 +92,7 @@ ProductCategory ProdCategoryManager::editForm(int regPos) {
         auxFormProdCategory.setCatId(nId);
         auxFormProdCategory.setCatName(name);
         auxFormProdCategory.setCatId(nId);
+        auxFormProdCategory.setStatus(true);
 
         return auxFormProdCategory;
     }
@@ -129,7 +131,7 @@ void ProdCategoryManager::edit() {
     utils::pause();
 }
 
-void ProdCategoryManager::show() {
+void ProdCategoryManager::show (bool showAndPause) {
     int totalRegs = _prodcategoryFile.getTotalRegisters();
     // calcular el total de celdas de nuestra lista, segun la cantidad de datos
     // que contiene 1 registro
@@ -148,7 +150,7 @@ void ProdCategoryManager::show() {
                      "producto.\n";
         return;
     }
-    int cellPos = 0;  // acumula la posicion actual a asignar
+    int rowPos = 0;  // acumula la posicion actual a asignar
     for (int i = 0; i < totalRegs; i++) {
         ProductCategory auxProdCategory = _prodcategoryFile.readFile(i);
         // Obtener todas las propiedades del cliente
@@ -156,11 +158,16 @@ void ProdCategoryManager::show() {
         std::string vecStr[2];
         auxProdCategory.toVecString(vecStr);
         for (int cell = 0; cell < _productscategoryFields; cell++) {
-            cells[cellPos + cell] = vecStr[cell];
+           // solo llena las celdas si es un registro activo
+            if (auxProdCategory.getStatus()) {
+                cells[rowPos + cell] = vecStr[cell];
+            } else {
+                cells[rowPos + cell] = "";
+            }
         }
         // se incrementa la posicion de la celda segun la cantidad de datos que
         // contiene el registro, que equivale a una fila de la lista
-        cellPos += _productscategoryFields;
+       rowPos += _productscategoryFields;
     }
     // Vector que contiene las columnas de nuestra lista
     std::string columns[2] = {"ID Categoria", "Nombre"};
@@ -172,9 +179,72 @@ void ProdCategoryManager::show() {
     expensesList.show();
 
     delete[] cells;  // liberar memoria!
+     if (showAndPause) utils::pause();
 }
 
 bool ProdCategoryManager::idExists(int nId) {
     // Si devuelve un nro de posición, existe
     return _prodcategoryFile.searchReg(searchById, nId) >= 0 ? true : false;
+}
+
+void ProdCategoryManager::clearDeleted() {
+    InputForm confirmForm;
+    bool confirm;
+    std::cout << "Esta acción buscará categorias de producto dadas de baja e "
+                 "intentará eliminarlas definitivamente. Desea continuar?\n";
+    confirmForm.setBoolField("[SI/NO]", confirm);
+    if (!confirmForm.fill()) return;
+    if (!confirm) return;
+    std::cout << "Buscando registros...\n";
+    int deleted = _prodcategoryFile.deleteAllMarked();
+    switch (deleted) {
+        case 0:
+            std::cout << "No se encontraron categorias del producto dadas de baja.\n";
+            break;
+        case -1:
+            std::cout
+                << "Ocurrió un error al intentar eliminar las categorias de producto\n";
+            break;
+        default:
+            printf("Se eliminaron %d registros con éxito!\n", deleted);
+            break;
+    }
+    utils::pause();
+}
+
+void ProdCategoryManager::cancel() {
+    InputForm searchId, confirmForm;
+    int nId;
+    bool confirm;
+    // mostrar vacunacion
+    show(false);
+
+    std::cout << "\nIngrese el ID de la categoria del producto a dar de baja.\n";
+    searchId.setIntField("ID Categoria de Producto", nId, 4);
+    if (!searchId.fill()) return;  // si no se completa, salir
+    int regPos = _prodcategoryFile.searchReg(searchById, nId);
+    if (regPos == -1) {
+        std::cout << "No existe Categoria de Producto con el ID ingresado.\n";
+        utils::pause();
+        return;
+    }
+
+    printf("Se seleccionó la Categoria de Producto #%d, confirma la baja provisoria.\n",
+           nId);
+    confirmForm.setBoolField("[SI/NO]", confirm);
+    if (!confirmForm.fill()) return;
+    if (!confirm) {
+        std::cout << "No se realizará la baja.\n";
+        utils::pause();
+        return;
+    }
+
+    bool success = _prodcategoryFile.markForDelete(regPos);
+
+    if (success) {
+        std::cout << "Baja realizada con éxito!\n";
+    } else {
+        std::cout << "Ocurrió un error al intentar realizar la baja.\n";
+    }
+    utils::pause();
 }

@@ -64,6 +64,9 @@ private:
     static void loadProdCategory();
     static void showProdCategory();
     static void editProdCategory();
+    static void cancelProdCategory();
+    static void clearPC();
+
 
     static VetVisitsManager _vetvisitsManager;
     static void loadvetvisit();
