@@ -54,6 +54,8 @@ namespace isvalid {
         if (dotPos == (size_t)-1 || dotPos == afterAt.length() - 1) {
             return false;
         }
+        // si al final posee un caracter que no es una letra, es invalido
+        if (!letter(str[str.length() - 1])) return false;
         return true;
     }
 

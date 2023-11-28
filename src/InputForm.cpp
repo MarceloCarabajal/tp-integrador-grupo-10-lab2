@@ -45,9 +45,11 @@ void InputForm::setAlphanumeric(std::string fieldName,
     _alnLimit.push_back(maxLength);
 }
 
-void InputForm::setEmailField(std::string& strDestination, int maxLength) {
+void InputForm::setEmailField(std::string& strDestination, int maxLength,
+                              std::string fieldName) {
     _emailVar = &strDestination;
     _emailLimit = maxLength;
+    _emailField = fieldName;
 }
 
 void InputForm::setPhoneField(std::string& strDestination, int maxLength) {
@@ -164,8 +166,9 @@ bool InputForm::requestEmailField() {
         if (attempts > 0) {
             if (!askToRetry(emailField, _emailLimit)) return false;
         }
-        if (_editing) std::cout << "Email actual: " << *_emailVar;
-        std::cout << (_editing ? "\nNuevo/a " : "Ingrese ") << "Email: ";
+        if (_editing) std::cout << _emailField << " actual: " << *_emailVar;
+        std::cout << (_editing ? "\nNuevo/a " : "Ingrese ") << _emailField
+                  << ": ";
         std::getline(std::cin, temp);
         attempts++;  // se suma un intento
         temp = utils::trim(temp);
@@ -374,6 +377,7 @@ bool InputForm::askToRetry(fieldType fType, int maxLimit, int min, int max) {
             std::cout << "tuemail@email.com || tu_email@email.com || "
                          "tu.email@email.com hasta "
                       << maxLimit << " caracteres.\n";
+            break;
         case phoneField:
             std::cout << "solo numeros, hasta " << maxLimit << " digitos. \n";
             break;
@@ -390,8 +394,10 @@ bool InputForm::askToRetry(fieldType fType, int maxLimit, int min, int max) {
         case rangeField:
             std::cout << "Solo numeros enteros entre " << min << " y " << max
                       << ".\n";
+            break;
         case timeField:
             std::cout << "Solo formato 24hs del tipo hs:min. Ej: 17:00.\n";
+            break;
         default:
             break;
     }

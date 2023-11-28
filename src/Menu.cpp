@@ -6,7 +6,6 @@
 
 #include "StatusBar.h"
 #include "emoji.h"
-#include "functions.h"
 #include "utils.h"
 
 Menu::Menu(std::string title, bool isSubMenu) {
@@ -77,7 +76,7 @@ void Menu::printBase() {
     // Barra de estado
     StatusBar::show();
     //  Logo
-    printLogo();
+    utils::printLogo();
     // Titulo del menu
     rlutil::locate(xPos, _yPos - 1);
     std::cout << std::setfill('#') << std::setw(sidesWidth) << ""

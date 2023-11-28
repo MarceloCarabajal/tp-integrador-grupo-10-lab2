@@ -31,6 +31,7 @@ private:
     std::vector<std::string> _dateFields;
     std::vector<std::string> _rangeFields;
     std::vector<std::string> _timeFields;
+    std::string _emailField;  // nombre del campo email
 
     // vector con los limites de digitos/caracteres para los campos
     std::vector<int> _strLimit;
@@ -75,7 +76,8 @@ public:
     void setIntField(std::string fieldName, int &intDestination, int maxLength);
     void setAlphanumeric(std::string fieldName, std::string &strDestination,
                          int maxLength);
-    void setEmailField(std::string &strDestination, int maxLength);
+    void setEmailField(std::string &strDestination, int maxLength,
+                       std::string fieldName = "Email");
     void setPhoneField(std::string &strDestination, int maxLength);
     void setBoolField(std::string fieldName, bool &boolDestination);
     void setFloatField(std::string fieldName, float &floatDestination);

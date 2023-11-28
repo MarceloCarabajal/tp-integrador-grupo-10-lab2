@@ -10,6 +10,8 @@ private:
     Menu _mainMenu = Menu("MENU PRINCIPAL:house:");
     SubMenus _subMenus;
 
+    bool checkConfig();
+
 public:
     void start();
     void mainMenu();

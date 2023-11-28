@@ -3,6 +3,7 @@
 
 #include <rlutil.h>
 
+#include <iomanip>
 #include <iostream>
 
 // #include "isvalid.h", evita la dependencia circular
@@ -91,6 +92,47 @@ namespace utils {
         return temp;
     }
 
+    // Obtiene la linea mas larga de un string
+    inline int getLongestLine(std::string str) {
+        int maxLength = 0, charCount = 0;
+        for (int i = 0; i < (int)str.length(); i++) {
+            if (str[i] == '\n') {
+                if (charCount > maxLength) maxLength = charCount;
+                charCount = 0;
+            }
+            charCount++;
+        }
+        // si no hay saltos de linea, devolver la longitud del string
+        if (maxLength == 0) return charCount;
+        return maxLength;
+    }
+
+    // Imprimir un texto centrado
+    inline void coutCenter(std::string str) {
+        // Calcular la linea mas larga
+        int lTexto = getLongestLine(str);
+        std::cout << std::setw(rlutil::tcols() / 2 - lTexto / 2) << "";
+        for (int i = 0; i < (int)str.length(); i++) {
+            if (str[i] == '\n') {
+                std::cout << str[i];
+                std::cout << std::setw(rlutil::tcols() / 2 - lTexto / 2) << "";
+            } else {
+                std::cout << str[i];
+            }
+        }
+        std::cout << std::setw(rlutil::tcols() / 2 - lTexto / 2) << "";
+    }
+
+    inline void printLogo() {
+        coutCenter(R"(
+  _   __    __        __    __ 
+ | | / /__ / /____ __/ /___/ /_
+ | |/ / -_) __/ -_)_  __/_  __/
+ |___/\__/\__/\__/ /_/   /_/   
+                               )");
+    }
+
+    inline void cls() { rlutil::cls(); }
 }  // namespace utils
 
 #endif /* UTILS_INCLUDED */

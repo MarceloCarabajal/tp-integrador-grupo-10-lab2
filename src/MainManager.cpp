@@ -3,14 +3,35 @@
 #include <windows.h>
 
 #include "StatusBar.h"
-
+#include "VppConfigManager.h"
+#include "utils.h"
 // eliminar esto
 void funcSubMenutest() { system("pause"); }
 
+bool MainManager::checkConfig() {
+    VppConfigManager vppConfigMgr;
+    // Si existe archivo de configuración, cargar configuración
+    if (vppConfigMgr.exists()) return vppConfigMgr.init();
+    // Si no existe, crearlo y tratar de cargarlo
+    if (vppConfigMgr.load()) return vppConfigMgr.init();
+    // si se llega a este punto, ocurrió un error en la carga y el usuario ya
+    // fue informado
+    return true;
+}
+
 void MainManager::start() {
     StatusBar statusBar;  // inicializa StatusBar
-    statusBar.update();
+    std::cout << "Iniciando sistema...\n";
     SetConsoleOutputCP(65001);  // setear pagina de codigos UTF8 para emojis
+    if (!checkConfig()) {
+        utils::coutCenter(
+            "Ocurrió un error al cargar la configuración del sistema.");
+        utils::coutCenter(
+            "la funcionalidad de envío de notificaciones estará "
+            "deshabilitada.");
+        utils::pause();
+    }
+    statusBar.update();
     mainMenu();
 }
 

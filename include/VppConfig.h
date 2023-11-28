@@ -12,6 +12,7 @@ private:
     int _SMTPPort;
 
 public:
+    VppConfig();
     void setVeteName(std::string vtN);
     void setSMTPServer(std::string srv);
     void setSMTPUser(std::string usr);

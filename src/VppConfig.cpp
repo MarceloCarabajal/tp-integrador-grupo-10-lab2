@@ -2,6 +2,14 @@
 
 #include <cstring>
 
+VppConfig::VppConfig() {
+    strcpy(_veteName, "");
+    strcpy(_SMTPPass, "");
+    strcpy(_SMTPServer, "");
+    strcpy(_SMTPUser, "");
+    _SMTPPort = 0;
+}
+
 void VppConfig::setVeteName(std::string vtN) { strcpy(_veteName, vtN.c_str()); }
 void VppConfig::setSMTPServer(std::string srv) {
     strcpy(_SMTPServer, srv.c_str());
