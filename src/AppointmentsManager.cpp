@@ -6,6 +6,7 @@
 #include "InputForm.h"
 #include "ListView.h"
 #include "PetsManager.h"
+#include "RelationsManager.h"
 #include "rlutil.h"
 #include "utils.h"
 
@@ -44,6 +45,7 @@ Appointment AppointmentsManager::loadForm() {
     Appointment auxApp;
     PetsManager petsManager;
     ClientsManager clientsManager;
+    RelationsManager relationsMgr;
     Date appDate;
     Time appTime;
     std::string reason;
@@ -60,7 +62,6 @@ Appointment AppointmentsManager::loadForm() {
         alreadyExists = petsManager.idExists(petId);
     } while (!alreadyExists);  // si no existe, volver a pedir
 
-    // TODO: Validar que exista una relacion activa cliente/mascota ?
     // pedir y buscar si el id cliente ingresado existe
     alreadyExists = true;
     clientIdForm.setIntField("ID Cliente", clientId, 4);
@@ -69,6 +70,17 @@ Appointment AppointmentsManager::loadForm() {
         if (!clientIdForm.fill()) return auxApp;
         alreadyExists = clientsManager.idExists(clientId);
     } while (!alreadyExists);
+
+    // Validar que exista una relacion activa cliente/mascota
+    bool relationExists = relationsMgr.relationExists(petId, clientId);
+    if (!relationExists) {
+        std::cout << "No existe una relación activa entre el cliente y la "
+                     "mascota ingresados.\n";
+        std::cout
+            << "Por favor cargue la relación desde el menú 'Relaciones'.\n";
+        utils::pause();
+        return auxApp;
+    }
 
     // pedir y validar fecha
     dateForm.setDateField("Fecha", appDate);

@@ -137,6 +137,7 @@ void VppConfigManager::edit() {
 
 void VppConfigManager::toggleMode() {
     InputForm toggleForm;
+    bool confirm;
     printTitle();
     utils::coutCenter("Modo de ejecución actual");
     std::cout << "Actualmente está ejecutando el programa en MODO ";
@@ -148,18 +149,19 @@ void VppConfigManager::toggleMode() {
                      "datos.\n";
     }
     std::cout << "Desea cambiar el modo de ejecución? ";
-    toggleForm.setBoolField("[SI/NO]", _testMode);
+    toggleForm.setBoolField("[SI/NO]", confirm);
     if (!toggleForm.fill()) return;
-    _vppConfig.setTestMode(!_testMode);
-    if (updateConfig(_vppConfig)) {
-        std::cout << "Modo de ejecución cambiado correctamente!\n";
-    } else {
-        std::cout
-            << "Se cambió el modo, pero ocurrió un error al guardarlo en el "
-               "archivo de configuraciones.\n";
+    if (confirm) {
+        _vppConfig.setTestMode(!_testMode);
+        if (updateConfig(_vppConfig)) {
+            std::cout << "Modo de ejecución cambiado correctamente!\n";
+        } else {
+            std::cout << "Se cambió el modo, pero ocurrió un error al "
+                         "guardarlo en el "
+                         "archivo de configuraciones.\n";
+        }
+        utils::pause();
     }
-    utils::pause();
-    utils::cls();
 }
 
 bool VppConfigManager::isTesting() { return _testMode; }

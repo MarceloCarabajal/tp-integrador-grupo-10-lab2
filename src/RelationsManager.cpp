@@ -218,6 +218,18 @@ bool RelationsManager::idExists(int nId) {
     return _petRelationsFile.searchReg(searchById, nId) >= 0 ? true : false;
 }
 
+// Verifica si existe relacion entre el id de la mascota y el id del cliente
+bool RelationsManager::searchRelation(PetRelations reg, int petId,
+                                      int clientId) {
+    if (reg.getPetId() == petId && reg.getClientId() == clientId) return true;
+    return false;
+}
+
+bool RelationsManager::relationExists(int petId, int clientId) {
+    int found = _petRelationsFile.searchReg(searchRelation, petId, clientId);
+    return (found >= 0) ? true : false;
+}
+
 bool RelationsManager::retryIfIdExists(bool exists) {
     if (exists) {
         std::cout << "El ID ingresado ya existe, presione cualquier tecla "

@@ -34,6 +34,9 @@ public:
     template <typename AnyType>
     int searchReg(bool (*fCallback)(VppClass reg, AnyType value),
                   AnyType value);
+    template <typename AnyType>
+    int searchReg(bool (*fCallback)(VppClass reg, AnyType val1, AnyType val2),
+                  AnyType val1, AnyType val2);
     // bool updateFile(int regNumber, bool *fCallback); // TODO: desarrollo
     // pendiente
 

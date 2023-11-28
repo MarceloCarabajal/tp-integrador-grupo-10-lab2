@@ -131,7 +131,7 @@ void ProdCategoryManager::edit() {
     utils::pause();
 }
 
-void ProdCategoryManager::show (bool showAndPause) {
+void ProdCategoryManager::show(bool showAndPause) {
     int totalRegs = _prodcategoryFile.getTotalRegisters();
     // calcular el total de celdas de nuestra lista, segun la cantidad de datos
     // que contiene 1 registro
@@ -139,7 +139,7 @@ void ProdCategoryManager::show (bool showAndPause) {
 
     if (totalRegs < 0) {
         std::cout << "Ocurrio un error al leer los registros.\n";
-        utils::pause();  // TODO: usar rlutil ?
+        utils::pause();
         return;
     }
     // Se crea la variable que va a contener todas las celdas, segun la cantidad
@@ -158,7 +158,7 @@ void ProdCategoryManager::show (bool showAndPause) {
         std::string vecStr[2];
         auxProdCategory.toVecString(vecStr);
         for (int cell = 0; cell < _productscategoryFields; cell++) {
-           // solo llena las celdas si es un registro activo
+            // solo llena las celdas si es un registro activo
             if (auxProdCategory.getStatus()) {
                 cells[rowPos + cell] = vecStr[cell];
             } else {
@@ -167,7 +167,7 @@ void ProdCategoryManager::show (bool showAndPause) {
         }
         // se incrementa la posicion de la celda segun la cantidad de datos que
         // contiene el registro, que equivale a una fila de la lista
-       rowPos += _productscategoryFields;
+        rowPos += _productscategoryFields;
     }
     // Vector que contiene las columnas de nuestra lista
     std::string columns[2] = {"ID Categoria", "Nombre"};
@@ -179,7 +179,7 @@ void ProdCategoryManager::show (bool showAndPause) {
     expensesList.show();
 
     delete[] cells;  // liberar memoria!
-     if (showAndPause) utils::pause();
+    if (showAndPause) utils::pause();
 }
 
 bool ProdCategoryManager::idExists(int nId) {
@@ -199,11 +199,12 @@ void ProdCategoryManager::clearDeleted() {
     int deleted = _prodcategoryFile.deleteAllMarked();
     switch (deleted) {
         case 0:
-            std::cout << "No se encontraron categorias del producto dadas de baja.\n";
+            std::cout
+                << "No se encontraron categorias del producto dadas de baja.\n";
             break;
         case -1:
-            std::cout
-                << "Ocurrió un error al intentar eliminar las categorias de producto\n";
+            std::cout << "Ocurrió un error al intentar eliminar las categorias "
+                         "de producto\n";
             break;
         default:
             printf("Se eliminaron %d registros con éxito!\n", deleted);
@@ -219,7 +220,8 @@ void ProdCategoryManager::cancel() {
     // mostrar vacunacion
     show(false);
 
-    std::cout << "\nIngrese el ID de la categoria del producto a dar de baja.\n";
+    std::cout
+        << "\nIngrese el ID de la categoria del producto a dar de baja.\n";
     searchId.setIntField("ID Categoria de Producto", nId, 4);
     if (!searchId.fill()) return;  // si no se completa, salir
     int regPos = _prodcategoryFile.searchReg(searchById, nId);
@@ -229,8 +231,10 @@ void ProdCategoryManager::cancel() {
         return;
     }
 
-    printf("Se seleccionó la Categoria de Producto #%d, confirma la baja provisoria.\n",
-           nId);
+    printf(
+        "Se seleccionó la Categoria de Producto #%d, confirma la baja "
+        "provisoria.\n",
+        nId);
     confirmForm.setBoolField("[SI/NO]", confirm);
     if (!confirmForm.fill()) return;
     if (!confirm) {
