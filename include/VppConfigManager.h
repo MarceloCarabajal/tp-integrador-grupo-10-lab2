@@ -8,16 +8,23 @@ private:
     VppFile<VppConfig> _confFile = VppFile<VppConfig>("VppConfig.vpp");
     static VppConfig _vppConfig;
     static std::string _veteName;
+    static bool _testMode;
+    void printTitle();
 
 public:
     bool init();
     bool load();
+    void edit();
+    void toggleMode();
+    void setDebugMode(bool debugMode);
 
     std::string getVeteName();
     void getCredentials(VppConfig &vc);
     bool setConfig(const VppConfig &vc);
+    bool updateConfig(const VppConfig &vc);
     bool exists();
-
+    bool isTesting();
+    std::string getDataPath();
     // posible idea: encriptar los datos de vppconfig.vpp
     // bool getCredentials(std::string passkey, VppConfig &vc);
 };

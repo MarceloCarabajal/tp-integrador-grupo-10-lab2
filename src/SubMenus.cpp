@@ -223,3 +223,16 @@ void SubMenus::productcategory() {
     mnuCatProd.addOption("3. Editar Categoria :pencil2:", editProdCategory);
     mnuCatProd.showMenu();
 }
+
+VppConfigManager SubMenus::_vppConfigManager = VppConfigManager();
+void SubMenus::editConfig() { _vppConfigManager.edit(); }
+void SubMenus::toggleMode() { _vppConfigManager.toggleMode(); }
+
+void SubMenus::sysConfig() {
+    Menu mnuConfig("CONFIGURACIÓN:gear:", true);
+
+    mnuConfig.addOption("1. Editar configuración :pencil2:", editConfig);
+    mnuConfig.addOption(
+        "2. Cambiar modo de ejecución :arrows_counterclockwise:", toggleMode);
+    mnuConfig.showMenu();
+}

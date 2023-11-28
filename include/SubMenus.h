@@ -12,6 +12,7 @@
 #include "VaccinationManager.h"
 #include "VetVisitsManager.h"
 #include "VetsManager.h"
+#include "VppConfigManager.h"
 
 class SubMenus {
 private:
@@ -39,8 +40,6 @@ private:
     static void loadPet();
     static void showPets();
     static void editPets();
-    static void cancelpets();
-    static void clearp();
 
     static RelationsManager _relsManager;
     static void loadRel();
@@ -67,6 +66,10 @@ private:
     static void showvetvisits();
     static void editvetvisit();
 
+    static VppConfigManager _vppConfigManager;
+    static void editConfig();
+    static void toggleMode();
+
 public:
     static void clients();
     static void appointments();
@@ -78,6 +81,7 @@ public:
     static void vaccination();
     static void productcategory();
     static void vetvisits();
+    static void sysConfig();
 };
 
 #endif /* SUBMENUS_INCLUDED */

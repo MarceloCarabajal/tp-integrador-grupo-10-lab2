@@ -10,6 +10,7 @@ private:
     char _SMTPUser[45];
     char _SMTPPass[30];
     int _SMTPPort;
+    bool _testMode;
 
 public:
     VppConfig();
@@ -18,12 +19,14 @@ public:
     void setSMTPUser(std::string usr);
     void setSMTPPass(std::string pass);
     void setSMTPPort(int p);
+    void setTestMode(bool testMode);
 
     const char* getVeteName();
     const char* getSMTPServer();
     const char* getSMTPUser();
     const char* getSMTPPass();
     int getSMTPPort();
+    bool getTestMode();
 };
 
 #endif /* VPPCONFIG_INCLUDED */

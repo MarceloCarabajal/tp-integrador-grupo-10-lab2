@@ -51,6 +51,8 @@ void MainManager::mainMenu() {
     _mainMenu.addOption("8. Gestión de Veterinarios :briefcase:",
                         _subMenus.vets);
     _mainMenu.addOption("9. Enviar email", funcSubMenutest);
+    _mainMenu.addOption("10. Cofiguración del sistema :gear:",
+                        _subMenus.sysConfig);
 
     _mainMenu.showMenu();
 }

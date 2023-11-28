@@ -19,9 +19,11 @@ void VppConfig::setSMTPPass(std::string pass) {
     strcpy(_SMTPPass, pass.c_str());
 }
 void VppConfig::setSMTPPort(int p) { _SMTPPort = p; }
+void VppConfig::setTestMode(bool testMode) { _testMode = testMode; }
 
 const char* VppConfig::getVeteName() { return _veteName; }
 const char* VppConfig::getSMTPServer() { return _SMTPServer; }
 const char* VppConfig::getSMTPUser() { return _SMTPUser; }
 const char* VppConfig::getSMTPPass() { return _SMTPPass; }
 int VppConfig::getSMTPPort() { return _SMTPPort; }
+bool VppConfig::getTestMode() { return _testMode; }
