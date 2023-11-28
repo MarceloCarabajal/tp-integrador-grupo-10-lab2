@@ -8,11 +8,12 @@ private:
     float _price;
     char _productName[30], _description[45], _brand[15];
     ProductCategory _productCategory;
+     bool _status;
 
 public:
 Product();
 Product (int productid, int quantity, int stock,float price, std::string productname,
- std::string description, std::string brand, ProductCategory productcategory);
+ std::string description, std::string brand, ProductCategory productcategory, bool status);
 
 
  
@@ -24,6 +25,7 @@ Product (int productid, int quantity, int stock,float price, std::string product
     void setPrice(float price);
     void setBrand(std::string brand);
     void setProductCategory(ProductCategory category);
+    void setStatus(bool status);
 
     int getProductId();
     const char * getProductName();
@@ -33,10 +35,12 @@ Product (int productid, int quantity, int stock,float price, std::string product
     float getPrice();
     const char * getBrand();
     ProductCategory getProductCategory();
+    bool getStatus();
 
     void addProduct();
     void deleteProduct();
     void updateStock();
+    
 
 
         void toVecString(std::string vStr[8]);

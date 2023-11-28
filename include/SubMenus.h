@@ -52,6 +52,8 @@ private:
     static void loadProduct();
     static void showProducts();
     static void editProducts();
+    static void cancelProduct();
+    static void clearProd();
 
     static VaccinationManager _vaccManager;
     static void loadVaccination();
@@ -66,7 +68,6 @@ private:
     static void editProdCategory();
     static void cancelProdCategory();
     static void clearPC();
-
 
     static VetVisitsManager _vetvisitsManager;
     static void loadvetvisit();

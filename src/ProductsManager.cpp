@@ -71,6 +71,8 @@ Product ProductsManager::loadForm() {
     auxProduct.setQuantity(quantity);
     auxProduct.setStock(stock);
     auxProduct.setProductCategory(productCategory);
+    auxProduct.setStatus(true);
+    
     return auxProduct;
 }
 
@@ -119,6 +121,7 @@ Product ProductsManager::editForm(int regPos) {
         auxFormProduct.setStock(stock);
         auxFormProduct.setProductCategory(productCategory);
         auxFormProduct.setProductId(nId);
+        auxFormProduct.setStatus(true);
 
         return auxFormProduct;
     }
@@ -157,7 +160,7 @@ void ProductsManager::edit() {
     utils::pause();
 }
 
-void ProductsManager::show() {
+void ProductsManager::show(bool showAndPause) {
     int totalRegs = _productsFile.getTotalRegisters();
     // calcular el total de celdas de nuestra lista, segun la cantidad de datos
     // que contiene 1 registro
@@ -175,7 +178,7 @@ void ProductsManager::show() {
         std::cout << "No hay memoria suficiente para mostrar los clientes.\n";
         return;
     }
-    int cellPos = 0;  // acumula la posicion actual a asignar
+    int rowPos = 0;   // acumula la posicion actual a asignar
     for (int i = 0; i < totalRegs; i++) {
         Product auxProduct = _productsFile.readFile(i);
         // Obtener todas las propiedades del cliente
@@ -183,11 +186,16 @@ void ProductsManager::show() {
         std::string vecStr[9];
         auxProduct.toVecString(vecStr);
         for (int cell = 0; cell < _productFields; cell++) {
-            cells[cellPos + cell] = vecStr[cell];
+            if (auxProduct.getStatus()) {
+                cells[rowPos + cell] = vecStr[cell];
+            } else {
+                cells[rowPos + cell] = "";
+            }
         }
+
         // se incrementa la posicion de la celda segun la cantidad de datos que
         // contiene el registro, que equivale a una fila de la lista
-        cellPos += _productFields;
+       rowPos += _productFields;
     }
     // Vector que contiene las columnas de nuestra lista
     std::string columns[8] = {"ID",       "Nombre", "Descripcion", "Marca",
@@ -199,8 +207,8 @@ void ProductsManager::show() {
     productsList.setTitle("PRODUCTOS");
     productsList.show();
     delete[] cells;  // liberar memoria!
-}
-
+    if (showAndPause) utils::pause();
+} 
 // Solo compara si coincide el id
 bool ProductsManager::searchById(Product reg, int nId) {
     if (reg.getProductId() == nId) return true;
@@ -209,4 +217,67 @@ bool ProductsManager::searchById(Product reg, int nId) {
 
 bool ProductsManager::idExists(int nId) {
     return _productsFile.searchReg(searchById, nId) >= 0 ? true : false;
+}
+
+
+void ProductsManager::clearDeleted() {
+    InputForm confirmForm;
+    bool confirm;
+    std::cout << "Esta acción buscará productos dadas de baja e "
+                 "intentará eliminarlas definitivamente. Desea continuar?\n";
+    confirmForm.setBoolField("[SI/NO]", confirm);
+    if (!confirmForm.fill()) return;
+    if (!confirm) return;
+    std::cout << "Buscando registros...\n";
+    int deleted = _productsFile.deleteAllMarked();
+    switch (deleted) {
+        case 0:
+            std::cout << "No se encontraron productos dadas de baja.\n";
+            break;
+        case -1:
+            std::cout
+                << "Ocurrió un error al intentar eliminar los productos\n";
+            break;
+        default:
+            printf("Se eliminaron %d registros con éxito!\n", deleted);
+            break;
+    }
+    utils::pause();
+}
+
+void ProductsManager::cancel() {
+    InputForm searchId, confirmForm;
+    int nId;
+    bool confirm;
+    // mostrar vacunacion
+    show(false);
+
+    std::cout << "\nIngrese el ID del productos a dar de baja.\n";
+    searchId.setIntField("ID Producto", nId, 4);
+    if (!searchId.fill()) return;  // si no se completa, salir
+    int regPos = _productsFile.searchReg(searchById, nId);
+    if (regPos == -1) {
+        std::cout << "No existe productos con el ID ingresado.\n";
+        utils::pause();
+        return;
+    }
+
+    printf("Se seleccionó el productos #%d, confirma la baja provisoria.\n",
+           nId);
+    confirmForm.setBoolField("[SI/NO]", confirm);
+    if (!confirmForm.fill()) return;
+    if (!confirm) {
+        std::cout << "No se realizará la baja.\n";
+        utils::pause();
+        return;
+    }
+
+    bool success = _productsFile.markForDelete(regPos);
+
+    if (success) {
+        std::cout << "Baja realizada con éxito!\n";
+    } else {
+        std::cout << "Ocurrió un error al intentar realizar la baja.\n";
+    }
+    utils::pause();
 }

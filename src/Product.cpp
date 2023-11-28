@@ -10,10 +10,11 @@ Product::Product(){
     strcpy(_description, " ");
     strcpy(_brand, " ");
    _productCategory= ProductCategory();
+    _status = false;
 
 }
 Product::Product (int productid, int quantity, int stock,float price, std::string productname,
- std::string description, std::string brand,  ProductCategory productcategory){
+ std::string description, std::string brand,  ProductCategory productcategory,bool status){
 
     _productID=productid;
     _quantity=quantity;
@@ -23,6 +24,7 @@ Product::Product (int productid, int quantity, int stock,float price, std::strin
    strcpy( _description, description.c_str());
    strcpy( _brand, brand.c_str());
    _productCategory=productcategory;
+     _status = status;
 
  }
 
@@ -40,6 +42,7 @@ void Product::setBrand(std::string brand) { strcpy(_brand, brand.c_str()); }
 void Product::setProductCategory(ProductCategory category) {
     _productCategory = category;
 }
+void Product::setStatus(bool status) { _status = status; }
 
 int Product::getProductId() { return _productID; }
 const char* Product::getProductName() { return _productName; }
@@ -49,6 +52,7 @@ int Product::getStock() { return _stock; }
 float Product::getPrice() { return _price; }
 const char* Product::getBrand() { return _brand; }
 ProductCategory Product::getProductCategory() { return _productCategory; }
+bool Product::getStatus() { return _status; }
 
 // TODO Completar metodos restantes
 void addProduct() {}

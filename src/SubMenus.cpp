@@ -171,6 +171,9 @@ void SubMenus::showProducts() {
     utils::pause();
 }
 void SubMenus::editProducts() { _productsManager.edit(); }
+void SubMenus::cancelProduct() { _productsManager.cancel(); }
+void SubMenus::clearProd() { _productsManager.clearDeleted(); }
+
 
 void SubMenus::products() {
     Menu mnuProducts("PRODUCTOS:package:", true);
@@ -178,6 +181,8 @@ void SubMenus::products() {
     mnuProducts.addOption("1. Cargar Producto :arrow_up_small:", loadProduct);
     mnuProducts.addOption("2. Mostrar producto :page_facing_up:", showProducts);
     mnuProducts.addOption("3. Editar producto :pencil2:", editProducts);
+    mnuProducts.addOption("4. Baja Producto :x:", cancelProduct);
+    mnuProducts.addOption("5. Limpiar Registros :white_check_mark:", clearProd);
     mnuProducts.showMenu();
 }
 
