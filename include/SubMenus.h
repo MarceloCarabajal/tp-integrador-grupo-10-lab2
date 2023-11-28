@@ -39,6 +39,8 @@ private:
     static void loadPet();
     static void showPets();
     static void editPets();
+    static void cancelpets();
+    static void clearp();
 
     static RelationsManager _relsManager;
     static void loadRel();

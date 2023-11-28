@@ -9,11 +9,14 @@ private:
     const int _petsFields = 7;  // total de datos de un regisro Pet
     Pet loadForm();
     Pet editForm(int regPos);
+    bool retryIfIdNotExists(bool exists);
 
 public:
     void load();
     void edit();
-    void show();
+    void show(bool showAndPause = true);
+    void clearDeleted();
+    void cancel();
 
     // Al ser una funcion estatica se puede usar sin necesaidad de instanciar un
     // objeto de tipo "PetsManager", eso permite que se pueda pasar por

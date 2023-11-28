@@ -8,12 +8,13 @@ private:
     int _petId, _ownerId;
     char _name[30], _specie[15], _breed[30], _currentDiagnosis[45];
     Date _birthDate;
+    bool _status;
 
 public:
      Pet();
 
      Pet(int petId, int ownerId, std::string name, std::string specie,
-           std::string breed, std::string currentDiagnosis, Date birthDate);
+           std::string breed, std::string currentDiagnosis, Date birthDate, bool status);
 
 
     void setPetId(int petId);
@@ -23,6 +24,8 @@ public:
     void setBreed(std::string breed);
     void setCurrentDiagnosis(std::string currentDiagnosis);
     void setBirthDate(Date birthdate);
+    void setStatus(bool status);
+
 
     int getPetId();
     int getOwnerId();
@@ -31,6 +34,7 @@ public:
     const char* getBreed();
     const char* getCurrentDiagnosis();
     Date getBirthDate();
+    bool getStatus();
 
     void addAppoinment();
     void loadPet();

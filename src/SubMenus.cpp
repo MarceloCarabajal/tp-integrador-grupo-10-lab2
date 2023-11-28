@@ -8,7 +8,6 @@ void SubMenus::loadClient() {
     utils::pause();
 }
 void SubMenus::editClients() { _clientsManager.edit(); }
-
 void SubMenus::showClients() {
     _clientsManager.show();
     utils::pause();
@@ -26,10 +25,8 @@ void SubMenus::clients() {
     mnuClients.addOption("1. Cargar Cliente :arrow_up_small:", loadClient);
     mnuClients.addOption("2. Mostrar Clientes :page_facing_up:", showClients);
     mnuClients.addOption("3. Editar cliente :pencil2:", editClients);
-    mnuClients.addOption("4. Baja provisoria del cliente :pencil2:",
-                         cancelClients);
-    mnuClients.addOption(
-        "5. Baja definitiva del clientes con baja provisoria :pencil2:", clear);
+    mnuClients.addOption("4. Baja del cliente :x:", cancelClients);
+    mnuClients.addOption("5. Limpiar registros :white_check_mark:", clear);
     mnuClients.showMenu();
 }
 
@@ -123,12 +120,23 @@ void SubMenus::showPets() {
 }
 void SubMenus::editPets() { _petsManager.edit(); }
 
+void SubMenus::cancelpets() {
+    _petsManager.cancel();
+    utils::pause();
+}
+void SubMenus::clearp() {
+    _petsManager.clearDeleted();
+    utils::pause();
+}
+
 void SubMenus::pets() {
     Menu mnuPets("MASCOTAS:dog:", true);
 
     mnuPets.addOption("1. Cargar Mascota :arrow_up_small:", loadPet);
     mnuPets.addOption("2. Mostrar Mascotas :page_facing_up:", showPets);
     mnuPets.addOption("3. Editar Mascota :pencil2:", editPets);
+    mnuPets.addOption("4. Baja de mascota:x:", cancelpets);
+    mnuPets.addOption("5. Limpiar registros :white_check_mark:", clearp);
     mnuPets.showMenu();
 }
 

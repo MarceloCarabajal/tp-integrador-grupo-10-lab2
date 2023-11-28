@@ -2,6 +2,7 @@
 
 #include <iostream>
 
+#include "ClientsManager.h"
 #include "Date.h"
 #include "InputForm.h"
 #include "ListView.h"
@@ -42,18 +43,28 @@ void PetsManager::load() {
 }
 
 Pet PetsManager::loadForm() {
-    InputForm petForm;
+    InputForm petForm, clientIdForm;
     Pet auxPet;
+    ClientsManager clientsManager;
     std::string name, specie, breed, currentDiagnosis;
     Date birthDate;
     int ownerId;
+    bool alreadyExists = true;
+
+    // pedir y buscar si el id cliente ingresado existe
+    alreadyExists = true;
+    clientIdForm.setIntField("ID Dueño", ownerId, 4);
+    do {
+        if (!retryIfIdNotExists(alreadyExists)) return auxPet;
+        if (!clientIdForm.fill()) return auxPet;
+        alreadyExists = clientsManager.idExists(ownerId);
+    } while (!alreadyExists);
 
     petForm.setStrField("Nombre", name, 30);
     petForm.setStrField("Especie", specie, 15);
     petForm.setStrField("Raza", breed, 30);
     petForm.setStrField("Diagnostico actual", currentDiagnosis, 45);
     petForm.setDateField("Fecha de nacimiento", birthDate);
-    petForm.setIntField("ID Dueño", ownerId, 4);
     if (!petForm.fill()) return auxPet;
 
     auxPet.setName(name);
@@ -62,15 +73,18 @@ Pet PetsManager::loadForm() {
     auxPet.setCurrentDiagnosis(currentDiagnosis);
     auxPet.setBirthDate(birthDate);
     auxPet.setOwnerId(ownerId);
+    auxPet.setStatus(true);
     return auxPet;
 }
 
 Pet PetsManager::editForm(int regPos) {
-    InputForm petForm;
+    InputForm petForm(true), clientIdForm(true);
     Pet auxPet, auxFormPet;
     std::string name, specie, breed, currentDiagnosis;
+    ClientsManager clientsManager;
     int nId, ownerId;
     Date birthDate;
+    bool existentId, alreadyExists = true;
 
     auxPet = _petsFile.readFile(regPos);
     if (auxPet.getPetId() == -1) {
@@ -86,7 +100,18 @@ Pet PetsManager::editForm(int regPos) {
     currentDiagnosis = auxPet.getCurrentDiagnosis();
     birthDate = auxPet.getBirthDate();
 
+    rlutil::cls();
     std::cout << "Editando Mascota #" << nId << std::endl;
+
+    // pedir y buscar id dueño
+    clientIdForm.setIntField("ID Dueño", ownerId, 4);
+    existentId = false;
+    while (!existentId) {
+        if (!clientIdForm.fill()) return auxFormPet;
+        existentId = clientsManager.idExists(ownerId);
+        if (!retryIfIdNotExists(existentId)) return auxFormPet;
+    }
+
     // configurar form
     petForm.setEditMode(true, true);  // modo edicion
     petForm.setStrField("Nombre", name, 30);
@@ -94,7 +119,7 @@ Pet PetsManager::editForm(int regPos) {
     petForm.setStrField("Raza", breed, 30);
     petForm.setStrField("Diagnostico actual", currentDiagnosis, 45);
     petForm.setDateField("Fecha de nacimiento", birthDate);
-    petForm.setIntField("ID Dueño", ownerId, 4);
+    /// petForm.setIntField("ID Dueño", ownerId, 4);
 
     // completar form
     bool success = petForm.fill();
@@ -107,11 +132,12 @@ Pet PetsManager::editForm(int regPos) {
         auxFormPet.setCurrentDiagnosis(currentDiagnosis);
         auxFormPet.setBirthDate(birthDate);
         auxFormPet.setOwnerId(ownerId);
+        auxFormPet.setStatus(true);
+
         return auxFormPet;
     }
     // si no se completa, devolver Mascota vacia
     return auxFormPet;
-    ;
 }
 
 void PetsManager::edit() {
@@ -145,7 +171,7 @@ void PetsManager::edit() {
     utils::pause();
 }
 
-void PetsManager::show() {
+void PetsManager::show(bool showAndPause) {
     int totalRegs = _petsFile.getTotalRegisters();
     // calcular el total de celdas de nuestra lista, segun la cantidad de datos
     // que contiene 1 registro
@@ -163,7 +189,7 @@ void PetsManager::show() {
         std::cout << "No hay memoria suficiente para mostrar las mascotas.\n";
         return;
     }
-    int cellPos = 0;  // acumula la posicion actual a asignar
+    int rowPos = 0;  // acumula la posicion actual a asignar
     for (int i = 0; i < totalRegs; i++) {
         Pet auxPet = _petsFile.readFile(i);
         // Obtener todas las propiedades de la Mascota
@@ -171,12 +197,15 @@ void PetsManager::show() {
         std::string vecStr[7];
         auxPet.toVecString(vecStr);
         for (int cell = 0; cell < _petsFields; cell++) {
-            cells[cellPos + cell] = vecStr[cell];
+            if (auxPet.getStatus()) {
+                cells[rowPos + cell] = vecStr[cell];
+            } else {
+                cells[rowPos + cell] = "";
+            }
         }
-
         // se incrementa la posicion de la celda segun la cantidad de datos que
         // contiene el registro, que equivale a una fila de la lista
-        cellPos += _petsFields;
+        rowPos += _petsFields;
     }
     // Vector que contiene las columnas de nuestra lista
     std::string columns[7] = {"ÍD",   "ID Dueño",    "Nombre",       "Especie",
@@ -188,8 +217,18 @@ void PetsManager::show() {
     petsList.setTitle("MASCOTAS");
     petsList.show();
     delete[] cells;  // liberar memoria!
-}
 
+    if (showAndPause) utils::pause();
+}
+bool PetsManager::retryIfIdNotExists(bool exists) {
+    if (!exists) {
+        std::cout << "El ID ingresado NO EXISTE, presione cualquier tecla "
+                     "para reintentar o ESC para salir.\n";
+        if (rlutil::getkey() == rlutil::KEY_ESCAPE) return false;
+        rlutil::cls();
+    }
+    return true;
+}
 // Solo compara si coincide el id
 bool PetsManager::searchById(Pet reg, int nId) {
     if (reg.getPetId() == nId) return true;
@@ -199,4 +238,64 @@ bool PetsManager::searchById(Pet reg, int nId) {
 bool PetsManager::idExists(int nId) {
     // Si devuelve un nro de posicion, existe
     return _petsFile.searchReg(searchById, nId) >= 0 ? true : false;
+}
+
+void PetsManager::clearDeleted() {
+    InputForm confirmForm;
+    bool confirm;
+    std::cout << "Esta acción buscará Mascotas dadas de baja e "
+                 "intentará eliminarlos definitivamente. Desea continuar?\n";
+    confirmForm.setBoolField("[SI/NO]", confirm);
+    if (!confirmForm.fill()) return;
+    if (!confirm) return;
+    std::cout << "Buscando registros...\n";
+    int deleted = _petsFile.deleteAllMarked();
+    switch (deleted) {
+        case 0:
+            std::cout << "No se encontraron mascotas dados de baja.\n";
+            break;
+        case -1:
+            std::cout << "Ocurrió un error al intentar eliminar las mascotas\n";
+            break;
+        default:
+            printf("Se eliminaron %d registros con éxito!\n", deleted);
+            break;
+    }
+    utils::pause();
+}
+
+void PetsManager::cancel() {
+    InputForm searchId, confirmForm;
+    int nId;
+    bool confirm;
+    // mostrar mascotas
+    show(false);
+
+    std::cout << "\nIngrese el ID de la mascota a dar de baja.\n";
+    searchId.setIntField("ID Mascota", nId, 4);
+    if (!searchId.fill()) return;  // si no se completa, salir
+    int regPos = _petsFile.searchReg(searchById, nId);
+    if (regPos == -1) {
+        std::cout << "No existe una mascota con el ID ingresado.\n";
+        utils::pause();
+        return;
+    }
+
+    printf("Se seleccionó la mascota #%d, confirma la baja provisoria.\n", nId);
+    confirmForm.setBoolField("[SI/NO]", confirm);
+    if (!confirmForm.fill()) return;
+    if (!confirm) {
+        std::cout << "No se realizará la baja.\n";
+        utils::pause();
+        return;
+    }
+
+    bool success = _petsFile.markForDelete(regPos);
+
+    if (success) {
+        std::cout << "Baja realizada con éxito!\n";
+    } else {
+        std::cout << "Ocurrió un error al intentar realizar la baja.\n";
+    }
+    utils::pause();
 }
