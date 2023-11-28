@@ -19,6 +19,7 @@ bool VppConfigManager::init() {
     _vppConfig = _confFile.readFile(0);
     if (_vppConfig.getSMTPPort() == 0) return false;
     _veteName = _vppConfig.getVeteName();
+    _testMode = _vppConfig.getTestMode();
     return true;
 }
 
@@ -120,7 +121,7 @@ void VppConfigManager::edit() {
     auxVc.setSMTPUser(SMTPUser);
     auxVc.setTestMode(_testMode);  // conserva el valor actual
 
-    if (setConfig(auxVc)) {
+    if (updateConfig(auxVc)) {
         utils::coutCenter("Configuración guardada correctamente!");
         std::cout << std::endl;
         utils::pause();
@@ -184,7 +185,9 @@ bool VppConfigManager::setConfig(const VppConfig &vc) {
 }
 
 bool VppConfigManager::updateConfig(const VppConfig &vc) {
-    return _confFile.updateFile(vc, 0);
+    bool success = _confFile.updateFile(vc, 0);
+    if (success) init();  // actualizar datos
+    return success;
 }
 
 bool VppConfigManager::exists() {

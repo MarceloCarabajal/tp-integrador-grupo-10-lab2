@@ -23,18 +23,24 @@ void StatusBar::update() {
 }
 
 void StatusBar::show() {
+    VppConfigManager configMgr;
     std::string barText;
+    std::string testMode = "";
     rlutil::locate(0, 0);
     rlutil::setColor(rlutil::MAGENTA);
-    std::cout << std::setfill('-') << std::setw(rlutil::tcols()) << ""
-              << std::setfill(' ') << std::endl;
+    std::cout << " " << std::setfill('-') << std::setw(rlutil::tcols() - 2)
+              << "" << std::setfill(' ') << std::endl;
     rlutil::setColor(rlutil::GREY);
-    barText = _veteName + " || Notificaciones pendientes: " +
-              std::to_string(_pendingNotif) +
-              " || Turnos Pendientes: " + std::to_string(_pendingApps);
+    if (configMgr.isTesting()) testMode = " | MODO DE PRUEBA ACTIVO";
+
+    barText = _veteName +
+              " | Notificaciones pendientes: " + std::to_string(_pendingNotif) +
+              " | Turnos Pendientes: " + std::to_string(_pendingApps) +
+              testMode;
+
     utils::coutCenter(barText);
     rlutil::setColor(rlutil::MAGENTA);
-    std::cout << std::setfill('-') << std::setw(rlutil::tcols()) << ""
-              << std::setfill(' ') << std::endl;
+    std::cout << " " << std::setfill('-') << std::setw(rlutil::tcols() - 2)
+              << "" << std::setfill(' ') << std::endl;
     rlutil::setColor(rlutil::GREY);
 }
