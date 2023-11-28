@@ -96,8 +96,7 @@ void Menu::printMenu(int selected) {
         printHighlighted(_options[i], isSelected, rlutil::MAGENTA,
                          getXPosCentered(), _yPos + i);
     }
-    std::cout
-        << "\n\nElija una opcion y presione enter o escape para salir.\n ";
+    std::cout << "\n\nElija una opcion y presione enter, o ESC para salir.\n ";
     rlutil::hidecursor();  // ocultar cursor de consola
 }
 

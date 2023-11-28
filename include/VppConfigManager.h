@@ -10,9 +10,11 @@ private:
     static std::string _veteName;
     static bool _testMode;
     void printTitle();
+    void checkText();
 
 public:
     bool init();
+    void checkWidth();
     bool load();
     void edit();
     void toggleMode();

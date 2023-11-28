@@ -11,6 +11,7 @@ void funcSubMenutest() { system("pause"); }
 bool MainManager::checkConfig() {
     VppConfigManager vppConfigMgr;
     // Si existe archivo de configuración, cargar configuración
+    vppConfigMgr.checkWidth();
     if (vppConfigMgr.exists()) return vppConfigMgr.init();
     // Si no existe, crearlo y tratar de cargarlo
     if (vppConfigMgr.load()) return vppConfigMgr.init();

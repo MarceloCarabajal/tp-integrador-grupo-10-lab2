@@ -23,6 +23,42 @@ bool VppConfigManager::init() {
     return true;
 }
 
+void VppConfigManager::checkText() {
+    utils::cls();
+    utils::coutCenter(
+        "La ventana es demasiado pequeña para ejecutar el programa.");
+    utils::coutCenter("Por favor, agrande/estire el ancho de la misma hasta");
+    utils::coutCenter("Que la linea de abajo se vea en una sola fila.");
+    std::cout << std::setfill('-') << std::setw(100) << "" << std::setfill(' ')
+              << std::endl;
+}
+
+void VppConfigManager::checkWidth() {
+    int actualWidth = rlutil::tcols();
+    bool widthOk = false;
+    int secCount = 0;
+    if (actualWidth >= 100) return;
+    while (!widthOk) {
+        checkText();
+        if (secCount == 30) {
+            std::cout << "No se ha podido configurar el ancho correcto, se "
+                         "usará el ancho actual pero es probable que el "
+                         "programa no se visualice correctamente.\n";
+            utils::pause();
+            break;
+        }
+        rlutil::msleep(1000);
+        checkText();
+        actualWidth = rlutil::tcols();
+        if (actualWidth >= 100) {
+            std::cout << std::endl;
+            utils::coutCenter("Ancho configurado correctamente!");
+            utils::pause();
+            widthOk = true;
+        }
+    }
+}
+
 void VppConfigManager::printTitle() {
     utils::cls();
     utils::coutCenter("-------------------------");
