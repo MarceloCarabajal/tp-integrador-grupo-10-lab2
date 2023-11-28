@@ -69,6 +69,8 @@ private:
     static void loadvetvisit();
     static void showvetvisits();
     static void editvetvisit();
+    static void cancelvetvisit();
+    static void clearvv();
 
     static VppConfigManager _vppConfigManager;
     static void editConfig();

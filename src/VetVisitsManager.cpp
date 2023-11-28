@@ -11,7 +11,6 @@
 #include "rlutil.h"
 #include "utils.h"
 
-
 void VetVisitsManager::load() {
     InputForm idForm;
     VetVisits auxVetVisits;
@@ -99,6 +98,7 @@ VetVisits VetVisitsManager::loadForm() {
     auxVetVisits.setPetId(petId);
     auxVetVisits.setVetId(vetId);
     auxVetVisits.setSaleId(saleId);
+    auxVetVisits.setStatus(true);
 
     return auxVetVisits;
 }
@@ -147,6 +147,7 @@ VetVisits VetVisitsManager::editForm(int regPos) {
         auxVetVisits.setPetId(petId);
         auxVetVisits.setVetId(vetId);
         auxVetVisits.setSaleId(saleId);
+        auxVetVisits.setStatus(true);
 
         return auxVetVisits;
     }
@@ -185,7 +186,7 @@ void VetVisitsManager::edit() {
     utils::pause();
 }
 
-void VetVisitsManager::show() {
+void VetVisitsManager::show(bool showAndPause) {
     int totalRegs = _vetVisitsFile.getTotalRegisters();
     // calcular el total de celdas de nuestra lista, segun la cantidad de datos
     // que contiene 1 registro
@@ -203,7 +204,7 @@ void VetVisitsManager::show() {
         std::cout << "No hay memoria suficiente para mostrar las consultas.\n";
         return;
     }
-    int cellPos = 0;  // acumula la posicion actual a asignar
+    int rowPos = 0;  // acumula la posicion actual a asignar
     for (int i = 0; i < totalRegs; i++) {
         VetVisits auxVetVisits = _vetVisitsFile.readFile(i);
         // Obtener todas las propiedades de la consulta
@@ -211,12 +212,16 @@ void VetVisitsManager::show() {
         std::string vecStr[8];
         auxVetVisits.toVecString(vecStr);
         for (int cell = 0; cell < _vetVisitsFields; cell++) {
-            cells[cellPos + cell] = vecStr[cell];
+            if (auxVetVisits.getStatus()) {
+                cells[rowPos + cell] = vecStr[cell];
+            } else {
+                cells[rowPos + cell] = "";
+            }
         }
 
         // se incrementa la posicion de la celda segun la cantidad de datos que
         // contiene el registro, que equivale a una fila de la lista
-        cellPos += _vetVisitsFields;
+        rowPos += _vetVisitsFields;
     }
     // Vector que contiene las columnas de nuestra lista
     std::string columns[8] = {"ID CONSULTA", "ID VETE",    "ID CLIENTE",
@@ -259,4 +264,66 @@ bool VetVisitsManager::retryIfIdNotExists(bool exists) {
         rlutil::cls();
     }
     return true;
+}
+
+void VetVisitsManager::clearDeleted() {
+    InputForm confirmForm;
+    bool confirm;
+    std::cout << "Esta acción buscará Consultas dadas de baja e "
+                 "intentará eliminarlas definitivamente. Desea continuar?\n";
+    confirmForm.setBoolField("[SI/NO]", confirm);
+    if (!confirmForm.fill()) return;
+    if (!confirm) return;
+    std::cout << "Buscando registros...\n";
+    int deleted = _vetVisitsFile.deleteAllMarked();
+    switch (deleted) {
+        case 0:
+            std::cout << "No se encontraron Consultas dadas de baja.\n";
+            break;
+        case -1:
+            std::cout
+                << "Ocurrió un error al intentar eliminar las consultas\n";
+            break;
+        default:
+            printf("Se eliminaron %d registros con éxito!\n", deleted);
+            break;
+    }
+    utils::pause();
+}
+
+void VetVisitsManager::cancel() {
+    InputForm searchId, confirmForm;
+    int nId;
+    bool confirm;
+    // mostrar vacunacion
+    show(false);
+
+    std::cout << "\nIngrese el ID de la Consulta a dar de baja.\n";
+    searchId.setIntField("ID Consulta", nId, 4);
+    if (!searchId.fill()) return;  // si no se completa, salir
+    int regPos = _vetVisitsFile.searchReg(searchById, nId);
+    if (regPos == -1) {
+        std::cout << "No existe Consulta con el ID ingresado.\n";
+        utils::pause();
+        return;
+    }
+
+    printf("Se seleccionó la Consulta #%d, confirma la baja provisoria.\n",
+           nId);
+    confirmForm.setBoolField("[SI/NO]", confirm);
+    if (!confirmForm.fill()) return;
+    if (!confirm) {
+        std::cout << "No se realizará la baja.\n";
+        utils::pause();
+        return;
+    }
+
+    bool success = _vetVisitsFile.markForDelete(regPos);
+
+    if (success) {
+        std::cout << "Baja realizada con éxito!\n";
+    } else {
+        std::cout << "Ocurrió un error al intentar realizar la baja.\n";
+    }
+    utils::pause();
 }

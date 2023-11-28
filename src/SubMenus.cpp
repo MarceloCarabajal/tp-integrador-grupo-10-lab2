@@ -8,10 +8,7 @@ void SubMenus::loadClient() {
     utils::pause();
 }
 void SubMenus::editClients() { _clientsManager.edit(); }
-void SubMenus::showClients() {
-    _clientsManager.show();
-    utils::pause();
-}
+void SubMenus::showClients() { _clientsManager.show(); }
 void SubMenus::cancelClients() {
     _clientsManager.cancel();
     utils::pause();
@@ -40,12 +37,16 @@ void SubMenus::showvetvisits() {
     _vetvisitsManager.show();
     utils::pause();
 }
+void SubMenus::cancelvetvisit() { _vetvisitsManager.cancel(); }
+void SubMenus::clearvv() { _vetvisitsManager.clearDeleted(); }
 
 void SubMenus::vetvisits() {
     Menu mnuClients("CONSULTAS VETERINARIAS:busts_in_silhouette:", true);
     mnuClients.addOption("1. Cargar Consulta :arrow_up_small:", loadvetvisit);
     mnuClients.addOption("2. Mostrar Consulta :page_facing_up:", showvetvisits);
     mnuClients.addOption("3. Editar Consulta:pencil2:", editvetvisit);
+    mnuClients.addOption("4. Baja de consulta :x:", cancelvetvisit);
+    mnuClients.addOption("5. Limpiar registros :white_check_mark:", clearvv);
     mnuClients.showMenu();
 }
 
