@@ -10,16 +10,18 @@ Client::Client() : Person() {
     strcpy(_address, "");
     strcpy(_phone, "");
     strcpy(_email, "");
+    _status = false;
 }
 
 Client::Client(int clientId, int personId, std::string name,
                std::string lastname, std::string address, std::string phone,
-               std::string email)
+               std::string email, bool status)
     : Person(personId, name, lastname) {
     _clientId = clientId;
     strcpy(_address, address.c_str());
     strcpy(_phone, phone.c_str());
     strcpy(_email, email.c_str());
+    _status = status;
 }
 
 void Client::setClientId(int clienteId) { _clientId = clienteId; }
@@ -28,11 +30,13 @@ void Client::setAddress(std::string address) {
 }
 void Client::setPhone(std::string phone) { strcpy(_phone, phone.c_str()); }
 void Client::setEmail(std::string email) { strcpy(_email, email.c_str()); }
+void Client::setStatus(bool status) { _status = status; }
 
 int Client::getClientId() { return _clientId; }
 const char *Client::getAddress() { return _address; }
 const char *Client::getPhone() { return _phone; }
 const char *Client::getEmail() { return _email; }
+bool Client::getStatus() { return _status; }
 
 void Client::toVecString(std::string vStr[7]) {
     vStr[0] = std::to_string(_clientId);

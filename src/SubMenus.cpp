@@ -13,12 +13,23 @@ void SubMenus::showClients() {
     _clientsManager.show();
     utils::pause();
 }
-
+void SubMenus::cancelClients() {
+    _clientsManager.cancel();
+    utils::pause();
+}
+void SubMenus::clear() {
+    _clientsManager.clearDeleted();
+    utils::pause();
+}
 void SubMenus::clients() {
     Menu mnuClients("CLIENTES:busts_in_silhouette:", true);
     mnuClients.addOption("1. Cargar Cliente :arrow_up_small:", loadClient);
     mnuClients.addOption("2. Mostrar Clientes :page_facing_up:", showClients);
     mnuClients.addOption("3. Editar cliente :pencil2:", editClients);
+    mnuClients.addOption("4. Baja provisoria del cliente :pencil2:",
+                         cancelClients);
+    mnuClients.addOption(
+        "5. Baja definitiva del clientes con baja provisoria :pencil2:", clear);
     mnuClients.showMenu();
 }
 

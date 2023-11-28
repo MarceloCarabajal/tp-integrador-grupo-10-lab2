@@ -7,6 +7,8 @@
 #include "rlutil.h"
 #include "utils.h"
 
+using namespace std;
+
 void ClientsManager::load() {
     InputForm idForm;
     Client auxClient;
@@ -61,11 +63,12 @@ Client ClientsManager::loadForm() {
     auxClient.setPhone(phone);
     auxClient.setEmail(email);
     auxClient.setIdPerson(DNI);
+    auxClient.setStatus(true);
     return auxClient;
 }
 
 Client ClientsManager::editForm(int regPos) {
-    InputForm clientForm;
+    InputForm clientForm(true);
     Client auxClient, auxFormClient;
     std::string name, lastname, address, email, phone;
     int DNI, nId;
@@ -104,6 +107,8 @@ Client ClientsManager::editForm(int regPos) {
         auxFormClient.setAddress(address);
         auxFormClient.setPhone(phone);
         auxFormClient.setEmail(email);
+        auxFormClient.setStatus(true);
+
         return auxFormClient;
     }
     // si no se completa, devolver Client vacio
@@ -113,7 +118,7 @@ Client ClientsManager::editForm(int regPos) {
 void ClientsManager::edit() {
     InputForm search;
     int nId;
-    show();
+    show(false);
     std::cout << "\nIngrese el ID del cliente a modificar.\n";
     search.setIntField("ID Cliente", nId, 4);
     if (!search.fill()) return;  // si no se completa, salir
@@ -141,7 +146,7 @@ void ClientsManager::edit() {
     utils::pause();
 }
 
-void ClientsManager::show() {
+void ClientsManager::show(bool showAndPause) {
     int totalRegs = _clientsFile.getTotalRegisters();
     // calcular el total de celdas de nuestra lista, segun la cantidad de datos
     // que contiene 1 registro
@@ -154,12 +159,12 @@ void ClientsManager::show() {
     }
     // Se crea la variable que va a contener todas las celdas, segun la cantidad
     // de registros
-    std::string *cells = new std::string[totalCells];
+    std::string* cells = new std::string[totalCells];
     if (cells == NULL) {
         std::cout << "No hay memoria suficiente para mostrar los clientes.\n";
         return;
     }
-    int cellPos = 0;  // acumula la posicion actual a asignar
+    int rowPos = 0;  // acumula la posicion actual a asignar
     for (int i = 0; i < totalRegs; i++) {
         Client auxClient = _clientsFile.readFile(i);
         // Obtener todas las propiedades del cliente
@@ -167,11 +172,15 @@ void ClientsManager::show() {
         std::string vecStr[7];
         auxClient.toVecString(vecStr);
         for (int cell = 0; cell < _clientsFields; cell++) {
-            cells[cellPos + cell] = vecStr[cell];
+            if (auxClient.getStatus()) {
+                cells[rowPos + cell] = vecStr[cell];
+            } else {
+                cells[rowPos + cell] = "";
+            }
         }
         // se incrementa la posicion de la celda segun la cantidad de datos que
         // contiene el registro, que equivale a una fila de la lista
-        cellPos += _clientsFields;
+        rowPos += _clientsFields;
     }
     // Vector que contiene las columnas de nuestra lista
     std::string columns[7] = {"ID",        "Nombre",   "Apellido", "DNI",
@@ -184,6 +193,32 @@ void ClientsManager::show() {
     clientsList.show();
 
     delete[] cells;  // liberar memoria!
+    if (showAndPause) utils::pause();
+}
+
+void ClientsManager::clearDeleted() {
+    InputForm confirmForm;
+    bool confirm;
+    std::cout << "Esta acción buscará clientes dados de baja e "
+                 "intentará eliminarlos definitivamente. Desea continuar?\n";
+    confirmForm.setBoolField("[SI/NO]", confirm);
+    if (!confirmForm.fill()) return;
+    if (!confirm) return;
+    std::cout << "Buscando registros...\n";
+    int deleted = _clientsFile.deleteAllMarked();
+    switch (deleted) {
+        case 0:
+            std::cout << "No se encontraron clientes dados de baja.\n";
+            break;
+        case -1:
+            std::cout
+                << "Ocurrió un error al intentar eliminar los clientes.\n";
+            break;
+        default:
+            printf("Se eliminaron %d registros con éxito!\n", deleted);
+            break;
+    }
+    utils::pause();
 }
 
 // Solo compara si coincide el id
@@ -194,4 +229,61 @@ bool ClientsManager::searchById(Client reg, int nId) {
 
 bool ClientsManager::idExists(int nId) {
     return _clientsFile.searchReg(searchById, nId) >= 0 ? true : false;
+}
+/*
+int ClientsManager::getClientSearched() {
+    int Id;
+    std::cout << "Ingrese ID del cliente a dar de baja'.\n";
+    cin >> Id;
+
+    int total = _clientsFile.getTotalRegisters();
+    int searched = 0;
+    if (total <= 0) return -1;
+    Client* clie = new Client[total];
+    if (clie == NULL) return -1;
+    if (!_clientsFile.readFile(clie, total)) return -1;
+    for (int i = 0; i < total; i++) {
+        bool isActive = clie[i].getStatus();
+        if (isActive && clie[i].getClientId() == Id) {
+            searched++;
+        }
+    }
+    return searched;
+}
+
+*/
+void ClientsManager::cancel() {
+    InputForm searchId, confirmForm;
+    int nId;
+    bool confirm;
+    // mostrar clientes
+    show(false);
+
+    std::cout << "\nIngrese el ID del cliente a dar de baja.\n";
+    searchId.setIntField("ID Cliente", nId, 4);
+    if (!searchId.fill()) return;  // si no se completa, salir
+    int regPos = _clientsFile.searchReg(searchById, nId);
+    if (regPos == -1) {
+        std::cout << "No existe un cliente con el ID ingresado.\n";
+        utils::pause();
+        return;
+    }
+
+    printf("Se seleccionó el cliente #%d, confirma la baja provisoria.\n", nId);
+    confirmForm.setBoolField("[SI/NO]", confirm);
+    if (!confirmForm.fill()) return;
+    if (!confirm) {
+        std::cout << "No se realizará la cancelación.\n";
+        utils::pause();
+        return;
+    }
+
+    bool success = _clientsFile.markForDelete(regPos);
+
+    if (success > 0) {
+        std::cout << "Baja realizada con éxito!\n";
+    } else {
+        std::cout << "Ocurrió un error al intentar realizar la baja.\n";
+    }
+    utils::pause();
 }

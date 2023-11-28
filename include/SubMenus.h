@@ -19,6 +19,8 @@ private:
     static void loadClient();
     static void showClients();
     static void editClients();
+    static void cancelClients();
+    static void clear();
 
     static AppointmentsManager _appsManager;
     static void loadAppointment();
