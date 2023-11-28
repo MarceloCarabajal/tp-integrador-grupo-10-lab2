@@ -1,32 +1,33 @@
 #include "Product.h"
+
 #include <cstring>
 
-Product::Product(){
-    _productID=-1;
-     _quantity=0;
-    _stock=-1;
-    _price=0.00;
+
+Product::Product() {
+    _productID = -1;
+    _quantity = 0;
+    _stock = -1;
+    _price = 0.00;
     strcpy(_productName, " ");
     strcpy(_description, " ");
     strcpy(_brand, " ");
-   _productCategory= ProductCategory();
+    _productCategory = ProductCategory();
     _status = false;
-
 }
-Product::Product (int productid, int quantity, int stock,float price, std::string productname,
- std::string description, std::string brand,  ProductCategory productcategory,bool status){
-
-    _productID=productid;
-    _quantity=quantity;
-    _stock=stock;
-    _price=price;
-   strcpy(_productName,productname.c_str());
-   strcpy( _description, description.c_str());
-   strcpy( _brand, brand.c_str());
-   _productCategory=productcategory;
-     _status = status;
-
- }
+Product::Product(int productid, int quantity, int stock, float price,
+                 std::string productname, std::string description,
+                 std::string brand, ProductCategory productcategory,
+                 bool status) {
+    _productID = productid;
+    _quantity = quantity;
+    _stock = stock;
+    _price = price;
+    strcpy(_productName, productname.c_str());
+    strcpy(_description, description.c_str());
+    strcpy(_brand, brand.c_str());
+    _productCategory = productcategory;
+    _status = status;
+}
 
 void Product::setProductId(int productId) { _productID = productId; }
 void Product::setProductName(std::string productName) {
@@ -53,11 +54,6 @@ float Product::getPrice() { return _price; }
 const char* Product::getBrand() { return _brand; }
 ProductCategory Product::getProductCategory() { return _productCategory; }
 bool Product::getStatus() { return _status; }
-
-// TODO Completar metodos restantes
-void addProduct() {}
-void deleteProduct() {}
-void updateStock() {}
 
 void Product::toVecString(std::string vStr[9]) {
     vStr[0] = std::to_string(_productID);

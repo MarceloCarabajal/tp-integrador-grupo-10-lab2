@@ -36,18 +36,18 @@ void VppConfigManager::checkText() {
 void VppConfigManager::checkWidth() {
     int actualWidth = rlutil::tcols();
     bool widthOk = false;
-    int secCount = 0;
+    int count = 0;
     if (actualWidth >= 100) return;
     while (!widthOk) {
         checkText();
-        if (secCount == 30) {
+        if (count == 60) {  // si pasaron 30 segundos, salir
             std::cout << "No se ha podido configurar el ancho correcto, se "
                          "usará el ancho actual pero es probable que el "
                          "programa no se visualice correctamente.\n";
             utils::pause();
             break;
         }
-        rlutil::msleep(1000);
+        rlutil::msleep(500);
         checkText();
         actualWidth = rlutil::tcols();
         if (actualWidth >= 100) {

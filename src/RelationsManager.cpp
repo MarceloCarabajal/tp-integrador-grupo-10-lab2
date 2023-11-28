@@ -40,12 +40,11 @@ void RelationsManager::load() {
 }
 
 PetRelations RelationsManager::loadForm() {
-    InputForm petRelationsForm, petIdForm, clientIdForm;
+    InputForm petRelsForm, petIdForm, clientIdForm;
     PetRelations auxPetR;
     PetsManager petsManager;
     ClientsManager clientsManager;
     bool owner;
-    // bool status;
     int clientId = 0, petId = 0;
     bool alreadyExists = true;
 
@@ -70,26 +69,31 @@ PetRelations RelationsManager::loadForm() {
         alreadyExists = clientsManager.idExists(clientId);
     } while (!alreadyExists);  // si no existe, volver a pedir
 
-    // petRelationsForm.setBoolField("Estado", status);
-    petRelationsForm.setBoolField("¿Es propietario?", owner);
+    petRelsForm.setBoolField("¿Es propietario [SI/NO]?", owner);
 
-    if (!petRelationsForm.fill()) return auxPetR;
+    if (!petRelsForm.fill()) return auxPetR;
+
+    // Si se define como propietario, se actualiza el archivo de mascotas
+    if (owner) {
+        bool successNewOwner = newOwner(petId, clientId);
+        if (!successNewOwner) owner = false;
+    }
 
     auxPetR.setPetId(petId);
     auxPetR.setClientId(clientId);
     auxPetR.setOwner(owner);
-    // auxPetR.setStatus(status);
+    auxPetR.setStatus(true);
 
     return auxPetR;
 }
 
 PetRelations RelationsManager::editForm(int regPos) {
-    InputForm petRelationsForm;
+    InputForm petRelsForm, petIdForm, clientIdForm;
     PetRelations auxPetR, auxFormR;
-
+    PetsManager petsManager;
+    ClientsManager clientsManager;
     int petId, clientId, nId;
-    bool owner;
-    // bool status;
+    bool owner, alreadyExists = true;
 
     auxPetR = _petRelationsFile.readFile(regPos);
     if (auxPetR.getPetId() == -1) {
@@ -101,33 +105,51 @@ PetRelations RelationsManager::editForm(int regPos) {
     petId = auxPetR.getPetId();
     clientId = auxPetR.getClientId();
     owner = auxPetR.getOwner();
-    // status = auxPetR.getStatus();
-    // TODO: VER PARA LLAMAR A LA FUNCION QUE MODIFICA EL ARCHIVO DE MASCOTA SI
-    // SE ESTA CARGANDO UN REGISTRO DONDE
-    /// OWNER ES TRUE Y MODIFICAR ESE ARCHIVO (EL DE PET)
 
     std::cout << "Editando Relaciones de la Mascota #" << nId << std::endl;
     //  configurar form
 
-    petRelationsForm.setEditMode(true, true);  // modo edicion
-    petRelationsForm.setIntField("ID Mascota", petId, 4);
-    petRelationsForm.setIntField("ID Cliente", clientId, 4);
-    petRelationsForm.setBoolField("¿Es propietario?", owner);
-    // petRelationsForm.setBoolField("Activo?", status);
+    petRelsForm.setEditMode(true, true);  // modo edicion
 
-    // completar form
-    bool success = petRelationsForm.fill();
-    if (success) {  // si se completa
+    // pedir y buscar si el id mascota ingresado existe
+    petIdForm.setIntField("ID Mascota", petId, 4);
+    do {
+        // si no existe, preguntar si quiere reintentar
+        if (!retryIfIdNotExists(alreadyExists)) return auxFormR;
+        // si no completa el form, salir
+        if (!petIdForm.fill()) return auxFormR;
+        alreadyExists = petsManager.idExists(petId);
+    } while (!alreadyExists);  // si no existe, volver a pedir
 
-        auxFormR.setRelationId(nId);
-        auxFormR.setClientId(clientId);
-        auxFormR.setPetId(petId);
-        auxFormR.setOwner(owner);
-        // auxPetR.setStatus(status);
+    // pedir y buscar si el id cliente ingresado existe
+    alreadyExists = true;
+    clientIdForm.setIntField("ID Cliente", clientId, 4);
+    do {
+        // si no existe, preguntar si quiere reintentar
+        if (!retryIfIdNotExists(alreadyExists)) return auxFormR;
+        // si no completa el form, salir
+        if (!clientIdForm.fill()) return auxFormR;
+        alreadyExists = clientsManager.idExists(clientId);
+    } while (!alreadyExists);  // si no existe, volver a pedir
 
-        return auxFormR;
-    }
+    petRelsForm.setBoolField("¿Es propietario [SI/NO]?", owner);
+
     // si no se completa, devolver Relacion de la Mascota vacia
+    if (!petRelsForm.fill()) return auxFormR;
+
+    // si se completa
+    // Si se define como propietario, se actualiza el archivo de mascotas
+    if (owner) {
+        bool successNewOwner = newOwner(petId, clientId);
+        if (!successNewOwner) owner = false;
+    }
+
+    auxFormR.setRelationId(nId);
+    auxFormR.setClientId(clientId);
+    auxFormR.setPetId(petId);
+    auxFormR.setOwner(owner);
+    auxPetR.setStatus(true);
+
     return auxFormR;
 }
 
@@ -181,7 +203,7 @@ void RelationsManager::show() {
         std::cout << "No hay memoria suficiente para mostrar las relaciones.\n";
         return;
     }
-    int cellPos = 0;  // acumula la posicion actual a asignar
+    int rowPos = 0;  // acumula la posicion actual a asignar
     for (int i = 0; i < totalRegs; i++) {
         PetRelations auxPetR = _petRelationsFile.readFile(i);
         // Obtener todas las propiedades del cliente
@@ -189,12 +211,17 @@ void RelationsManager::show() {
         std::string vecStr[4];
         auxPetR.toVecString(vecStr);
         for (int cell = 0; cell < _petRelationsFields; cell++) {
-            cells[cellPos + cell] = vecStr[cell];
+            // solo llena las celdas si es un registro activo
+            if (auxPetR.getStatus()) {
+                cells[rowPos + cell] = vecStr[cell];
+            } else {
+                cells[rowPos + cell] = "";
+            };
         }
 
         // se incrementa la posicion de la celda segun la cantidad de datos que
         // contiene el registro, que equivale a una fila de la lista
-        cellPos += _petRelationsFields;
+        rowPos += _petRelationsFields;
     }
     // Vector que contiene las columnas de nuestra lista
     std::string columns[4] = {"ID RELACION", "ID MASCOTA", "ID CLIENTE",
@@ -246,6 +273,27 @@ bool RelationsManager::retryIfIdNotExists(bool exists) {
                      "para reintentar o ESC para salir.\n";
         if (rlutil::getkey() == rlutil::KEY_ESCAPE) return false;
         rlutil::cls();
+    }
+    return true;
+}
+
+bool RelationsManager::newOwner(int petId, int clientId) {
+    InputForm confirmForm;
+    PetsManager petsManager;
+    bool confirm;
+    confirmForm.setBoolField("¿Confirmar? [SI/NO]", confirm);
+    std::cout
+        << "ATENCIÓN: El cliente se definió como propietario, esta acción "
+           "reemplazará el dueño actual de la mascota.\n";
+    std::cout << "Si elige NO, se agregará la relación como 'familiar'.\n";
+    if (!confirmForm.fill()) return false;
+    if (!confirm) return false;
+    if (!petsManager.updateOwner(clientId, petId)) {
+        std::cout
+            << "Ocurrió un error al actualizar el registro de mascotas.\n";
+        std::cout << "No se actualizará el dueño de la mascota pero se "
+                     "conservará la relación como 'familiar'.\n";
+        return false;
     }
     return true;
 }

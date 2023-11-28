@@ -13,6 +13,7 @@ private:
     PetRelations editForm(int regPos);
     bool retryIfIdExists(bool exists);
     bool retryIfIdNotExists(bool exists);
+    bool newOwner(int petId, int clientId);
 
 public:
     void load();

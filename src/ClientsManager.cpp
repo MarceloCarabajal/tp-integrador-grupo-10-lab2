@@ -148,8 +148,7 @@ void ClientsManager::edit() {
 
 void ClientsManager::show(bool showAndPause) {
     int totalRegs = _clientsFile.getTotalRegisters();
-    std::cout << totalRegs << std::endl;
-    utils::pause();
+
     // calcular el total de celdas de nuestra lista, segun la cantidad de datos
     // que contiene 1 registro
     int totalCells = totalRegs * _clientsFields;

@@ -208,7 +208,7 @@ void PetsManager::show(bool showAndPause) {
         rowPos += _petsFields;
     }
     // Vector que contiene las columnas de nuestra lista
-    std::string columns[7] = {"ÍD",   "ID Dueño",    "Nombre",       "Especie",
+    std::string columns[7] = {"ID",   "ID Dueño",    "Nombre",       "Especie",
                               "Raza", "Diagnóstico", "F. nacimiento"};
 
     ListView petsList;
@@ -298,4 +298,14 @@ void PetsManager::cancel() {
         std::cout << "Ocurrió un error al intentar realizar la baja.\n";
     }
     utils::pause();
+}
+
+bool PetsManager::updateOwner(int ownerId, int petId) {
+    int regPos = _petsFile.searchReg(searchById, petId);
+    if (regPos < 0) return false;
+    Pet auxPet = _petsFile.readFile(petId);
+    if (auxPet.getPetId() == -1) return false;
+    auxPet.setOwnerId(ownerId);
+    bool success = _petsFile.updateFile(auxPet, regPos);
+    return success;
 }
