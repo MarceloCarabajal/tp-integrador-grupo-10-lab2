@@ -40,6 +40,8 @@ private:
     static void loadPet();
     static void showPets();
     static void editPets();
+    static void cancelPets();
+    static void clearp();
 
     static RelationsManager _relsManager;
     static void loadRel();
@@ -55,6 +57,8 @@ private:
     static void loadVaccination();
     static void showVaccinations();
     static void editVaccination();
+    static void cancelVaccination();
+    static void clearV();
 
     static ProdCategoryManager _catprodManager;
     static void loadProdCategory();

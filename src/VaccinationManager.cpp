@@ -76,6 +76,7 @@ Vaccination VaccinationManager::loadForm() {
     auxVaccination.setPetId(petId);
     auxVaccination.setDateAplication(dateAplication);
     auxVaccination.setDateRevaccination(dateRevaccination);
+    auxVaccination.setStatus(true);
     // auxVaccination.setNotified(notified);
 
     return auxVaccination;
@@ -145,7 +146,7 @@ Vaccination VaccinationManager::editForm(int regPos) {
         auxFormVacc.setDateAplication(dateAplication);
         auxFormVacc.setDateRevaccination(dateRevaccination);
         auxFormVacc.setNotified(notified);
-
+        auxFormVacc.setStatus(true);
         return auxFormVacc;
     }
     // si no se completa, devolver Vaccination vacio
@@ -183,7 +184,7 @@ void VaccinationManager::edit() {
     utils::pause();
 }
 
-void VaccinationManager::show() {
+void VaccinationManager::show(bool showAndPause) {
     int totalRegs = _vaccinationFile.getTotalRegisters();
     // calcular el total de celdas de nuestra lista, segun la cantidad de datos
     // que contiene 1 registro
@@ -202,7 +203,7 @@ void VaccinationManager::show() {
                      "realizadas.\n";
         return;
     }
-    int cellPos = 0;  // acumula la posicion actual a asignar
+    int rowPos = 0;  // acumula la posicion actual a asignar
     for (int i = 0; i < totalRegs; i++) {
         Vaccination auxVaccination = _vaccinationFile.readFile(i);
         // Obtener todas las propiedades del cliente
@@ -210,11 +211,15 @@ void VaccinationManager::show() {
         std::string vecStr[6];
         auxVaccination.toVecString(vecStr);
         for (int cell = 0; cell < _vaccinationFields; cell++) {
-            cells[cellPos + cell] = vecStr[cell];
+            if (auxVaccination.getStatus()) {
+                cells[rowPos + cell] = vecStr[cell];
+            } else {
+                cells[rowPos + cell] = "";
+            }
         }
         // se incrementa la posicion de la celda segun la cantidad de datos que
         // contiene el registro, que equivale a una fila de la lista
-        cellPos += _vaccinationFields;
+        rowPos += _vaccinationFields;
     }
     // Vector que contiene las columnas de nuestra lista
     std::string columns[6] = {"ID Aplicacion", "Id Mascota ",  "Vacuna",
@@ -227,6 +232,8 @@ void VaccinationManager::show() {
     VaccinationList.show();
 
     delete[] cells;  // liberar memoria!
+
+    if (showAndPause) utils::pause();
 }
 // Solo compara si coincide el id
 bool VaccinationManager::searchById(Vaccination reg, int nId) {
@@ -273,4 +280,66 @@ bool VaccinationManager::validAplicDate(Date date) {
     Date today;
     if (date == today) return true;
     return false;
+}
+
+void VaccinationManager::clearDeleted() {
+    InputForm confirmForm;
+    bool confirm;
+    std::cout << "Esta acción buscará Vacunaciones dadas de baja e "
+                 "intentará eliminarlas definitivamente. Desea continuar?\n";
+    confirmForm.setBoolField("[SI/NO]", confirm);
+    if (!confirmForm.fill()) return;
+    if (!confirm) return;
+    std::cout << "Buscando registros...\n";
+    int deleted = _vaccinationFile.deleteAllMarked();
+    switch (deleted) {
+        case 0:
+            std::cout << "No se encontraron Vacunaciones dadas de baja.\n";
+            break;
+        case -1:
+            std::cout
+                << "Ocurrió un error al intentar eliminar las vacunaciones\n";
+            break;
+        default:
+            printf("Se eliminaron %d registros con éxito!\n", deleted);
+            break;
+    }
+    utils::pause();
+}
+
+void VaccinationManager::cancel() {
+    InputForm searchId, confirmForm;
+    int nId;
+    bool confirm;
+    // mostrar vacunacion
+    show(false);
+
+    std::cout << "\nIngrese el ID de la Vacunacion a dar de baja.\n";
+    searchId.setIntField("ID Vacunación", nId, 4);
+    if (!searchId.fill()) return;  // si no se completa, salir
+    int regPos = _vaccinationFile.searchReg(searchById, nId);
+    if (regPos == -1) {
+        std::cout << "No existe Vacunacion con el ID ingresado.\n";
+        utils::pause();
+        return;
+    }
+
+    printf("Se seleccionó la Vacunacion #%d, confirma la baja provisoria.\n",
+           nId);
+    confirmForm.setBoolField("[SI/NO]", confirm);
+    if (!confirmForm.fill()) return;
+    if (!confirm) {
+        std::cout << "No se realizará la baja.\n";
+        utils::pause();
+        return;
+    }
+
+    bool success = _vaccinationFile.markForDelete(regPos);
+
+    if (success) {
+        std::cout << "Baja realizada con éxito!\n";
+    } else {
+        std::cout << "Ocurrió un error al intentar realizar la baja.\n";
+    }
+    utils::pause();
 }

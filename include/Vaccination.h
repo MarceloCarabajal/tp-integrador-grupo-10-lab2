@@ -13,13 +13,14 @@ Date _dateAplication, _dateRevaccination;
 char _nameVaccine[15];
 bool _notified;
 
+bool _status;
 
 public: 
 
 
 Vaccination();
 
-Vaccination(int petId, int aplicationId, std::string nameVaccine, Date dateAplication, Date  dateRevaccination, bool notified);
+Vaccination(int petId, int aplicationId, std::string nameVaccine, Date dateAplication, Date  dateRevaccination, bool notified,bool status);
 
 
 void setAplicationId (int apli);
@@ -28,7 +29,7 @@ void setDateAplication (Date Apli);
 void setDateRevaccination (Date Revacci);
 void setNameVaccine (std::string name );
 void setNotified (bool noti);
-
+ void setStatus(bool status);
 
 int getAplicationId();
 int getPeId();
@@ -36,7 +37,7 @@ Date  getDateAplication();
 Date  getDateRevaccination();
 const char * getNameVaccine();
 bool  getNottified();
-
+  bool getStatus();
 
 void toVecString(std::string vStr[6]);
 };

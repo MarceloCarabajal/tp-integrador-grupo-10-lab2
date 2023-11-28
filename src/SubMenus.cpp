@@ -120,7 +120,7 @@ void SubMenus::showPets() {
 }
 void SubMenus::editPets() { _petsManager.edit(); }
 
-void SubMenus::cancelpets() {
+void SubMenus::cancelPets() {
     _petsManager.cancel();
     utils::pause();
 }
@@ -135,7 +135,7 @@ void SubMenus::pets() {
     mnuPets.addOption("1. Cargar Mascota :arrow_up_small:", loadPet);
     mnuPets.addOption("2. Mostrar Mascotas :page_facing_up:", showPets);
     mnuPets.addOption("3. Editar Mascota :pencil2:", editPets);
-    mnuPets.addOption("4. Baja de mascota:x:", cancelpets);
+    mnuPets.addOption("4. Baja de mascota:x:", cancelPets);
     mnuPets.addOption("5. Limpiar registros :white_check_mark:", clearp);
     mnuPets.showMenu();
 }
@@ -190,6 +190,8 @@ void SubMenus::showVaccinations() {
     utils::pause();
 }
 void SubMenus::editVaccination() { _vaccManager.edit(); }
+void SubMenus::cancelVaccination() { _vaccManager.cancel(); }
+void SubMenus::clearV() { _vaccManager.clearDeleted(); }
 
 void SubMenus::vaccination() {
     Menu mnuVaccination("VACUNACIÓN:syringe:", true);
@@ -199,6 +201,8 @@ void SubMenus::vaccination() {
     mnuVaccination.addOption("2. Mostrar Vacunaciones :page_facing_up:",
                              showVaccinations);
     mnuVaccination.addOption("3. Editar Vacunación :pencil2:", editVaccination);
+    mnuVaccination.addOption("4. Baja Vacunación :x:", cancelVaccination);
+    mnuVaccination.addOption("5. Limpiar registros :white_check_mark:", clearV);
     mnuVaccination.showMenu();
 }
 
