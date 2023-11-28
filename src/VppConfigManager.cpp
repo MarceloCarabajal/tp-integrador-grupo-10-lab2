@@ -28,13 +28,14 @@ bool VppConfigManager::load() {
     utils::coutCenter("-------------------------");
     utils::coutCenter("Configuración del sistema");
     utils::coutCenter("-------------------------");
+    std::cout << std::endl;
     utils::coutCenter(
         "Deberá ingresar una serie de datos para "
         "configurar el sistema.");
     utils::coutCenter(
         "Estos serán necesarios para asegurar el correcto "
         "funcionamiento del mismo.");
-
+    std::cout << std::endl;
     configForm.setStrField("Nombre de la veterinaria", veteName, 30);
     configForm.setAlphanumeric("Servidor SMTP", SMTPServer, 45);
     configForm.setEmailField(SMTPUser, 45, "Usuario SMTP");
@@ -59,6 +60,7 @@ bool VppConfigManager::load() {
 
     if (setConfig(auxVc)) {
         utils::coutCenter("Configuración guardada correctamente!");
+        std::cout << std::endl;
         utils::pause();
         utils::cls();
         return true;
@@ -67,6 +69,7 @@ bool VppConfigManager::load() {
         utils::coutCenter(
             "la funcionalidad de envío de notificaciones estará "
             "deshabilitada.");
+        std::cout << std::endl;
         utils::pause();
         utils::cls();
         return false;

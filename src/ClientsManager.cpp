@@ -148,12 +148,19 @@ void ClientsManager::edit() {
 
 void ClientsManager::show(bool showAndPause) {
     int totalRegs = _clientsFile.getTotalRegisters();
+    std::cout << totalRegs << std::endl;
+    utils::pause();
     // calcular el total de celdas de nuestra lista, segun la cantidad de datos
     // que contiene 1 registro
     int totalCells = totalRegs * _clientsFields;
 
     if (totalRegs < 0) {
         std::cout << "Ocurrio un error al leer los registros.\n";
+        utils::pause();
+        return;
+    }
+    if (totalRegs == 0) {
+        std::cout << "No hay clientes para mostrar.\n";
         utils::pause();
         return;
     }

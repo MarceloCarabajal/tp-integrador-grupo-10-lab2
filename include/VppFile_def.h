@@ -162,10 +162,14 @@ int VppFile<VppClass>::deleteAllMarked() {
         if (!regs[i].getStatus()) continue;
         // si esta activo, escribirlo de nuevo
         bool success = fwrite(&regs[i], sizeof(VppClass), 1, pFile);
-        if (!success) return -1;
+        if (!success) {
+            fclose(pFile);
+            return -1;
+        }
         written++;
     }
     // devolver el total de registros eliminados
+    fclose(pFile);
     return total - written;
 }
 
