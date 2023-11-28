@@ -59,6 +59,7 @@ Vet VetsManager::loadForm() {
     auxVet.setLastname(lastname);
     auxVet.setIdPerson(DNI);
     auxVet.setSpeciality(speciality);
+    auxVet.setStatus(true);
     return auxVet;
 }
 
@@ -96,6 +97,7 @@ Vet VetsManager::editForm(int regPos) {
         auxVet.setName(name);
         auxVet.setLastname(lastname);
         auxVet.setSpeciality(speciality);
+        auxVet.setStatus(true);
 
         return auxVet;
     }
@@ -134,7 +136,7 @@ void VetsManager::edit() {
     utils::pause();
 }
 
-void VetsManager::show() {
+void VetsManager::show(bool showAndPause) {
     int totalRegs = _vetsFile.getTotalRegisters();
     // calcular el total de celdas de nuestra lista, segun la cantidad de datos
     // que contiene 1 registro
@@ -153,7 +155,7 @@ void VetsManager::show() {
             << "No hay memoria suficiente para mostrar los veterinarios.\n";
         return;
     }
-    int cellPos = 0;  // acumula la posicion actual a asignar
+    int rowPos = 0;  // acumula la posicion actual a asignar
     for (int i = 0; i < totalRegs; i++) {
         Vet auxVet = _vetsFile.readFile(i);
         // Obtener todas las propiedades del vete
@@ -161,12 +163,16 @@ void VetsManager::show() {
         std::string vecStr[5];
         auxVet.toVecString(vecStr);
         for (int cell = 0; cell < _vetsFields; cell++) {
-            cells[cellPos + cell] = vecStr[cell];
+            if (auxVet.getStatus()) {
+                cells[rowPos + cell] = vecStr[cell];
+            } else {
+                cells[rowPos + cell] = "";
+            }
         }
 
         // se incrementa la posicion de la celda segun la cantidad de datos que
         // contiene el registro, que equivale a una fila de la lista
-        cellPos += _vetsFields;
+        rowPos += _vetsFields;
     }
     // Vector que contiene las columnas de nuestra lista
     std::string columns[5] = {"ID", "Nombre", "Apellido", "DNI",
@@ -188,4 +194,66 @@ bool VetsManager::searchById(Vet reg, int nId) {
 
 bool VetsManager::idExists(int nId) {
     return _vetsFile.searchReg(searchById, nId) >= 0 ? true : false;
+}
+
+void VetsManager::clearDeleted() {
+    InputForm confirmForm;
+    bool confirm;
+    std::cout << "Esta acción buscará Veterinarios dadas de baja e "
+                 "intentará eliminarlas definitivamente. Desea continuar?\n";
+    confirmForm.setBoolField("[SI/NO]", confirm);
+    if (!confirmForm.fill()) return;
+    if (!confirm) return;
+    std::cout << "Buscando registros...\n";
+    int deleted = _vetsFile.deleteAllMarked();
+    switch (deleted) {
+        case 0:
+            std::cout << "No se encontraron Veterinarios dados de baja.\n";
+            break;
+        case -1:
+            std::cout
+                << "Ocurrió un error al intentar eliminar los Veterinarios\n";
+            break;
+        default:
+            printf("Se eliminaron %d registros con éxito!\n", deleted);
+            break;
+    }
+    utils::pause();
+}
+
+void VetsManager::cancel() {
+    InputForm searchId, confirmForm;
+    int nId;
+    bool confirm;
+    // mostrar vacunacion
+    show(false);
+
+    std::cout << "\nIngrese el ID del Veterinario a dar de baja.\n";
+    searchId.setIntField("ID Veterinario", nId, 4);
+    if (!searchId.fill()) return;  // si no se completa, salir
+    int regPos = _vetsFile.searchReg(searchById, nId);
+    if (regPos == -1) {
+        std::cout << "No existe Veterinarios con el ID ingresado.\n";
+        utils::pause();
+        return;
+    }
+
+    printf("Se seleccionó el Veterinario #%d, confirma la baja provisoria.\n",
+           nId);
+    confirmForm.setBoolField("[SI/NO]", confirm);
+    if (!confirmForm.fill()) return;
+    if (!confirm) {
+        std::cout << "No se realizará la baja.\n";
+        utils::pause();
+        return;
+    }
+
+    bool success = _vetsFile.markForDelete(regPos);
+
+    if (success) {
+        std::cout << "Baja realizada con éxito!\n";
+    } else {
+        std::cout << "Ocurrió un error al intentar realizar la baja.\n";
+    }
+    utils::pause();
 }

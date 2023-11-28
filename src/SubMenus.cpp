@@ -17,6 +17,7 @@ void SubMenus::clear() {
     _clientsManager.clearDeleted();
     utils::pause();
 }
+
 void SubMenus::clients() {
     Menu mnuClients("CLIENTES:busts_in_silhouette:", true);
     mnuClients.addOption("1. Cargar Cliente :arrow_up_small:", loadClient);
@@ -100,6 +101,8 @@ void SubMenus::showVets() {
     utils::pause();
 }
 void SubMenus::editVets() { _vetsManager.edit(); }
+void SubMenus::cancelVet() { _vetsManager.cancel(); }
+void SubMenus::clearVet() { _vetsManager.clearDeleted(); }
 
 void SubMenus::vets() {
     Menu mnuVets("VETERINARIOS:briefcase:", true);
@@ -107,6 +110,8 @@ void SubMenus::vets() {
     mnuVets.addOption("1. Cargar Veterinario :arrow_up_small:", loadVet);
     mnuVets.addOption("2. Mostrar Veterinarios :page_facing_up:", showVets);
     mnuVets.addOption("3. Editar Veterinario :pencil2:", editVets);
+    mnuVets.addOption("4. Baja de Veterinario:x:", cancelVet);
+    mnuVets.addOption("5. Limpiar registros :white_check_mark:", clearVet);
     mnuVets.showMenu();
 }
 
@@ -173,7 +178,6 @@ void SubMenus::showProducts() {
 void SubMenus::editProducts() { _productsManager.edit(); }
 void SubMenus::cancelProduct() { _productsManager.cancel(); }
 void SubMenus::clearProd() { _productsManager.clearDeleted(); }
-
 
 void SubMenus::products() {
     Menu mnuProducts("PRODUCTOS:package:", true);

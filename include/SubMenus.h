@@ -35,6 +35,8 @@ private:
     static void loadVet();
     static void showVets();
     static void editVets();
+    static void cancelVet();
+    static void clearVet();
 
     static PetsManager _petsManager;
     static void loadPet();

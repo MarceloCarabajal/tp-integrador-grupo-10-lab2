@@ -13,7 +13,9 @@ private:
 public:
     void load();
     void edit();
-    void show();
+    void show(bool showAndPause = true);
+    void clearDeleted();
+    void cancel();
 
     // Al ser una funcion estatica se puede usar sin necesaidad de instanciar un
     // objeto de tipo "VetsManager", eso permite que se pueda pasar por
