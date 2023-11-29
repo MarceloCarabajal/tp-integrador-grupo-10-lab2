@@ -18,8 +18,15 @@ void ClientsManager::load() {
     // pedir y buscar si el id ingresado existe
     do {
         if (alreadyExists) {
-            std::cout << "El ID de cliente ya existe, presione cualquier tecla "
-                         "para reintentar o ESC para salir.\n";
+            if (!isActiveId(nId)) {
+                std::cout << "El ID de cliente está dado de baja, elija otro "
+                             "ID o elimine el registro desde el menú 'Limpiar "
+                             "registros'.\n";
+            } else {
+                std::cout << "El ID de cliente ya existe, elija otro.\n";
+            }
+            std::cout << "presione cualquier tecla para reintentar o ESC para "
+                         "salir.\n";
             if (rlutil::getkey() == rlutil::KEY_ESCAPE) return;
             rlutil::cls();
         }
@@ -236,28 +243,15 @@ bool ClientsManager::searchById(Client reg, int nId) {
 bool ClientsManager::idExists(int nId) {
     return _clientsFile.searchReg(searchById, nId) >= 0 ? true : false;
 }
-/*
-int ClientsManager::getClientSearched() {
-    int Id;
-    std::cout << "Ingrese ID del cliente a dar de baja'.\n";
-    cin >> Id;
 
-    int total = _clientsFile.getTotalRegisters();
-    int searched = 0;
-    if (total <= 0) return -1;
-    Client* clie = new Client[total];
-    if (clie == NULL) return -1;
-    if (!_clientsFile.readFile(clie, total)) return -1;
-    for (int i = 0; i < total; i++) {
-        bool isActive = clie[i].getStatus();
-        if (isActive && clie[i].getClientId() == Id) {
-            searched++;
-        }
-    }
-    return searched;
+bool ClientsManager::isActiveId(int nId) {
+    int regPos = _clientsFile.searchReg(searchById, nId);
+    if (regPos == -1) return false;
+    Client auxClient = _clientsFile.readFile(regPos);
+    if (auxClient.getStatus()) return true;
+    return false;
 }
 
-*/
 void ClientsManager::cancel() {
     InputForm searchId, confirmForm;
     int nId;

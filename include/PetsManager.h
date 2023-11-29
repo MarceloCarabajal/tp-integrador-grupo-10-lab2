@@ -32,4 +32,5 @@ public:
     static bool searchById(Pet reg, int nId);
 
     bool idExists(int nId);
+    bool isActiveId(int nId);
 };

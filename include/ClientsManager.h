@@ -29,6 +29,7 @@ public:
     static bool searchById(Client reg, int nId);
 
     bool idExists(int nId);
+    bool isActiveId(int nId);
 };
 
 #endif /* CLIENTSMANAGER_INCLUDED */

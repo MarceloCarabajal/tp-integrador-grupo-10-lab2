@@ -21,17 +21,16 @@ void PetsManager::load() {
     do {
         if (alreadyExists) {
             // Si existe pero está dada de baja
-            int regPos = _petsFile.searchReg(searchById, nId);
-            if (_petsFile.readFile(regPos).getStatus() == false) {
+            if (!isActiveId(nId)) {
                 std::cout << "La mascota se encuentra dada de baja.\n";
                 std::cout << "Si desea utilizar este ID, seleccione la "
                              "opción 'Limpiar registros' del menú para "
                              "eliminar el registro.\n";
             } else {
-                std::cout
-                    << "El ID de Mascota ya existe, presione cualquier tecla "
-                       "para reintentar o ESC para salir.\n";
+                std::cout << "El ID de Mascota ya existe.\n";
             }
+            std::cout << "Presione cualquier tecla para reintentar o ESC para "
+                         "salir.\n";
             // esperar tecla
             if (rlutil::getkey() == rlutil::KEY_ESCAPE) return;
             rlutil::cls();
@@ -174,7 +173,7 @@ void PetsManager::edit() {
         return;
     }
     // Si existe pero está dada de baja
-    if (_petsFile.readFile(regPos).getStatus() == false) {
+    if (!isActiveId(nId)) {
         std::cout << "La mascota se encuentra dada de baja.\n";
         std::cout << "Si desea eliminarla definitivamente, seleccione la "
                      "opción 'Limpiar registros' del menú.\n";
@@ -266,6 +265,15 @@ bool PetsManager::searchById(Pet reg, int nId) {
 bool PetsManager::idExists(int nId) {
     // Si devuelve un nro de posicion, existe
     return _petsFile.searchReg(searchById, nId) >= 0 ? true : false;
+}
+
+// buscar si no fue dado de baja
+bool PetsManager::isActiveId(int nId) {
+    int regPos = _petsFile.searchReg(searchById, nId);
+    if (regPos < 0) return false;
+    Pet auxPet = _petsFile.readFile(regPos);
+    if (auxPet.getPetId() == -1) return false;
+    return auxPet.getStatus();
 }
 
 void PetsManager::clearDeleted() {
