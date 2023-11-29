@@ -134,6 +134,7 @@ Sale SalesManager::editForm(int regPos) {
      (visit) --------- llamar a load item sale .
     si es visita deberia cargar un ID que tengamos en producto para la visita?
     si se vendio mas de un producto que se sigan cargando subitems 
+    hacer que al finalizar la carga de la venta se genere automaticamente un "income"
     */
 
     if (!consultForm.fill()) return auxFormSale;

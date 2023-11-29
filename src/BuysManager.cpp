@@ -90,6 +90,10 @@ Buy BuysManager::loadForm() {
     auxBuy.setStatus(true);
 
     return auxBuy;
+
+
+    //TODO:  hacer que al finalizar la carga de la compra se genere automaticamente un "expense"
+    
 }
 
 Buy BuysManager::editForm(int regPos) {
