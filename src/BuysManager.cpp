@@ -4,8 +4,10 @@
 
 #include "InputForm.h"
 #include "ListView.h"
+#include "ProductsManager.h"
 #include "rlutil.h"
 #include "utils.h"
+
 
 void BuysManager::load() {
     InputForm idForm;
@@ -43,23 +45,33 @@ void BuysManager::load() {
 }
 
 Buy BuysManager::loadForm() {
-    InputForm buyForm;
+    InputForm buyForm, productForm;
     Buy auxBuy;
     std::string paymentMethod;
+    ProductsManager prodmanager;
     int productId, quantity, trxId;
     float totalAmount;
     Date buyDate;
- 
+    bool alreadyExists = true;
+
+    // pedir y buscar si el id del producto comprado existe
+    productForm.setIntField("ID Producto comprado", productId, 4);
+    do {
+        // si no existe, preguntar si quiere reintentar
+        if (!retryIfIdNotExists(alreadyExists)) return auxBuy;
+        // si no completa el form, salir
+        if (!productForm.fill()) return auxBuy;
+        alreadyExists = prodmanager.idExists(productId);
+    } while (!alreadyExists);  // si no existe, volver a pedir
 
     buyForm.setStrField("Metodo Pago", paymentMethod, 15);
-    buyForm.setIntField("ID producto", productId, 4);
+
     //// este numero se copia en los objetos de la clase transaccion
     // TODO: Este es el que se tiene que generar solo?
     buyForm.setIntField("ID Transacción", trxId, 4);
     buyForm.setRangeField("Cantidad", quantity, 1, 1000);
     buyForm.setFloatField("Total", totalAmount);
     buyForm.setDateField("Fecha", buyDate);
-
 
     if (!buyForm.fill()) return auxBuy;
 
@@ -68,18 +80,20 @@ Buy BuysManager::loadForm() {
     auxBuy.setTransactionId(trxId);
     auxBuy.setQuantity(quantity);
     auxBuy.setDate(buyDate);
+    auxBuy.setStatus(true);
 
     return auxBuy;
 }
 
 Buy BuysManager::editForm(int regPos) {
-    InputForm buyForm;
+    InputForm buyForm(true), productForm(true, false);
     Buy auxBuy, auxFormBuy;
+    ProductsManager prodmanager;
     std::string paymentMethod;
     int nId, productId, quantity, transactionId;
     float totalAmount;
     Date buyDate;
-
+    bool existentId;
 
     auxBuy = _buysFile.readFile(regPos);
     if (auxBuy.getBuyId() == -1) {
@@ -96,18 +110,26 @@ Buy BuysManager::editForm(int regPos) {
     quantity = auxBuy.getQuantity();
     paymentMethod = auxBuy.getPaymentMethod();
 
+    rlutil::cls();  // limpiar pantalla
     std::cout << "Editando compra #" << nId << std::endl;
-    // configurar form
-    buyForm.setEditMode(true, true);  // modo edicion
+
+    // pedir y buscar si el id producto ingresado existe
+    productForm.setIntField("ID Mascota", productId, 4);
+    while (!existentId) {
+        if (!productForm.fill()) return auxFormBuy;
+        existentId = prodmanager.idExists(productId);
+        if (!retryIfIdNotExists(existentId)) return auxFormBuy;
+    }
+
+    /////buyForm.setEditMode(true, true);  // modo edicion
 
     buyForm.setStrField("Metodo Pago", paymentMethod, 15);
-    buyForm.setIntField("ID producto", productId, 4);
-    buyForm.setIntField("ID Transacción", transactionId,
+    buyForm.setIntField(
+        "ID Transacción", transactionId,
         4);  //// este numero se copia en los objetos de la clase transaccion
     buyForm.setRangeField("Cantidad", quantity, 1, 1000);
     buyForm.setFloatField("Total", totalAmount);
     buyForm.setDateField("Fecha", buyDate);
-
 
     // completar form
     bool success = buyForm.fill();
@@ -119,7 +141,7 @@ Buy BuysManager::editForm(int regPos) {
         auxFormBuy.setTransactionId(transactionId);
         auxFormBuy.setQuantity(quantity);
         auxFormBuy.setDate(buyDate);
-
+        auxFormBuy.setStatus(true);
 
         return auxFormBuy;
     }
@@ -158,7 +180,7 @@ void BuysManager::edit() {
     utils::pause();
 }
 
-void BuysManager::show() {
+void BuysManager::show(bool showAndPause) {
     int totalRegs = _buysFile.getTotalRegisters();
     // calcular el total de celdas de nuestra lista, segun la cantidad de datos
     // que contiene 1 registro
@@ -176,7 +198,7 @@ void BuysManager::show() {
         std::cout << "No hay memoria suficiente para mostrar las compras.\n";
         return;
     }
-    int cellPos = 0;  // acumula la posicion actual a asignar
+    int rowPos = 0;  // acumula la posicion actual a asignar
     for (int i = 0; i < totalRegs; i++) {
         Buy auxBuy = _buysFile.readFile(i);
         // Obtener todas las propiedades de la compra
@@ -184,11 +206,15 @@ void BuysManager::show() {
         std::string vecStr[7];
         auxBuy.toVecString(vecStr);
         for (int cell = 0; cell < _buysFields; cell++) {
-            cells[cellPos + cell] = vecStr[cell];
+            if (auxBuy.getStatus()) {
+                cells[rowPos + cell] = vecStr[cell];
+            } else {
+                cells[rowPos + cell] = "";
+            }
         }
         // se incrementa la posicion de la celda segun la cantidad de datos que
         // contiene el registro, que equivale a una fila de la lista
-        cellPos += _buysFields;
+        rowPos += _buysFields;
     }
     // Vector que contiene las columnas de nuestra lista
     std::string columns[7] = {
@@ -202,6 +228,7 @@ void BuysManager::show() {
     buysList.show();
 
     delete[] cells;  // liberar memoria!
+    if (showAndPause) utils::pause();
 }
 
 // Solo compara si coincide el id
@@ -212,4 +239,74 @@ bool BuysManager::searchById(Buy reg, int nId) {
 
 bool BuysManager::idExists(int nId) {
     return _buysFile.searchReg(searchById, nId) >= 0 ? true : false;
+}
+
+bool BuysManager::retryIfIdNotExists(bool exists) {
+    if (!exists) {
+        std::cout << "El ID ingresado NO EXISTE, presione cualquier tecla "
+                     "para reintentar o ESC para salir.\n";
+        if (rlutil::getkey() == rlutil::KEY_ESCAPE) return false;
+        rlutil::cls();
+    }
+    return true;
+}
+
+void BuysManager::clearDeleted() {
+    InputForm confirmForm;
+    bool confirm;
+    std::cout << "Esta acción buscará compras dadas de baja e "
+                 "intentará eliminarlas definitivamente. Desea continuar?\n";
+    confirmForm.setBoolField("[SI/NO]", confirm);
+    if (!confirmForm.fill()) return;
+    if (!confirm) return;
+    std::cout << "Buscando registros...\n";
+    int deleted = _buysFile.deleteAllMarked();
+    switch (deleted) {
+        case 0:
+            std::cout << "No se encontraron compras dadas de baja.\n";
+            break;
+        case -1:
+            std::cout << "Ocurrió un error al intentar eliminar las bajas\n";
+            break;
+        default:
+            printf("Se eliminaron %d registros con éxito!\n", deleted);
+            break;
+    }
+    utils::pause();
+}
+
+void BuysManager::cancel() {
+    InputForm searchId, confirmForm;
+    int nId;
+    bool confirm;
+    // mostrar compras
+    show(false);
+
+    std::cout << "\nIngrese el ID de la compra a dar de baja.\n";
+    searchId.setIntField("ID Producto", nId, 4);
+    if (!searchId.fill()) return;  // si no se completa, salir
+    int regPos = _buysFile.searchReg(searchById, nId);
+    if (regPos == -1) {
+        std::cout << "No existe compra con el ID ingresado.\n";
+        utils::pause();
+        return;
+    }
+
+    printf("Se seleccionó la compra #%d, confirma la baja provisoria.\n", nId);
+    confirmForm.setBoolField("[SI/NO]", confirm);
+    if (!confirmForm.fill()) return;
+    if (!confirm) {
+        std::cout << "No se realizará la baja.\n";
+        utils::pause();
+        return;
+    }
+
+    bool success = _buysFile.markForDelete(regPos);
+
+    if (success) {
+        std::cout << "Baja realizada con éxito!\n";
+    } else {
+        std::cout << "Ocurrió un error al intentar realizar la baja.\n";
+    }
+    utils::pause();
 }

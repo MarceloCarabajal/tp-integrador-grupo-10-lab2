@@ -243,6 +243,27 @@ void SubMenus::productcategory() {
     mnuCatProd.showMenu();
 }
 
+BuysManager SubMenus::_buysManager = BuysManager();
+void SubMenus::loadbuy() {
+    _buysManager.load();
+    utils::pause();
+}
+void SubMenus::showbuy() { _buysManager.show(); }
+void SubMenus::editbuy() { _buysManager.edit(); }
+void SubMenus::cancelbuy() { _buysManager.cancel(); }
+void SubMenus::clearbuy() { _buysManager.clearDeleted(); }
+
+void SubMenus::buy() {
+    Menu mnuBuy("COMPRAS:syringe:", true);
+
+    mnuBuy.addOption("1. Cargar Compra :arrow_up_small:", loadbuy);
+    mnuBuy.addOption("2. Mostrar Compras  :page_facing_up:", showbuy);
+    mnuBuy.addOption("3. Editar Compra  :pencil2:", editbuy);
+    mnuBuy.addOption("4. Baja Compra  :x:", cancelbuy);
+    mnuBuy.addOption("5. Limpiar Registros :white_check_mark:", clearbuy);
+    mnuBuy.showMenu();
+}
+
 VppConfigManager SubMenus::_vppConfigManager = VppConfigManager();
 void SubMenus::editConfig() { _vppConfigManager.edit(); }
 void SubMenus::toggleMode() { _vppConfigManager.toggleMode(); }

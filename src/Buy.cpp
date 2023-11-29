@@ -13,10 +13,11 @@ _transactionId=-1;
 _totalAmount=0.00;
 strcpy (_paymentMethod, "");
 _buyDate= Date(1,1,1990);
+_status = false;
 
 }
 
-Buy::Buy (int buyid, int productid, int quantityid, int transaccionid,float totalamount, std::string paymentmethod, Date buydate){
+Buy::Buy (int buyid, int productid, int quantityid, int transaccionid,float totalamount, std::string paymentmethod, Date buydate,bool status){
 _buyId=buyid;
 _productId=productid;
 _quantity=quantityid;
@@ -24,7 +25,7 @@ _transactionId=transaccionid;
 _totalAmount=totalamount;
 strcpy (_paymentMethod,paymentmethod.c_str());
 _buyDate=buydate;
-
+ _status = status;
 
 
 }
@@ -37,6 +38,7 @@ void Buy::setDate(Date date) { _buyDate = date; }
 void Buy::setProductId(int ProductId) { _productId = ProductId; }
 void Buy::setQuantity(int qty) { _quantity = qty; }
 void Buy::setTransactionId(int id) { _transactionId = id; }
+void Buy::setStatus(bool status) { _status = status; }
 
 int Buy::getBuyId() { return _buyId; }
 float Buy::getTotalAmount() { return _totalAmount; }
@@ -45,6 +47,7 @@ Date Buy::getbuyDate() { return _buyDate; }
 int Buy::getProductId() { return _productId; }
 int Buy::getQuantity() { return _quantity; }
 int Buy::getTransactionId() { return _transactionId; }
+bool Buy::getStatus() { return _status; }
 
 
 void Buy::toVecString(std::string vStr[7]) {

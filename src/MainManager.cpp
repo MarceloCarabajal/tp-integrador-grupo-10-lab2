@@ -56,8 +56,11 @@ void MainManager::mainMenu() {
                         _subMenus.inventory);
     _mainMenu.addOption("8. Gestión de Veterinarios :briefcase:",
                         _subMenus.vets);
-    _mainMenu.addOption("9. Enviar email", funcSubMenutest);
-    _mainMenu.addOption("10. Cofiguración del sistema :gear:",
+
+    _mainMenu.addOption("9. Gestion de Compras", _subMenus.buy);
+    // _mainMenu.addOption("10. Gestion de Ventas", _subMenus.Sale);
+    _mainMenu.addOption("11. Enviar email", funcSubMenutest);
+    _mainMenu.addOption("12. Cofiguración del sistema :gear:",
                         _subMenus.sysConfig);
 
     _mainMenu.showMenu();
