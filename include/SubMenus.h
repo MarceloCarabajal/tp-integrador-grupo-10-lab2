@@ -4,6 +4,8 @@
 #include "AppointmentsManager.h"
 #include "BuysManager.h"
 #include "ClientsManager.h"
+#include "ExpenseManager.h"
+#include "IncomeManager.h"
 #include "Menu.h"
 #include "PetRelations.h"
 #include "PetsManager.h"
@@ -14,10 +16,7 @@
 #include "VaccinationManager.h"
 #include "VetVisitsManager.h"
 #include "VetsManager.h"
-#include "IncomeManager.h"
-#include "ExpenseManager.h"
 #include "VppConfigManager.h"
-
 
 class SubMenus {
 private:
@@ -82,7 +81,6 @@ private:
 
     static ExpenseManager _expenseManager;
     static void showExpenses();
-    
 
     static VetVisitsManager _vetvisitsManager;
     static void loadvetvisit();
