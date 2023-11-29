@@ -39,6 +39,13 @@ void PetsManager::load() {
     auxPet.setPetId(nId);  // set del Id ingresado anteriormente
     if (_petsFile.writeFile(auxPet)) {
         std::cout << "Mascota guardada con exito!\n";
+        int newRel = relsManager.autogenerateNew(auxPet.getOwnerId(), nId);
+        if (newRel > 0) {
+            printf("Se generó una nueva relación con id #%d.\n", newRel);
+        } else {
+            std::cout << "Ocurrió un error al actualizar el registro de "
+                         "relaciones.\n";
+        }
     } else {
         std::cout << "Ocurrio un error al guardar la mascota.\n";
     }
@@ -302,6 +309,8 @@ void PetsManager::cancel() {
     utils::pause();
 }
 
+// Esta funcion es utilizada por RelationsManager para actualizar el id del
+// dueño
 bool PetsManager::updateOwner(int ownerId, int petId) {
     int regPos = _petsFile.searchReg(searchById, petId);
     if (regPos < 0) return false;

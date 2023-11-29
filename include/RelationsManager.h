@@ -6,9 +6,9 @@
 
 class RelationsManager {
 private:
-    std::string _dataPath = VppConfigManager().getDataPath();
-    VppFile<PetRelations> _petRelationsFile =
-        VppFile<PetRelations>(_dataPath + "PetRelations.vpp");
+    const std::string _folderPath = VppConfigManager().getDataPath();
+    const std::string _filePath = _folderPath + "PetRelations.vpp";
+    VppFile<PetRelations> _petRelationsFile = VppFile<PetRelations>(_filePath);
     const int _petRelationsFields =
         4;  // total de datos de un regisro PetRelations
     PetRelations loadForm();
@@ -21,12 +21,11 @@ public:
     RelationsManager();
     void load();
     void edit();
-     void show(bool showAndPause = true);
+    void show(bool showAndPause = true);
     bool updateRelation(PetRelations petR, int regPos);
-    void clearDeleted();
-    void cancel();
+    void deleteRel();
 
-    bool autogenerateNew(int clientId, int petId);
+    int autogenerateNew(int clientId, int petId);
 
     // Al ser una funcion estatica se puede usar sin necesaidad de instanciar un
     // objeto de tipo "RelationsManager", eso permite que se pueda pasar por

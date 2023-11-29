@@ -50,7 +50,7 @@ void RelationsManager::load() {
 }
 
 PetRelations RelationsManager::loadForm() {
-    InputForm petRelsForm, petIdForm, clientIdForm;
+    InputForm petRelsForm, petIdForm, clientIdForm, confirmForm;
     PetRelations auxPetR;
     PetsManager petsManager;
     ClientsManager clientsManager;
@@ -94,8 +94,14 @@ PetRelations RelationsManager::loadForm() {
 
     // Si se define como propietario, se actualiza el archivo de mascotas
     if (owner) {
+        bool confirm;
+        std::cout << "Se reemplazará el dueño principal de la mascota.\n Desea "
+                     "continuar?";
+        confirmForm.setBoolField("[SI/NO]", confirm);
+        if (!confirmForm.fill()) return auxPetR;
+        if (!confirm) return auxPetR;
         bool successNewOwner = newOwner(petId, clientId);
-        if (!successNewOwner) owner = false;
+        if (!successNewOwner) return auxPetR;
     }
 
     auxPetR.setPetId(petId);
@@ -107,7 +113,8 @@ PetRelations RelationsManager::loadForm() {
 }
 
 PetRelations RelationsManager::editForm(int regPos) {
-    InputForm petRelsForm(true), petIdForm(true, true), clientIdForm(true, true);
+    InputForm petRelsForm(true), petIdForm(true, true),
+        clientIdForm(true, true);
     PetRelations auxPetR, auxFormR;
     PetsManager petsManager;
     ClientsManager clientsManager;
@@ -157,17 +164,20 @@ PetRelations RelationsManager::editForm(int regPos) {
     if (!petRelsForm.fill()) return auxFormR;
 
     // si se completa
-    // Si se define como propietario, se actualiza el archivo de mascotas
-    if (owner) {
+    // Si se cambió de propietario, se actualiza el archivo de mascotas
+    bool ownerChanged = owner != auxPetR.getOwner() ||
+                        owner && clientId != auxPetR.getClientId();
+    if (ownerChanged) {
         bool successNewOwner = newOwner(petId, clientId);
-        if (!successNewOwner) owner = false;
+        if (!successNewOwner) return auxFormR;  // devolver vació
+        std::cout << "Se actualizará el dueño principal de la mascota.\n";
     }
 
     auxFormR.setRelationId(nId);
     auxFormR.setClientId(clientId);
     auxFormR.setPetId(petId);
     auxFormR.setOwner(owner);
-    auxPetR.setStatus(true);
+    auxFormR.setStatus(true);
 
     return auxFormR;
 }
@@ -199,7 +209,7 @@ void RelationsManager::edit() {
     if (_petRelationsFile.updateFile(auxPetR, regPos)) {
         std::cout << "Relación de la Mascota editada con exito!\n";
     } else {
-        std::cout << "Ocurrio un error al guardar el registro.\n";
+        std::cout << "Ocurrio un error al actualizar los registros.\n";
     }
     utils::pause();
 }
@@ -211,10 +221,10 @@ void RelationsManager::show(bool showAndPause) {
     int totalCells = totalRegs * _petRelationsFields;
     if (VppConfigManager().isTesting()) {
         std::cout << "Modo de prueba activado." << std::endl;
-        std::cout << _dataPath << std::endl;
+        std::cout << _filePath << std::endl;
     } else {
         std::cout << "Modo de prueba desactivado." << std::endl;
-        std::cout << _dataPath << std::endl;
+        std::cout << _filePath << std::endl;
     }
 
     if (totalRegs < 0) {
@@ -341,20 +351,21 @@ bool RelationsManager::updateRelation(PetRelations petR, int regPos) {
 }
 
 // Esta funcion solo se utiliza desde petsManager
-bool RelationsManager::autogenerateNew(int clientId, int petId) {
+int RelationsManager::autogenerateNew(int clientId, int petId) {
     PetRelations auxPetR;
     auxPetR.setClientId(clientId);
     auxPetR.setPetId(petId);
     auxPetR.setOwner(true);
     auxPetR.setStatus(true);
     // Si no existe se crea uno nuevo con id 1
-    if (!utils::fileExists("PetRelations.vpp")) {
+    if (!utils::fileExists(_filePath)) {
         auxPetR.setRelationId(1);
-        return _petRelationsFile.writeFile(auxPetR);
+        bool success = _petRelationsFile.writeFile(auxPetR);
+        return success ? 1 : -1;
     }
     // Si ya existe, agrega relacion con id+1, hasta encontrar disponible
     int totalRegs = _petRelationsFile.getTotalRegisters();
-    if (totalRegs == -1) return false;
+    if (totalRegs == -1) return -1;
     // obtener ultimo id asignado
     int lastId = _petRelationsFile.readFile(totalRegs - 1).getRelationId();
     int newId = lastId + 1;  // sumar 1
@@ -364,37 +375,12 @@ bool RelationsManager::autogenerateNew(int clientId, int petId) {
     }
     auxPetR.setRelationId(newId);
     // guardar nueva relación
-    return _petRelationsFile.writeFile(auxPetR);
+    bool success = _petRelationsFile.writeFile(auxPetR);
+    // Si tuvo éxito, devolver nro de Id, sino -1
+    return success ? newId : -1;
 }
 
-
-
-void RelationsManager::clearDeleted() {
-    InputForm confirmForm;
-    bool confirm;
-    std::cout << "Esta acción buscará relaciones dadas de baja e "
-                 "intentará eliminarlas definitivamente. Desea continuar?\n";
-    confirmForm.setBoolField("[SI/NO]", confirm);
-    if (!confirmForm.fill()) return;
-    if (!confirm) return;
-    std::cout << "Buscando registros...\n";
-    int deleted = _petRelationsFile.deleteAllMarked();
-    switch (deleted) {
-        case 0:
-            std::cout << "No se encontraron relaciones dadas de baja.\n";
-            break;
-        case -1:
-            std::cout
-                << "Ocurrió un error al intentar eliminar las relaciones\n";
-            break;
-        default:
-            printf("Se eliminaron %d registros con éxito!\n", deleted);
-            break;
-    }
-    utils::pause();
-}
-
-void RelationsManager::cancel() {
+void RelationsManager::deleteRel() {
     InputForm searchId, confirmForm;
     int nId;
     bool confirm;
@@ -410,9 +396,25 @@ void RelationsManager::cancel() {
         utils::pause();
         return;
     }
+    PetRelations auxPetR = _petRelationsFile.readFile(regPos);
+    if (auxPetR.getPetId() == -1) {
+        std::cout << "Ocurrió un error al leer los registros.\n";
+        utils::pause();
+        return;
+    }
 
-    printf("Se seleccionó la Relación #%d, confirma la baja provisoria.\n",
-           nId);
+    if (auxPetR.getOwner()) {
+        std::cout << "El cliente de esta relación está definido como DUEÑO.\n"
+                     "Por favor cargue/edite otra con el nuevo dueño antes de "
+                     "dar de baja la actual.\n";
+        utils::pause();
+        return;
+    }
+
+    printf(
+        "Se seleccionó la Relación #%d, confirma la baja definitiva? Esta "
+        "acción no se puede deshacer.\n",
+        nId);
     confirmForm.setBoolField("[SI/NO]", confirm);
     if (!confirmForm.fill()) return;
     if (!confirm) {
@@ -421,7 +423,7 @@ void RelationsManager::cancel() {
         return;
     }
 
-    bool success = _petRelationsFile.markForDelete(regPos);
+    bool success = _petRelationsFile.deleteReg(regPos);
 
     if (success) {
         std::cout << "Baja realizada con éxito!\n";
