@@ -8,7 +8,6 @@
 #include "rlutil.h"
 #include "utils.h"
 
-
 void BuysManager::load() {
     InputForm idForm;
     Buy auxBuy;
@@ -47,10 +46,9 @@ void BuysManager::load() {
 Buy BuysManager::loadForm() {
     InputForm buyForm, productForm;
     Buy auxBuy;
-    std::string paymentMethod;
     ProductsManager prodmanager;
-    int productId, quantity, trxId;
-    float totalAmount;
+    int productId, quantity, trxId,paymentMethod;
+    float unitPrice;
     Date buyDate;
     bool alreadyExists = true;
 
@@ -64,13 +62,13 @@ Buy BuysManager::loadForm() {
         alreadyExists = prodmanager.idExists(productId);
     } while (!alreadyExists);  // si no existe, volver a pedir
 
-    buyForm.setStrField("Metodo Pago", paymentMethod, 15);
+    buyForm.setRangeField("Metodo Pago", paymentMethod, 1,3);
 
     //// este numero se copia en los objetos de la clase transaccion
     // TODO: Este es el que se tiene que generar solo?
     buyForm.setIntField("ID Transacción", trxId, 4);
     buyForm.setRangeField("Cantidad", quantity, 1, 1000);
-    buyForm.setFloatField("Total", totalAmount);
+    buyForm.setFloatField("Precio Unitario $", unitPrice);
     buyForm.setDateField("Fecha", buyDate);
 
     if (!buyForm.fill()) return auxBuy;
@@ -80,6 +78,7 @@ Buy BuysManager::loadForm() {
     auxBuy.setTransactionId(trxId);
     auxBuy.setQuantity(quantity);
     auxBuy.setDate(buyDate);
+    auxBuy.setunitprice(unitPrice);
     auxBuy.setStatus(true);
 
     return auxBuy;
@@ -88,10 +87,9 @@ Buy BuysManager::loadForm() {
 Buy BuysManager::editForm(int regPos) {
     InputForm buyForm(true), productForm(true, false);
     Buy auxBuy, auxFormBuy;
-    ProductsManager prodmanager;
-    std::string paymentMethod;
-    int nId, productId, quantity, transactionId;
-    float totalAmount;
+    ProductsManager prodmanager; 
+    int nId, productId, quantity, transactionId,paymentMethod;
+    float unitPrice;
     Date buyDate;
     bool existentId;
 
@@ -106,7 +104,7 @@ Buy BuysManager::editForm(int regPos) {
     productId = auxBuy.getProductId();
     nId = auxBuy.getBuyId();
     buyDate = auxBuy.getbuyDate();
-    totalAmount = auxBuy.getTotalAmount();
+    unitPrice = auxBuy.getunitprice();
     quantity = auxBuy.getQuantity();
     paymentMethod = auxBuy.getPaymentMethod();
 
@@ -114,7 +112,7 @@ Buy BuysManager::editForm(int regPos) {
     std::cout << "Editando compra #" << nId << std::endl;
 
     // pedir y buscar si el id producto ingresado existe
-    productForm.setIntField("ID Mascota", productId, 4);
+    productForm.setIntField("ID Producto comprado", productId, 4);
     while (!existentId) {
         if (!productForm.fill()) return auxFormBuy;
         existentId = prodmanager.idExists(productId);
@@ -122,13 +120,12 @@ Buy BuysManager::editForm(int regPos) {
     }
 
     /////buyForm.setEditMode(true, true);  // modo edicion
-
-    buyForm.setStrField("Metodo Pago", paymentMethod, 15);
+    buyForm.setRangeField("Metodo Pago", paymentMethod, 1,3);
     buyForm.setIntField(
         "ID Transacción", transactionId,
         4);  //// este numero se copia en los objetos de la clase transaccion
     buyForm.setRangeField("Cantidad", quantity, 1, 1000);
-    buyForm.setFloatField("Total", totalAmount);
+    buyForm.setFloatField("Precio Unitario $", unitPrice);
     buyForm.setDateField("Fecha", buyDate);
 
     // completar form
@@ -142,6 +139,7 @@ Buy BuysManager::editForm(int regPos) {
         auxFormBuy.setQuantity(quantity);
         auxFormBuy.setDate(buyDate);
         auxFormBuy.setStatus(true);
+        auxFormBuy.setunitprice(unitPrice);
 
         return auxFormBuy;
     }
@@ -219,7 +217,7 @@ void BuysManager::show(bool showAndPause) {
     // Vector que contiene las columnas de nuestra lista
     std::string columns[7] = {
         "ID",      "ID producto",    "Cantidad", "Id Transaccion",
-        "Total $", "Metodo de pago", "Fecha"};
+        "Precio Unitario", "Metodo de pago", "Fecha"};
 
     ListView buysList;
     buysList.addCells(cells, totalCells);

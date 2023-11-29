@@ -7,8 +7,8 @@
 class Buy {
 private:
     int _buyId, _productId, _quantity, _transactionId;
-    float _totalAmount;
-    char _paymentMethod[15];
+    float _unitPrice;
+    int _paymentMethod;
     Date _buyDate;
     bool _status;
 
@@ -16,13 +16,13 @@ private:
     // producto con su cantidad. Por eso no tenemos ItemBuy como en Sale */
 public:
     Buy();
-    Buy(int buyid, int productid, int quantityid, int transaccionid,
-        float totalamount, std::string paymentmethod, Date buydate,
+    Buy( int buyid, int productid, int quantityid, int transaccionid,
+        float unitPrice, int paymentmethod, Date buydate,
         bool status);
 
     void setBuyId(int id);
-    void setAmount(float importe);
-    void setpaymentMethod(std::string method);
+    void setunitprice(float importe);
+    void setpaymentMethod(int method);
     void setDate(Date date);
     void setProductId(int ProductId);
     void setQuantity(int qty);
@@ -30,8 +30,8 @@ public:
     void setStatus(bool status);
 
     int getBuyId();
-    float getTotalAmount();
-    const char* getPaymentMethod();
+    float getunitprice();
+    int getPaymentMethod();
     Date getbuyDate();
     int getProductId();
     int getQuantity();
