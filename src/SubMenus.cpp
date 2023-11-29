@@ -115,10 +115,7 @@ void SubMenus::loadPet() {
     _petsManager.load();
     utils::pause();
 }
-void SubMenus::showPets() {
-    _petsManager.show();
-    utils::pause();
-}
+void SubMenus::showPets() { _petsManager.show(); }
 void SubMenus::editPets() { _petsManager.edit(); }
 
 void SubMenus::cancelPets() {

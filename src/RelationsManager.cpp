@@ -9,7 +9,8 @@
 #include "rlutil.h"
 #include "utils.h"
 
-RelationsManager::RelationsManager() {
+// habilitar para debug
+/* RelationsManager::RelationsManager() {
     std::cout << "Relations manager incializado." << std::endl;
     if (VppConfigManager().isTesting()) {
         std::cout << "Modo de prueba activado." << std::endl;
@@ -17,7 +18,7 @@ RelationsManager::RelationsManager() {
         std::cout << "Modo de prueba desactivado." << std::endl;
     }
     utils::pause();
-}
+} */
 
 void RelationsManager::load() {
     InputForm idForm;

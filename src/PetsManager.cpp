@@ -43,7 +43,7 @@ void PetsManager::load() {
     } while (alreadyExists);
 
     auxPet = loadForm();
-    // Si no se completo el form, salir
+    // Si no se completo el form o se canceló la carga, salir
     if (auxPet.getOwnerId() == -1) return;
 
     auxPet.setPetId(nId);  // set del Id ingresado anteriormente
@@ -97,10 +97,11 @@ Pet PetsManager::loadForm() {
 }
 
 Pet PetsManager::editForm(int regPos) {
-    InputForm petForm(true), clientIdForm(true);
+    InputForm petForm(true), clientIdForm(true, true), confirmForm;
     Pet auxPet, auxFormPet;
     std::string name, specie, breed, currentDiagnosis;
     ClientsManager clientsManager;
+    RelationsManager relsManager;
     int nId, ownerId;
     Date birthDate;
     bool existentId, alreadyExists = true;
@@ -119,7 +120,7 @@ Pet PetsManager::editForm(int regPos) {
     currentDiagnosis = auxPet.getCurrentDiagnosis();
     birthDate = auxPet.getBirthDate();
 
-    rlutil::cls();
+    // rlutil::cls();
     std::cout << "Editando Mascota #" << nId << std::endl;
 
     // pedir y buscar id dueño
@@ -131,14 +132,45 @@ Pet PetsManager::editForm(int regPos) {
         if (!retryIfIdNotExists(existentId)) return auxFormPet;
     }
 
+    // Si el id del dueño es distinto, se crea una nueva relación o se solicita
+    // editar la existente
+    bool newOwner = auxPet.getOwnerId() != ownerId;
+    if (newOwner) {
+        bool relExists = relsManager.relationExists(auxPet.getPetId(), ownerId);
+        if (relExists) {
+            std::cout << "Ya existe una relación entre esta mascota y el ID de "
+                         "cliente ingresado.\n";
+            std::cout
+                << "Si desea cambiar el dueño, edite la relación existente.\n";
+            utils::pause();
+            return auxFormPet;
+        } else {
+            std::cout << "\nATENCIÓN: Se cambió el ID dueño, esta acción "
+                         "creara una nueva "
+                         "relación en nuestros registros.\n";
+            std::cout << "Desea continuar?\n";
+            bool confirm;
+            confirmForm.setBoolField("[SI/NO]", confirm);
+            if (!confirmForm.fill()) return auxFormPet;
+            if (!confirm) return auxFormPet;
+            int newRel = relsManager.autogenerateNew(auxPet.getOwnerId(),
+                                                     auxPet.getPetId());
+            if (newRel != -1) {
+                printf("Se generó una nueva relación con id #%d.\n", newRel);
+            } else {
+                std::cout << "Ocurrió un error al actualizar el registro de "
+                             "relaciones.\n";
+                return auxFormPet;
+            }
+        }
+    }
+
     // configurar form
-    petForm.setEditMode(true, true);  // modo edicion
     petForm.setStrField("Nombre", name, 30);
     petForm.setStrField("Especie", specie, 15);
     petForm.setStrField("Raza", breed, 30);
     petForm.setStrField("Diagnostico actual", currentDiagnosis, 45);
     petForm.setDateField("Fecha de nacimiento", birthDate);
-    /// petForm.setIntField("ID Dueño", ownerId, 4);
 
     // completar form
     bool success = petForm.fill();
@@ -160,9 +192,9 @@ Pet PetsManager::editForm(int regPos) {
 }
 
 void PetsManager::edit() {
-    InputForm search;
+    InputForm search, confirmForm;
     int nId;
-    show();
+    show(false);
     std::cout << "\nIngrese el ID de la mascota a modificar.\n";
     search.setIntField("ID Mascota", nId, 4);
     if (!search.fill()) return;  // si no se completa, salir
@@ -180,9 +212,10 @@ void PetsManager::edit() {
         utils::pause();
         return;
     }
+
     // Si se encontro, pedir datos
     Pet auxPet = editForm(regPos);
-    // Si no se completo el formulario, salir
+    // Si no se completo el formulario o canceló la carga, salir
     if (auxPet.getPetId() == -1) {
         std::cout << "No se realizara la edicion.\n";
         utils::pause();
@@ -200,8 +233,8 @@ void PetsManager::edit() {
 
 void PetsManager::show(bool showAndPause) {
     int totalRegs = _petsFile.getTotalRegisters();
-    // calcular el total de celdas de nuestra lista, segun la cantidad de datos
-    // que contiene 1 registro
+    // calcular el total de celdas de nuestra lista, segun la cantidad de
+    // datos que contiene 1 registro
     int totalCells = totalRegs * _petsFields;
 
     if (totalRegs < 0) {
@@ -209,8 +242,8 @@ void PetsManager::show(bool showAndPause) {
         utils::pause();
         return;
     }
-    // Se crea la variable que va a contener todas las celdas, segun la cantidad
-    // de registros
+    // Se crea la variable que va a contener todas las celdas, segun la
+    // cantidad de registros
     std::string *cells = new std::string[totalCells];
     if (cells == NULL) {
         std::cout << "No hay memoria suficiente para mostrar las mascotas.\n";
@@ -230,8 +263,8 @@ void PetsManager::show(bool showAndPause) {
                 cells[rowPos + cell] = "";
             }
         }
-        // se incrementa la posicion de la celda segun la cantidad de datos que
-        // contiene el registro, que equivale a una fila de la lista
+        // se incrementa la posicion de la celda segun la cantidad de datos
+        // que contiene el registro, que equivale a una fila de la lista
         rowPos += _petsFields;
     }
     // Vector que contiene las columnas de nuestra lista

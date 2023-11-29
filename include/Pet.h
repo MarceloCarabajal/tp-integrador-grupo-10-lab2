@@ -11,11 +11,11 @@ private:
     bool _status;
 
 public:
-     Pet();
+    Pet();
 
-     Pet(int petId, int ownerId, std::string name, std::string specie,
-           std::string breed, std::string currentDiagnosis, Date birthDate, bool status);
-
+    Pet(int petId, int ownerId, std::string name, std::string specie,
+        std::string breed, std::string currentDiagnosis, Date birthDate,
+        bool status);
 
     void setPetId(int petId);
     void setOwnerId(int ownerId);
@@ -26,7 +26,6 @@ public:
     void setBirthDate(Date birthdate);
     void setStatus(bool status);
 
-
     int getPetId();
     int getOwnerId();
     const char* getName();
@@ -35,10 +34,5 @@ public:
     const char* getCurrentDiagnosis();
     Date getBirthDate();
     bool getStatus();
-
-    void addAppoinment();
-    void loadPet();
-    void recordVaccination();
-
     void toVecString(std::string vStr[7]);
 };
