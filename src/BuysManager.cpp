@@ -308,3 +308,10 @@ void BuysManager::cancel() {
     }
     utils::pause();
 }
+
+
+bool BuysManager::validAppDate(Date date) {
+    Date today;
+    if (date > today) return false;
+    return true;
+}

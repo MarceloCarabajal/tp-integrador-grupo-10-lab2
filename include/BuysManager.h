@@ -10,6 +10,7 @@ private:
     Buy loadForm();
     Buy editForm(int regPos);
     bool retryIfIdNotExists(bool exists);
+    bool validAppDate(Date date);
 
 public:
     void load();

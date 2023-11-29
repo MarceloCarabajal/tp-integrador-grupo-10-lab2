@@ -71,3 +71,19 @@ bool Date::operator==(const Date& d) {
     bool equal = _year == d._year && _month == d._month && _day == d._day;
     return equal;
 }
+
+///USAMOS PARA BUYS
+bool Date::operator>(const Date& d) {
+    if (_year > d._year) return true;
+    if (_year < d._year) return false;
+    if (_month > d._month) return true;
+    if (_month < d._month) return false;
+    if (_day > d._day) return true;
+    return false;
+}
+
+
+bool Date::operator<(const Date& d) {
+    // si es mayor, no es menor ni igual
+    return (*this > d || *this == d ) ? false : true;
+}
