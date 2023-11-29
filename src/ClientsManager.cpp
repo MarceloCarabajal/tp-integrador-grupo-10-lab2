@@ -135,6 +135,16 @@ void ClientsManager::edit() {
         utils::pause();
         return;
     }
+    // Si existe pero está dada de baja
+    if (!isActiveId(nId)) {
+        std::cout << "El cliente se encuentra dado de baja.\n";
+        std::cout << "Si desea eliminarlo definitivamente o reutilizar este "
+                     "ID, seleccione la "
+                     "opción 'Limpiar registros' del menú.\n";
+        utils::pause();
+        return;
+    }
+
     // Si se encontro, pedir datos
     Client auxClient = editForm(regPos);
     // Si no se completo el formulario, salir

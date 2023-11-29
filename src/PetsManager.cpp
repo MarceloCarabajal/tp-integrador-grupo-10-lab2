@@ -207,7 +207,8 @@ void PetsManager::edit() {
     // Si existe pero está dada de baja
     if (!isActiveId(nId)) {
         std::cout << "La mascota se encuentra dada de baja.\n";
-        std::cout << "Si desea eliminarla definitivamente, seleccione la "
+        std::cout << "Si desea eliminarla definitivamente o reutilizar este "
+                     "ID, seleccione la "
                      "opción 'Limpiar registros' del menú.\n";
         utils::pause();
         return;
