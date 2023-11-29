@@ -204,8 +204,8 @@ void VppConfigManager::toggleMode() {
 bool VppConfigManager::isTesting() { return _testMode; }
 
 std::string VppConfigManager::getDataPath() {
-    std::string path = "data/";
-    if (_testMode) path = "data_debug/";
+    std::string path = "data\\";
+    if (_testMode) path = "data_debug\\";
     return path;
 }
 

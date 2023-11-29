@@ -33,6 +33,9 @@ void MainManager::start() {
         utils::pause();
     }
     statusBar.update();
+    // TODO: Eliminar luego
+    // std::cout << VppConfigManager().getDataPath() << std::endl;
+    // utils::pause();
     mainMenu();
 }
 

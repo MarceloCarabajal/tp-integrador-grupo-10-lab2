@@ -26,7 +26,7 @@ public:
     bool updateConfig(const VppConfig &vc);
     bool exists();
     bool isTesting();
-    std::string getDataPath();
+    static std::string getDataPath();
     // posible idea: encriptar los datos de vppconfig.vpp
     // bool getCredentials(std::string passkey, VppConfig &vc);
 };

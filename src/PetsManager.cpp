@@ -6,11 +6,13 @@
 #include "Date.h"
 #include "InputForm.h"
 #include "ListView.h"
+#include "RelationsManager.h"
 #include "rlutil.h"
 #include "utils.h"
 
 void PetsManager::load() {
     InputForm idForm;
+    RelationsManager relsManager;
     Pet auxPet;
     int nId = 0;
     bool alreadyExists = false;

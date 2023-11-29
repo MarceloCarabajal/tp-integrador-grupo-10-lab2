@@ -2,9 +2,12 @@
 #define UTILS_INCLUDED
 
 #include <rlutil.h>
+// API de archivos de Windows
+#include <fileapi.h>  // necesario para la funcion GetFileAttributes
 
 #include <iomanip>
 #include <iostream>
+
 
 // #include "isvalid.h", evita la dependencia circular
 //  Declaración forward de isvalid::alphanumeric
@@ -133,6 +136,18 @@ namespace utils {
     }
 
     inline void cls() { rlutil::cls(); }
+
+    inline bool fileExists(std::string filePath) {
+        // convertir string a TCHAR/WCHAR
+        TCHAR *Tpath = new TCHAR[filePath.size() + 1];
+        Tpath[filePath.size()] = 0;
+        std::copy(filePath.begin(), filePath.end(), Tpath);
+        // comprobar si existe el archivo
+        DWORD dwAttrib = GetFileAttributes(Tpath);
+
+        // si el archivo no existe, devolver false
+        return (dwAttrib != INVALID_FILE_ATTRIBUTES);
+    }
 }  // namespace utils
 
 #endif /* UTILS_INCLUDED */

@@ -51,6 +51,8 @@ int VppFile<VppClass>::getTotalRegisters() {
  */
 template <class VppClass>
 VppClass VppFile<VppClass>::readFile(int regNumber) {
+    // TODO: REVISAR
+    // std::string filePath = VppConfigManager::getDataPath() + _fileName;
     VppClass reg;  // Se crea un registro del tipo instanciado
     FILE *pFile = fopen(_fileName.c_str(), "rb");  // abrir en modo lectura
     if (pFile == NULL) return reg;  // si no se pudo abrir, devolver reg vacio

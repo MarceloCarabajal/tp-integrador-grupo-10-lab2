@@ -19,7 +19,9 @@ public:
     void load();
     void edit();
     void show();
-    void menu();
+    bool updateRelation(PetRelations petR, int regPos);
+
+    bool autogenerateNew(int clientId, int petId);
 
     // Al ser una funcion estatica se puede usar sin necesaidad de instanciar un
     // objeto de tipo "RelationsManager", eso permite que se pueda pasar por
@@ -29,5 +31,6 @@ public:
     static bool searchRelation(PetRelations reg, int petId, int clientId);
 
     bool relationExists(int petId, int clientId);
+    PetRelations searchGetRelation(int petId, int clientId);
     bool idExists(int nId);
 };

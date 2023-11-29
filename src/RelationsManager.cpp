@@ -266,6 +266,16 @@ bool RelationsManager::relationExists(int petId, int clientId) {
     return (found >= 0) ? true : false;
 }
 
+// Buscar relacion por id de mascota y cliente y devolverla
+PetRelations RelationsManager::searchGetRelation(int petId, int clientId) {
+    PetRelations auxPetR;
+    int found = _petRelationsFile.searchReg(searchRelation, petId, clientId);
+    if (found >= 0) {
+        auxPetR = _petRelationsFile.readFile(found);
+    }
+    return auxPetR;
+}
+
 bool RelationsManager::retryIfIdExists(bool exists) {
     if (exists) {
         std::cout << "El ID ingresado ya existe, presione cualquier tecla "
@@ -305,4 +315,35 @@ bool RelationsManager::newOwner(int petId, int clientId) {
         return false;
     }
     return true;
+}
+
+bool RelationsManager::updateRelation(PetRelations petR, int regPos) {
+    return _petRelationsFile.updateFile(petR, regPos);
+}
+
+// Esta funcion solo se utiliza desde petsManager
+bool RelationsManager::autogenerateNew(int clientId, int petId) {
+    PetRelations auxPetR;
+    auxPetR.setClientId(clientId);
+    auxPetR.setPetId(petId);
+    auxPetR.setOwner(true);
+    auxPetR.setStatus(true);
+    // Si no existe se crea uno nuevo con id 1
+    if (!utils::fileExists("PetRelations.vpp")) {
+        auxPetR.setRelationId(1);
+        return _petRelationsFile.writeFile(auxPetR);
+    }
+    // Si ya existe, agrega relacion con id+1, hasta encontrar disponible
+    int totalRegs = _petRelationsFile.getTotalRegisters();
+    if (totalRegs == -1) return false;
+    // obtener ultimo id asignado
+    int lastId = _petRelationsFile.readFile(totalRegs - 1).getRelationId();
+    int newId = lastId + 1;  // sumar 1
+    // buscar si existe el id, si existe, sumar 1 y volver a buscar
+    while (idExists(newId)) {
+        newId++;
+    }
+    auxPetR.setRelationId(newId);
+    // guardar nueva relación
+    return _petRelationsFile.writeFile(auxPetR);
 }
