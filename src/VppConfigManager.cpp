@@ -2,10 +2,13 @@
 
 // API de archivos de Windows
 #include <fileapi.h>  // necesario para la funcion GetFileAttributes
+#include <tchar.h>
+#include <windows.h>
 
 #include "InputForm.h"
 #include "VppConfig.h"
 #include "utils.h"
+
 
 // declarar a nivel archivo las variable estaticas
 // De esta forma una vez que se inicialize, ya no va a ser necesaria la lectura
@@ -213,14 +216,29 @@ void VppConfigManager::toggleMode() {
         VppConfig auxVc = _vppConfig;
         auxVc.setTestMode(!_testMode);
         if (updateConfig(auxVc)) {
-            std::cout << "Modo de ejecución cambiado correctamente!\n";
-            std::cout << "IMPORTANTE: CIERRE Y VUELVA A ABRIR EL PROGRAMA PARA "
-                         "QUE SEAN EFECTIVOS LOS CAMBIOS.\n";
+            utils::cls();
+            utils::coutCenter("Modo de ejecución cambiado correctamente!");
+            rlutil::msleep(1000);
+            restart();
         } else {
             std::cout << "Ocurrió un error al guardar los cambios.\n";
         }
         utils::pause();
     }
+}
+
+void VppConfigManager::restart() {
+    int count = 5;
+    while (count != 0) {
+        utils::coutCenter("EL PROGRAMA SE REINICIARÁ EN " +
+                          std::to_string(count) + " SEGUNDOS.");
+        rlutil::msleep(1000);
+        count--;
+        utils::cls();
+    }
+    ShellExecute(NULL, _T("open"), _T("vpprestart.exe"), NULL, NULL,
+                 SW_SHOWDEFAULT);
+    exit(0);
 }
 
 bool VppConfigManager::isTesting() { return _testMode; }

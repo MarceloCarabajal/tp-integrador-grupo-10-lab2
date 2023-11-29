@@ -11,6 +11,7 @@ private:
     static bool _testMode;
     void printTitle();
     void checkText();
+    void restart();
 
 public:
     VppConfigManager();
