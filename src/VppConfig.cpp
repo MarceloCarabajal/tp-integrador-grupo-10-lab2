@@ -8,6 +8,7 @@ VppConfig::VppConfig() {
     strcpy(_SMTPServer, "");
     strcpy(_SMTPUser, "");
     _SMTPPort = 0;
+    _testMode = false;
 }
 
 void VppConfig::setVeteName(std::string vtN) { strcpy(_veteName, vtN.c_str()); }

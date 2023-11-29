@@ -13,6 +13,26 @@
 VppConfig VppConfigManager::_vppConfig;
 std::string VppConfigManager::_veteName;
 bool VppConfigManager::_testMode = false;
+bool VppConfigManager::isOk = false;
+
+VppConfigManager::VppConfigManager() {
+    // std::cout << "VppConfigMgr inicializado" << std::endl;
+    // utils::pause();
+
+    // Solo lee el archivo de configuraciones si no se ha leido antes
+    // O si dio error por no existir
+    if (_vppConfig.getSMTPPort() != 0) isOk = true;
+    if (_vppConfig.getSMTPPort() == 0) {
+        _vppConfig = _confFile.readFile(0);
+        _veteName = _vppConfig.getVeteName();
+        _testMode = _vppConfig.getTestMode();
+        if (_vppConfig.getSMTPPort() == 0) {
+            isOk = false;
+        } else {
+            isOk = true;
+        }
+    }
+}
 
 // cargar datos del archivo
 bool VppConfigManager::init() {
@@ -20,6 +40,7 @@ bool VppConfigManager::init() {
     if (_vppConfig.getSMTPPort() == 0) return false;
     _veteName = _vppConfig.getVeteName();
     _testMode = _vppConfig.getTestMode();
+    isOk = true;
     return true;
 }
 
@@ -189,13 +210,14 @@ void VppConfigManager::toggleMode() {
     toggleForm.setBoolField("[SI/NO]", confirm);
     if (!toggleForm.fill()) return;
     if (confirm) {
-        _vppConfig.setTestMode(!_testMode);
-        if (updateConfig(_vppConfig)) {
+        VppConfig auxVc = _vppConfig;
+        auxVc.setTestMode(!_testMode);
+        if (updateConfig(auxVc)) {
             std::cout << "Modo de ejecución cambiado correctamente!\n";
+            std::cout << "IMPORTANTE: CIERRE Y VUELVA A ABRIR EL PROGRAMA PARA "
+                         "QUE SEAN EFECTIVOS LOS CAMBIOS.\n";
         } else {
-            std::cout << "Se cambió el modo, pero ocurrió un error al "
-                         "guardarlo en el "
-                         "archivo de configuraciones.\n";
+            std::cout << "Ocurrió un error al guardar los cambios.\n";
         }
         utils::pause();
     }

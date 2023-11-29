@@ -1,12 +1,14 @@
 #pragma once
 
 #include "PetRelations.h"
+#include "VppConfigManager.h"
 #include "VppFile.h"
 
 class RelationsManager {
 private:
+    std::string _dataPath = VppConfigManager().getDataPath();
     VppFile<PetRelations> _petRelationsFile =
-        VppFile<PetRelations>("PetRelations.vpp");
+        VppFile<PetRelations>(_dataPath + "PetRelations.vpp");
     const int _petRelationsFields =
         4;  // total de datos de un regisro PetRelations
     PetRelations loadForm();
@@ -16,6 +18,7 @@ private:
     bool newOwner(int petId, int clientId);
 
 public:
+    RelationsManager();
     void load();
     void edit();
     void show();

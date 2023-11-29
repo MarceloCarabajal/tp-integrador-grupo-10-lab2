@@ -74,6 +74,7 @@ void Menu::printBase() {
     // Limpiar todo
     rlutil::cls();
     // Barra de estado
+    StatusBar::update();
     StatusBar::show();
     //  Logo
     utils::printLogo();

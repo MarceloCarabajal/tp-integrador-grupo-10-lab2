@@ -9,6 +9,16 @@
 #include "rlutil.h"
 #include "utils.h"
 
+RelationsManager::RelationsManager() {
+    std::cout << "Relations manager incializado." << std::endl;
+    if (VppConfigManager().isTesting()) {
+        std::cout << "Modo de prueba activado." << std::endl;
+    } else {
+        std::cout << "Modo de prueba desactivado." << std::endl;
+    }
+    utils::pause();
+}
+
 void RelationsManager::load() {
     InputForm idForm;
     PetRelations auxPetR;
@@ -199,6 +209,13 @@ void RelationsManager::show() {
     // calcular el total de celdas de nuestra lista, segun la cantidad de datos
     // que contiene 1 registro
     int totalCells = totalRegs * _petRelationsFields;
+    if (VppConfigManager().isTesting()) {
+        std::cout << "Modo de prueba activado." << std::endl;
+        std::cout << _dataPath << std::endl;
+    } else {
+        std::cout << "Modo de prueba desactivado." << std::endl;
+        std::cout << _dataPath << std::endl;
+    }
 
     if (totalRegs < 0) {
         std::cout << "Ocurrio un error al leer los registros.\n";

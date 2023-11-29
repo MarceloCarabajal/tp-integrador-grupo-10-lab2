@@ -11,7 +11,7 @@ private:
 
 public:
     StatusBar();
-    void update();
+    static void update();
     static void show();
 };
 

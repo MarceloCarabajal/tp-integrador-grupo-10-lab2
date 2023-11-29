@@ -4,7 +4,6 @@
 #include "ClientsManager.h"
 #include "Menu.h"
 #include "SubMenus.h"
-
 class MainManager {
 private:
     Menu _mainMenu = Menu("MENU PRINCIPAL:house:");

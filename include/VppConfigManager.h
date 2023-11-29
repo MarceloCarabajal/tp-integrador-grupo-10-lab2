@@ -13,12 +13,14 @@ private:
     void checkText();
 
 public:
+    VppConfigManager();
     bool init();
     void checkWidth();
     bool load();
     void edit();
     void toggleMode();
     void setDebugMode(bool debugMode);
+    static bool isOk;
 
     std::string getVeteName();
     void getCredentials(VppConfig &vc);

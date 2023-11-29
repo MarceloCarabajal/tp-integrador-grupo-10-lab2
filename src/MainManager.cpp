@@ -12,11 +12,13 @@ bool MainManager::checkConfig() {
     VppConfigManager vppConfigMgr;
     // Si existe archivo de configuración, cargar configuración
     vppConfigMgr.checkWidth();
-    if (vppConfigMgr.exists()) return vppConfigMgr.init();
+    // Si existe archivo de configuración, ya se intentó cargar
+    // al momento de inicializar el objeto, isError indica si ocurrió un error
+    if (vppConfigMgr.exists()) return vppConfigMgr.isOk;
     // Si no existe, crearlo y tratar de cargarlo
     if (vppConfigMgr.load()) return vppConfigMgr.init();
     // si se llega a este punto, ocurrió un error en la carga y el usuario ya
-    // fue informado
+    // fue informado, por eso devolvemos true
     return true;
 }
 
