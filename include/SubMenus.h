@@ -14,6 +14,8 @@
 #include "VetsManager.h"
 #include "BuysManager.h"
 #include "SalesManager.h"
+#include "IncomeManager.h"
+#include "ExpenseManager.h"
 #include "VppConfigManager.h"
 
 class SubMenus {
@@ -75,6 +77,13 @@ private:
     static void cancelProdCategory();
     static void clearPC();
 
+    static IncomeManager _incomeManager;
+    static void showIncomes();
+
+    static ExpenseManager _expenseManager;
+    static void showExpenses();
+    
+
     static VetVisitsManager _vetvisitsManager;
     static void loadvetvisit();
     static void showvetvisits();
@@ -103,17 +112,20 @@ private:
 public:
     static void clients();
     static void appointments();
-    static void inventory();
     static void vets();
     static void pets();
     static void relations();
+    static void inventory();
     static void products();
-    static void vaccination();
     static void productcategory();
+    static void vaccination();
     static void vetvisits();
     static void buy();
     static void sysConfig();
     static void sale();
+    static void transactions();
+    static void income();
+    static void expense();
 };
 
 #endif /* SUBMENUS_INCLUDED */

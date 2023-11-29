@@ -69,18 +69,13 @@ void SubMenus::appointments() {
                          clearDeleted);
     mnuAppoint.showMenu();
 }
+
 /*
 AppointmentsManager SubMenus::_appsManager = AppointmentsManager();
 void SubMenus::loadAppointment() { _appsManager.load(); }
 void SubMenus::showAppointment() { _appsManager.show(); utils::pause(); }
 void SubMenus::editAppointment() { _appsManager.edit(); }*/
 
-void SubMenus::inventory() {
-    Menu mnuInventory("INVENTARIO", true);
-    mnuInventory.addOption("1. Gestionar Productos", products);
-    mnuInventory.addOption("2. Gestionar Categorías", productcategory);
-    mnuInventory.showMenu();
-}
 /*/
         mnuInventory.addOption("1. Cargar productos", loadProduct);
         mnuInventory.addOption("2. Edita productos", editProducts);
@@ -167,30 +162,6 @@ void SubMenus::relations() {
     mnuRels.showMenu();
 }
 
-ProductsManager SubMenus::_productsManager = ProductsManager();
-void SubMenus::loadProduct() {
-    _productsManager.load();
-    utils::pause();
-}
-void SubMenus::showProducts() {
-    _productsManager.show();
-    utils::pause();
-}
-void SubMenus::editProducts() { _productsManager.edit(); }
-void SubMenus::cancelProduct() { _productsManager.cancel(); }
-void SubMenus::clearProd() { _productsManager.clearDeleted(); }
-
-void SubMenus::products() {
-    Menu mnuProducts("PRODUCTOS:package:", true);
-
-    mnuProducts.addOption("1. Cargar Producto :arrow_up_small:", loadProduct);
-    mnuProducts.addOption("2. Mostrar producto :page_facing_up:", showProducts);
-    mnuProducts.addOption("3. Editar producto :pencil2:", editProducts);
-    mnuProducts.addOption("4. Baja Producto :x:", cancelProduct);
-    mnuProducts.addOption("5. Limpiar Registros :white_check_mark:", clearProd);
-    mnuProducts.showMenu();
-}
-
 VaccinationManager SubMenus::_vaccManager = VaccinationManager();
 void SubMenus::loadVaccination() {
     _vaccManager.load();
@@ -217,6 +188,30 @@ void SubMenus::vaccination() {
     mnuVaccination.showMenu();
 }
 
+ProductsManager SubMenus::_productsManager = ProductsManager();
+void SubMenus::loadProduct() {
+    _productsManager.load();
+    utils::pause();
+}
+void SubMenus::showProducts() {
+    _productsManager.show();
+    utils::pause();
+}
+void SubMenus::editProducts() { _productsManager.edit(); }
+void SubMenus::cancelProduct() { _productsManager.cancel(); }
+void SubMenus::clearProd() { _productsManager.clearDeleted(); }
+
+void SubMenus::products() {
+    Menu mnuProducts("PRODUCTOS:package:", true);
+
+    mnuProducts.addOption("1. Cargar Producto :arrow_up_small:", loadProduct);
+    mnuProducts.addOption("2. Mostrar producto :page_facing_up:", showProducts);
+    mnuProducts.addOption("3. Editar producto :pencil2:", editProducts);
+    mnuProducts.addOption("4. Baja Producto :x:", cancelProduct);
+    mnuProducts.addOption("5. Limpiar Registros :white_check_mark:", clearProd);
+    mnuProducts.showMenu();
+}
+
 ProdCategoryManager SubMenus::_catprodManager = ProdCategoryManager();
 void SubMenus::loadProdCategory() {
     _catprodManager.load();
@@ -241,6 +236,32 @@ void SubMenus::productcategory() {
     mnuCatProd.addOption("4. Baja Categoria :x:", cancelProdCategory);
     mnuCatProd.addOption("5. Limpiar Registros :white_check_mark:", clearPC);
     mnuCatProd.showMenu();
+}
+
+void SubMenus::inventory() {
+    Menu mnuInventory("INVENTARIO", true);
+    mnuInventory.addOption("1. Gestionar Productos", products);
+    mnuInventory.addOption("2. Gestionar Categorías", productcategory);
+    mnuInventory.showMenu();
+}
+
+IncomeManager SubMenus::_incomeManager = IncomeManager();
+void SubMenus::showIncomes() {
+    _incomeManager.show();
+    utils::pause();
+}
+
+ExpenseManager SubMenus::_expenseManager = ExpenseManager();
+void SubMenus::showExpenses() {
+    _expenseManager.show();
+    utils::pause();
+}
+
+void SubMenus::transactions() {
+    Menu mnuTransac("INGRESOS/EGRESOS", true);
+    mnuTransac.addOption("1. Mostrar Ingresos", showIncomes);
+    mnuTransac.addOption("2. Mostrar Egresos ", showExpenses);
+    mnuTransac.showMenu();
 }
 
 SalesManager SubMenus::_salesManager = SalesManager();
