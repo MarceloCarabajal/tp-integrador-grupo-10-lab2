@@ -40,6 +40,7 @@ void Menu::showMenu() {
     printMenu(currentSelect);
 
     while (usrKey != 0) {
+        _vppConfMgr.checkWidth();  // verificar ancho de la consola
         usrKey = rlutil::getkey();
         switch (usrKey) {
             case 14:  // Flecha Arriba

@@ -79,6 +79,13 @@ void InputForm::setDateField(std::string fieldName, Date& dateDestination) {
     _dateVars.push_back(&dateDestination);
 }
 
+void InputForm::setSrvField(std::string fieldName, std::string& strDestination,
+                            int maxLength) {
+    _srvField = fieldName;
+    _srvVar = &strDestination;
+    _srvLimit = maxLength;
+}
+
 bool InputForm::requestStrFields() {
     for (size_t i = 0; i < _strFields.size(); i++) {
         int attempts = 0;  // lleva la cuenta de los intentos
@@ -359,6 +366,29 @@ bool InputForm::requestTimeFields() {
     return true;
 }
 
+bool InputForm::requestSrvField() {
+    int attempts = 0;  // lleva la cuenta de los intentos
+    bool valid;
+    std::string temp;
+    do {
+        if (attempts > 0) {
+            if (!askToRetry(srvField)) return false;
+        }
+        if (_editing) std::cout << _srvField << " actual: " << *_srvVar;
+        std::cout << (_editing ? "\nNuevo/a " : "Ingrese ") << _srvField
+                  << ": ";
+        std::getline(std::cin, temp);
+        attempts++;  // se suma un intento
+        temp = utils::trim(temp);
+        valid = isvalid::srvName(temp) && (size_t)_srvLimit >= temp.length();
+        // si esta en edicion y deja en blanco, es valido
+        if (_editing && temp.empty()) valid = true;
+    } while (!valid);
+    // si esta en modo edicion, y deja vacio, no se reasigna
+    if (!temp.empty()) *_srvVar = temp;
+    return true;
+}
+
 bool InputForm::askToRetry(fieldType fType, int maxLimit, int min, int max) {
     std::cout << "El ingreso es invalido, debe tener el formato de: ";
     switch (fType) {
@@ -398,6 +428,11 @@ bool InputForm::askToRetry(fieldType fType, int maxLimit, int min, int max) {
         case timeField:
             std::cout << "Solo formato 24hs del tipo hs:min. Ej: 17:00.\n";
             break;
+        case srvField:
+            std::cout << "nombre de servidor SMTP. Hasta " << maxLimit
+                      << " caracteres.\n"
+                      << "Ejemplo: smtp.gmail.com.\n";
+            break;
         default:
             break;
     }
@@ -425,6 +460,7 @@ bool InputForm::fill() {
     if (!requestDateFields()) return false;
     if (!requestRangeFields()) return false;
     if (!requestTimeFields()) return false;
+    if (!requestSrvField()) return false;
     // Si se asigno la variable, pedir campo
     if (_emailVar != NULL) {
         if (!requestEmailField()) return false;

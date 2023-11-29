@@ -4,12 +4,14 @@
 #include <iostream>
 #include <vector>
 
+#include "VppConfigManager.h"
 #include "rlutil.h"
 
 const int DEFAULT_BG = rlutil::BLACK;
 
 class Menu {
 private:
+    VppConfigManager _vppConfMgr = VppConfigManager();
     int _currentOption, _maxLength, _yPos = 10;
     bool _isSubMenu;
     std::string _title;
