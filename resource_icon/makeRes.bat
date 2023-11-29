@@ -1,0 +1,1 @@
+windres vpp.rc -O coff -o vpp.res
