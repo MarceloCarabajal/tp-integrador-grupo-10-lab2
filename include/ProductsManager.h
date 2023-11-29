@@ -1,11 +1,14 @@
 #pragma once
 
 #include "Product.h"
+#include "VppConfigManager.h"
 #include "VppFile.h"
 
 class ProductsManager {
 private:
-    VppFile<Product> _productsFile = VppFile<Product>("Products.vpp");
+    const std::string _folderPath = VppConfigManager().getDataPath();
+    const std::string _filePath = _folderPath + "Products.vpp";
+    VppFile<Product> _productsFile = VppFile<Product>(_filePath);
     const int _productFields = 8;  // total de datos de un regisro Product
     Product loadForm();
     Product editForm(int regPos);
@@ -16,7 +19,6 @@ public:
     void show(bool showAndPause = true);
     void clearDeleted();
     void cancel();
-    
 
     // Al ser una funcion estatica se puede usar sin necesaidad de instanciar un
     // objeto de tipo "ProductManager", eso permite que se pueda pasar por

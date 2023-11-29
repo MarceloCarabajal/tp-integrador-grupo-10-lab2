@@ -1,17 +1,20 @@
 #pragma once
 
 #include "VetVisits.h"
+#include "VppConfigManager.h"
 #include "VppFile.h"
 
 class VetVisitsManager {
 private:
-    VppFile<VetVisits> _vetVisitsFile = VppFile<VetVisits>("VetVisits.vpp");
+    const std::string _folderPath = VppConfigManager().getDataPath();
+    const std::string _filePath = _folderPath + "VetVisits.vpp";
+    VppFile<VetVisits> _vetVisitsFile = VppFile<VetVisits>(_filePath);
     const int _vetVisitsFields = 8;  // total de datos de un regisro VetVisit
     VetVisits loadForm();
     VetVisits editForm(int regPos);
     bool retryIfIdExists(bool exists);
     bool retryIfIdNotExists(bool exists);
-    
+
 public:
     void load();
     void edit();
@@ -19,7 +22,6 @@ public:
     void menu();
     void clearDeleted();
     void cancel();
-
 
     // Al ser una funcion estatica se puede usar sin necesaidad de instanciar un
     // objeto de tipo "VetVisitsManager", eso permite que se pueda pasar por

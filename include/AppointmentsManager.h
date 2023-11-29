@@ -1,11 +1,14 @@
 #pragma once
 
 #include "Appointment.h"
+#include "VppConfigManager.h"
 #include "VppFile.h"
 
 class AppointmentsManager {
 private:
-    VppFile<Appointment> _appsFile = VppFile<Appointment>("Appointments.vpp");
+    const std::string _folderPath = VppConfigManager().getDataPath();
+    const std::string _filePath = _folderPath + "Appointments.vpp";
+    VppFile<Appointment> _appsFile = VppFile<Appointment>(_filePath);
     const int _appsFields = 7;  // total de datos de un regisro Appointment
     Appointment loadForm();
     Appointment editForm(int regPos);

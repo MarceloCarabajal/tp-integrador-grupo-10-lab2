@@ -1,17 +1,20 @@
 #pragma once
 
 #include "Buy.h"
+#include "VppConfigManager.h"
 #include "VppFile.h"
 
 class BuysManager {
 private:
-    VppFile<Buy> _buysFile = VppFile<Buy>("Buys.vpp");
+    const std::string _folderPath = VppConfigManager().getDataPath();
+    const std::string _filePath = _folderPath + "Buys.vpp";
+    VppFile<Buy> _buysFile = VppFile<Buy>(_filePath);
     const int _buysFields = 7;  // total de datos de un regisro Buy
     Buy loadForm();
     Buy editForm(int regPos);
     bool retryIfIdNotExists(bool exists);
     bool validAppDate(Date date);
-     bool retryInvalidDate(bool valid);
+    bool retryInvalidDate(bool valid);
 
 public:
     void load();

@@ -1,17 +1,17 @@
 #include "Sale.h"
+#include "VppConfigManager.h"
 #include "VppFile.h"
 
 class SalesManager {
 private:
-    VppFile<Sale> _salesFile = VppFile<Sale>("sales.vpp");
+    const std::string _folderPath = VppConfigManager().getDataPath();
+    const std::string _filePath = _folderPath + "Sales.vpp";
+    VppFile<Sale> _salesFile = VppFile<Sale>(_filePath);
     const int _salesFields = 6;  // total de datos de un regisro Sale
     Sale loadForm();
     Sale editForm(int regPos);
     bool validAppDate(Date date);
     bool retryInvalidDate(bool valid);
-    
-    
-    
 
 public:
     void load();

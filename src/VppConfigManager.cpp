@@ -200,7 +200,7 @@ void VppConfigManager::toggleMode() {
     bool confirm;
     printTitle();
     utils::coutCenter("Modo de ejecución actual");
-    std::cout << "Actualmente está ejecutando el programa en MODO ";
+    std::cout << "\nActualmente está ejecutando el programa en MODO ";
     if (_testMode) {
         std::cout << "DE PRUEBAS.\nEn este se utilizarán los datos de prueba "
                      "precargados.\n";
@@ -216,7 +216,7 @@ void VppConfigManager::toggleMode() {
         auxVc.setTestMode(!_testMode);
         if (updateConfig(auxVc)) {
             utils::cls();
-            utils::coutCenter("Modo de ejecución cambiado correctamente!");
+            utils::coutCenter("\nModo de ejecución cambiado correctamente!");
             rlutil::msleep(1000);
             restart();
         } else {

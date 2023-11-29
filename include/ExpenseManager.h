@@ -1,11 +1,14 @@
 #pragma once
 
 #include "Expense.h"
+#include "VppConfigManager.h"
 #include "VppFile.h"
 
 class ExpenseManager {
 private:
-    VppFile<Expense> _expenseFile = VppFile<Expense>("expenses.vpp");
+    const std::string _folderPath = VppConfigManager().getDataPath();
+    const std::string _filePath = _folderPath + "Expenses.vpp";
+    VppFile<Expense> _expenseFile = VppFile<Expense>(_filePath);
     const int _expenseFields = 7;  // total de datos de un registro Income
     Expense loadForm();
     Expense editForm(int regPos);

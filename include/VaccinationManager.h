@@ -1,11 +1,14 @@
 #pragma once
 
 #include "Vaccination.h"
+#include "VppConfigManager.h"
 #include "VppFile.h"
 
 class VaccinationManager {
 private:
-    VppFile<Vaccination> _vaccinationFile = VppFile<Vaccination>("vaccinations.vpp");
+    const std::string _folderPath = VppConfigManager().getDataPath();
+    const std::string _filePath = _folderPath + "Vaccinations.vpp";
+    VppFile<Vaccination> _vaccinationFile = VppFile<Vaccination>(_filePath);
     const int _vaccinationFields = 6;  // total de datos de un regisro Client
     Vaccination loadForm();
     Vaccination editForm(int regPos);

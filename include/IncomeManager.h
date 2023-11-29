@@ -1,10 +1,13 @@
 #pragma once
 #include "Income.h"
+#include "VppConfigManager.h"
 #include "VppFile.h"
 
 class IncomeManager {
 private:
-    VppFile<Income> _incomeFile = VppFile<Income>("incomes.vpp");
+    const std::string _folderPath = VppConfigManager().getDataPath();
+    const std::string _filePath = _folderPath + "Incomes.vpp";
+    VppFile<Income> _incomeFile = VppFile<Income>(_filePath);
     const int _incomesFields = 7;  // total de datos de un registro Income
     Income loadForm();
     Income editForm(int regPos);

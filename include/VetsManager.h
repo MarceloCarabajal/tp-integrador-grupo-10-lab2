@@ -1,11 +1,14 @@
 #pragma once
 
 #include "Vet.h"
+#include "VppConfigManager.h"
 #include "VppFile.h"
 
 class VetsManager {
 private:
-    VppFile<Vet> _vetsFile = VppFile<Vet>("Vets.vpp");
+    const std::string _folderPath = VppConfigManager().getDataPath();
+    const std::string _filePath = _folderPath + "Vets.vpp";
+    VppFile<Vet> _vetsFile = VppFile<Vet>(_filePath);
     const int _vetsFields = 5;  // total de datos de un regisro Pet
     Vet loadForm();
     Vet editForm(int regPos);

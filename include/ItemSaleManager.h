@@ -1,11 +1,14 @@
 #pragma once
 
 #include "ItemSale.h"
+#include "VppConfigManager.h"
 #include "VppFile.h"
 
 class ItemSaleManager {
 private:
-    VppFile<ItemSale> _itemSaleFile = VppFile<ItemSale>("ItemSales.vpp");
+    const std::string _folderPath = VppConfigManager().getDataPath();
+    const std::string _filePath = _folderPath + "ItemSales.vpp";
+    VppFile<ItemSale> _itemSaleFile = VppFile<ItemSale>(_filePath);
     const int _itemSalesFields = 4;  // total de datos de un regisro ItemSale
     ItemSale loadForm();
     ItemSale editForm(int regPos);

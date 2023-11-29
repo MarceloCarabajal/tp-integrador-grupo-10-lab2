@@ -2,11 +2,14 @@
 #define CLIENTSMANAGER_INCLUDED
 
 #include "Client.h"
+#include "VppConfigManager.h"
 #include "VppFile.h"
 
 class ClientsManager {
 private:
-    VppFile<Client> _clientsFile = VppFile<Client>("clients.vpp");
+    const std::string _folderPath = VppConfigManager().getDataPath();
+    const std::string _filePath = _folderPath + "Clients.vpp";
+    VppFile<Client> _clientsFile = VppFile<Client>(_filePath);
     const int _clientsFields = 7;  // total de datos de un regisro Client
     Client loadForm();
     Client editForm(int regPos);

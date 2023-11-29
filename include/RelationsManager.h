@@ -18,7 +18,6 @@ private:
     bool newOwner(int petId, int clientId);
 
 public:
-    RelationsManager();
     void load();
     void edit();
     void show(bool showAndPause = true);

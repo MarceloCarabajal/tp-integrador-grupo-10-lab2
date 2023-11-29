@@ -166,8 +166,8 @@ PetRelations RelationsManager::editForm(int regPos) {
 
     // si se completa
     // Si se cambió de propietario, se actualiza el archivo de mascotas
-    bool ownerChanged = owner != auxPetR.getOwner() ||
-                        owner && clientId != auxPetR.getClientId();
+    bool ownerChanged = (owner != auxPetR.getOwner()) ||
+                        (owner && clientId != auxPetR.getClientId());
     if (ownerChanged) {
         bool successNewOwner = newOwner(petId, clientId);
         if (!successNewOwner) return auxFormR;  // devolver vació
