@@ -5,6 +5,7 @@
 #include "InputForm.h"
 #include "ListView.h"
 #include "rlutil.h"
+#include "ItemSale.h"
 
 void SalesManager::load() {
     InputForm idForm;
@@ -42,37 +43,47 @@ void SalesManager::load() {
 }
 
 Sale SalesManager::loadForm() {
-    InputForm saleForm;
+    InputForm saleForm, dateForm, consultForm;
     Sale auxSale;
-    std::string paymentMethod;
-    int transactionId;
+    int transactionId, paymentMethod;
     float totalAmount;
     Date saleDate;
-    Time saleTime;
     bool isVisit;
 
     saleForm.setIntField("Id Transaccion", transactionId, 4);
-    saleForm.setDateField("Fecha", saleDate);
-    ////saleForm.setAlphanumeric("Hora, saleTime, 45);
-    saleForm.setStrField("Metodo Pago", paymentMethod, 15);
+    dateForm.setDateField("Fecha", saleDate);
+
+    bool validDate = false;
+    while (!validDate) {
+        if (!dateForm.fill()) return auxSale;
+        validDate = validAppDate(saleDate);
+        if (!retryInvalidDate(validDate)) return auxSale;
+    }
+
+    saleForm.setRangeField("Metodo Pago", paymentMethod, 1, 3);
     saleForm.setFloatField("Total", totalAmount);
-    saleForm.setBoolField("¿Es Consulta?", isVisit);
 
     if (!saleForm.fill()) return auxSale;
+
+    consultForm.setBoolField("¿Es Consulta [SI/NO]?", isVisit);
+
+    if (!consultForm.fill()) return auxSale;
 
     auxSale.setPaymentMethod(paymentMethod);
     auxSale.setTransactionId(transactionId);
     auxSale.setDate(saleDate);
-    auxSale.setTime(saleTime);
     auxSale.setAmount(totalAmount);
+    auxSale.setIsVisit(isVisit);
     return auxSale;
+
+    // TODO: Una vez cargada la venta, hacer que se genere la transaccion de
+    // INGRESO en el archivo correspondiente
 }
 
 Sale SalesManager::editForm(int regPos) {
-    InputForm saleForm;
-    Sale auxSale;
-    std::string paymentMethod;
-    int transactionId, nId;
+    InputForm saleForm(true), dateForm(true), consultForm(true);
+    Sale auxSale, auxFormSale;
+    int transactionId, nId, paymentMethod;
     float totalAmount;
     Date saleDate;
     Time saleTime;
@@ -88,33 +99,51 @@ Sale SalesManager::editForm(int regPos) {
     paymentMethod = auxSale.getPaymentMethod();
     saleDate = auxSale.getDate();
     nId = auxSale.getSaleId();
-    saleTime = auxSale.getTime();
     isVisit = auxSale.getIsVisit();
+
+    rlutil::cls();  // limpiar pantalla
 
     std::cout << "Editando Venta #" << nId << std::endl;
     // configurar form
-    saleForm.setEditMode(true, true);  // modo edicion
+
     saleForm.setIntField("Id Transaccion", transactionId,
                          4);  ////TODO: DEBERIA VENIR AUTOMATICO
-    saleForm.setDateField("Fecha", saleDate);
-    saleForm.setStrField("Metodo Pago", paymentMethod, 15);
+
+    // pedir y validar fecha
+
+    dateForm.setDateField("Fecha", saleDate);
+
+    bool validDate = false;
+    while (!validDate) {
+        if (!dateForm.fill()) return auxFormSale;
+        validDate = validAppDate(saleDate);
+        if (!retryInvalidDate(validDate)) return auxFormSale;
+        // si no fue una fecha valida, reasignar variable para mostrarla con el
+        // valor actual
+        if (!validDate) saleDate = auxFormSale.getDate();
+    }
+
+    saleForm.setRangeField("Metodo Pago", paymentMethod, 1, 3);
     saleForm.setFloatField("Total", totalAmount);
-    saleForm.setBoolField("¿Es Consulta?", isVisit);
-    ////TODO: saleForm.setHORARIO("Hora, saleTime, 45);
+    consultForm.setBoolField("¿Es Consulta [SI/NO]?", isVisit);
+
+    if (!consultForm.fill()) return auxFormSale;
 
     // completar form
     bool success = saleForm.fill();
+
     if (success) {  // si se completa
-        auxSale.setSaleId(nId);
-        auxSale.setPaymentMethod(paymentMethod);
-        auxSale.setTransactionId(transactionId);
-        auxSale.setDate(saleDate);
-        auxSale.setTime(saleTime);
-        auxSale.setAmount(totalAmount);
-        return auxSale;
+        auxFormSale.setSaleId(nId);
+        auxFormSale.setPaymentMethod(paymentMethod);
+        auxFormSale.setTransactionId(transactionId);
+        auxFormSale.setDate(saleDate);
+        auxFormSale.setAmount(totalAmount);
+        auxFormSale.setIsVisit(isVisit);
+
+        return auxFormSale;
     }
     // si no se completa, devolver Venta vacia
-    return auxSale;
+    return auxFormSale;
 }
 
 void SalesManager::edit() {
@@ -171,7 +200,7 @@ void SalesManager::show() {
         Sale auxSale = _salesFile.readFile(i);
         // Obtener todas las propiedades del cliente
         // Guardarlas en un vector de string
-        std::string vecStr[7];
+        std::string vecStr[6];
         auxSale.toVecString(vecStr);
         for (int cell = 0; cell < _salesFields; cell++) {
             cells[cellPos + cell] = vecStr[cell];
@@ -181,13 +210,11 @@ void SalesManager::show() {
         cellPos += _salesFields;
     }
     // Vector que contiene las columnas de nuestra lista
-    std::string columns[8] = {"ID Sale",        "ID Transaccion", "Total $",
-                              "Metodo de pago", "Fecha",          "Hora",
-                              "¿Es Consulta?"};
-
+    std::string columns[6] = {"ID Sale", "ID Transaccion", "Metodo de pago",
+                              "Fecha",   "Total $",      "¿Es Consulta?"};
     ListView salesList;
     salesList.addCells(cells, totalCells);
-    salesList.addCols(columns, 7);
+    salesList.addCols(columns, 6);
     salesList.setTitle("VENTAS");
     salesList.show();
     delete[] cells;  // liberar memoria!
@@ -201,4 +228,21 @@ bool SalesManager::searchById(Sale reg, int nId) {
 
 bool SalesManager::idExists(int nId) {
     return _salesFile.searchReg(searchById, nId) >= 0 ? true : false;
+}
+
+bool SalesManager::validAppDate(Date date) {
+    Date today;
+    if (date < today || date == today) return true;
+    return false;
+}
+
+bool SalesManager::retryInvalidDate(bool valid) {
+    if (!valid) {
+        std::cout
+            << "La fecha debe ser menor o igual a la actual.\n"
+               "Presione cualquier tecla para reintentar o ESC para salir.\n";
+        if (rlutil::getkey() == rlutil::KEY_ESCAPE) return false;
+        rlutil::cls();
+    }
+    return true;
 }

@@ -6,22 +6,20 @@
 
 class Sale {
 private:
-    int _saleId, _transactionId;
+    int _saleId, _transactionId, _paymentMethod;
     float _totalAmount;
-    char _paymentMethod[15];
     Date _saleDate;
     Time _saleTime;
     bool _isVisit;
 
 public:
-
-Sale();
-Sale(int saleid, int transactionid, float totalamount, std::string paymentmethod, Date saledate, Time saletime, bool isvisit);
-
+    Sale();
+    Sale(int saleid, int transactionid, float totalamount, int paymentmethod,
+         Date saledate, bool isvisit);
 
     void setSaleId(int id);
     void setAmount(float amount);
-    void setPaymentMethod(std::string method);
+    void setPaymentMethod(int method);
     void setDate(Date date);
     void setTime(Time time);
     void setQuantity(int qty);
@@ -30,7 +28,7 @@ Sale(int saleid, int transactionid, float totalamount, std::string paymentmethod
 
     int getSaleId();
     float getAmount();
-    const char* getPaymentMethod();
+    int getPaymentMethod();
     Date getDate();
     Time getTime();
     int getQuantity();

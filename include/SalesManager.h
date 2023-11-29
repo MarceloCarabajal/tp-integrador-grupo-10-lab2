@@ -4,9 +4,14 @@
 class SalesManager {
 private:
     VppFile<Sale> _salesFile = VppFile<Sale>("sales.vpp");
-    const int _salesFields = 7;  // total de datos de un regisro Sale
+    const int _salesFields = 6;  // total de datos de un regisro Sale
     Sale loadForm();
     Sale editForm(int regPos);
+    bool validAppDate(Date date);
+    bool retryInvalidDate(bool valid);
+    
+    
+    
 
 public:
     void load();

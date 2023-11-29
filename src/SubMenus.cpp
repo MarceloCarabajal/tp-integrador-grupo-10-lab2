@@ -243,6 +243,27 @@ void SubMenus::productcategory() {
     mnuCatProd.showMenu();
 }
 
+SalesManager SubMenus::_salesManager = SalesManager();
+void SubMenus::loadsale() {
+    _salesManager.load();
+    utils::pause();
+}
+void SubMenus::showsale() {
+    _salesManager.show();
+    utils::pause();
+}
+void SubMenus::editsale() { _salesManager.edit(); }
+
+void SubMenus::sale() {
+    Menu mnuBuy("VENTAS:syringe:", true);
+
+    mnuBuy.addOption("1. Cargar Venta :arrow_up_small:", loadsale);
+    mnuBuy.addOption("2. Mostrar Ventas  :page_facing_up:", showsale);
+    mnuBuy.addOption("3. Editar VentaS  :pencil2:", editsale);
+
+    mnuBuy.showMenu();
+}
+
 BuysManager SubMenus::_buysManager = BuysManager();
 void SubMenus::loadbuy() {
     _buysManager.load();

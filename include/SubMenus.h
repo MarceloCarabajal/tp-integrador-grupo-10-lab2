@@ -13,6 +13,7 @@
 #include "VetVisitsManager.h"
 #include "VetsManager.h"
 #include "BuysManager.h"
+#include "SalesManager.h"
 #include "VppConfigManager.h"
 
 class SubMenus {
@@ -89,6 +90,12 @@ private:
     static void cancelbuy();
     static void clearbuy();
 
+    static SalesManager _salesManager;
+    static void loadsale();
+    static void showsale();
+    static void editsale();
+   
+
     static VppConfigManager _vppConfigManager;
     static void editConfig();
     static void toggleMode();
@@ -106,6 +113,7 @@ public:
     static void vetvisits();
     static void buy();
     static void sysConfig();
+    static void sale();
 };
 
 #endif /* SUBMENUS_INCLUDED */
