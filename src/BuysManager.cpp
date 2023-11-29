@@ -44,7 +44,7 @@ void BuysManager::load() {
 }
 
 Buy BuysManager::loadForm() {
-    InputForm buyForm, productForm;
+    InputForm buyForm, productForm, dateForm;
     Buy auxBuy;
     ProductsManager prodmanager;
     int productId, quantity, trxId, paymentMethod;
@@ -69,7 +69,13 @@ Buy BuysManager::loadForm() {
     buyForm.setIntField("ID Transacción", trxId, 4);
     buyForm.setRangeField("Cantidad", quantity, 1, 1000);
     buyForm.setFloatField("Precio Unitario $", unitPrice);
-    buyForm.setDateField("Fecha", buyDate);
+    dateForm.setDateField("Fecha de compra", buyDate);
+    bool validDate = false;
+    while (!validDate) {
+        if (!dateForm.fill()) return auxBuy;
+        validDate = validAppDate(buyDate);
+        if (!retryInvalidDate(validDate)) return auxBuy;
+    }
 
     if (!buyForm.fill()) return auxBuy;
 
@@ -85,7 +91,7 @@ Buy BuysManager::loadForm() {
 }
 
 Buy BuysManager::editForm(int regPos) {
-    InputForm buyForm(true), productForm(true, false);
+    InputForm buyForm(true), productForm(true), dateForm(true);
     Buy auxBuy, auxFormBuy;
     ProductsManager prodmanager;
     int nId, productId, quantity, transactionId, paymentMethod;
@@ -126,7 +132,15 @@ Buy BuysManager::editForm(int regPos) {
         4);  //// este numero se copia en los objetos de la clase transaccion
     buyForm.setRangeField("Cantidad", quantity, 1, 1000);
     buyForm.setFloatField("Precio Unitario $", unitPrice);
-    buyForm.setDateField("Fecha", buyDate);
+
+    dateForm.setDateField("Fecha de compra", buyDate);
+    bool validDate = false;
+    if (!dateForm.fill()) return auxFormBuy;
+    validDate = validAppDate(buyDate);
+    if (!retryInvalidDate(validDate)) return auxFormBuy;
+    // si no fue una fecha valida, reasignar variable para mostrarla con el
+    // valor actual
+    if (!validDate) buyDate = auxBuy.getbuyDate();
 
     // completar form
     bool success = buyForm.fill();
@@ -309,9 +323,19 @@ void BuysManager::cancel() {
     utils::pause();
 }
 
-
 bool BuysManager::validAppDate(Date date) {
     Date today;
-    if (date > today || date == today) return true;
+    if (date < today || date == today) return true;
     return false;
+}
+
+bool BuysManager::retryInvalidDate(bool valid) {
+    if (!valid) {
+        std::cout
+            << "La fecha debe ser menor o igual a la actual.\n"
+               "Presione cualquier tecla para reintentar o ESC para salir.\n";
+        if (rlutil::getkey() == rlutil::KEY_ESCAPE) return false;
+        rlutil::cls();
+    }
+    return true;
 }

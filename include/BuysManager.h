@@ -11,6 +11,7 @@ private:
     Buy editForm(int regPos);
     bool retryIfIdNotExists(bool exists);
     bool validAppDate(Date date);
+     bool retryInvalidDate(bool valid);
 
 public:
     void load();
