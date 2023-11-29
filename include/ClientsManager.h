@@ -10,17 +10,17 @@ private:
     const int _clientsFields = 7;  // total de datos de un regisro Client
     Client loadForm();
     Client editForm(int regPos);
-    int  getClientSearched();
+    int getClientSearched();
     int deleteFounded();
-  
 
 public:
     void load();
     void edit();
-     void show(bool showAndPause = true);
+    void show(bool showAndPause = true);
     void clearSearched();
     void clearDeleted();
     void cancel();
+    std::string getFullNameById(int nId);
 
     // Al ser una funcion estatica se puede usar sin necesaidad de instanciar un
     // objeto de tipo "ClientsManager", eso permite que se pueda pasar por

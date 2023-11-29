@@ -9,8 +9,8 @@ private:
     const std::string _folderPath = VppConfigManager().getDataPath();
     const std::string _filePath = _folderPath + "PetRelations.vpp";
     VppFile<PetRelations> _petRelationsFile = VppFile<PetRelations>(_filePath);
-    const int _petRelationsFields =
-        4;  // total de datos de un regisro PetRelations
+    // relId, petId, clientId, owner?, clientName, petName = 6
+    const int _petRelationsFields = 6;  // total de datos a mostrar en ListView
     PetRelations loadForm();
     PetRelations editForm(int regPos);
     bool retryIfIdExists(bool exists);

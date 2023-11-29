@@ -8,7 +8,6 @@
 #include <iomanip>
 #include <iostream>
 
-
 // #include "isvalid.h", evita la dependencia circular
 //  Declaración forward de isvalid::alphanumeric
 namespace isvalid {
@@ -78,7 +77,7 @@ namespace utils {
     }
 
     inline std::string boolToStr(bool b) {
-        if (b) return "Sí";
+        if (b) return "Si";
         return "No";
     }
 

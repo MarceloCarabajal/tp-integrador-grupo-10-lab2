@@ -20,8 +20,19 @@ void PetsManager::load() {
     // pedir y buscar si el id ingresado existe
     do {
         if (alreadyExists) {
-            std::cout << "El ID de Mascota ya existe, presione cualquier tecla "
-                         "para reintentar o ESC para salir.\n";
+            // Si existe pero está dada de baja
+            int regPos = _petsFile.searchReg(searchById, nId);
+            if (_petsFile.readFile(regPos).getStatus() == false) {
+                std::cout << "La mascota se encuentra dada de baja.\n";
+                std::cout << "Si desea utilizar este ID, seleccione la "
+                             "opción 'Limpiar registros' del menú para "
+                             "eliminar el registro.\n";
+            } else {
+                std::cout
+                    << "El ID de Mascota ya existe, presione cualquier tecla "
+                       "para reintentar o ESC para salir.\n";
+            }
+            // esperar tecla
             if (rlutil::getkey() == rlutil::KEY_ESCAPE) return;
             rlutil::cls();
         }
@@ -159,6 +170,14 @@ void PetsManager::edit() {
     int regPos = _petsFile.searchReg(searchById, nId);
     if (regPos == -1) {
         std::cout << "No se encontraron resultados.\n";
+        utils::pause();
+        return;
+    }
+    // Si existe pero está dada de baja
+    if (_petsFile.readFile(regPos).getStatus() == false) {
+        std::cout << "La mascota se encuentra dada de baja.\n";
+        std::cout << "Si desea eliminarla definitivamente, seleccione la "
+                     "opción 'Limpiar registros' del menú.\n";
         utils::pause();
         return;
     }
@@ -319,4 +338,11 @@ bool PetsManager::updateOwner(int ownerId, int petId) {
     auxPet.setOwnerId(ownerId);
     bool success = _petsFile.updateFile(auxPet, regPos);
     return success;
+}
+
+std::string PetsManager::getNameById(int nId) {
+    int regPos = _petsFile.searchReg(searchById, nId);
+    Pet auxPet = _petsFile.readFile(regPos);
+    if (auxPet.getPetId() == -1) return "ERROR";
+    return auxPet.getName();
 }
