@@ -151,11 +151,10 @@ void SubMenus::loadRel() {
     _relsManager.load();
     utils::pause();
 }
-void SubMenus::showRels() {
-    _relsManager.show();
-    utils::pause();
-}
+void SubMenus::showRels() { _relsManager.show(); }
 void SubMenus::editRels() { _relsManager.edit(); }
+void SubMenus::cancelRel() { _relsManager.cancel(); }
+void SubMenus::clearRels() { _relsManager.clearDeleted(); }
 
 void SubMenus::relations() {
     Menu mnuRels("RELACIONES:couple_with_heart:", true);
@@ -163,6 +162,8 @@ void SubMenus::relations() {
     mnuRels.addOption("1. Cargar Relación :arrow_up_small:", loadRel);
     mnuRels.addOption("2. Mostrar Relaciones :page_facing_up:", showRels);
     mnuRels.addOption("3. Editar Relación :pencil2:", editRels);
+    mnuRels.addOption("4. Baja de Relación :x:", cancelRel);
+    mnuRels.addOption("5. Limpiar registros :white_check_mark:", clearRels);
     mnuRels.showMenu();
 }
 

@@ -107,7 +107,7 @@ PetRelations RelationsManager::loadForm() {
 }
 
 PetRelations RelationsManager::editForm(int regPos) {
-    InputForm petRelsForm, petIdForm, clientIdForm;
+    InputForm petRelsForm(true), petIdForm(true, true), clientIdForm(true, true);
     PetRelations auxPetR, auxFormR;
     PetsManager petsManager;
     ClientsManager clientsManager;
@@ -204,7 +204,7 @@ void RelationsManager::edit() {
     utils::pause();
 }
 
-void RelationsManager::show() {
+void RelationsManager::show(bool showAndPause) {
     int totalRegs = _petRelationsFile.getTotalRegisters();
     // calcular el total de celdas de nuestra lista, segun la cantidad de datos
     // que contiene 1 registro
@@ -242,7 +242,7 @@ void RelationsManager::show() {
                 cells[rowPos + cell] = vecStr[cell];
             } else {
                 cells[rowPos + cell] = "";
-            };
+            }
         }
 
         // se incrementa la posicion de la celda segun la cantidad de datos que
@@ -259,6 +259,8 @@ void RelationsManager::show() {
     petsRelationsList.setTitle(" RELACIONES DE MASCOTAS");
     petsRelationsList.show();
     delete[] cells;  // liberar memoria!
+
+    if (showAndPause) utils::pause();
 }
 
 // Solo compara si coincide el id
@@ -363,4 +365,68 @@ bool RelationsManager::autogenerateNew(int clientId, int petId) {
     auxPetR.setRelationId(newId);
     // guardar nueva relación
     return _petRelationsFile.writeFile(auxPetR);
+}
+
+
+
+void RelationsManager::clearDeleted() {
+    InputForm confirmForm;
+    bool confirm;
+    std::cout << "Esta acción buscará relaciones dadas de baja e "
+                 "intentará eliminarlas definitivamente. Desea continuar?\n";
+    confirmForm.setBoolField("[SI/NO]", confirm);
+    if (!confirmForm.fill()) return;
+    if (!confirm) return;
+    std::cout << "Buscando registros...\n";
+    int deleted = _petRelationsFile.deleteAllMarked();
+    switch (deleted) {
+        case 0:
+            std::cout << "No se encontraron relaciones dadas de baja.\n";
+            break;
+        case -1:
+            std::cout
+                << "Ocurrió un error al intentar eliminar las relaciones\n";
+            break;
+        default:
+            printf("Se eliminaron %d registros con éxito!\n", deleted);
+            break;
+    }
+    utils::pause();
+}
+
+void RelationsManager::cancel() {
+    InputForm searchId, confirmForm;
+    int nId;
+    bool confirm;
+    // mostrar relacion
+    show(false);
+
+    std::cout << "\nIngrese el ID de la Relación a dar de baja.\n";
+    searchId.setIntField("ID Relación", nId, 4);
+    if (!searchId.fill()) return;  // si no se completa, salir
+    int regPos = _petRelationsFile.searchReg(searchById, nId);
+    if (regPos == -1) {
+        std::cout << "No existe Relación con el ID ingresado.\n";
+        utils::pause();
+        return;
+    }
+
+    printf("Se seleccionó la Relación #%d, confirma la baja provisoria.\n",
+           nId);
+    confirmForm.setBoolField("[SI/NO]", confirm);
+    if (!confirmForm.fill()) return;
+    if (!confirm) {
+        std::cout << "No se realizará la baja.\n";
+        utils::pause();
+        return;
+    }
+
+    bool success = _petRelationsFile.markForDelete(regPos);
+
+    if (success) {
+        std::cout << "Baja realizada con éxito!\n";
+    } else {
+        std::cout << "Ocurrió un error al intentar realizar la baja.\n";
+    }
+    utils::pause();
 }
