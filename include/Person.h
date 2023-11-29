@@ -15,5 +15,5 @@ public:
     int getIdPerson();
     const char *getName();
     const char *getLastname();
-    // void load(); //TODO: Eliminar
+ 
 };

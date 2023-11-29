@@ -14,8 +14,6 @@ private:
     bool _isVisit;
 
 public:
-//TODO: FALTA CONSTRUCTOR
-
 
 Sale();
 Sale(int saleid, int transactionid, float totalamount, std::string paymentmethod, Date saledate, Time saletime, bool isvisit);

@@ -6,7 +6,7 @@
 class BuysManager {
 private:
     VppFile<Buy> _buysFile = VppFile<Buy>("Buys.vpp");
-    const int _buysFields = 8;  // total de datos de un regisro Pet
+    const int _buysFields = 7;  // total de datos de un regisro Buy
     Buy loadForm();
     Buy editForm(int regPos);
 

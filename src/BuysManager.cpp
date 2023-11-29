@@ -49,7 +49,7 @@ Buy BuysManager::loadForm() {
     int productId, quantity, trxId;
     float totalAmount;
     Date buyDate;
-    Time buyTime;
+ 
 
     buyForm.setStrField("Metodo Pago", paymentMethod, 15);
     buyForm.setIntField("ID producto", productId, 4);
@@ -59,7 +59,7 @@ Buy BuysManager::loadForm() {
     buyForm.setRangeField("Cantidad", quantity, 1, 1000);
     buyForm.setFloatField("Total", totalAmount);
     buyForm.setDateField("Fecha", buyDate);
-    ////saleForm.setAlphanumeric("Hora, buyTime, 45);//TODO: hace falta la hora?
+
 
     if (!buyForm.fill()) return auxBuy;
 
@@ -68,7 +68,7 @@ Buy BuysManager::loadForm() {
     auxBuy.setTransactionId(trxId);
     auxBuy.setQuantity(quantity);
     auxBuy.setDate(buyDate);
-    auxBuy.setTime(buyTime);
+
     return auxBuy;
 }
 
@@ -79,7 +79,7 @@ Buy BuysManager::editForm(int regPos) {
     int nId, productId, quantity, transactionId;
     float totalAmount;
     Date buyDate;
-    Time buyTime;
+
 
     auxBuy = _buysFile.readFile(regPos);
     if (auxBuy.getBuyId() == -1) {
@@ -92,7 +92,6 @@ Buy BuysManager::editForm(int regPos) {
     productId = auxBuy.getProductId();
     nId = auxBuy.getBuyId();
     buyDate = auxBuy.getbuyDate();
-    buyTime = auxBuy.getbuyTime();
     totalAmount = auxBuy.getTotalAmount();
     quantity = auxBuy.getQuantity();
     paymentMethod = auxBuy.getPaymentMethod();
@@ -103,13 +102,12 @@ Buy BuysManager::editForm(int regPos) {
 
     buyForm.setStrField("Metodo Pago", paymentMethod, 15);
     buyForm.setIntField("ID producto", productId, 4);
-    buyForm.setIntField(
-        "ID Transacción", transactionId,
+    buyForm.setIntField("ID Transacción", transactionId,
         4);  //// este numero se copia en los objetos de la clase transaccion
     buyForm.setRangeField("Cantidad", quantity, 1, 1000);
     buyForm.setFloatField("Total", totalAmount);
     buyForm.setDateField("Fecha", buyDate);
-    /// saleForm.setAlphanumeric("Hora, buyTime, 45);//TODO:
+
 
     // completar form
     bool success = buyForm.fill();
@@ -121,7 +119,7 @@ Buy BuysManager::editForm(int regPos) {
         auxFormBuy.setTransactionId(transactionId);
         auxFormBuy.setQuantity(quantity);
         auxFormBuy.setDate(buyDate);
-        auxFormBuy.setTime(buyTime);
+
 
         return auxFormBuy;
     }
@@ -183,7 +181,7 @@ void BuysManager::show() {
         Buy auxBuy = _buysFile.readFile(i);
         // Obtener todas las propiedades de la compra
         // Guardarlas en un vector de string
-        std::string vecStr[8];
+        std::string vecStr[7];
         auxBuy.toVecString(vecStr);
         for (int cell = 0; cell < _buysFields; cell++) {
             cells[cellPos + cell] = vecStr[cell];
@@ -193,13 +191,13 @@ void BuysManager::show() {
         cellPos += _buysFields;
     }
     // Vector que contiene las columnas de nuestra lista
-    std::string columns[8] = {
+    std::string columns[7] = {
         "ID",      "ID producto",    "Cantidad", "Id Transaccion",
-        "Total $", "Metodo de pago", "Fecha",    "Hora"};
+        "Total $", "Metodo de pago", "Fecha"};
 
     ListView buysList;
     buysList.addCells(cells, totalCells);
-    buysList.addCols(columns, 8);
+    buysList.addCols(columns, 7);
     buysList.setTitle("COMPRAS");
     buysList.show();
 

@@ -10,19 +10,18 @@ private:
     float _totalAmount;
     char _paymentMethod[15];
     Date _buyDate;
-    Time _buyTime;
+  
 
 //TODO: Consideramos ingresar una compra por cada transaccion, es decir un producto con su cantidad. Por eso no tenemos ItemBuy como en Sale */
 public:
 
 Buy();
-Buy (int buyid, int productid, int quantityid, int transaccionid,float totalamount, std::string paymentmethod, Date buydate, Time buytime);
+Buy (int buyid, int productid, int quantityid, int transaccionid,float totalamount, std::string paymentmethod, Date buydate);
  
     void setBuyId(int id);
     void setAmount(float importe);
     void setpaymentMethod(std::string method);
     void setDate(Date date);
-    void setTime(Time time);
     void setProductId(int ProductId);
     void setQuantity(int qty);
     void setTransactionId(int id);
@@ -31,11 +30,10 @@ Buy (int buyid, int productid, int quantityid, int transaccionid,float totalamou
     float getTotalAmount();
     const char* getPaymentMethod();
     Date getbuyDate();
-    Time getbuyTime();
     int getProductId();
     int getQuantity();
     int getTransactionId();
     void load();
 
-    void toVecString(std::string vStr[8]);
+    void toVecString(std::string vStr[7]);
 };
