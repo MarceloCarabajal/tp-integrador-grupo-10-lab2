@@ -14,7 +14,10 @@ g++ %flags% %includes% *.cpp src/*.cpp %lib% %resIco% -o %output%
 ::echo g++ %flags% %includes% *.cpp src/provisional*.cpp %lib% -o %output%
 ::g++ %flags% %includes% *.cpp src/provisional/*.cpp %lib% -o %output%
 echo:
+cd vpprestart
+echo Compilando VppRestart
+g++ main.cpp -o ..\bin\vpprestart.exe
 echo Ejecutando vetepp.exe...
-cd bin
+cd ..\bin
 start vetepp.exe
 pause
