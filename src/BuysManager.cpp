@@ -47,7 +47,7 @@ Buy BuysManager::loadForm() {
     InputForm buyForm, productForm;
     Buy auxBuy;
     ProductsManager prodmanager;
-    int productId, quantity, trxId,paymentMethod;
+    int productId, quantity, trxId, paymentMethod;
     float unitPrice;
     Date buyDate;
     bool alreadyExists = true;
@@ -62,7 +62,7 @@ Buy BuysManager::loadForm() {
         alreadyExists = prodmanager.idExists(productId);
     } while (!alreadyExists);  // si no existe, volver a pedir
 
-    buyForm.setRangeField("Metodo Pago", paymentMethod, 1,3);
+    buyForm.setRangeField("Metodo Pago", paymentMethod, 1, 3);
 
     //// este numero se copia en los objetos de la clase transaccion
     // TODO: Este es el que se tiene que generar solo?
@@ -87,8 +87,8 @@ Buy BuysManager::loadForm() {
 Buy BuysManager::editForm(int regPos) {
     InputForm buyForm(true), productForm(true, false);
     Buy auxBuy, auxFormBuy;
-    ProductsManager prodmanager; 
-    int nId, productId, quantity, transactionId,paymentMethod;
+    ProductsManager prodmanager;
+    int nId, productId, quantity, transactionId, paymentMethod;
     float unitPrice;
     Date buyDate;
     bool existentId;
@@ -120,7 +120,7 @@ Buy BuysManager::editForm(int regPos) {
     }
 
     /////buyForm.setEditMode(true, true);  // modo edicion
-    buyForm.setRangeField("Metodo Pago", paymentMethod, 1,3);
+    buyForm.setRangeField("Metodo Pago", paymentMethod, 1, 3);
     buyForm.setIntField(
         "ID Transacción", transactionId,
         4);  //// este numero se copia en los objetos de la clase transaccion
@@ -216,8 +216,8 @@ void BuysManager::show(bool showAndPause) {
     }
     // Vector que contiene las columnas de nuestra lista
     std::string columns[7] = {
-        "ID",      "ID producto",    "Cantidad", "Id Transaccion",
-        "Precio Unitario", "Metodo de pago", "Fecha"};
+        "ID",    "ID producto", "Id Transaccion",   "Metodo de pago",
+        "Fecha", "Cantidad",    "Precio Unitario $"};
 
     ListView buysList;
     buysList.addCells(cells, totalCells);
@@ -281,7 +281,7 @@ void BuysManager::cancel() {
     show(false);
 
     std::cout << "\nIngrese el ID de la compra a dar de baja.\n";
-    searchId.setIntField("ID Producto", nId, 4);
+    searchId.setIntField("ID Compra", nId, 4);
     if (!searchId.fill()) return;  // si no se completa, salir
     int regPos = _buysFile.searchReg(searchById, nId);
     if (regPos == -1) {
