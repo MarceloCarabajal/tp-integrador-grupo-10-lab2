@@ -9,7 +9,6 @@
 #include "VppConfig.h"
 #include "utils.h"
 
-
 // declarar a nivel archivo las variable estaticas
 // De esta forma una vez que se inicialize, ya no va a ser necesaria la lectura
 // del archivo VppConfig.vpp cada vez que se instancie esta clase
@@ -105,7 +104,7 @@ bool VppConfigManager::load() {
         "funcionamiento del mismo.");
     std::cout << std::endl;
     configForm.setStrField("Nombre de la veterinaria", veteName, 30);
-    configForm.setAlphanumeric("Servidor SMTP", SMTPServer, 45);
+    configForm.setSrvField("Servidor SMTP", SMTPServer, 45);
     configForm.setEmailField(SMTPUser, 45, "Usuario SMTP");
     configForm.setAlphanumeric("Contraseña SMTP", SMTPPass, 30);
     configForm.setRangeField("Puerto SMTP", SMTPPort, 0, 65535);

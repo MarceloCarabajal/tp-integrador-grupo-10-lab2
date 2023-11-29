@@ -175,6 +175,20 @@ namespace isvalid {
         return true;
     }
 
+    // Verifica que una cadena tenga formato de 'servidor'
+    // ejemplo smtp.gmail.com
+    inline bool srvName(std::string str) {
+        int dotFounds = 0;
+        if (str.length() < 5) return false;
+        for (size_t i = 0; i < str.length(); i++) {
+            // Si no es letra, numero o punto, es invalido
+            if (!alphanumeric(str[i]) && str[i] != '.') return false;
+            if (str[i] == '.') dotFounds++;
+        }
+        if (dotFounds < 2) return false;
+        return true;
+    }
+
 }  // namespace isvalid
 
 #endif /* ISVALID_INCLUDED */
