@@ -2,6 +2,7 @@
 #define SUBMENUS_INCLUDED
 
 #include "AppointmentsManager.h"
+#include "BuysManager.h"
 #include "ClientsManager.h"
 #include "Menu.h"
 #include "PetRelations.h"
@@ -9,14 +10,14 @@
 #include "ProdCategoryManager.h"
 #include "ProductsManager.h"
 #include "RelationsManager.h"
+#include "SalesManager.h"
 #include "VaccinationManager.h"
 #include "VetVisitsManager.h"
 #include "VetsManager.h"
-#include "BuysManager.h"
-#include "SalesManager.h"
 #include "IncomeManager.h"
 #include "ExpenseManager.h"
 #include "VppConfigManager.h"
+
 
 class SubMenus {
 private:
@@ -53,8 +54,7 @@ private:
     static void loadRel();
     static void showRels();
     static void editRels();
-    static void cancelRel();
-    static void clearRels();
+    static void deleteRel();
 
     static ProductsManager _productsManager;
     static void loadProduct();
@@ -91,7 +91,6 @@ private:
     static void cancelvetvisit();
     static void clearvv();
 
-
     static BuysManager _buysManager;
     static void loadbuy();
     static void showbuy();
@@ -103,7 +102,6 @@ private:
     static void loadsale();
     static void showsale();
     static void editsale();
-   
 
     static VppConfigManager _vppConfigManager;
     static void editConfig();

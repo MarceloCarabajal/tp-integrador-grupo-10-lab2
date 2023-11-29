@@ -460,13 +460,16 @@ bool InputForm::fill() {
     if (!requestDateFields()) return false;
     if (!requestRangeFields()) return false;
     if (!requestTimeFields()) return false;
-    if (!requestSrvField()) return false;
+
     // Si se asigno la variable, pedir campo
     if (_emailVar != NULL) {
         if (!requestEmailField()) return false;
     }
     if (_phoneVar != NULL) {
         if (!requestPhoneField()) return false;
+    }
+    if (_srvVar != NULL) {
+        if (!requestSrvField()) return false;
     }
 
     return true;
