@@ -312,6 +312,6 @@ void BuysManager::cancel() {
 
 bool BuysManager::validAppDate(Date date) {
     Date today;
-    if (date > today) return false;
-    return true;
+    if (date > today || date == today) return true;
+    return false;
 }
