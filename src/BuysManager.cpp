@@ -44,10 +44,10 @@ void BuysManager::load() {
 }
 
 Buy BuysManager::loadForm() {
-    InputForm buyForm, productForm;
+    InputForm buyForm, productForm, dateForm;
     Buy auxBuy;
     ProductsManager prodmanager;
-    int productId, quantity, trxId,paymentMethod;
+    int productId, quantity, trxId, paymentMethod;
     float unitPrice;
     Date buyDate;
     bool alreadyExists = true;
@@ -62,14 +62,20 @@ Buy BuysManager::loadForm() {
         alreadyExists = prodmanager.idExists(productId);
     } while (!alreadyExists);  // si no existe, volver a pedir
 
-    buyForm.setRangeField("Metodo Pago", paymentMethod, 1,3);
+    buyForm.setRangeField("Metodo Pago", paymentMethod, 1, 3);
 
     //// este numero se copia en los objetos de la clase transaccion
     // TODO: Este es el que se tiene que generar solo?
     buyForm.setIntField("ID Transacción", trxId, 4);
     buyForm.setRangeField("Cantidad", quantity, 1, 1000);
     buyForm.setFloatField("Precio Unitario $", unitPrice);
-    buyForm.setDateField("Fecha", buyDate);
+    dateForm.setDateField("Fecha de compra", buyDate);
+    bool validDate = false;
+    while (!validDate) {
+        if (!dateForm.fill()) return auxBuy;
+        validDate = validAppDate(buyDate);
+        if (!retryInvalidDate(validDate)) return auxBuy;
+    }
 
     if (!buyForm.fill()) return auxBuy;
 
@@ -85,10 +91,10 @@ Buy BuysManager::loadForm() {
 }
 
 Buy BuysManager::editForm(int regPos) {
-    InputForm buyForm(true), productForm(true, false);
+    InputForm buyForm(true), productForm(true), dateForm(true);
     Buy auxBuy, auxFormBuy;
-    ProductsManager prodmanager; 
-    int nId, productId, quantity, transactionId,paymentMethod;
+    ProductsManager prodmanager;
+    int nId, productId, quantity, transactionId, paymentMethod;
     float unitPrice;
     Date buyDate;
     bool existentId;
@@ -120,13 +126,21 @@ Buy BuysManager::editForm(int regPos) {
     }
 
     /////buyForm.setEditMode(true, true);  // modo edicion
-    buyForm.setRangeField("Metodo Pago", paymentMethod, 1,3);
+    buyForm.setRangeField("Metodo Pago", paymentMethod, 1, 3);
     buyForm.setIntField(
         "ID Transacción", transactionId,
         4);  //// este numero se copia en los objetos de la clase transaccion
     buyForm.setRangeField("Cantidad", quantity, 1, 1000);
     buyForm.setFloatField("Precio Unitario $", unitPrice);
-    buyForm.setDateField("Fecha", buyDate);
+
+    dateForm.setDateField("Fecha de compra", buyDate);
+    bool validDate = false;
+    if (!dateForm.fill()) return auxFormBuy;
+    validDate = validAppDate(buyDate);
+    if (!retryInvalidDate(validDate)) return auxFormBuy;
+    // si no fue una fecha valida, reasignar variable para mostrarla con el
+    // valor actual
+    if (!validDate) buyDate = auxBuy.getbuyDate();
 
     // completar form
     bool success = buyForm.fill();
@@ -216,8 +230,8 @@ void BuysManager::show(bool showAndPause) {
     }
     // Vector que contiene las columnas de nuestra lista
     std::string columns[7] = {
-        "ID",      "ID producto",    "Cantidad", "Id Transaccion",
-        "Precio Unitario", "Metodo de pago", "Fecha"};
+        "ID",    "ID producto", "Id Transaccion",   "Metodo de pago",
+        "Fecha", "Cantidad",    "Precio Unitario $"};
 
     ListView buysList;
     buysList.addCells(cells, totalCells);
@@ -281,7 +295,7 @@ void BuysManager::cancel() {
     show(false);
 
     std::cout << "\nIngrese el ID de la compra a dar de baja.\n";
-    searchId.setIntField("ID Producto", nId, 4);
+    searchId.setIntField("ID Compra", nId, 4);
     if (!searchId.fill()) return;  // si no se completa, salir
     int regPos = _buysFile.searchReg(searchById, nId);
     if (regPos == -1) {
@@ -307,4 +321,21 @@ void BuysManager::cancel() {
         std::cout << "Ocurrió un error al intentar realizar la baja.\n";
     }
     utils::pause();
+}
+
+bool BuysManager::validAppDate(Date date) {
+    Date today;
+    if (date < today || date == today) return true;
+    return false;
+}
+
+bool BuysManager::retryInvalidDate(bool valid) {
+    if (!valid) {
+        std::cout
+            << "La fecha debe ser menor o igual a la actual.\n"
+               "Presione cualquier tecla para reintentar o ESC para salir.\n";
+        if (rlutil::getkey() == rlutil::KEY_ESCAPE) return false;
+        rlutil::cls();
+    }
+    return true;
 }
