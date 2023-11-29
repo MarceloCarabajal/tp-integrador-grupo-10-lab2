@@ -18,8 +18,10 @@ private:
 public:
     void load();
     void edit();
-    void show();
+     void show(bool showAndPause = true);
     bool updateRelation(PetRelations petR, int regPos);
+    void clearDeleted();
+    void cancel();
 
     bool autogenerateNew(int clientId, int petId);
 

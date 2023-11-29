@@ -49,6 +49,8 @@ private:
     static void loadRel();
     static void showRels();
     static void editRels();
+    static void cancelRel();
+    static void clearRels();
 
     static ProductsManager _productsManager;
     static void loadProduct();
