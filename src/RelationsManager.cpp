@@ -185,7 +185,7 @@ PetRelations RelationsManager::editForm(int regPos) {
 void RelationsManager::edit() {
     InputForm search;
     int nId;
-    show();
+    show(false);
     std::cout << "\nIngrese el ID de la relacion a modificar.\n";
     search.setIntField("ID Relacion", nId, 4);
     if (!search.fill()) return;  // si no se completa, salir
@@ -219,6 +219,7 @@ void RelationsManager::show(bool showAndPause) {
     // calcular el total de celdas de nuestra lista, segun la cantidad de datos
     // que contiene 1 registro
     int totalCells = totalRegs * _petRelationsFields;
+
     if (VppConfigManager().isTesting()) {
         std::cout << "Modo de prueba activado." << std::endl;
         std::cout << _filePath << std::endl;
@@ -229,6 +230,11 @@ void RelationsManager::show(bool showAndPause) {
 
     if (totalRegs < 0) {
         std::cout << "Ocurrio un error al leer los registros.\n";
+        utils::pause();
+        return;
+    }
+    if (totalRegs == 0) {
+        utils::coutCenter("No hay registros para mostrar.\n");
         utils::pause();
         return;
     }
@@ -244,8 +250,11 @@ void RelationsManager::show(bool showAndPause) {
         PetRelations auxPetR = _petRelationsFile.readFile(i);
         // Obtener todas las propiedades del cliente
         // Guardarlas en un vector de string
-        std::string vecStr[4];
+        std::string vecStr[6];
         auxPetR.toVecString(vecStr);
+        // Agregar nombre del cliente y mascota
+        vecStr[4] = ClientsManager().getFullNameById(auxPetR.getClientId());
+        vecStr[5] = PetsManager().getNameById(auxPetR.getPetId());
         for (int cell = 0; cell < _petRelationsFields; cell++) {
             // solo llena las celdas si es un registro activo
             if (auxPetR.getStatus()) {
@@ -260,13 +269,14 @@ void RelationsManager::show(bool showAndPause) {
         rowPos += _petRelationsFields;
     }
     // Vector que contiene las columnas de nuestra lista
-    std::string columns[4] = {"ID RELACION", "ID MASCOTA", "ID CLIENTE",
-                              "DUEÑO?"};
+    std::string columns[6] = {"ID RELACION",    "ID MASCOTA",
+                              "ID CLIENTE",     "DUEÑO?",
+                              "NOMBRE CLIENTE", "NOMBRE MASCOTA"};
 
     ListView petsRelationsList;
     petsRelationsList.addCells(cells, totalCells);
-    petsRelationsList.addCols(columns, 4);
-    petsRelationsList.setTitle(" RELACIONES DE MASCOTAS");
+    petsRelationsList.addCols(columns, 6);
+    petsRelationsList.setTitle("RELACIONES DE MASCOTAS");
     petsRelationsList.show();
     delete[] cells;  // liberar memoria!
 

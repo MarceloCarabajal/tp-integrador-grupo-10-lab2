@@ -293,3 +293,13 @@ void ClientsManager::cancel() {
     }
     utils::pause();
 }
+
+std::string ClientsManager::getFullNameById(int nId) {
+    Client auxClient;
+    int regPos = _clientsFile.searchReg(searchById, nId);
+    auxClient = _clientsFile.readFile(regPos);
+    if (auxClient.getIdPerson() == 0) return "ERROR";
+    std::string fullName = std::string(auxClient.getName()) + " " +
+                           std::string(auxClient.getLastname());
+    return fullName;
+}

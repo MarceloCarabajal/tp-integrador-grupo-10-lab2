@@ -320,3 +320,10 @@ bool PetsManager::updateOwner(int ownerId, int petId) {
     bool success = _petsFile.updateFile(auxPet, regPos);
     return success;
 }
+
+std::string PetsManager::getNameById(int nId) {
+    int regPos = _petsFile.searchReg(searchById, nId);
+    Pet auxPet = _petsFile.readFile(regPos);
+    if (auxPet.getPetId() == -1) return "ERROR";
+    return auxPet.getName();
+}
