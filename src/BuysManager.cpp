@@ -62,12 +62,12 @@ Buy BuysManager::loadForm() {
         alreadyExists = prodmanager.idExists(productId);
     } while (!alreadyExists);  // si no existe, volver a pedir
 
-    buyForm.setRangeField("Metodo Pago", paymentMethod, 1, 3);
+    buyForm.setRangeField("Metodo Pago[1-3]", paymentMethod, 1, 3);
 
     //// este numero se copia en los objetos de la clase transaccion
     // TODO: Este es el que se tiene que generar solo?
     buyForm.setIntField("ID Transacción", trxId, 4);
-    buyForm.setRangeField("Cantidad", quantity, 1, 1000);
+    buyForm.setRangeField("Cantidad[1-1000]", quantity, 1, 1000);
     buyForm.setFloatField("Precio Unitario $", unitPrice);
     dateForm.setDateField("Fecha de compra", buyDate);
     bool validDate = false;
@@ -78,6 +78,8 @@ Buy BuysManager::loadForm() {
     }
 
     if (!buyForm.fill()) return auxBuy;
+
+    
 
     auxBuy.setpaymentMethod(paymentMethod);
     auxBuy.setProductId(productId);
@@ -126,11 +128,11 @@ Buy BuysManager::editForm(int regPos) {
     }
 
     /////buyForm.setEditMode(true, true);  // modo edicion
-    buyForm.setRangeField("Metodo Pago", paymentMethod, 1, 3);
+    buyForm.setRangeField("Metodo Pago[1-3]", paymentMethod, 1, 3);
     buyForm.setIntField(
         "ID Transacción", transactionId,
         4);  //// este numero se copia en los objetos de la clase transaccion
-    buyForm.setRangeField("Cantidad", quantity, 1, 1000);
+    buyForm.setRangeField("Cantidad[1-1000]", quantity, 1, 1000);
     buyForm.setFloatField("Precio Unitario $", unitPrice);
 
     dateForm.setDateField("Fecha de compra", buyDate);

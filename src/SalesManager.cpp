@@ -60,7 +60,7 @@ Sale SalesManager::loadForm() {
         if (!retryInvalidDate(validDate)) return auxSale;
     }
 
-    saleForm.setRangeField("Metodo Pago", paymentMethod, 1, 3);
+    saleForm.setRangeField("Metodo Pago[1-3]", paymentMethod, 1, 3);
     saleForm.setFloatField("Total", totalAmount);
 
     if (!saleForm.fill()) return auxSale;
@@ -123,9 +123,18 @@ Sale SalesManager::editForm(int regPos) {
         if (!validDate) saleDate = auxFormSale.getDate();
     }
 
-    saleForm.setRangeField("Metodo Pago", paymentMethod, 1, 3);
+    saleForm.setRangeField("Metodo Pago[1-3] ", paymentMethod, 1, 3);
     saleForm.setFloatField("Total", totalAmount);
     consultForm.setBoolField("¿Es Consulta [SI/NO]?", isVisit);
+
+    //TODO: VER LO SIGUIENTE
+
+
+    /*
+     (visit) --------- llamar a load item sale .
+    si es visita deberia cargar un ID que tengamos en producto para la visita?
+    si se vendio mas de un producto que se sigan cargando subitems 
+    */
 
     if (!consultForm.fill()) return auxFormSale;
 
