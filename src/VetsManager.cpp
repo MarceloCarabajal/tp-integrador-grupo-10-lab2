@@ -257,3 +257,11 @@ void VetsManager::cancel() {
     }
     utils::pause();
 }
+
+bool VetsManager::isActiveId(int nId) {
+    int regPos = _vetsFile.searchReg(searchById, nId);
+    if (regPos == -1) return false;
+    Vet auxVet = _vetsFile.readFile(regPos);
+    if (auxVet.getStatus()) return true;
+    return false;
+}

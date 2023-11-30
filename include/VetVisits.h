@@ -7,12 +7,14 @@ class VetVisits {
 private:
     int _visitId, _vetId, _clientId, _petId, _saleId;
     Date _date;
-    char  _reason[30], _diagnosis[240];
+    char _reason[30], _diagnosis[240];
     bool _status;
-public:
 
-VetVisits ();
-VetVisits (int visitid, int vetid, int clientid, int petid, int saleid, Date date,std::string reason, std::string diagnosis, bool status );
+public:
+    VetVisits();
+    VetVisits(int visitid, int vetid, int clientid, int petid, int saleid,
+              Date date, std::string reason, std::string diagnosis,
+              bool status);
     void setVisitId(int id);
     void setVetId(int id);
     void setClientId(int id);
@@ -35,5 +37,5 @@ VetVisits (int visitid, int vetid, int clientid, int petid, int saleid, Date dat
 
     bool isValidRelation();
 
-     void toVecString(std::string vStr[8]);
+    void toVecString(std::string vStr[8]);
 };
