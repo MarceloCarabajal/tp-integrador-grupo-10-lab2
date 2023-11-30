@@ -1,0 +1,43 @@
+\doxysection{Transaction.\+h}
+\hypertarget{_transaction_8h_source}{}\label{_transaction_8h_source}\index{F:/devProjects/Facu/LabII/tp-\/integrador-\/grupo-\/10-\/lab2/include/Transaction.h@{F:/devProjects/Facu/LabII/tp-\/integrador-\/grupo-\/10-\/lab2/include/Transaction.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}Date.h"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}TimeCls.h"{}}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_transaction}{Transaction}}\ \{}
+\DoxyCodeLine{00008\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00009\ \ \ \ \ \textcolor{keywordtype}{int}\ \_idTransaction;}
+\DoxyCodeLine{00010\ \ \ \ \ \mbox{\hyperlink{class_date}{Date}}\ \_transDate;}
+\DoxyCodeLine{00011\ \ \ \ \ \mbox{\hyperlink{class_time}{Time}}\ \_transTime;}
+\DoxyCodeLine{00012\ \ \ \ \ \textcolor{keywordtype}{char}\ \_description[45];}
+\DoxyCodeLine{00013\ \ \ \ \ \textcolor{keywordtype}{float}\ \_amount;}
+\DoxyCodeLine{00014\ \ \ \ \ \textcolor{keywordtype}{char}\ \_paymentMethod[15];}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \mbox{\hyperlink{class_transaction}{Transaction}}\ ();}
+\DoxyCodeLine{00019\ \mbox{\hyperlink{class_transaction}{Transaction}}\ (\textcolor{keywordtype}{int}\ idtrans,\ \mbox{\hyperlink{class_date}{Date}}\ transdate,\ \mbox{\hyperlink{class_time}{Time}}\ transtime,\ std::string\ descrip,\ \textcolor{keywordtype}{float}\ amount,std::string\ payment);}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keywordtype}{void}\ setIdTransaction(\textcolor{keywordtype}{int}\ idTrx);}
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keywordtype}{void}\ setDateTrans(\mbox{\hyperlink{class_date}{Date}}\ date);}
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keywordtype}{void}\ setTimeTrans(\mbox{\hyperlink{class_time}{Time}}\ time);}
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keywordtype}{void}\ setDescription(std::string\ desc);}
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keywordtype}{void}\ setAmount(\textcolor{keywordtype}{float}\ amount);}
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keywordtype}{void}\ setPaymentMethod(std::string\ met);}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keywordtype}{int}\ getIdTransaction();}
+\DoxyCodeLine{00030\ \ \ \ \ \mbox{\hyperlink{class_date}{Date}}\ getDateTrans();}
+\DoxyCodeLine{00031\ \ \ \ \ \mbox{\hyperlink{class_time}{Time}}\ getTimeTrans();}
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ getDescription();}
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keywordtype}{float}\ getAmount();}
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ getPaymentMehod();}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keywordtype}{void}\ load();}
+\DoxyCodeLine{00037\ \};}
+
+\end{DoxyCode}

@@ -1,0 +1,39 @@
+\doxysection{Sales\+Manager.\+h}
+\hypertarget{_sales_manager_8h_source}{}\label{_sales_manager_8h_source}\index{F:/devProjects/Facu/LabII/tp-\/integrador-\/grupo-\/10-\/lab2/include/SalesManager.h@{F:/devProjects/Facu/LabII/tp-\/integrador-\/grupo-\/10-\/lab2/include/SalesManager.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#include\ "{}Sale.h"{}}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#include\ "{}VppConfigManager.h"{}}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_vpp_file_8h}{VppFile.h}}"{}}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00013\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_sales_manager}{SalesManager}}\ \{}
+\DoxyCodeLine{00014\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00015\ \ \ \ \ \textcolor{keyword}{const}\ std::string\ \_folderPath\ =}
+\DoxyCodeLine{00016\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_vpp_config_manager}{VppConfigManager}}().\mbox{\hyperlink{class_vpp_config_manager_a96295baaca646005de9df583243a4d5c}{getDataPath}}();\ }
+\DoxyCodeLine{00017\ \ \ \ \ \textcolor{keyword}{const}\ std::string\ \_filePath\ =}
+\DoxyCodeLine{00018\ \ \ \ \ \ \ \ \ \_folderPath\ +\ \textcolor{stringliteral}{"{}Sales.vpp"{}};\ }
+\DoxyCodeLine{00019\ \ \ \ \ \mbox{\hyperlink{class_vpp_file}{VppFile<Sale>}}\ \_salesFile\ =}
+\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_vpp_file}{VppFile<Sale>}}(\_filePath);\ }
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \_salesFields\ =}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ 6;\ }
+\DoxyCodeLine{00028\ \ \ \ \ \mbox{\hyperlink{class_sale}{Sale}}\ loadForm();}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00035\ \ \ \ \ \mbox{\hyperlink{class_sale}{Sale}}\ editForm(\textcolor{keywordtype}{int}\ regPos);}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keywordtype}{bool}\ validAppDate(\mbox{\hyperlink{class_date}{Date}}\ date);}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{keywordtype}{bool}\ retryInvalidDate(\textcolor{keywordtype}{bool}\ valid);}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_sales_manager_a15fb29b33d00ca156d4a8ae62d998c61}{load}}();}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_sales_manager_a0b97608b3003ff283ddff4bcaa77dbb1}{edit}}();}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00066\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_sales_manager_a42e25130a88ce19ef1ec115b545fe31b}{show}}(\textcolor{keywordtype}{bool}\ showAndPause\ =\ \textcolor{keyword}{true});}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00079\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_sales_manager_a7477d5101d3591ffd6973099414f2447}{searchById}}(\mbox{\hyperlink{class_sale}{Sale}}\ reg,\ \textcolor{keywordtype}{int}\ nId);}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00086\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_sales_manager_a74fb73e2507be5d07fd29c1603b380b7}{idExists}}(\textcolor{keywordtype}{int}\ nId);}
+\DoxyCodeLine{00087\ \};}
+
+\end{DoxyCode}

@@ -1,0 +1,204 @@
+\doxysection{utils.\+h}
+\hypertarget{utils_8h_source}{}\label{utils_8h_source}\index{F:/devProjects/Facu/LabII/tp-\/integrador-\/grupo-\/10-\/lab2/include/utils.h@{F:/devProjects/Facu/LabII/tp-\/integrador-\/grupo-\/10-\/lab2/include/utils.h}}
+\mbox{\hyperlink{utils_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#ifndef\ UTILS\_INCLUDED}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#define\ UTILS\_INCLUDED}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <rlutil.h>}}
+\DoxyCodeLine{00011\ \textcolor{comment}{//\ API\ de\ archivos\ de\ Windows}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <fileapi.h>}\ \ \textcolor{comment}{//\ necesario\ para\ la\ funcion\ GetFileAttributes}}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ <iomanip>}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#include\ "{}VppConfigManager.h"{}}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{quickmail_8h}{quickmail.h}}"{}}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \textcolor{comment}{//\ \#include\ "{}isvalid.h"{},\ evita\ la\ dependencia\ circular}}
+\DoxyCodeLine{00021\ \textcolor{comment}{//\ \ Declaración\ forward\ de\ isvalid::alphanumeric}}
+\DoxyCodeLine{00022\ \textcolor{keyword}{namespace\ }isvalid\ \{}
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keywordtype}{bool}\ alphanumeric(\textcolor{keywordtype}{char}\ c);}
+\DoxyCodeLine{00024\ \}}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \textcolor{keyword}{namespace\ }utils\ \{}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{utils_8h_a0fd6304737eb21ab0ea3c3158edb42a0}{pause}}()\ \{}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Presione\ cualquier\ tecla\ para\ continuar..."{}}\ <<\ std::endl;}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ rlutil::hidecursor();}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ rlutil::anykey();}
+\DoxyCodeLine{00040\ \ \ \ \ \}}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{keyword}{inline}\ std::string\ \mbox{\hyperlink{utils_8h_a7cda5af6f9246a773c0557fdeca74cbd}{removeEmoji}}(std::string\ str)\ \{}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ firstPos\ =\ str.find(\textcolor{charliteral}{':'});}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ secondPos\ =\ str.find(\textcolor{charliteral}{':'},\ firstPos\ +\ 1);}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (firstPos\ ==\ std::string::npos)\ \textcolor{keywordflow}{return}\ str;}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (secondPos\ ==\ std::string::npos)\ \textcolor{keywordflow}{return}\ str;}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ std::string\ temp\ =\ str.substr(0,\ firstPos\ -\/\ 1)\ +}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ str.substr(secondPos\ +\ 1,\ str.length());}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ temp\ +\ \textcolor{stringliteral}{"{}\ \ "{}};\ \ \textcolor{comment}{//\ suma\ 2\ espacios\ ocupados\ por\ el\ emoji}}
+\DoxyCodeLine{00056\ \ \ \ \ \}}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00067\ \ \ \ \ \textcolor{keyword}{inline}\ std::string\ \mbox{\hyperlink{utils_8h_a9fc4d2b1fdcc463b993626f0be9d4e7a}{trim}}(std::string\ str)\ \{}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ lSpaces\ =\ 0,\ rSpaces\ =\ 0,\ strEnd\ =\ 0;}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ std::string\ temp;}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ contar\ espacios\ desde\ la\ izquierda}}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ str.length();\ i++)\ \{}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ si\ es\ una\ letra,\ salir\ del\ for}}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (::isvalid::alphanumeric(str[i]))\ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (str[i]\ ==\ \textcolor{keywordtype}{char}(32))\ lSpaces++;}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ contar\ espacios\ desde\ la\ derecha}}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ se\ convierte\ length()\ a\ (int)\ porque\ i\ no\ puede\ ser\ de\ tipo\ size\_t}}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ debido\ a\ que\ se\ usa\ decremento\ y\ al\ llegar\ a\ 0\ y\ decrementar,\ un\ tipo}}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ size\_t\ no\ puede\ ser\ negativo\ y\ vuelve\ a\ su\ valor\ maximo,\ generando\ un}}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ loop\ infinito}}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ (\textcolor{keywordtype}{int})str.length();\ i\ >=\ 0;\ i-\/-\/)\ \{}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ si\ es\ una\ letra,\ salir\ del\ for}}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (::isvalid::alphanumeric(str[i\ -\/\ 1]))\ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (str[i\ -\/\ 1]\ ==\ \textcolor{keywordtype}{char}(32))\ rSpaces++;}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Calcular\ tamanio\ total\ sin\ espacios\ L\ y\ R}}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ strEnd\ =\ str.length()\ -\/\ rSpaces;}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ copiar\ str\ desde\ lSpaces\ hasta\ strEnd}}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ lSpaces;\ i\ <\ strEnd;\ i++)\ \{}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \ \ \ \ temp\ +=\ str[i];}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ si\ no\ se\ detectaron\ espacios,\ devolver\ str}}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (lSpaces\ +\ rSpaces\ ==\ 0)\ \textcolor{keywordflow}{return}\ str;}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ sino\ devolver\ str\ trimeado}}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ temp;}
+\DoxyCodeLine{00096\ \ \ \ \ \}}
+\DoxyCodeLine{00097\ }
+\DoxyCodeLine{00104\ \ \ \ \ \textcolor{keyword}{inline}\ std::string\ strLower(std::string\ str)\ \{}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ str.length();\ i++)\ \{}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \ \ \ \ str[i]\ =\ tolower(str[i]);}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ str;}
+\DoxyCodeLine{00109\ \ \ \ \ \}}
+\DoxyCodeLine{00110\ }
+\DoxyCodeLine{00117\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{utils_8h_acf4549f188ed6047797f79d084832eb2}{strToBool}}(std::string\ str)\ \{}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (strLower(str)\ ==\ \textcolor{stringliteral}{"{}si"{}})\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (strLower(str)\ ==\ \textcolor{stringliteral}{"{}sí"{}})\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00121\ \ \ \ \ \}}
+\DoxyCodeLine{00122\ }
+\DoxyCodeLine{00130\ \ \ \ \ \textcolor{keyword}{inline}\ std::string\ \mbox{\hyperlink{utils_8h_aa04042fb92841c51d0f0f88f6281e357}{boolToStr}}(\textcolor{keywordtype}{bool}\ b)\ \{}
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (b)\ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}Si"{}};}
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}No"{}};}
+\DoxyCodeLine{00133\ \ \ \ \ \}}
+\DoxyCodeLine{00134\ }
+\DoxyCodeLine{00142\ \ \ \ \ \textcolor{keyword}{inline}\ std::string\ \mbox{\hyperlink{utils_8h_a924bae1ca5a062ff971a92505e9e32a7}{replaceCommas}}(std::string\ str)\ \{}
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ std::string\ temp;}
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ si\ no\ hay\ comas,\ devolver\ str}}
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (str.find(\textcolor{charliteral}{','})\ ==\ std::string::npos)\ \textcolor{keywordflow}{return}\ str;}
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ str.length();\ i++)\ \{}
+\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (str[i]\ ==\ \textcolor{charliteral}{','})}
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ temp\ +=\ \textcolor{charliteral}{'.'};}
+\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ temp\ +=\ str[i];}
+\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ temp;}
+\DoxyCodeLine{00153\ \ \ \ \ \}}
+\DoxyCodeLine{00154\ }
+\DoxyCodeLine{00162\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{int}\ getLongestLine(std::string\ str)\ \{}
+\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ maxLength\ =\ 0,\ charCount\ =\ 0;}
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ (int)str.length();\ i++)\ \{}
+\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (str[i]\ ==\ \textcolor{charliteral}{'\(\backslash\)n'})\ \{}
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (charCount\ >\ maxLength)\ maxLength\ =\ charCount;}
+\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ charCount\ =\ 0;}
+\DoxyCodeLine{00168\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ \ \ \ \ charCount++;}
+\DoxyCodeLine{00170\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00171\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ si\ no\ hay\ saltos\ de\ linea,\ devolver\ la\ longitud\ del\ string}}
+\DoxyCodeLine{00172\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (maxLength\ ==\ 0)\ \textcolor{keywordflow}{return}\ charCount;}
+\DoxyCodeLine{00173\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ maxLength;}
+\DoxyCodeLine{00174\ \ \ \ \ \}}
+\DoxyCodeLine{00175\ }
+\DoxyCodeLine{00181\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{utils_8h_a5dde84bfce12b4783168559ad6ce8f1e}{coutCenter}}(std::string\ str)\ \{}
+\DoxyCodeLine{00182\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Calcular\ la\ linea\ mas\ larga}}
+\DoxyCodeLine{00183\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ lTexto\ =\ getLongestLine(str);}
+\DoxyCodeLine{00184\ \ \ \ \ \ \ \ \ std::cout\ <<\ std::setw(rlutil::tcols()\ /\ 2\ -\/\ lTexto\ /\ 2)\ <<\ \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{00185\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ (int)str.length();\ i++)\ \{}
+\DoxyCodeLine{00186\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (str[i]\ ==\ \textcolor{charliteral}{'\(\backslash\)n'})\ \{}
+\DoxyCodeLine{00187\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\ str[i];}
+\DoxyCodeLine{00188\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\ std::setw(rlutil::tcols()\ /\ 2\ -\/\ lTexto\ /\ 2)\ <<\ \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{00189\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00190\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\ str[i];}
+\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00192\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00193\ \ \ \ \ \ \ \ \ std::cout\ <<\ std::setw(rlutil::tcols()\ /\ 2\ -\/\ lTexto\ /\ 2)\ <<\ \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{00194\ \ \ \ \ \}}
+\DoxyCodeLine{00195\ }
+\DoxyCodeLine{00202\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{utils_8h_a3a9b41c9ece80e050cb0cd6492eb0321}{printLogo}}()\ \{}
+\DoxyCodeLine{00203\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{utils_8h_a5dde84bfce12b4783168559ad6ce8f1e}{coutCenter}}(R\textcolor{stringliteral}{"{}(}}
+\DoxyCodeLine{00204\ \textcolor{stringliteral}{\ \ \_\ \ \ \_\_\ \ \ \ \_\_\ \ \ \ \ \ \ \ \_\_\ \ \ \ \_\_\ }}
+\DoxyCodeLine{00205\ \textcolor{stringliteral}{\ |\ |\ /\ /\_\_\ /\ /\_\_\_\_\ \_\_/\ /\_\_\_/\ /\_}}
+\DoxyCodeLine{00206\ \textcolor{stringliteral}{\ |\ |/\ /\ -\/\_)\ \_\_/\ -\/\_)\_\ \ \_\_/\_\ \ \_\_/}}
+\DoxyCodeLine{00207\ \textcolor{stringliteral}{\ |\_\_\_/\(\backslash\)\_\_/\(\backslash\)\_\_/\(\backslash\)\_\_/\ /\_/\ \ \ /\_/\ \ \ }}
+\DoxyCodeLine{00208\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ )"{});}}
+\DoxyCodeLine{00209\ \textcolor{stringliteral}{\ \ \ \ \}}}
+\DoxyCodeLine{00210\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{00216\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ cls()\ \{\ rlutil::cls();\ \}}
+\DoxyCodeLine{00217\ }
+\DoxyCodeLine{00224\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{utils_8h_a4ebd769eca5399ed5c1e39c10c759660}{fileExists}}(std::string\ filePath)\ \{}
+\DoxyCodeLine{00225\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ convertir\ string\ a\ TCHAR/WCHAR}}
+\DoxyCodeLine{00226\ \ \ \ \ \ \ \ \ TCHAR\ *Tpath\ =\ \textcolor{keyword}{new}\ TCHAR[filePath.size()\ +\ 1];}
+\DoxyCodeLine{00227\ \ \ \ \ \ \ \ \ Tpath[filePath.size()]\ =\ 0;}
+\DoxyCodeLine{00228\ \ \ \ \ \ \ \ \ std::copy(filePath.begin(),\ filePath.end(),\ Tpath);}
+\DoxyCodeLine{00229\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ comprobar\ si\ existe\ el\ archivo}}
+\DoxyCodeLine{00230\ \ \ \ \ \ \ \ \ DWORD\ dwAttrib\ =\ GetFileAttributes(Tpath);}
+\DoxyCodeLine{00231\ }
+\DoxyCodeLine{00232\ \ \ \ \ \ \ \ \ \textcolor{keyword}{delete}[]\ Tpath;}
+\DoxyCodeLine{00233\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ si\ el\ archivo\ no\ existe,\ devolver\ false}}
+\DoxyCodeLine{00234\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (dwAttrib\ !=\ INVALID\_FILE\_ATTRIBUTES);}
+\DoxyCodeLine{00235\ \ \ \ \ \}}
+\DoxyCodeLine{00236\ }
+\DoxyCodeLine{00237\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ sendEmail(std::string\ to,\ std::string\ subject,\ std::string\ body,}
+\DoxyCodeLine{00238\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::string\ from)\ \{}
+\DoxyCodeLine{00239\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_vpp_config_manager}{VppConfigManager}}\ vppConfMgr;}
+\DoxyCodeLine{00240\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_vpp_config}{VppConfig}}\ vppConfig;}
+\DoxyCodeLine{00241\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_vpp_config_manager}{VppConfigManager}}().\mbox{\hyperlink{class_vpp_config_manager_a7c3fb301f7bf1ebeef8d379b426775b3}{getCredentials}}(vppConfig);}
+\DoxyCodeLine{00242\ }
+\DoxyCodeLine{00243\ \ \ \ \ \ \ \ \ std::string\ SMTP\_HOST\ =\ vppConfig.getSMTPServer();}
+\DoxyCodeLine{00244\ \ \ \ \ \ \ \ \ std::string\ SMTP\_USR\ =\ vppConfig.getSMTPUser();}
+\DoxyCodeLine{00245\ \ \ \ \ \ \ \ \ std::string\ SMTP\_PWD\ =\ vppConfig.getSMTPPass();}
+\DoxyCodeLine{00246\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ SMTP\_PORT\ =\ vppConfig.getSMTPPort();}
+\DoxyCodeLine{00247\ \ \ \ \ \ \ \ \ std::string\ veteName\ =\ vppConfig.getVeteName();}
+\DoxyCodeLine{00248\ }
+\DoxyCodeLine{00249\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{quickmail_8h_aa6d56a7c99f44f716dd548b165b4e52b}{quickmail\_initialize}}();}
+\DoxyCodeLine{00250\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{quickmail_8h_a41c19143482833a54485856d0e9bcadf}{quickmail}}\ mailObj\ =\ \mbox{\hyperlink{quickmail_8h_ab5981da168cff98e8e6ce8e76e19f54f}{quickmail\_create}}(from.c\_str(),\ subject.c\_str());}
+\DoxyCodeLine{00251\ }
+\DoxyCodeLine{00252\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{char}\ *cBody\ =\ \&body[0];}
+\DoxyCodeLine{00253\ }
+\DoxyCodeLine{00254\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ HEADERS:}}
+\DoxyCodeLine{00255\ \ \ \ \ \ \ \ \ std::string\ headerFrom\ =\ \textcolor{stringliteral}{"{}From:\ "{}}\ +\ veteName\ +\ \textcolor{stringliteral}{"{}\ <"{}}\ +\ from\ +\ \textcolor{stringliteral}{"{}>"{}};}
+\DoxyCodeLine{00256\ \ \ \ \ \ \ \ \ std::string\ headerReply\ =\ \textcolor{stringliteral}{"{}Reply-\/To:\ "{}}\ +\ veteName\ +\ \textcolor{stringliteral}{"{}\ <"{}}\ +\ from\ +\ \textcolor{stringliteral}{"{}>"{}};}
+\DoxyCodeLine{00257\ \ \ \ \ \ \ \ \ std::string\ headerOrg\ =\ \textcolor{stringliteral}{"{}Organization:\ "{}}\ +\ veteName\ +\ \textcolor{stringliteral}{"{}\ <"{}}\ +\ from\ +\ \textcolor{stringliteral}{"{}>"{}};}
+\DoxyCodeLine{00258\ }
+\DoxyCodeLine{00259\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{quickmail_8h_ad52e741ba2a242ce786dea78f2818df0}{quickmail\_add\_header}}(mailObj,\ headerFrom.c\_str());}
+\DoxyCodeLine{00260\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{quickmail_8h_ad52e741ba2a242ce786dea78f2818df0}{quickmail\_add\_header}}(mailObj,\ headerReply.c\_str());}
+\DoxyCodeLine{00261\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{quickmail_8h_ad52e741ba2a242ce786dea78f2818df0}{quickmail\_add\_header}}(mailObj,\ headerOrg.c\_str());}
+\DoxyCodeLine{00262\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{quickmail_8h_ad52e741ba2a242ce786dea78f2818df0}{quickmail\_add\_header}}(mailObj,\ \textcolor{stringliteral}{"{}MIME-\/Version:\ 1.0"{}});}
+\DoxyCodeLine{00263\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{quickmail_8h_ad52e741ba2a242ce786dea78f2818df0}{quickmail\_add\_header}}(mailObj,\ \textcolor{stringliteral}{"{}X-\/Priority:\ 3"{}});}
+\DoxyCodeLine{00264\ }
+\DoxyCodeLine{00265\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{quickmail_8h_aa9b4d41666155c469169fa4b545bbe13}{quickmail\_add\_body\_memory}}(mailObj,\ \textcolor{stringliteral}{"{}text/html"{}},\ cBody,\ body.length(),}
+\DoxyCodeLine{00266\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0);}
+\DoxyCodeLine{00267\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ quickmail\_add\_attachment\_file(mailObj,\ "{}C:\(\backslash\)\(\backslash\)pdf.pdf"{},}}
+\DoxyCodeLine{00268\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ "{}application/pdf"{});}}
+\DoxyCodeLine{00269\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{quickmail_8h_a5ed73631d1f7cb39f024ba35c2b7417d}{quickmail\_add\_to}}(mailObj,\ to.c\_str());}
+\DoxyCodeLine{00270\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *errmsg\ =}
+\DoxyCodeLine{00271\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{quickmail_8h_a20958251fc326332661a7739d7bc339a}{quickmail\_send}}(mailObj,\ SMTP\_HOST.c\_str(),\ SMTP\_PORT,}
+\DoxyCodeLine{00272\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ SMTP\_USR.c\_str(),\ SMTP\_PWD.c\_str());}
+\DoxyCodeLine{00273\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (errmsg\ !=\ NULL)\ \{}
+\DoxyCodeLine{00274\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00275\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00276\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{quickmail_8h_a3ac506afb737327896c52cd42477083a}{quickmail\_destroy}}(mailObj);}
+\DoxyCodeLine{00277\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00278\ \ \ \ \ \}}
+\DoxyCodeLine{00279\ \}\ \ \textcolor{comment}{//\ namespace\ utils}}
+\DoxyCodeLine{00280\ }
+\DoxyCodeLine{00281\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ UTILS\_INCLUDED\ */}\textcolor{preprocessor}{}}
+
+\end{DoxyCode}

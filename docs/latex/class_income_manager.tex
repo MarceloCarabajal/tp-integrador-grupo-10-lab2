@@ -1,0 +1,82 @@
+\doxysection{Income\+Manager Class Reference}
+\hypertarget{class_income_manager}{}\label{class_income_manager}\index{IncomeManager@{IncomeManager}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_income_manager_a3475fb7cf84c1e8c0662af06fa7ae50c}\label{class_income_manager_a3475fb7cf84c1e8c0662af06fa7ae50c} 
+void {\bfseries load} ()
+\begin{DoxyCompactList}\small\item\em Carga y guarda un nuevo ingreso después de solicitar y verificar un ID único. Muestra un formulario para ingresar un ID de ingreso único, verifica su disponibilidad en el archivo, y luego carga y guarda los detalles del nuevo ingreso utilizando otro formulario. Si el usuario cancela el ingreso o hay errores, la función se interrumpe. \end{DoxyCompactList}\item 
+\Hypertarget{class_income_manager_add79bf32cf4ca40e05656fee33319c06}\label{class_income_manager_add79bf32cf4ca40e05656fee33319c06} 
+void {\bfseries edit} ()
+\begin{DoxyCompactList}\small\item\em Permite la edición de los detalles de un ingreso existente solicitando el ID de la transacción. Muestra la lista de ingresos existentes, solicita al usuario el ID de la transacción a modificar y luego permite la edición de los detalles del ingreso utilizando un formulario. Si el usuario cancela la edición o hay errores, la función se interrumpe. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_income_manager_af58bb61cea1f7b885c49b99e3931b73d}{show}} (bool show\+And\+Pause=true)
+\begin{DoxyCompactList}\small\item\em Muestra una lista de ingresos en forma de tabla. Calcula y muestra en formato de tabla los ingresos almacenados en el archivo. Utiliza una clase \doxylink{class_list_view}{List\+View} para la presentación. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_income_manager_ac638471670dd417de09e2e56d7490c62}{id\+Exists}} (int n\+Id)
+\begin{DoxyCompactList}\small\item\em Verifica la existencia de un ID en el archivo de ingresos. Utiliza la función de búsqueda por ID para determinar si un ID de transacción ya existe en el archivo. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static bool \mbox{\hyperlink{class_income_manager_a6c1f0bf97e3eced25ce2bc64efb5e828}{search\+By\+Id}} (\mbox{\hyperlink{class_income}{Income}} reg, int n\+Id)
+\begin{DoxyCompactList}\small\item\em Función de búsqueda por ID para ser utilizada en la búsqueda en el archivo de ingresos. Compara el ID de una transacción con un ID proporcionado. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_income_manager_ac638471670dd417de09e2e56d7490c62}\label{class_income_manager_ac638471670dd417de09e2e56d7490c62} 
+\index{IncomeManager@{IncomeManager}!idExists@{idExists}}
+\index{idExists@{idExists}!IncomeManager@{IncomeManager}}
+\doxysubsubsection{\texorpdfstring{idExists()}{idExists()}}
+{\footnotesize\ttfamily bool Income\+Manager\+::id\+Exists (\begin{DoxyParamCaption}\item[{int}]{n\+Id }\end{DoxyParamCaption})}
+
+
+
+Verifica la existencia de un ID en el archivo de ingresos. Utiliza la función de búsqueda por ID para determinar si un ID de transacción ya existe en el archivo. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em n\+Id} & ID de transacción a verificar. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Verdadero si el ID existe en el archivo, falso de lo contrario. 
+\end{DoxyReturn}
+\Hypertarget{class_income_manager_a6c1f0bf97e3eced25ce2bc64efb5e828}\label{class_income_manager_a6c1f0bf97e3eced25ce2bc64efb5e828} 
+\index{IncomeManager@{IncomeManager}!searchById@{searchById}}
+\index{searchById@{searchById}!IncomeManager@{IncomeManager}}
+\doxysubsubsection{\texorpdfstring{searchById()}{searchById()}}
+{\footnotesize\ttfamily bool Income\+Manager\+::search\+By\+Id (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_income}{Income}}}]{reg,  }\item[{int}]{n\+Id }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Función de búsqueda por ID para ser utilizada en la búsqueda en el archivo de ingresos. Compara el ID de una transacción con un ID proporcionado. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em reg} & Objeto de tipo \doxylink{class_income}{Income} que representa un registro de ingreso. \\
+\hline
+{\em n\+Id} & ID de transacción a comparar. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Verdadero si el ID de la transacción coincide con el ID proporcionado, falso de lo contrario. 
+\end{DoxyReturn}
+\Hypertarget{class_income_manager_af58bb61cea1f7b885c49b99e3931b73d}\label{class_income_manager_af58bb61cea1f7b885c49b99e3931b73d} 
+\index{IncomeManager@{IncomeManager}!show@{show}}
+\index{show@{show}!IncomeManager@{IncomeManager}}
+\doxysubsubsection{\texorpdfstring{show()}{show()}}
+{\footnotesize\ttfamily void Income\+Manager\+::show (\begin{DoxyParamCaption}\item[{bool}]{show\+And\+Pause = {\ttfamily true} }\end{DoxyParamCaption})}
+
+
+
+Muestra una lista de ingresos en forma de tabla. Calcula y muestra en formato de tabla los ingresos almacenados en el archivo. Utiliza una clase \doxylink{class_list_view}{List\+View} para la presentación. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em show\+And\+Pause} & Si es verdadero, muestra la lista y pausa la ejecución. Si es falso, solo realiza la presentación. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+F\+:/dev\+Projects/\+Facu/\+Lab\+II/tp-\/integrador-\/grupo-\/10-\/lab2/include/Income\+Manager.\+h\item 
+F\+:/dev\+Projects/\+Facu/\+Lab\+II/tp-\/integrador-\/grupo-\/10-\/lab2/src/Income\+Manager.\+cpp\end{DoxyCompactItemize}

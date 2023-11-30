@@ -1,0 +1,88 @@
+\doxysection{Prod\+Category\+Manager Class Reference}
+\hypertarget{class_prod_category_manager}{}\label{class_prod_category_manager}\index{ProdCategoryManager@{ProdCategoryManager}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_prod_category_manager_ab353d05e790e912be4ca74ec84c51708}\label{class_prod_category_manager_ab353d05e790e912be4ca74ec84c51708} 
+void {\bfseries load} ()
+\begin{DoxyCompactList}\small\item\em Permite cargar y guardar una nueva categoría de productos con detalles ingresados por el usuario. Solicita al usuario ingresar un ID único para la nueva categoría y verifica si ya existe. Luego, utiliza la función {\ttfamily load\+Form} para obtener los detalles de la categoría y guardarla en el archivo. Si el usuario no completa el formulario, la función se interrumpe. \end{DoxyCompactList}\item 
+\Hypertarget{class_prod_category_manager_ad34c4bc1e1d1e459f7fdb9133a716414}\label{class_prod_category_manager_ad34c4bc1e1d1e459f7fdb9133a716414} 
+void {\bfseries edit} ()
+\begin{DoxyCompactList}\small\item\em Permite la modificación de los detalles de una categoría de productos existente. Muestra la lista de categorías, solicita al usuario ingresar el ID de la categoría a modificar, y permite la edición de los detalles utilizando un formulario. Si el usuario cancela la edición o hay errores en el formulario, la función se interrumpe. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_prod_category_manager_a1feb2f7402ba61b0a6abb2b00b85eeb5}{show}} (bool show\+And\+Pause=true)
+\begin{DoxyCompactList}\small\item\em Muestra la lista de categorías de productos. Calcula el total de celdas según la cantidad de datos que contiene un registro y muestra una lista de categorías de productos con sus respectivas columnas\+: "{}\+ID Categoría"{} y "{}\+Nombre"{}. Si no hay registros o hay un error al leerlos, se mostrará un mensaje correspondiente. \end{DoxyCompactList}\item 
+\Hypertarget{class_prod_category_manager_a11cf885a70e3a59f26526f63b7ecb89e}\label{class_prod_category_manager_a11cf885a70e3a59f26526f63b7ecb89e} 
+void {\bfseries clear\+Deleted} ()
+\begin{DoxyCompactList}\small\item\em Elimina permanentemente las categorías de productos marcadas como dadas de baja. Muestra un mensaje de confirmación y, en caso afirmativo, busca categorías de productos marcadas como dadas de baja e intenta eliminarlas definitivamente. Muestra el resultado de la operación, indicando si se encontraron registros, si ocurrió un error o la cantidad de registros eliminados con éxito. \end{DoxyCompactList}\item 
+\Hypertarget{class_prod_category_manager_a9cee507eb5244fc4c4b1bc154becefbd}\label{class_prod_category_manager_a9cee507eb5244fc4c4b1bc154becefbd} 
+void {\bfseries cancel} ()
+\begin{DoxyCompactList}\small\item\em Realiza una baja provisoria de una categoría de producto. Muestra las categorías de producto, solicita al usuario el ID de la categoría que desea dar de baja y, luego de confirmar la acción, realiza la baja provisoria. Informa al usuario sobre el resultado de la operación. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_prod_category_manager_abdc3216fd3c210fe2aab877812b76f9d}{id\+Exists}} (int n\+Id)
+\begin{DoxyCompactList}\small\item\em Verifica la existencia de una categoría de producto por su ID. Utiliza la función de búsqueda por ID para determinar si una categoría de producto con el ID proporcionado existe en el archivo. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static bool \mbox{\hyperlink{class_prod_category_manager_accb5062944b8360738021479ce766f33}{search\+By\+Id}} (\mbox{\hyperlink{class_product_category}{Product\+Category}} reg, int n\+Id)
+\begin{DoxyCompactList}\small\item\em Busca una categoría de producto por su ID. Compara el ID de la categoría de producto con el ID proporcionado. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_prod_category_manager_abdc3216fd3c210fe2aab877812b76f9d}\label{class_prod_category_manager_abdc3216fd3c210fe2aab877812b76f9d} 
+\index{ProdCategoryManager@{ProdCategoryManager}!idExists@{idExists}}
+\index{idExists@{idExists}!ProdCategoryManager@{ProdCategoryManager}}
+\doxysubsubsection{\texorpdfstring{idExists()}{idExists()}}
+{\footnotesize\ttfamily bool Prod\+Category\+Manager\+::id\+Exists (\begin{DoxyParamCaption}\item[{int}]{n\+Id }\end{DoxyParamCaption})}
+
+
+
+Verifica la existencia de una categoría de producto por su ID. Utiliza la función de búsqueda por ID para determinar si una categoría de producto con el ID proporcionado existe en el archivo. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em n\+Id} & El ID de la categoría de producto a verificar. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true si la categoría de producto existe, false de lo contrario. 
+\end{DoxyReturn}
+\Hypertarget{class_prod_category_manager_accb5062944b8360738021479ce766f33}\label{class_prod_category_manager_accb5062944b8360738021479ce766f33} 
+\index{ProdCategoryManager@{ProdCategoryManager}!searchById@{searchById}}
+\index{searchById@{searchById}!ProdCategoryManager@{ProdCategoryManager}}
+\doxysubsubsection{\texorpdfstring{searchById()}{searchById()}}
+{\footnotesize\ttfamily bool Prod\+Category\+Manager\+::search\+By\+Id (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_product_category}{Product\+Category}}}]{reg,  }\item[{int}]{n\+Id }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Busca una categoría de producto por su ID. Compara el ID de la categoría de producto con el ID proporcionado. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em reg} & La categoría de producto a comparar. \\
+\hline
+{\em n\+Id} & El ID a buscar. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true si los IDs coinciden, false de lo contrario. 
+\end{DoxyReturn}
+\Hypertarget{class_prod_category_manager_a1feb2f7402ba61b0a6abb2b00b85eeb5}\label{class_prod_category_manager_a1feb2f7402ba61b0a6abb2b00b85eeb5} 
+\index{ProdCategoryManager@{ProdCategoryManager}!show@{show}}
+\index{show@{show}!ProdCategoryManager@{ProdCategoryManager}}
+\doxysubsubsection{\texorpdfstring{show()}{show()}}
+{\footnotesize\ttfamily void Prod\+Category\+Manager\+::show (\begin{DoxyParamCaption}\item[{bool}]{show\+And\+Pause = {\ttfamily true} }\end{DoxyParamCaption})}
+
+
+
+Muestra la lista de categorías de productos. Calcula el total de celdas según la cantidad de datos que contiene un registro y muestra una lista de categorías de productos con sus respectivas columnas\+: "{}\+ID Categoría"{} y "{}\+Nombre"{}. Si no hay registros o hay un error al leerlos, se mostrará un mensaje correspondiente. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em show\+And\+Pause} & Indica si se debe pausar la ejecución después de mostrar la lista. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+F\+:/dev\+Projects/\+Facu/\+Lab\+II/tp-\/integrador-\/grupo-\/10-\/lab2/include/Prod\+Category\+Manager.\+h\item 
+F\+:/dev\+Projects/\+Facu/\+Lab\+II/tp-\/integrador-\/grupo-\/10-\/lab2/src/Prod\+Category\+Manager.\+cpp\end{DoxyCompactItemize}

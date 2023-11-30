@@ -1,0 +1,182 @@
+\doxysection{Vpp\+File\+\_\+def.\+h}
+\hypertarget{_vpp_file__def_8h_source}{}\label{_vpp_file__def_8h_source}\index{F:/devProjects/Facu/LabII/tp-\/integrador-\/grupo-\/10-\/lab2/include/VppFile\_def.h@{F:/devProjects/Facu/LabII/tp-\/integrador-\/grupo-\/10-\/lab2/include/VppFile\_def.h}}
+\mbox{\hyperlink{_vpp_file__def_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_vpp_file_8h}{VppFile.h}}"{}}}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00022\ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ VppClass>}
+\DoxyCodeLine{00023\ \mbox{\hyperlink{class_vpp_file_a69fdf7cd66813ddb16231ffbaf619b65}{VppFile<VppClass>::VppFile}}(std::string\ fileName)\ \{}
+\DoxyCodeLine{00024\ \ \ \ \ \_fileName\ =\ fileName;}
+\DoxyCodeLine{00025\ \}}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00032\ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ VppClass>}
+\DoxyCodeLine{00033\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_vpp_file_a222488dae97afef441a0323f5b444d11}{VppFile<VppClass>::getTotalRegisters}}()\ \{}
+\DoxyCodeLine{00034\ \ \ \ \ FILE\ *pFile\ =\ fopen(\_fileName.c\_str(),\ \textcolor{stringliteral}{"{}rb"{}});}
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keywordflow}{if}\ (pFile\ ==\ NULL)\ \textcolor{keywordflow}{return}\ -\/1;}
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{comment}{//\ Posicionarnos\ al\ final\ del\ archivo\ desde\ el\ inicio}}
+\DoxyCodeLine{00037\ \ \ \ \ fseek(pFile,\ 0,\ SEEK\_END);}
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{comment}{//\ Obtener\ la\ cantidad\ de\ bytes\ leidos\ con\ fseek}}
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keywordtype}{int}\ totalBytes\ =\ ftell(pFile);}
+\DoxyCodeLine{00040\ \ \ \ \ fclose(pFile);}
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{comment}{//\ Devolver\ cantidad\ de\ registros\ calculados}}
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{comment}{//\ Obtiene\ el\ tamanio\ del\ tipo\ instanciado\ al\ llamar}}
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{comment}{//\ a\ la\ funcion\ getTotalRegisters<Tipo>()}}
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{keywordflow}{return}\ totalBytes\ /\ \textcolor{keyword}{sizeof}(VppClass);}
+\DoxyCodeLine{00045\ \}}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00052\ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ VppClass>}
+\DoxyCodeLine{00053\ VppClass\ \mbox{\hyperlink{class_vpp_file_afa7eb1bd7e920336c79c136b93cb5dfa}{VppFile<VppClass>::readFile}}(\textcolor{keywordtype}{int}\ regNumber)\ \{}
+\DoxyCodeLine{00054\ \ \ \ \ \textcolor{comment}{//\ TODO:\ REVISAR}}
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{comment}{//\ std::string\ filePath\ =\ VppConfigManager::getDataPath()\ +\ \_fileName;}}
+\DoxyCodeLine{00056\ \ \ \ \ VppClass\ reg;\ \ \textcolor{comment}{//\ Se\ crea\ un\ registro\ del\ tipo\ instanciado}}
+\DoxyCodeLine{00057\ \ \ \ \ FILE\ *pFile\ =\ fopen(\_fileName.c\_str(),\ \textcolor{stringliteral}{"{}rb"{}});\ \ \textcolor{comment}{//\ abrir\ en\ modo\ lectura}}
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{keywordflow}{if}\ (pFile\ ==\ NULL)\ \textcolor{keywordflow}{return}\ reg;\ \ \textcolor{comment}{//\ si\ no\ se\ pudo\ abrir,\ devolver\ reg\ vacio}}
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{comment}{//\ posicionar\ el\ puntero\ pFile\ en\ regNumber,\ moviendolo\ la\ cantidad\ de\ bytes}}
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{comment}{//\ que\ ocupe\ reg\ x\ regNumber}}
+\DoxyCodeLine{00061\ \ \ \ \ fseek(pFile,\ \textcolor{keyword}{sizeof}(reg)\ *\ regNumber,\ SEEK\_SET);}
+\DoxyCodeLine{00062\ \ \ \ \ fread(\&reg,\ \textcolor{keyword}{sizeof}(reg),\ 1,\ pFile);}
+\DoxyCodeLine{00063\ \ \ \ \ fclose(pFile);}
+\DoxyCodeLine{00064\ \ \ \ \ \textcolor{keywordflow}{return}\ reg;}
+\DoxyCodeLine{00065\ \}}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00074\ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ VppClass>}
+\DoxyCodeLine{00075\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_vpp_file_afa7eb1bd7e920336c79c136b93cb5dfa}{VppFile<VppClass>::readFile}}(VppClass\ *reg,\ \textcolor{keywordtype}{int}\ totalToRead)\ \{}
+\DoxyCodeLine{00076\ \ \ \ \ FILE\ *pFile\ =\ fopen(\_fileName.c\_str(),\ \textcolor{stringliteral}{"{}rb"{}});}
+\DoxyCodeLine{00077\ \ \ \ \ \textcolor{keywordflow}{if}\ (pFile\ ==\ NULL)\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00078\ \ \ \ \ \textcolor{keywordtype}{bool}\ success\ =\ fread(reg,\ \textcolor{keyword}{sizeof}(VppClass),\ totalToRead,\ pFile);}
+\DoxyCodeLine{00079\ \ \ \ \ fclose(pFile);}
+\DoxyCodeLine{00080\ \ \ \ \ \textcolor{keywordflow}{return}\ success;}
+\DoxyCodeLine{00081\ \}}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00089\ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ VppClass>}
+\DoxyCodeLine{00090\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_vpp_file_af79d1b6389cf553bd0ef9c618cc00fca}{VppFile<VppClass>::writeFile}}(VppClass\ reg)\ \{}
+\DoxyCodeLine{00091\ \ \ \ \ FILE\ *pFile\ =\ fopen(\_fileName.c\_str(),\ \textcolor{stringliteral}{"{}ab"{}});}
+\DoxyCodeLine{00092\ \ \ \ \ \textcolor{keywordflow}{if}\ (pFile\ ==\ NULL)\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00093\ \ \ \ \ \textcolor{keywordtype}{bool}\ success\ =\ fwrite(\&reg,\ \textcolor{keyword}{sizeof}(VppClass),\ 1,\ pFile);}
+\DoxyCodeLine{00094\ \ \ \ \ fclose(pFile);}
+\DoxyCodeLine{00095\ \ \ \ \ \textcolor{keywordflow}{return}\ success;}
+\DoxyCodeLine{00096\ \}}
+\DoxyCodeLine{00097\ }
+\DoxyCodeLine{00110\ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ VppClass>}
+\DoxyCodeLine{00111\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_vpp_file_a7e6b7e2bef63d50fe8c775416e3d62af}{VppFile<VppClass>::updateFile}}(VppClass\ reg,\ \textcolor{keywordtype}{int}\ regPos)\ \{}
+\DoxyCodeLine{00112\ \ \ \ \ FILE\ *pFile\ =\ fopen(\_fileName.c\_str(),\ \textcolor{stringliteral}{"{}rb+"{}});}
+\DoxyCodeLine{00113\ \ \ \ \ \textcolor{keywordflow}{if}\ (pFile\ ==\ NULL)\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00114\ \ \ \ \ fseek(pFile,\ \textcolor{keyword}{sizeof}(reg)\ *\ regPos,\ SEEK\_SET);}
+\DoxyCodeLine{00115\ \ \ \ \ \textcolor{keywordtype}{bool}\ success\ =\ fwrite(\&reg,\ \textcolor{keyword}{sizeof}(reg),\ 1,\ pFile);}
+\DoxyCodeLine{00116\ \ \ \ \ fclose(pFile);}
+\DoxyCodeLine{00117\ \ \ \ \ \textcolor{keywordflow}{return}\ success;}
+\DoxyCodeLine{00118\ \}}
+\DoxyCodeLine{00119\ }
+\DoxyCodeLine{00127\ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ VppClass>}
+\DoxyCodeLine{00128\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_vpp_file_a085e6e9c1b4b184a8635412269603f2c}{VppFile<VppClass>::deleteReg}}(\textcolor{keywordtype}{int}\ regNumber)\ \{}
+\DoxyCodeLine{00129\ \ \ \ \ \textcolor{keywordtype}{int}\ total\ =\ getTotalRegisters();}
+\DoxyCodeLine{00130\ \ \ \ \ \textcolor{keywordflow}{if}\ (total\ <=\ 0)\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00131\ \ \ \ \ VppClass\ *regs\ =\ \textcolor{keyword}{new}\ VppClass[total];}
+\DoxyCodeLine{00132\ \ \ \ \ \textcolor{keywordflow}{if}\ (regs\ ==\ NULL)\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00133\ \ \ \ \ \textcolor{keywordtype}{bool}\ okRead\ =\ readFile(regs,\ total);}
+\DoxyCodeLine{00134\ \ \ \ \ \textcolor{keywordflow}{if}\ (!okRead)\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00135\ \ \ \ \ FILE\ *pFile\ =\ fopen(\_fileName.c\_str(),\ \textcolor{stringliteral}{"{}wb"{}});}
+\DoxyCodeLine{00136\ \ \ \ \ \textcolor{keywordflow}{if}\ (pFile\ ==\ NULL)\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00137\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ total;\ i++)\ \{}
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (i\ ==\ regNumber)\ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ success\ =\ fwrite(\&regs[i],\ \textcolor{keyword}{sizeof}(VppClass),\ 1,\ pFile);}
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!success)\ \{}
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ \ \ \ \ fclose(pFile);}
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00144\ \ \ \ \ \}}
+\DoxyCodeLine{00145\ \ \ \ \ fclose(pFile);}
+\DoxyCodeLine{00146\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00147\ \}}
+\DoxyCodeLine{00148\ }
+\DoxyCodeLine{00160\ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ VppClass>}
+\DoxyCodeLine{00161\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_vpp_file_a9bd0cdff2016e554151c24f33b06f853}{VppFile<VppClass>::markForDelete}}(\textcolor{keywordtype}{int}\ regNumber)\ \{}
+\DoxyCodeLine{00162\ \ \ \ \ VppClass\ reg\ =\ readFile(regNumber);}
+\DoxyCodeLine{00163\ \ \ \ \ \textcolor{keywordflow}{if}\ (!reg.getStatus())\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00164\ \ \ \ \ reg.setStatus(\textcolor{keyword}{false});}
+\DoxyCodeLine{00165\ \ \ \ \ \textcolor{keywordtype}{bool}\ success\ =\ updateFile(reg,\ regNumber);}
+\DoxyCodeLine{00166\ \ \ \ \ \textcolor{keywordflow}{return}\ success;}
+\DoxyCodeLine{00167\ \}}
+\DoxyCodeLine{00168\ }
+\DoxyCodeLine{00180\ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ VppClass>}
+\DoxyCodeLine{00181\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_vpp_file_a35a0d3c69ac9547377c2e9e06d045dd6}{VppFile<VppClass>::deleteAllMarked}}()\ \{}
+\DoxyCodeLine{00182\ \ \ \ \ \textcolor{keywordtype}{int}\ written\ =\ 0;\ \ \textcolor{comment}{//\ acumulador\ registros\ escritos}}
+\DoxyCodeLine{00183\ \ \ \ \ \textcolor{keywordtype}{int}\ total\ =\ getTotalRegisters();}
+\DoxyCodeLine{00184\ \ \ \ \ \textcolor{keywordflow}{if}\ (total\ <=\ 0)\ \textcolor{keywordflow}{return}\ -\/1;}
+\DoxyCodeLine{00185\ \ \ \ \ VppClass\ *regs\ =\ \textcolor{keyword}{new}\ VppClass[total];}
+\DoxyCodeLine{00186\ \ \ \ \ \textcolor{keywordflow}{if}\ (regs\ ==\ NULL)\ \textcolor{keywordflow}{return}\ -\/1;}
+\DoxyCodeLine{00187\ \ \ \ \ \textcolor{keywordtype}{bool}\ okRead\ =\ readFile(regs,\ total);}
+\DoxyCodeLine{00188\ \ \ \ \ \textcolor{keywordflow}{if}\ (!okRead)\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00189\ \ \ \ \ FILE\ *pFile\ =\ fopen(\_fileName.c\_str(),\ \textcolor{stringliteral}{"{}wb"{}});}
+\DoxyCodeLine{00190\ \ \ \ \ \textcolor{keywordflow}{if}\ (pFile\ ==\ NULL)\ \textcolor{keywordflow}{return}\ -\/1;}
+\DoxyCodeLine{00191\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ total;\ i++)\ \{}
+\DoxyCodeLine{00192\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ si\ el\ registro\ esta\ marcado\ para\ eliminar,\ no\ escribirlo}}
+\DoxyCodeLine{00193\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!regs[i].getStatus())\ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{00194\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ si\ esta\ activo,\ escribirlo\ de\ nuevo}}
+\DoxyCodeLine{00195\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ success\ =\ fwrite(\&regs[i],\ \textcolor{keyword}{sizeof}(VppClass),\ 1,\ pFile);}
+\DoxyCodeLine{00196\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!success)\ \{}
+\DoxyCodeLine{00197\ \ \ \ \ \ \ \ \ \ \ \ \ fclose(pFile);}
+\DoxyCodeLine{00198\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ -\/1;}
+\DoxyCodeLine{00199\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00200\ \ \ \ \ \ \ \ \ written++;}
+\DoxyCodeLine{00201\ \ \ \ \ \}}
+\DoxyCodeLine{00202\ \ \ \ \ \textcolor{comment}{//\ devolver\ el\ total\ de\ registros\ eliminados}}
+\DoxyCodeLine{00203\ \ \ \ \ fclose(pFile);}
+\DoxyCodeLine{00204\ \ \ \ \ \textcolor{keywordflow}{return}\ total\ -\/\ written;}
+\DoxyCodeLine{00205\ \}}
+\DoxyCodeLine{00206\ }
+\DoxyCodeLine{00223\ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ VppClass>}
+\DoxyCodeLine{00224\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ AnyType>}
+\DoxyCodeLine{00225\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_vpp_file_ac0f21805e1c02a7bce4213e518b91797}{VppFile<VppClass>::searchReg}}(\textcolor{keywordtype}{bool}\ (*fCallback)(VppClass\ reg,\ AnyType\ value),}
+\DoxyCodeLine{00226\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ AnyType\ value)\ \{}
+\DoxyCodeLine{00227\ \ \ \ \ VppClass\ auxReg;}
+\DoxyCodeLine{00228\ \ \ \ \ \textcolor{keywordtype}{int}\ totalToRead\ =\ getTotalRegisters();}
+\DoxyCodeLine{00229\ \ \ \ \ FILE\ *pFile\ =\ fopen(\_fileName.c\_str(),\ \textcolor{stringliteral}{"{}rb"{}});}
+\DoxyCodeLine{00230\ \ \ \ \ \textcolor{keywordflow}{if}\ (pFile\ ==\ NULL)\ \textcolor{keywordflow}{return}\ -\/1;}
+\DoxyCodeLine{00231\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ totalToRead;\ i++)\ \{}
+\DoxyCodeLine{00232\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Si\ ocurre\ un\ error\ al\ leer,\ devuelve\ -\/1}}
+\DoxyCodeLine{00233\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!fread(\&auxReg,\ \textcolor{keyword}{sizeof}(auxReg),\ 1,\ pFile))\ \{}
+\DoxyCodeLine{00234\ \ \ \ \ \ \ \ \ \ \ \ \ fclose(pFile);}
+\DoxyCodeLine{00235\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ -\/1;}
+\DoxyCodeLine{00236\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00237\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Si\ la\ funcion\ callback\ devuelve\ true,\ se\ encontro}}
+\DoxyCodeLine{00238\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ lo\ buscado\ en\ el\ registro\ y\ se\ devuelve\ la\ posicion}}
+\DoxyCodeLine{00239\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ ((fCallback)(auxReg,\ value))\ \{}
+\DoxyCodeLine{00240\ \ \ \ \ \ \ \ \ \ \ \ \ fclose(pFile);}
+\DoxyCodeLine{00241\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ i;}
+\DoxyCodeLine{00242\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00243\ \ \ \ \ \}}
+\DoxyCodeLine{00244\ \ \ \ \ fclose(pFile);}
+\DoxyCodeLine{00245\ \ \ \ \ \textcolor{keywordflow}{return}\ -\/1;}
+\DoxyCodeLine{00246\ \}}
+\DoxyCodeLine{00247\ }
+\DoxyCodeLine{00265\ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ VppClass>}
+\DoxyCodeLine{00266\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ AnyType>}
+\DoxyCodeLine{00267\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_vpp_file_ac0f21805e1c02a7bce4213e518b91797}{VppFile<VppClass>::searchReg}}(\textcolor{keywordtype}{bool}\ (*fCallback)(VppClass\ reg,\ AnyType\ val1,}
+\DoxyCodeLine{00268\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ AnyType\ val2),}
+\DoxyCodeLine{00269\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ AnyType\ val1,\ AnyType\ val2)\ \{}
+\DoxyCodeLine{00270\ \ \ \ \ VppClass\ auxReg;}
+\DoxyCodeLine{00271\ \ \ \ \ \textcolor{keywordtype}{int}\ totalToRead\ =\ getTotalRegisters();}
+\DoxyCodeLine{00272\ \ \ \ \ FILE\ *pFile\ =\ fopen(\_fileName.c\_str(),\ \textcolor{stringliteral}{"{}rb"{}});}
+\DoxyCodeLine{00273\ \ \ \ \ \textcolor{keywordflow}{if}\ (pFile\ ==\ NULL)\ \textcolor{keywordflow}{return}\ -\/1;}
+\DoxyCodeLine{00274\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ totalToRead;\ i++)\ \{}
+\DoxyCodeLine{00275\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Si\ ocurre\ un\ error\ al\ leer,\ devuelve\ -\/1}}
+\DoxyCodeLine{00276\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!fread(\&auxReg,\ \textcolor{keyword}{sizeof}(auxReg),\ 1,\ pFile))\ \{}
+\DoxyCodeLine{00277\ \ \ \ \ \ \ \ \ \ \ \ \ fclose(pFile);}
+\DoxyCodeLine{00278\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ -\/1;}
+\DoxyCodeLine{00279\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00280\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Si\ la\ funcion\ callback\ devuelve\ true,\ se\ encontro}}
+\DoxyCodeLine{00281\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ lo\ buscado\ en\ el\ registro\ y\ se\ devuelve\ la\ posicion}}
+\DoxyCodeLine{00282\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ ((fCallback)(auxReg,\ val1,\ val2))\ \{}
+\DoxyCodeLine{00283\ \ \ \ \ \ \ \ \ \ \ \ \ fclose(pFile);}
+\DoxyCodeLine{00284\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ i;}
+\DoxyCodeLine{00285\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00286\ \ \ \ \ \}}
+\DoxyCodeLine{00287\ \ \ \ \ fclose(pFile);}
+\DoxyCodeLine{00288\ \ \ \ \ \textcolor{keywordflow}{return}\ -\/1;}
+\DoxyCodeLine{00289\ \}}
+
+\end{DoxyCode}

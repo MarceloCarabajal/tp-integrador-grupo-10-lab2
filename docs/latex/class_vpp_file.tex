@@ -1,0 +1,308 @@
+\doxysection{Vpp\+File\texorpdfstring{$<$}{<} Vpp\+Class \texorpdfstring{$>$}{>} Class Template Reference}
+\hypertarget{class_vpp_file}{}\label{class_vpp_file}\index{VppFile$<$ VppClass $>$@{VppFile$<$ VppClass $>$}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_vpp_file_a69fdf7cd66813ddb16231ffbaf619b65}{Vpp\+File}} (std\+::string file\+Name)
+\begin{DoxyCompactList}\small\item\em Constructor de la clase \doxylink{class_vpp_file}{Vpp\+File}. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_vpp_file_a222488dae97afef441a0323f5b444d11}{get\+Total\+Registers}} ()
+\begin{DoxyCompactList}\small\item\em Obtiene el número total de registros en el archivo. \end{DoxyCompactList}\item 
+Vpp\+Class \mbox{\hyperlink{class_vpp_file_afa7eb1bd7e920336c79c136b93cb5dfa}{read\+File}} (int reg\+Number)
+\begin{DoxyCompactList}\small\item\em Lee 1 registro y lo devuelve, segun el nro pasado por parametro. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_vpp_file_a78eb511e894a8c831a9d7c94199ecddb}{read\+File}} (Vpp\+Class \texorpdfstring{$\ast$}{*}reg, int total\+To\+Read)
+\begin{DoxyCompactList}\small\item\em Lee múltiples registros del archivo y los almacena en un vector. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_vpp_file_af79d1b6389cf553bd0ef9c618cc00fca}{write\+File}} (Vpp\+Class reg)
+\begin{DoxyCompactList}\small\item\em Escribe un registro en el archivo. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_vpp_file_a7e6b7e2bef63d50fe8c775416e3d62af}{update\+File}} (Vpp\+Class reg, int reg\+Pos)
+\begin{DoxyCompactList}\small\item\em Actualiza un registro en el archivo. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_vpp_file_a085e6e9c1b4b184a8635412269603f2c}{delete\+Reg}} (int reg\+Number)
+\begin{DoxyCompactList}\small\item\em Elimina un registro específico del archivo Vpp. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_vpp_file_a9bd0cdff2016e554151c24f33b06f853}{mark\+For\+Delete}} (int reg\+Number)
+\begin{DoxyCompactList}\small\item\em Marca un registro para su eliminación. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_vpp_file_a35a0d3c69ac9547377c2e9e06d045dd6}{delete\+All\+Marked}} ()
+\begin{DoxyCompactList}\small\item\em Elimina todos los registros marcados en el archivo. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename Any\+Type $>$ }\\int \mbox{\hyperlink{class_vpp_file_ac0f21805e1c02a7bce4213e518b91797}{search\+Reg}} (bool(\texorpdfstring{$\ast$}{*}f\+Callback)(Vpp\+Class reg, Any\+Type value), Any\+Type value)
+\begin{DoxyCompactList}\small\item\em Busca un registro en el archivo. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename Any\+Type $>$ }\\int \mbox{\hyperlink{class_vpp_file_a6f03379f8bc2e02c7f000d798618ce67}{search\+Reg}} (bool(\texorpdfstring{$\ast$}{*}f\+Callback)(Vpp\+Class reg, Any\+Type val1, Any\+Type val2), Any\+Type val1, Any\+Type val2)
+\begin{DoxyCompactList}\small\item\em Busca un registro en el archivo. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_vpp_file_a69fdf7cd66813ddb16231ffbaf619b65}\label{class_vpp_file_a69fdf7cd66813ddb16231ffbaf619b65} 
+\index{VppFile$<$ VppClass $>$@{VppFile$<$ VppClass $>$}!VppFile@{VppFile}}
+\index{VppFile@{VppFile}!VppFile$<$ VppClass $>$@{VppFile$<$ VppClass $>$}}
+\doxysubsubsection{\texorpdfstring{VppFile()}{VppFile()}}
+{\footnotesize\ttfamily template$<$class Vpp\+Class $>$ \\
+\mbox{\hyperlink{class_vpp_file}{Vpp\+File}}$<$ Vpp\+Class $>$\mbox{\hyperlink{class_vpp_file}{\+::\+Vpp\+File}} (\begin{DoxyParamCaption}\item[{std\+::string}]{file\+Name }\end{DoxyParamCaption})}
+
+
+
+Constructor de la clase \doxylink{class_vpp_file}{Vpp\+File}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em file\+Name} & Nombre del archivo a manejar. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_vpp_file_a35a0d3c69ac9547377c2e9e06d045dd6}\label{class_vpp_file_a35a0d3c69ac9547377c2e9e06d045dd6} 
+\index{VppFile$<$ VppClass $>$@{VppFile$<$ VppClass $>$}!deleteAllMarked@{deleteAllMarked}}
+\index{deleteAllMarked@{deleteAllMarked}!VppFile$<$ VppClass $>$@{VppFile$<$ VppClass $>$}}
+\doxysubsubsection{\texorpdfstring{deleteAllMarked()}{deleteAllMarked()}}
+{\footnotesize\ttfamily template$<$class Vpp\+Class $>$ \\
+int \mbox{\hyperlink{class_vpp_file}{Vpp\+File}}$<$ Vpp\+Class $>$\+::delete\+All\+Marked (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Elimina todos los registros marcados en el archivo. 
+
+Esta función elimina todos los registros marcados para eliminar en el archivo. Primero lee todos los registros del archivo y luego escribe nuevamente los registros que no están marcados para eliminar. Al final, devuelve el total de registros eliminados.
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Vpp\+Class} & El tipo de clase de los registros en el archivo. \\
+\hline
+\end{DoxyTemplParams}
+\begin{DoxyReturn}{Returns}
+El número total de registros eliminados, o -\/1 si ocurre un error. 
+\end{DoxyReturn}
+\Hypertarget{class_vpp_file_a085e6e9c1b4b184a8635412269603f2c}\label{class_vpp_file_a085e6e9c1b4b184a8635412269603f2c} 
+\index{VppFile$<$ VppClass $>$@{VppFile$<$ VppClass $>$}!deleteReg@{deleteReg}}
+\index{deleteReg@{deleteReg}!VppFile$<$ VppClass $>$@{VppFile$<$ VppClass $>$}}
+\doxysubsubsection{\texorpdfstring{deleteReg()}{deleteReg()}}
+{\footnotesize\ttfamily template$<$class Vpp\+Class $>$ \\
+bool \mbox{\hyperlink{class_vpp_file}{Vpp\+File}}$<$ Vpp\+Class $>$\+::delete\+Reg (\begin{DoxyParamCaption}\item[{int}]{reg\+Number }\end{DoxyParamCaption})}
+
+
+
+Elimina un registro específico del archivo Vpp. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em reg\+Number} & El número de registro a eliminar. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true si se eliminó correctamente el registro, false en caso contrario. 
+\end{DoxyReturn}
+\Hypertarget{class_vpp_file_a222488dae97afef441a0323f5b444d11}\label{class_vpp_file_a222488dae97afef441a0323f5b444d11} 
+\index{VppFile$<$ VppClass $>$@{VppFile$<$ VppClass $>$}!getTotalRegisters@{getTotalRegisters}}
+\index{getTotalRegisters@{getTotalRegisters}!VppFile$<$ VppClass $>$@{VppFile$<$ VppClass $>$}}
+\doxysubsubsection{\texorpdfstring{getTotalRegisters()}{getTotalRegisters()}}
+{\footnotesize\ttfamily template$<$class Vpp\+Class $>$ \\
+int \mbox{\hyperlink{class_vpp_file}{Vpp\+File}}$<$ Vpp\+Class $>$\+::get\+Total\+Registers (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Obtiene el número total de registros en el archivo. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Vpp\+Class} & Tipo de registro a considerar. \\
+\hline
+\end{DoxyTemplParams}
+\begin{DoxyReturn}{Returns}
+Número total de registros en el archivo. 
+\end{DoxyReturn}
+\Hypertarget{class_vpp_file_a9bd0cdff2016e554151c24f33b06f853}\label{class_vpp_file_a9bd0cdff2016e554151c24f33b06f853} 
+\index{VppFile$<$ VppClass $>$@{VppFile$<$ VppClass $>$}!markForDelete@{markForDelete}}
+\index{markForDelete@{markForDelete}!VppFile$<$ VppClass $>$@{VppFile$<$ VppClass $>$}}
+\doxysubsubsection{\texorpdfstring{markForDelete()}{markForDelete()}}
+{\footnotesize\ttfamily template$<$class Vpp\+Class $>$ \\
+bool \mbox{\hyperlink{class_vpp_file}{Vpp\+File}}$<$ Vpp\+Class $>$\+::mark\+For\+Delete (\begin{DoxyParamCaption}\item[{int}]{reg\+Number }\end{DoxyParamCaption})}
+
+
+
+Marca un registro para su eliminación. 
+
+Esta función marca un registro específico para su eliminación. Primero lee el registro del archivo, luego cambia su estado a inactivo y finalmente actualiza el archivo con el registro modificado.
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Vpp\+Class} & El tipo de clase de registro. \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em reg\+Number} & El número de registro a marcar para eliminar. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true si el registro se marcó correctamente, false en caso contrario. 
+\end{DoxyReturn}
+\Hypertarget{class_vpp_file_afa7eb1bd7e920336c79c136b93cb5dfa}\label{class_vpp_file_afa7eb1bd7e920336c79c136b93cb5dfa} 
+\index{VppFile$<$ VppClass $>$@{VppFile$<$ VppClass $>$}!readFile@{readFile}}
+\index{readFile@{readFile}!VppFile$<$ VppClass $>$@{VppFile$<$ VppClass $>$}}
+\doxysubsubsection{\texorpdfstring{readFile()}{readFile()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class Vpp\+Class $>$ \\
+Vpp\+Class \mbox{\hyperlink{class_vpp_file}{Vpp\+File}}$<$ Vpp\+Class $>$\+::read\+File (\begin{DoxyParamCaption}\item[{int}]{reg\+Number }\end{DoxyParamCaption})}
+
+
+
+Lee 1 registro y lo devuelve, segun el nro pasado por parametro. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Vpp\+Class} & \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em reg\+Number} & Nro de registro a leer \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Registro leido, del tipo que se instancia 
+\end{DoxyReturn}
+\Hypertarget{class_vpp_file_a78eb511e894a8c831a9d7c94199ecddb}\label{class_vpp_file_a78eb511e894a8c831a9d7c94199ecddb} 
+\index{VppFile$<$ VppClass $>$@{VppFile$<$ VppClass $>$}!readFile@{readFile}}
+\index{readFile@{readFile}!VppFile$<$ VppClass $>$@{VppFile$<$ VppClass $>$}}
+\doxysubsubsection{\texorpdfstring{readFile()}{readFile()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class Vpp\+Class $>$ \\
+bool \mbox{\hyperlink{class_vpp_file}{Vpp\+File}}$<$ Vpp\+Class $>$\+::read\+File (\begin{DoxyParamCaption}\item[{Vpp\+Class \texorpdfstring{$\ast$}{*}}]{reg,  }\item[{int}]{total\+To\+Read }\end{DoxyParamCaption})}
+
+
+
+Lee múltiples registros del archivo y los almacena en un vector. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Vpp\+Class} & Tipo de registro a leer. \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em reg} & Puntero al vector en el que se almacenarán los registros leídos. \\
+\hline
+{\em total\+To\+Read} & Cantidad de registros a leer. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+{\ttfamily true} si la lectura fue exitosa, {\ttfamily false} en caso contrario. 
+\end{DoxyReturn}
+\Hypertarget{class_vpp_file_a6f03379f8bc2e02c7f000d798618ce67}\label{class_vpp_file_a6f03379f8bc2e02c7f000d798618ce67} 
+\index{VppFile$<$ VppClass $>$@{VppFile$<$ VppClass $>$}!searchReg@{searchReg}}
+\index{searchReg@{searchReg}!VppFile$<$ VppClass $>$@{VppFile$<$ VppClass $>$}}
+\doxysubsubsection{\texorpdfstring{searchReg()}{searchReg()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class Vpp\+Class $>$ \\
+template$<$typename Any\+Type $>$ \\
+int \mbox{\hyperlink{class_vpp_file}{Vpp\+File}}$<$ Vpp\+Class $>$\+::search\+Reg (\begin{DoxyParamCaption}\item[{bool(\texorpdfstring{$\ast$}{*})(Vpp\+Class reg, Any\+Type val1, Any\+Type val2)}]{f\+Callback,  }\item[{Any\+Type}]{val1,  }\item[{Any\+Type}]{val2 }\end{DoxyParamCaption})}
+
+
+
+Busca un registro en el archivo. 
+
+Esta función busca un registro en un archivo binario y utiliza una función de callback para determinar si se encuentra el registro deseado.
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Vpp\+Class} & El tipo de datos del registro. \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em f\+Callback} & Un puntero a una función de callback que se utiliza para evaluar si se ha encontrado el registro deseado. \\
+\hline
+{\em val1} & El valor que se desea buscar en el archivo. \\
+\hline
+{\em val2} & El valor que se desea buscar en el archivo. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+La posición del registro si se encuentra, de lo contrario, retorna -\/1.
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\doxylink{class_vpp_file_a222488dae97afef441a0323f5b444d11}{get\+Total\+Registers()} para obtener el número total de registros en el archivo. 
+\end{DoxySeeAlso}
+\Hypertarget{class_vpp_file_ac0f21805e1c02a7bce4213e518b91797}\label{class_vpp_file_ac0f21805e1c02a7bce4213e518b91797} 
+\index{VppFile$<$ VppClass $>$@{VppFile$<$ VppClass $>$}!searchReg@{searchReg}}
+\index{searchReg@{searchReg}!VppFile$<$ VppClass $>$@{VppFile$<$ VppClass $>$}}
+\doxysubsubsection{\texorpdfstring{searchReg()}{searchReg()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class Vpp\+Class $>$ \\
+template$<$typename Any\+Type $>$ \\
+int \mbox{\hyperlink{class_vpp_file}{Vpp\+File}}$<$ Vpp\+Class $>$\+::search\+Reg (\begin{DoxyParamCaption}\item[{bool(\texorpdfstring{$\ast$}{*})(Vpp\+Class reg, Any\+Type value)}]{f\+Callback,  }\item[{Any\+Type}]{value }\end{DoxyParamCaption})}
+
+
+
+Busca un registro en el archivo. 
+
+Esta función busca un registro en un archivo binario y utiliza una función de callback para determinar si se encuentra el registro deseado.
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Vpp\+Class} & El tipo de datos del registro. \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em f\+Callback} & Un puntero a una función de callback que se utiliza para evaluar si se ha encontrado el registro deseado. \\
+\hline
+{\em value} & El valor que se desea buscar en el archivo. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+La posición del registro si se encuentra, de lo contrario, retorna -\/1.
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\doxylink{class_vpp_file_a222488dae97afef441a0323f5b444d11}{get\+Total\+Registers()} para obtener el número total de registros en el archivo. 
+\end{DoxySeeAlso}
+\Hypertarget{class_vpp_file_a7e6b7e2bef63d50fe8c775416e3d62af}\label{class_vpp_file_a7e6b7e2bef63d50fe8c775416e3d62af} 
+\index{VppFile$<$ VppClass $>$@{VppFile$<$ VppClass $>$}!updateFile@{updateFile}}
+\index{updateFile@{updateFile}!VppFile$<$ VppClass $>$@{VppFile$<$ VppClass $>$}}
+\doxysubsubsection{\texorpdfstring{updateFile()}{updateFile()}}
+{\footnotesize\ttfamily template$<$class Vpp\+Class $>$ \\
+bool \mbox{\hyperlink{class_vpp_file}{Vpp\+File}}$<$ Vpp\+Class $>$\+::update\+File (\begin{DoxyParamCaption}\item[{Vpp\+Class}]{reg,  }\item[{int}]{reg\+Pos }\end{DoxyParamCaption})}
+
+
+
+Actualiza un registro en el archivo. 
+
+Esta función permite actualizar un registro en un archivo binario en una posición específica.
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Vpp\+Class} & El tipo de datos del registro. \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em reg} & El registro que se desea actualizar. \\
+\hline
+{\em reg\+Pos} & La posición del registro que se desea actualizar. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+{\ttfamily true} si la actualización se realiza con éxito, de lo contrario, {\ttfamily false}. 
+\end{DoxyReturn}
+\Hypertarget{class_vpp_file_af79d1b6389cf553bd0ef9c618cc00fca}\label{class_vpp_file_af79d1b6389cf553bd0ef9c618cc00fca} 
+\index{VppFile$<$ VppClass $>$@{VppFile$<$ VppClass $>$}!writeFile@{writeFile}}
+\index{writeFile@{writeFile}!VppFile$<$ VppClass $>$@{VppFile$<$ VppClass $>$}}
+\doxysubsubsection{\texorpdfstring{writeFile()}{writeFile()}}
+{\footnotesize\ttfamily template$<$class Vpp\+Class $>$ \\
+bool \mbox{\hyperlink{class_vpp_file}{Vpp\+File}}$<$ Vpp\+Class $>$\+::write\+File (\begin{DoxyParamCaption}\item[{Vpp\+Class}]{reg }\end{DoxyParamCaption})}
+
+
+
+Escribe un registro en el archivo. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Vpp\+Class} & Tipo de registro a escribir. \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em reg} & Registro a escribir en el archivo. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+{\ttfamily true} si la escritura fue exitosa, {\ttfamily false} en caso contrario. 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+F\+:/dev\+Projects/\+Facu/\+Lab\+II/tp-\/integrador-\/grupo-\/10-\/lab2/include/\mbox{\hyperlink{_vpp_file_8h}{Vpp\+File.\+h}}\item 
+F\+:/dev\+Projects/\+Facu/\+Lab\+II/tp-\/integrador-\/grupo-\/10-\/lab2/include/\mbox{\hyperlink{_vpp_file__def_8h}{Vpp\+File\+\_\+def.\+h}}\end{DoxyCompactItemize}

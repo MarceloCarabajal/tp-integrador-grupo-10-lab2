@@ -1,0 +1,31 @@
+\doxysection{Email\+Template.\+h}
+\hypertarget{_email_template_8h_source}{}\label{_email_template_8h_source}\index{F:/devProjects/Facu/LabII/tp-\/integrador-\/grupo-\/10-\/lab2/include/EmailTemplate.h@{F:/devProjects/Facu/LabII/tp-\/integrador-\/grupo-\/10-\/lab2/include/EmailTemplate.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ EMAILTEMPLATE\_INCLUDED}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ EMAILTEMPLATE\_INCLUDED}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}Date.h"{}}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00016\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_email_template}{EmailTemplate}}\ \{}
+\DoxyCodeLine{00017\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00018\ \ \ \ \ std::string\ \_templateFile;\ \ }
+\DoxyCodeLine{00019\ \ \ \ \ std::string\ \_HTMLData\ =\ \textcolor{stringliteral}{"{}"{}};\ }
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keywordtype}{void}\ getHTMlTemplate();}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keywordtype}{bool}\ replaceParameter(std::string\ paramKey,\ std::string\ newValue);}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00039\ \ \ \ \ \mbox{\hyperlink{class_email_template}{EmailTemplate}}(std::string\ templateFile);}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00050\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_email_template_a9d3696af3e5c767031e9e13b4c535ff3}{setEmailData}}(std::string\ recipientName,\ std::string\ bodyTitle,}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_date}{Date}}\ expDate,\ std::string\ veteName);}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00057\ \ \ \ \ std::string\ \mbox{\hyperlink{class_email_template_a5a06ebcefa346e10747cf04dfdfa8676}{getHTML}}();}
+\DoxyCodeLine{00058\ \};}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ EMAILTEMPLATE\_INCLUDED\ */}\textcolor{preprocessor}{}}
+
+\end{DoxyCode}

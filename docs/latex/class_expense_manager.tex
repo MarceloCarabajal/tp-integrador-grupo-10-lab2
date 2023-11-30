@@ -1,0 +1,82 @@
+\doxysection{Expense\+Manager Class Reference}
+\hypertarget{class_expense_manager}{}\label{class_expense_manager}\index{ExpenseManager@{ExpenseManager}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_expense_manager_a7a7bccdaf207310b10315abeed4aa1b5}\label{class_expense_manager_a7a7bccdaf207310b10315abeed4aa1b5} 
+void {\bfseries load} ()
+\begin{DoxyCompactList}\small\item\em Carga y guarda un nuevo gasto después de solicitar y verificar un ID único. Muestra un formulario para ingresar un ID de gasto único, verifica su disponibilidad en el archivo, y luego carga y guarda los detalles del nuevo gasto utilizando otro formulario. Si el usuario cancela el ingreso o hay errores, la función se interrumpe. \end{DoxyCompactList}\item 
+\Hypertarget{class_expense_manager_a24cd325cbe395e50bd77b66a90bd26fe}\label{class_expense_manager_a24cd325cbe395e50bd77b66a90bd26fe} 
+void {\bfseries edit} ()
+\begin{DoxyCompactList}\small\item\em Permite la edición de un gasto existente solicitando el ID de la transacción. Muestra la lista de gastos existentes, solicita al usuario el ID de la transacción a modificar y luego permite la edición de los detalles del gasto utilizando un formulario. Si el usuario cancela la edición o hay errores, la función se interrumpe. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_expense_manager_a88865d700840cb75ad067485757b6cb9}{show}} (bool show\+And\+Pause=true)
+\begin{DoxyCompactList}\small\item\em Muestra una lista de gastos en forma de tabla. Calcula y muestra en formato de tabla los gastos almacenados en el archivo. Se utiliza una clase \doxylink{class_list_view}{List\+View} para la presentación. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_expense_manager_a078841ba0ffd6570999261261e737fb6}{id\+Exists}} (int n\+Id)
+\begin{DoxyCompactList}\small\item\em Verifica la existencia de un ID en el archivo de gastos. Utiliza la función de búsqueda por ID para determinar si un ID de transacción ya existe en el archivo. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static bool \mbox{\hyperlink{class_expense_manager_a06281b0c468544a0aea248e9440f463c}{search\+By\+Id}} (\mbox{\hyperlink{class_expense}{Expense}} reg, int n\+Id)
+\begin{DoxyCompactList}\small\item\em Función de búsqueda por ID para ser utilizada en la búsqueda en el archivo de gastos. Compara el ID de una transacción con un ID proporcionado. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_expense_manager_a078841ba0ffd6570999261261e737fb6}\label{class_expense_manager_a078841ba0ffd6570999261261e737fb6} 
+\index{ExpenseManager@{ExpenseManager}!idExists@{idExists}}
+\index{idExists@{idExists}!ExpenseManager@{ExpenseManager}}
+\doxysubsubsection{\texorpdfstring{idExists()}{idExists()}}
+{\footnotesize\ttfamily bool Expense\+Manager\+::id\+Exists (\begin{DoxyParamCaption}\item[{int}]{n\+Id }\end{DoxyParamCaption})}
+
+
+
+Verifica la existencia de un ID en el archivo de gastos. Utiliza la función de búsqueda por ID para determinar si un ID de transacción ya existe en el archivo. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em n\+Id} & ID de transacción a verificar. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Verdadero si el ID existe en el archivo, falso de lo contrario. 
+\end{DoxyReturn}
+\Hypertarget{class_expense_manager_a06281b0c468544a0aea248e9440f463c}\label{class_expense_manager_a06281b0c468544a0aea248e9440f463c} 
+\index{ExpenseManager@{ExpenseManager}!searchById@{searchById}}
+\index{searchById@{searchById}!ExpenseManager@{ExpenseManager}}
+\doxysubsubsection{\texorpdfstring{searchById()}{searchById()}}
+{\footnotesize\ttfamily bool Expense\+Manager\+::search\+By\+Id (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_expense}{Expense}}}]{reg,  }\item[{int}]{n\+Id }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Función de búsqueda por ID para ser utilizada en la búsqueda en el archivo de gastos. Compara el ID de una transacción con un ID proporcionado. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em reg} & Objeto de tipo \doxylink{class_expense}{Expense} que representa un registro de gasto. \\
+\hline
+{\em n\+Id} & ID de transacción a comparar. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Verdadero si el ID de la transacción coincide con el ID proporcionado, falso de lo contrario. 
+\end{DoxyReturn}
+\Hypertarget{class_expense_manager_a88865d700840cb75ad067485757b6cb9}\label{class_expense_manager_a88865d700840cb75ad067485757b6cb9} 
+\index{ExpenseManager@{ExpenseManager}!show@{show}}
+\index{show@{show}!ExpenseManager@{ExpenseManager}}
+\doxysubsubsection{\texorpdfstring{show()}{show()}}
+{\footnotesize\ttfamily void Expense\+Manager\+::show (\begin{DoxyParamCaption}\item[{bool}]{show\+And\+Pause = {\ttfamily true} }\end{DoxyParamCaption})}
+
+
+
+Muestra una lista de gastos en forma de tabla. Calcula y muestra en formato de tabla los gastos almacenados en el archivo. Se utiliza una clase \doxylink{class_list_view}{List\+View} para la presentación. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em show\+And\+Pause} & Si es verdadero, muestra la lista y pausa la ejecución. Si es falso, solo realiza la presentación. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+F\+:/dev\+Projects/\+Facu/\+Lab\+II/tp-\/integrador-\/grupo-\/10-\/lab2/include/Expense\+Manager.\+h\item 
+F\+:/dev\+Projects/\+Facu/\+Lab\+II/tp-\/integrador-\/grupo-\/10-\/lab2/src/Expense\+Manager.\+cpp\end{DoxyCompactItemize}

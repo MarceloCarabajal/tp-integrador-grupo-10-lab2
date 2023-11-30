@@ -1,0 +1,170 @@
+\doxysection{Pets\+Manager Class Reference}
+\hypertarget{class_pets_manager}{}\label{class_pets_manager}\index{PetsManager@{PetsManager}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_pets_manager_a948dce950b46662ffcf36adde945630c}\label{class_pets_manager_a948dce950b46662ffcf36adde945630c} 
+void {\bfseries load} ()
+\begin{DoxyCompactList}\small\item\em Cargar información de una nueva mascota. Solicita al usuario un ID para la nueva mascota, verifica su disponibilidad, y carga la información de la mascota mediante un formulario. Guarda la información en el archivo de registros y crea una nueva relación si la carga es exitosa. Muestra mensajes de éxito, error o cancelación. \end{DoxyCompactList}\item 
+\Hypertarget{class_pets_manager_a34ea557949302022020beff2726d5595}\label{class_pets_manager_a34ea557949302022020beff2726d5595} 
+void {\bfseries edit} ()
+\begin{DoxyCompactList}\small\item\em Modifica la información de una mascota existente. Muestra la lista de mascotas, solicita al usuario el ID de la mascota a modificar, verifica su existencia y estado, y permite la edición de la información de la mascota mediante un formulario. Guarda la información actualizada en el archivo de registros. Muestra mensajes de éxito, error o cancelación. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_pets_manager_ad0faef0cd8e83251eba697575fbd9566}{show}} (bool show\+And\+Pause=true)
+\begin{DoxyCompactList}\small\item\em Muestra una lista de mascotas y, opcionalmente, pausa la ejecución. Obtiene la información de todas las mascotas desde el archivo de registros, la organiza en un formato de lista y la muestra en la consola. Si se solicita, pausa la ejecución para que el usuario pueda revisar la información. \end{DoxyCompactList}\item 
+\Hypertarget{class_pets_manager_a7123310f5ab3a6089217b1012d3c2263}\label{class_pets_manager_a7123310f5ab3a6089217b1012d3c2263} 
+void {\bfseries clear\+Deleted} ()
+\begin{DoxyCompactList}\small\item\em Elimina definitivamente las mascotas marcadas como dadas de baja. Solicita confirmación al usuario antes de buscar y eliminar las mascotas que han sido marcadas como dadas de baja. Muestra mensajes de éxito, error o la ausencia de registros para eliminar. \end{DoxyCompactList}\item 
+\Hypertarget{class_pets_manager_af4be5e3e4a0259610bc9b8c4d3f24feb}\label{class_pets_manager_af4be5e3e4a0259610bc9b8c4d3f24feb} 
+void {\bfseries cancel} ()
+\begin{DoxyCompactList}\small\item\em Realiza la baja provisoria de una mascota seleccionada por el usuario. Solicita al usuario el ID de la mascota a dar de baja, verifica su existencia y permite confirmar o cancelar la baja provisoria. Realiza la operación y muestra mensajes de éxito, error o cancelación. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_pets_manager_a79fb51c9dd951080793b25b2008995a5}{update\+Owner}} (int owner\+Id, int pet\+Id)
+\begin{DoxyCompactList}\small\item\em Actualiza el dueño de una mascota específica. Busca la mascota por su ID, verifica su existencia, actualiza el ID del dueño con el nuevo valor proporcionado y guarda la información actualizada en el archivo de registros. Retorna verdadero si la operación es exitosa, falso en caso contrario. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{class_pets_manager_ad9df99a5de5b3ccef209fccb087c1490}{get\+Name\+By\+Id}} (int n\+Id)
+\begin{DoxyCompactList}\small\item\em Obtiene el nombre de una mascota mediante su ID. Busca la mascota por su ID, verifica su existencia y retorna su nombre. Si la búsqueda falla, devuelve "{}\+ERROR"{}. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_pets_manager_a94a13f97b014150d99249a27cf2ac393}{get\+Owner\+Id\+By\+Pet\+Id}} (int n\+Id)
+\begin{DoxyCompactList}\small\item\em Obtiene el ID del propietario por el ID de la mascota. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_pets_manager_af1b0f2b8724c996f08d434a9e551aaf5}{id\+Exists}} (int n\+Id)
+\begin{DoxyCompactList}\small\item\em Verifica la existencia de una mascota por su ID. Busca la mascota por su ID en el archivo de registros y devuelve verdadero si se encuentra; de lo contrario, devuelve falso. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_pets_manager_abe9daa10e5e96c0f9a0a640376a5d3d6}{is\+Active\+Id}} (int n\+Id)
+\begin{DoxyCompactList}\small\item\em Verifica la existencia de una mascota por su ID. Busca la mascota por su ID en el archivo de registros y devuelve verdadero si se encuentra; de lo contrario, devuelve falso. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static bool \mbox{\hyperlink{class_pets_manager_ad2365c0587594b5530bedd61191a82ad}{search\+By\+Id}} (\mbox{\hyperlink{class_pet}{Pet}} reg, int n\+Id)
+\begin{DoxyCompactList}\small\item\em Busca una mascota por su ID. Compara el ID proporcionado con el ID de la mascota dada y retorna verdadero si son iguales; de lo contrario, retorna falso. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_pets_manager_ad9df99a5de5b3ccef209fccb087c1490}\label{class_pets_manager_ad9df99a5de5b3ccef209fccb087c1490} 
+\index{PetsManager@{PetsManager}!getNameById@{getNameById}}
+\index{getNameById@{getNameById}!PetsManager@{PetsManager}}
+\doxysubsubsection{\texorpdfstring{getNameById()}{getNameById()}}
+{\footnotesize\ttfamily std\+::string Pets\+Manager\+::get\+Name\+By\+Id (\begin{DoxyParamCaption}\item[{int}]{n\+Id }\end{DoxyParamCaption})}
+
+
+
+Obtiene el nombre de una mascota mediante su ID. Busca la mascota por su ID, verifica su existencia y retorna su nombre. Si la búsqueda falla, devuelve "{}\+ERROR"{}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em n\+Id} & ID de la mascota para obtener el nombre. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Nombre de la mascota o "{}\+ERROR"{} en caso de fallo. 
+\end{DoxyReturn}
+\Hypertarget{class_pets_manager_a94a13f97b014150d99249a27cf2ac393}\label{class_pets_manager_a94a13f97b014150d99249a27cf2ac393} 
+\index{PetsManager@{PetsManager}!getOwnerIdByPetId@{getOwnerIdByPetId}}
+\index{getOwnerIdByPetId@{getOwnerIdByPetId}!PetsManager@{PetsManager}}
+\doxysubsubsection{\texorpdfstring{getOwnerIdByPetId()}{getOwnerIdByPetId()}}
+{\footnotesize\ttfamily int Pets\+Manager\+::get\+Owner\+Id\+By\+Pet\+Id (\begin{DoxyParamCaption}\item[{int}]{n\+Id }\end{DoxyParamCaption})}
+
+
+
+Obtiene el ID del propietario por el ID de la mascota. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em n\+Id} & El ID de la mascota. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+El ID del propietario correspondiente a la mascota. 
+\end{DoxyReturn}
+\Hypertarget{class_pets_manager_af1b0f2b8724c996f08d434a9e551aaf5}\label{class_pets_manager_af1b0f2b8724c996f08d434a9e551aaf5} 
+\index{PetsManager@{PetsManager}!idExists@{idExists}}
+\index{idExists@{idExists}!PetsManager@{PetsManager}}
+\doxysubsubsection{\texorpdfstring{idExists()}{idExists()}}
+{\footnotesize\ttfamily bool Pets\+Manager\+::id\+Exists (\begin{DoxyParamCaption}\item[{int}]{n\+Id }\end{DoxyParamCaption})}
+
+
+
+Verifica la existencia de una mascota por su ID. Busca la mascota por su ID en el archivo de registros y devuelve verdadero si se encuentra; de lo contrario, devuelve falso. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em n\+Id} & ID de la mascota a verificar. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Verdadero si la mascota existe, falso si no. 
+\end{DoxyReturn}
+\Hypertarget{class_pets_manager_abe9daa10e5e96c0f9a0a640376a5d3d6}\label{class_pets_manager_abe9daa10e5e96c0f9a0a640376a5d3d6} 
+\index{PetsManager@{PetsManager}!isActiveId@{isActiveId}}
+\index{isActiveId@{isActiveId}!PetsManager@{PetsManager}}
+\doxysubsubsection{\texorpdfstring{isActiveId()}{isActiveId()}}
+{\footnotesize\ttfamily bool Pets\+Manager\+::is\+Active\+Id (\begin{DoxyParamCaption}\item[{int}]{n\+Id }\end{DoxyParamCaption})}
+
+
+
+Verifica la existencia de una mascota por su ID. Busca la mascota por su ID en el archivo de registros y devuelve verdadero si se encuentra; de lo contrario, devuelve falso. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em n\+Id} & ID de la mascota a verificar. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Verdadero si la mascota existe, falso si no. 
+\end{DoxyReturn}
+\Hypertarget{class_pets_manager_ad2365c0587594b5530bedd61191a82ad}\label{class_pets_manager_ad2365c0587594b5530bedd61191a82ad} 
+\index{PetsManager@{PetsManager}!searchById@{searchById}}
+\index{searchById@{searchById}!PetsManager@{PetsManager}}
+\doxysubsubsection{\texorpdfstring{searchById()}{searchById()}}
+{\footnotesize\ttfamily bool Pets\+Manager\+::search\+By\+Id (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_pet}{Pet}}}]{reg,  }\item[{int}]{n\+Id }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Busca una mascota por su ID. Compara el ID proporcionado con el ID de la mascota dada y retorna verdadero si son iguales; de lo contrario, retorna falso. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em reg} & Mascota a comparar. \\
+\hline
+{\em n\+Id} & ID de la mascota a buscar. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Verdadero si el ID coincide, falso si no. 
+\end{DoxyReturn}
+\Hypertarget{class_pets_manager_ad0faef0cd8e83251eba697575fbd9566}\label{class_pets_manager_ad0faef0cd8e83251eba697575fbd9566} 
+\index{PetsManager@{PetsManager}!show@{show}}
+\index{show@{show}!PetsManager@{PetsManager}}
+\doxysubsubsection{\texorpdfstring{show()}{show()}}
+{\footnotesize\ttfamily void Pets\+Manager\+::show (\begin{DoxyParamCaption}\item[{bool}]{show\+And\+Pause = {\ttfamily true} }\end{DoxyParamCaption})}
+
+
+
+Muestra una lista de mascotas y, opcionalmente, pausa la ejecución. Obtiene la información de todas las mascotas desde el archivo de registros, la organiza en un formato de lista y la muestra en la consola. Si se solicita, pausa la ejecución para que el usuario pueda revisar la información. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em show\+And\+Pause} & Indica si se debe pausar la ejecución después de mostrar la lista. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_pets_manager_a79fb51c9dd951080793b25b2008995a5}\label{class_pets_manager_a79fb51c9dd951080793b25b2008995a5} 
+\index{PetsManager@{PetsManager}!updateOwner@{updateOwner}}
+\index{updateOwner@{updateOwner}!PetsManager@{PetsManager}}
+\doxysubsubsection{\texorpdfstring{updateOwner()}{updateOwner()}}
+{\footnotesize\ttfamily bool Pets\+Manager\+::update\+Owner (\begin{DoxyParamCaption}\item[{int}]{owner\+Id,  }\item[{int}]{pet\+Id }\end{DoxyParamCaption})}
+
+
+
+Actualiza el dueño de una mascota específica. Busca la mascota por su ID, verifica su existencia, actualiza el ID del dueño con el nuevo valor proporcionado y guarda la información actualizada en el archivo de registros. Retorna verdadero si la operación es exitosa, falso en caso contrario. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em owner\+Id} & Nuevo ID del dueño para la mascota. \\
+\hline
+{\em pet\+Id} & ID de la mascota a actualizar. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Verdadero si la actualización fue exitosa, falso si falló. 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+F\+:/dev\+Projects/\+Facu/\+Lab\+II/tp-\/integrador-\/grupo-\/10-\/lab2/include/Pets\+Manager.\+h\item 
+F\+:/dev\+Projects/\+Facu/\+Lab\+II/tp-\/integrador-\/grupo-\/10-\/lab2/src/Pets\+Manager.\+cpp\end{DoxyCompactItemize}

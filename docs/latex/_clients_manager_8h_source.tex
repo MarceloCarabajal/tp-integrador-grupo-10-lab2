@@ -1,0 +1,58 @@
+\doxysection{Clients\+Manager.\+h}
+\hypertarget{_clients_manager_8h_source}{}\label{_clients_manager_8h_source}\index{F:/devProjects/Facu/LabII/tp-\/integrador-\/grupo-\/10-\/lab2/include/ClientsManager.h@{F:/devProjects/Facu/LabII/tp-\/integrador-\/grupo-\/10-\/lab2/include/ClientsManager.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ CLIENTSMANAGER\_INCLUDED}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ CLIENTSMANAGER\_INCLUDED}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}Client.h"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}VppConfigManager.h"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_vpp_file_8h}{VppFile.h}}"{}}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00015\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_clients_manager}{ClientsManager}}\ \{}
+\DoxyCodeLine{00016\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00017\ \ \ \ \ \textcolor{keyword}{const}\ std::string\ \_folderPath\ =}
+\DoxyCodeLine{00018\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_vpp_config_manager}{VppConfigManager}}()}
+\DoxyCodeLine{00019\ \ \ \ \ \ \ \ \ \ \ \ \ .\mbox{\hyperlink{class_vpp_config_manager_a96295baaca646005de9df583243a4d5c}{getDataPath}}();\ }
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keyword}{const}\ std::string\ \_filePath\ =}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ \_folderPath\ +\ \textcolor{stringliteral}{"{}Clients.vpp"{}};\ }
+\DoxyCodeLine{00024\ \ \ \ \ \mbox{\hyperlink{class_vpp_file}{VppFile<Client>}}\ \_clientsFile\ =\ \mbox{\hyperlink{class_vpp_file}{VppFile<Client>}}(}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \_filePath);\ }
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \_clientsFields\ =}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ 7;\ }
+\DoxyCodeLine{00034\ \ \ \ \ \mbox{\hyperlink{class_client}{Client}}\ loadForm();}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00045\ \ \ \ \ \mbox{\hyperlink{class_client}{Client}}\ editForm(\textcolor{keywordtype}{int}\ regPos);}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00057\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_clients_manager_a7ed558ef2bf4eed772e647b6696f5793}{load}}();}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00066\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_clients_manager_adffd4f3b4b4278ea2f31a18a906ae825}{edit}}();}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00076\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_clients_manager_addfc45a28069e9bcedf10f23c9691bf2}{show}}(\textcolor{keywordtype}{bool}\ showAndPause\ =\ \textcolor{keyword}{true});}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00078\ \ \ \ \ \textcolor{keywordtype}{void}\ clearSearched();}
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00088\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_clients_manager_aeac790d72cc8e9fd43804567c6f09d24}{clearDeleted}}();}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00098\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_clients_manager_a1b01d3a6a26adaeac3fcfa8f8bdff6ea}{cancel}}();}
+\DoxyCodeLine{00099\ }
+\DoxyCodeLine{00109\ \ \ \ \ std::string\ \mbox{\hyperlink{class_clients_manager_a2f5deec68721c54e9dc140ff0e764b7c}{getFullNameById}}(\textcolor{keywordtype}{int}\ nId);}
+\DoxyCodeLine{00110\ }
+\DoxyCodeLine{00117\ \ \ \ \ \mbox{\hyperlink{class_client}{Client}}\ \mbox{\hyperlink{class_clients_manager_a9664f081e84cba710474d42fc17823af}{getClientById}}(\textcolor{keywordtype}{int}\ nId);}
+\DoxyCodeLine{00118\ }
+\DoxyCodeLine{00119\ \ \ \ \ \textcolor{comment}{//\ Al\ ser\ una\ funcion\ estatica\ se\ puede\ usar\ sin\ necesaidad\ de\ instanciar\ un}}
+\DoxyCodeLine{00120\ \ \ \ \ \textcolor{comment}{//\ objeto\ de\ tipo\ "{}ClientsManager"{},\ eso\ permite\ que\ se\ pueda\ pasar\ por}}
+\DoxyCodeLine{00121\ \ \ \ \ \textcolor{comment}{//\ parametro\ un\ puntero\ a\ esta\ funcion,\ lo\ que\ es\ necesario\ para\ la\ busqueda}}
+\DoxyCodeLine{00122\ \ \ \ \ \textcolor{comment}{//\ de\ registros\ con\ VppFile}}
+\DoxyCodeLine{00123\ }
+\DoxyCodeLine{00133\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_clients_manager_a31ce2f71ac6254b70bbef01fb34dd0ea}{searchById}}(\mbox{\hyperlink{class_client}{Client}}\ reg,\ \textcolor{keywordtype}{int}\ nId);}
+\DoxyCodeLine{00134\ }
+\DoxyCodeLine{00142\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_clients_manager_a91a2544f61608778d30dc561553128cc}{idExists}}(\textcolor{keywordtype}{int}\ nId);}
+\DoxyCodeLine{00143\ }
+\DoxyCodeLine{00151\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_clients_manager_a4fcab65f2219a37e41af95018942e2ce}{isActiveId}}(\textcolor{keywordtype}{int}\ nId);}
+\DoxyCodeLine{00152\ \};}
+\DoxyCodeLine{00153\ }
+\DoxyCodeLine{00154\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ CLIENTSMANAGER\_INCLUDED\ */}\textcolor{preprocessor}{}}
+
+\end{DoxyCode}

@@ -1,0 +1,157 @@
+\doxysection{Appointments\+Manager Class Reference}
+\hypertarget{class_appointments_manager}{}\label{class_appointments_manager}\index{AppointmentsManager@{AppointmentsManager}}
+
+
+Clase que gestiona los turnos veterinarios.  
+
+
+
+
+{\ttfamily \#include $<$Appointments\+Manager.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_appointments_manager_a069e4ad00010f4b813590d715eece086}\label{class_appointments_manager_a069e4ad00010f4b813590d715eece086} 
+void {\bfseries load} ()
+\begin{DoxyCompactList}\small\item\em Cargar un nuevo turno en el sistema. Solicita al usuario ingresar un ID de turno único, verifica su existencia, y luego carga el resto de los datos necesarios para crear un nuevo turno. Si la operación se completa exitosamente, guarda el turno en el archivo. Utiliza la función auxiliar load\+Form() para obtener los detalles del turno. \end{DoxyCompactList}\item 
+\Hypertarget{class_appointments_manager_a9338802e1952c8cd11460d519961a561}\label{class_appointments_manager_a9338802e1952c8cd11460d519961a561} 
+void {\bfseries edit} ()
+\begin{DoxyCompactList}\small\item\em Modificar un turno existente en el sistema. Muestra la lista de turnos disponibles, solicita al usuario ingresar el ID del turno a modificar y, si existe, permite editar los detalles del turno. Guarda los cambios en el archivo de turnos si la operación es exitosa. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_appointments_manager_a9156ef692f8354d11e9f726199285653}{show}} (bool show\+And\+Pause=true)
+\begin{DoxyCompactList}\small\item\em Mostrar la lista de turnos veterinarios. Muestra en una lista los detalles de los turnos veterinarios almacenados. Los datos se presentan en columnas, incluyendo ID, ID de mascota, fecha, hora, motivo, estado de asistencia y ID de cliente. \end{DoxyCompactList}\item 
+\Hypertarget{class_appointments_manager_a2b84bf3a2e5cc30d858a40c301c8b135}\label{class_appointments_manager_a2b84bf3a2e5cc30d858a40c301c8b135} 
+void {\bfseries clear\+Expired} ()
+\begin{DoxyCompactList}\small\item\em Limpiar los turnos expirados del sistema. Busca y muestra la cantidad de turnos expirados. Solicita confirmación al usuario antes de eliminarlos de forma irreversible. Realiza la eliminación y muestra el resultado. La eliminación puede resultar en errores, no eliminar ningún turno o eliminarlos con éxito. \end{DoxyCompactList}\item 
+\Hypertarget{class_appointments_manager_a96c4436898310ec37d9e8adc29f6fb82}\label{class_appointments_manager_a96c4436898310ec37d9e8adc29f6fb82} 
+void {\bfseries clear\+Deleted} ()
+\begin{DoxyCompactList}\small\item\em Eliminar definitivamente los turnos marcados para eliminación. Busca y muestra los turnos con eliminación pendiente, solicitando confirmación al usuario antes de realizar la eliminación definitiva. Muestra el resultado de la operación, indicando si se eliminaron con éxito, no se encontraron turnos marcados o si ocurrió un error durante la eliminación. \end{DoxyCompactList}\item 
+\Hypertarget{class_appointments_manager_aaa0ad6992aed314e496ce791aff0caf2}\label{class_appointments_manager_aaa0ad6992aed314e496ce791aff0caf2} 
+void {\bfseries cancel} ()
+\begin{DoxyCompactList}\small\item\em Cancelar un turno veterinario. Muestra la lista de turnos y solicita al usuario que ingrese el ID del turno que desea cancelar. Proporciona una confirmación antes de realizar la cancelación irreversible. Muestra el resultado de la operación, indicando si el turno se canceló con éxito, si no se realizó la cancelación o si ocurrió un error durante el proceso. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_appointments_manager_a629bec2b4a31bc21fea46d4f85c362f6}{get\+Active\+Apps\+Count}} ()
+\begin{DoxyCompactList}\small\item\em Obtener la cantidad de turnos veterinarios activos. Calcula y devuelve la cantidad de turnos veterinarios activos en el sistema, basándose en el estado de activación de cada registro. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_appointment}{Appointment}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_appointments_manager_adbffa8ccae550729783c07b60b93b1bd}{get\+Active\+Apps}} ()
+\begin{DoxyCompactList}\small\item\em Obtener los turnos veterinarios activos. Retorna un arreglo dinámico de objetos {\ttfamily \doxylink{class_appointment}{Appointment}} que representan los turnos veterinarios activos en el sistema. La memoria asignada para el arreglo debe ser gestionada adecuadamente por el llamante. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_appointments_manager_a4f99365916159ada78054fc181576ba0}{get\+Pending\+Apps}} ()
+\begin{DoxyCompactList}\small\item\em Obtener la cantidad de turnos veterinarios pendientes. Calcula y devuelve la cantidad de turnos veterinarios pendientes en el sistema, basándose en la fecha y el estado de activación de cada registro. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_appointments_manager_a4a5d220a9d9c29c71c33d1986b738bb2}{id\+Exists}} (int n\+Id)
+\begin{DoxyCompactList}\small\item\em Verificar la existencia de un ID en los registros de turnos veterinarios. Busca un ID en los registros y devuelve verdadero si existe, falso en caso contrario. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static bool \mbox{\hyperlink{class_appointments_manager_a76cfcc40b36cb30947120d47fa1633c3}{search\+By\+Id}} (\mbox{\hyperlink{class_appointment}{Appointment}} reg, int n\+Id)
+\begin{DoxyCompactList}\small\item\em Función de búsqueda por ID para la búsqueda en registros de turnos veterinarios. Compara el ID de un turno con un ID proporcionado y devuelve verdadero si coinciden. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Clase que gestiona los turnos veterinarios. 
+
+La clase \doxylink{class_appointments_manager}{Appointments\+Manager} se encarga de administrar los turnos veterinarios, permitiendo cargar nuevos turnos, editar turnos existentes, mostrar la lista de turnos, eliminar turnos expirados, cancelar turnos y obtener información sobre los turnos activos y pendientes.
+
+Esta clase utiliza un archivo de datos para almacenar y recuperar los registros de los turnos veterinarios. Los datos se guardan en formato VPP y se accede a ellos a través de la clase \doxylink{class_vpp_file}{Vpp\+File}.
+
+Los turnos veterinarios contienen información como el ID del turno, el ID de la mascota, la fecha, la hora, el motivo, el estado de asistencia y el ID del cliente. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_appointments_manager_adbffa8ccae550729783c07b60b93b1bd}\label{class_appointments_manager_adbffa8ccae550729783c07b60b93b1bd} 
+\index{AppointmentsManager@{AppointmentsManager}!getActiveApps@{getActiveApps}}
+\index{getActiveApps@{getActiveApps}!AppointmentsManager@{AppointmentsManager}}
+\doxysubsubsection{\texorpdfstring{getActiveApps()}{getActiveApps()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_appointment}{Appointment}} \texorpdfstring{$\ast$}{*} Appointments\+Manager\+::get\+Active\+Apps (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Obtener los turnos veterinarios activos. Retorna un arreglo dinámico de objetos {\ttfamily \doxylink{class_appointment}{Appointment}} que representan los turnos veterinarios activos en el sistema. La memoria asignada para el arreglo debe ser gestionada adecuadamente por el llamante. 
+
+\begin{DoxyNote}{Note}
+El llamante es responsable de liberar la memoria asignada a través de {\ttfamily delete\mbox{[}\mbox{]}}. 
+\end{DoxyNote}
+\begin{DoxyReturn}{Returns}
+Un puntero al arreglo de turnos activos o NULL en caso de error. 
+\end{DoxyReturn}
+\Hypertarget{class_appointments_manager_a629bec2b4a31bc21fea46d4f85c362f6}\label{class_appointments_manager_a629bec2b4a31bc21fea46d4f85c362f6} 
+\index{AppointmentsManager@{AppointmentsManager}!getActiveAppsCount@{getActiveAppsCount}}
+\index{getActiveAppsCount@{getActiveAppsCount}!AppointmentsManager@{AppointmentsManager}}
+\doxysubsubsection{\texorpdfstring{getActiveAppsCount()}{getActiveAppsCount()}}
+{\footnotesize\ttfamily int Appointments\+Manager\+::get\+Active\+Apps\+Count (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Obtener la cantidad de turnos veterinarios activos. Calcula y devuelve la cantidad de turnos veterinarios activos en el sistema, basándose en el estado de activación de cada registro. 
+
+\begin{DoxyReturn}{Returns}
+La cantidad de turnos veterinarios activos o -\/1 en caso de error. 
+\end{DoxyReturn}
+\Hypertarget{class_appointments_manager_a4f99365916159ada78054fc181576ba0}\label{class_appointments_manager_a4f99365916159ada78054fc181576ba0} 
+\index{AppointmentsManager@{AppointmentsManager}!getPendingApps@{getPendingApps}}
+\index{getPendingApps@{getPendingApps}!AppointmentsManager@{AppointmentsManager}}
+\doxysubsubsection{\texorpdfstring{getPendingApps()}{getPendingApps()}}
+{\footnotesize\ttfamily int Appointments\+Manager\+::get\+Pending\+Apps (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Obtener la cantidad de turnos veterinarios pendientes. Calcula y devuelve la cantidad de turnos veterinarios pendientes en el sistema, basándose en la fecha y el estado de activación de cada registro. 
+
+\begin{DoxyReturn}{Returns}
+La cantidad de turnos veterinarios pendientes o -\/1 en caso de error. 
+\end{DoxyReturn}
+\Hypertarget{class_appointments_manager_a4a5d220a9d9c29c71c33d1986b738bb2}\label{class_appointments_manager_a4a5d220a9d9c29c71c33d1986b738bb2} 
+\index{AppointmentsManager@{AppointmentsManager}!idExists@{idExists}}
+\index{idExists@{idExists}!AppointmentsManager@{AppointmentsManager}}
+\doxysubsubsection{\texorpdfstring{idExists()}{idExists()}}
+{\footnotesize\ttfamily bool Appointments\+Manager\+::id\+Exists (\begin{DoxyParamCaption}\item[{int}]{n\+Id }\end{DoxyParamCaption})}
+
+
+
+Verificar la existencia de un ID en los registros de turnos veterinarios. Busca un ID en los registros y devuelve verdadero si existe, falso en caso contrario. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em n\+Id} & ID a verificar. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Verdadero si el ID existe, falso en caso contrario. 
+\end{DoxyReturn}
+\Hypertarget{class_appointments_manager_a76cfcc40b36cb30947120d47fa1633c3}\label{class_appointments_manager_a76cfcc40b36cb30947120d47fa1633c3} 
+\index{AppointmentsManager@{AppointmentsManager}!searchById@{searchById}}
+\index{searchById@{searchById}!AppointmentsManager@{AppointmentsManager}}
+\doxysubsubsection{\texorpdfstring{searchById()}{searchById()}}
+{\footnotesize\ttfamily bool Appointments\+Manager\+::search\+By\+Id (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_appointment}{Appointment}}}]{reg,  }\item[{int}]{n\+Id }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Función de búsqueda por ID para la búsqueda en registros de turnos veterinarios. Compara el ID de un turno con un ID proporcionado y devuelve verdadero si coinciden. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em reg} & Objeto \doxylink{class_appointment}{Appointment} a comparar. \\
+\hline
+{\em n\+Id} & ID a comparar. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Verdadero si los IDs coinciden, falso en caso contrario. 
+\end{DoxyReturn}
+\Hypertarget{class_appointments_manager_a9156ef692f8354d11e9f726199285653}\label{class_appointments_manager_a9156ef692f8354d11e9f726199285653} 
+\index{AppointmentsManager@{AppointmentsManager}!show@{show}}
+\index{show@{show}!AppointmentsManager@{AppointmentsManager}}
+\doxysubsubsection{\texorpdfstring{show()}{show()}}
+{\footnotesize\ttfamily void Appointments\+Manager\+::show (\begin{DoxyParamCaption}\item[{bool}]{show\+And\+Pause = {\ttfamily true} }\end{DoxyParamCaption})}
+
+
+
+Mostrar la lista de turnos veterinarios. Muestra en una lista los detalles de los turnos veterinarios almacenados. Los datos se presentan en columnas, incluyendo ID, ID de mascota, fecha, hora, motivo, estado de asistencia y ID de cliente. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em show\+And\+Pause} & Indica si después de mostrar la lista se debe pausar la ejecución. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+F\+:/dev\+Projects/\+Facu/\+Lab\+II/tp-\/integrador-\/grupo-\/10-\/lab2/include/Appointments\+Manager.\+h\item 
+F\+:/dev\+Projects/\+Facu/\+Lab\+II/tp-\/integrador-\/grupo-\/10-\/lab2/src/Appointments\+Manager.\+cpp\end{DoxyCompactItemize}

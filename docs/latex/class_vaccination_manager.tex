@@ -1,0 +1,235 @@
+\doxysection{Vaccination\+Manager Class Reference}
+\hypertarget{class_vaccination_manager}{}\label{class_vaccination_manager}\index{VaccinationManager@{VaccinationManager}}
+
+
+Clase que gestiona las vacunaciones.  
+
+
+
+
+{\ttfamily \#include $<$Vaccination\+Manager.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_vaccination_manager_aed7427f5ea19ea68321e829cbf26419b}\label{class_vaccination_manager_aed7427f5ea19ea68321e829cbf26419b} 
+void {\bfseries load} ()
+\begin{DoxyCompactList}\small\item\em Carga los datos de las vacunaciones desde el archivo. \end{DoxyCompactList}\item 
+\Hypertarget{class_vaccination_manager_a619c50031742c75e9cac308ed9c03adf}\label{class_vaccination_manager_a619c50031742c75e9cac308ed9c03adf} 
+void {\bfseries edit} ()
+\begin{DoxyCompactList}\small\item\em Edita los datos de una vacunación existente. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_vaccination_manager_abc557a3ab232ebd0bd224151b6878131}{show}} (bool show\+And\+Pause=true)
+\begin{DoxyCompactList}\small\item\em Muestra las vacunaciones. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_vaccination_manager_a7a9bcb28f9f23ed008f1e6dba5b0e85e}{show}} (\mbox{\hyperlink{class_vaccination}{Vaccination}} \texorpdfstring{$\ast$}{*}regs, int total\+Regs)
+\begin{DoxyCompactList}\small\item\em Muestra un conjunto de vacunaciones. \end{DoxyCompactList}\item 
+\Hypertarget{class_vaccination_manager_a2d7f2c6fb444ef2568b40d36ba1a6802}\label{class_vaccination_manager_a2d7f2c6fb444ef2568b40d36ba1a6802} 
+void {\bfseries config\+And\+Send\+Notif} ()
+\begin{DoxyCompactList}\small\item\em Configura y envía notificaciones de vacunaciones pendientes. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_vaccination_manager_a9044f294e7c863b9730ce5c2021955a0}{notify\+Clients}} (\mbox{\hyperlink{class_vaccination}{Vaccination}} \texorpdfstring{$\ast$}{*}pending, int total, std\+::string vete\+Email)
+\begin{DoxyCompactList}\small\item\em Notifica a los clientes sobre la vacunación pendiente. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_vaccination_manager_a10e514818782262e5464c2a3c8fba0c5}{update\+Notif\+State}} (int n\+Id, bool state)
+\begin{DoxyCompactList}\small\item\em Actualiza el estado de notificación de una vacuna. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_vaccination_manager_a77f81625ce142e8fda809925c20d15ca}{Create\+Send\+Email}} (\mbox{\hyperlink{class_client}{Client}} client, std\+::string from, \mbox{\hyperlink{class_date}{Date}} revacc)
+\begin{DoxyCompactList}\small\item\em Crea y envía un correo electrónico al cliente para recordarle la fecha de revacunación. \end{DoxyCompactList}\item 
+\Hypertarget{class_vaccination_manager_ad3e524c4c993171cc61499495acf9c8a}\label{class_vaccination_manager_ad3e524c4c993171cc61499495acf9c8a} 
+void {\bfseries clear\+Deleted} ()
+\begin{DoxyCompactList}\small\item\em Elimina las vacunaciones marcadas como eliminadas. \end{DoxyCompactList}\item 
+\Hypertarget{class_vaccination_manager_ab08e5182079305555a250372cdcb14cd}\label{class_vaccination_manager_ab08e5182079305555a250372cdcb14cd} 
+void {\bfseries cancel} ()
+\begin{DoxyCompactList}\small\item\em Cancela la operación actual. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_vaccination}{Vaccination}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_vaccination_manager_abfcdb6eb93b86551a87b18151f78913c}{get\+Pending\+To\+Notif}} (int remaining\+Days)
+\begin{DoxyCompactList}\small\item\em Obtiene las vacunaciones pendientes de notificar. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_vaccination_manager_acbc8cdadd1c807bd98590fbc0a0bd68f}{pending\+Count}} (int remaining\+Days=15, bool only\+Unnotified=false)
+\begin{DoxyCompactList}\small\item\em Obtiene el número de vacunaciones pendientes. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_vaccination_manager_a58d6f7e088c0f247a952e2ba5561bf72}{id\+Exists}} (int n\+Id)
+\begin{DoxyCompactList}\small\item\em Verifica si un ID de vacunación existe. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static bool \mbox{\hyperlink{class_vaccination_manager_afaea0ecc3ab26fecfc22151c3dc0766a}{search\+By\+Id}} (\mbox{\hyperlink{class_vaccination}{Vaccination}} reg, int n\+Id)
+\begin{DoxyCompactList}\small\item\em Busca una vacunación por su ID. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Clase que gestiona las vacunaciones. 
+
+La clase \doxylink{class_vaccination_manager}{Vaccination\+Manager} se encarga de administrar las vacunaciones, incluyendo la carga, edición, visualización y notificación de las mismas. También proporciona métodos para realizar búsquedas y verificar la existencia de un ID de vacunación. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_vaccination_manager_a77f81625ce142e8fda809925c20d15ca}\label{class_vaccination_manager_a77f81625ce142e8fda809925c20d15ca} 
+\index{VaccinationManager@{VaccinationManager}!CreateSendEmail@{CreateSendEmail}}
+\index{CreateSendEmail@{CreateSendEmail}!VaccinationManager@{VaccinationManager}}
+\doxysubsubsection{\texorpdfstring{CreateSendEmail()}{CreateSendEmail()}}
+{\footnotesize\ttfamily bool Vaccination\+Manager\+::\+Create\+Send\+Email (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_client}{Client}}}]{client,  }\item[{std\+::string}]{from,  }\item[{\mbox{\hyperlink{class_date}{Date}}}]{revacc }\end{DoxyParamCaption})}
+
+
+
+Crea y envía un correo electrónico al cliente para recordarle la fecha de revacunación. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em client} & El cliente al que se enviará el correo electrónico. \\
+\hline
+{\em from} & La dirección de correo electrónico desde la cual se enviará el correo. \\
+\hline
+{\em revacc} & La fecha de revacunación que se incluirá en el correo electrónico. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true si el correo electrónico se envió correctamente, false en caso contrario. 
+\end{DoxyReturn}
+\Hypertarget{class_vaccination_manager_abfcdb6eb93b86551a87b18151f78913c}\label{class_vaccination_manager_abfcdb6eb93b86551a87b18151f78913c} 
+\index{VaccinationManager@{VaccinationManager}!getPendingToNotif@{getPendingToNotif}}
+\index{getPendingToNotif@{getPendingToNotif}!VaccinationManager@{VaccinationManager}}
+\doxysubsubsection{\texorpdfstring{getPendingToNotif()}{getPendingToNotif()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_vaccination}{Vaccination}} \texorpdfstring{$\ast$}{*} Vaccination\+Manager\+::get\+Pending\+To\+Notif (\begin{DoxyParamCaption}\item[{int}]{remaining\+Days }\end{DoxyParamCaption})}
+
+
+
+Obtiene las vacunaciones pendientes de notificar. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em remaining\+Days} & Días restantes para la notificación. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Puntero al arreglo de vacunaciones pendientes. 
+\end{DoxyReturn}
+\Hypertarget{class_vaccination_manager_a58d6f7e088c0f247a952e2ba5561bf72}\label{class_vaccination_manager_a58d6f7e088c0f247a952e2ba5561bf72} 
+\index{VaccinationManager@{VaccinationManager}!idExists@{idExists}}
+\index{idExists@{idExists}!VaccinationManager@{VaccinationManager}}
+\doxysubsubsection{\texorpdfstring{idExists()}{idExists()}}
+{\footnotesize\ttfamily bool Vaccination\+Manager\+::id\+Exists (\begin{DoxyParamCaption}\item[{int}]{n\+Id }\end{DoxyParamCaption})}
+
+
+
+Verifica si un ID de vacunación existe. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em n\+Id} & ID de la vacunación a verificar. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true si el ID existe, false en caso contrario. 
+\end{DoxyReturn}
+\Hypertarget{class_vaccination_manager_a9044f294e7c863b9730ce5c2021955a0}\label{class_vaccination_manager_a9044f294e7c863b9730ce5c2021955a0} 
+\index{VaccinationManager@{VaccinationManager}!notifyClients@{notifyClients}}
+\index{notifyClients@{notifyClients}!VaccinationManager@{VaccinationManager}}
+\doxysubsubsection{\texorpdfstring{notifyClients()}{notifyClients()}}
+{\footnotesize\ttfamily void Vaccination\+Manager\+::notify\+Clients (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_vaccination}{Vaccination}} \texorpdfstring{$\ast$}{*}}]{pending,  }\item[{int}]{total,  }\item[{std\+::string}]{vete\+Email }\end{DoxyParamCaption})}
+
+
+
+Notifica a los clientes sobre la vacunación pendiente. 
+
+Esta función envía una notificación a los clientes sobre la vacunación pendiente,
+
+
+\begin{DoxyParams}{Parameters}
+{\em pending} & Puntero a la vacunación pendiente. \\
+\hline
+{\em total} & Número total de vacunas pendientes. \\
+\hline
+{\em vete\+Email} & Correo electrónico del veterinario. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_vaccination_manager_acbc8cdadd1c807bd98590fbc0a0bd68f}\label{class_vaccination_manager_acbc8cdadd1c807bd98590fbc0a0bd68f} 
+\index{VaccinationManager@{VaccinationManager}!pendingCount@{pendingCount}}
+\index{pendingCount@{pendingCount}!VaccinationManager@{VaccinationManager}}
+\doxysubsubsection{\texorpdfstring{pendingCount()}{pendingCount()}}
+{\footnotesize\ttfamily int Vaccination\+Manager\+::pending\+Count (\begin{DoxyParamCaption}\item[{int}]{remaining\+Days = {\ttfamily 15},  }\item[{bool}]{only\+Unnotified = {\ttfamily false} }\end{DoxyParamCaption})}
+
+
+
+Obtiene el número de vacunaciones pendientes. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em remaining\+Days} & Días restantes para la notificación. \\
+\hline
+{\em only\+Unnotified} & Indica si solo se deben contar las vacunaciones no notificadas. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Número de vacunaciones pendientes. 
+\end{DoxyReturn}
+\Hypertarget{class_vaccination_manager_afaea0ecc3ab26fecfc22151c3dc0766a}\label{class_vaccination_manager_afaea0ecc3ab26fecfc22151c3dc0766a} 
+\index{VaccinationManager@{VaccinationManager}!searchById@{searchById}}
+\index{searchById@{searchById}!VaccinationManager@{VaccinationManager}}
+\doxysubsubsection{\texorpdfstring{searchById()}{searchById()}}
+{\footnotesize\ttfamily bool Vaccination\+Manager\+::search\+By\+Id (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_vaccination}{Vaccination}}}]{reg,  }\item[{int}]{n\+Id }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Busca una vacunación por su ID. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em reg} & Objeto \doxylink{class_vaccination}{Vaccination} a buscar. \\
+\hline
+{\em n\+Id} & ID de la vacunación a buscar. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true si se encuentra la vacunación, false en caso contrario. 
+\end{DoxyReturn}
+\Hypertarget{class_vaccination_manager_abc557a3ab232ebd0bd224151b6878131}\label{class_vaccination_manager_abc557a3ab232ebd0bd224151b6878131} 
+\index{VaccinationManager@{VaccinationManager}!show@{show}}
+\index{show@{show}!VaccinationManager@{VaccinationManager}}
+\doxysubsubsection{\texorpdfstring{show()}{show()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void Vaccination\+Manager\+::show (\begin{DoxyParamCaption}\item[{bool}]{show\+And\+Pause = {\ttfamily true} }\end{DoxyParamCaption})}
+
+
+
+Muestra las vacunaciones. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em show\+And\+Pause} & Indica si se debe mostrar y pausar la ejecución. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_vaccination_manager_a7a9bcb28f9f23ed008f1e6dba5b0e85e}\label{class_vaccination_manager_a7a9bcb28f9f23ed008f1e6dba5b0e85e} 
+\index{VaccinationManager@{VaccinationManager}!show@{show}}
+\index{show@{show}!VaccinationManager@{VaccinationManager}}
+\doxysubsubsection{\texorpdfstring{show()}{show()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void Vaccination\+Manager\+::show (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_vaccination}{Vaccination}} \texorpdfstring{$\ast$}{*}}]{regs,  }\item[{int}]{total\+Regs }\end{DoxyParamCaption})}
+
+
+
+Muestra un conjunto de vacunaciones. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em regs} & Puntero al arreglo de vacunaciones. \\
+\hline
+{\em total\+Regs} & Número total de vacunaciones. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_vaccination_manager_a10e514818782262e5464c2a3c8fba0c5}\label{class_vaccination_manager_a10e514818782262e5464c2a3c8fba0c5} 
+\index{VaccinationManager@{VaccinationManager}!updateNotifState@{updateNotifState}}
+\index{updateNotifState@{updateNotifState}!VaccinationManager@{VaccinationManager}}
+\doxysubsubsection{\texorpdfstring{updateNotifState()}{updateNotifState()}}
+{\footnotesize\ttfamily bool Vaccination\+Manager\+::update\+Notif\+State (\begin{DoxyParamCaption}\item[{int}]{n\+Id,  }\item[{bool}]{state }\end{DoxyParamCaption})}
+
+
+
+Actualiza el estado de notificación de una vacuna. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em n\+Id} & El ID de la vacuna. \\
+\hline
+{\em state} & El nuevo estado de notificación. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true si la actualización fue exitosa, false en caso contrario. 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+F\+:/dev\+Projects/\+Facu/\+Lab\+II/tp-\/integrador-\/grupo-\/10-\/lab2/include/Vaccination\+Manager.\+h\item 
+F\+:/dev\+Projects/\+Facu/\+Lab\+II/tp-\/integrador-\/grupo-\/10-\/lab2/src/Vaccination\+Manager.\+cpp\end{DoxyCompactItemize}

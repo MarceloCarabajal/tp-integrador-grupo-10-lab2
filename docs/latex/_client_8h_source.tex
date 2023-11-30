@@ -1,0 +1,36 @@
+\doxysection{Client.\+h}
+\hypertarget{_client_8h_source}{}\label{_client_8h_source}\index{F:/devProjects/Facu/LabII/tp-\/integrador-\/grupo-\/10-\/lab2/include/Client.h@{F:/devProjects/Facu/LabII/tp-\/integrador-\/grupo-\/10-\/lab2/include/Client.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}Person.h"{}}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_client}{Client}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_person}{Person}}\ \{}
+\DoxyCodeLine{00008\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00009\ \ \ \ \ \textcolor{keywordtype}{int}\ \_clientId;}
+\DoxyCodeLine{00010\ \ \ \ \ \textcolor{keywordtype}{char}\ \_address[45],\ \_phone[15],\ \_email[45];}
+\DoxyCodeLine{00011\ \ \ \ \ \textcolor{keywordtype}{bool}\ \_status;}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00014\ \ \ \ \ \mbox{\hyperlink{class_client}{Client}}();}
+\DoxyCodeLine{00015\ \ \ \ \ \mbox{\hyperlink{class_client}{Client}}(\textcolor{keywordtype}{int}\ clientId,\ \textcolor{keywordtype}{int}\ personId,\ std::string\ name,\ std::string\ lastname,}
+\DoxyCodeLine{00016\ \ \ \ \ \ \ \ \ \ \ \ std::string\ address,\ std::string\ phone,\ std::string\ email,\ \textcolor{keywordtype}{bool}\ satatus);}
+\DoxyCodeLine{00017\ \ \ \ \ \textcolor{keywordtype}{void}\ setClientId(\textcolor{keywordtype}{int}\ clienteId);}
+\DoxyCodeLine{00018\ \ \ \ \ \textcolor{keywordtype}{void}\ setAddress(std::string\ address);}
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{keywordtype}{void}\ setPhone(std::string\ phone);}
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{keywordtype}{void}\ setEmail(std::string\ email);}
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keywordtype}{void}\ setStatus(\textcolor{keywordtype}{bool}\ status);}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keywordtype}{int}\ getClientId();}
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *getAddress();}
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *getPhone();}
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *getEmail();}
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keywordtype}{bool}\ getStatus();}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keywordtype}{void}\ toVecString(std::string\ vStr[7]);}
+\DoxyCodeLine{00030\ \};}
+
+\end{DoxyCode}

@@ -1,0 +1,145 @@
+\doxysection{Buys\+Manager Class Reference}
+\hypertarget{class_buys_manager}{}\label{class_buys_manager}\index{BuysManager@{BuysManager}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_buys_manager_a1b121a16b93d08f43cc5fbd6acf0c525}\label{class_buys_manager_a1b121a16b93d08f43cc5fbd6acf0c525} 
+void {\bfseries load} ()
+\begin{DoxyCompactList}\small\item\em Cargar una compra. Esta función solicita al usuario el ID de la compra, verifica su existencia y carga la compra utilizando el formulario de carga. Luego, guarda la compra en el archivo de compras. Muestra mensajes de error o éxito según corresponda. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_buys_manager_a44d4ffdfa67dd0c2d3b70672a46f5755}{edit}} ()
+\begin{DoxyCompactList}\small\item\em Función para editar una compra en el gestor de compras. La función solicita al usuario el ID de la compra a modificar, busca la compra correspondiente en el archivo de compras, y permite la edición de sus datos. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_buys_manager_ac51350b143dac957d8ae3388e154cf54}{show}} (bool show\+And\+Pause=true)
+\begin{DoxyCompactList}\small\item\em Muestra la lista de compras almacenadas y opcionalmente pausa la ejecución. La función obtiene y formatea los registros de compras, mostrándolos en una lista. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_buys_manager_a910e08563b441862672e6f1611d52d45}{clear\+Deleted}} ()
+\begin{DoxyCompactList}\small\item\em Elimina definitivamente las compras marcadas como dadas de baja. Solicita confirmación al usuario antes de realizar la operación. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_buys_manager_a4f6512c65147886d427b6f1cdfd7783e}{cancel}} ()
+\begin{DoxyCompactList}\small\item\em Cancela una compra marcándola como dada de baja de manera provisoria. Muestra la lista de compras, solicita al usuario el ID de la compra a cancelar, y confirma la acción antes de realizarla. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_buys_manager_aaeb368c8d8682fe24e820ae8a52fdab0}{id\+Exists}} (int n\+Id)
+\begin{DoxyCompactList}\small\item\em Verifica si un ID de compra existe en el archivo de compras. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static bool \mbox{\hyperlink{class_buys_manager_a883329a00dd85fd68e265b5c78a5656b}{search\+By\+Id}} (\mbox{\hyperlink{class_buy}{Buy}} reg, int n\+Id)
+\begin{DoxyCompactList}\small\item\em Función de búsqueda para encontrar una compra por su ID. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_buys_manager_a4f6512c65147886d427b6f1cdfd7783e}\label{class_buys_manager_a4f6512c65147886d427b6f1cdfd7783e} 
+\index{BuysManager@{BuysManager}!cancel@{cancel}}
+\index{cancel@{cancel}!BuysManager@{BuysManager}}
+\doxysubsubsection{\texorpdfstring{cancel()}{cancel()}}
+{\footnotesize\ttfamily void Buys\+Manager\+::cancel (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Cancela una compra marcándola como dada de baja de manera provisoria. Muestra la lista de compras, solicita al usuario el ID de la compra a cancelar, y confirma la acción antes de realizarla. 
+
+\begin{DoxyNote}{Note}
+Utiliza las clases \doxylink{class_input_form}{Input\+Form}, utils y funciones de \+\_\+buys\+File. 
+\end{DoxyNote}
+\begin{DoxySeeAlso}{See also}
+\doxylink{class_input_form}{Input\+Form}, utils, \+\_\+buys\+File 
+\end{DoxySeeAlso}
+\Hypertarget{class_buys_manager_a910e08563b441862672e6f1611d52d45}\label{class_buys_manager_a910e08563b441862672e6f1611d52d45} 
+\index{BuysManager@{BuysManager}!clearDeleted@{clearDeleted}}
+\index{clearDeleted@{clearDeleted}!BuysManager@{BuysManager}}
+\doxysubsubsection{\texorpdfstring{clearDeleted()}{clearDeleted()}}
+{\footnotesize\ttfamily void Buys\+Manager\+::clear\+Deleted (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Elimina definitivamente las compras marcadas como dadas de baja. Solicita confirmación al usuario antes de realizar la operación. 
+
+\begin{DoxyNote}{Note}
+Utiliza las clases \doxylink{class_input_form}{Input\+Form}, utils y funciones de \+\_\+buys\+File. 
+\end{DoxyNote}
+\begin{DoxySeeAlso}{See also}
+\doxylink{class_input_form}{Input\+Form}, utils, \+\_\+buys\+File 
+\end{DoxySeeAlso}
+\Hypertarget{class_buys_manager_a44d4ffdfa67dd0c2d3b70672a46f5755}\label{class_buys_manager_a44d4ffdfa67dd0c2d3b70672a46f5755} 
+\index{BuysManager@{BuysManager}!edit@{edit}}
+\index{edit@{edit}!BuysManager@{BuysManager}}
+\doxysubsubsection{\texorpdfstring{edit()}{edit()}}
+{\footnotesize\ttfamily void Buys\+Manager\+::edit (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Función para editar una compra en el gestor de compras. La función solicita al usuario el ID de la compra a modificar, busca la compra correspondiente en el archivo de compras, y permite la edición de sus datos. 
+
+\begin{DoxyNote}{Note}
+La función utiliza clases como \doxylink{class_input_form}{Input\+Form}, \doxylink{class_buy}{Buy} y utils para realizar operaciones. 
+\end{DoxyNote}
+\begin{DoxySeeAlso}{See also}
+\doxylink{class_input_form}{Input\+Form}, \doxylink{class_buy}{Buy}, utils 
+\end{DoxySeeAlso}
+\Hypertarget{class_buys_manager_aaeb368c8d8682fe24e820ae8a52fdab0}\label{class_buys_manager_aaeb368c8d8682fe24e820ae8a52fdab0} 
+\index{BuysManager@{BuysManager}!idExists@{idExists}}
+\index{idExists@{idExists}!BuysManager@{BuysManager}}
+\doxysubsubsection{\texorpdfstring{idExists()}{idExists()}}
+{\footnotesize\ttfamily bool Buys\+Manager\+::id\+Exists (\begin{DoxyParamCaption}\item[{int}]{n\+Id }\end{DoxyParamCaption})}
+
+
+
+Verifica si un ID de compra existe en el archivo de compras. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em n\+Id} & ID de compra a verificar. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true si el ID existe, false en caso contrario. 
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Utiliza la función de búsqueda search\+By\+Id en \+\_\+buys\+File. 
+\end{DoxyNote}
+\begin{DoxySeeAlso}{See also}
+\doxylink{class_buys_manager_a883329a00dd85fd68e265b5c78a5656b}{search\+By\+Id}, \+\_\+buys\+File 
+\end{DoxySeeAlso}
+\Hypertarget{class_buys_manager_a883329a00dd85fd68e265b5c78a5656b}\label{class_buys_manager_a883329a00dd85fd68e265b5c78a5656b} 
+\index{BuysManager@{BuysManager}!searchById@{searchById}}
+\index{searchById@{searchById}!BuysManager@{BuysManager}}
+\doxysubsubsection{\texorpdfstring{searchById()}{searchById()}}
+{\footnotesize\ttfamily bool Buys\+Manager\+::search\+By\+Id (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_buy}{Buy}}}]{reg,  }\item[{int}]{n\+Id }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Función de búsqueda para encontrar una compra por su ID. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em reg} & Objeto de la clase \doxylink{class_buy}{Buy} a comparar con el ID proporcionado. \\
+\hline
+{\em n\+Id} & ID de compra a buscar. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true si el ID de la compra coincide, false en caso contrario. 
+\end{DoxyReturn}
+\Hypertarget{class_buys_manager_ac51350b143dac957d8ae3388e154cf54}\label{class_buys_manager_ac51350b143dac957d8ae3388e154cf54} 
+\index{BuysManager@{BuysManager}!show@{show}}
+\index{show@{show}!BuysManager@{BuysManager}}
+\doxysubsubsection{\texorpdfstring{show()}{show()}}
+{\footnotesize\ttfamily void Buys\+Manager\+::show (\begin{DoxyParamCaption}\item[{bool}]{show\+And\+Pause = {\ttfamily true} }\end{DoxyParamCaption})}
+
+
+
+Muestra la lista de compras almacenadas y opcionalmente pausa la ejecución. La función obtiene y formatea los registros de compras, mostrándolos en una lista. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em show\+And\+Pause} & Indica si se debe pausar la ejecución después de mostrar la lista. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+Utiliza las clases \doxylink{class_buy}{Buy}, utils y \doxylink{class_list_view}{List\+View}. 
+\end{DoxyNote}
+\begin{DoxySeeAlso}{See also}
+\doxylink{class_buy}{Buy}, utils, \doxylink{class_list_view}{List\+View} 
+\end{DoxySeeAlso}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+F\+:/dev\+Projects/\+Facu/\+Lab\+II/tp-\/integrador-\/grupo-\/10-\/lab2/include/Buys\+Manager.\+h\item 
+F\+:/dev\+Projects/\+Facu/\+Lab\+II/tp-\/integrador-\/grupo-\/10-\/lab2/src/Buys\+Manager.\+cpp\end{DoxyCompactItemize}

@@ -1,0 +1,45 @@
+\doxysection{Vaccination.\+h}
+\hypertarget{_vaccination_8h_source}{}\label{_vaccination_8h_source}\index{F:/devProjects/Facu/LabII/tp-\/integrador-\/grupo-\/10-\/lab2/include/Vaccination.h@{F:/devProjects/Facu/LabII/tp-\/integrador-\/grupo-\/10-\/lab2/include/Vaccination.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}Date.h"{}}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_vaccination}{Vaccination}}\ \{}
+\DoxyCodeLine{00007\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00008\ \ \ \ \ \textcolor{keywordtype}{int}\ \_aplicationId,\ \_petId;}
+\DoxyCodeLine{00009\ \ \ \ \ \mbox{\hyperlink{class_date}{Date}}\ \_dateAplication,\ \_dateRevaccination;}
+\DoxyCodeLine{00010\ \ \ \ \ \textcolor{keywordtype}{char}\ \_nameVaccine[15];}
+\DoxyCodeLine{00011\ \ \ \ \ \textcolor{keywordtype}{bool}\ \_notified;}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \ \ \ \ \textcolor{keywordtype}{bool}\ \_status;}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00016\ \ \ \ \ \mbox{\hyperlink{class_vaccination}{Vaccination}}();}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \ \ \ \ \mbox{\hyperlink{class_vaccination}{Vaccination}}(\textcolor{keywordtype}{int}\ petId,\ \textcolor{keywordtype}{int}\ aplicationId,\ std::string\ nameVaccine,}
+\DoxyCodeLine{00019\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_date}{Date}}\ dateAplication,\ \mbox{\hyperlink{class_date}{Date}}\ dateRevaccination,\ \textcolor{keywordtype}{bool}\ notified,}
+\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ status);}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keywordtype}{void}\ setAplicationId(\textcolor{keywordtype}{int}\ apli);}
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keywordtype}{void}\ setPetId(\textcolor{keywordtype}{int}\ Idp);}
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keywordtype}{void}\ setDateAplication(\mbox{\hyperlink{class_date}{Date}}\ Apli);}
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keywordtype}{void}\ setDateRevaccination(\mbox{\hyperlink{class_date}{Date}}\ Revacci);}
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keywordtype}{void}\ setNameVaccine(std::string\ name);}
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keywordtype}{void}\ setNotified(\textcolor{keywordtype}{bool}\ noti);}
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keywordtype}{void}\ setStatus(\textcolor{keywordtype}{bool}\ status);}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keywordtype}{int}\ getAplicationId();}
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keywordtype}{int}\ getPetId();}
+\DoxyCodeLine{00032\ \ \ \ \ \mbox{\hyperlink{class_date}{Date}}\ getDateAplication();}
+\DoxyCodeLine{00033\ \ \ \ \ \mbox{\hyperlink{class_date}{Date}}\ getDateRevaccination();}
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ getNameVaccine();}
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keywordtype}{bool}\ getNotified();}
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keywordtype}{bool}\ getStatus();}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keywordtype}{void}\ toVecString(std::string\ vStr[6]);}
+\DoxyCodeLine{00039\ \};}
+
+\end{DoxyCode}

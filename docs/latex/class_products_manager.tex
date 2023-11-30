@@ -1,0 +1,88 @@
+\doxysection{Products\+Manager Class Reference}
+\hypertarget{class_products_manager}{}\label{class_products_manager}\index{ProductsManager@{ProductsManager}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_products_manager_adcfd7da71a209d40e089573ce4bf33f9}\label{class_products_manager_adcfd7da71a209d40e089573ce4bf33f9} 
+void {\bfseries load} ()
+\begin{DoxyCompactList}\small\item\em Cargar un nuevo producto. Esta función solicita al usuario los datos para crear un nuevo producto. Pide el ID del producto y verifica su existencia. Luego, carga el formulario para ingresar los datos del producto y lo guarda en el archivo. \end{DoxyCompactList}\item 
+\Hypertarget{class_products_manager_a6db2321d9bca00c69f49045be6601c88}\label{class_products_manager_a6db2321d9bca00c69f49045be6601c88} 
+void {\bfseries edit} ()
+\begin{DoxyCompactList}\small\item\em Editar un producto. Esta función permite al usuario editar un producto existente. Muestra la lista de productos, solicita el ID del producto a modificar y luego pide los datos actualizados. Finalmente, guarda el producto actualizado en el archivo. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_products_manager_ae03693b771d73ab5b6fd69bfb398f444}{show}} (bool show\+And\+Pause=true)
+\begin{DoxyCompactList}\small\item\em Mostrar lista de productos. Esta función muestra la lista de productos, permitiendo al usuario visualizar información detallada. Si se proporciona {\ttfamily true} a {\ttfamily show\+And\+Pause}, se pausará después de mostrar la lista. \end{DoxyCompactList}\item 
+\Hypertarget{class_products_manager_a54b9751618ae6ece3c2509c367311ad0}\label{class_products_manager_a54b9751618ae6ece3c2509c367311ad0} 
+void {\bfseries clear\+Deleted} ()
+\begin{DoxyCompactList}\small\item\em Borrar definitivamente productos eliminados. Esta función busca productos marcados como eliminados y los elimina definitivamente después de solicitar confirmación al usuario. \end{DoxyCompactList}\item 
+\Hypertarget{class_products_manager_a5ca545cd5c2c0db124846239b5662e51}\label{class_products_manager_a5ca545cd5c2c0db124846239b5662e51} 
+void {\bfseries cancel} ()
+\begin{DoxyCompactList}\small\item\em Baja logica productos. Permite dar de baja logica un producto solicitando el ID al usuario. Muestra una confirmación y realiza la acción de baja si es confirmada. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_products_manager_ac5170917e82ebd5cbd569e5479331ba2}{id\+Exists}} (int n\+Id)
+\begin{DoxyCompactList}\small\item\em Verifica la existencia de un producto mediante su ID. Utiliza la función de búsqueda por ID para determinar si hay un producto con el ID proporcionado en el archivo de productos. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static bool \mbox{\hyperlink{class_products_manager_a530156d4d420a2bd4aa93b24ed87ee70}{search\+By\+Id}} (\mbox{\hyperlink{class_product}{Product}} reg, int n\+Id)
+\begin{DoxyCompactList}\small\item\em Función de búsqueda por ID para productos. Compara el ID de un producto con el ID proporcionado para determinar si coinciden. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_products_manager_ac5170917e82ebd5cbd569e5479331ba2}\label{class_products_manager_ac5170917e82ebd5cbd569e5479331ba2} 
+\index{ProductsManager@{ProductsManager}!idExists@{idExists}}
+\index{idExists@{idExists}!ProductsManager@{ProductsManager}}
+\doxysubsubsection{\texorpdfstring{idExists()}{idExists()}}
+{\footnotesize\ttfamily bool Products\+Manager\+::id\+Exists (\begin{DoxyParamCaption}\item[{int}]{n\+Id }\end{DoxyParamCaption})}
+
+
+
+Verifica la existencia de un producto mediante su ID. Utiliza la función de búsqueda por ID para determinar si hay un producto con el ID proporcionado en el archivo de productos. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em n\+Id} & El ID del producto a verificar. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true si el producto existe, false de lo contrario. 
+\end{DoxyReturn}
+\Hypertarget{class_products_manager_a530156d4d420a2bd4aa93b24ed87ee70}\label{class_products_manager_a530156d4d420a2bd4aa93b24ed87ee70} 
+\index{ProductsManager@{ProductsManager}!searchById@{searchById}}
+\index{searchById@{searchById}!ProductsManager@{ProductsManager}}
+\doxysubsubsection{\texorpdfstring{searchById()}{searchById()}}
+{\footnotesize\ttfamily bool Products\+Manager\+::search\+By\+Id (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_product}{Product}}}]{reg,  }\item[{int}]{n\+Id }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Función de búsqueda por ID para productos. Compara el ID de un producto con el ID proporcionado para determinar si coinciden. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em reg} & El objeto de producto a comparar. \\
+\hline
+{\em n\+Id} & El ID a comparar. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true si los IDs coinciden, false de lo contrario. 
+\end{DoxyReturn}
+\Hypertarget{class_products_manager_ae03693b771d73ab5b6fd69bfb398f444}\label{class_products_manager_ae03693b771d73ab5b6fd69bfb398f444} 
+\index{ProductsManager@{ProductsManager}!show@{show}}
+\index{show@{show}!ProductsManager@{ProductsManager}}
+\doxysubsubsection{\texorpdfstring{show()}{show()}}
+{\footnotesize\ttfamily void Products\+Manager\+::show (\begin{DoxyParamCaption}\item[{bool}]{show\+And\+Pause = {\ttfamily true} }\end{DoxyParamCaption})}
+
+
+
+Mostrar lista de productos. Esta función muestra la lista de productos, permitiendo al usuario visualizar información detallada. Si se proporciona {\ttfamily true} a {\ttfamily show\+And\+Pause}, se pausará después de mostrar la lista. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em show\+And\+Pause} & Indica si se debe pausar después de mostrar la lista. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+F\+:/dev\+Projects/\+Facu/\+Lab\+II/tp-\/integrador-\/grupo-\/10-\/lab2/include/Products\+Manager.\+h\item 
+F\+:/dev\+Projects/\+Facu/\+Lab\+II/tp-\/integrador-\/grupo-\/10-\/lab2/src/Products\+Manager.\+cpp\end{DoxyCompactItemize}

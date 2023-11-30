@@ -1,0 +1,49 @@
+\doxysection{Buys\+Manager.\+h}
+\hypertarget{_buys_manager_8h_source}{}\label{_buys_manager_8h_source}\index{F:/devProjects/Facu/LabII/tp-\/integrador-\/grupo-\/10-\/lab2/include/BuysManager.h@{F:/devProjects/Facu/LabII/tp-\/integrador-\/grupo-\/10-\/lab2/include/BuysManager.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}Buy.h"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}VppConfigManager.h"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_vpp_file_8h}{VppFile.h}}"{}}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_buys_manager}{BuysManager}}\ \{}
+\DoxyCodeLine{00008\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00009\ \ \ \ \ \textcolor{keyword}{const}\ std::string\ \_folderPath\ =\ \mbox{\hyperlink{class_vpp_config_manager}{VppConfigManager}}().\mbox{\hyperlink{class_vpp_config_manager_a96295baaca646005de9df583243a4d5c}{getDataPath}}();}
+\DoxyCodeLine{00010\ \ \ \ \ \textcolor{keyword}{const}\ std::string\ \_filePath\ =\ \_folderPath\ +\ \textcolor{stringliteral}{"{}Buys.vpp"{}};}
+\DoxyCodeLine{00011\ \ \ \ \ \mbox{\hyperlink{class_vpp_file}{VppFile<Buy>}}\ \_buysFile\ =\ \mbox{\hyperlink{class_vpp_file}{VppFile<Buy>}}(\_filePath);}
+\DoxyCodeLine{00012\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \_buysFields\ =\ 7;\ \ \textcolor{comment}{//\ total\ de\ datos\ de\ un\ regisro\ Buy}}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00021\ \ \ \ \ \mbox{\hyperlink{class_buy}{Buy}}\ loadForm();}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00031\ \ \ \ \ \mbox{\hyperlink{class_buy}{Buy}}\ editForm(\textcolor{keywordtype}{int}\ regPos);}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keywordtype}{bool}\ retryIfIdNotExists(\textcolor{keywordtype}{bool}\ exists);}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{keywordtype}{bool}\ validBuyDate(\mbox{\hyperlink{class_date}{Date}}\ date);}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{keywordtype}{bool}\ retryInvalidDate(\textcolor{keywordtype}{bool}\ valid);}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00069\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_buys_manager_a1b121a16b93d08f43cc5fbd6acf0c525}{load}}();}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00080\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_buys_manager_a44d4ffdfa67dd0c2d3b70672a46f5755}{edit}}();}
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00092\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_buys_manager_ac51350b143dac957d8ae3388e154cf54}{show}}(\textcolor{keywordtype}{bool}\ showAndPause\ =\ \textcolor{keyword}{true});}
+\DoxyCodeLine{00093\ }
+\DoxyCodeLine{00100\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_buys_manager_a910e08563b441862672e6f1611d52d45}{clearDeleted}}();}
+\DoxyCodeLine{00101\ }
+\DoxyCodeLine{00110\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_buys_manager_a4f6512c65147886d427b6f1cdfd7783e}{cancel}}();}
+\DoxyCodeLine{00111\ }
+\DoxyCodeLine{00112\ \ \ \ \ \textcolor{comment}{//\ Al\ ser\ una\ funcion\ estatica\ se\ puede\ usar\ sin\ necesaidad\ de\ instanciar\ un}}
+\DoxyCodeLine{00113\ \ \ \ \ \textcolor{comment}{//\ objeto\ de\ tipo\ "{}BuysManager"{},\ eso\ permite\ que\ se\ pueda\ pasar\ por}}
+\DoxyCodeLine{00114\ \ \ \ \ \textcolor{comment}{//\ parametro\ un\ puntero\ a\ esta\ funcion,\ lo\ que\ es\ necesario\ para\ la\ busqueda}}
+\DoxyCodeLine{00115\ \ \ \ \ \textcolor{comment}{//\ de\ registros\ con\ VppFile}}
+\DoxyCodeLine{00116\ }
+\DoxyCodeLine{00123\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_buys_manager_a883329a00dd85fd68e265b5c78a5656b}{searchById}}(\mbox{\hyperlink{class_buy}{Buy}}\ reg,\ \textcolor{keywordtype}{int}\ nId);}
+\DoxyCodeLine{00124\ }
+\DoxyCodeLine{00132\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_buys_manager_aaeb368c8d8682fe24e820ae8a52fdab0}{idExists}}(\textcolor{keywordtype}{int}\ nId);}
+\DoxyCodeLine{00133\ \};}
+
+\end{DoxyCode}

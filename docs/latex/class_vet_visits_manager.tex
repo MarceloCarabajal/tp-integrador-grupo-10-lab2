@@ -1,0 +1,126 @@
+\doxysection{Vet\+Visits\+Manager Class Reference}
+\hypertarget{class_vet_visits_manager}{}\label{class_vet_visits_manager}\index{VetVisitsManager@{VetVisitsManager}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_vet_visits_manager_ae6fe1c28ce5896c76ce768af245b4a92}\label{class_vet_visits_manager_ae6fe1c28ce5896c76ce768af245b4a92} 
+void {\bfseries load} ()
+\begin{DoxyCompactList}\small\item\em Carga una nueva consulta veterinaria, solicitando información al usuario y almacenándola en el archivo. La función verifica la existencia del ID ingresado, evitando duplicados o el uso de IDs dados de baja. \end{DoxyCompactList}\item 
+\Hypertarget{class_vet_visits_manager_a518ad4fa4fa402ba3d9a591d8a5ee8a7}\label{class_vet_visits_manager_a518ad4fa4fa402ba3d9a591d8a5ee8a7} 
+void {\bfseries edit} ()
+\begin{DoxyCompactList}\small\item\em Edita una consulta veterinaria existente, solicitando al usuario el ID y la información actualizada. La función verifica la existencia y estado de la consulta antes de realizar la edición. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_vet_visits_manager_a0797a153bf3df8c5124a03898739e8a8}{show}} (bool show\+And\+Pause=true)
+\begin{DoxyCompactList}\small\item\em Muestra en pantalla la lista de consultas veterinarias almacenadas y, opcionalmente, pausa la ejecución. \end{DoxyCompactList}\item 
+\Hypertarget{class_vet_visits_manager_aaf1d9d142baa6e860f1aa8d76a980bf5}\label{class_vet_visits_manager_aaf1d9d142baa6e860f1aa8d76a980bf5} 
+void {\bfseries menu} ()
+\item 
+\Hypertarget{class_vet_visits_manager_a804c01ae25b246f1f8729a369dac1f12}\label{class_vet_visits_manager_a804c01ae25b246f1f8729a369dac1f12} 
+void {\bfseries clear\+Deleted} ()
+\begin{DoxyCompactList}\small\item\em Elimina definitivamente las consultas veterinarias marcadas como dadas de baja. Solicita confirmación al usuario antes de realizar la operación. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_vet_visits_manager_ac9840d88b0339f4a099a0e22ad681418}{cancel}} ()
+\begin{DoxyCompactList}\small\item\em Cancela una consulta veterinaria marcándola como dada de baja de manera provisoria. Muestra la lista de consultas, solicita al usuario el ID de la consulta a cancelar, y confirma la acción antes de realizarla. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_vet_visits_manager_ad9e5f4c1edda333039b94f411f2dc1aa}{id\+Exists}} (int n\+Id)
+\begin{DoxyCompactList}\small\item\em Verifica si un ID de visita veterinaria existe en el archivo. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_vet_visits_manager_a358adca46f1bf76822194fd63f1bbe1e}{is\+Active\+Id}} (int n\+Id)
+\begin{DoxyCompactList}\small\item\em Verifica si un ID de visita veterinaria está activo. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static bool \mbox{\hyperlink{class_vet_visits_manager_aac3df8984ca19ab8665ce69ca5dea173}{search\+By\+Id}} (\mbox{\hyperlink{class_vet_visits}{Vet\+Visits}} reg, int n\+Id)
+\begin{DoxyCompactList}\small\item\em Función de búsqueda para encontrar una visita veterinaria por su ID. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_vet_visits_manager_ac9840d88b0339f4a099a0e22ad681418}\label{class_vet_visits_manager_ac9840d88b0339f4a099a0e22ad681418} 
+\index{VetVisitsManager@{VetVisitsManager}!cancel@{cancel}}
+\index{cancel@{cancel}!VetVisitsManager@{VetVisitsManager}}
+\doxysubsubsection{\texorpdfstring{cancel()}{cancel()}}
+{\footnotesize\ttfamily void Vet\+Visits\+Manager\+::cancel (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Cancela una consulta veterinaria marcándola como dada de baja de manera provisoria. Muestra la lista de consultas, solicita al usuario el ID de la consulta a cancelar, y confirma la acción antes de realizarla. 
+
+\begin{DoxyNote}{Note}
+Utiliza las clases \doxylink{class_input_form}{Input\+Form}, utils y funciones de \+\_\+vet\+Visits\+File. 
+\end{DoxyNote}
+\begin{DoxySeeAlso}{See also}
+\doxylink{class_input_form}{Input\+Form}, utils, \+\_\+vet\+Visits\+File 
+\end{DoxySeeAlso}
+\Hypertarget{class_vet_visits_manager_ad9e5f4c1edda333039b94f411f2dc1aa}\label{class_vet_visits_manager_ad9e5f4c1edda333039b94f411f2dc1aa} 
+\index{VetVisitsManager@{VetVisitsManager}!idExists@{idExists}}
+\index{idExists@{idExists}!VetVisitsManager@{VetVisitsManager}}
+\doxysubsubsection{\texorpdfstring{idExists()}{idExists()}}
+{\footnotesize\ttfamily bool Vet\+Visits\+Manager\+::id\+Exists (\begin{DoxyParamCaption}\item[{int}]{n\+Id }\end{DoxyParamCaption})}
+
+
+
+Verifica si un ID de visita veterinaria existe en el archivo. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em n\+Id} & ID de visita veterinaria a verificar. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true si el ID existe, false en caso contrario. 
+\end{DoxyReturn}
+\Hypertarget{class_vet_visits_manager_a358adca46f1bf76822194fd63f1bbe1e}\label{class_vet_visits_manager_a358adca46f1bf76822194fd63f1bbe1e} 
+\index{VetVisitsManager@{VetVisitsManager}!isActiveId@{isActiveId}}
+\index{isActiveId@{isActiveId}!VetVisitsManager@{VetVisitsManager}}
+\doxysubsubsection{\texorpdfstring{isActiveId()}{isActiveId()}}
+{\footnotesize\ttfamily bool Vet\+Visits\+Manager\+::is\+Active\+Id (\begin{DoxyParamCaption}\item[{int}]{n\+Id }\end{DoxyParamCaption})}
+
+
+
+Verifica si un ID de visita veterinaria está activo. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em n\+Id} & ID de visita veterinaria a verificar. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true si el ID está activo, false en caso contrario. 
+\end{DoxyReturn}
+\Hypertarget{class_vet_visits_manager_aac3df8984ca19ab8665ce69ca5dea173}\label{class_vet_visits_manager_aac3df8984ca19ab8665ce69ca5dea173} 
+\index{VetVisitsManager@{VetVisitsManager}!searchById@{searchById}}
+\index{searchById@{searchById}!VetVisitsManager@{VetVisitsManager}}
+\doxysubsubsection{\texorpdfstring{searchById()}{searchById()}}
+{\footnotesize\ttfamily bool Vet\+Visits\+Manager\+::search\+By\+Id (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_vet_visits}{Vet\+Visits}}}]{reg,  }\item[{int}]{n\+Id }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Función de búsqueda para encontrar una visita veterinaria por su ID. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em reg} & Objeto de la clase \doxylink{class_vet_visits}{Vet\+Visits} a comparar con el ID proporcionado. \\
+\hline
+{\em n\+Id} & ID de visita veterinaria a buscar. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true si el ID de la visita veterinaria coincide, false en caso contrario. 
+\end{DoxyReturn}
+\Hypertarget{class_vet_visits_manager_a0797a153bf3df8c5124a03898739e8a8}\label{class_vet_visits_manager_a0797a153bf3df8c5124a03898739e8a8} 
+\index{VetVisitsManager@{VetVisitsManager}!show@{show}}
+\index{show@{show}!VetVisitsManager@{VetVisitsManager}}
+\doxysubsubsection{\texorpdfstring{show()}{show()}}
+{\footnotesize\ttfamily void Vet\+Visits\+Manager\+::show (\begin{DoxyParamCaption}\item[{bool}]{show\+And\+Pause = {\ttfamily true} }\end{DoxyParamCaption})}
+
+
+
+Muestra en pantalla la lista de consultas veterinarias almacenadas y, opcionalmente, pausa la ejecución. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em show\+And\+Pause} & Indica si se debe pausar la ejecución después de mostrar la lista. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+F\+:/dev\+Projects/\+Facu/\+Lab\+II/tp-\/integrador-\/grupo-\/10-\/lab2/include/Vet\+Visits\+Manager.\+h\item 
+F\+:/dev\+Projects/\+Facu/\+Lab\+II/tp-\/integrador-\/grupo-\/10-\/lab2/src/Vet\+Visits\+Manager.\+cpp\end{DoxyCompactItemize}

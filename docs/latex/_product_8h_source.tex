@@ -1,0 +1,53 @@
+\doxysection{Product.\+h}
+\hypertarget{_product_8h_source}{}\label{_product_8h_source}\index{F:/devProjects/Facu/LabII/tp-\/integrador-\/grupo-\/10-\/lab2/include/Product.h@{F:/devProjects/Facu/LabII/tp-\/integrador-\/grupo-\/10-\/lab2/include/Product.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}ProductCategory.h"{}}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_product}{Product}}\{}
+\DoxyCodeLine{00006\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00007\ \ \ \ \ \textcolor{keywordtype}{int}\ \_productID,\ \_quantity,\ \_stock;}
+\DoxyCodeLine{00008\ \ \ \ \ \textcolor{keywordtype}{float}\ \_price;}
+\DoxyCodeLine{00009\ \ \ \ \ \textcolor{keywordtype}{char}\ \_productName[30],\ \_description[45],\ \_brand[15];}
+\DoxyCodeLine{00010\ \ \ \ \ \mbox{\hyperlink{class_product_category}{ProductCategory}}\ \_productCategory;}
+\DoxyCodeLine{00011\ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \_status;}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00014\ \mbox{\hyperlink{class_product}{Product}}();}
+\DoxyCodeLine{00015\ \mbox{\hyperlink{class_product}{Product}}\ (\textcolor{keywordtype}{int}\ productid,\ \textcolor{keywordtype}{int}\ quantity,\ \textcolor{keywordtype}{int}\ stock,\textcolor{keywordtype}{float}\ price,\ std::string\ productname,}
+\DoxyCodeLine{00016\ \ std::string\ description,\ std::string\ brand,\ \mbox{\hyperlink{class_product_category}{ProductCategory}}\ productcategory,\ \textcolor{keywordtype}{bool}\ status);}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \ }
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{keywordtype}{void}\ setProductId(\textcolor{keywordtype}{int}\ productId);}
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keywordtype}{void}\ setProductName(std::string\ productName);}
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keywordtype}{void}\ setDescription(std::string\ description);}
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keywordtype}{void}\ setQuantity(\textcolor{keywordtype}{int}\ quantity);}
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keywordtype}{void}\ setStock(\textcolor{keywordtype}{int}\ stock);}
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keywordtype}{void}\ setPrice(\textcolor{keywordtype}{float}\ price);}
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keywordtype}{void}\ setBrand(std::string\ brand);}
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keywordtype}{void}\ setProductCategory(\mbox{\hyperlink{class_product_category}{ProductCategory}}\ category);}
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keywordtype}{void}\ setStatus(\textcolor{keywordtype}{bool}\ status);}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keywordtype}{int}\ getProductId();}
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *\ getProductName();}
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *\ getDescription\ ();}
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keywordtype}{int}\ getQuantity();}
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keywordtype}{int}\ getStock();}
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keywordtype}{float}\ getPrice();}
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *\ getBrand();}
+\DoxyCodeLine{00037\ \ \ \ \ \mbox{\hyperlink{class_product_category}{ProductCategory}}\ getProductCategory();}
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keywordtype}{bool}\ getStatus();}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keywordtype}{void}\ addProduct();}
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keywordtype}{void}\ deleteProduct();}
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keywordtype}{void}\ updateStock();}
+\DoxyCodeLine{00043\ \ \ \ \ }
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ toVecString(std::string\ vStr[8]);}
+\DoxyCodeLine{00047\ \};}
+
+\end{DoxyCode}

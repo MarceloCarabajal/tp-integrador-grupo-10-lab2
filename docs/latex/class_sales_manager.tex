@@ -1,0 +1,96 @@
+\doxysection{Sales\+Manager Class Reference}
+\hypertarget{class_sales_manager}{}\label{class_sales_manager}\index{SalesManager@{SalesManager}}
+
+
+Clase que representa un administrador de ventas.  
+
+
+
+
+{\ttfamily \#include $<$Sales\+Manager.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_sales_manager_a15fb29b33d00ca156d4a8ae62d998c61}\label{class_sales_manager_a15fb29b33d00ca156d4a8ae62d998c61} 
+void {\bfseries load} ()
+\begin{DoxyCompactList}\small\item\em Carga los datos de las ventas desde un archivo. \end{DoxyCompactList}\item 
+\Hypertarget{class_sales_manager_a0b97608b3003ff283ddff4bcaa77dbb1}\label{class_sales_manager_a0b97608b3003ff283ddff4bcaa77dbb1} 
+void {\bfseries edit} ()
+\begin{DoxyCompactList}\small\item\em Permite editar los datos de una venta existente. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_sales_manager_a42e25130a88ce19ef1ec115b545fe31b}{show}} (bool show\+And\+Pause=true)
+\begin{DoxyCompactList}\small\item\em Muestra la información de las ventas. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_sales_manager_a74fb73e2507be5d07fd29c1603b380b7}{id\+Exists}} (int n\+Id)
+\begin{DoxyCompactList}\small\item\em Verifica si un ID de venta existe. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static bool \mbox{\hyperlink{class_sales_manager_a7477d5101d3591ffd6973099414f2447}{search\+By\+Id}} (\mbox{\hyperlink{class_sale}{Sale}} reg, int n\+Id)
+\begin{DoxyCompactList}\small\item\em Busca una venta por su ID. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Clase que representa un administrador de ventas. 
+
+Esta clase se encarga de administrar las ventas, cargar, editar y mostrar información relacionada con las ventas. También proporciona métodos para buscar ventas por ID y verificar la existencia de un ID en las ventas. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_sales_manager_a74fb73e2507be5d07fd29c1603b380b7}\label{class_sales_manager_a74fb73e2507be5d07fd29c1603b380b7} 
+\index{SalesManager@{SalesManager}!idExists@{idExists}}
+\index{idExists@{idExists}!SalesManager@{SalesManager}}
+\doxysubsubsection{\texorpdfstring{idExists()}{idExists()}}
+{\footnotesize\ttfamily bool Sales\+Manager\+::id\+Exists (\begin{DoxyParamCaption}\item[{int}]{n\+Id }\end{DoxyParamCaption})}
+
+
+
+Verifica si un ID de venta existe. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em n\+Id} & El ID de la venta a verificar. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true si el ID existe, false en caso contrario. 
+\end{DoxyReturn}
+\Hypertarget{class_sales_manager_a7477d5101d3591ffd6973099414f2447}\label{class_sales_manager_a7477d5101d3591ffd6973099414f2447} 
+\index{SalesManager@{SalesManager}!searchById@{searchById}}
+\index{searchById@{searchById}!SalesManager@{SalesManager}}
+\doxysubsubsection{\texorpdfstring{searchById()}{searchById()}}
+{\footnotesize\ttfamily bool Sales\+Manager\+::search\+By\+Id (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_sale}{Sale}}}]{reg,  }\item[{int}]{n\+Id }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Busca una venta por su ID. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em reg} & La venta a buscar. \\
+\hline
+{\em n\+Id} & El ID de la venta a buscar. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true si se encuentra la venta, false en caso contrario.
+\end{DoxyReturn}
+Esta función es estática y puede ser utilizada sin necesidad de instanciar un objeto de tipo "{}\+Sales\+Manager"{}. Esto permite que se pueda pasar por parámetro un puntero a esta función, lo que es necesario para la búsqueda de registros con \doxylink{class_vpp_file}{Vpp\+File}. \Hypertarget{class_sales_manager_a42e25130a88ce19ef1ec115b545fe31b}\label{class_sales_manager_a42e25130a88ce19ef1ec115b545fe31b} 
+\index{SalesManager@{SalesManager}!show@{show}}
+\index{show@{show}!SalesManager@{SalesManager}}
+\doxysubsubsection{\texorpdfstring{show()}{show()}}
+{\footnotesize\ttfamily void Sales\+Manager\+::show (\begin{DoxyParamCaption}\item[{bool}]{show\+And\+Pause = {\ttfamily true} }\end{DoxyParamCaption})}
+
+
+
+Muestra la información de las ventas. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em show\+And\+Pause} & Indica si se debe mostrar y pausar la ejecución. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+F\+:/dev\+Projects/\+Facu/\+Lab\+II/tp-\/integrador-\/grupo-\/10-\/lab2/include/Sales\+Manager.\+h\item 
+F\+:/dev\+Projects/\+Facu/\+Lab\+II/tp-\/integrador-\/grupo-\/10-\/lab2/src/Sales\+Manager.\+cpp\end{DoxyCompactItemize}

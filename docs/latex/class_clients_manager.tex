@@ -1,0 +1,163 @@
+\doxysection{Clients\+Manager Class Reference}
+\hypertarget{class_clients_manager}{}\label{class_clients_manager}\index{ClientsManager@{ClientsManager}}
+
+
+Gestor de clientes. Esta clase se encarga de gestionar los clientes del sistema. Permite cargar nuevos clientes, modificar clientes existentes, mostrar la lista de clientes, eliminar clientes y realizar consultas sobre los clientes almacenados.  
+
+
+
+
+{\ttfamily \#include $<$Clients\+Manager.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_clients_manager_a7ed558ef2bf4eed772e647b6696f5793}\label{class_clients_manager_a7ed558ef2bf4eed772e647b6696f5793} 
+void {\bfseries load} ()
+\begin{DoxyCompactList}\small\item\em Cargar un nuevo cliente en el sistema. Solicita al usuario ingresar un ID de cliente único, verifica su existencia y carga el resto de los datos necesarios para crear un nuevo cliente. Si la operación se completa exitosamente, guarda el cliente en el archivo. Utiliza la función auxiliar {\ttfamily load\+Form()} para obtener los detalles del cliente. \end{DoxyCompactList}\item 
+\Hypertarget{class_clients_manager_adffd4f3b4b4278ea2f31a18a906ae825}\label{class_clients_manager_adffd4f3b4b4278ea2f31a18a906ae825} 
+void {\bfseries edit} ()
+\begin{DoxyCompactList}\small\item\em Modificar un cliente existente en el sistema. Muestra la lista de clientes disponibles, solicita al usuario ingresar el ID del cliente a modificar y, si existe, permite editar los detalles del cliente. Guarda los cambios en el archivo de clientes si la operación es exitosa. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_clients_manager_addfc45a28069e9bcedf10f23c9691bf2}{show}} (bool show\+And\+Pause=true)
+\begin{DoxyCompactList}\small\item\em Mostrar la lista de clientes. Muestra en una lista los detalles de los clientes almacenados. Los datos se presentan en columnas, incluyendo ID, nombre, apellido, DNI, dirección, teléfono y correo electrónico. \end{DoxyCompactList}\item 
+\Hypertarget{class_clients_manager_abc722f83fe5977aaa06b88d34799f42d}\label{class_clients_manager_abc722f83fe5977aaa06b88d34799f42d} 
+void {\bfseries clear\+Searched} ()
+\item 
+\Hypertarget{class_clients_manager_aeac790d72cc8e9fd43804567c6f09d24}\label{class_clients_manager_aeac790d72cc8e9fd43804567c6f09d24} 
+void {\bfseries clear\+Deleted} ()
+\begin{DoxyCompactList}\small\item\em Eliminar definitivamente los clientes marcados para eliminación. Busca y muestra los clientes marcados para eliminación, solicitando confirmación al usuario antes de realizar la eliminación definitiva. Muestra el resultado de la operación, indicando si se eliminaron con éxito, no se encontraron clientes marcados o si ocurrió un error durante la eliminación. \end{DoxyCompactList}\item 
+\Hypertarget{class_clients_manager_a1b01d3a6a26adaeac3fcfa8f8bdff6ea}\label{class_clients_manager_a1b01d3a6a26adaeac3fcfa8f8bdff6ea} 
+void {\bfseries cancel} ()
+\begin{DoxyCompactList}\small\item\em Cancelar el registro de un cliente de forma provisoria. Muestra la lista de clientes y solicita al usuario que ingrese el ID del cliente que desea dar de baja de forma provisoria. Proporciona una confirmación antes de realizar la cancelación. Muestra el resultado de la operación, indicando si la baja provisoria se realizó con éxito, si no se llevó a cabo o si ocurrió un error durante el proceso. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{class_clients_manager_a2f5deec68721c54e9dc140ff0e764b7c}{get\+Full\+Name\+By\+Id}} (int n\+Id)
+\begin{DoxyCompactList}\small\item\em Obtener el nombre completo de un cliente mediante su ID. Busca el cliente con el ID proporcionado y devuelve su nombre completo concatenando el nombre y apellido. Retorna "{}\+ERROR"{} si no se encuentra el cliente. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_client}{Client}} \mbox{\hyperlink{class_clients_manager_a9664f081e84cba710474d42fc17823af}{get\+Client\+By\+Id}} (int n\+Id)
+\begin{DoxyCompactList}\small\item\em Obtiene un cliente por su ID. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_clients_manager_a91a2544f61608778d30dc561553128cc}{id\+Exists}} (int n\+Id)
+\begin{DoxyCompactList}\small\item\em Verificar la existencia de un ID en los registros de clientes. Busca un ID en los registros y devuelve verdadero si existe, falso en caso contrario. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_clients_manager_a4fcab65f2219a37e41af95018942e2ce}{is\+Active\+Id}} (int n\+Id)
+\begin{DoxyCompactList}\small\item\em Verificar si un ID de cliente está activo. Busca un ID en los registros y devuelve verdadero si está activo, falso en caso contrario. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static bool \mbox{\hyperlink{class_clients_manager_a31ce2f71ac6254b70bbef01fb34dd0ea}{search\+By\+Id}} (\mbox{\hyperlink{class_client}{Client}} reg, int n\+Id)
+\begin{DoxyCompactList}\small\item\em Función de búsqueda por ID para la búsqueda en registros de clientes. Compara el ID de un cliente con un ID proporcionado y devuelve verdadero si coinciden. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Gestor de clientes. Esta clase se encarga de gestionar los clientes del sistema. Permite cargar nuevos clientes, modificar clientes existentes, mostrar la lista de clientes, eliminar clientes y realizar consultas sobre los clientes almacenados. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_clients_manager_a9664f081e84cba710474d42fc17823af}\label{class_clients_manager_a9664f081e84cba710474d42fc17823af} 
+\index{ClientsManager@{ClientsManager}!getClientById@{getClientById}}
+\index{getClientById@{getClientById}!ClientsManager@{ClientsManager}}
+\doxysubsubsection{\texorpdfstring{getClientById()}{getClientById()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_client}{Client}} Clients\+Manager\+::get\+Client\+By\+Id (\begin{DoxyParamCaption}\item[{int}]{n\+Id }\end{DoxyParamCaption})}
+
+
+
+Obtiene un cliente por su ID. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em n\+Id} & El ID del cliente a buscar. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+El cliente correspondiente al ID especificado. 
+\end{DoxyReturn}
+\Hypertarget{class_clients_manager_a2f5deec68721c54e9dc140ff0e764b7c}\label{class_clients_manager_a2f5deec68721c54e9dc140ff0e764b7c} 
+\index{ClientsManager@{ClientsManager}!getFullNameById@{getFullNameById}}
+\index{getFullNameById@{getFullNameById}!ClientsManager@{ClientsManager}}
+\doxysubsubsection{\texorpdfstring{getFullNameById()}{getFullNameById()}}
+{\footnotesize\ttfamily std\+::string Clients\+Manager\+::get\+Full\+Name\+By\+Id (\begin{DoxyParamCaption}\item[{int}]{n\+Id }\end{DoxyParamCaption})}
+
+
+
+Obtener el nombre completo de un cliente mediante su ID. Busca el cliente con el ID proporcionado y devuelve su nombre completo concatenando el nombre y apellido. Retorna "{}\+ERROR"{} si no se encuentra el cliente. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em n\+Id} & El ID del cliente. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+El nombre completo del cliente o "{}\+ERROR"{} en caso de no encontrarlo. 
+\end{DoxyReturn}
+\Hypertarget{class_clients_manager_a91a2544f61608778d30dc561553128cc}\label{class_clients_manager_a91a2544f61608778d30dc561553128cc} 
+\index{ClientsManager@{ClientsManager}!idExists@{idExists}}
+\index{idExists@{idExists}!ClientsManager@{ClientsManager}}
+\doxysubsubsection{\texorpdfstring{idExists()}{idExists()}}
+{\footnotesize\ttfamily bool Clients\+Manager\+::id\+Exists (\begin{DoxyParamCaption}\item[{int}]{n\+Id }\end{DoxyParamCaption})}
+
+
+
+Verificar la existencia de un ID en los registros de clientes. Busca un ID en los registros y devuelve verdadero si existe, falso en caso contrario. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em n\+Id} & ID a verificar. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Verdadero si el ID existe, falso en caso contrario. 
+\end{DoxyReturn}
+\Hypertarget{class_clients_manager_a4fcab65f2219a37e41af95018942e2ce}\label{class_clients_manager_a4fcab65f2219a37e41af95018942e2ce} 
+\index{ClientsManager@{ClientsManager}!isActiveId@{isActiveId}}
+\index{isActiveId@{isActiveId}!ClientsManager@{ClientsManager}}
+\doxysubsubsection{\texorpdfstring{isActiveId()}{isActiveId()}}
+{\footnotesize\ttfamily bool Clients\+Manager\+::is\+Active\+Id (\begin{DoxyParamCaption}\item[{int}]{n\+Id }\end{DoxyParamCaption})}
+
+
+
+Verificar si un ID de cliente está activo. Busca un ID en los registros y devuelve verdadero si está activo, falso en caso contrario. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em n\+Id} & ID a verificar. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Verdadero si el ID está activo, falso en caso contrario. 
+\end{DoxyReturn}
+\Hypertarget{class_clients_manager_a31ce2f71ac6254b70bbef01fb34dd0ea}\label{class_clients_manager_a31ce2f71ac6254b70bbef01fb34dd0ea} 
+\index{ClientsManager@{ClientsManager}!searchById@{searchById}}
+\index{searchById@{searchById}!ClientsManager@{ClientsManager}}
+\doxysubsubsection{\texorpdfstring{searchById()}{searchById()}}
+{\footnotesize\ttfamily bool Clients\+Manager\+::search\+By\+Id (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_client}{Client}}}]{reg,  }\item[{int}]{n\+Id }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Función de búsqueda por ID para la búsqueda en registros de clientes. Compara el ID de un cliente con un ID proporcionado y devuelve verdadero si coinciden. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em reg} & Objeto Cliente a comparar. \\
+\hline
+{\em n\+Id} & ID a comparar. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Verdadero si los IDs coinciden, falso en caso contrario. 
+\end{DoxyReturn}
+\Hypertarget{class_clients_manager_addfc45a28069e9bcedf10f23c9691bf2}\label{class_clients_manager_addfc45a28069e9bcedf10f23c9691bf2} 
+\index{ClientsManager@{ClientsManager}!show@{show}}
+\index{show@{show}!ClientsManager@{ClientsManager}}
+\doxysubsubsection{\texorpdfstring{show()}{show()}}
+{\footnotesize\ttfamily void Clients\+Manager\+::show (\begin{DoxyParamCaption}\item[{bool}]{show\+And\+Pause = {\ttfamily true} }\end{DoxyParamCaption})}
+
+
+
+Mostrar la lista de clientes. Muestra en una lista los detalles de los clientes almacenados. Los datos se presentan en columnas, incluyendo ID, nombre, apellido, DNI, dirección, teléfono y correo electrónico. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em show\+And\+Pause} & Indica si después de mostrar la lista se debe pausar la ejecución. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+F\+:/dev\+Projects/\+Facu/\+Lab\+II/tp-\/integrador-\/grupo-\/10-\/lab2/include/Clients\+Manager.\+h\item 
+F\+:/dev\+Projects/\+Facu/\+Lab\+II/tp-\/integrador-\/grupo-\/10-\/lab2/src/Clients\+Manager.\+cpp\end{DoxyCompactItemize}

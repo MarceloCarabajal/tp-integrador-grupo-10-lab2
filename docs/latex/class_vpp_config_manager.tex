@@ -1,0 +1,235 @@
+\doxysection{Vpp\+Config\+Manager Class Reference}
+\hypertarget{class_vpp_config_manager}{}\label{class_vpp_config_manager}\index{VppConfigManager@{VppConfigManager}}
+
+
+Clase que gestiona la configuración del programa.  
+
+
+
+
+{\ttfamily \#include $<$Vpp\+Config\+Manager.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{class_vpp_config_manager_af8dd02451b5139bd36be5a040ed82a30}{init}} ()
+\begin{DoxyCompactList}\small\item\em Inicializa la configuracion. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_vpp_config_manager_ae57c042341bbf1a2056ed6177918a52f}{check\+Width}} ()
+\begin{DoxyCompactList}\small\item\em Verifica el ancho de la pantalla. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_vpp_config_manager_ac49ba58496cd80095f216b8c213241ad}{load}} ()
+\begin{DoxyCompactList}\small\item\em Pide al usuari la carga de la configuración. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_vpp_config_manager_a47d891d8efdf56eae0f8efd32083eded}{edit}} ()
+\begin{DoxyCompactList}\small\item\em Pide al usuario la edición de la configuración. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_vpp_config_manager_ac386de87ddf1bc0b944bafe21c69b00e}{toggle\+Mode}} ()
+\begin{DoxyCompactList}\small\item\em Cambia el modo a produccion/prueba. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{class_vpp_config_manager_a097b77002f5517eb0858b995e1767cf7}{get\+Vete\+Name}} ()
+\begin{DoxyCompactList}\small\item\em Obtiene el nombre de la veterinaria. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_vpp_config_manager_a7c3fb301f7bf1ebeef8d379b426775b3}{get\+Credentials}} (\mbox{\hyperlink{class_vpp_config}{Vpp\+Config}} \&vc)
+\begin{DoxyCompactList}\small\item\em Obtiene las credenciales para el servidor SMTP. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_vpp_config_manager_a197f74b39cab05b219bd76bf6a01029a}{set\+Config}} (const \mbox{\hyperlink{class_vpp_config}{Vpp\+Config}} \&vc)
+\begin{DoxyCompactList}\small\item\em Establece la configuración obtenida del objeto \doxylink{class_vpp_config_manager}{Vpp\+Config\+Manager}. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_vpp_config_manager_a44dab964ef9d12c335bbe2b5c5c8ab6f}{update\+Config}} (const \mbox{\hyperlink{class_vpp_config}{Vpp\+Config}} \&vc)
+\begin{DoxyCompactList}\small\item\em Actualiza la configuración con los valores proporcionados. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_vpp_config_manager_a16b7dd30a8502e80dcfa7c9c58eb36d4}{exists}} ()
+\begin{DoxyCompactList}\small\item\em Verifica si el archivo de configuración existe. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_vpp_config_manager_a61acf27a1a674641cfba2bf1725be4d2}{is\+Testing}} ()
+\begin{DoxyCompactList}\small\item\em Verifica si el programa está en modo de prueba. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static std\+::string \mbox{\hyperlink{class_vpp_config_manager_a96295baaca646005de9df583243a4d5c}{get\+Data\+Path}} ()
+\begin{DoxyCompactList}\small\item\em Obtiene la ruta de los datos. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static bool \mbox{\hyperlink{class_vpp_config_manager_a585eb033ec208285983be21aad6aa206}{is\+Ok}} = false
+\begin{DoxyCompactList}\small\item\em Variable que indica si todo está en orden. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Clase que gestiona la configuración del programa. 
+
+La clase \doxylink{class_vpp_config_manager}{Vpp\+Config\+Manager} se encarga de administrar la configuración de V++, incluyendo la carga, edición y actualización de la configuración. También proporciona métodos para obtener y establecer el nombre de la veterinaria, así como para obtener las credenciales de acceso para el envio de emails. Además, permite cambiar entre el modo de prueba y el modo de producción. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_vpp_config_manager_ae57c042341bbf1a2056ed6177918a52f}\label{class_vpp_config_manager_ae57c042341bbf1a2056ed6177918a52f} 
+\index{VppConfigManager@{VppConfigManager}!checkWidth@{checkWidth}}
+\index{checkWidth@{checkWidth}!VppConfigManager@{VppConfigManager}}
+\doxysubsubsection{\texorpdfstring{checkWidth()}{checkWidth()}}
+{\footnotesize\ttfamily void Vpp\+Config\+Manager\+::check\+Width (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Verifica el ancho de la pantalla. 
+
+Si el ancho de la pantalla es menor a 100, imprime un mensaje de error y espera a que el usuario agrande la ventana. \Hypertarget{class_vpp_config_manager_a47d891d8efdf56eae0f8efd32083eded}\label{class_vpp_config_manager_a47d891d8efdf56eae0f8efd32083eded} 
+\index{VppConfigManager@{VppConfigManager}!edit@{edit}}
+\index{edit@{edit}!VppConfigManager@{VppConfigManager}}
+\doxysubsubsection{\texorpdfstring{edit()}{edit()}}
+{\footnotesize\ttfamily void Vpp\+Config\+Manager\+::edit (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Pide al usuario la edición de la configuración. 
+
+\begin{DoxyReturn}{Returns}
+true si la edición fue exitosa, false en caso contrario. 
+\end{DoxyReturn}
+\Hypertarget{class_vpp_config_manager_a16b7dd30a8502e80dcfa7c9c58eb36d4}\label{class_vpp_config_manager_a16b7dd30a8502e80dcfa7c9c58eb36d4} 
+\index{VppConfigManager@{VppConfigManager}!exists@{exists}}
+\index{exists@{exists}!VppConfigManager@{VppConfigManager}}
+\doxysubsubsection{\texorpdfstring{exists()}{exists()}}
+{\footnotesize\ttfamily bool Vpp\+Config\+Manager\+::exists (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Verifica si el archivo de configuración existe. 
+
+\begin{DoxyReturn}{Returns}
+true si el archivo existe, false en caso contrario. 
+\end{DoxyReturn}
+\Hypertarget{class_vpp_config_manager_a7c3fb301f7bf1ebeef8d379b426775b3}\label{class_vpp_config_manager_a7c3fb301f7bf1ebeef8d379b426775b3} 
+\index{VppConfigManager@{VppConfigManager}!getCredentials@{getCredentials}}
+\index{getCredentials@{getCredentials}!VppConfigManager@{VppConfigManager}}
+\doxysubsubsection{\texorpdfstring{getCredentials()}{getCredentials()}}
+{\footnotesize\ttfamily void Vpp\+Config\+Manager\+::get\+Credentials (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_vpp_config}{Vpp\+Config}} \&}]{vc }\end{DoxyParamCaption})}
+
+
+
+Obtiene las credenciales para el servidor SMTP. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vc} & Referencia a un objeto \doxylink{class_vpp_config}{Vpp\+Config} donde se almacenarán las credenciales. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_vpp_config_manager_a96295baaca646005de9df583243a4d5c}\label{class_vpp_config_manager_a96295baaca646005de9df583243a4d5c} 
+\index{VppConfigManager@{VppConfigManager}!getDataPath@{getDataPath}}
+\index{getDataPath@{getDataPath}!VppConfigManager@{VppConfigManager}}
+\doxysubsubsection{\texorpdfstring{getDataPath()}{getDataPath()}}
+{\footnotesize\ttfamily std\+::string Vpp\+Config\+Manager\+::get\+Data\+Path (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Obtiene la ruta de los datos. 
+
+\begin{DoxyReturn}{Returns}
+La ruta de los datos como un objeto de tipo std\+::string. 
+\end{DoxyReturn}
+\Hypertarget{class_vpp_config_manager_a097b77002f5517eb0858b995e1767cf7}\label{class_vpp_config_manager_a097b77002f5517eb0858b995e1767cf7} 
+\index{VppConfigManager@{VppConfigManager}!getVeteName@{getVeteName}}
+\index{getVeteName@{getVeteName}!VppConfigManager@{VppConfigManager}}
+\doxysubsubsection{\texorpdfstring{getVeteName()}{getVeteName()}}
+{\footnotesize\ttfamily std\+::string Vpp\+Config\+Manager\+::get\+Vete\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Obtiene el nombre de la veterinaria. 
+
+\begin{DoxyReturn}{Returns}
+El nombre de la veterinaria como un objeto de tipo std\+::string. 
+\end{DoxyReturn}
+\Hypertarget{class_vpp_config_manager_af8dd02451b5139bd36be5a040ed82a30}\label{class_vpp_config_manager_af8dd02451b5139bd36be5a040ed82a30} 
+\index{VppConfigManager@{VppConfigManager}!init@{init}}
+\index{init@{init}!VppConfigManager@{VppConfigManager}}
+\doxysubsubsection{\texorpdfstring{init()}{init()}}
+{\footnotesize\ttfamily bool Vpp\+Config\+Manager\+::init (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Inicializa la configuracion. 
+
+\begin{DoxyReturn}{Returns}
+true si la inicialización fue exitosa, false en caso contrario. 
+\end{DoxyReturn}
+\Hypertarget{class_vpp_config_manager_a61acf27a1a674641cfba2bf1725be4d2}\label{class_vpp_config_manager_a61acf27a1a674641cfba2bf1725be4d2} 
+\index{VppConfigManager@{VppConfigManager}!isTesting@{isTesting}}
+\index{isTesting@{isTesting}!VppConfigManager@{VppConfigManager}}
+\doxysubsubsection{\texorpdfstring{isTesting()}{isTesting()}}
+{\footnotesize\ttfamily bool Vpp\+Config\+Manager\+::is\+Testing (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Verifica si el programa está en modo de prueba. 
+
+\begin{DoxyReturn}{Returns}
+true si el programa está en modo de prueba, false en caso contrario. 
+\end{DoxyReturn}
+\Hypertarget{class_vpp_config_manager_ac49ba58496cd80095f216b8c213241ad}\label{class_vpp_config_manager_ac49ba58496cd80095f216b8c213241ad} 
+\index{VppConfigManager@{VppConfigManager}!load@{load}}
+\index{load@{load}!VppConfigManager@{VppConfigManager}}
+\doxysubsubsection{\texorpdfstring{load()}{load()}}
+{\footnotesize\ttfamily bool Vpp\+Config\+Manager\+::load (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Pide al usuari la carga de la configuración. 
+
+\begin{DoxyReturn}{Returns}
+true si la carga fue exitosa, false en caso contrario. 
+\end{DoxyReturn}
+\Hypertarget{class_vpp_config_manager_a197f74b39cab05b219bd76bf6a01029a}\label{class_vpp_config_manager_a197f74b39cab05b219bd76bf6a01029a} 
+\index{VppConfigManager@{VppConfigManager}!setConfig@{setConfig}}
+\index{setConfig@{setConfig}!VppConfigManager@{VppConfigManager}}
+\doxysubsubsection{\texorpdfstring{setConfig()}{setConfig()}}
+{\footnotesize\ttfamily bool Vpp\+Config\+Manager\+::set\+Config (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_vpp_config}{Vpp\+Config}} \&}]{vc }\end{DoxyParamCaption})}
+
+
+
+Establece la configuración obtenida del objeto \doxylink{class_vpp_config_manager}{Vpp\+Config\+Manager}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vc} & La configuración a establecer. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true si la configuración se estableció correctamente, false en caso contrario. 
+\end{DoxyReturn}
+\Hypertarget{class_vpp_config_manager_ac386de87ddf1bc0b944bafe21c69b00e}\label{class_vpp_config_manager_ac386de87ddf1bc0b944bafe21c69b00e} 
+\index{VppConfigManager@{VppConfigManager}!toggleMode@{toggleMode}}
+\index{toggleMode@{toggleMode}!VppConfigManager@{VppConfigManager}}
+\doxysubsubsection{\texorpdfstring{toggleMode()}{toggleMode()}}
+{\footnotesize\ttfamily void Vpp\+Config\+Manager\+::toggle\+Mode (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Cambia el modo a produccion/prueba. 
+
+Esta función cambia el modo de funcionamiento del sistema. \Hypertarget{class_vpp_config_manager_a44dab964ef9d12c335bbe2b5c5c8ab6f}\label{class_vpp_config_manager_a44dab964ef9d12c335bbe2b5c5c8ab6f} 
+\index{VppConfigManager@{VppConfigManager}!updateConfig@{updateConfig}}
+\index{updateConfig@{updateConfig}!VppConfigManager@{VppConfigManager}}
+\doxysubsubsection{\texorpdfstring{updateConfig()}{updateConfig()}}
+{\footnotesize\ttfamily bool Vpp\+Config\+Manager\+::update\+Config (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_vpp_config}{Vpp\+Config}} \&}]{vc }\end{DoxyParamCaption})}
+
+
+
+Actualiza la configuración con los valores proporcionados. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vc} & La configuración actualizada. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true si la actualización fue exitosa, false de lo contrario. 
+\end{DoxyReturn}
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{class_vpp_config_manager_a585eb033ec208285983be21aad6aa206}\label{class_vpp_config_manager_a585eb033ec208285983be21aad6aa206} 
+\index{VppConfigManager@{VppConfigManager}!isOk@{isOk}}
+\index{isOk@{isOk}!VppConfigManager@{VppConfigManager}}
+\doxysubsubsection{\texorpdfstring{isOk}{isOk}}
+{\footnotesize\ttfamily bool Vpp\+Config\+Manager\+::is\+Ok = false\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Variable que indica si todo está en orden. 
+
+Esta variable indica si la configuración se pudo leer y cargar correctamente 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+F\+:/dev\+Projects/\+Facu/\+Lab\+II/tp-\/integrador-\/grupo-\/10-\/lab2/include/Vpp\+Config\+Manager.\+h\item 
+F\+:/dev\+Projects/\+Facu/\+Lab\+II/tp-\/integrador-\/grupo-\/10-\/lab2/src/Vpp\+Config\+Manager.\+cpp\end{DoxyCompactItemize}

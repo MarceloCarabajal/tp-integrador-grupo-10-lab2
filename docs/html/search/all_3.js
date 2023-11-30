@@ -1,0 +1,15 @@
+var searchData=
+[
+  ['cancel_0',['cancel',['../class_appointments_manager.html#aaa0ad6992aed314e496ce791aff0caf2',1,'AppointmentsManager::cancel()'],['../class_buys_manager.html#a4f6512c65147886d427b6f1cdfd7783e',1,'BuysManager::cancel()'],['../class_clients_manager.html#a1b01d3a6a26adaeac3fcfa8f8bdff6ea',1,'ClientsManager::cancel()'],['../class_pets_manager.html#af4be5e3e4a0259610bc9b8c4d3f24feb',1,'PetsManager::cancel()'],['../class_prod_category_manager.html#a9cee507eb5244fc4c4b1bc154becefbd',1,'ProdCategoryManager::cancel()'],['../class_products_manager.html#a5ca545cd5c2c0db124846239b5662e51',1,'ProductsManager::cancel()'],['../class_vaccination_manager.html#ab08e5182079305555a250372cdcb14cd',1,'VaccinationManager::cancel()'],['../class_vets_manager.html#aa5e59fc2004576af7e63fe0c60cb4b55',1,'VetsManager::cancel()'],['../class_vet_visits_manager.html#ac9840d88b0339f4a099a0e22ad681418',1,'VetVisitsManager::cancel()']]],
+  ['checkwidth_1',['checkWidth',['../class_vpp_config_manager.html#ae57c042341bbf1a2056ed6177918a52f',1,'VppConfigManager']]],
+  ['clearall_2',['clearAll',['../class_input_form.html#adce7144847945809710b01f51b4af149',1,'InputForm']]],
+  ['cleardeleted_3',['cleardeleted',['../class_appointments_manager.html#a96c4436898310ec37d9e8adc29f6fb82',1,'AppointmentsManager::clearDeleted()'],['../class_buys_manager.html#a910e08563b441862672e6f1611d52d45',1,'BuysManager::clearDeleted()'],['../class_clients_manager.html#aeac790d72cc8e9fd43804567c6f09d24',1,'ClientsManager::clearDeleted()'],['../class_pets_manager.html#a7123310f5ab3a6089217b1012d3c2263',1,'PetsManager::clearDeleted()'],['../class_prod_category_manager.html#a11cf885a70e3a59f26526f63b7ecb89e',1,'ProdCategoryManager::clearDeleted()'],['../class_products_manager.html#a54b9751618ae6ece3c2509c367311ad0',1,'ProductsManager::clearDeleted()'],['../class_vaccination_manager.html#ad3e524c4c993171cc61499495acf9c8a',1,'VaccinationManager::clearDeleted()'],['../class_vets_manager.html#a9cb753767e87554ae6f7106f9a554c7b',1,'VetsManager::clearDeleted()'],['../class_vet_visits_manager.html#a804c01ae25b246f1f8729a369dac1f12',1,'VetVisitsManager::clearDeleted()']]],
+  ['clearexpired_4',['clearExpired',['../class_appointments_manager.html#a2b84bf3a2e5cc30d858a40c301c8b135',1,'AppointmentsManager']]],
+  ['client_5',['Client',['../class_client.html',1,'']]],
+  ['clients_6',['clients',['../class_sub_menus.html#ade1fe9774e4153a42bb19d4285b81483',1,'SubMenus']]],
+  ['clientsmanager_7',['ClientsManager',['../class_clients_manager.html',1,'']]],
+  ['cls_8',['cls',['../utils_8h.html#a865e0138cd9b03177f4a3deafb73cb2d',1,'utils']]],
+  ['configandsendnotif_9',['configAndSendNotif',['../class_vaccination_manager.html#a2d7f2c6fb444ef2568b40d36ba1a6802',1,'VaccinationManager']]],
+  ['coutcenter_10',['coutCenter',['../utils_8h.html#a5dde84bfce12b4783168559ad6ce8f1e',1,'utils']]],
+  ['createsendemail_11',['CreateSendEmail',['../class_vaccination_manager.html#a77f81625ce142e8fda809925c20d15ca',1,'VaccinationManager']]]
+];

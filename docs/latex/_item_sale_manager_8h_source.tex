@@ -1,0 +1,42 @@
+\doxysection{Item\+Sale\+Manager.\+h}
+\hypertarget{_item_sale_manager_8h_source}{}\label{_item_sale_manager_8h_source}\index{F:/devProjects/Facu/LabII/tp-\/integrador-\/grupo-\/10-\/lab2/include/ItemSaleManager.h@{F:/devProjects/Facu/LabII/tp-\/integrador-\/grupo-\/10-\/lab2/include/ItemSaleManager.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}ItemSale.h"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}VppConfigManager.h"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_vpp_file_8h}{VppFile.h}}"{}}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_item_sale_manager}{ItemSaleManager}}\ \{}
+\DoxyCodeLine{00008\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00009\ \ \ \ \ \textcolor{keyword}{const}\ std::string\ \_folderPath\ =\ \mbox{\hyperlink{class_vpp_config_manager}{VppConfigManager}}().\mbox{\hyperlink{class_vpp_config_manager_a96295baaca646005de9df583243a4d5c}{getDataPath}}();}
+\DoxyCodeLine{00010\ \ \ \ \ \textcolor{keyword}{const}\ std::string\ \_filePath\ =\ \_folderPath\ +\ \textcolor{stringliteral}{"{}ItemSales.vpp"{}};}
+\DoxyCodeLine{00011\ \ \ \ \ \mbox{\hyperlink{class_vpp_file}{VppFile<ItemSale>}}\ \_itemSaleFile\ =\ \mbox{\hyperlink{class_vpp_file}{VppFile<ItemSale>}}(\_filePath);}
+\DoxyCodeLine{00012\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \_itemSalesFields\ =\ 4;\ \ \textcolor{comment}{//\ total\ de\ datos\ de\ un\ regisro\ ItemSale}}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00024\ \ \ \ \ \mbox{\hyperlink{class_item_sale}{ItemSale}}\ loadForm();}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{comment}{//\ ItemSale\ editForm(int\ regPos);}}
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keywordtype}{bool}\ retryIfIdNotExists(\textcolor{keywordtype}{bool}\ exists);}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_item_sale_manager_aa09d0eef1807192dbebc066aedaed07b}{load}}();}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{keywordtype}{void}\ edit();}
+\DoxyCodeLine{00049\ \ \ \ \ }
+\DoxyCodeLine{00050\ \ \ \ \ \textcolor{comment}{//\ void\ show(bool\ showAndPause\ =\ true);}}
+\DoxyCodeLine{00051\ \ \ \ \ \textcolor{comment}{/*void\ clearDeleted();}}
+\DoxyCodeLine{00052\ \textcolor{comment}{\ \ \ \ void\ cancel();*/}}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ \ \ \ \ \textcolor{comment}{//\ Al\ ser\ una\ funcion\ estatica\ se\ puede\ usar\ sin\ necesaidad\ de\ instanciar\ un}}
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{comment}{//\ objeto\ de\ tipo\ "{}itemSalemanager"{},\ eso\ permite\ que\ se\ pueda\ pasar\ por}}
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{comment}{//\ parametro\ un\ puntero\ a\ esta\ funcion,\ lo\ que\ es\ necesario\ para\ la\ busqueda}}
+\DoxyCodeLine{00057\ \ \ \ \ \textcolor{comment}{//\ de\ registros\ con\ VppFile}}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00060\ \textcolor{comment}{\ \ \ \ static\ bool\ searchById(ItemSale\ reg,\ int\ nId);}}
+\DoxyCodeLine{00061\ \textcolor{comment}{\ \ \ \ bool\ idExists(int\ nId);*/}}
+\DoxyCodeLine{00062\ \};}
+
+\end{DoxyCode}

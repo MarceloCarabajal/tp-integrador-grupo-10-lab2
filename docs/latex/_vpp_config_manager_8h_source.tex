@@ -1,0 +1,55 @@
+\doxysection{Vpp\+Config\+Manager.\+h}
+\hypertarget{_vpp_config_manager_8h_source}{}\label{_vpp_config_manager_8h_source}\index{F:/devProjects/Facu/LabII/tp-\/integrador-\/grupo-\/10-\/lab2/include/VppConfigManager.h@{F:/devProjects/Facu/LabII/tp-\/integrador-\/grupo-\/10-\/lab2/include/VppConfigManager.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ VPPCONFIGMANAGER\_INCLUDED}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ VPPCONFIGMANAGER\_INCLUDED}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}VppConfig.h"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_vpp_file_8h}{VppFile.h}}"{}}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00017\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_vpp_config_manager}{VppConfigManager}}\ \{}
+\DoxyCodeLine{00018\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00019\ \ \ \ \ \mbox{\hyperlink{class_vpp_file}{VppFile<VppConfig>}}\ \_confFile\ =\ \mbox{\hyperlink{class_vpp_file}{VppFile<VppConfig>}}(\textcolor{stringliteral}{"{}VppConfig.vpp"{}});}
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{class_vpp_config}{VppConfig}}\ \_vppConfig;}
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keyword}{static}\ std::string\ \_veteName;}
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{bool}\ \_testMode;}
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keywordtype}{void}\ printTitle();}
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keywordtype}{void}\ checkText();}
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keywordtype}{void}\ restart();}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00039\ \ \ \ \ \mbox{\hyperlink{class_vpp_config_manager}{VppConfigManager}}();}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_vpp_config_manager_af8dd02451b5139bd36be5a040ed82a30}{init}}();}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00054\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_vpp_config_manager_ae57c042341bbf1a2056ed6177918a52f}{checkWidth}}();}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00061\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_vpp_config_manager_ac49ba58496cd80095f216b8c213241ad}{load}}();}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00068\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_vpp_config_manager_a47d891d8efdf56eae0f8efd32083eded}{edit}}();}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00075\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_vpp_config_manager_ac386de87ddf1bc0b944bafe21c69b00e}{toggleMode}}();}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00083\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_vpp_config_manager_a585eb033ec208285983be21aad6aa206}{isOk}};}
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00090\ \ \ \ \ std::string\ \mbox{\hyperlink{class_vpp_config_manager_a097b77002f5517eb0858b995e1767cf7}{getVeteName}}();}
+\DoxyCodeLine{00091\ }
+\DoxyCodeLine{00098\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_vpp_config_manager_a7c3fb301f7bf1ebeef8d379b426775b3}{getCredentials}}(\mbox{\hyperlink{class_vpp_config}{VppConfig}}\ \&vc);}
+\DoxyCodeLine{00099\ }
+\DoxyCodeLine{00107\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_vpp_config_manager_a197f74b39cab05b219bd76bf6a01029a}{setConfig}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_vpp_config}{VppConfig}}\ \&vc);}
+\DoxyCodeLine{00108\ }
+\DoxyCodeLine{00115\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_vpp_config_manager_a44dab964ef9d12c335bbe2b5c5c8ab6f}{updateConfig}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_vpp_config}{VppConfig}}\ \&vc);}
+\DoxyCodeLine{00116\ }
+\DoxyCodeLine{00122\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_vpp_config_manager_a16b7dd30a8502e80dcfa7c9c58eb36d4}{exists}}();}
+\DoxyCodeLine{00123\ }
+\DoxyCodeLine{00130\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_vpp_config_manager_a61acf27a1a674641cfba2bf1725be4d2}{isTesting}}();}
+\DoxyCodeLine{00131\ }
+\DoxyCodeLine{00137\ \ \ \ \ \textcolor{keyword}{static}\ std::string\ \mbox{\hyperlink{class_vpp_config_manager_a96295baaca646005de9df583243a4d5c}{getDataPath}}();}
+\DoxyCodeLine{00138\ }
+\DoxyCodeLine{00139\ \ \ \ \ \textcolor{comment}{//\ posible\ idea:\ encriptar\ los\ datos\ de\ vppconfig.vpp}}
+\DoxyCodeLine{00140\ \ \ \ \ \textcolor{comment}{//\ bool\ getCredentials(std::string\ passkey,\ VppConfig\ \&vc);}}
+\DoxyCodeLine{00141\ \};}
+\DoxyCodeLine{00142\ }
+\DoxyCodeLine{00143\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ VPPCONFIGMANAGER\_INCLUDED\ */}\textcolor{preprocessor}{}}
+
+\end{DoxyCode}

@@ -1,0 +1,49 @@
+\doxysection{Buy.\+h}
+\hypertarget{_buy_8h_source}{}\label{_buy_8h_source}\index{F:/devProjects/Facu/LabII/tp-\/integrador-\/grupo-\/10-\/lab2/include/Buy.h@{F:/devProjects/Facu/LabII/tp-\/integrador-\/grupo-\/10-\/lab2/include/Buy.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}Date.h"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}TimeCls.h"{}}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_buy}{Buy}}\ \{}
+\DoxyCodeLine{00008\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00009\ \ \ \ \ \textcolor{keywordtype}{int}\ \_buyId,\ \_productId,\ \_quantity,\ \_transactionId;}
+\DoxyCodeLine{00010\ \ \ \ \ \textcolor{keywordtype}{float}\ \_unitPrice;}
+\DoxyCodeLine{00011\ \ \ \ \ \textcolor{keywordtype}{int}\ \_paymentMethod;}
+\DoxyCodeLine{00012\ \ \ \ \ \mbox{\hyperlink{class_date}{Date}}\ \_buyDate;}
+\DoxyCodeLine{00013\ \ \ \ \ \textcolor{keywordtype}{bool}\ \_status;}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \ \ \ \ \textcolor{comment}{//\ TODO:\ Consideramos\ ingresar\ una\ compra\ por\ cada\ transaccion,\ es\ decir\ un}}
+\DoxyCodeLine{00016\ \ \ \ \ \textcolor{comment}{//\ producto\ con\ su\ cantidad.\ Por\ eso\ no\ tenemos\ ItemBuy\ como\ en\ Sale\ */}}
+\DoxyCodeLine{00017\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00018\ \ \ \ \ \mbox{\hyperlink{class_buy}{Buy}}();}
+\DoxyCodeLine{00019\ \ \ \ \ \mbox{\hyperlink{class_buy}{Buy}}(\ \textcolor{keywordtype}{int}\ buyid,\ \textcolor{keywordtype}{int}\ productid,\ \textcolor{keywordtype}{int}\ quantityid,\ \textcolor{keywordtype}{int}\ transaccionid,}
+\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ unitPrice,\ \textcolor{keywordtype}{int}\ paymentmethod,\ \mbox{\hyperlink{class_date}{Date}}\ buydate,}
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ status);}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keywordtype}{void}\ setBuyId(\textcolor{keywordtype}{int}\ \textcolor{keywordtype}{id});}
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keywordtype}{void}\ setunitprice(\textcolor{keywordtype}{float}\ importe);}
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keywordtype}{void}\ setpaymentMethod(\textcolor{keywordtype}{int}\ method);}
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keywordtype}{void}\ setDate(\mbox{\hyperlink{class_date}{Date}}\ date);}
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keywordtype}{void}\ setProductId(\textcolor{keywordtype}{int}\ ProductId);}
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keywordtype}{void}\ setQuantity(\textcolor{keywordtype}{int}\ qty);}
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keywordtype}{void}\ setTransactionId(\textcolor{keywordtype}{int}\ \textcolor{keywordtype}{id});}
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keywordtype}{void}\ setStatus(\textcolor{keywordtype}{bool}\ status);}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keywordtype}{int}\ getBuyId();}
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keywordtype}{float}\ getunitprice();}
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keywordtype}{int}\ getPaymentMethod();}
+\DoxyCodeLine{00035\ \ \ \ \ \mbox{\hyperlink{class_date}{Date}}\ getbuyDate();}
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keywordtype}{int}\ getProductId();}
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{keywordtype}{int}\ getQuantity();}
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keywordtype}{int}\ getTransactionId();}
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keywordtype}{bool}\ getStatus();}
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keywordtype}{void}\ load();}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keywordtype}{void}\ toVecString(std::string\ vStr[7]);}
+\DoxyCodeLine{00043\ \};}
+
+\end{DoxyCode}

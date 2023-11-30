@@ -1,0 +1,65 @@
+\doxysection{Vaccination\+Manager.\+h}
+\hypertarget{_vaccination_manager_8h_source}{}\label{_vaccination_manager_8h_source}\index{F:/devProjects/Facu/LabII/tp-\/integrador-\/grupo-\/10-\/lab2/include/VaccinationManager.h@{F:/devProjects/Facu/LabII/tp-\/integrador-\/grupo-\/10-\/lab2/include/VaccinationManager.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}Client.h"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}Vaccination.h"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}VppConfigManager.h"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_vpp_file_8h}{VppFile.h}}"{}}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00017\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_vaccination_manager}{VaccinationManager}}\ \{}
+\DoxyCodeLine{00018\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{keyword}{const}\ std::string\ \_folderPath\ =}
+\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_vpp_config_manager}{VppConfigManager}}().\mbox{\hyperlink{class_vpp_config_manager_a96295baaca646005de9df583243a4d5c}{getDataPath}}();\ }
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keyword}{const}\ std::string\ \_filePath\ =}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ \_folderPath\ +}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Vaccinations.vpp"{}};\ }
+\DoxyCodeLine{00024\ \ \ \ \ \mbox{\hyperlink{class_vpp_file}{VppFile<Vaccination>}}\ \_vaccinationFile\ =}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_vpp_file}{VppFile<Vaccination>}}(\_filePath);\ }
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \_vaccinationFields\ =}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ 6;\ }
+\DoxyCodeLine{00033\ \ \ \ \ \mbox{\hyperlink{class_vaccination}{Vaccination}}\ loadForm();}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00040\ \ \ \ \ \mbox{\hyperlink{class_vaccination}{Vaccination}}\ editForm(\textcolor{keywordtype}{int}\ regPos);}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{keywordtype}{bool}\ retryIfIdExists(\textcolor{keywordtype}{bool}\ exists);}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{keywordtype}{bool}\ retryIfIdNotExists(\textcolor{keywordtype}{bool}\ exists);}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00064\ \ \ \ \ \textcolor{keywordtype}{bool}\ validVaccRevaccDate(\mbox{\hyperlink{class_date}{Date}}\ dateV,\ \mbox{\hyperlink{class_date}{Date}}\ dateR);}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00071\ \ \ \ \ \textcolor{keywordtype}{bool}\ validAplicDate(\mbox{\hyperlink{class_date}{Date}}\ date);}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00077\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_vaccination_manager_aed7427f5ea19ea68321e829cbf26419b}{load}}();}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00082\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_vaccination_manager_a619c50031742c75e9cac308ed9c03adf}{edit}}();}
+\DoxyCodeLine{00083\ }
+\DoxyCodeLine{00088\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_vaccination_manager_abc557a3ab232ebd0bd224151b6878131}{show}}(\textcolor{keywordtype}{bool}\ showAndPause\ =\ \textcolor{keyword}{true});}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00095\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_vaccination_manager_abc557a3ab232ebd0bd224151b6878131}{show}}(\mbox{\hyperlink{class_vaccination}{Vaccination}}*\ regs,\ \textcolor{keywordtype}{int}\ totalRegs);}
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00100\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_vaccination_manager_a2d7f2c6fb444ef2568b40d36ba1a6802}{configAndSendNotif}}();}
+\DoxyCodeLine{00101\ }
+\DoxyCodeLine{00112\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_vaccination_manager_a9044f294e7c863b9730ce5c2021955a0}{notifyClients}}(\mbox{\hyperlink{class_vaccination}{Vaccination}}*\ pending,\ \textcolor{keywordtype}{int}\ total,\ std::string\ veteEmail);}
+\DoxyCodeLine{00113\ }
+\DoxyCodeLine{00121\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_vaccination_manager_a10e514818782262e5464c2a3c8fba0c5}{updateNotifState}}(\textcolor{keywordtype}{int}\ nId,\ \textcolor{keywordtype}{bool}\ state);}
+\DoxyCodeLine{00122\ }
+\DoxyCodeLine{00135\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_vaccination_manager_a77f81625ce142e8fda809925c20d15ca}{CreateSendEmail}}(\mbox{\hyperlink{class_client}{Client}}\ client,\ std::string\ from,\ \mbox{\hyperlink{class_date}{Date}}\ revacc);}
+\DoxyCodeLine{00136\ }
+\DoxyCodeLine{00140\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_vaccination_manager_ad3e524c4c993171cc61499495acf9c8a}{clearDeleted}}();}
+\DoxyCodeLine{00141\ }
+\DoxyCodeLine{00145\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_vaccination_manager_ab08e5182079305555a250372cdcb14cd}{cancel}}();}
+\DoxyCodeLine{00146\ }
+\DoxyCodeLine{00152\ \ \ \ \ \mbox{\hyperlink{class_vaccination}{Vaccination}}*\ \mbox{\hyperlink{class_vaccination_manager_abfcdb6eb93b86551a87b18151f78913c}{getPendingToNotif}}(\textcolor{keywordtype}{int}\ remainingDays);}
+\DoxyCodeLine{00153\ }
+\DoxyCodeLine{00161\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_vaccination_manager_acbc8cdadd1c807bd98590fbc0a0bd68f}{pendingCount}}(\textcolor{keywordtype}{int}\ remainingDays\ =\ 15,\ \textcolor{keywordtype}{bool}\ onlyUnnotified\ =\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00162\ }
+\DoxyCodeLine{00169\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_vaccination_manager_afaea0ecc3ab26fecfc22151c3dc0766a}{searchById}}(\mbox{\hyperlink{class_vaccination}{Vaccination}}\ reg,\ \textcolor{keywordtype}{int}\ nId);}
+\DoxyCodeLine{00170\ }
+\DoxyCodeLine{00176\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_vaccination_manager_a58d6f7e088c0f247a952e2ba5561bf72}{idExists}}(\textcolor{keywordtype}{int}\ nId);}
+\DoxyCodeLine{00177\ \};}
+
+\end{DoxyCode}

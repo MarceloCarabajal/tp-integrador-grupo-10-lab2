@@ -1,0 +1,45 @@
+\doxysection{Vets\+Manager.\+h}
+\hypertarget{_vets_manager_8h_source}{}\label{_vets_manager_8h_source}\index{F:/devProjects/Facu/LabII/tp-\/integrador-\/grupo-\/10-\/lab2/include/VetsManager.h@{F:/devProjects/Facu/LabII/tp-\/integrador-\/grupo-\/10-\/lab2/include/VetsManager.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}Vet.h"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}VppConfigManager.h"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_vpp_file_8h}{VppFile.h}}"{}}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00017\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_vets_manager}{VetsManager}}\ \{}
+\DoxyCodeLine{00018\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{keyword}{const}\ std::string\ \_folderPath\ =\ \mbox{\hyperlink{class_vpp_config_manager}{VppConfigManager}}().\mbox{\hyperlink{class_vpp_config_manager_a96295baaca646005de9df583243a4d5c}{getDataPath}}();}
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{keyword}{const}\ std::string\ \_filePath\ =\ \_folderPath\ +\ \textcolor{stringliteral}{"{}Vets.vpp"{}};}
+\DoxyCodeLine{00021\ \ \ \ \ \mbox{\hyperlink{class_vpp_file}{VppFile<Vet>}}\ \_vetsFile\ =\ \mbox{\hyperlink{class_vpp_file}{VppFile<Vet>}}(\_filePath);}
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \_vetsFields\ =\ 5;\ \ \textcolor{comment}{//\ total\ de\ datos\ de\ un\ registro\ Vet}}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00036\ \ \ \ \ \mbox{\hyperlink{class_vet}{Vet}}\ loadForm();}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00050\ \ \ \ \ \mbox{\hyperlink{class_vet}{Vet}}\ editForm(\textcolor{keywordtype}{int}\ regPos);}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00064\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_vets_manager_a2c02121ae66846495c7f723e883257e1}{load}}();}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00074\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_vets_manager_ad7a1dbddcf9b4124325d1042cccfc59a}{edit}}();}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00085\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_vets_manager_a5ee47b6956919cb5855c5cbcd3cbc67d}{show}}(\textcolor{keywordtype}{bool}\ showAndPause\ =\ \textcolor{keyword}{true});}
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00095\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_vets_manager_a9cb753767e87554ae6f7106f9a554c7b}{clearDeleted}}();}
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00105\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_vets_manager_aa5e59fc2004576af7e63fe0c60cb4b55}{cancel}}();}
+\DoxyCodeLine{00106\ }
+\DoxyCodeLine{00107\ \ \ \ \ \textcolor{comment}{//\ Al\ ser\ una\ funcion\ estatica\ se\ puede\ usar\ sin\ necesaidad\ de\ instanciar\ un}}
+\DoxyCodeLine{00108\ \ \ \ \ \textcolor{comment}{//\ objeto\ de\ tipo\ "{}VetsManager"{},\ eso\ permite\ que\ se\ pueda\ pasar\ por}}
+\DoxyCodeLine{00109\ \ \ \ \ \textcolor{comment}{//\ parametro\ un\ puntero\ a\ esta\ funcion,\ lo\ que\ es\ necesario\ para\ la\ busqueda}}
+\DoxyCodeLine{00110\ \ \ \ \ \textcolor{comment}{//\ de\ registros\ con\ VppFile}}
+\DoxyCodeLine{00111\ }
+\DoxyCodeLine{00122\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_vets_manager_af54225a8016c9ecebe505ab3fb29a548}{searchById}}(\mbox{\hyperlink{class_vet}{Vet}}\ reg,\ \textcolor{keywordtype}{int}\ nId);}
+\DoxyCodeLine{00123\ }
+\DoxyCodeLine{00133\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_vets_manager_af756c1bf1d5616f5777cbb1bb8754681}{idExists}}(\textcolor{keywordtype}{int}\ nId);}
+\DoxyCodeLine{00134\ }
+\DoxyCodeLine{00144\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_vets_manager_ad488b328ac0385e2aa32da780329e5c9}{isActiveId}}(\textcolor{keywordtype}{int}\ nId);}
+\DoxyCodeLine{00145\ \};}
+
+\end{DoxyCode}

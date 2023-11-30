@@ -1,0 +1,47 @@
+\doxysection{Vet\+Visits.\+h}
+\hypertarget{_vet_visits_8h_source}{}\label{_vet_visits_8h_source}\index{F:/devProjects/Facu/LabII/tp-\/integrador-\/grupo-\/10-\/lab2/include/VetVisits.h@{F:/devProjects/Facu/LabII/tp-\/integrador-\/grupo-\/10-\/lab2/include/VetVisits.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}Date.h"{}}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_vet_visits}{VetVisits}}\ \{}
+\DoxyCodeLine{00007\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00008\ \ \ \ \ \textcolor{keywordtype}{int}\ \_visitId,\ \_vetId,\ \_clientId,\ \_petId,\ \_saleId;}
+\DoxyCodeLine{00009\ \ \ \ \ \mbox{\hyperlink{class_date}{Date}}\ \_date;}
+\DoxyCodeLine{00010\ \ \ \ \ \textcolor{keywordtype}{char}\ \_reason[30],\ \_diagnosis[240];}
+\DoxyCodeLine{00011\ \ \ \ \ \textcolor{keywordtype}{bool}\ \_status;}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00014\ \ \ \ \ \mbox{\hyperlink{class_vet_visits}{VetVisits}}();}
+\DoxyCodeLine{00015\ \ \ \ \ \mbox{\hyperlink{class_vet_visits}{VetVisits}}(\textcolor{keywordtype}{int}\ visitid,\ \textcolor{keywordtype}{int}\ vetid,\ \textcolor{keywordtype}{int}\ clientid,\ \textcolor{keywordtype}{int}\ petid,\ \textcolor{keywordtype}{int}\ saleid,}
+\DoxyCodeLine{00016\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_date}{Date}}\ date,\ std::string\ reason,\ std::string\ diagnosis,}
+\DoxyCodeLine{00017\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ status);}
+\DoxyCodeLine{00018\ \ \ \ \ \textcolor{keywordtype}{void}\ setVisitId(\textcolor{keywordtype}{int}\ \textcolor{keywordtype}{id});}
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{keywordtype}{void}\ setVetId(\textcolor{keywordtype}{int}\ \textcolor{keywordtype}{id});}
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{keywordtype}{void}\ setClientId(\textcolor{keywordtype}{int}\ \textcolor{keywordtype}{id});}
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keywordtype}{void}\ setPetId(\textcolor{keywordtype}{int}\ \textcolor{keywordtype}{id});}
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keywordtype}{void}\ setSaleId(\textcolor{keywordtype}{int}\ \textcolor{keywordtype}{id});}
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keywordtype}{void}\ setDate(\mbox{\hyperlink{class_date}{Date}}\ dat);}
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keywordtype}{void}\ setReason(std::string\ reason);}
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keywordtype}{void}\ setDiagnosis(std::string\ diagnosis);}
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keywordtype}{void}\ setStatus(\textcolor{keywordtype}{bool}\ status);}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keywordtype}{int}\ getVisitId();}
+\DoxyCodeLine{00029\ \ \ \ \ \mbox{\hyperlink{class_date}{Date}}\ getDate();}
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ getReason();}
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ getDiagnosis();}
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keywordtype}{int}\ getVetId();}
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keywordtype}{int}\ getClientId();}
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keywordtype}{int}\ getPetId();}
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keywordtype}{int}\ getSaleId();}
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keywordtype}{bool}\ getStatus();}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keywordtype}{bool}\ isValidRelation();}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keywordtype}{void}\ toVecString(std::string\ vStr[8]);}
+\DoxyCodeLine{00041\ \};}
+
+\end{DoxyCode}

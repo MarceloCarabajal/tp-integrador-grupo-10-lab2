@@ -1,0 +1,43 @@
+\doxysection{Prod\+Category\+Manager.\+h}
+\hypertarget{_prod_category_manager_8h_source}{}\label{_prod_category_manager_8h_source}\index{F:/devProjects/Facu/LabII/tp-\/integrador-\/grupo-\/10-\/lab2/include/ProdCategoryManager.h@{F:/devProjects/Facu/LabII/tp-\/integrador-\/grupo-\/10-\/lab2/include/ProdCategoryManager.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#include\ "{}ProductCategory.h"{}}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}VppConfigManager.h"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_vpp_file_8h}{VppFile.h}}"{}}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_prod_category_manager}{ProdCategoryManager}}\ \{}
+\DoxyCodeLine{00007\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00008\ \ \ \ \ \textcolor{keyword}{const}\ std::string\ \_folderPath\ =\ \mbox{\hyperlink{class_vpp_config_manager}{VppConfigManager}}().\mbox{\hyperlink{class_vpp_config_manager_a96295baaca646005de9df583243a4d5c}{getDataPath}}();}
+\DoxyCodeLine{00009\ \ \ \ \ \textcolor{keyword}{const}\ std::string\ \_filePath\ =\ \_folderPath\ +\ \textcolor{stringliteral}{"{}ProductCategories.vpp"{}};}
+\DoxyCodeLine{00010\ \ \ \ \ \mbox{\hyperlink{class_vpp_file}{VppFile<ProductCategory>}}\ \_prodcategoryFile\ =}
+\DoxyCodeLine{00011\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_vpp_file}{VppFile<ProductCategory>}}(\_filePath);}
+\DoxyCodeLine{00012\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \_productscategoryFields\ =}
+\DoxyCodeLine{00013\ \ \ \ \ \ \ \ \ 2;\ \ \textcolor{comment}{//\ total\ de\ datos\ de\ un\ registro\ Income}}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00025\ \ \ \ \ \mbox{\hyperlink{class_product_category}{ProductCategory}}\ loadForm();}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00039\ \ \ \ \ \mbox{\hyperlink{class_product_category}{ProductCategory}}\ editForm(\textcolor{keywordtype}{int}\ regPos);}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00050\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_prod_category_manager_ab353d05e790e912be4ca74ec84c51708}{load}}();}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_prod_category_manager_ad34c4bc1e1d1e459f7fdb9133a716414}{edit}}();}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00071\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_prod_category_manager_a1feb2f7402ba61b0a6abb2b00b85eeb5}{show}}(\textcolor{keywordtype}{bool}\ showAndPause\ =\ \textcolor{keyword}{true});}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00082\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_prod_category_manager_a11cf885a70e3a59f26526f63b7ecb89e}{clearDeleted}}();}
+\DoxyCodeLine{00083\ }
+\DoxyCodeLine{00091\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_prod_category_manager_a9cee507eb5244fc4c4b1bc154becefbd}{cancel}}();}
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00093\ \ \ \ \ \textcolor{comment}{//\ Al\ ser\ una\ funcion\ estatica\ se\ puede\ usar\ sin\ necesaidad\ de\ instanciar\ un}}
+\DoxyCodeLine{00094\ \ \ \ \ \textcolor{comment}{//\ objeto\ de\ tipo\ "{}ProdCategoryManager"{},\ eso\ permite\ que\ se\ pueda\ pasar\ por}}
+\DoxyCodeLine{00095\ \ \ \ \ \textcolor{comment}{//\ parametro\ un\ puntero\ a\ esta\ funcion,\ lo\ que\ es\ necesario\ para\ la\ busqueda}}
+\DoxyCodeLine{00096\ \ \ \ \ \textcolor{comment}{//\ de\ registros\ con\ VppFile}}
+\DoxyCodeLine{00104\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_prod_category_manager_accb5062944b8360738021479ce766f33}{searchById}}(\mbox{\hyperlink{class_product_category}{ProductCategory}}\ reg,\ \textcolor{keywordtype}{int}\ nId);}
+\DoxyCodeLine{00105\ }
+\DoxyCodeLine{00113\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_prod_category_manager_abdc3216fd3c210fe2aab877812b76f9d}{idExists}}(\textcolor{keywordtype}{int}\ nId);}
+\DoxyCodeLine{00114\ \};}
+
+\end{DoxyCode}

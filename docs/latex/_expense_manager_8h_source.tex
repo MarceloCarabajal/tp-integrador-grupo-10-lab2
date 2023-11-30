@@ -1,0 +1,39 @@
+\doxysection{Expense\+Manager.\+h}
+\hypertarget{_expense_manager_8h_source}{}\label{_expense_manager_8h_source}\index{F:/devProjects/Facu/LabII/tp-\/integrador-\/grupo-\/10-\/lab2/include/ExpenseManager.h@{F:/devProjects/Facu/LabII/tp-\/integrador-\/grupo-\/10-\/lab2/include/ExpenseManager.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}Expense.h"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}VppConfigManager.h"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_vpp_file_8h}{VppFile.h}}"{}}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_expense_manager}{ExpenseManager}}\ \{}
+\DoxyCodeLine{00008\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00009\ \ \ \ \ \textcolor{keyword}{const}\ std::string\ \_folderPath\ =\ \mbox{\hyperlink{class_vpp_config_manager}{VppConfigManager}}().\mbox{\hyperlink{class_vpp_config_manager_a96295baaca646005de9df583243a4d5c}{getDataPath}}();}
+\DoxyCodeLine{00010\ \ \ \ \ \textcolor{keyword}{const}\ std::string\ \_filePath\ =\ \_folderPath\ +\ \textcolor{stringliteral}{"{}Expenses.vpp"{}};}
+\DoxyCodeLine{00011\ \ \ \ \ \mbox{\hyperlink{class_vpp_file}{VppFile<Expense>}}\ \_expenseFile\ =\ \mbox{\hyperlink{class_vpp_file}{VppFile<Expense>}}(\_filePath);}
+\DoxyCodeLine{00012\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \_expenseFields\ =\ 7;\ \ \textcolor{comment}{//\ total\ de\ datos\ de\ un\ registro\ Expense}}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00022\ \ \ \ \ \mbox{\hyperlink{class_expense}{Expense}}\ loadForm();}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00034\ \ \ \ \ \mbox{\hyperlink{class_expense}{Expense}}\ editForm(\textcolor{keywordtype}{int}\ regPos);}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_expense_manager_a7a7bccdaf207310b10315abeed4aa1b5}{load}}();}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_expense_manager_a24cd325cbe395e50bd77b66a90bd26fe}{edit}}();}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00064\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_expense_manager_a88865d700840cb75ad067485757b6cb9}{show}}(\textcolor{keywordtype}{bool}\ showAndPause\ =\ \textcolor{keyword}{true});}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00066\ \ \ \ \ \textcolor{comment}{//\ Al\ ser\ una\ funcion\ estatica\ se\ puede\ usar\ sin\ necesaidad\ de\ instanciar\ un}}
+\DoxyCodeLine{00067\ \ \ \ \ \textcolor{comment}{//\ objeto\ de\ tipo\ "{}ExpenseManager"{},\ eso\ permite\ que\ se\ pueda\ pasar\ por}}
+\DoxyCodeLine{00068\ \ \ \ \ \textcolor{comment}{//\ parametro\ un\ puntero\ a\ esta\ funcion,\ lo\ que\ es\ necesario\ para\ la\ busqueda}}
+\DoxyCodeLine{00069\ \ \ \ \ \textcolor{comment}{//\ de\ registros\ con\ VppFile}}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00080\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_expense_manager_a06281b0c468544a0aea248e9440f463c}{searchById}}(\mbox{\hyperlink{class_expense}{Expense}}\ reg,\ \textcolor{keywordtype}{int}\ nId);}
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00089\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_expense_manager_a078841ba0ffd6570999261261e737fb6}{idExists}}(\textcolor{keywordtype}{int}\ nId);}
+\DoxyCodeLine{00090\ \};}
+
+\end{DoxyCode}

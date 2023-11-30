@@ -1,0 +1,53 @@
+\doxysection{Appointment.\+h}
+\hypertarget{_appointment_8h_source}{}\label{_appointment_8h_source}\index{F:/devProjects/Facu/LabII/tp-\/integrador-\/grupo-\/10-\/lab2/include/Appointment.h@{F:/devProjects/Facu/LabII/tp-\/integrador-\/grupo-\/10-\/lab2/include/Appointment.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}Date.h"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}TimeCls.h"{}}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_appointment}{Appointment}}\ \{}
+\DoxyCodeLine{00008\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00009\ \ \ \ \ \textcolor{keywordtype}{int}\ \_appId,\ \_petId;}
+\DoxyCodeLine{00010\ \ \ \ \ \textcolor{comment}{//\ int\ \_urgencyCat;}}
+\DoxyCodeLine{00011\ \ \ \ \ \mbox{\hyperlink{class_date}{Date}}\ \_dateApp;}
+\DoxyCodeLine{00012\ \ \ \ \ \mbox{\hyperlink{class_time}{Time}}\ \_timeApp;}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \ \ \ \ \textcolor{keywordtype}{char}\ \_reason[30];}
+\DoxyCodeLine{00015\ \ \ \ \ \textcolor{keywordtype}{bool}\ \_attended;}
+\DoxyCodeLine{00016\ \ \ \ \ \textcolor{keywordtype}{int}\ \_clientId;}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \ \ \ \ \textcolor{keywordtype}{bool}\ \_status;}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00021\ \ \ \ \ \mbox{\hyperlink{class_appointment}{Appointment}}();}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \ \ \ \ \mbox{\hyperlink{class_appointment}{Appointment}}(\textcolor{keywordtype}{int}\ appId,\ \textcolor{keywordtype}{int}\ petID,\ \mbox{\hyperlink{class_date}{Date}}\ dateApp,\ \mbox{\hyperlink{class_time}{Time}}\ timeApp,}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::string\ reason,\ \textcolor{keywordtype}{bool}\ attended,\ \textcolor{keywordtype}{int}\ clientId,\ \textcolor{keywordtype}{bool}\ status);}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_appointment_acffc845da19258d78c247b6ab086177e}{setAppId}}(\textcolor{keywordtype}{int}\ \textcolor{keywordtype}{id});}
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_appointment_a870d8d1b87e2fafbecc22084ba444336}{setPetId}}(\textcolor{keywordtype}{int}\ idpet);}
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keywordtype}{void}\ setDate(\mbox{\hyperlink{class_date}{Date}}\ date);}
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keywordtype}{void}\ setTime(\mbox{\hyperlink{class_time}{Time}}\ time);}
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{comment}{//\ \ void\ setUrgencyCat(int\ cat);}}
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keywordtype}{void}\ setReason(std::string\ reason);}
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keywordtype}{void}\ setAttended(\textcolor{keywordtype}{bool}\ attended);}
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keywordtype}{void}\ setClientId(\textcolor{keywordtype}{int}\ idc);}
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keywordtype}{void}\ setStatus(\textcolor{keywordtype}{bool}\ status);}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keywordtype}{int}\ getAppId();}
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{comment}{//\ int\ getUrgencyCat();}}
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keywordtype}{int}\ getpetId();}
+\DoxyCodeLine{00039\ \ \ \ \ \mbox{\hyperlink{class_date}{Date}}\ getDate();}
+\DoxyCodeLine{00040\ \ \ \ \ \mbox{\hyperlink{class_time}{Time}}\ getTime();}
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ getReason();}
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keywordtype}{bool}\ getAttended();}
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{keywordtype}{int}\ getClientId();}
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{keywordtype}{bool}\ getStatus();}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keywordtype}{void}\ toVecString(std::string\ vStr[7]);}
+\DoxyCodeLine{00047\ \};}
+
+\end{DoxyCode}

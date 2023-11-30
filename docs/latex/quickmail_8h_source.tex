@@ -1,0 +1,127 @@
+\doxysection{quickmail.\+h}
+\hypertarget{quickmail_8h_source}{}\label{quickmail_8h_source}\index{F:/devProjects/Facu/LabII/tp-\/integrador-\/grupo-\/10-\/lab2/include/quickmail.h@{F:/devProjects/Facu/LabII/tp-\/integrador-\/grupo-\/10-\/lab2/include/quickmail.h}}
+\mbox{\hyperlink{quickmail_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00002\ \textcolor{comment}{\ \ \ \ This\ file\ is\ part\ of\ libquickmail.}}
+\DoxyCodeLine{00003\ \textcolor{comment}{}}
+\DoxyCodeLine{00004\ \textcolor{comment}{\ \ \ \ libquickmail\ is\ free\ software:\ you\ can\ redistribute\ it\ and/or\ modify}}
+\DoxyCodeLine{00005\ \textcolor{comment}{\ \ \ \ it\ under\ the\ terms\ of\ the\ GNU\ General\ Public\ License\ as\ published\ by}}
+\DoxyCodeLine{00006\ \textcolor{comment}{\ \ \ \ the\ Free\ Software\ Foundation,\ either\ version\ 3\ of\ the\ License,\ or}}
+\DoxyCodeLine{00007\ \textcolor{comment}{\ \ \ \ (at\ your\ option)\ any\ later\ version.}}
+\DoxyCodeLine{00008\ \textcolor{comment}{}}
+\DoxyCodeLine{00009\ \textcolor{comment}{\ \ \ \ libquickmail\ is\ distributed\ in\ the\ hope\ that\ it\ will\ be\ useful,}}
+\DoxyCodeLine{00010\ \textcolor{comment}{\ \ \ \ but\ WITHOUT\ ANY\ WARRANTY;\ without\ even\ the\ implied\ warranty\ of}}
+\DoxyCodeLine{00011\ \textcolor{comment}{\ \ \ \ MERCHANTABILITY\ or\ FITNESS\ FOR\ A\ PARTICULAR\ PURPOSE.\ \ See\ the}}
+\DoxyCodeLine{00012\ \textcolor{comment}{\ \ \ \ GNU\ General\ Public\ License\ for\ more\ details.}}
+\DoxyCodeLine{00013\ \textcolor{comment}{}}
+\DoxyCodeLine{00014\ \textcolor{comment}{\ \ \ \ You\ should\ have\ received\ a\ copy\ of\ the\ GNU\ General\ Public\ License}}
+\DoxyCodeLine{00015\ \textcolor{comment}{\ \ \ \ along\ with\ libquickmail.\ \ If\ not,\ see\ <http://www.gnu.org/licenses/>.}}
+\DoxyCodeLine{00016\ \textcolor{comment}{*/}}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#ifndef\ \_\_INCLUDED\_QUICKMAIL\_H}}
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#define\ \_\_INCLUDED\_QUICKMAIL\_H}}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \textcolor{preprocessor}{\#include\ <stdio.h>}}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00031\ \textcolor{preprocessor}{\#ifdef\ \_WIN32}}
+\DoxyCodeLine{00032\ \textcolor{preprocessor}{\#if\ defined(BUILD\_QUICKMAIL\_DLL)}}
+\DoxyCodeLine{00033\ \textcolor{preprocessor}{\#define\ DLL\_EXPORT\_LIBQUICKMAIL\ \_\_declspec(dllexport)}}
+\DoxyCodeLine{00034\ \textcolor{preprocessor}{\#elif\ !defined(STATIC)\ \&\&\ !defined(BUILD\_QUICKMAIL\_STATIC)}}
+\DoxyCodeLine{00035\ \textcolor{preprocessor}{\#define\ DLL\_EXPORT\_LIBQUICKMAIL\ \_\_declspec(dllimport)}}
+\DoxyCodeLine{00036\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00037\ \textcolor{preprocessor}{\#define\ DLL\_EXPORT\_LIBQUICKMAIL}}
+\DoxyCodeLine{00038\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00039\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00040\ \textcolor{preprocessor}{\#define\ DLL\_EXPORT\_LIBQUICKMAIL}}
+\DoxyCodeLine{00041\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00044\ \textcolor{preprocessor}{\#ifdef\ \_\_cplusplus}}
+\DoxyCodeLine{00045\ \textcolor{keyword}{extern}\ \textcolor{stringliteral}{"{}C"{}}\ \{}
+\DoxyCodeLine{00046\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00049\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }email\_info\_struct*\ \mbox{\hyperlink{quickmail_8h_a41c19143482833a54485856d0e9bcadf}{quickmail}};}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00059\ \textcolor{keyword}{typedef}\ \textcolor{keywordtype}{void}*\ (*quickmail\_attachment\_open\_fn)(\textcolor{keywordtype}{void}*\ filedata);}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00069\ \textcolor{keyword}{typedef}\ size\_t\ (*\mbox{\hyperlink{quickmail_8h_a816085272d53e506aa686702a8d375b9}{quickmail\_attachment\_read\_fn}})(\textcolor{keywordtype}{void}*\ handle,\ \textcolor{keywordtype}{void}*\ buf,\ \textcolor{keywordtype}{size\_t}\ len);}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00076\ \textcolor{keyword}{typedef}\ void\ (*\mbox{\hyperlink{quickmail_8h_a03e10c7355bd36472cb23002e97514b7}{quickmail\_attachment\_close\_fn}})(\textcolor{keywordtype}{void}*\ handle);}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00083\ \textcolor{keyword}{typedef}\ void\ (*\mbox{\hyperlink{quickmail_8h_a8ebc865473658c7645c32e2f47b71dd4}{quickmail\_attachment\_free\_filedata\_fn}})(\textcolor{keywordtype}{void}*\ filedata);}
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00096\ \textcolor{keyword}{typedef}\ void\ (*\mbox{\hyperlink{quickmail_8h_aa2a18d17fda8e25f471298a2bd5563c9}{quickmail\_list\_attachment\_callback\_fn}})(\mbox{\hyperlink{quickmail_8h_a41c19143482833a54485856d0e9bcadf}{quickmail}}\ mailobj,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ filename,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ mimetype,\ \mbox{\hyperlink{quickmail_8h_a6b9047a5a5c99ef15a13becde0bc6da1}{quickmail\_attachment\_open\_fn}}\ email\_info\_attachment\_open,\ \mbox{\hyperlink{quickmail_8h_a816085272d53e506aa686702a8d375b9}{quickmail\_attachment\_read\_fn}}\ email\_info\_attachment\_read,\ \mbox{\hyperlink{quickmail_8h_a03e10c7355bd36472cb23002e97514b7}{quickmail\_attachment\_close\_fn}}\ email\_info\_attachment\_close,\ \textcolor{keywordtype}{void}*\ callbackdata);}
+\DoxyCodeLine{00097\ }
+\DoxyCodeLine{00098\ }
+\DoxyCodeLine{00099\ }
+\DoxyCodeLine{00103\ DLL\_EXPORT\_LIBQUICKMAIL\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ \mbox{\hyperlink{quickmail_8h_a45086bf23e4e60905745ae1506195f70}{quickmail\_get\_version}}\ ();}
+\DoxyCodeLine{00104\ }
+\DoxyCodeLine{00108\ DLL\_EXPORT\_LIBQUICKMAIL\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{quickmail_8h_aa6d56a7c99f44f716dd548b165b4e52b}{quickmail\_initialize}}\ ();}
+\DoxyCodeLine{00109\ }
+\DoxyCodeLine{00113\ DLL\_EXPORT\_LIBQUICKMAIL\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{quickmail_8h_ab11693b2456ac19f75046653c2349d5e}{quickmail\_cleanup}}\ ();}
+\DoxyCodeLine{00114\ }
+\DoxyCodeLine{00120\ DLL\_EXPORT\_LIBQUICKMAIL\ \mbox{\hyperlink{quickmail_8h_a41c19143482833a54485856d0e9bcadf}{quickmail}}\ \mbox{\hyperlink{quickmail_8h_ab5981da168cff98e8e6ce8e76e19f54f}{quickmail\_create}}\ (\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ from,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ subject);}
+\DoxyCodeLine{00121\ }
+\DoxyCodeLine{00125\ DLL\_EXPORT\_LIBQUICKMAIL\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{quickmail_8h_a3ac506afb737327896c52cd42477083a}{quickmail\_destroy}}\ (\mbox{\hyperlink{quickmail_8h_a41c19143482833a54485856d0e9bcadf}{quickmail}}\ mailobj);}
+\DoxyCodeLine{00126\ }
+\DoxyCodeLine{00131\ DLL\_EXPORT\_LIBQUICKMAIL\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{quickmail_8h_a141d28297ec693db6449c341cb5a1986}{quickmail\_set\_hostname}}\ (\mbox{\hyperlink{quickmail_8h_a41c19143482833a54485856d0e9bcadf}{quickmail}}\ mailobj,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ hostname);}
+\DoxyCodeLine{00132\ }
+\DoxyCodeLine{00137\ DLL\_EXPORT\_LIBQUICKMAIL\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{quickmail_8h_a7803032421c8367cec633e7efea953a2}{quickmail\_set\_from}}\ (\mbox{\hyperlink{quickmail_8h_a41c19143482833a54485856d0e9bcadf}{quickmail}}\ mailobj,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ from);}
+\DoxyCodeLine{00138\ }
+\DoxyCodeLine{00143\ DLL\_EXPORT\_LIBQUICKMAIL\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ \mbox{\hyperlink{quickmail_8h_a0c51fb37e469e4aacbaa8b8d2791e91b}{quickmail\_get\_from}}\ (\mbox{\hyperlink{quickmail_8h_a41c19143482833a54485856d0e9bcadf}{quickmail}}\ mailobj);}
+\DoxyCodeLine{00144\ }
+\DoxyCodeLine{00149\ DLL\_EXPORT\_LIBQUICKMAIL\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{quickmail_8h_a5ed73631d1f7cb39f024ba35c2b7417d}{quickmail\_add\_to}}\ (\mbox{\hyperlink{quickmail_8h_a41c19143482833a54485856d0e9bcadf}{quickmail}}\ mailobj,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ email);}
+\DoxyCodeLine{00150\ }
+\DoxyCodeLine{00155\ DLL\_EXPORT\_LIBQUICKMAIL\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{quickmail_8h_a048e77ab064671412c14d7cd70d92975}{quickmail\_add\_cc}}\ (\mbox{\hyperlink{quickmail_8h_a41c19143482833a54485856d0e9bcadf}{quickmail}}\ mailobj,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ email);}
+\DoxyCodeLine{00156\ }
+\DoxyCodeLine{00161\ DLL\_EXPORT\_LIBQUICKMAIL\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{quickmail_8h_ac626a794f821d1de65a0a789771f1073}{quickmail\_add\_bcc}}\ (\mbox{\hyperlink{quickmail_8h_a41c19143482833a54485856d0e9bcadf}{quickmail}}\ mailobj,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ email);}
+\DoxyCodeLine{00162\ }
+\DoxyCodeLine{00167\ DLL\_EXPORT\_LIBQUICKMAIL\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{quickmail_8h_abc7464a8a5d7552988355902c5ec8f1b}{quickmail\_set\_subject}}\ (\mbox{\hyperlink{quickmail_8h_a41c19143482833a54485856d0e9bcadf}{quickmail}}\ mailobj,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ subject);}
+\DoxyCodeLine{00168\ }
+\DoxyCodeLine{00173\ DLL\_EXPORT\_LIBQUICKMAIL\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ \mbox{\hyperlink{quickmail_8h_a01eed98a42fc0be89abe7d0f993bf2db}{quickmail\_get\_subject}}\ (\mbox{\hyperlink{quickmail_8h_a41c19143482833a54485856d0e9bcadf}{quickmail}}\ mailobj);}
+\DoxyCodeLine{00174\ }
+\DoxyCodeLine{00179\ DLL\_EXPORT\_LIBQUICKMAIL\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{quickmail_8h_ad52e741ba2a242ce786dea78f2818df0}{quickmail\_add\_header}}\ (\mbox{\hyperlink{quickmail_8h_a41c19143482833a54485856d0e9bcadf}{quickmail}}\ mailobj,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ headerline);}
+\DoxyCodeLine{00180\ }
+\DoxyCodeLine{00185\ DLL\_EXPORT\_LIBQUICKMAIL\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{quickmail_8h_a7393621f26d1177d8dd703f030c03d7a}{quickmail\_set\_body}}\ (\mbox{\hyperlink{quickmail_8h_a41c19143482833a54485856d0e9bcadf}{quickmail}}\ mailobj,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ body);}
+\DoxyCodeLine{00186\ }
+\DoxyCodeLine{00192\ DLL\_EXPORT\_LIBQUICKMAIL\ \textcolor{keywordtype}{char}*\ \mbox{\hyperlink{quickmail_8h_a445c4ba4cef4dfa74ee4fff92febcf89}{quickmail\_get\_body}}\ (\mbox{\hyperlink{quickmail_8h_a41c19143482833a54485856d0e9bcadf}{quickmail}}\ mailobj);}
+\DoxyCodeLine{00193\ }
+\DoxyCodeLine{00199\ DLL\_EXPORT\_LIBQUICKMAIL\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{quickmail_8h_a6ad2d0c33a65aaf69fef7822c8eeb137}{quickmail\_add\_body\_file}}\ (\mbox{\hyperlink{quickmail_8h_a41c19143482833a54485856d0e9bcadf}{quickmail}}\ mailobj,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ mimetype,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ path);}
+\DoxyCodeLine{00200\ }
+\DoxyCodeLine{00208\ DLL\_EXPORT\_LIBQUICKMAIL\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{quickmail_8h_aa9b4d41666155c469169fa4b545bbe13}{quickmail\_add\_body\_memory}}\ (\mbox{\hyperlink{quickmail_8h_a41c19143482833a54485856d0e9bcadf}{quickmail}}\ mailobj,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ mimetype,\ \textcolor{keywordtype}{char}*\ data,\ \textcolor{keywordtype}{size\_t}\ datalen,\ \textcolor{keywordtype}{int}\ mustfree);}
+\DoxyCodeLine{00209\ }
+\DoxyCodeLine{00219\ DLL\_EXPORT\_LIBQUICKMAIL\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{quickmail_8h_aaa5c929a106fbd4b9965e1d3af817caa}{quickmail\_add\_body\_custom}}\ (\mbox{\hyperlink{quickmail_8h_a41c19143482833a54485856d0e9bcadf}{quickmail}}\ mailobj,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ mimetype,\ \textcolor{keywordtype}{char}*\ data,\ \mbox{\hyperlink{quickmail_8h_a6b9047a5a5c99ef15a13becde0bc6da1}{quickmail\_attachment\_open\_fn}}\ attachment\_data\_open,\ \mbox{\hyperlink{quickmail_8h_a816085272d53e506aa686702a8d375b9}{quickmail\_attachment\_read\_fn}}\ attachment\_data\_read,\ \mbox{\hyperlink{quickmail_8h_a03e10c7355bd36472cb23002e97514b7}{quickmail\_attachment\_close\_fn}}\ attachment\_data\_close,\ \mbox{\hyperlink{quickmail_8h_a8ebc865473658c7645c32e2f47b71dd4}{quickmail\_attachment\_free\_filedata\_fn}}\ attachment\_data\_filedata\_free);}
+\DoxyCodeLine{00220\ }
+\DoxyCodeLine{00226\ DLL\_EXPORT\_LIBQUICKMAIL\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{quickmail_8h_aa4aa190f56fbded93260b4b1f8b595fd}{quickmail\_remove\_body}}\ (\mbox{\hyperlink{quickmail_8h_a41c19143482833a54485856d0e9bcadf}{quickmail}}\ mailobj,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ mimetype);}
+\DoxyCodeLine{00227\ }
+\DoxyCodeLine{00234\ DLL\_EXPORT\_LIBQUICKMAIL\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{quickmail_8h_a204d049a7748b869444ce22effdac733}{quickmail\_list\_bodies}}\ (\mbox{\hyperlink{quickmail_8h_a41c19143482833a54485856d0e9bcadf}{quickmail}}\ mailobj,\ \mbox{\hyperlink{quickmail_8h_aa2a18d17fda8e25f471298a2bd5563c9}{quickmail\_list\_attachment\_callback\_fn}}\ callback,\ \textcolor{keywordtype}{void}*\ callbackdata);}
+\DoxyCodeLine{00235\ }
+\DoxyCodeLine{00241\ DLL\_EXPORT\_LIBQUICKMAIL\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{quickmail_8h_a95a91fcf3fa1c9411197ef1c10fa2402}{quickmail\_add\_attachment\_file}}\ (\mbox{\hyperlink{quickmail_8h_a41c19143482833a54485856d0e9bcadf}{quickmail}}\ mailobj,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ path,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ mimetype);}
+\DoxyCodeLine{00242\ }
+\DoxyCodeLine{00251\ DLL\_EXPORT\_LIBQUICKMAIL\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{quickmail_8h_ac483021762de9fafc5c00d0f958a2484}{quickmail\_add\_attachment\_memory}}\ (\mbox{\hyperlink{quickmail_8h_a41c19143482833a54485856d0e9bcadf}{quickmail}}\ mailobj,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ filename,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ mimetype,\ \textcolor{keywordtype}{char}*\ data,\ \textcolor{keywordtype}{size\_t}\ datalen,\ \textcolor{keywordtype}{int}\ mustfree);}
+\DoxyCodeLine{00252\ }
+\DoxyCodeLine{00263\ DLL\_EXPORT\_LIBQUICKMAIL\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{quickmail_8h_acba852b0a7ecd4d398db7dcf3bb27a07}{quickmail\_add\_attachment\_custom}}\ (\mbox{\hyperlink{quickmail_8h_a41c19143482833a54485856d0e9bcadf}{quickmail}}\ mailobj,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ filename,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ mimetype,\ \textcolor{keywordtype}{char}*\ data,\ \mbox{\hyperlink{quickmail_8h_a6b9047a5a5c99ef15a13becde0bc6da1}{quickmail\_attachment\_open\_fn}}\ attachment\_data\_open,\ \mbox{\hyperlink{quickmail_8h_a816085272d53e506aa686702a8d375b9}{quickmail\_attachment\_read\_fn}}\ attachment\_data\_read,\ \mbox{\hyperlink{quickmail_8h_a03e10c7355bd36472cb23002e97514b7}{quickmail\_attachment\_close\_fn}}\ attachment\_data\_close,\ \mbox{\hyperlink{quickmail_8h_a8ebc865473658c7645c32e2f47b71dd4}{quickmail\_attachment\_free\_filedata\_fn}}\ attachment\_data\_filedata\_free);}
+\DoxyCodeLine{00264\ }
+\DoxyCodeLine{00270\ DLL\_EXPORT\_LIBQUICKMAIL\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{quickmail_8h_a93a32601a7add591b5913b58f665b77a}{quickmail\_remove\_attachment}}\ (\mbox{\hyperlink{quickmail_8h_a41c19143482833a54485856d0e9bcadf}{quickmail}}\ mailobj,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ filename);}
+\DoxyCodeLine{00271\ }
+\DoxyCodeLine{00278\ DLL\_EXPORT\_LIBQUICKMAIL\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{quickmail_8h_aad9f428ba6ecf87490c861d8c610f56f}{quickmail\_list\_attachments}}\ (\mbox{\hyperlink{quickmail_8h_a41c19143482833a54485856d0e9bcadf}{quickmail}}\ mailobj,\ \mbox{\hyperlink{quickmail_8h_aa2a18d17fda8e25f471298a2bd5563c9}{quickmail\_list\_attachment\_callback\_fn}}\ callback,\ \textcolor{keywordtype}{void}*\ callbackdata);}
+\DoxyCodeLine{00279\ }
+\DoxyCodeLine{00284\ DLL\_EXPORT\_LIBQUICKMAIL\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{quickmail_8h_af6bb5ce0a6b0f33618a6cd88e7b3d82d}{quickmail\_set\_debug\_log}}\ (\mbox{\hyperlink{quickmail_8h_a41c19143482833a54485856d0e9bcadf}{quickmail}}\ mailobj,\ FILE*\ filehandle);}
+\DoxyCodeLine{00285\ }
+\DoxyCodeLine{00290\ DLL\_EXPORT\_LIBQUICKMAIL\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{quickmail_8h_a934229ae56ba35337c3efcf7afb3fdb1}{quickmail\_fsave}}\ (\mbox{\hyperlink{quickmail_8h_a41c19143482833a54485856d0e9bcadf}{quickmail}}\ mailobj,\ FILE*\ filehandle);}
+\DoxyCodeLine{00291\ }
+\DoxyCodeLine{00299\ DLL\_EXPORT\_LIBQUICKMAIL\ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{quickmail_8h_a316c832a6bcd541d9b978579ab33d3c9}{quickmail\_get\_data}}\ (\textcolor{keywordtype}{void}*\ buffer,\ \textcolor{keywordtype}{size\_t}\ size,\ \textcolor{keywordtype}{size\_t}\ nmemb,\ \textcolor{keywordtype}{void}*\ mailobj);}
+\DoxyCodeLine{00300\ }
+\DoxyCodeLine{00309\ DLL\_EXPORT\_LIBQUICKMAIL\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ \mbox{\hyperlink{quickmail_8h_a20958251fc326332661a7739d7bc339a}{quickmail\_send}}\ (\mbox{\hyperlink{quickmail_8h_a41c19143482833a54485856d0e9bcadf}{quickmail}}\ mailobj,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ smtpserver,\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ smtpport,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ username,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ password);}
+\DoxyCodeLine{00310\ }
+\DoxyCodeLine{00319\ DLL\_EXPORT\_LIBQUICKMAIL\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ \mbox{\hyperlink{quickmail_8h_ad57242589db755866e4f93f73e5e702f}{quickmail\_send\_secure}}\ (\mbox{\hyperlink{quickmail_8h_a41c19143482833a54485856d0e9bcadf}{quickmail}}\ mailobj,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ smtpserver,\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ smtpport,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ username,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ password);}
+\DoxyCodeLine{00320\ }
+\DoxyCodeLine{00321\ }
+\DoxyCodeLine{00322\ \textcolor{preprocessor}{\#ifdef\ \_\_cplusplus}}
+\DoxyCodeLine{00323\ \}}
+\DoxyCodeLine{00324\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00325\ }
+\DoxyCodeLine{00326\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\_\_INCLUDED\_QUICKMAIL\_H}}
+
+\end{DoxyCode}

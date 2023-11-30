@@ -1,0 +1,118 @@
+\doxysection{Input\+Form.\+h}
+\hypertarget{_input_form_8h_source}{}\label{_input_form_8h_source}\index{F:/devProjects/Facu/LabII/tp-\/integrador-\/grupo-\/10-\/lab2/include/InputForm.h@{F:/devProjects/Facu/LabII/tp-\/integrador-\/grupo-\/10-\/lab2/include/InputForm.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ INPUTFORM\_INCLUDED}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ INPUTFORM\_INCLUDED}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}Date.h"{}}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}TimeCls.h"{}}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00015\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_input_form}{InputForm}}\ \{}
+\DoxyCodeLine{00016\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keyword}{enum}\ fieldType\ \{}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ strField\ =\ 0,}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ intField\ =\ 1,}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ alnField\ =\ 3,}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ emailField\ =\ 4,}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ phoneField\ =\ 5,}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ boolField\ =\ 6,}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ floatField\ =\ 7,}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ dateField\ =\ 8,}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ rangeField\ =\ 9,}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ timeField\ =\ 10,}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ srvField\ =\ 11\ \ \textcolor{comment}{//\ server\ field}}
+\DoxyCodeLine{00046\ \ \ \ \ \};}
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{comment}{//\ vector\ con\ los\ nombres\ de\ los\ campos}}
+\DoxyCodeLine{00048\ \ \ \ \ std::vector<std::string>\ \_strFields;}
+\DoxyCodeLine{00049\ \ \ \ \ std::vector<std::string>\ \_intFields;}
+\DoxyCodeLine{00050\ \ \ \ \ std::vector<std::string>\ \_alphanumFields;}
+\DoxyCodeLine{00051\ \ \ \ \ std::vector<std::string>\ \_boolFields;}
+\DoxyCodeLine{00052\ \ \ \ \ std::vector<std::string>\ \_floatFields;}
+\DoxyCodeLine{00053\ \ \ \ \ std::vector<std::string>\ \_dateFields;}
+\DoxyCodeLine{00054\ \ \ \ \ std::vector<std::string>\ \_rangeFields;}
+\DoxyCodeLine{00055\ \ \ \ \ std::vector<std::string>\ \_timeFields;}
+\DoxyCodeLine{00056\ \ \ \ \ std::string\ \_emailField;\ \ \textcolor{comment}{//\ nombre\ del\ campo\ email}}
+\DoxyCodeLine{00057\ \ \ \ \ std::string\ \_srvField;\ \ \ \ \textcolor{comment}{//\ nombre\ del\ campo\ server}}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{comment}{//\ vector\ con\ los\ limites\ de\ digitos/caracteres\ para\ los\ campos}}
+\DoxyCodeLine{00060\ \ \ \ \ std::vector<int>\ \_strLimit;}
+\DoxyCodeLine{00061\ \ \ \ \ std::vector<int>\ \_intLimit;}
+\DoxyCodeLine{00062\ \ \ \ \ std::vector<int>\ \_alnLimit;}
+\DoxyCodeLine{00063\ \ \ \ \ std::vector<std::vector<int>>\ \_rangeLimits;\ \ \textcolor{comment}{//\ [0]\ =\ min,\ [1]\ =\ max}}
+\DoxyCodeLine{00064\ \ \ \ \ \textcolor{keywordtype}{int}\ \_emailLimit;\ \ \textcolor{comment}{//\ solo\ se\ pide\ 1\ email,\ no\ hace\ falta\ un\ vector}}
+\DoxyCodeLine{00065\ \ \ \ \ \textcolor{keywordtype}{int}\ \_phoneLimit;\ \ \textcolor{comment}{//\ solo\ se\ pide\ 1\ telefono}}
+\DoxyCodeLine{00066\ \ \ \ \ \textcolor{keywordtype}{int}\ \_srvLimit;\ \ \ \ \textcolor{comment}{//\ solo\ se\ pide\ 1\ server}}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ \ \ \ \ \textcolor{comment}{//\ vector\ de\ punteros\ a\ las\ variables\ que\ deben\ ser\ asignadas}}
+\DoxyCodeLine{00069\ \ \ \ \ std::vector<std::string\ *>\ \_strVars;}
+\DoxyCodeLine{00070\ \ \ \ \ std::vector<int\ *>\ \_intVars;}
+\DoxyCodeLine{00071\ \ \ \ \ std::vector<std::string\ *>\ \_alphanumVars;}
+\DoxyCodeLine{00072\ \ \ \ \ std::vector<bool\ *>\ \_boolVars;}
+\DoxyCodeLine{00073\ \ \ \ \ std::vector<float\ *>\ \_floatVars;}
+\DoxyCodeLine{00074\ \ \ \ \ std::vector<Date\ *>\ \_dateVars;}
+\DoxyCodeLine{00075\ \ \ \ \ std::vector<int\ *>\ \_rangeVars;}
+\DoxyCodeLine{00076\ \ \ \ \ std::vector<Time\ *>\ \_timeVars;}
+\DoxyCodeLine{00077\ \ \ \ \ std::string\ *\_emailVar\ =\ NULL;}
+\DoxyCodeLine{00078\ \ \ \ \ std::string\ *\_phoneVar\ =\ NULL;}
+\DoxyCodeLine{00079\ \ \ \ \ std::string\ *\_srvVar\ =\ NULL;}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00081\ \ \ \ \ \textcolor{keywordtype}{bool}\ \_editing,\ \_showEditingMsg;}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00092\ \ \ \ \ \textcolor{keywordtype}{bool}\ requestStrFields();}
+\DoxyCodeLine{00093\ }
+\DoxyCodeLine{00099\ \ \ \ \ \textcolor{keywordtype}{bool}\ requestEmailField();}
+\DoxyCodeLine{00100\ }
+\DoxyCodeLine{00110\ \ \ \ \ \textcolor{keywordtype}{bool}\ requestIntFields();}
+\DoxyCodeLine{00111\ }
+\DoxyCodeLine{00118\ \ \ \ \ \textcolor{keywordtype}{bool}\ requestPhoneField();}
+\DoxyCodeLine{00119\ }
+\DoxyCodeLine{00128\ \ \ \ \ \textcolor{keywordtype}{bool}\ requestAlphanumFields();}
+\DoxyCodeLine{00129\ }
+\DoxyCodeLine{00139\ \ \ \ \ \textcolor{keywordtype}{bool}\ requestBoolFields();}
+\DoxyCodeLine{00140\ }
+\DoxyCodeLine{00147\ \ \ \ \ \textcolor{keywordtype}{bool}\ requestFloatFields();}
+\DoxyCodeLine{00148\ }
+\DoxyCodeLine{00157\ \ \ \ \ \textcolor{keywordtype}{bool}\ requestDateFields();}
+\DoxyCodeLine{00158\ }
+\DoxyCodeLine{00167\ \ \ \ \ \textcolor{keywordtype}{bool}\ requestRangeFields();}
+\DoxyCodeLine{00168\ }
+\DoxyCodeLine{00177\ \ \ \ \ \textcolor{keywordtype}{bool}\ requestTimeFields();}
+\DoxyCodeLine{00178\ }
+\DoxyCodeLine{00185\ \ \ \ \ \textcolor{keywordtype}{bool}\ requestSrvField();}
+\DoxyCodeLine{00186\ }
+\DoxyCodeLine{00197\ \ \ \ \ \textcolor{keywordtype}{bool}\ askToRetry(fieldType\ fType,\ \textcolor{keywordtype}{int}\ maxLimit\ =\ 0,\ \textcolor{keywordtype}{int}\ min\ =\ 0,}
+\DoxyCodeLine{00198\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ max\ =\ 0);}
+\DoxyCodeLine{00199\ }
+\DoxyCodeLine{00200\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00207\ \ \ \ \ \mbox{\hyperlink{class_input_form}{InputForm}}(\textcolor{keywordtype}{bool}\ isEditing\ =\ \textcolor{keyword}{false},\ \textcolor{keywordtype}{bool}\ showEditingMsg\ =\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00208\ }
+\DoxyCodeLine{00220\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_input_form_ab563c2179f418abda37c286d30cdae8b}{setStrField}}(std::string\ fieldName,\ std::string\ \&strDestination,}
+\DoxyCodeLine{00221\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ maxLength);}
+\DoxyCodeLine{00233\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_input_form_af0ad9116599e11f312f4adbbdadd3149}{setIntField}}(std::string\ fieldName,\ \textcolor{keywordtype}{int}\ \&intDestination,\ \textcolor{keywordtype}{int}\ maxLength);}
+\DoxyCodeLine{00247\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_input_form_a92bb50b283ec5de1c198eecfde520226}{setAlphanumeric}}(std::string\ fieldName,\ std::string\ \&strDestination,}
+\DoxyCodeLine{00248\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ maxLength);}
+\DoxyCodeLine{00262\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_input_form_aa67045e5a52805be63015b10aeb9608f}{setEmailField}}(std::string\ \&strDestination,\ \textcolor{keywordtype}{int}\ maxLength,}
+\DoxyCodeLine{00263\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::string\ fieldName\ =\ \textcolor{stringliteral}{"{}Email"{}});}
+\DoxyCodeLine{00274\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_input_form_ad8d45f3dfbc3d2bc95a477a2938e21cc}{setPhoneField}}(std::string\ \&strDestination,\ \textcolor{keywordtype}{int}\ maxLength);}
+\DoxyCodeLine{00286\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_input_form_a2f632e2220d8a0a3efe30f3a2c063db7}{setBoolField}}(std::string\ fieldName,\ \textcolor{keywordtype}{bool}\ \&boolDestination);}
+\DoxyCodeLine{00295\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_input_form_a638bb30ae6c305e5bdd61b19a9eec50e}{setFloatField}}(std::string\ fieldName,\ \textcolor{keywordtype}{float}\ \&floatDestination);}
+\DoxyCodeLine{00304\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_input_form_ab17b38774ad035e6da14d649230df166}{setDateField}}(std::string\ fieldName,\ \mbox{\hyperlink{class_date}{Date}}\ \&dateDestination);}
+\DoxyCodeLine{00318\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_input_form_ad29e114a9abb5d3a8c4a4be98c325869}{setRangeField}}(std::string\ fieldName,\ \textcolor{keywordtype}{int}\ \&intDestination,\ \textcolor{keywordtype}{int}\ min,}
+\DoxyCodeLine{00319\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ max);}
+\DoxyCodeLine{00328\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_input_form_a3a47d7cf111ede65bbe66c75659a53f5}{setTimeField}}(std::string\ fieldName,\ \mbox{\hyperlink{class_time}{Time}}\ \&timeDestination);}
+\DoxyCodeLine{00340\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_input_form_a6313543536ba6dabd1c3644a5da3fbb2}{setSrvField}}(std::string\ fieldName,\ std::string\ \&strDestination,}
+\DoxyCodeLine{00341\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ maxLength);}
+\DoxyCodeLine{00342\ }
+\DoxyCodeLine{00349\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_input_form_a0d0a48d818f2da95c5336ce49a91fe79}{setEditMode}}(\textcolor{keywordtype}{bool}\ editMode,\ \textcolor{keywordtype}{bool}\ showEditingMsg\ =\ \textcolor{keyword}{true});}
+\DoxyCodeLine{00350\ }
+\DoxyCodeLine{00357\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_input_form_a4567530bb79fd10a6263ba12c4639602}{fill}}();}
+\DoxyCodeLine{00361\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_input_form_adce7144847945809710b01f51b4af149}{clearAll}}();}
+\DoxyCodeLine{00362\ \};}
+\DoxyCodeLine{00363\ }
+\DoxyCodeLine{00364\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ INPUTFORM\_INCLUDED\ */}\textcolor{preprocessor}{}}
+
+\end{DoxyCode}

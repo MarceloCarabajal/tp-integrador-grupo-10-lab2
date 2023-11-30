@@ -1,0 +1,42 @@
+\doxysection{Products\+Manager.\+h}
+\hypertarget{_products_manager_8h_source}{}\label{_products_manager_8h_source}\index{F:/devProjects/Facu/LabII/tp-\/integrador-\/grupo-\/10-\/lab2/include/ProductsManager.h@{F:/devProjects/Facu/LabII/tp-\/integrador-\/grupo-\/10-\/lab2/include/ProductsManager.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}Product.h"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}VppConfigManager.h"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_vpp_file_8h}{VppFile.h}}"{}}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_products_manager}{ProductsManager}}\ \{}
+\DoxyCodeLine{00008\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00009\ \ \ \ \ \textcolor{keyword}{const}\ std::string\ \_folderPath\ =\ \mbox{\hyperlink{class_vpp_config_manager}{VppConfigManager}}().\mbox{\hyperlink{class_vpp_config_manager_a96295baaca646005de9df583243a4d5c}{getDataPath}}();}
+\DoxyCodeLine{00010\ \ \ \ \ \textcolor{keyword}{const}\ std::string\ \_filePath\ =\ \_folderPath\ +\ \textcolor{stringliteral}{"{}Products.vpp"{}};}
+\DoxyCodeLine{00011\ \ \ \ \ \mbox{\hyperlink{class_vpp_file}{VppFile<Product>}}\ \_productsFile\ =\ \mbox{\hyperlink{class_vpp_file}{VppFile<Product>}}(\_filePath);}
+\DoxyCodeLine{00012\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \_productFields\ =\ 8;\ \ \textcolor{comment}{//\ total\ de\ datos\ de\ un\ regisro\ Product}}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00021\ \ \ \ \ \mbox{\hyperlink{class_product}{Product}}\ loadForm();}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00031\ \ \ \ \ \mbox{\hyperlink{class_product}{Product}}\ editForm(\textcolor{keywordtype}{int}\ regPos);}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_products_manager_adcfd7da71a209d40e089573ce4bf33f9}{load}}();}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00050\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_products_manager_a6db2321d9bca00c69f49045be6601c88}{edit}}();}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_products_manager_ae03693b771d73ab5b6fd69bfb398f444}{show}}(\textcolor{keywordtype}{bool}\ showAndPause\ =\ \textcolor{keyword}{true});}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00066\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_products_manager_a54b9751618ae6ece3c2509c367311ad0}{clearDeleted}}();}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00073\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_products_manager_a5ca545cd5c2c0db124846239b5662e51}{cancel}}();}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00075\ \ \ \ \ \textcolor{comment}{//\ Al\ ser\ una\ funcion\ estatica\ se\ puede\ usar\ sin\ necesaidad\ de\ instanciar\ un}}
+\DoxyCodeLine{00076\ \ \ \ \ \textcolor{comment}{//\ objeto\ de\ tipo\ "{}ProductManager"{},\ eso\ permite\ que\ se\ pueda\ pasar\ por}}
+\DoxyCodeLine{00077\ \ \ \ \ \textcolor{comment}{//\ parametro\ un\ puntero\ a\ esta\ funcion,\ lo\ que\ es\ necesario\ para\ la\ busqueda}}
+\DoxyCodeLine{00078\ \ \ \ \ \textcolor{comment}{//\ de\ registros\ con\ VppFile}}
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00088\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_products_manager_a530156d4d420a2bd4aa93b24ed87ee70}{searchById}}(\mbox{\hyperlink{class_product}{Product}}\ reg,\ \textcolor{keywordtype}{int}\ nId);}
+\DoxyCodeLine{00096\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_products_manager_ac5170917e82ebd5cbd569e5479331ba2}{idExists}}(\textcolor{keywordtype}{int}\ nId);}
+\DoxyCodeLine{00097\ \};}
+
+\end{DoxyCode}

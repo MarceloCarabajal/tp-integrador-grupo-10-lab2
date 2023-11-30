@@ -1,0 +1,831 @@
+\doxysection{F\+:/dev\+Projects/\+Facu/\+Lab\+II/tp-\/integrador-\/grupo-\/10-\/lab2/include/quickmail.h File Reference}
+\hypertarget{quickmail_8h}{}\label{quickmail_8h}\index{F:/devProjects/Facu/LabII/tp-\/integrador-\/grupo-\/10-\/lab2/include/quickmail.h@{F:/devProjects/Facu/LabII/tp-\/integrador-\/grupo-\/10-\/lab2/include/quickmail.h}}
+
+
+header file for libquickmail  
+
+
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+\doxysubsubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{quickmail_8h_a41c19143482833a54485856d0e9bcadf}\label{quickmail_8h_a41c19143482833a54485856d0e9bcadf} 
+typedef struct email\+\_\+info\+\_\+struct \texorpdfstring{$\ast$}{*} {\bfseries quickmail}
+\begin{DoxyCompactList}\small\item\em quickmail object type \end{DoxyCompactList}\item 
+typedef void \texorpdfstring{$\ast$}{*}(\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{quickmail_8h_a6b9047a5a5c99ef15a13becde0bc6da1}{quickmail\+\_\+attachment\+\_\+open\+\_\+fn}}) (void \texorpdfstring{$\ast$}{*}filedata)
+\begin{DoxyCompactList}\small\item\em type of pointer to function for opening attachment data \end{DoxyCompactList}\item 
+typedef size\+\_\+t(\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{quickmail_8h_a816085272d53e506aa686702a8d375b9}{quickmail\+\_\+attachment\+\_\+read\+\_\+fn}}) (void \texorpdfstring{$\ast$}{*}handle, void \texorpdfstring{$\ast$}{*}buf, size\+\_\+t len)
+\begin{DoxyCompactList}\small\item\em type of pointer to function for reading attachment data \end{DoxyCompactList}\item 
+typedef void(\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{quickmail_8h_a03e10c7355bd36472cb23002e97514b7}{quickmail\+\_\+attachment\+\_\+close\+\_\+fn}}) (void \texorpdfstring{$\ast$}{*}handle)
+\begin{DoxyCompactList}\small\item\em type of pointer to function for closing attachment data \end{DoxyCompactList}\item 
+typedef void(\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{quickmail_8h_a8ebc865473658c7645c32e2f47b71dd4}{quickmail\+\_\+attachment\+\_\+free\+\_\+filedata\+\_\+fn}}) (void \texorpdfstring{$\ast$}{*}filedata)
+\begin{DoxyCompactList}\small\item\em type of pointer to function for cleaning up custom data in quickmail\+\_\+destroy \end{DoxyCompactList}\item 
+typedef void(\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{quickmail_8h_aa2a18d17fda8e25f471298a2bd5563c9}{quickmail\+\_\+list\+\_\+attachment\+\_\+callback\+\_\+fn}}) (\mbox{\hyperlink{quickmail_8h_a41c19143482833a54485856d0e9bcadf}{quickmail}} mailobj, const char \texorpdfstring{$\ast$}{*}filename, const char \texorpdfstring{$\ast$}{*}mimetype, \mbox{\hyperlink{quickmail_8h_a6b9047a5a5c99ef15a13becde0bc6da1}{quickmail\+\_\+attachment\+\_\+open\+\_\+fn}} email\+\_\+info\+\_\+attachment\+\_\+open, \mbox{\hyperlink{quickmail_8h_a816085272d53e506aa686702a8d375b9}{quickmail\+\_\+attachment\+\_\+read\+\_\+fn}} email\+\_\+info\+\_\+attachment\+\_\+read, \mbox{\hyperlink{quickmail_8h_a03e10c7355bd36472cb23002e97514b7}{quickmail\+\_\+attachment\+\_\+close\+\_\+fn}} email\+\_\+info\+\_\+attachment\+\_\+close, void \texorpdfstring{$\ast$}{*}callbackdata)
+\begin{DoxyCompactList}\small\item\em type of pointer to function for cleaning up custom data in quickmail\+\_\+destroy \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+DLL\+\_\+\+EXPORT\+\_\+\+LIBQUICKMAIL const char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{quickmail_8h_a45086bf23e4e60905745ae1506195f70}{quickmail\+\_\+get\+\_\+version}} ()
+\begin{DoxyCompactList}\small\item\em get version quickmail library \end{DoxyCompactList}\item 
+DLL\+\_\+\+EXPORT\+\_\+\+LIBQUICKMAIL int \mbox{\hyperlink{quickmail_8h_aa6d56a7c99f44f716dd548b165b4e52b}{quickmail\+\_\+initialize}} ()
+\begin{DoxyCompactList}\small\item\em initialize quickmail library, call once at the beginning of the main thread of the application \end{DoxyCompactList}\item 
+DLL\+\_\+\+EXPORT\+\_\+\+LIBQUICKMAIL int \mbox{\hyperlink{quickmail_8h_ab11693b2456ac19f75046653c2349d5e}{quickmail\+\_\+cleanup}} ()
+\begin{DoxyCompactList}\small\item\em clean up quickmail library, call once at the end of the main thread of the application \end{DoxyCompactList}\item 
+DLL\+\_\+\+EXPORT\+\_\+\+LIBQUICKMAIL \mbox{\hyperlink{quickmail_8h_a41c19143482833a54485856d0e9bcadf}{quickmail}} \mbox{\hyperlink{quickmail_8h_ab5981da168cff98e8e6ce8e76e19f54f}{quickmail\+\_\+create}} (const char \texorpdfstring{$\ast$}{*}from, const char \texorpdfstring{$\ast$}{*}subject)
+\begin{DoxyCompactList}\small\item\em create a new quickmail object \end{DoxyCompactList}\item 
+DLL\+\_\+\+EXPORT\+\_\+\+LIBQUICKMAIL void \mbox{\hyperlink{quickmail_8h_a3ac506afb737327896c52cd42477083a}{quickmail\+\_\+destroy}} (\mbox{\hyperlink{quickmail_8h_a41c19143482833a54485856d0e9bcadf}{quickmail}} mailobj)
+\begin{DoxyCompactList}\small\item\em clean up a quickmail object \end{DoxyCompactList}\item 
+DLL\+\_\+\+EXPORT\+\_\+\+LIBQUICKMAIL void \mbox{\hyperlink{quickmail_8h_a141d28297ec693db6449c341cb5a1986}{quickmail\+\_\+set\+\_\+hostname}} (\mbox{\hyperlink{quickmail_8h_a41c19143482833a54485856d0e9bcadf}{quickmail}} mailobj, const char \texorpdfstring{$\ast$}{*}hostname)
+\begin{DoxyCompactList}\small\item\em set the local hostname of a quickmail object (used in SMTP HELO/\+EHLO command) \end{DoxyCompactList}\item 
+DLL\+\_\+\+EXPORT\+\_\+\+LIBQUICKMAIL void \mbox{\hyperlink{quickmail_8h_a7803032421c8367cec633e7efea953a2}{quickmail\+\_\+set\+\_\+from}} (\mbox{\hyperlink{quickmail_8h_a41c19143482833a54485856d0e9bcadf}{quickmail}} mailobj, const char \texorpdfstring{$\ast$}{*}from)
+\begin{DoxyCompactList}\small\item\em set the sender (from) e-\/mail address of a quickmail object \end{DoxyCompactList}\item 
+DLL\+\_\+\+EXPORT\+\_\+\+LIBQUICKMAIL const char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{quickmail_8h_a0c51fb37e469e4aacbaa8b8d2791e91b}{quickmail\+\_\+get\+\_\+from}} (\mbox{\hyperlink{quickmail_8h_a41c19143482833a54485856d0e9bcadf}{quickmail}} mailobj)
+\begin{DoxyCompactList}\small\item\em get the sender (from) e-\/mail address of a quickmail object \end{DoxyCompactList}\item 
+DLL\+\_\+\+EXPORT\+\_\+\+LIBQUICKMAIL void \mbox{\hyperlink{quickmail_8h_a5ed73631d1f7cb39f024ba35c2b7417d}{quickmail\+\_\+add\+\_\+to}} (\mbox{\hyperlink{quickmail_8h_a41c19143482833a54485856d0e9bcadf}{quickmail}} mailobj, const char \texorpdfstring{$\ast$}{*}email)
+\begin{DoxyCompactList}\small\item\em add a recipient (to) e-\/mail address to a quickmail object \end{DoxyCompactList}\item 
+DLL\+\_\+\+EXPORT\+\_\+\+LIBQUICKMAIL void \mbox{\hyperlink{quickmail_8h_a048e77ab064671412c14d7cd70d92975}{quickmail\+\_\+add\+\_\+cc}} (\mbox{\hyperlink{quickmail_8h_a41c19143482833a54485856d0e9bcadf}{quickmail}} mailobj, const char \texorpdfstring{$\ast$}{*}email)
+\begin{DoxyCompactList}\small\item\em add a carbon copy recipient (cc) e-\/mail address to a quickmail object \end{DoxyCompactList}\item 
+DLL\+\_\+\+EXPORT\+\_\+\+LIBQUICKMAIL void \mbox{\hyperlink{quickmail_8h_ac626a794f821d1de65a0a789771f1073}{quickmail\+\_\+add\+\_\+bcc}} (\mbox{\hyperlink{quickmail_8h_a41c19143482833a54485856d0e9bcadf}{quickmail}} mailobj, const char \texorpdfstring{$\ast$}{*}email)
+\begin{DoxyCompactList}\small\item\em add a blind carbon copy recipient (bcc) e-\/mail address to a quickmail object \end{DoxyCompactList}\item 
+DLL\+\_\+\+EXPORT\+\_\+\+LIBQUICKMAIL void \mbox{\hyperlink{quickmail_8h_abc7464a8a5d7552988355902c5ec8f1b}{quickmail\+\_\+set\+\_\+subject}} (\mbox{\hyperlink{quickmail_8h_a41c19143482833a54485856d0e9bcadf}{quickmail}} mailobj, const char \texorpdfstring{$\ast$}{*}subject)
+\begin{DoxyCompactList}\small\item\em set the subject of a quickmail object \end{DoxyCompactList}\item 
+DLL\+\_\+\+EXPORT\+\_\+\+LIBQUICKMAIL const char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{quickmail_8h_a01eed98a42fc0be89abe7d0f993bf2db}{quickmail\+\_\+get\+\_\+subject}} (\mbox{\hyperlink{quickmail_8h_a41c19143482833a54485856d0e9bcadf}{quickmail}} mailobj)
+\begin{DoxyCompactList}\small\item\em set the subject of a quickmail object \end{DoxyCompactList}\item 
+DLL\+\_\+\+EXPORT\+\_\+\+LIBQUICKMAIL void \mbox{\hyperlink{quickmail_8h_ad52e741ba2a242ce786dea78f2818df0}{quickmail\+\_\+add\+\_\+header}} (\mbox{\hyperlink{quickmail_8h_a41c19143482833a54485856d0e9bcadf}{quickmail}} mailobj, const char \texorpdfstring{$\ast$}{*}headerline)
+\begin{DoxyCompactList}\small\item\em add an e-\/mail header to a quickmail object \end{DoxyCompactList}\item 
+DLL\+\_\+\+EXPORT\+\_\+\+LIBQUICKMAIL void \mbox{\hyperlink{quickmail_8h_a7393621f26d1177d8dd703f030c03d7a}{quickmail\+\_\+set\+\_\+body}} (\mbox{\hyperlink{quickmail_8h_a41c19143482833a54485856d0e9bcadf}{quickmail}} mailobj, const char \texorpdfstring{$\ast$}{*}body)
+\begin{DoxyCompactList}\small\item\em set the body of a quickmail object \end{DoxyCompactList}\item 
+DLL\+\_\+\+EXPORT\+\_\+\+LIBQUICKMAIL char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{quickmail_8h_a445c4ba4cef4dfa74ee4fff92febcf89}{quickmail\+\_\+get\+\_\+body}} (\mbox{\hyperlink{quickmail_8h_a41c19143482833a54485856d0e9bcadf}{quickmail}} mailobj)
+\begin{DoxyCompactList}\small\item\em set the body of a quickmail object any existing bodies will be removed and a single plain text body will be added \end{DoxyCompactList}\item 
+DLL\+\_\+\+EXPORT\+\_\+\+LIBQUICKMAIL void \mbox{\hyperlink{quickmail_8h_a6ad2d0c33a65aaf69fef7822c8eeb137}{quickmail\+\_\+add\+\_\+body\+\_\+file}} (\mbox{\hyperlink{quickmail_8h_a41c19143482833a54485856d0e9bcadf}{quickmail}} mailobj, const char \texorpdfstring{$\ast$}{*}mimetype, const char \texorpdfstring{$\ast$}{*}path)
+\begin{DoxyCompactList}\small\item\em add a body file to a quickmail object (deprecated) \end{DoxyCompactList}\item 
+DLL\+\_\+\+EXPORT\+\_\+\+LIBQUICKMAIL void \mbox{\hyperlink{quickmail_8h_aa9b4d41666155c469169fa4b545bbe13}{quickmail\+\_\+add\+\_\+body\+\_\+memory}} (\mbox{\hyperlink{quickmail_8h_a41c19143482833a54485856d0e9bcadf}{quickmail}} mailobj, const char \texorpdfstring{$\ast$}{*}mimetype, char \texorpdfstring{$\ast$}{*}data, size\+\_\+t datalen, int mustfree)
+\begin{DoxyCompactList}\small\item\em add a body from memory to a quickmail object \end{DoxyCompactList}\item 
+DLL\+\_\+\+EXPORT\+\_\+\+LIBQUICKMAIL void \mbox{\hyperlink{quickmail_8h_aaa5c929a106fbd4b9965e1d3af817caa}{quickmail\+\_\+add\+\_\+body\+\_\+custom}} (\mbox{\hyperlink{quickmail_8h_a41c19143482833a54485856d0e9bcadf}{quickmail}} mailobj, const char \texorpdfstring{$\ast$}{*}mimetype, char \texorpdfstring{$\ast$}{*}data, \mbox{\hyperlink{quickmail_8h_a6b9047a5a5c99ef15a13becde0bc6da1}{quickmail\+\_\+attachment\+\_\+open\+\_\+fn}} attachment\+\_\+data\+\_\+open, \mbox{\hyperlink{quickmail_8h_a816085272d53e506aa686702a8d375b9}{quickmail\+\_\+attachment\+\_\+read\+\_\+fn}} attachment\+\_\+data\+\_\+read, \mbox{\hyperlink{quickmail_8h_a03e10c7355bd36472cb23002e97514b7}{quickmail\+\_\+attachment\+\_\+close\+\_\+fn}} attachment\+\_\+data\+\_\+close, \mbox{\hyperlink{quickmail_8h_a8ebc865473658c7645c32e2f47b71dd4}{quickmail\+\_\+attachment\+\_\+free\+\_\+filedata\+\_\+fn}} attachment\+\_\+data\+\_\+filedata\+\_\+free)
+\begin{DoxyCompactList}\small\item\em add a body with custom read functions to a quickmail object \end{DoxyCompactList}\item 
+DLL\+\_\+\+EXPORT\+\_\+\+LIBQUICKMAIL int \mbox{\hyperlink{quickmail_8h_aa4aa190f56fbded93260b4b1f8b595fd}{quickmail\+\_\+remove\+\_\+body}} (\mbox{\hyperlink{quickmail_8h_a41c19143482833a54485856d0e9bcadf}{quickmail}} mailobj, const char \texorpdfstring{$\ast$}{*}mimetype)
+\begin{DoxyCompactList}\small\item\em remove body from quickmail object \end{DoxyCompactList}\item 
+DLL\+\_\+\+EXPORT\+\_\+\+LIBQUICKMAIL void \mbox{\hyperlink{quickmail_8h_a204d049a7748b869444ce22effdac733}{quickmail\+\_\+list\+\_\+bodies}} (\mbox{\hyperlink{quickmail_8h_a41c19143482833a54485856d0e9bcadf}{quickmail}} mailobj, \mbox{\hyperlink{quickmail_8h_aa2a18d17fda8e25f471298a2bd5563c9}{quickmail\+\_\+list\+\_\+attachment\+\_\+callback\+\_\+fn}} callback, void \texorpdfstring{$\ast$}{*}callbackdata)
+\begin{DoxyCompactList}\small\item\em list bodies by calling a callback function for each body \end{DoxyCompactList}\item 
+DLL\+\_\+\+EXPORT\+\_\+\+LIBQUICKMAIL void \mbox{\hyperlink{quickmail_8h_a95a91fcf3fa1c9411197ef1c10fa2402}{quickmail\+\_\+add\+\_\+attachment\+\_\+file}} (\mbox{\hyperlink{quickmail_8h_a41c19143482833a54485856d0e9bcadf}{quickmail}} mailobj, const char \texorpdfstring{$\ast$}{*}path, const char \texorpdfstring{$\ast$}{*}mimetype)
+\begin{DoxyCompactList}\small\item\em add a file attachment to a quickmail object \end{DoxyCompactList}\item 
+DLL\+\_\+\+EXPORT\+\_\+\+LIBQUICKMAIL void \mbox{\hyperlink{quickmail_8h_ac483021762de9fafc5c00d0f958a2484}{quickmail\+\_\+add\+\_\+attachment\+\_\+memory}} (\mbox{\hyperlink{quickmail_8h_a41c19143482833a54485856d0e9bcadf}{quickmail}} mailobj, const char \texorpdfstring{$\ast$}{*}filename, const char \texorpdfstring{$\ast$}{*}mimetype, char \texorpdfstring{$\ast$}{*}data, size\+\_\+t datalen, int mustfree)
+\begin{DoxyCompactList}\small\item\em add an attachment from memory to a quickmail object \end{DoxyCompactList}\item 
+DLL\+\_\+\+EXPORT\+\_\+\+LIBQUICKMAIL void \mbox{\hyperlink{quickmail_8h_acba852b0a7ecd4d398db7dcf3bb27a07}{quickmail\+\_\+add\+\_\+attachment\+\_\+custom}} (\mbox{\hyperlink{quickmail_8h_a41c19143482833a54485856d0e9bcadf}{quickmail}} mailobj, const char \texorpdfstring{$\ast$}{*}filename, const char \texorpdfstring{$\ast$}{*}mimetype, char \texorpdfstring{$\ast$}{*}data, \mbox{\hyperlink{quickmail_8h_a6b9047a5a5c99ef15a13becde0bc6da1}{quickmail\+\_\+attachment\+\_\+open\+\_\+fn}} attachment\+\_\+data\+\_\+open, \mbox{\hyperlink{quickmail_8h_a816085272d53e506aa686702a8d375b9}{quickmail\+\_\+attachment\+\_\+read\+\_\+fn}} attachment\+\_\+data\+\_\+read, \mbox{\hyperlink{quickmail_8h_a03e10c7355bd36472cb23002e97514b7}{quickmail\+\_\+attachment\+\_\+close\+\_\+fn}} attachment\+\_\+data\+\_\+close, \mbox{\hyperlink{quickmail_8h_a8ebc865473658c7645c32e2f47b71dd4}{quickmail\+\_\+attachment\+\_\+free\+\_\+filedata\+\_\+fn}} attachment\+\_\+data\+\_\+filedata\+\_\+free)
+\begin{DoxyCompactList}\small\item\em add an attachment with custom read functions to a quickmail object \end{DoxyCompactList}\item 
+DLL\+\_\+\+EXPORT\+\_\+\+LIBQUICKMAIL int \mbox{\hyperlink{quickmail_8h_a93a32601a7add591b5913b58f665b77a}{quickmail\+\_\+remove\+\_\+attachment}} (\mbox{\hyperlink{quickmail_8h_a41c19143482833a54485856d0e9bcadf}{quickmail}} mailobj, const char \texorpdfstring{$\ast$}{*}filename)
+\begin{DoxyCompactList}\small\item\em remove attachment from quickmail object \end{DoxyCompactList}\item 
+DLL\+\_\+\+EXPORT\+\_\+\+LIBQUICKMAIL void \mbox{\hyperlink{quickmail_8h_aad9f428ba6ecf87490c861d8c610f56f}{quickmail\+\_\+list\+\_\+attachments}} (\mbox{\hyperlink{quickmail_8h_a41c19143482833a54485856d0e9bcadf}{quickmail}} mailobj, \mbox{\hyperlink{quickmail_8h_aa2a18d17fda8e25f471298a2bd5563c9}{quickmail\+\_\+list\+\_\+attachment\+\_\+callback\+\_\+fn}} callback, void \texorpdfstring{$\ast$}{*}callbackdata)
+\begin{DoxyCompactList}\small\item\em list attachments by calling a callback function for each attachment \end{DoxyCompactList}\item 
+DLL\+\_\+\+EXPORT\+\_\+\+LIBQUICKMAIL void \mbox{\hyperlink{quickmail_8h_af6bb5ce0a6b0f33618a6cd88e7b3d82d}{quickmail\+\_\+set\+\_\+debug\+\_\+log}} (\mbox{\hyperlink{quickmail_8h_a41c19143482833a54485856d0e9bcadf}{quickmail}} mailobj, FILE \texorpdfstring{$\ast$}{*}filehandle)
+\begin{DoxyCompactList}\small\item\em set the debug logging destination of a quickmail object \end{DoxyCompactList}\item 
+DLL\+\_\+\+EXPORT\+\_\+\+LIBQUICKMAIL void \mbox{\hyperlink{quickmail_8h_a934229ae56ba35337c3efcf7afb3fdb1}{quickmail\+\_\+fsave}} (\mbox{\hyperlink{quickmail_8h_a41c19143482833a54485856d0e9bcadf}{quickmail}} mailobj, FILE \texorpdfstring{$\ast$}{*}filehandle)
+\begin{DoxyCompactList}\small\item\em save the generated e-\/mail to a file \end{DoxyCompactList}\item 
+DLL\+\_\+\+EXPORT\+\_\+\+LIBQUICKMAIL size\+\_\+t \mbox{\hyperlink{quickmail_8h_a316c832a6bcd541d9b978579ab33d3c9}{quickmail\+\_\+get\+\_\+data}} (void \texorpdfstring{$\ast$}{*}buffer, size\+\_\+t size, size\+\_\+t nmemb, void \texorpdfstring{$\ast$}{*}mailobj)
+\begin{DoxyCompactList}\small\item\em read data the next data from the e-\/mail contents (can be used as CURLOPT\+\_\+\+READFUNCTION callback function) \end{DoxyCompactList}\item 
+DLL\+\_\+\+EXPORT\+\_\+\+LIBQUICKMAIL const char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{quickmail_8h_a20958251fc326332661a7739d7bc339a}{quickmail\+\_\+send}} (\mbox{\hyperlink{quickmail_8h_a41c19143482833a54485856d0e9bcadf}{quickmail}} mailobj, const char \texorpdfstring{$\ast$}{*}smtpserver, unsigned int smtpport, const char \texorpdfstring{$\ast$}{*}username, const char \texorpdfstring{$\ast$}{*}password)
+\begin{DoxyCompactList}\small\item\em send the e-\/mail via SMTP \end{DoxyCompactList}\item 
+DLL\+\_\+\+EXPORT\+\_\+\+LIBQUICKMAIL const char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{quickmail_8h_ad57242589db755866e4f93f73e5e702f}{quickmail\+\_\+send\+\_\+secure}} (\mbox{\hyperlink{quickmail_8h_a41c19143482833a54485856d0e9bcadf}{quickmail}} mailobj, const char \texorpdfstring{$\ast$}{*}smtpserver, unsigned int smtpport, const char \texorpdfstring{$\ast$}{*}username, const char \texorpdfstring{$\ast$}{*}password)
+\begin{DoxyCompactList}\small\item\em send the e-\/mail via SMTPS \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+header file for libquickmail 
+
+\begin{DoxyAuthor}{Author}
+Brecht Sanders 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+2012-\/2016 
+\end{DoxyDate}
+\begin{DoxyCopyright}{Copyright}
+GPL 
+\end{DoxyCopyright}
+
+
+\doxysubsection{Typedef Documentation}
+\Hypertarget{quickmail_8h_a03e10c7355bd36472cb23002e97514b7}\label{quickmail_8h_a03e10c7355bd36472cb23002e97514b7} 
+\index{quickmail.h@{quickmail.h}!quickmail\_attachment\_close\_fn@{quickmail\_attachment\_close\_fn}}
+\index{quickmail\_attachment\_close\_fn@{quickmail\_attachment\_close\_fn}!quickmail.h@{quickmail.h}}
+\doxysubsubsection{\texorpdfstring{quickmail\_attachment\_close\_fn}{quickmail\_attachment\_close\_fn}}
+{\footnotesize\ttfamily typedef void(\texorpdfstring{$\ast$}{*} quickmail\+\_\+attachment\+\_\+close\+\_\+fn) (void \texorpdfstring{$\ast$}{*}handle)}
+
+
+
+type of pointer to function for closing attachment data 
+
+
+\begin{DoxyParams}{Parameters}
+{\em handle} & data structure obtained via the corresponding quickmail\+\_\+attachment\+\_\+open\+\_\+fn function \\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+\doxylink{quickmail_8h_aaa5c929a106fbd4b9965e1d3af817caa}{quickmail\+\_\+add\+\_\+body\+\_\+custom()} 
+
+\doxylink{quickmail_8h_acba852b0a7ecd4d398db7dcf3bb27a07}{quickmail\+\_\+add\+\_\+attachment\+\_\+custom()} 
+\end{DoxySeeAlso}
+\Hypertarget{quickmail_8h_a8ebc865473658c7645c32e2f47b71dd4}\label{quickmail_8h_a8ebc865473658c7645c32e2f47b71dd4} 
+\index{quickmail.h@{quickmail.h}!quickmail\_attachment\_free\_filedata\_fn@{quickmail\_attachment\_free\_filedata\_fn}}
+\index{quickmail\_attachment\_free\_filedata\_fn@{quickmail\_attachment\_free\_filedata\_fn}!quickmail.h@{quickmail.h}}
+\doxysubsubsection{\texorpdfstring{quickmail\_attachment\_free\_filedata\_fn}{quickmail\_attachment\_free\_filedata\_fn}}
+{\footnotesize\ttfamily typedef void(\texorpdfstring{$\ast$}{*} quickmail\+\_\+attachment\+\_\+free\+\_\+filedata\+\_\+fn) (void \texorpdfstring{$\ast$}{*}filedata)}
+
+
+
+type of pointer to function for cleaning up custom data in quickmail\+\_\+destroy 
+
+
+\begin{DoxyParams}{Parameters}
+{\em filedata} & custom data as passed to quickmail\+\_\+add\+\_\+body\+\_\+custom/quickmail\+\_\+add\+\_\+attachment\+\_\+custom \\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+\doxylink{quickmail_8h_aaa5c929a106fbd4b9965e1d3af817caa}{quickmail\+\_\+add\+\_\+body\+\_\+custom()} 
+
+\doxylink{quickmail_8h_acba852b0a7ecd4d398db7dcf3bb27a07}{quickmail\+\_\+add\+\_\+attachment\+\_\+custom()} 
+\end{DoxySeeAlso}
+\Hypertarget{quickmail_8h_a6b9047a5a5c99ef15a13becde0bc6da1}\label{quickmail_8h_a6b9047a5a5c99ef15a13becde0bc6da1} 
+\index{quickmail.h@{quickmail.h}!quickmail\_attachment\_open\_fn@{quickmail\_attachment\_open\_fn}}
+\index{quickmail\_attachment\_open\_fn@{quickmail\_attachment\_open\_fn}!quickmail.h@{quickmail.h}}
+\doxysubsubsection{\texorpdfstring{quickmail\_attachment\_open\_fn}{quickmail\_attachment\_open\_fn}}
+{\footnotesize\ttfamily typedef void \texorpdfstring{$\ast$}{*}(\texorpdfstring{$\ast$}{*} quickmail\+\_\+attachment\+\_\+open\+\_\+fn) (void \texorpdfstring{$\ast$}{*}filedata)}
+
+
+
+type of pointer to function for opening attachment data 
+
+
+\begin{DoxyParams}{Parameters}
+{\em filedata} & custom data as passed to quickmail\+\_\+add\+\_\+body\+\_\+custom/quickmail\+\_\+add\+\_\+attachment\+\_\+custom \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+data structure to be used in calls to quickmail\+\_\+attachment\+\_\+read\+\_\+fn and quickmail\+\_\+attachment\+\_\+close\+\_\+fn functions 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\doxylink{quickmail_8h_aaa5c929a106fbd4b9965e1d3af817caa}{quickmail\+\_\+add\+\_\+body\+\_\+custom()} 
+
+\doxylink{quickmail_8h_acba852b0a7ecd4d398db7dcf3bb27a07}{quickmail\+\_\+add\+\_\+attachment\+\_\+custom()} 
+\end{DoxySeeAlso}
+\Hypertarget{quickmail_8h_a816085272d53e506aa686702a8d375b9}\label{quickmail_8h_a816085272d53e506aa686702a8d375b9} 
+\index{quickmail.h@{quickmail.h}!quickmail\_attachment\_read\_fn@{quickmail\_attachment\_read\_fn}}
+\index{quickmail\_attachment\_read\_fn@{quickmail\_attachment\_read\_fn}!quickmail.h@{quickmail.h}}
+\doxysubsubsection{\texorpdfstring{quickmail\_attachment\_read\_fn}{quickmail\_attachment\_read\_fn}}
+{\footnotesize\ttfamily typedef size\+\_\+t(\texorpdfstring{$\ast$}{*} quickmail\+\_\+attachment\+\_\+read\+\_\+fn) (void \texorpdfstring{$\ast$}{*}handle, void \texorpdfstring{$\ast$}{*}buf, size\+\_\+t len)}
+
+
+
+type of pointer to function for reading attachment data 
+
+
+\begin{DoxyParams}{Parameters}
+{\em handle} & data structure obtained via the corresponding quickmail\+\_\+attachment\+\_\+open\+\_\+fn function \\
+\hline
+{\em buf} & buffer for receiving data \\
+\hline
+{\em len} & size in bytes of buffer for receiving data \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+number of bytes read (zero on end of file) 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\doxylink{quickmail_8h_aaa5c929a106fbd4b9965e1d3af817caa}{quickmail\+\_\+add\+\_\+body\+\_\+custom()} 
+
+\doxylink{quickmail_8h_acba852b0a7ecd4d398db7dcf3bb27a07}{quickmail\+\_\+add\+\_\+attachment\+\_\+custom()} 
+\end{DoxySeeAlso}
+\Hypertarget{quickmail_8h_aa2a18d17fda8e25f471298a2bd5563c9}\label{quickmail_8h_aa2a18d17fda8e25f471298a2bd5563c9} 
+\index{quickmail.h@{quickmail.h}!quickmail\_list\_attachment\_callback\_fn@{quickmail\_list\_attachment\_callback\_fn}}
+\index{quickmail\_list\_attachment\_callback\_fn@{quickmail\_list\_attachment\_callback\_fn}!quickmail.h@{quickmail.h}}
+\doxysubsubsection{\texorpdfstring{quickmail\_list\_attachment\_callback\_fn}{quickmail\_list\_attachment\_callback\_fn}}
+{\footnotesize\ttfamily typedef void(\texorpdfstring{$\ast$}{*} quickmail\+\_\+list\+\_\+attachment\+\_\+callback\+\_\+fn) (\mbox{\hyperlink{quickmail_8h_a41c19143482833a54485856d0e9bcadf}{quickmail}} mailobj, const char \texorpdfstring{$\ast$}{*}filename, const char \texorpdfstring{$\ast$}{*}mimetype, \mbox{\hyperlink{quickmail_8h_a6b9047a5a5c99ef15a13becde0bc6da1}{quickmail\+\_\+attachment\+\_\+open\+\_\+fn}} email\+\_\+info\+\_\+attachment\+\_\+open, \mbox{\hyperlink{quickmail_8h_a816085272d53e506aa686702a8d375b9}{quickmail\+\_\+attachment\+\_\+read\+\_\+fn}} email\+\_\+info\+\_\+attachment\+\_\+read, \mbox{\hyperlink{quickmail_8h_a03e10c7355bd36472cb23002e97514b7}{quickmail\+\_\+attachment\+\_\+close\+\_\+fn}} email\+\_\+info\+\_\+attachment\+\_\+close, void \texorpdfstring{$\ast$}{*}callbackdata)}
+
+
+
+type of pointer to function for cleaning up custom data in quickmail\+\_\+destroy 
+
+
+\begin{DoxyParams}{Parameters}
+{\em mailobj} & quickmail object \\
+\hline
+{\em filename} & attachment filename (same value as mimetype for mail body) \\
+\hline
+{\em mimetype} & MIME type \\
+\hline
+{\em attachment\+\_\+data\+\_\+open} & function for opening attachment data \\
+\hline
+{\em attachment\+\_\+data\+\_\+read} & function for reading attachment data \\
+\hline
+{\em attachment\+\_\+data\+\_\+close} & function for closing attachment data (optional, free() will be used if NULL) \\
+\hline
+{\em callbackdata} & custom data passed to quickmail\+\_\+list\+\_\+attachments \\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+\doxylink{quickmail_8h_a204d049a7748b869444ce22effdac733}{quickmail\+\_\+list\+\_\+bodies()} 
+
+\doxylink{quickmail_8h_aad9f428ba6ecf87490c861d8c610f56f}{quickmail\+\_\+list\+\_\+attachments()} 
+\end{DoxySeeAlso}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{quickmail_8h_acba852b0a7ecd4d398db7dcf3bb27a07}\label{quickmail_8h_acba852b0a7ecd4d398db7dcf3bb27a07} 
+\index{quickmail.h@{quickmail.h}!quickmail\_add\_attachment\_custom@{quickmail\_add\_attachment\_custom}}
+\index{quickmail\_add\_attachment\_custom@{quickmail\_add\_attachment\_custom}!quickmail.h@{quickmail.h}}
+\doxysubsubsection{\texorpdfstring{quickmail\_add\_attachment\_custom()}{quickmail\_add\_attachment\_custom()}}
+{\footnotesize\ttfamily DLL\+\_\+\+EXPORT\+\_\+\+LIBQUICKMAIL void quickmail\+\_\+add\+\_\+attachment\+\_\+custom (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{quickmail_8h_a41c19143482833a54485856d0e9bcadf}{quickmail}}}]{mailobj,  }\item[{const char \texorpdfstring{$\ast$}{*}}]{filename,  }\item[{const char \texorpdfstring{$\ast$}{*}}]{mimetype,  }\item[{char \texorpdfstring{$\ast$}{*}}]{data,  }\item[{\mbox{\hyperlink{quickmail_8h_a6b9047a5a5c99ef15a13becde0bc6da1}{quickmail\+\_\+attachment\+\_\+open\+\_\+fn}}}]{attachment\+\_\+data\+\_\+open,  }\item[{\mbox{\hyperlink{quickmail_8h_a816085272d53e506aa686702a8d375b9}{quickmail\+\_\+attachment\+\_\+read\+\_\+fn}}}]{attachment\+\_\+data\+\_\+read,  }\item[{\mbox{\hyperlink{quickmail_8h_a03e10c7355bd36472cb23002e97514b7}{quickmail\+\_\+attachment\+\_\+close\+\_\+fn}}}]{attachment\+\_\+data\+\_\+close,  }\item[{\mbox{\hyperlink{quickmail_8h_a8ebc865473658c7645c32e2f47b71dd4}{quickmail\+\_\+attachment\+\_\+free\+\_\+filedata\+\_\+fn}}}]{attachment\+\_\+data\+\_\+filedata\+\_\+free }\end{DoxyParamCaption})}
+
+
+
+add an attachment with custom read functions to a quickmail object 
+
+
+\begin{DoxyParams}{Parameters}
+{\em mailobj} & quickmail object \\
+\hline
+{\em filename} & name of file to attach (must not include full path) \\
+\hline
+{\em mimetype} & MIME type of file to attach (set to NULL for default binary file) \\
+\hline
+{\em data} & custom data passed to attachment\+\_\+data\+\_\+open and attachment\+\_\+data\+\_\+filedata\+\_\+free functions \\
+\hline
+{\em attachment\+\_\+data\+\_\+open} & function for opening attachment data \\
+\hline
+{\em attachment\+\_\+data\+\_\+read} & function for reading attachment data \\
+\hline
+{\em attachment\+\_\+data\+\_\+close} & function for closing attachment data (optional, free() will be used if NULL) \\
+\hline
+{\em attachment\+\_\+data\+\_\+filedata\+\_\+free} & function for cleaning up custom data in quickmail\+\_\+destroy (optional, free() will be used if NULL) \\
+\hline
+\end{DoxyParams}
+\Hypertarget{quickmail_8h_a95a91fcf3fa1c9411197ef1c10fa2402}\label{quickmail_8h_a95a91fcf3fa1c9411197ef1c10fa2402} 
+\index{quickmail.h@{quickmail.h}!quickmail\_add\_attachment\_file@{quickmail\_add\_attachment\_file}}
+\index{quickmail\_add\_attachment\_file@{quickmail\_add\_attachment\_file}!quickmail.h@{quickmail.h}}
+\doxysubsubsection{\texorpdfstring{quickmail\_add\_attachment\_file()}{quickmail\_add\_attachment\_file()}}
+{\footnotesize\ttfamily DLL\+\_\+\+EXPORT\+\_\+\+LIBQUICKMAIL void quickmail\+\_\+add\+\_\+attachment\+\_\+file (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{quickmail_8h_a41c19143482833a54485856d0e9bcadf}{quickmail}}}]{mailobj,  }\item[{const char \texorpdfstring{$\ast$}{*}}]{path,  }\item[{const char \texorpdfstring{$\ast$}{*}}]{mimetype }\end{DoxyParamCaption})}
+
+
+
+add a file attachment to a quickmail object 
+
+
+\begin{DoxyParams}{Parameters}
+{\em mailobj} & quickmail object \\
+\hline
+{\em path} & path of file to attach \\
+\hline
+{\em mimetype} & MIME type of file to attach (application/octet-\/stream will be used if set to NULL) \\
+\hline
+\end{DoxyParams}
+\Hypertarget{quickmail_8h_ac483021762de9fafc5c00d0f958a2484}\label{quickmail_8h_ac483021762de9fafc5c00d0f958a2484} 
+\index{quickmail.h@{quickmail.h}!quickmail\_add\_attachment\_memory@{quickmail\_add\_attachment\_memory}}
+\index{quickmail\_add\_attachment\_memory@{quickmail\_add\_attachment\_memory}!quickmail.h@{quickmail.h}}
+\doxysubsubsection{\texorpdfstring{quickmail\_add\_attachment\_memory()}{quickmail\_add\_attachment\_memory()}}
+{\footnotesize\ttfamily DLL\+\_\+\+EXPORT\+\_\+\+LIBQUICKMAIL void quickmail\+\_\+add\+\_\+attachment\+\_\+memory (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{quickmail_8h_a41c19143482833a54485856d0e9bcadf}{quickmail}}}]{mailobj,  }\item[{const char \texorpdfstring{$\ast$}{*}}]{filename,  }\item[{const char \texorpdfstring{$\ast$}{*}}]{mimetype,  }\item[{char \texorpdfstring{$\ast$}{*}}]{data,  }\item[{size\+\_\+t}]{datalen,  }\item[{int}]{mustfree }\end{DoxyParamCaption})}
+
+
+
+add an attachment from memory to a quickmail object 
+
+
+\begin{DoxyParams}{Parameters}
+{\em mailobj} & quickmail object \\
+\hline
+{\em filename} & name of file to attach (must not include full path) \\
+\hline
+{\em mimetype} & MIME type of file to attach (set to NULL for default binary file) \\
+\hline
+{\em data} & data content \\
+\hline
+{\em datalen} & size of data in bytes \\
+\hline
+{\em mustfree} & non-\/zero if data must be freed by quickmail\+\_\+destroy \\
+\hline
+\end{DoxyParams}
+\Hypertarget{quickmail_8h_ac626a794f821d1de65a0a789771f1073}\label{quickmail_8h_ac626a794f821d1de65a0a789771f1073} 
+\index{quickmail.h@{quickmail.h}!quickmail\_add\_bcc@{quickmail\_add\_bcc}}
+\index{quickmail\_add\_bcc@{quickmail\_add\_bcc}!quickmail.h@{quickmail.h}}
+\doxysubsubsection{\texorpdfstring{quickmail\_add\_bcc()}{quickmail\_add\_bcc()}}
+{\footnotesize\ttfamily DLL\+\_\+\+EXPORT\+\_\+\+LIBQUICKMAIL void quickmail\+\_\+add\+\_\+bcc (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{quickmail_8h_a41c19143482833a54485856d0e9bcadf}{quickmail}}}]{mailobj,  }\item[{const char \texorpdfstring{$\ast$}{*}}]{email }\end{DoxyParamCaption})}
+
+
+
+add a blind carbon copy recipient (bcc) e-\/mail address to a quickmail object 
+
+
+\begin{DoxyParams}{Parameters}
+{\em mailobj} & quickmail object \\
+\hline
+{\em e-\/mail} & recipient e-\/mail address \\
+\hline
+\end{DoxyParams}
+\Hypertarget{quickmail_8h_aaa5c929a106fbd4b9965e1d3af817caa}\label{quickmail_8h_aaa5c929a106fbd4b9965e1d3af817caa} 
+\index{quickmail.h@{quickmail.h}!quickmail\_add\_body\_custom@{quickmail\_add\_body\_custom}}
+\index{quickmail\_add\_body\_custom@{quickmail\_add\_body\_custom}!quickmail.h@{quickmail.h}}
+\doxysubsubsection{\texorpdfstring{quickmail\_add\_body\_custom()}{quickmail\_add\_body\_custom()}}
+{\footnotesize\ttfamily DLL\+\_\+\+EXPORT\+\_\+\+LIBQUICKMAIL void quickmail\+\_\+add\+\_\+body\+\_\+custom (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{quickmail_8h_a41c19143482833a54485856d0e9bcadf}{quickmail}}}]{mailobj,  }\item[{const char \texorpdfstring{$\ast$}{*}}]{mimetype,  }\item[{char \texorpdfstring{$\ast$}{*}}]{data,  }\item[{\mbox{\hyperlink{quickmail_8h_a6b9047a5a5c99ef15a13becde0bc6da1}{quickmail\+\_\+attachment\+\_\+open\+\_\+fn}}}]{attachment\+\_\+data\+\_\+open,  }\item[{\mbox{\hyperlink{quickmail_8h_a816085272d53e506aa686702a8d375b9}{quickmail\+\_\+attachment\+\_\+read\+\_\+fn}}}]{attachment\+\_\+data\+\_\+read,  }\item[{\mbox{\hyperlink{quickmail_8h_a03e10c7355bd36472cb23002e97514b7}{quickmail\+\_\+attachment\+\_\+close\+\_\+fn}}}]{attachment\+\_\+data\+\_\+close,  }\item[{\mbox{\hyperlink{quickmail_8h_a8ebc865473658c7645c32e2f47b71dd4}{quickmail\+\_\+attachment\+\_\+free\+\_\+filedata\+\_\+fn}}}]{attachment\+\_\+data\+\_\+filedata\+\_\+free }\end{DoxyParamCaption})}
+
+
+
+add a body with custom read functions to a quickmail object 
+
+
+\begin{DoxyParams}{Parameters}
+{\em mailobj} & quickmail object \\
+\hline
+{\em mimetype} & MIME type (text/plain will be used if set to NULL) \\
+\hline
+{\em data} & custom data passed to attachment\+\_\+data\+\_\+open and attachment\+\_\+data\+\_\+filedata\+\_\+free functions \\
+\hline
+{\em attachment\+\_\+data\+\_\+open} & function for opening attachment data \\
+\hline
+{\em attachment\+\_\+data\+\_\+read} & function for reading attachment data \\
+\hline
+{\em attachment\+\_\+data\+\_\+close} & function for closing attachment data (optional, free() will be used if NULL) \\
+\hline
+{\em attachment\+\_\+data\+\_\+filedata\+\_\+free} & function for cleaning up custom data in quickmail\+\_\+destroy (optional, free() will be used if NULL) \\
+\hline
+\end{DoxyParams}
+\Hypertarget{quickmail_8h_a6ad2d0c33a65aaf69fef7822c8eeb137}\label{quickmail_8h_a6ad2d0c33a65aaf69fef7822c8eeb137} 
+\index{quickmail.h@{quickmail.h}!quickmail\_add\_body\_file@{quickmail\_add\_body\_file}}
+\index{quickmail\_add\_body\_file@{quickmail\_add\_body\_file}!quickmail.h@{quickmail.h}}
+\doxysubsubsection{\texorpdfstring{quickmail\_add\_body\_file()}{quickmail\_add\_body\_file()}}
+{\footnotesize\ttfamily DLL\+\_\+\+EXPORT\+\_\+\+LIBQUICKMAIL void quickmail\+\_\+add\+\_\+body\+\_\+file (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{quickmail_8h_a41c19143482833a54485856d0e9bcadf}{quickmail}}}]{mailobj,  }\item[{const char \texorpdfstring{$\ast$}{*}}]{mimetype,  }\item[{const char \texorpdfstring{$\ast$}{*}}]{path }\end{DoxyParamCaption})}
+
+
+
+add a body file to a quickmail object (deprecated) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em mailobj} & quickmail object \\
+\hline
+{\em mimetype} & MIME type (text/plain will be used if set to NULL) \\
+\hline
+{\em path} & path of file with body data \\
+\hline
+\end{DoxyParams}
+\Hypertarget{quickmail_8h_aa9b4d41666155c469169fa4b545bbe13}\label{quickmail_8h_aa9b4d41666155c469169fa4b545bbe13} 
+\index{quickmail.h@{quickmail.h}!quickmail\_add\_body\_memory@{quickmail\_add\_body\_memory}}
+\index{quickmail\_add\_body\_memory@{quickmail\_add\_body\_memory}!quickmail.h@{quickmail.h}}
+\doxysubsubsection{\texorpdfstring{quickmail\_add\_body\_memory()}{quickmail\_add\_body\_memory()}}
+{\footnotesize\ttfamily DLL\+\_\+\+EXPORT\+\_\+\+LIBQUICKMAIL void quickmail\+\_\+add\+\_\+body\+\_\+memory (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{quickmail_8h_a41c19143482833a54485856d0e9bcadf}{quickmail}}}]{mailobj,  }\item[{const char \texorpdfstring{$\ast$}{*}}]{mimetype,  }\item[{char \texorpdfstring{$\ast$}{*}}]{data,  }\item[{size\+\_\+t}]{datalen,  }\item[{int}]{mustfree }\end{DoxyParamCaption})}
+
+
+
+add a body from memory to a quickmail object 
+
+
+\begin{DoxyParams}{Parameters}
+{\em mailobj} & quickmail object \\
+\hline
+{\em mimetype} & MIME type (text/plain will be used if set to NULL) \\
+\hline
+{\em data} & body content \\
+\hline
+{\em datalen} & size of data in bytes \\
+\hline
+{\em mustfree} & non-\/zero if data must be freed by quickmail\+\_\+destroy \\
+\hline
+\end{DoxyParams}
+\Hypertarget{quickmail_8h_a048e77ab064671412c14d7cd70d92975}\label{quickmail_8h_a048e77ab064671412c14d7cd70d92975} 
+\index{quickmail.h@{quickmail.h}!quickmail\_add\_cc@{quickmail\_add\_cc}}
+\index{quickmail\_add\_cc@{quickmail\_add\_cc}!quickmail.h@{quickmail.h}}
+\doxysubsubsection{\texorpdfstring{quickmail\_add\_cc()}{quickmail\_add\_cc()}}
+{\footnotesize\ttfamily DLL\+\_\+\+EXPORT\+\_\+\+LIBQUICKMAIL void quickmail\+\_\+add\+\_\+cc (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{quickmail_8h_a41c19143482833a54485856d0e9bcadf}{quickmail}}}]{mailobj,  }\item[{const char \texorpdfstring{$\ast$}{*}}]{email }\end{DoxyParamCaption})}
+
+
+
+add a carbon copy recipient (cc) e-\/mail address to a quickmail object 
+
+
+\begin{DoxyParams}{Parameters}
+{\em mailobj} & quickmail object \\
+\hline
+{\em e-\/mail} & recipient e-\/mail address \\
+\hline
+\end{DoxyParams}
+\Hypertarget{quickmail_8h_ad52e741ba2a242ce786dea78f2818df0}\label{quickmail_8h_ad52e741ba2a242ce786dea78f2818df0} 
+\index{quickmail.h@{quickmail.h}!quickmail\_add\_header@{quickmail\_add\_header}}
+\index{quickmail\_add\_header@{quickmail\_add\_header}!quickmail.h@{quickmail.h}}
+\doxysubsubsection{\texorpdfstring{quickmail\_add\_header()}{quickmail\_add\_header()}}
+{\footnotesize\ttfamily DLL\+\_\+\+EXPORT\+\_\+\+LIBQUICKMAIL void quickmail\+\_\+add\+\_\+header (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{quickmail_8h_a41c19143482833a54485856d0e9bcadf}{quickmail}}}]{mailobj,  }\item[{const char \texorpdfstring{$\ast$}{*}}]{headerline }\end{DoxyParamCaption})}
+
+
+
+add an e-\/mail header to a quickmail object 
+
+
+\begin{DoxyParams}{Parameters}
+{\em mailobj} & quickmail object \\
+\hline
+{\em headerline} & header line to add \\
+\hline
+\end{DoxyParams}
+\Hypertarget{quickmail_8h_a5ed73631d1f7cb39f024ba35c2b7417d}\label{quickmail_8h_a5ed73631d1f7cb39f024ba35c2b7417d} 
+\index{quickmail.h@{quickmail.h}!quickmail\_add\_to@{quickmail\_add\_to}}
+\index{quickmail\_add\_to@{quickmail\_add\_to}!quickmail.h@{quickmail.h}}
+\doxysubsubsection{\texorpdfstring{quickmail\_add\_to()}{quickmail\_add\_to()}}
+{\footnotesize\ttfamily DLL\+\_\+\+EXPORT\+\_\+\+LIBQUICKMAIL void quickmail\+\_\+add\+\_\+to (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{quickmail_8h_a41c19143482833a54485856d0e9bcadf}{quickmail}}}]{mailobj,  }\item[{const char \texorpdfstring{$\ast$}{*}}]{email }\end{DoxyParamCaption})}
+
+
+
+add a recipient (to) e-\/mail address to a quickmail object 
+
+
+\begin{DoxyParams}{Parameters}
+{\em mailobj} & quickmail object \\
+\hline
+{\em e-\/mail} & recipient e-\/mail address \\
+\hline
+\end{DoxyParams}
+\Hypertarget{quickmail_8h_ab11693b2456ac19f75046653c2349d5e}\label{quickmail_8h_ab11693b2456ac19f75046653c2349d5e} 
+\index{quickmail.h@{quickmail.h}!quickmail\_cleanup@{quickmail\_cleanup}}
+\index{quickmail\_cleanup@{quickmail\_cleanup}!quickmail.h@{quickmail.h}}
+\doxysubsubsection{\texorpdfstring{quickmail\_cleanup()}{quickmail\_cleanup()}}
+{\footnotesize\ttfamily DLL\+\_\+\+EXPORT\+\_\+\+LIBQUICKMAIL int quickmail\+\_\+cleanup (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+clean up quickmail library, call once at the end of the main thread of the application 
+
+\begin{DoxyReturn}{Returns}
+zero on success 
+\end{DoxyReturn}
+\Hypertarget{quickmail_8h_ab5981da168cff98e8e6ce8e76e19f54f}\label{quickmail_8h_ab5981da168cff98e8e6ce8e76e19f54f} 
+\index{quickmail.h@{quickmail.h}!quickmail\_create@{quickmail\_create}}
+\index{quickmail\_create@{quickmail\_create}!quickmail.h@{quickmail.h}}
+\doxysubsubsection{\texorpdfstring{quickmail\_create()}{quickmail\_create()}}
+{\footnotesize\ttfamily DLL\+\_\+\+EXPORT\+\_\+\+LIBQUICKMAIL \mbox{\hyperlink{quickmail_8h_a41c19143482833a54485856d0e9bcadf}{quickmail}} quickmail\+\_\+create (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{from,  }\item[{const char \texorpdfstring{$\ast$}{*}}]{subject }\end{DoxyParamCaption})}
+
+
+
+create a new quickmail object 
+
+
+\begin{DoxyParams}{Parameters}
+{\em from} & sender e-\/mail address \\
+\hline
+{\em subject} & e-\/mail subject \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+quickmail object or NULL on error 
+\end{DoxyReturn}
+\Hypertarget{quickmail_8h_a3ac506afb737327896c52cd42477083a}\label{quickmail_8h_a3ac506afb737327896c52cd42477083a} 
+\index{quickmail.h@{quickmail.h}!quickmail\_destroy@{quickmail\_destroy}}
+\index{quickmail\_destroy@{quickmail\_destroy}!quickmail.h@{quickmail.h}}
+\doxysubsubsection{\texorpdfstring{quickmail\_destroy()}{quickmail\_destroy()}}
+{\footnotesize\ttfamily DLL\+\_\+\+EXPORT\+\_\+\+LIBQUICKMAIL void quickmail\+\_\+destroy (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{quickmail_8h_a41c19143482833a54485856d0e9bcadf}{quickmail}}}]{mailobj }\end{DoxyParamCaption})}
+
+
+
+clean up a quickmail object 
+
+
+\begin{DoxyParams}{Parameters}
+{\em mailobj} & quickmail object \\
+\hline
+\end{DoxyParams}
+\Hypertarget{quickmail_8h_a934229ae56ba35337c3efcf7afb3fdb1}\label{quickmail_8h_a934229ae56ba35337c3efcf7afb3fdb1} 
+\index{quickmail.h@{quickmail.h}!quickmail\_fsave@{quickmail\_fsave}}
+\index{quickmail\_fsave@{quickmail\_fsave}!quickmail.h@{quickmail.h}}
+\doxysubsubsection{\texorpdfstring{quickmail\_fsave()}{quickmail\_fsave()}}
+{\footnotesize\ttfamily DLL\+\_\+\+EXPORT\+\_\+\+LIBQUICKMAIL void quickmail\+\_\+fsave (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{quickmail_8h_a41c19143482833a54485856d0e9bcadf}{quickmail}}}]{mailobj,  }\item[{FILE \texorpdfstring{$\ast$}{*}}]{filehandle }\end{DoxyParamCaption})}
+
+
+
+save the generated e-\/mail to a file 
+
+
+\begin{DoxyParams}{Parameters}
+{\em mailobj} & quickmail object \\
+\hline
+{\em filehandle} & file handle to write the e-\/mail contents to \\
+\hline
+\end{DoxyParams}
+\Hypertarget{quickmail_8h_a445c4ba4cef4dfa74ee4fff92febcf89}\label{quickmail_8h_a445c4ba4cef4dfa74ee4fff92febcf89} 
+\index{quickmail.h@{quickmail.h}!quickmail\_get\_body@{quickmail\_get\_body}}
+\index{quickmail\_get\_body@{quickmail\_get\_body}!quickmail.h@{quickmail.h}}
+\doxysubsubsection{\texorpdfstring{quickmail\_get\_body()}{quickmail\_get\_body()}}
+{\footnotesize\ttfamily DLL\+\_\+\+EXPORT\+\_\+\+LIBQUICKMAIL char \texorpdfstring{$\ast$}{*} quickmail\+\_\+get\+\_\+body (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{quickmail_8h_a41c19143482833a54485856d0e9bcadf}{quickmail}}}]{mailobj }\end{DoxyParamCaption})}
+
+
+
+set the body of a quickmail object any existing bodies will be removed and a single plain text body will be added 
+
+
+\begin{DoxyParams}{Parameters}
+{\em mailobj} & quickmail object \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+e-\/mail body or NULL on error (caller must free result) 
+\end{DoxyReturn}
+\Hypertarget{quickmail_8h_a316c832a6bcd541d9b978579ab33d3c9}\label{quickmail_8h_a316c832a6bcd541d9b978579ab33d3c9} 
+\index{quickmail.h@{quickmail.h}!quickmail\_get\_data@{quickmail\_get\_data}}
+\index{quickmail\_get\_data@{quickmail\_get\_data}!quickmail.h@{quickmail.h}}
+\doxysubsubsection{\texorpdfstring{quickmail\_get\_data()}{quickmail\_get\_data()}}
+{\footnotesize\ttfamily DLL\+\_\+\+EXPORT\+\_\+\+LIBQUICKMAIL size\+\_\+t quickmail\+\_\+get\+\_\+data (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{buffer,  }\item[{size\+\_\+t}]{size,  }\item[{size\+\_\+t}]{nmemb,  }\item[{void \texorpdfstring{$\ast$}{*}}]{mailobj }\end{DoxyParamCaption})}
+
+
+
+read data the next data from the e-\/mail contents (can be used as CURLOPT\+\_\+\+READFUNCTION callback function) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em buffer} & buffer to copy data to (bust be able to hold size \texorpdfstring{$\ast$}{*} nmemb bytes) \\
+\hline
+{\em size} & record size \\
+\hline
+{\em nmemb} & number of records to copy to {\ttfamily buffer} \\
+\hline
+{\em mailobj} & quickmail object \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+number of bytes copied to {\ttfamily buffer} or 0 if at end 
+\end{DoxyReturn}
+\Hypertarget{quickmail_8h_a0c51fb37e469e4aacbaa8b8d2791e91b}\label{quickmail_8h_a0c51fb37e469e4aacbaa8b8d2791e91b} 
+\index{quickmail.h@{quickmail.h}!quickmail\_get\_from@{quickmail\_get\_from}}
+\index{quickmail\_get\_from@{quickmail\_get\_from}!quickmail.h@{quickmail.h}}
+\doxysubsubsection{\texorpdfstring{quickmail\_get\_from()}{quickmail\_get\_from()}}
+{\footnotesize\ttfamily DLL\+\_\+\+EXPORT\+\_\+\+LIBQUICKMAIL const char \texorpdfstring{$\ast$}{*} quickmail\+\_\+get\+\_\+from (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{quickmail_8h_a41c19143482833a54485856d0e9bcadf}{quickmail}}}]{mailobj }\end{DoxyParamCaption})}
+
+
+
+get the sender (from) e-\/mail address of a quickmail object 
+
+
+\begin{DoxyParams}{Parameters}
+{\em mailobj} & quickmail object \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+sender e-\/mail address 
+\end{DoxyReturn}
+\Hypertarget{quickmail_8h_a01eed98a42fc0be89abe7d0f993bf2db}\label{quickmail_8h_a01eed98a42fc0be89abe7d0f993bf2db} 
+\index{quickmail.h@{quickmail.h}!quickmail\_get\_subject@{quickmail\_get\_subject}}
+\index{quickmail\_get\_subject@{quickmail\_get\_subject}!quickmail.h@{quickmail.h}}
+\doxysubsubsection{\texorpdfstring{quickmail\_get\_subject()}{quickmail\_get\_subject()}}
+{\footnotesize\ttfamily DLL\+\_\+\+EXPORT\+\_\+\+LIBQUICKMAIL const char \texorpdfstring{$\ast$}{*} quickmail\+\_\+get\+\_\+subject (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{quickmail_8h_a41c19143482833a54485856d0e9bcadf}{quickmail}}}]{mailobj }\end{DoxyParamCaption})}
+
+
+
+set the subject of a quickmail object 
+
+
+\begin{DoxyParams}{Parameters}
+{\em mailobj} & quickmail object \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+e-\/mail subject 
+\end{DoxyReturn}
+\Hypertarget{quickmail_8h_a45086bf23e4e60905745ae1506195f70}\label{quickmail_8h_a45086bf23e4e60905745ae1506195f70} 
+\index{quickmail.h@{quickmail.h}!quickmail\_get\_version@{quickmail\_get\_version}}
+\index{quickmail\_get\_version@{quickmail\_get\_version}!quickmail.h@{quickmail.h}}
+\doxysubsubsection{\texorpdfstring{quickmail\_get\_version()}{quickmail\_get\_version()}}
+{\footnotesize\ttfamily DLL\+\_\+\+EXPORT\+\_\+\+LIBQUICKMAIL const char \texorpdfstring{$\ast$}{*} quickmail\+\_\+get\+\_\+version (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+get version quickmail library 
+
+\begin{DoxyReturn}{Returns}
+library version 
+\end{DoxyReturn}
+\Hypertarget{quickmail_8h_aa6d56a7c99f44f716dd548b165b4e52b}\label{quickmail_8h_aa6d56a7c99f44f716dd548b165b4e52b} 
+\index{quickmail.h@{quickmail.h}!quickmail\_initialize@{quickmail\_initialize}}
+\index{quickmail\_initialize@{quickmail\_initialize}!quickmail.h@{quickmail.h}}
+\doxysubsubsection{\texorpdfstring{quickmail\_initialize()}{quickmail\_initialize()}}
+{\footnotesize\ttfamily DLL\+\_\+\+EXPORT\+\_\+\+LIBQUICKMAIL int quickmail\+\_\+initialize (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+initialize quickmail library, call once at the beginning of the main thread of the application 
+
+\begin{DoxyReturn}{Returns}
+zero on success 
+\end{DoxyReturn}
+\Hypertarget{quickmail_8h_aad9f428ba6ecf87490c861d8c610f56f}\label{quickmail_8h_aad9f428ba6ecf87490c861d8c610f56f} 
+\index{quickmail.h@{quickmail.h}!quickmail\_list\_attachments@{quickmail\_list\_attachments}}
+\index{quickmail\_list\_attachments@{quickmail\_list\_attachments}!quickmail.h@{quickmail.h}}
+\doxysubsubsection{\texorpdfstring{quickmail\_list\_attachments()}{quickmail\_list\_attachments()}}
+{\footnotesize\ttfamily DLL\+\_\+\+EXPORT\+\_\+\+LIBQUICKMAIL void quickmail\+\_\+list\+\_\+attachments (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{quickmail_8h_a41c19143482833a54485856d0e9bcadf}{quickmail}}}]{mailobj,  }\item[{\mbox{\hyperlink{quickmail_8h_aa2a18d17fda8e25f471298a2bd5563c9}{quickmail\+\_\+list\+\_\+attachment\+\_\+callback\+\_\+fn}}}]{callback,  }\item[{void \texorpdfstring{$\ast$}{*}}]{callbackdata }\end{DoxyParamCaption})}
+
+
+
+list attachments by calling a callback function for each attachment 
+
+
+\begin{DoxyParams}{Parameters}
+{\em mailobj} & quickmail object \\
+\hline
+{\em callback} & function to call for each attachment \\
+\hline
+{\em callbackdata} & custom data to pass to the callback function \\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+\doxylink{quickmail_8h_aa2a18d17fda8e25f471298a2bd5563c9}{quickmail\+\_\+list\+\_\+attachment\+\_\+callback\+\_\+fn} 
+\end{DoxySeeAlso}
+\Hypertarget{quickmail_8h_a204d049a7748b869444ce22effdac733}\label{quickmail_8h_a204d049a7748b869444ce22effdac733} 
+\index{quickmail.h@{quickmail.h}!quickmail\_list\_bodies@{quickmail\_list\_bodies}}
+\index{quickmail\_list\_bodies@{quickmail\_list\_bodies}!quickmail.h@{quickmail.h}}
+\doxysubsubsection{\texorpdfstring{quickmail\_list\_bodies()}{quickmail\_list\_bodies()}}
+{\footnotesize\ttfamily DLL\+\_\+\+EXPORT\+\_\+\+LIBQUICKMAIL void quickmail\+\_\+list\+\_\+bodies (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{quickmail_8h_a41c19143482833a54485856d0e9bcadf}{quickmail}}}]{mailobj,  }\item[{\mbox{\hyperlink{quickmail_8h_aa2a18d17fda8e25f471298a2bd5563c9}{quickmail\+\_\+list\+\_\+attachment\+\_\+callback\+\_\+fn}}}]{callback,  }\item[{void \texorpdfstring{$\ast$}{*}}]{callbackdata }\end{DoxyParamCaption})}
+
+
+
+list bodies by calling a callback function for each body 
+
+
+\begin{DoxyParams}{Parameters}
+{\em mailobj} & quickmail object \\
+\hline
+{\em callback} & function to call for each attachment \\
+\hline
+{\em callbackdata} & custom data to pass to the callback function \\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+\doxylink{quickmail_8h_aa2a18d17fda8e25f471298a2bd5563c9}{quickmail\+\_\+list\+\_\+attachment\+\_\+callback\+\_\+fn} 
+\end{DoxySeeAlso}
+\Hypertarget{quickmail_8h_a93a32601a7add591b5913b58f665b77a}\label{quickmail_8h_a93a32601a7add591b5913b58f665b77a} 
+\index{quickmail.h@{quickmail.h}!quickmail\_remove\_attachment@{quickmail\_remove\_attachment}}
+\index{quickmail\_remove\_attachment@{quickmail\_remove\_attachment}!quickmail.h@{quickmail.h}}
+\doxysubsubsection{\texorpdfstring{quickmail\_remove\_attachment()}{quickmail\_remove\_attachment()}}
+{\footnotesize\ttfamily DLL\+\_\+\+EXPORT\+\_\+\+LIBQUICKMAIL int quickmail\+\_\+remove\+\_\+attachment (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{quickmail_8h_a41c19143482833a54485856d0e9bcadf}{quickmail}}}]{mailobj,  }\item[{const char \texorpdfstring{$\ast$}{*}}]{filename }\end{DoxyParamCaption})}
+
+
+
+remove attachment from quickmail object 
+
+
+\begin{DoxyParams}{Parameters}
+{\em mailobj} & quickmail object \\
+\hline
+{\em filename} & name of file to attach (must not include full path) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+zero on success 
+\end{DoxyReturn}
+\Hypertarget{quickmail_8h_aa4aa190f56fbded93260b4b1f8b595fd}\label{quickmail_8h_aa4aa190f56fbded93260b4b1f8b595fd} 
+\index{quickmail.h@{quickmail.h}!quickmail\_remove\_body@{quickmail\_remove\_body}}
+\index{quickmail\_remove\_body@{quickmail\_remove\_body}!quickmail.h@{quickmail.h}}
+\doxysubsubsection{\texorpdfstring{quickmail\_remove\_body()}{quickmail\_remove\_body()}}
+{\footnotesize\ttfamily DLL\+\_\+\+EXPORT\+\_\+\+LIBQUICKMAIL int quickmail\+\_\+remove\+\_\+body (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{quickmail_8h_a41c19143482833a54485856d0e9bcadf}{quickmail}}}]{mailobj,  }\item[{const char \texorpdfstring{$\ast$}{*}}]{mimetype }\end{DoxyParamCaption})}
+
+
+
+remove body from quickmail object 
+
+
+\begin{DoxyParams}{Parameters}
+{\em mailobj} & quickmail object \\
+\hline
+{\em mimetype} & MIME type (text/plain will be used if set to NULL) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+zero on success 
+\end{DoxyReturn}
+\Hypertarget{quickmail_8h_a20958251fc326332661a7739d7bc339a}\label{quickmail_8h_a20958251fc326332661a7739d7bc339a} 
+\index{quickmail.h@{quickmail.h}!quickmail\_send@{quickmail\_send}}
+\index{quickmail\_send@{quickmail\_send}!quickmail.h@{quickmail.h}}
+\doxysubsubsection{\texorpdfstring{quickmail\_send()}{quickmail\_send()}}
+{\footnotesize\ttfamily DLL\+\_\+\+EXPORT\+\_\+\+LIBQUICKMAIL const char \texorpdfstring{$\ast$}{*} quickmail\+\_\+send (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{quickmail_8h_a41c19143482833a54485856d0e9bcadf}{quickmail}}}]{mailobj,  }\item[{const char \texorpdfstring{$\ast$}{*}}]{smtpserver,  }\item[{unsigned int}]{smtpport,  }\item[{const char \texorpdfstring{$\ast$}{*}}]{username,  }\item[{const char \texorpdfstring{$\ast$}{*}}]{password }\end{DoxyParamCaption})}
+
+
+
+send the e-\/mail via SMTP 
+
+
+\begin{DoxyParams}{Parameters}
+{\em mailobj} & quickmail object \\
+\hline
+{\em smtpserver} & IP address or hostname of SMTP server \\
+\hline
+{\em smtpport} & SMTP port number (normally this is 25) \\
+\hline
+{\em username} & username to use for authentication (or NULL if not needed) \\
+\hline
+{\em password} & password to use for authentication (or NULL if not needed) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+NULL on success or error message on error 
+\end{DoxyReturn}
+\Hypertarget{quickmail_8h_ad57242589db755866e4f93f73e5e702f}\label{quickmail_8h_ad57242589db755866e4f93f73e5e702f} 
+\index{quickmail.h@{quickmail.h}!quickmail\_send\_secure@{quickmail\_send\_secure}}
+\index{quickmail\_send\_secure@{quickmail\_send\_secure}!quickmail.h@{quickmail.h}}
+\doxysubsubsection{\texorpdfstring{quickmail\_send\_secure()}{quickmail\_send\_secure()}}
+{\footnotesize\ttfamily DLL\+\_\+\+EXPORT\+\_\+\+LIBQUICKMAIL const char \texorpdfstring{$\ast$}{*} quickmail\+\_\+send\+\_\+secure (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{quickmail_8h_a41c19143482833a54485856d0e9bcadf}{quickmail}}}]{mailobj,  }\item[{const char \texorpdfstring{$\ast$}{*}}]{smtpserver,  }\item[{unsigned int}]{smtpport,  }\item[{const char \texorpdfstring{$\ast$}{*}}]{username,  }\item[{const char \texorpdfstring{$\ast$}{*}}]{password }\end{DoxyParamCaption})}
+
+
+
+send the e-\/mail via SMTPS 
+
+
+\begin{DoxyParams}{Parameters}
+{\em mailobj} & quickmail object \\
+\hline
+{\em smtpserver} & IP address or hostname of SMTPS server \\
+\hline
+{\em smtpport} & SMTPS port number (normally this is 465) \\
+\hline
+{\em username} & username to use for authentication (or NULL if not needed) \\
+\hline
+{\em password} & password to use for authentication (or NULL if not needed) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+NULL on success or error message on error 
+\end{DoxyReturn}
+\Hypertarget{quickmail_8h_a7393621f26d1177d8dd703f030c03d7a}\label{quickmail_8h_a7393621f26d1177d8dd703f030c03d7a} 
+\index{quickmail.h@{quickmail.h}!quickmail\_set\_body@{quickmail\_set\_body}}
+\index{quickmail\_set\_body@{quickmail\_set\_body}!quickmail.h@{quickmail.h}}
+\doxysubsubsection{\texorpdfstring{quickmail\_set\_body()}{quickmail\_set\_body()}}
+{\footnotesize\ttfamily DLL\+\_\+\+EXPORT\+\_\+\+LIBQUICKMAIL void quickmail\+\_\+set\+\_\+body (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{quickmail_8h_a41c19143482833a54485856d0e9bcadf}{quickmail}}}]{mailobj,  }\item[{const char \texorpdfstring{$\ast$}{*}}]{body }\end{DoxyParamCaption})}
+
+
+
+set the body of a quickmail object 
+
+
+\begin{DoxyParams}{Parameters}
+{\em mailobj} & quickmail object \\
+\hline
+{\em body} & e-\/mail body \\
+\hline
+\end{DoxyParams}
+\Hypertarget{quickmail_8h_af6bb5ce0a6b0f33618a6cd88e7b3d82d}\label{quickmail_8h_af6bb5ce0a6b0f33618a6cd88e7b3d82d} 
+\index{quickmail.h@{quickmail.h}!quickmail\_set\_debug\_log@{quickmail\_set\_debug\_log}}
+\index{quickmail\_set\_debug\_log@{quickmail\_set\_debug\_log}!quickmail.h@{quickmail.h}}
+\doxysubsubsection{\texorpdfstring{quickmail\_set\_debug\_log()}{quickmail\_set\_debug\_log()}}
+{\footnotesize\ttfamily DLL\+\_\+\+EXPORT\+\_\+\+LIBQUICKMAIL void quickmail\+\_\+set\+\_\+debug\+\_\+log (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{quickmail_8h_a41c19143482833a54485856d0e9bcadf}{quickmail}}}]{mailobj,  }\item[{FILE \texorpdfstring{$\ast$}{*}}]{filehandle }\end{DoxyParamCaption})}
+
+
+
+set the debug logging destination of a quickmail object 
+
+
+\begin{DoxyParams}{Parameters}
+{\em mailobj} & quickmail object \\
+\hline
+{\em filehandle} & file handle of logging destination (or NULL for no logging) \\
+\hline
+\end{DoxyParams}
+\Hypertarget{quickmail_8h_a7803032421c8367cec633e7efea953a2}\label{quickmail_8h_a7803032421c8367cec633e7efea953a2} 
+\index{quickmail.h@{quickmail.h}!quickmail\_set\_from@{quickmail\_set\_from}}
+\index{quickmail\_set\_from@{quickmail\_set\_from}!quickmail.h@{quickmail.h}}
+\doxysubsubsection{\texorpdfstring{quickmail\_set\_from()}{quickmail\_set\_from()}}
+{\footnotesize\ttfamily DLL\+\_\+\+EXPORT\+\_\+\+LIBQUICKMAIL void quickmail\+\_\+set\+\_\+from (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{quickmail_8h_a41c19143482833a54485856d0e9bcadf}{quickmail}}}]{mailobj,  }\item[{const char \texorpdfstring{$\ast$}{*}}]{from }\end{DoxyParamCaption})}
+
+
+
+set the sender (from) e-\/mail address of a quickmail object 
+
+
+\begin{DoxyParams}{Parameters}
+{\em mailobj} & quickmail object \\
+\hline
+{\em from} & sender e-\/mail address \\
+\hline
+\end{DoxyParams}
+\Hypertarget{quickmail_8h_a141d28297ec693db6449c341cb5a1986}\label{quickmail_8h_a141d28297ec693db6449c341cb5a1986} 
+\index{quickmail.h@{quickmail.h}!quickmail\_set\_hostname@{quickmail\_set\_hostname}}
+\index{quickmail\_set\_hostname@{quickmail\_set\_hostname}!quickmail.h@{quickmail.h}}
+\doxysubsubsection{\texorpdfstring{quickmail\_set\_hostname()}{quickmail\_set\_hostname()}}
+{\footnotesize\ttfamily DLL\+\_\+\+EXPORT\+\_\+\+LIBQUICKMAIL void quickmail\+\_\+set\+\_\+hostname (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{quickmail_8h_a41c19143482833a54485856d0e9bcadf}{quickmail}}}]{mailobj,  }\item[{const char \texorpdfstring{$\ast$}{*}}]{hostname }\end{DoxyParamCaption})}
+
+
+
+set the local hostname of a quickmail object (used in SMTP HELO/\+EHLO command) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em hostname} & local hostname (defaults to NULL = automatically detect) \\
+\hline
+{\em from} & sender e-\/mail address \\
+\hline
+\end{DoxyParams}
+\Hypertarget{quickmail_8h_abc7464a8a5d7552988355902c5ec8f1b}\label{quickmail_8h_abc7464a8a5d7552988355902c5ec8f1b} 
+\index{quickmail.h@{quickmail.h}!quickmail\_set\_subject@{quickmail\_set\_subject}}
+\index{quickmail\_set\_subject@{quickmail\_set\_subject}!quickmail.h@{quickmail.h}}
+\doxysubsubsection{\texorpdfstring{quickmail\_set\_subject()}{quickmail\_set\_subject()}}
+{\footnotesize\ttfamily DLL\+\_\+\+EXPORT\+\_\+\+LIBQUICKMAIL void quickmail\+\_\+set\+\_\+subject (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{quickmail_8h_a41c19143482833a54485856d0e9bcadf}{quickmail}}}]{mailobj,  }\item[{const char \texorpdfstring{$\ast$}{*}}]{subject }\end{DoxyParamCaption})}
+
+
+
+set the subject of a quickmail object 
+
+
+\begin{DoxyParams}{Parameters}
+{\em mailobj} & quickmail object \\
+\hline
+{\em subject} & e-\/mail subject \\
+\hline
+\end{DoxyParams}

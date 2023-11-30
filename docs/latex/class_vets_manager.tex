@@ -1,0 +1,168 @@
+\doxysection{Vets\+Manager Class Reference}
+\hypertarget{class_vets_manager}{}\label{class_vets_manager}\index{VetsManager@{VetsManager}}
+
+
+Clase que gestiona la carga, edición, visualización y eliminación de veterinarios.  
+
+
+
+
+{\ttfamily \#include $<$Vets\+Manager.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_vets_manager_a2c02121ae66846495c7f723e883257e1}{load}} ()
+\begin{DoxyCompactList}\small\item\em Método para cargar y guardar información de un veterinario. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_vets_manager_ad7a1dbddcf9b4124325d1042cccfc59a}{edit}} ()
+\begin{DoxyCompactList}\small\item\em Método para editar la información de un veterinario. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_vets_manager_a5ee47b6956919cb5855c5cbcd3cbc67d}{show}} (bool show\+And\+Pause=true)
+\begin{DoxyCompactList}\small\item\em Método para mostrar la lista de veterinarios. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_vets_manager_a9cb753767e87554ae6f7106f9a554c7b}{clear\+Deleted}} ()
+\begin{DoxyCompactList}\small\item\em Método para eliminar definitivamente veterinarios marcados como dados de baja. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_vets_manager_aa5e59fc2004576af7e63fe0c60cb4b55}{cancel}} ()
+\begin{DoxyCompactList}\small\item\em Método para dar de baja provisoria a un veterinario. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_vets_manager_af756c1bf1d5616f5777cbb1bb8754681}{id\+Exists}} (int n\+Id)
+\begin{DoxyCompactList}\small\item\em Verifica la existencia de un ID de veterinario en los registros. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_vets_manager_ad488b328ac0385e2aa32da780329e5c9}{is\+Active\+Id}} (int n\+Id)
+\begin{DoxyCompactList}\small\item\em Verifica si un ID de veterinario está activo en los registros. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static bool \mbox{\hyperlink{class_vets_manager_af54225a8016c9ecebe505ab3fb29a548}{search\+By\+Id}} (\mbox{\hyperlink{class_vet}{Vet}} reg, int n\+Id)
+\begin{DoxyCompactList}\small\item\em Función para buscar un veterinario por su ID. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Clase que gestiona la carga, edición, visualización y eliminación de veterinarios. 
+
+La clase \doxylink{class_vets_manager}{Vets\+Manager} se encarga de administrar la información de los veterinarios, permitiendo cargar nuevos veterinarios, editar su información, mostrar la lista de veterinarios y eliminar aquellos marcados como dados de baja. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_vets_manager_aa5e59fc2004576af7e63fe0c60cb4b55}\label{class_vets_manager_aa5e59fc2004576af7e63fe0c60cb4b55} 
+\index{VetsManager@{VetsManager}!cancel@{cancel}}
+\index{cancel@{cancel}!VetsManager@{VetsManager}}
+\doxysubsubsection{\texorpdfstring{cancel()}{cancel()}}
+{\footnotesize\ttfamily void Vets\+Manager\+::cancel (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Método para dar de baja provisoria a un veterinario. 
+
+Muestra la lista de veterinarios, solicita al usuario el ID del veterinario a dar de baja, y solicita confirmación antes de marcar al veterinario para la baja provisoria. Muestra mensajes de éxito, error o cancelación según el resultado. \Hypertarget{class_vets_manager_a9cb753767e87554ae6f7106f9a554c7b}\label{class_vets_manager_a9cb753767e87554ae6f7106f9a554c7b} 
+\index{VetsManager@{VetsManager}!clearDeleted@{clearDeleted}}
+\index{clearDeleted@{clearDeleted}!VetsManager@{VetsManager}}
+\doxysubsubsection{\texorpdfstring{clearDeleted()}{clearDeleted()}}
+{\footnotesize\ttfamily void Vets\+Manager\+::clear\+Deleted (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Método para eliminar definitivamente veterinarios marcados como dados de baja. 
+
+Solicita confirmación al usuario antes de buscar y eliminar los registros de veterinarios marcados como dados de baja. Muestra mensajes de éxito, error o la ausencia de registros eliminados. \Hypertarget{class_vets_manager_ad7a1dbddcf9b4124325d1042cccfc59a}\label{class_vets_manager_ad7a1dbddcf9b4124325d1042cccfc59a} 
+\index{VetsManager@{VetsManager}!edit@{edit}}
+\index{edit@{edit}!VetsManager@{VetsManager}}
+\doxysubsubsection{\texorpdfstring{edit()}{edit()}}
+{\footnotesize\ttfamily void Vets\+Manager\+::edit (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Método para editar la información de un veterinario. 
+
+Muestra la lista de veterinarios, solicita al usuario el ID del veterinario a modificar, y permite editar sus datos a través de un formulario. Luego, actualiza la información en el archivo de registros. Muestra mensajes de éxito o error según el resultado. \Hypertarget{class_vets_manager_af756c1bf1d5616f5777cbb1bb8754681}\label{class_vets_manager_af756c1bf1d5616f5777cbb1bb8754681} 
+\index{VetsManager@{VetsManager}!idExists@{idExists}}
+\index{idExists@{idExists}!VetsManager@{VetsManager}}
+\doxysubsubsection{\texorpdfstring{idExists()}{idExists()}}
+{\footnotesize\ttfamily bool Vets\+Manager\+::id\+Exists (\begin{DoxyParamCaption}\item[{int}]{n\+Id }\end{DoxyParamCaption})}
+
+
+
+Verifica la existencia de un ID de veterinario en los registros. 
+
+Busca un ID de veterinario en los registros y devuelve verdadero si existe; de lo contrario, devuelve falso.
+
+
+\begin{DoxyParams}{Parameters}
+{\em n\+Id} & ID del veterinario a verificar. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Verdadero si el ID existe, falso de lo contrario. 
+\end{DoxyReturn}
+\Hypertarget{class_vets_manager_ad488b328ac0385e2aa32da780329e5c9}\label{class_vets_manager_ad488b328ac0385e2aa32da780329e5c9} 
+\index{VetsManager@{VetsManager}!isActiveId@{isActiveId}}
+\index{isActiveId@{isActiveId}!VetsManager@{VetsManager}}
+\doxysubsubsection{\texorpdfstring{isActiveId()}{isActiveId()}}
+{\footnotesize\ttfamily bool Vets\+Manager\+::is\+Active\+Id (\begin{DoxyParamCaption}\item[{int}]{n\+Id }\end{DoxyParamCaption})}
+
+
+
+Verifica si un ID de veterinario está activo en los registros. 
+
+Busca un ID de veterinario en los registros y devuelve verdadero si está activo; de lo contrario, devuelve falso.
+
+
+\begin{DoxyParams}{Parameters}
+{\em n\+Id} & ID del veterinario a verificar. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Verdadero si el ID está activo, falso de lo contrario. 
+\end{DoxyReturn}
+\Hypertarget{class_vets_manager_a2c02121ae66846495c7f723e883257e1}\label{class_vets_manager_a2c02121ae66846495c7f723e883257e1} 
+\index{VetsManager@{VetsManager}!load@{load}}
+\index{load@{load}!VetsManager@{VetsManager}}
+\doxysubsubsection{\texorpdfstring{load()}{load()}}
+{\footnotesize\ttfamily void Vets\+Manager\+::load (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Método para cargar y guardar información de un veterinario. 
+
+Solicita al usuario un ID de veterinario único, verifica su disponibilidad, carga la información del veterinario mediante un formulario y la guarda en un archivo. Si el ID ya existe, permite reintentar o salir. Si no se completa el formulario, se sale.
+
+El método finaliza mostrando mensajes de éxito o error según el resultado de la operación. \Hypertarget{class_vets_manager_af54225a8016c9ecebe505ab3fb29a548}\label{class_vets_manager_af54225a8016c9ecebe505ab3fb29a548} 
+\index{VetsManager@{VetsManager}!searchById@{searchById}}
+\index{searchById@{searchById}!VetsManager@{VetsManager}}
+\doxysubsubsection{\texorpdfstring{searchById()}{searchById()}}
+{\footnotesize\ttfamily bool Vets\+Manager\+::search\+By\+Id (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_vet}{Vet}}}]{reg,  }\item[{int}]{n\+Id }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Función para buscar un veterinario por su ID. 
+
+Compara el ID del veterinario con un ID proporcionado y devuelve verdadero si son iguales; de lo contrario, devuelve falso.
+
+
+\begin{DoxyParams}{Parameters}
+{\em reg} & Objeto \doxylink{class_vet}{Vet} a comparar. \\
+\hline
+{\em n\+Id} & ID a comparar con el ID del veterinario. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Verdadero si los IDs son iguales, falso de lo contrario. 
+\end{DoxyReturn}
+\Hypertarget{class_vets_manager_a5ee47b6956919cb5855c5cbcd3cbc67d}\label{class_vets_manager_a5ee47b6956919cb5855c5cbcd3cbc67d} 
+\index{VetsManager@{VetsManager}!show@{show}}
+\index{show@{show}!VetsManager@{VetsManager}}
+\doxysubsubsection{\texorpdfstring{show()}{show()}}
+{\footnotesize\ttfamily void Vets\+Manager\+::show (\begin{DoxyParamCaption}\item[{bool}]{show\+And\+Pause = {\ttfamily true} }\end{DoxyParamCaption})}
+
+
+
+Método para mostrar la lista de veterinarios. 
+
+Calcula y presenta una lista de veterinarios obtenida desde el archivo de registros. Muestra mensajes de error si ocurren problemas al leer los registros o si no hay registros.
+
+
+\begin{DoxyParams}{Parameters}
+{\em show\+And\+Pause} & Indica si se debe mostrar la lista y pausar después. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+F\+:/dev\+Projects/\+Facu/\+Lab\+II/tp-\/integrador-\/grupo-\/10-\/lab2/include/Vets\+Manager.\+h\item 
+F\+:/dev\+Projects/\+Facu/\+Lab\+II/tp-\/integrador-\/grupo-\/10-\/lab2/src/Vets\+Manager.\+cpp\end{DoxyCompactItemize}

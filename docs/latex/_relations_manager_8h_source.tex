@@ -1,0 +1,57 @@
+\doxysection{Relations\+Manager.\+h}
+\hypertarget{_relations_manager_8h_source}{}\label{_relations_manager_8h_source}\index{F:/devProjects/Facu/LabII/tp-\/integrador-\/grupo-\/10-\/lab2/include/RelationsManager.h@{F:/devProjects/Facu/LabII/tp-\/integrador-\/grupo-\/10-\/lab2/include/RelationsManager.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}PetRelations.h"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}VppConfigManager.h"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_vpp_file_8h}{VppFile.h}}"{}}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00016\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_relations_manager}{RelationsManager}}\ \{}
+\DoxyCodeLine{00017\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00018\ \ \ \ \ \textcolor{keyword}{const}\ std::string\ \_folderPath\ =\ \mbox{\hyperlink{class_vpp_config_manager}{VppConfigManager}}().\mbox{\hyperlink{class_vpp_config_manager_a96295baaca646005de9df583243a4d5c}{getDataPath}}();}
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{keyword}{const}\ std::string\ \_filePath\ =\ \_folderPath\ +\ \textcolor{stringliteral}{"{}PetRelations.vpp"{}};}
+\DoxyCodeLine{00020\ \ \ \ \ \mbox{\hyperlink{class_vpp_file}{VppFile<PetRelations>}}\ \_petRelationsFile\ =\ \mbox{\hyperlink{class_vpp_file}{VppFile<PetRelations>}}(\_filePath);}
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{comment}{//\ relId,\ petId,\ clientId,\ owner?,\ clientName,\ petName\ =\ 6}}
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \_petRelationsFields\ =\ 6;\ \ \textcolor{comment}{//\ total\ de\ datos\ a\ mostrar\ en\ ListView}}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00036\ \ \ \ \ \mbox{\hyperlink{class_pet_relations}{PetRelations}}\ loadForm();}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00046\ \ \ \ \ \mbox{\hyperlink{class_pet_relations}{PetRelations}}\ editForm(\textcolor{keywordtype}{int}\ regPos);}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{keywordtype}{bool}\ retryIfIdExists(\textcolor{keywordtype}{bool}\ exists);}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00064\ \ \ \ \ \textcolor{keywordtype}{bool}\ retryIfIdNotExists(\textcolor{keywordtype}{bool}\ exists);}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00076\ \ \ \ \ \textcolor{keywordtype}{bool}\ newOwner(\textcolor{keywordtype}{int}\ petId,\ \textcolor{keywordtype}{int}\ clientId);}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00078\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00085\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_relations_manager_a6190c96cadd6b056cf94bfb75b5d56d1}{load}}();}
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00094\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_relations_manager_adcb2de646971f09926ceac1d3391a9b0}{edit}}();}
+\DoxyCodeLine{00095\ }
+\DoxyCodeLine{00103\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_relations_manager_a361dfdb193510176aff3af038b91b3eb}{show}}(\textcolor{keywordtype}{bool}\ showAndPause\ =\ \textcolor{keyword}{true});}
+\DoxyCodeLine{00104\ }
+\DoxyCodeLine{00115\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_relations_manager_aacafb9a562f3d905a960cdd0c4c6022c}{updateRelation}}(\mbox{\hyperlink{class_pet_relations}{PetRelations}}\ petR,\ \textcolor{keywordtype}{int}\ regPos);}
+\DoxyCodeLine{00116\ }
+\DoxyCodeLine{00124\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_relations_manager_a7d1d0fe2536d277160ba533e04166291}{deleteRel}}();}
+\DoxyCodeLine{00125\ }
+\DoxyCodeLine{00136\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_relations_manager_a423f09de7a3434c8e7f46b4c4d835b84}{autogenerateNew}}(\textcolor{keywordtype}{int}\ clientId,\ \textcolor{keywordtype}{int}\ petId);}
+\DoxyCodeLine{00137\ }
+\DoxyCodeLine{00138\ \ \ \ \ \textcolor{comment}{//\ Al\ ser\ una\ funcion\ estatica\ se\ puede\ usar\ sin\ necesaidad\ de\ instanciar\ un}}
+\DoxyCodeLine{00139\ \ \ \ \ \textcolor{comment}{//\ objeto\ de\ tipo\ "{}RelationsManager"{},\ eso\ permite\ que\ se\ pueda\ pasar\ por}}
+\DoxyCodeLine{00140\ \ \ \ \ \textcolor{comment}{//\ parametro\ un\ puntero\ a\ esta\ funcion,\ lo\ que\ es\ necesario\ para\ la\ busqueda}}
+\DoxyCodeLine{00141\ \ \ \ \ \textcolor{comment}{//\ de\ registros\ con\ VppFile}}
+\DoxyCodeLine{00142\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{bool}\ searchById(\mbox{\hyperlink{class_pet_relations}{PetRelations}}\ reg,\ \textcolor{keywordtype}{int}\ nId);}
+\DoxyCodeLine{00143\ }
+\DoxyCodeLine{00154\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_relations_manager_a0257eccc83b410dfde398124b222e86e}{searchRelation}}(\mbox{\hyperlink{class_pet_relations}{PetRelations}}\ reg,\ \textcolor{keywordtype}{int}\ petId,\ \textcolor{keywordtype}{int}\ clientId);}
+\DoxyCodeLine{00155\ }
+\DoxyCodeLine{00164\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_relations_manager_a98cea88cc0b8f9e4aab2b7e818745b4e}{relationExists}}(\textcolor{keywordtype}{int}\ petId,\ \textcolor{keywordtype}{int}\ clientId);}
+\DoxyCodeLine{00165\ }
+\DoxyCodeLine{00178\ \ \ \ \ \mbox{\hyperlink{class_pet_relations}{PetRelations}}\ \mbox{\hyperlink{class_relations_manager_ac11476ece877186c9ac00177d71f4322}{searchGetRelation}}(\textcolor{keywordtype}{int}\ petId,\ \textcolor{keywordtype}{int}\ clientId);}
+\DoxyCodeLine{00179\ }
+\DoxyCodeLine{00187\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_relations_manager_a80a761b07df6abc3ff506928df3c1a22}{idExists}}(\textcolor{keywordtype}{int}\ nId);}
+\DoxyCodeLine{00188\ \};}
+
+\end{DoxyCode}

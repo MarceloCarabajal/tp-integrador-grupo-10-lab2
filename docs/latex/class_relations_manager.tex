@@ -1,0 +1,192 @@
+\doxysection{Relations\+Manager Class Reference}
+\hypertarget{class_relations_manager}{}\label{class_relations_manager}\index{RelationsManager@{RelationsManager}}
+
+
+Clase para gestionar las relaciones entre mascotas y clientes.  
+
+
+
+
+{\ttfamily \#include $<$Relations\+Manager.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_relations_manager_a6190c96cadd6b056cf94bfb75b5d56d1}\label{class_relations_manager_a6190c96cadd6b056cf94bfb75b5d56d1} 
+void {\bfseries load} ()
+\begin{DoxyCompactList}\small\item\em Método para cargar y guardar relaciones entre mascotas y clientes. Solicita al usuario un ID de relación, verifica su existencia y carga los datos de la relación. Luego, guarda la relación en el archivo correspondiente. \end{DoxyCompactList}\item 
+\Hypertarget{class_relations_manager_adcb2de646971f09926ceac1d3391a9b0}\label{class_relations_manager_adcb2de646971f09926ceac1d3391a9b0} 
+void {\bfseries edit} ()
+\begin{DoxyCompactList}\small\item\em Método para editar relaciones existentes entre mascotas y clientes. Muestra las relaciones disponibles, solicita al usuario el ID de la relación a modificar, y luego permite la edición de dicha relación. Actualiza el archivo de relaciones con los cambios. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_relations_manager_a361dfdb193510176aff3af038b91b3eb}{show}} (bool show\+And\+Pause=true)
+\begin{DoxyCompactList}\small\item\em Método para mostrar relaciones entre mascotas y clientes. Muestra una lista de relaciones, incluyendo ID, ID de mascota y cliente, indicación de propietario, nombre del cliente y nombre de la mascota. Permite pausar después de mostrar si se especifica. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_relations_manager_aacafb9a562f3d905a960cdd0c4c6022c}{update\+Relation}} (\mbox{\hyperlink{class_pet_relations}{Pet\+Relations}} petR, int reg\+Pos)
+\begin{DoxyCompactList}\small\item\em Método para actualizar una relación existente entre mascotas y clientes. Actualiza el archivo de relaciones con la nueva información de la relación en la posición especificada. \end{DoxyCompactList}\item 
+\Hypertarget{class_relations_manager_a7d1d0fe2536d277160ba533e04166291}\label{class_relations_manager_a7d1d0fe2536d277160ba533e04166291} 
+void {\bfseries delete\+Rel} ()
+\begin{DoxyCompactList}\small\item\em Método para dar de baja una relación existente entre mascotas y clientes. Muestra la lista de relaciones, solicita al usuario el ID de la relación a dar de baja, y confirma la acción antes de realizarla. La baja es irreversible. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_relations_manager_a423f09de7a3434c8e7f46b4c4d835b84}{autogenerate\+New}} (int client\+Id, int pet\+Id)
+\begin{DoxyCompactList}\small\item\em Función para generar automáticamente una nueva relación. Se utiliza internamente desde \doxylink{class_pets_manager}{Pets\+Manager}. Crea una nueva relación con el ID más bajo disponible o el siguiente disponible si ya existen relaciones. Devuelve el nuevo ID asignado o -\/1 en caso de error. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_relations_manager_a98cea88cc0b8f9e4aab2b7e818745b4e}{relation\+Exists}} (int pet\+Id, int client\+Id)
+\begin{DoxyCompactList}\small\item\em Método para verificar la existencia de una relación entre mascotas y clientes. Busca la relación con los IDs de mascota y cliente proporcionados. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_pet_relations}{Pet\+Relations}} \mbox{\hyperlink{class_relations_manager_ac11476ece877186c9ac00177d71f4322}{search\+Get\+Relation}} (int pet\+Id, int client\+Id)
+\begin{DoxyCompactList}\small\item\em Método para buscar y obtener una relación específica entre mascotas y clientes. Busca la relación con los IDs de mascota y cliente proporcionados. Devuelve un objeto \doxylink{class_pet_relations}{Pet\+Relations} con la información de la relación encontrada, o un objeto vacío si no se encuentra. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_relations_manager_a80a761b07df6abc3ff506928df3c1a22}{id\+Exists}} (int n\+Id)
+\begin{DoxyCompactList}\small\item\em Método para verificar la existencia de un ID de relación. Busca el ID de relación proporcionado en el archivo de relaciones. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_relations_manager_a27814ce9aad998586046f3620637c49e}\label{class_relations_manager_a27814ce9aad998586046f3620637c49e} 
+static bool {\bfseries search\+By\+Id} (\mbox{\hyperlink{class_pet_relations}{Pet\+Relations}} reg, int n\+Id)
+\item 
+static bool \mbox{\hyperlink{class_relations_manager_a0257eccc83b410dfde398124b222e86e}{search\+Relation}} (\mbox{\hyperlink{class_pet_relations}{Pet\+Relations}} reg, int pet\+Id, int client\+Id)
+\begin{DoxyCompactList}\small\item\em Función para buscar una relación específica entre mascotas y clientes. Compara el ID de mascota y cliente en la relación con los proporcionados. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Clase para gestionar las relaciones entre mascotas y clientes. 
+
+La clase \doxylink{class_relations_manager}{Relations\+Manager} se encarga de cargar, editar, mostrar y guardar las relaciones entre mascotas y clientes. Permite crear nuevas relaciones, editar relaciones existentes, buscar relaciones por ID de mascota y cliente, y verificar la existencia de una relación específica. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_relations_manager_a423f09de7a3434c8e7f46b4c4d835b84}\label{class_relations_manager_a423f09de7a3434c8e7f46b4c4d835b84} 
+\index{RelationsManager@{RelationsManager}!autogenerateNew@{autogenerateNew}}
+\index{autogenerateNew@{autogenerateNew}!RelationsManager@{RelationsManager}}
+\doxysubsubsection{\texorpdfstring{autogenerateNew()}{autogenerateNew()}}
+{\footnotesize\ttfamily int Relations\+Manager\+::autogenerate\+New (\begin{DoxyParamCaption}\item[{int}]{client\+Id,  }\item[{int}]{pet\+Id }\end{DoxyParamCaption})}
+
+
+
+Función para generar automáticamente una nueva relación. Se utiliza internamente desde \doxylink{class_pets_manager}{Pets\+Manager}. Crea una nueva relación con el ID más bajo disponible o el siguiente disponible si ya existen relaciones. Devuelve el nuevo ID asignado o -\/1 en caso de error. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em client\+Id} & ID del cliente asociado a la nueva relación. \\
+\hline
+{\em pet\+Id} & ID de la mascota asociada a la nueva relación. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Devuelve el nuevo ID de la relación generada o -\/1 en caso de error. 
+\end{DoxyReturn}
+\Hypertarget{class_relations_manager_a80a761b07df6abc3ff506928df3c1a22}\label{class_relations_manager_a80a761b07df6abc3ff506928df3c1a22} 
+\index{RelationsManager@{RelationsManager}!idExists@{idExists}}
+\index{idExists@{idExists}!RelationsManager@{RelationsManager}}
+\doxysubsubsection{\texorpdfstring{idExists()}{idExists()}}
+{\footnotesize\ttfamily bool Relations\+Manager\+::id\+Exists (\begin{DoxyParamCaption}\item[{int}]{n\+Id }\end{DoxyParamCaption})}
+
+
+
+Método para verificar la existencia de un ID de relación. Busca el ID de relación proporcionado en el archivo de relaciones. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em n\+Id} & ID de la relación a verificar. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Devuelve true si el ID de relación existe, false en caso contrario. 
+\end{DoxyReturn}
+\Hypertarget{class_relations_manager_a98cea88cc0b8f9e4aab2b7e818745b4e}\label{class_relations_manager_a98cea88cc0b8f9e4aab2b7e818745b4e} 
+\index{RelationsManager@{RelationsManager}!relationExists@{relationExists}}
+\index{relationExists@{relationExists}!RelationsManager@{RelationsManager}}
+\doxysubsubsection{\texorpdfstring{relationExists()}{relationExists()}}
+{\footnotesize\ttfamily bool Relations\+Manager\+::relation\+Exists (\begin{DoxyParamCaption}\item[{int}]{pet\+Id,  }\item[{int}]{client\+Id }\end{DoxyParamCaption})}
+
+
+
+Método para verificar la existencia de una relación entre mascotas y clientes. Busca la relación con los IDs de mascota y cliente proporcionados. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pet\+Id} & ID de la mascota a buscar. \\
+\hline
+{\em client\+Id} & ID del cliente a buscar. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Devuelve true si la relación existe, false en caso contrario. 
+\end{DoxyReturn}
+\Hypertarget{class_relations_manager_ac11476ece877186c9ac00177d71f4322}\label{class_relations_manager_ac11476ece877186c9ac00177d71f4322} 
+\index{RelationsManager@{RelationsManager}!searchGetRelation@{searchGetRelation}}
+\index{searchGetRelation@{searchGetRelation}!RelationsManager@{RelationsManager}}
+\doxysubsubsection{\texorpdfstring{searchGetRelation()}{searchGetRelation()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_pet_relations}{Pet\+Relations}} Relations\+Manager\+::search\+Get\+Relation (\begin{DoxyParamCaption}\item[{int}]{pet\+Id,  }\item[{int}]{client\+Id }\end{DoxyParamCaption})}
+
+
+
+Método para buscar y obtener una relación específica entre mascotas y clientes. Busca la relación con los IDs de mascota y cliente proporcionados. Devuelve un objeto \doxylink{class_pet_relations}{Pet\+Relations} con la información de la relación encontrada, o un objeto vacío si no se encuentra. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pet\+Id} & ID de la mascota a buscar. \\
+\hline
+{\em client\+Id} & ID del cliente a buscar. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Objeto \doxylink{class_pet_relations}{Pet\+Relations} con la información de la relación encontrada o un objeto vacío si no se encuentra. 
+\end{DoxyReturn}
+\Hypertarget{class_relations_manager_a0257eccc83b410dfde398124b222e86e}\label{class_relations_manager_a0257eccc83b410dfde398124b222e86e} 
+\index{RelationsManager@{RelationsManager}!searchRelation@{searchRelation}}
+\index{searchRelation@{searchRelation}!RelationsManager@{RelationsManager}}
+\doxysubsubsection{\texorpdfstring{searchRelation()}{searchRelation()}}
+{\footnotesize\ttfamily bool Relations\+Manager\+::search\+Relation (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_pet_relations}{Pet\+Relations}}}]{reg,  }\item[{int}]{pet\+Id,  }\item[{int}]{client\+Id }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Función para buscar una relación específica entre mascotas y clientes. Compara el ID de mascota y cliente en la relación con los proporcionados. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em reg} & Objeto \doxylink{class_pet_relations}{Pet\+Relations} a comparar. \\
+\hline
+{\em pet\+Id} & ID de la mascota a buscar. \\
+\hline
+{\em client\+Id} & ID del cliente a buscar. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Devuelve true si la relación coincide con los IDs proporcionados, false en caso contrario. 
+\end{DoxyReturn}
+\Hypertarget{class_relations_manager_a361dfdb193510176aff3af038b91b3eb}\label{class_relations_manager_a361dfdb193510176aff3af038b91b3eb} 
+\index{RelationsManager@{RelationsManager}!show@{show}}
+\index{show@{show}!RelationsManager@{RelationsManager}}
+\doxysubsubsection{\texorpdfstring{show()}{show()}}
+{\footnotesize\ttfamily void Relations\+Manager\+::show (\begin{DoxyParamCaption}\item[{bool}]{show\+And\+Pause = {\ttfamily true} }\end{DoxyParamCaption})}
+
+
+
+Método para mostrar relaciones entre mascotas y clientes. Muestra una lista de relaciones, incluyendo ID, ID de mascota y cliente, indicación de propietario, nombre del cliente y nombre de la mascota. Permite pausar después de mostrar si se especifica. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em show\+And\+Pause} & Indica si se debe pausar después de mostrar la lista. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_relations_manager_aacafb9a562f3d905a960cdd0c4c6022c}\label{class_relations_manager_aacafb9a562f3d905a960cdd0c4c6022c} 
+\index{RelationsManager@{RelationsManager}!updateRelation@{updateRelation}}
+\index{updateRelation@{updateRelation}!RelationsManager@{RelationsManager}}
+\doxysubsubsection{\texorpdfstring{updateRelation()}{updateRelation()}}
+{\footnotesize\ttfamily bool Relations\+Manager\+::update\+Relation (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_pet_relations}{Pet\+Relations}}}]{petR,  }\item[{int}]{reg\+Pos }\end{DoxyParamCaption})}
+
+
+
+Método para actualizar una relación existente entre mascotas y clientes. Actualiza el archivo de relaciones con la nueva información de la relación en la posición especificada. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em petR} & Objeto \doxylink{class_pet_relations}{Pet\+Relations} con la información actualizada. \\
+\hline
+{\em reg\+Pos} & Posición de la relación en el archivo. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Devuelve true si la actualización es exitosa, false en caso contrario. 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+F\+:/dev\+Projects/\+Facu/\+Lab\+II/tp-\/integrador-\/grupo-\/10-\/lab2/include/Relations\+Manager.\+h\item 
+F\+:/dev\+Projects/\+Facu/\+Lab\+II/tp-\/integrador-\/grupo-\/10-\/lab2/src/Relations\+Manager.\+cpp\end{DoxyCompactItemize}

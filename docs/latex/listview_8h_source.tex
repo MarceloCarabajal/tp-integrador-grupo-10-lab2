@@ -1,0 +1,37 @@
+\doxysection{listview.\+h}
+\hypertarget{listview_8h_source}{}\label{listview_8h_source}\index{F:/devProjects/Facu/LabII/tp-\/integrador-\/grupo-\/10-\/lab2/include/listview.h@{F:/devProjects/Facu/LabII/tp-\/integrador-\/grupo-\/10-\/lab2/include/listview.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00014\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_list_view}{ListView}}\ \{}
+\DoxyCodeLine{00015\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00016\ \ \ \ \ \textcolor{keywordtype}{int}\ \_width,\ \_curY\ =\ 1;\ \ \textcolor{comment}{//\ posicion\ Y\ actual}}
+\DoxyCodeLine{00017\ \ \ \ \ std::string\ \_title;}
+\DoxyCodeLine{00018\ \ \ \ \ std::vector<std::string>\ \_cells,\ \_cols;}
+\DoxyCodeLine{00019\ \ \ \ \ std::vector<int>\ \_colsW;}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keywordtype}{void}\ printBorder();}
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keywordtype}{void}\ printTitle();}
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keywordtype}{void}\ calcWidth();}
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keywordtype}{void}\ printColumns();}
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keywordtype}{void}\ printRows();}
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{keywordtype}{void}\ setMaxWidths();}
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{keywordtype}{void}\ locateCenter();}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{keywordtype}{int}\ getUTF8Length(std::string\ utf8);}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00058\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00066\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_list_view_a287e7bebe0985892f73dfd6572d4f432}{addCells}}(std::string\ *cells,\ \textcolor{keywordtype}{int}\ total);}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00075\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_list_view_a20d011d36373b676e238b247c43e633a}{addCols}}(std::string\ *cols,\ \textcolor{keywordtype}{int}\ total);}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00082\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_list_view_aa9252b539f757aa67f33c64d79053da9}{setTitle}}(std::string\ title);}
+\DoxyCodeLine{00083\ }
+\DoxyCodeLine{00087\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_list_view_a96a64aa050c8c269cb3116936ace18d3}{show}}();}
+\DoxyCodeLine{00088\ \};}
+
+\end{DoxyCode}

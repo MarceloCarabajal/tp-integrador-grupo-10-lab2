@@ -1,0 +1,38 @@
+\doxysection{Income\+Manager.\+h}
+\hypertarget{_income_manager_8h_source}{}\label{_income_manager_8h_source}\index{F:/devProjects/Facu/LabII/tp-\/integrador-\/grupo-\/10-\/lab2/include/IncomeManager.h@{F:/devProjects/Facu/LabII/tp-\/integrador-\/grupo-\/10-\/lab2/include/IncomeManager.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#include\ "{}Income.h"{}}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}VppConfigManager.h"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_vpp_file_8h}{VppFile.h}}"{}}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_income_manager}{IncomeManager}}\ \{}
+\DoxyCodeLine{00007\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00008\ \ \ \ \ \textcolor{keyword}{const}\ std::string\ \_folderPath\ =\ \mbox{\hyperlink{class_vpp_config_manager}{VppConfigManager}}().\mbox{\hyperlink{class_vpp_config_manager_a96295baaca646005de9df583243a4d5c}{getDataPath}}();}
+\DoxyCodeLine{00009\ \ \ \ \ \textcolor{keyword}{const}\ std::string\ \_filePath\ =\ \_folderPath\ +\ \textcolor{stringliteral}{"{}Incomes.vpp"{}};}
+\DoxyCodeLine{00010\ \ \ \ \ \mbox{\hyperlink{class_vpp_file}{VppFile<Income>}}\ \_incomeFile\ =\ \mbox{\hyperlink{class_vpp_file}{VppFile<Income>}}(\_filePath);}
+\DoxyCodeLine{00011\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \_incomesFields\ =\ 7;\ \ \textcolor{comment}{//\ total\ de\ datos\ de\ un\ registro\ Income}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00023\ \ \ \ \ \mbox{\hyperlink{class_income}{Income}}\ loadForm();}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00036\ \ \ \ \ \mbox{\hyperlink{class_income}{Income}}\ editForm(\textcolor{keywordtype}{int}\ regPos);}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_income_manager_a3475fb7cf84c1e8c0662af06fa7ae50c}{load}}();}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00057\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_income_manager_add79bf32cf4ca40e05656fee33319c06}{edit}}();}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00066\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_income_manager_af58bb61cea1f7b885c49b99e3931b73d}{show}}(\textcolor{keywordtype}{bool}\ showAndPause\ =\ \textcolor{keyword}{true});}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ \ \ \ \ \textcolor{comment}{//\ Al\ ser\ una\ funcion\ estatica\ se\ puede\ usar\ sin\ necesaidad\ de\ instanciar\ un}}
+\DoxyCodeLine{00069\ \ \ \ \ \textcolor{comment}{//\ objeto\ de\ tipo\ "{}IncomeManager"{},\ eso\ permite\ que\ se\ pueda\ pasar\ por}}
+\DoxyCodeLine{00070\ \ \ \ \ \textcolor{comment}{//\ parametro\ un\ puntero\ a\ esta\ funcion,\ lo\ que\ es\ necesario\ para\ la\ busqueda}}
+\DoxyCodeLine{00071\ \ \ \ \ \textcolor{comment}{//\ de\ registros\ con\ VppFile}}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00082\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_income_manager_a6c1f0bf97e3eced25ce2bc64efb5e828}{searchById}}(\mbox{\hyperlink{class_income}{Income}}\ reg,\ \textcolor{keywordtype}{int}\ nId);}
+\DoxyCodeLine{00083\ }
+\DoxyCodeLine{00091\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_income_manager_ac638471670dd417de09e2e56d7490c62}{idExists}}(\textcolor{keywordtype}{int}\ nId);}
+\DoxyCodeLine{00092\ \};}
+
+\end{DoxyCode}

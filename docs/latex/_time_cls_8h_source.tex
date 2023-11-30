@@ -1,0 +1,27 @@
+\doxysection{Time\+Cls.\+h}
+\hypertarget{_time_cls_8h_source}{}\label{_time_cls_8h_source}\index{F:/devProjects/Facu/LabII/tp-\/integrador-\/grupo-\/10-\/lab2/include/TimeCls.h@{F:/devProjects/Facu/LabII/tp-\/integrador-\/grupo-\/10-\/lab2/include/TimeCls.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_time}{Time}}\ \{}
+\DoxyCodeLine{00005\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00006\ \ \ \ \ \textcolor{keywordtype}{int}\ \_hour,\ \_min,\ \_sec;}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00009\ \ \ \ \ \mbox{\hyperlink{class_time}{Time}}();}
+\DoxyCodeLine{00010\ \ \ \ \ \mbox{\hyperlink{class_time}{Time}}(\textcolor{keywordtype}{int}\ hour,\ \textcolor{keywordtype}{int}\ min,\ \textcolor{keywordtype}{int}\ sec);}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \ \ \ \ \textcolor{keywordtype}{void}\ setHour(\textcolor{keywordtype}{int}\ hour);}
+\DoxyCodeLine{00013\ \ \ \ \ \textcolor{keywordtype}{void}\ setMin(\textcolor{keywordtype}{int}\ min);}
+\DoxyCodeLine{00014\ \ \ \ \ \textcolor{keywordtype}{void}\ setSec(\textcolor{keywordtype}{int}\ sec);}
+\DoxyCodeLine{00015\ \ \ \ \ \textcolor{keywordtype}{int}\ getHour()\ \textcolor{keyword}{const};\ \ \textcolor{comment}{//\ Método\ constante\ para\ obtener\ la\ hora}}
+\DoxyCodeLine{00016\ \ \ \ \ \textcolor{keywordtype}{int}\ getMin()\ \textcolor{keyword}{const};\ \ \ \textcolor{comment}{//\ Método\ constante\ para\ obtener\ los\ minutos}}
+\DoxyCodeLine{00017\ \ \ \ \ \textcolor{keywordtype}{int}\ getSec()\ \textcolor{keyword}{const};\ \ \ \textcolor{comment}{//\ Método\ constante\ para\ obtener\ los\ segundos}}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \ \ \ \ std::string\ toString();}
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{keywordtype}{bool}\ operator==(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_time}{Time}}\&\ t);}
+\DoxyCodeLine{00021\ \};}
+
+\end{DoxyCode}

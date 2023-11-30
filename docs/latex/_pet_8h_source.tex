@@ -1,0 +1,44 @@
+\doxysection{Pet.\+h}
+\hypertarget{_pet_8h_source}{}\label{_pet_8h_source}\index{F:/devProjects/Facu/LabII/tp-\/integrador-\/grupo-\/10-\/lab2/include/Pet.h@{F:/devProjects/Facu/LabII/tp-\/integrador-\/grupo-\/10-\/lab2/include/Pet.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}Date.h"{}}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_pet}{Pet}}\ \{}
+\DoxyCodeLine{00007\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00008\ \ \ \ \ \textcolor{keywordtype}{int}\ \_petId,\ \_ownerId;}
+\DoxyCodeLine{00009\ \ \ \ \ \textcolor{keywordtype}{char}\ \_name[30],\ \_specie[15],\ \_breed[30],\ \_currentDiagnosis[45];}
+\DoxyCodeLine{00010\ \ \ \ \ \mbox{\hyperlink{class_date}{Date}}\ \_birthDate;}
+\DoxyCodeLine{00011\ \ \ \ \ \textcolor{keywordtype}{bool}\ \_status;}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00014\ \ \ \ \ \mbox{\hyperlink{class_pet}{Pet}}();}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \ \ \ \ \mbox{\hyperlink{class_pet}{Pet}}(\textcolor{keywordtype}{int}\ petId,\ \textcolor{keywordtype}{int}\ ownerId,\ std::string\ name,\ std::string\ specie,}
+\DoxyCodeLine{00017\ \ \ \ \ \ \ \ \ std::string\ breed,\ std::string\ currentDiagnosis,\ \mbox{\hyperlink{class_date}{Date}}\ birthDate,}
+\DoxyCodeLine{00018\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ status);}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{keywordtype}{void}\ setPetId(\textcolor{keywordtype}{int}\ petId);}
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keywordtype}{void}\ setOwnerId(\textcolor{keywordtype}{int}\ ownerId);}
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keywordtype}{void}\ setName(std::string\ name);}
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keywordtype}{void}\ setSpecie(std::string\ specie);}
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keywordtype}{void}\ setBreed(std::string\ breed);}
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keywordtype}{void}\ setCurrentDiagnosis(std::string\ currentDiagnosis);}
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keywordtype}{void}\ setBirthDate(\mbox{\hyperlink{class_date}{Date}}\ birthdate);}
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keywordtype}{void}\ setStatus(\textcolor{keywordtype}{bool}\ status);}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keywordtype}{int}\ getPetId();}
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keywordtype}{int}\ getOwnerId();}
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ getName();}
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ getSpecie();}
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ getBreed();}
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ getCurrentDiagnosis();}
+\DoxyCodeLine{00035\ \ \ \ \ \mbox{\hyperlink{class_date}{Date}}\ getBirthDate();}
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keywordtype}{bool}\ getStatus();}
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{keywordtype}{void}\ toVecString(std::string\ vStr[7]);}
+\DoxyCodeLine{00038\ \};}
+
+\end{DoxyCode}

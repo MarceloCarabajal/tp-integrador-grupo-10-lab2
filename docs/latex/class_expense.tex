@@ -1,0 +1,63 @@
+\doxysection{Expense Class Reference}
+\hypertarget{class_expense}{}\label{class_expense}\index{Expense@{Expense}}
+Inheritance diagram for Expense\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_expense}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_expense_a4d174541885f5bdcf1f949662ef82dd1}\label{class_expense_a4d174541885f5bdcf1f949662ef82dd1} 
+{\bfseries Expense} (int buyid, int id\+Transaction, \mbox{\hyperlink{class_date}{Date}} trans\+Date, \mbox{\hyperlink{class_time}{Time}} trans\+Time, std\+::string description, float amount, std\+::string payment\+Method)
+\item 
+\Hypertarget{class_expense_a5ef90b4e4d85dfa54bde41b16553f2c8}\label{class_expense_a5ef90b4e4d85dfa54bde41b16553f2c8} 
+void {\bfseries set\+Buy\+Id} (int id)
+\item 
+\Hypertarget{class_expense_adcc6363a548169fa867777afee8d0d3e}\label{class_expense_adcc6363a548169fa867777afee8d0d3e} 
+int {\bfseries get\+Buy\+Id} ()
+\item 
+\Hypertarget{class_expense_ad09ab7c5ade81fb805f8add6e0848a67}\label{class_expense_ad09ab7c5ade81fb805f8add6e0848a67} 
+void {\bfseries load} ()
+\item 
+\Hypertarget{class_expense_a0c1154d350f55c3356dab6dfde10055b}\label{class_expense_a0c1154d350f55c3356dab6dfde10055b} 
+void {\bfseries to\+Vec\+String} (std\+::string v\+Str\mbox{[}7\mbox{]})
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_transaction}{Transaction}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries Transaction} (int idtrans, \mbox{\hyperlink{class_date}{Date}} transdate, \mbox{\hyperlink{class_time}{Time}} transtime, std\+::string descrip, float amount, std\+::string payment)
+\item 
+void {\bfseries set\+Id\+Transaction} (int id\+Trx)
+\item 
+void {\bfseries set\+Date\+Trans} (\mbox{\hyperlink{class_date}{Date}} date)
+\item 
+void {\bfseries set\+Time\+Trans} (\mbox{\hyperlink{class_time}{Time}} time)
+\item 
+void {\bfseries set\+Description} (std\+::string desc)
+\item 
+void {\bfseries set\+Amount} (float amount)
+\item 
+void {\bfseries set\+Payment\+Method} (std\+::string met)
+\item 
+int {\bfseries get\+Id\+Transaction} ()
+\item 
+\mbox{\hyperlink{class_date}{Date}} {\bfseries get\+Date\+Trans} ()
+\item 
+\mbox{\hyperlink{class_time}{Time}} {\bfseries get\+Time\+Trans} ()
+\item 
+const char \texorpdfstring{$\ast$}{*} {\bfseries get\+Description} ()
+\item 
+float {\bfseries get\+Amount} ()
+\item 
+const char \texorpdfstring{$\ast$}{*} {\bfseries get\+Payment\+Mehod} ()
+\item 
+void {\bfseries load} ()
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+F\+:/dev\+Projects/\+Facu/\+Lab\+II/tp-\/integrador-\/grupo-\/10-\/lab2/include/Expense.\+h\item 
+F\+:/dev\+Projects/\+Facu/\+Lab\+II/tp-\/integrador-\/grupo-\/10-\/lab2/src/Expense.\+cpp\end{DoxyCompactItemize}

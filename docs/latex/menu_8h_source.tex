@@ -1,0 +1,40 @@
+\doxysection{menu.\+h}
+\hypertarget{menu_8h_source}{}\label{menu_8h_source}\index{F:/devProjects/Facu/LabII/tp-\/integrador-\/grupo-\/10-\/lab2/include/menu.h@{F:/devProjects/Facu/LabII/tp-\/integrador-\/grupo-\/10-\/lab2/include/menu.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ MENU\_INCLUDED}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ MENU\_INCLUDED}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}VppConfigManager.h"{}}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}rlutil.h"{}}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ DEFAULT\_BG\ =\ rlutil::BLACK;}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_menu}{Menu}}\ \{}
+\DoxyCodeLine{00013\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00014\ \ \ \ \ \mbox{\hyperlink{class_vpp_config_manager}{VppConfigManager}}\ \_vppConfMgr\ =\ \mbox{\hyperlink{class_vpp_config_manager}{VppConfigManager}}();}
+\DoxyCodeLine{00015\ \ \ \ \ \textcolor{keywordtype}{int}\ \_currentOption,\ \_maxLength,\ \_yPos\ =\ 10;}
+\DoxyCodeLine{00016\ \ \ \ \ \textcolor{keywordtype}{bool}\ \_isSubMenu;}
+\DoxyCodeLine{00017\ \ \ \ \ std::string\ \_title;}
+\DoxyCodeLine{00018\ \ \ \ \ std::vector<std::string>\ \_options;}
+\DoxyCodeLine{00019\ \ \ \ \ std::vector<void\ (*)()>\ \_functions;}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keywordtype}{void}\ printMenu(\textcolor{keywordtype}{int}\ selected);}
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keywordtype}{void}\ printBase();}
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keywordtype}{void}\ printHighlighted(std::string\ text,\ \textcolor{keywordtype}{bool}\ highlight,\ \textcolor{keywordtype}{int}\ color\ =\ 14,}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ x\ =\ 0,\ \textcolor{keywordtype}{int}\ y\ =\ 0);}
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keywordtype}{void}\ updateMaxLength(std::string\ str);}
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keywordtype}{int}\ getXPosCentered();}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00029\ \ \ \ \ \mbox{\hyperlink{class_menu}{Menu}}(std::string\ title\ =\ \textcolor{stringliteral}{"{}MENU"{}},\ \textcolor{keywordtype}{bool}\ isSubMenu\ =\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keywordtype}{void}\ addOption(std::string\ option,\ \textcolor{keywordtype}{void}\ (*optFunc)());}
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keywordtype}{void}\ showMenu();}
+\DoxyCodeLine{00032\ \};}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ MENU\_INCLUDED\ */}\textcolor{preprocessor}{}}
+
+\end{DoxyCode}

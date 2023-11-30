@@ -1,0 +1,89 @@
+\doxysection{Email\+Template Class Reference}
+\hypertarget{class_email_template}{}\label{class_email_template}\index{EmailTemplate@{EmailTemplate}}
+
+
+Clase que representa una plantilla de correo electrónico.  
+
+
+
+
+{\ttfamily \#include $<$Email\+Template.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_email_template_adf0d6cebf5c5c736f48f6cf1b28e1f72}{Email\+Template}} (std\+::string template\+File)
+\begin{DoxyCompactList}\small\item\em Constructor de la clase \doxylink{class_email_template}{Email\+Template}. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_email_template_a9d3696af3e5c767031e9e13b4c535ff3}{set\+Email\+Data}} (std\+::string recipient\+Name, std\+::string body\+Title, \mbox{\hyperlink{class_date}{Date}} exp\+Date, std\+::string vete\+Name)
+\begin{DoxyCompactList}\small\item\em Establece los datos del correo electrónico. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{class_email_template_a5a06ebcefa346e10747cf04dfdfa8676}{get\+HTML}} ()
+\begin{DoxyCompactList}\small\item\em Obtiene el contenido HTML de la plantilla. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Clase que representa una plantilla de correo electrónico. 
+
+Esta clase se utiliza para cargar una plantilla de correo electrónico desde un archivo, reemplazar los parámetros de la plantilla con valores específicos y obtener el contenido HTML resultante. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_email_template_adf0d6cebf5c5c736f48f6cf1b28e1f72}\label{class_email_template_adf0d6cebf5c5c736f48f6cf1b28e1f72} 
+\index{EmailTemplate@{EmailTemplate}!EmailTemplate@{EmailTemplate}}
+\index{EmailTemplate@{EmailTemplate}!EmailTemplate@{EmailTemplate}}
+\doxysubsubsection{\texorpdfstring{EmailTemplate()}{EmailTemplate()}}
+{\footnotesize\ttfamily Email\+Template\+::\+Email\+Template (\begin{DoxyParamCaption}\item[{std\+::string}]{template\+File }\end{DoxyParamCaption})}
+
+
+
+Constructor de la clase \doxylink{class_email_template}{Email\+Template}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em template\+File} & Ruta del archivo de plantilla. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_email_template_a5a06ebcefa346e10747cf04dfdfa8676}\label{class_email_template_a5a06ebcefa346e10747cf04dfdfa8676} 
+\index{EmailTemplate@{EmailTemplate}!getHTML@{getHTML}}
+\index{getHTML@{getHTML}!EmailTemplate@{EmailTemplate}}
+\doxysubsubsection{\texorpdfstring{getHTML()}{getHTML()}}
+{\footnotesize\ttfamily std\+::string Email\+Template\+::get\+HTML (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Obtiene el contenido HTML de la plantilla. 
+
+\begin{DoxyReturn}{Returns}
+El contenido HTML de la plantilla. 
+\end{DoxyReturn}
+\Hypertarget{class_email_template_a9d3696af3e5c767031e9e13b4c535ff3}\label{class_email_template_a9d3696af3e5c767031e9e13b4c535ff3} 
+\index{EmailTemplate@{EmailTemplate}!setEmailData@{setEmailData}}
+\index{setEmailData@{setEmailData}!EmailTemplate@{EmailTemplate}}
+\doxysubsubsection{\texorpdfstring{setEmailData()}{setEmailData()}}
+{\footnotesize\ttfamily bool Email\+Template\+::set\+Email\+Data (\begin{DoxyParamCaption}\item[{std\+::string}]{recipient\+Name,  }\item[{std\+::string}]{body\+Title,  }\item[{\mbox{\hyperlink{class_date}{Date}}}]{exp\+Date,  }\item[{std\+::string}]{vete\+Name }\end{DoxyParamCaption})}
+
+
+
+Establece los datos del correo electrónico. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em recipient\+Name} & El nombre del destinatario. \\
+\hline
+{\em body\+Title} & El título del cuerpo del correo. \\
+\hline
+{\em exp\+Date} & La fecha de expiración. \\
+\hline
+{\em vete\+Name} & El nombre de la veterinaria. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true si los datos se establecieron correctamente, false en caso contrario. 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+F\+:/dev\+Projects/\+Facu/\+Lab\+II/tp-\/integrador-\/grupo-\/10-\/lab2/include/Email\+Template.\+h\item 
+F\+:/dev\+Projects/\+Facu/\+Lab\+II/tp-\/integrador-\/grupo-\/10-\/lab2/src/Email\+Template.\+cpp\end{DoxyCompactItemize}

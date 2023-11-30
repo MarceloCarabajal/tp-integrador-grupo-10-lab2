@@ -1,0 +1,544 @@
+\doxysection{rlutil.\+h}
+\hypertarget{rlutil_8h_source}{}\label{rlutil_8h_source}\index{F:/devProjects/Facu/LabII/tp-\/integrador-\/grupo-\/10-\/lab2/include/rlutil.h@{F:/devProjects/Facu/LabII/tp-\/integrador-\/grupo-\/10-\/lab2/include/rlutil.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#if\ 0}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#define\ RLUTIL\_USE\_ANSI}}
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00029\ \textcolor{preprocessor}{\#if\ 0}}
+\DoxyCodeLine{00030\ \textcolor{preprocessor}{\#define\ RLUTIL\_STRING\_T\ char*}}
+\DoxyCodeLine{00031\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \textcolor{preprocessor}{\#ifndef\ RLUTIL\_INLINE}}
+\DoxyCodeLine{00034\ \textcolor{preprocessor}{\ \ \ \ \#ifdef\ \_MSC\_VER}}
+\DoxyCodeLine{00035\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#define\ RLUTIL\_INLINE\ \_\_inline}}
+\DoxyCodeLine{00036\ \textcolor{preprocessor}{\ \ \ \ \#else}}
+\DoxyCodeLine{00037\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#define\ RLUTIL\_INLINE\ static\ \_\_inline\_\_}}
+\DoxyCodeLine{00038\ \textcolor{preprocessor}{\ \ \ \ \#endif}}
+\DoxyCodeLine{00039\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \textcolor{preprocessor}{\#ifdef\ \_\_cplusplus}}
+\DoxyCodeLine{00043\ \textcolor{preprocessor}{\ \ \ \ \#include\ <iostream>}}
+\DoxyCodeLine{00044\ \textcolor{preprocessor}{\ \ \ \ \#include\ <string>}}
+\DoxyCodeLine{00045\ \textcolor{preprocessor}{\ \ \ \ \#include\ <cstdio>}\ \textcolor{comment}{//\ for\ getch()}}
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keyword}{namespace\ }rlutil\ \{}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ RLUTIL\_INLINE\ \textcolor{keywordtype}{void}\ locate(\textcolor{keywordtype}{int}\ x,\ \textcolor{keywordtype}{int}\ y);}
+\DoxyCodeLine{00049\ \ \ \ \ \}}
+\DoxyCodeLine{00050\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00051\ \textcolor{preprocessor}{\ \ \ \ \#include\ <stdio.h>}\ \textcolor{comment}{//\ for\ getch()\ /\ printf()}}
+\DoxyCodeLine{00052\ \textcolor{preprocessor}{\ \ \ \ \#include\ <string.h>}\ \textcolor{comment}{//\ for\ strlen()}}
+\DoxyCodeLine{00053\ \ \ \ \ RLUTIL\_INLINE\ \textcolor{keywordtype}{void}\ locate(\textcolor{keywordtype}{int}\ x,\ \textcolor{keywordtype}{int}\ y);\ \textcolor{comment}{//\ Forward\ declare\ for\ C\ to\ avoid\ warnings}}
+\DoxyCodeLine{00054\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ \_\_cplusplus}}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ \textcolor{preprocessor}{\#ifdef\ \_WIN32}}
+\DoxyCodeLine{00057\ \textcolor{preprocessor}{\ \ \ \ \#include\ <windows.h>}\ \ \textcolor{comment}{//\ for\ WinAPI\ and\ Sleep()}}
+\DoxyCodeLine{00058\ \textcolor{preprocessor}{\ \ \ \ \#define\ \_NO\_OLDNAMES\ \ }\textcolor{comment}{//\ for\ MinGW\ compatibility}}
+\DoxyCodeLine{00059\ \textcolor{preprocessor}{\ \ \ \ \#include\ <conio.h>}\ \ \ \ \textcolor{comment}{//\ for\ getch()\ and\ kbhit()}}
+\DoxyCodeLine{00060\ \textcolor{preprocessor}{\ \ \ \ \#define\ getch\ \_getch}}
+\DoxyCodeLine{00061\ \textcolor{preprocessor}{\ \ \ \ \#define\ kbhit\ \_kbhit}}
+\DoxyCodeLine{00062\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00063\ \textcolor{preprocessor}{\ \ \ \ \#include\ <termios.h>}\ \textcolor{comment}{//\ for\ getch()\ and\ kbhit()}}
+\DoxyCodeLine{00064\ \textcolor{preprocessor}{\ \ \ \ \#include\ <unistd.h>}\ \textcolor{comment}{//\ for\ getch(),\ kbhit()\ and\ (u)sleep()}}
+\DoxyCodeLine{00065\ \textcolor{preprocessor}{\ \ \ \ \#include\ <sys/ioctl.h>}\ \textcolor{comment}{//\ for\ getkey()}}
+\DoxyCodeLine{00066\ \textcolor{preprocessor}{\ \ \ \ \#include\ <sys/types.h>}\ \textcolor{comment}{//\ for\ kbhit()}}
+\DoxyCodeLine{00067\ \textcolor{preprocessor}{\ \ \ \ \#include\ <sys/time.h>}\ \textcolor{comment}{//\ for\ kbhit()}}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00072\ RLUTIL\_INLINE\ \textcolor{keywordtype}{int}\ getch(\textcolor{keywordtype}{void})\ \{}
+\DoxyCodeLine{00073\ \ \ \ \ \textcolor{comment}{//\ Here\ be\ magic.}}
+\DoxyCodeLine{00074\ \ \ \ \ \textcolor{keyword}{struct\ }termios\ oldt,\ newt;}
+\DoxyCodeLine{00075\ \ \ \ \ \textcolor{keywordtype}{int}\ ch;}
+\DoxyCodeLine{00076\ \ \ \ \ tcgetattr(STDIN\_FILENO,\ \&oldt);}
+\DoxyCodeLine{00077\ \ \ \ \ newt\ =\ oldt;}
+\DoxyCodeLine{00078\ \ \ \ \ newt.c\_lflag\ \&=\ \string~(ICANON\ |\ ECHO);}
+\DoxyCodeLine{00079\ \ \ \ \ tcsetattr(STDIN\_FILENO,\ TCSANOW,\ \&newt);}
+\DoxyCodeLine{00080\ \ \ \ \ ch\ =\ getchar();}
+\DoxyCodeLine{00081\ \ \ \ \ tcsetattr(STDIN\_FILENO,\ TCSANOW,\ \&oldt);}
+\DoxyCodeLine{00082\ \ \ \ \ \textcolor{keywordflow}{return}\ ch;}
+\DoxyCodeLine{00083\ \}}
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00088\ RLUTIL\_INLINE\ \textcolor{keywordtype}{int}\ kbhit(\textcolor{keywordtype}{void})\ \{}
+\DoxyCodeLine{00089\ \ \ \ \ \textcolor{comment}{//\ Here\ be\ dragons.}}
+\DoxyCodeLine{00090\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{struct\ }termios\ oldt,\ newt;}
+\DoxyCodeLine{00091\ \ \ \ \ \textcolor{keywordtype}{int}\ cnt\ =\ 0;}
+\DoxyCodeLine{00092\ \ \ \ \ tcgetattr(STDIN\_FILENO,\ \&oldt);}
+\DoxyCodeLine{00093\ \ \ \ \ newt\ =\ oldt;}
+\DoxyCodeLine{00094\ \ \ \ \ newt.c\_lflag\ \ \ \ \&=\ \string~(ICANON\ |\ ECHO);}
+\DoxyCodeLine{00095\ \ \ \ \ newt.c\_iflag\ \ \ \ \ =\ 0;\ \textcolor{comment}{//\ input\ mode}}
+\DoxyCodeLine{00096\ \ \ \ \ newt.c\_oflag\ \ \ \ \ =\ 0;\ \textcolor{comment}{//\ output\ mode}}
+\DoxyCodeLine{00097\ \ \ \ \ newt.c\_cc[VMIN]\ \ =\ 1;\ \textcolor{comment}{//\ minimum\ time\ to\ wait}}
+\DoxyCodeLine{00098\ \ \ \ \ newt.c\_cc[VTIME]\ =\ 1;\ \textcolor{comment}{//\ minimum\ characters\ to\ wait\ for}}
+\DoxyCodeLine{00099\ \ \ \ \ tcsetattr(STDIN\_FILENO,\ TCSANOW,\ \&newt);}
+\DoxyCodeLine{00100\ \ \ \ \ ioctl(0,\ FIONREAD,\ \&cnt);\ \textcolor{comment}{//\ Read\ count}}
+\DoxyCodeLine{00101\ \ \ \ \ \textcolor{keyword}{struct\ }timeval\ tv;}
+\DoxyCodeLine{00102\ \ \ \ \ tv.tv\_sec\ \ =\ 0;}
+\DoxyCodeLine{00103\ \ \ \ \ tv.tv\_usec\ =\ 100;}
+\DoxyCodeLine{00104\ \ \ \ \ select(STDIN\_FILENO+1,\ NULL,\ NULL,\ NULL,\ \&tv);\ \textcolor{comment}{//\ A\ small\ time\ delay}}
+\DoxyCodeLine{00105\ \ \ \ \ tcsetattr(STDIN\_FILENO,\ TCSANOW,\ \&oldt);}
+\DoxyCodeLine{00106\ \ \ \ \ \textcolor{keywordflow}{return}\ cnt;\ \textcolor{comment}{//\ Return\ number\ of\ characters}}
+\DoxyCodeLine{00107\ \}}
+\DoxyCodeLine{00108\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ \_WIN32}}
+\DoxyCodeLine{00109\ }
+\DoxyCodeLine{00110\ \textcolor{preprocessor}{\#ifndef\ gotoxy}}
+\DoxyCodeLine{00113\ RLUTIL\_INLINE\ \textcolor{keywordtype}{void}\ gotoxy(\textcolor{keywordtype}{int}\ x,\ \textcolor{keywordtype}{int}\ y)\ \{}
+\DoxyCodeLine{00114\ \textcolor{preprocessor}{\ \ \ \ \#ifdef\ \_\_cplusplus}}
+\DoxyCodeLine{00115\ \ \ \ \ rlutil::}
+\DoxyCodeLine{00116\ \textcolor{preprocessor}{\ \ \ \ \#endif}}
+\DoxyCodeLine{00117\ \ \ \ \ locate(x,y);}
+\DoxyCodeLine{00118\ \}}
+\DoxyCodeLine{00119\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ gotoxy}}
+\DoxyCodeLine{00120\ }
+\DoxyCodeLine{00121\ \textcolor{preprocessor}{\#ifdef\ \_\_cplusplus}}
+\DoxyCodeLine{00126\ \textcolor{keyword}{namespace\ }rlutil\ \{}
+\DoxyCodeLine{00127\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00128\ }
+\DoxyCodeLine{00135\ \textcolor{preprocessor}{\#ifdef\ \_\_cplusplus}}
+\DoxyCodeLine{00136\ \textcolor{preprocessor}{\ \ \ \ \#ifndef\ RLUTIL\_STRING\_T}}
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \textcolor{keyword}{typedef}\ std::string\ RLUTIL\_STRING\_T;}
+\DoxyCodeLine{00138\ \textcolor{preprocessor}{\ \ \ \ \#endif\ }\textcolor{comment}{//\ RLUTIL\_STRING\_T}}
+\DoxyCodeLine{00139\ }
+\DoxyCodeLine{00140\ \textcolor{preprocessor}{\ \ \ \ \#define\ RLUTIL\_PRINT(st)\ do\ \{\ std::cout\ <<\ st;\ \}\ while(false)}}
+\DoxyCodeLine{00141\ \textcolor{preprocessor}{\#else\ }\textcolor{comment}{//\ \_\_cplusplus}}
+\DoxyCodeLine{00142\ \textcolor{preprocessor}{\ \ \ \ \#ifndef\ RLUTIL\_STRING\_T}}
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ RLUTIL\_STRING\_T;}
+\DoxyCodeLine{00144\ \textcolor{preprocessor}{\ \ \ \ \#endif\ }\textcolor{comment}{//\ RLUTIL\_STRING\_T}}
+\DoxyCodeLine{00145\ }
+\DoxyCodeLine{00146\ \textcolor{preprocessor}{\ \ \ \ \#define\ RLUTIL\_PRINT(st)\ printf("{}\%s"{},\ st)}}
+\DoxyCodeLine{00147\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ \_\_cplusplus}}
+\DoxyCodeLine{00148\ }
+\DoxyCodeLine{00169\ \textcolor{keyword}{enum}\ \{}
+\DoxyCodeLine{00170\ \ \ \ \ BLACK,}
+\DoxyCodeLine{00171\ \ \ \ \ BLUE,}
+\DoxyCodeLine{00172\ \ \ \ \ GREEN,}
+\DoxyCodeLine{00173\ \ \ \ \ CYAN,}
+\DoxyCodeLine{00174\ \ \ \ \ RED,}
+\DoxyCodeLine{00175\ \ \ \ \ MAGENTA,}
+\DoxyCodeLine{00176\ \ \ \ \ BROWN,}
+\DoxyCodeLine{00177\ \ \ \ \ GREY,}
+\DoxyCodeLine{00178\ \ \ \ \ DARKGREY,}
+\DoxyCodeLine{00179\ \ \ \ \ LIGHTBLUE,}
+\DoxyCodeLine{00180\ \ \ \ \ LIGHTGREEN,}
+\DoxyCodeLine{00181\ \ \ \ \ LIGHTCYAN,}
+\DoxyCodeLine{00182\ \ \ \ \ LIGHTRED,}
+\DoxyCodeLine{00183\ \ \ \ \ LIGHTMAGENTA,}
+\DoxyCodeLine{00184\ \ \ \ \ YELLOW,}
+\DoxyCodeLine{00185\ \ \ \ \ WHITE}
+\DoxyCodeLine{00186\ \};}
+\DoxyCodeLine{00187\ }
+\DoxyCodeLine{00223\ \textcolor{keyword}{const}\ RLUTIL\_STRING\_T\ ANSI\_CLS\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ \textcolor{stringliteral}{"{}\(\backslash\)033[2J\(\backslash\)033[3J"{}};}
+\DoxyCodeLine{00224\ \textcolor{keyword}{const}\ RLUTIL\_STRING\_T\ ANSI\_CONSOLE\_TITLE\_PRE\ \ =\ \textcolor{stringliteral}{"{}\(\backslash\)033]0;"{}};}
+\DoxyCodeLine{00225\ \textcolor{keyword}{const}\ RLUTIL\_STRING\_T\ ANSI\_CONSOLE\_TITLE\_POST\ =\ \textcolor{stringliteral}{"{}\(\backslash\)007"{}};}
+\DoxyCodeLine{00226\ \textcolor{keyword}{const}\ RLUTIL\_STRING\_T\ ANSI\_ATTRIBUTE\_RESET\ \ \ \ =\ \textcolor{stringliteral}{"{}\(\backslash\)033[0m"{}};}
+\DoxyCodeLine{00227\ \textcolor{keyword}{const}\ RLUTIL\_STRING\_T\ ANSI\_CURSOR\_HIDE\ \ \ \ \ \ \ \ =\ \textcolor{stringliteral}{"{}\(\backslash\)033[?25l"{}};}
+\DoxyCodeLine{00228\ \textcolor{keyword}{const}\ RLUTIL\_STRING\_T\ ANSI\_CURSOR\_SHOW\ \ \ \ \ \ \ \ =\ \textcolor{stringliteral}{"{}\(\backslash\)033[?25h"{}};}
+\DoxyCodeLine{00229\ \textcolor{keyword}{const}\ RLUTIL\_STRING\_T\ ANSI\_CURSOR\_HOME\ \ \ \ \ \ \ \ =\ \textcolor{stringliteral}{"{}\(\backslash\)033[H"{}};}
+\DoxyCodeLine{00230\ \textcolor{keyword}{const}\ RLUTIL\_STRING\_T\ ANSI\_BLACK\ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ \textcolor{stringliteral}{"{}\(\backslash\)033[22;30m"{}};}
+\DoxyCodeLine{00231\ \textcolor{keyword}{const}\ RLUTIL\_STRING\_T\ ANSI\_RED\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ \textcolor{stringliteral}{"{}\(\backslash\)033[22;31m"{}};}
+\DoxyCodeLine{00232\ \textcolor{keyword}{const}\ RLUTIL\_STRING\_T\ ANSI\_GREEN\ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ \textcolor{stringliteral}{"{}\(\backslash\)033[22;32m"{}};}
+\DoxyCodeLine{00233\ \textcolor{keyword}{const}\ RLUTIL\_STRING\_T\ ANSI\_BROWN\ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ \textcolor{stringliteral}{"{}\(\backslash\)033[22;33m"{}};}
+\DoxyCodeLine{00234\ \textcolor{keyword}{const}\ RLUTIL\_STRING\_T\ ANSI\_BLUE\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ \textcolor{stringliteral}{"{}\(\backslash\)033[22;34m"{}};}
+\DoxyCodeLine{00235\ \textcolor{keyword}{const}\ RLUTIL\_STRING\_T\ ANSI\_MAGENTA\ \ \ \ \ \ \ \ \ \ \ \ =\ \textcolor{stringliteral}{"{}\(\backslash\)033[22;35m"{}};}
+\DoxyCodeLine{00236\ \textcolor{keyword}{const}\ RLUTIL\_STRING\_T\ ANSI\_CYAN\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ \textcolor{stringliteral}{"{}\(\backslash\)033[22;36m"{}};}
+\DoxyCodeLine{00237\ \textcolor{keyword}{const}\ RLUTIL\_STRING\_T\ ANSI\_GREY\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ \textcolor{stringliteral}{"{}\(\backslash\)033[22;37m"{}};}
+\DoxyCodeLine{00238\ \textcolor{keyword}{const}\ RLUTIL\_STRING\_T\ ANSI\_DARKGREY\ \ \ \ \ \ \ \ \ \ \ =\ \textcolor{stringliteral}{"{}\(\backslash\)033[01;30m"{}};}
+\DoxyCodeLine{00239\ \textcolor{keyword}{const}\ RLUTIL\_STRING\_T\ ANSI\_LIGHTRED\ \ \ \ \ \ \ \ \ \ \ =\ \textcolor{stringliteral}{"{}\(\backslash\)033[01;31m"{}};}
+\DoxyCodeLine{00240\ \textcolor{keyword}{const}\ RLUTIL\_STRING\_T\ ANSI\_LIGHTGREEN\ \ \ \ \ \ \ \ \ =\ \textcolor{stringliteral}{"{}\(\backslash\)033[01;32m"{}};}
+\DoxyCodeLine{00241\ \textcolor{keyword}{const}\ RLUTIL\_STRING\_T\ ANSI\_YELLOW\ \ \ \ \ \ \ \ \ \ \ \ \ =\ \textcolor{stringliteral}{"{}\(\backslash\)033[01;33m"{}};}
+\DoxyCodeLine{00242\ \textcolor{keyword}{const}\ RLUTIL\_STRING\_T\ ANSI\_LIGHTBLUE\ \ \ \ \ \ \ \ \ \ =\ \textcolor{stringliteral}{"{}\(\backslash\)033[01;34m"{}};}
+\DoxyCodeLine{00243\ \textcolor{keyword}{const}\ RLUTIL\_STRING\_T\ ANSI\_LIGHTMAGENTA\ \ \ \ \ \ \ =\ \textcolor{stringliteral}{"{}\(\backslash\)033[01;35m"{}};}
+\DoxyCodeLine{00244\ \textcolor{keyword}{const}\ RLUTIL\_STRING\_T\ ANSI\_LIGHTCYAN\ \ \ \ \ \ \ \ \ \ =\ \textcolor{stringliteral}{"{}\(\backslash\)033[01;36m"{}};}
+\DoxyCodeLine{00245\ \textcolor{keyword}{const}\ RLUTIL\_STRING\_T\ ANSI\_WHITE\ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ \textcolor{stringliteral}{"{}\(\backslash\)033[01;37m"{}};}
+\DoxyCodeLine{00246\ \textcolor{keyword}{const}\ RLUTIL\_STRING\_T\ ANSI\_BACKGROUND\_BLACK\ \ \ =\ \textcolor{stringliteral}{"{}\(\backslash\)033[40m"{}};}
+\DoxyCodeLine{00247\ \textcolor{keyword}{const}\ RLUTIL\_STRING\_T\ ANSI\_BACKGROUND\_RED\ \ \ \ \ =\ \textcolor{stringliteral}{"{}\(\backslash\)033[41m"{}};}
+\DoxyCodeLine{00248\ \textcolor{keyword}{const}\ RLUTIL\_STRING\_T\ ANSI\_BACKGROUND\_GREEN\ \ \ =\ \textcolor{stringliteral}{"{}\(\backslash\)033[42m"{}};}
+\DoxyCodeLine{00249\ \textcolor{keyword}{const}\ RLUTIL\_STRING\_T\ ANSI\_BACKGROUND\_YELLOW\ \ =\ \textcolor{stringliteral}{"{}\(\backslash\)033[43m"{}};}
+\DoxyCodeLine{00250\ \textcolor{keyword}{const}\ RLUTIL\_STRING\_T\ ANSI\_BACKGROUND\_BLUE\ \ \ \ =\ \textcolor{stringliteral}{"{}\(\backslash\)033[44m"{}};}
+\DoxyCodeLine{00251\ \textcolor{keyword}{const}\ RLUTIL\_STRING\_T\ ANSI\_BACKGROUND\_MAGENTA\ =\ \textcolor{stringliteral}{"{}\(\backslash\)033[45m"{}};}
+\DoxyCodeLine{00252\ \textcolor{keyword}{const}\ RLUTIL\_STRING\_T\ ANSI\_BACKGROUND\_CYAN\ \ \ \ =\ \textcolor{stringliteral}{"{}\(\backslash\)033[46m"{}};}
+\DoxyCodeLine{00253\ \textcolor{keyword}{const}\ RLUTIL\_STRING\_T\ ANSI\_BACKGROUND\_WHITE\ \ \ =\ \textcolor{stringliteral}{"{}\(\backslash\)033[47m"{}};}
+\DoxyCodeLine{00254\ \textcolor{comment}{//\ Remaining\ colors\ not\ supported\ as\ background\ colors}}
+\DoxyCodeLine{00255\ }
+\DoxyCodeLine{00296\ \textcolor{keyword}{enum}\ \{}
+\DoxyCodeLine{00297\ \ \ \ \ KEY\_ESCAPE\ \ =\ 0,}
+\DoxyCodeLine{00298\ \ \ \ \ KEY\_ENTER\ \ \ =\ 1,}
+\DoxyCodeLine{00299\ \ \ \ \ KEY\_SPACE\ \ \ =\ 32,}
+\DoxyCodeLine{00300\ }
+\DoxyCodeLine{00301\ \ \ \ \ KEY\_INSERT\ \ =\ 2,}
+\DoxyCodeLine{00302\ \ \ \ \ KEY\_HOME\ \ \ \ =\ 3,}
+\DoxyCodeLine{00303\ \ \ \ \ KEY\_PGUP\ \ \ \ =\ 4,}
+\DoxyCodeLine{00304\ \ \ \ \ KEY\_DELETE\ \ =\ 5,}
+\DoxyCodeLine{00305\ \ \ \ \ KEY\_END\ \ \ \ \ =\ 6,}
+\DoxyCodeLine{00306\ \ \ \ \ KEY\_PGDOWN\ \ =\ 7,}
+\DoxyCodeLine{00307\ }
+\DoxyCodeLine{00308\ \ \ \ \ KEY\_UP\ \ \ \ \ \ =\ 14,}
+\DoxyCodeLine{00309\ \ \ \ \ KEY\_DOWN\ \ \ \ =\ 15,}
+\DoxyCodeLine{00310\ \ \ \ \ KEY\_LEFT\ \ \ \ =\ 16,}
+\DoxyCodeLine{00311\ \ \ \ \ KEY\_RIGHT\ \ \ =\ 17,}
+\DoxyCodeLine{00312\ }
+\DoxyCodeLine{00313\ \ \ \ \ KEY\_F1\ \ \ \ \ \ =\ 18,}
+\DoxyCodeLine{00314\ \ \ \ \ KEY\_F2\ \ \ \ \ \ =\ 19,}
+\DoxyCodeLine{00315\ \ \ \ \ KEY\_F3\ \ \ \ \ \ =\ 20,}
+\DoxyCodeLine{00316\ \ \ \ \ KEY\_F4\ \ \ \ \ \ =\ 21,}
+\DoxyCodeLine{00317\ \ \ \ \ KEY\_F5\ \ \ \ \ \ =\ 22,}
+\DoxyCodeLine{00318\ \ \ \ \ KEY\_F6\ \ \ \ \ \ =\ 23,}
+\DoxyCodeLine{00319\ \ \ \ \ KEY\_F7\ \ \ \ \ \ =\ 24,}
+\DoxyCodeLine{00320\ \ \ \ \ KEY\_F8\ \ \ \ \ \ =\ 25,}
+\DoxyCodeLine{00321\ \ \ \ \ KEY\_F9\ \ \ \ \ \ =\ 26,}
+\DoxyCodeLine{00322\ \ \ \ \ KEY\_F10\ \ \ \ \ =\ 27,}
+\DoxyCodeLine{00323\ \ \ \ \ KEY\_F11\ \ \ \ \ =\ 28,}
+\DoxyCodeLine{00324\ \ \ \ \ KEY\_F12\ \ \ \ \ =\ 29,}
+\DoxyCodeLine{00325\ }
+\DoxyCodeLine{00326\ \ \ \ \ KEY\_NUMDEL\ \ =\ 30,}
+\DoxyCodeLine{00327\ \ \ \ \ KEY\_NUMPAD0\ =\ 31,}
+\DoxyCodeLine{00328\ \ \ \ \ KEY\_NUMPAD1\ =\ 127,}
+\DoxyCodeLine{00329\ \ \ \ \ KEY\_NUMPAD2\ =\ 128,}
+\DoxyCodeLine{00330\ \ \ \ \ KEY\_NUMPAD3\ =\ 129,}
+\DoxyCodeLine{00331\ \ \ \ \ KEY\_NUMPAD4\ =\ 130,}
+\DoxyCodeLine{00332\ \ \ \ \ KEY\_NUMPAD5\ =\ 131,}
+\DoxyCodeLine{00333\ \ \ \ \ KEY\_NUMPAD6\ =\ 132,}
+\DoxyCodeLine{00334\ \ \ \ \ KEY\_NUMPAD7\ =\ 133,}
+\DoxyCodeLine{00335\ \ \ \ \ KEY\_NUMPAD8\ =\ 134,}
+\DoxyCodeLine{00336\ \ \ \ \ KEY\_NUMPAD9\ =\ 135}
+\DoxyCodeLine{00337\ \};}
+\DoxyCodeLine{00338\ }
+\DoxyCodeLine{00346\ RLUTIL\_INLINE\ \textcolor{keywordtype}{int}\ getkey(\textcolor{keywordtype}{void})\ \{}
+\DoxyCodeLine{00347\ \textcolor{preprocessor}{\ \ \ \ \#ifndef\ \_WIN32}}
+\DoxyCodeLine{00348\ \ \ \ \ \textcolor{keywordtype}{int}\ cnt\ =\ kbhit();\ \textcolor{comment}{//\ for\ ANSI\ escapes\ processing}}
+\DoxyCodeLine{00349\ \textcolor{preprocessor}{\ \ \ \ \#endif}}
+\DoxyCodeLine{00350\ \ \ \ \ \textcolor{keywordtype}{int}\ k\ =\ getch();}
+\DoxyCodeLine{00351\ \ \ \ \ \textcolor{keywordflow}{switch}(k)\ \{}
+\DoxyCodeLine{00352\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 0:\ \{}
+\DoxyCodeLine{00353\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ kk;}
+\DoxyCodeLine{00354\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{switch}\ (kk\ =\ getch())\ \{}
+\DoxyCodeLine{00355\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 71:\ \textcolor{keywordflow}{return}\ KEY\_NUMPAD7;}
+\DoxyCodeLine{00356\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 72:\ \textcolor{keywordflow}{return}\ KEY\_NUMPAD8;}
+\DoxyCodeLine{00357\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 73:\ \textcolor{keywordflow}{return}\ KEY\_NUMPAD9;}
+\DoxyCodeLine{00358\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 75:\ \textcolor{keywordflow}{return}\ KEY\_NUMPAD4;}
+\DoxyCodeLine{00359\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 77:\ \textcolor{keywordflow}{return}\ KEY\_NUMPAD6;}
+\DoxyCodeLine{00360\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 79:\ \textcolor{keywordflow}{return}\ KEY\_NUMPAD1;}
+\DoxyCodeLine{00361\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 80:\ \textcolor{keywordflow}{return}\ KEY\_NUMPAD2;}
+\DoxyCodeLine{00362\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 81:\ \textcolor{keywordflow}{return}\ KEY\_NUMPAD3;}
+\DoxyCodeLine{00363\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 82:\ \textcolor{keywordflow}{return}\ KEY\_NUMPAD0;}
+\DoxyCodeLine{00364\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 83:\ \textcolor{keywordflow}{return}\ KEY\_NUMDEL;}
+\DoxyCodeLine{00365\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{default}:\ \textcolor{keywordflow}{return}\ kk-\/59+KEY\_F1;\ \textcolor{comment}{//\ Function\ keys}}
+\DoxyCodeLine{00366\ \ \ \ \ \ \ \ \ \ \ \ \ \}\}}
+\DoxyCodeLine{00367\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 224:\ \{}
+\DoxyCodeLine{00368\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ kk;}
+\DoxyCodeLine{00369\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{switch}\ (kk\ =\ getch())\ \{}
+\DoxyCodeLine{00370\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 71:\ \textcolor{keywordflow}{return}\ KEY\_HOME;}
+\DoxyCodeLine{00371\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 72:\ \textcolor{keywordflow}{return}\ KEY\_UP;}
+\DoxyCodeLine{00372\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 73:\ \textcolor{keywordflow}{return}\ KEY\_PGUP;}
+\DoxyCodeLine{00373\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 75:\ \textcolor{keywordflow}{return}\ KEY\_LEFT;}
+\DoxyCodeLine{00374\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 77:\ \textcolor{keywordflow}{return}\ KEY\_RIGHT;}
+\DoxyCodeLine{00375\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 79:\ \textcolor{keywordflow}{return}\ KEY\_END;}
+\DoxyCodeLine{00376\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 80:\ \textcolor{keywordflow}{return}\ KEY\_DOWN;}
+\DoxyCodeLine{00377\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 81:\ \textcolor{keywordflow}{return}\ KEY\_PGDOWN;}
+\DoxyCodeLine{00378\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 82:\ \textcolor{keywordflow}{return}\ KEY\_INSERT;}
+\DoxyCodeLine{00379\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 83:\ \textcolor{keywordflow}{return}\ KEY\_DELETE;}
+\DoxyCodeLine{00380\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{default}:\ \textcolor{keywordflow}{return}\ kk-\/123+KEY\_F1;\ \textcolor{comment}{//\ Function\ keys}}
+\DoxyCodeLine{00381\ \ \ \ \ \ \ \ \ \ \ \ \ \}\}}
+\DoxyCodeLine{00382\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 13:\ \textcolor{keywordflow}{return}\ KEY\_ENTER;}
+\DoxyCodeLine{00383\ \textcolor{preprocessor}{\#ifdef\ \_WIN32}}
+\DoxyCodeLine{00384\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 27:\ \textcolor{keywordflow}{return}\ KEY\_ESCAPE;}
+\DoxyCodeLine{00385\ \textcolor{preprocessor}{\#else\ }\textcolor{comment}{//\ \_WIN32}}
+\DoxyCodeLine{00386\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 155:\ \textcolor{comment}{//\ single-\/character\ CSI}}
+\DoxyCodeLine{00387\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 27:\ \{}
+\DoxyCodeLine{00388\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Process\ ANSI\ escape\ sequences}}
+\DoxyCodeLine{00389\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (cnt\ >=\ 3\ \&\&\ getch()\ ==\ \textcolor{charliteral}{'['})\ \{}
+\DoxyCodeLine{00390\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{switch}\ (k\ =\ getch())\ \{}
+\DoxyCodeLine{00391\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \textcolor{charliteral}{'A'}:\ \textcolor{keywordflow}{return}\ KEY\_UP;}
+\DoxyCodeLine{00392\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \textcolor{charliteral}{'B'}:\ \textcolor{keywordflow}{return}\ KEY\_DOWN;}
+\DoxyCodeLine{00393\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \textcolor{charliteral}{'C'}:\ \textcolor{keywordflow}{return}\ KEY\_RIGHT;}
+\DoxyCodeLine{00394\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \textcolor{charliteral}{'D'}:\ \textcolor{keywordflow}{return}\ KEY\_LEFT;}
+\DoxyCodeLine{00395\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00396\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{return}\ KEY\_ESCAPE;}
+\DoxyCodeLine{00397\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00398\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ \_WIN32}}
+\DoxyCodeLine{00399\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{default}:\ \textcolor{keywordflow}{return}\ k;}
+\DoxyCodeLine{00400\ \ \ \ \ \}}
+\DoxyCodeLine{00401\ \}}
+\DoxyCodeLine{00402\ }
+\DoxyCodeLine{00405\ RLUTIL\_INLINE\ \textcolor{keywordtype}{int}\ nb\_getch(\textcolor{keywordtype}{void})\ \{}
+\DoxyCodeLine{00406\ \ \ \ \ \textcolor{keywordflow}{if}\ (kbhit())\ \textcolor{keywordflow}{return}\ getch();}
+\DoxyCodeLine{00407\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00408\ \}}
+\DoxyCodeLine{00409\ }
+\DoxyCodeLine{00414\ RLUTIL\_INLINE\ RLUTIL\_STRING\_T\ getANSIColor(\textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ c)\ \{}
+\DoxyCodeLine{00415\ \ \ \ \ \textcolor{keywordflow}{switch}\ (c)\ \{}
+\DoxyCodeLine{00416\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ BLACK\ \ \ \ \ \ \ :\ \textcolor{keywordflow}{return}\ ANSI\_BLACK;}
+\DoxyCodeLine{00417\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ BLUE\ \ \ \ \ \ \ \ :\ \textcolor{keywordflow}{return}\ ANSI\_BLUE;\ \textcolor{comment}{//\ non-\/ANSI}}
+\DoxyCodeLine{00418\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ GREEN\ \ \ \ \ \ \ :\ \textcolor{keywordflow}{return}\ ANSI\_GREEN;}
+\DoxyCodeLine{00419\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ CYAN\ \ \ \ \ \ \ \ :\ \textcolor{keywordflow}{return}\ ANSI\_CYAN;\ \textcolor{comment}{//\ non-\/ANSI}}
+\DoxyCodeLine{00420\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ RED\ \ \ \ \ \ \ \ \ :\ \textcolor{keywordflow}{return}\ ANSI\_RED;\ \textcolor{comment}{//\ non-\/ANSI}}
+\DoxyCodeLine{00421\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ MAGENTA\ \ \ \ \ :\ \textcolor{keywordflow}{return}\ ANSI\_MAGENTA;}
+\DoxyCodeLine{00422\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ BROWN\ \ \ \ \ \ \ :\ \textcolor{keywordflow}{return}\ ANSI\_BROWN;}
+\DoxyCodeLine{00423\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ GREY\ \ \ \ \ \ \ \ :\ \textcolor{keywordflow}{return}\ ANSI\_GREY;}
+\DoxyCodeLine{00424\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ DARKGREY\ \ \ \ :\ \textcolor{keywordflow}{return}\ ANSI\_DARKGREY;}
+\DoxyCodeLine{00425\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ LIGHTBLUE\ \ \ :\ \textcolor{keywordflow}{return}\ ANSI\_LIGHTBLUE;\ \textcolor{comment}{//\ non-\/ANSI}}
+\DoxyCodeLine{00426\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ LIGHTGREEN\ \ :\ \textcolor{keywordflow}{return}\ ANSI\_LIGHTGREEN;}
+\DoxyCodeLine{00427\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ LIGHTCYAN\ \ \ :\ \textcolor{keywordflow}{return}\ ANSI\_LIGHTCYAN;\ \textcolor{comment}{//\ non-\/ANSI;}}
+\DoxyCodeLine{00428\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ LIGHTRED\ \ \ \ :\ \textcolor{keywordflow}{return}\ ANSI\_LIGHTRED;\ \textcolor{comment}{//\ non-\/ANSI;}}
+\DoxyCodeLine{00429\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ LIGHTMAGENTA:\ \textcolor{keywordflow}{return}\ ANSI\_LIGHTMAGENTA;}
+\DoxyCodeLine{00430\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ YELLOW\ \ \ \ \ \ :\ \textcolor{keywordflow}{return}\ ANSI\_YELLOW;\ \textcolor{comment}{//\ non-\/ANSI}}
+\DoxyCodeLine{00431\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ WHITE\ \ \ \ \ \ \ :\ \textcolor{keywordflow}{return}\ ANSI\_WHITE;}
+\DoxyCodeLine{00432\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{default}:\ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{00433\ \ \ \ \ \}}
+\DoxyCodeLine{00434\ \}}
+\DoxyCodeLine{00435\ }
+\DoxyCodeLine{00440\ RLUTIL\_INLINE\ RLUTIL\_STRING\_T\ getANSIBackgroundColor(\textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ c)\ \{}
+\DoxyCodeLine{00441\ \ \ \ \ \textcolor{keywordflow}{switch}\ (c)\ \{}
+\DoxyCodeLine{00442\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ BLACK\ \ :\ \textcolor{keywordflow}{return}\ ANSI\_BACKGROUND\_BLACK;}
+\DoxyCodeLine{00443\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ BLUE\ \ \ :\ \textcolor{keywordflow}{return}\ ANSI\_BACKGROUND\_BLUE;}
+\DoxyCodeLine{00444\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ GREEN\ \ :\ \textcolor{keywordflow}{return}\ ANSI\_BACKGROUND\_GREEN;}
+\DoxyCodeLine{00445\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ CYAN\ \ \ :\ \textcolor{keywordflow}{return}\ ANSI\_BACKGROUND\_CYAN;}
+\DoxyCodeLine{00446\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ RED\ \ \ \ :\ \textcolor{keywordflow}{return}\ ANSI\_BACKGROUND\_RED;}
+\DoxyCodeLine{00447\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ MAGENTA:\ \textcolor{keywordflow}{return}\ ANSI\_BACKGROUND\_MAGENTA;}
+\DoxyCodeLine{00448\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ BROWN\ \ :\ \textcolor{keywordflow}{return}\ ANSI\_BACKGROUND\_YELLOW;}
+\DoxyCodeLine{00449\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ GREY\ \ \ :\ \textcolor{keywordflow}{return}\ ANSI\_BACKGROUND\_WHITE;}
+\DoxyCodeLine{00450\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{default}:\ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{00451\ \ \ \ \ \}}
+\DoxyCodeLine{00452\ \}}
+\DoxyCodeLine{00453\ }
+\DoxyCodeLine{00459\ RLUTIL\_INLINE\ \textcolor{keywordtype}{void}\ setColor(\textcolor{keywordtype}{int}\ c)\ \{}
+\DoxyCodeLine{00460\ \textcolor{preprocessor}{\#if\ defined(\_WIN32)\ \&\&\ !defined(RLUTIL\_USE\_ANSI)}}
+\DoxyCodeLine{00461\ \ \ \ \ HANDLE\ hConsole\ =\ GetStdHandle(STD\_OUTPUT\_HANDLE);}
+\DoxyCodeLine{00462\ \ \ \ \ CONSOLE\_SCREEN\_BUFFER\_INFO\ csbi;}
+\DoxyCodeLine{00463\ }
+\DoxyCodeLine{00464\ \ \ \ \ GetConsoleScreenBufferInfo(hConsole,\ \&csbi);}
+\DoxyCodeLine{00465\ }
+\DoxyCodeLine{00466\ \ \ \ \ SetConsoleTextAttribute(hConsole,\ (csbi.wAttributes\ \&\ 0xFFF0)\ |\ (WORD)c);\ \textcolor{comment}{//\ Foreground\ colors\ take\ up\ the\ least\ significant\ byte}}
+\DoxyCodeLine{00467\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00468\ \ \ \ \ RLUTIL\_PRINT(getANSIColor(c));}
+\DoxyCodeLine{00469\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00470\ \}}
+\DoxyCodeLine{00471\ }
+\DoxyCodeLine{00477\ RLUTIL\_INLINE\ \textcolor{keywordtype}{void}\ setBackgroundColor(\textcolor{keywordtype}{int}\ c)\ \{}
+\DoxyCodeLine{00478\ \textcolor{preprocessor}{\#if\ defined(\_WIN32)\ \&\&\ !defined(RLUTIL\_USE\_ANSI)}}
+\DoxyCodeLine{00479\ \ \ \ \ HANDLE\ hConsole\ =\ GetStdHandle(STD\_OUTPUT\_HANDLE);}
+\DoxyCodeLine{00480\ \ \ \ \ CONSOLE\_SCREEN\_BUFFER\_INFO\ csbi;}
+\DoxyCodeLine{00481\ }
+\DoxyCodeLine{00482\ \ \ \ \ GetConsoleScreenBufferInfo(hConsole,\ \&csbi);}
+\DoxyCodeLine{00483\ }
+\DoxyCodeLine{00484\ \ \ \ \ SetConsoleTextAttribute(hConsole,\ (csbi.wAttributes\ \&\ 0xFF0F)\ |\ (((WORD)c)\ <<\ 4));\ \textcolor{comment}{//\ Background\ colors\ take\ up\ the\ second-\/least\ significant\ byte}}
+\DoxyCodeLine{00485\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00486\ \ \ \ \ RLUTIL\_PRINT(getANSIBackgroundColor(c));}
+\DoxyCodeLine{00487\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00488\ \}}
+\DoxyCodeLine{00489\ }
+\DoxyCodeLine{00496\ RLUTIL\_INLINE\ \textcolor{keywordtype}{int}\ saveDefaultColor(\textcolor{keywordtype}{void})\ \{}
+\DoxyCodeLine{00497\ \textcolor{preprocessor}{\#if\ defined(\_WIN32)\ \&\&\ !defined(RLUTIL\_USE\_ANSI)}}
+\DoxyCodeLine{00498\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{char}\ initialized\ =\ 0;\ \textcolor{comment}{//\ bool}}
+\DoxyCodeLine{00499\ \ \ \ \ \textcolor{keyword}{static}\ WORD\ attributes;}
+\DoxyCodeLine{00500\ }
+\DoxyCodeLine{00501\ \ \ \ \ \textcolor{keywordflow}{if}\ (!initialized)\ \{}
+\DoxyCodeLine{00502\ \ \ \ \ \ \ \ \ CONSOLE\_SCREEN\_BUFFER\_INFO\ csbi;}
+\DoxyCodeLine{00503\ \ \ \ \ \ \ \ \ GetConsoleScreenBufferInfo(GetStdHandle(STD\_OUTPUT\_HANDLE),\ \&csbi);}
+\DoxyCodeLine{00504\ \ \ \ \ \ \ \ \ attributes\ =\ csbi.wAttributes;}
+\DoxyCodeLine{00505\ \ \ \ \ \ \ \ \ initialized\ =\ 1;}
+\DoxyCodeLine{00506\ \ \ \ \ \}}
+\DoxyCodeLine{00507\ \ \ \ \ \textcolor{keywordflow}{return}\ (\textcolor{keywordtype}{int})attributes;}
+\DoxyCodeLine{00508\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00509\ \ \ \ \ \textcolor{keywordflow}{return}\ -\/1;}
+\DoxyCodeLine{00510\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00511\ \}}
+\DoxyCodeLine{00512\ }
+\DoxyCodeLine{00520\ RLUTIL\_INLINE\ \textcolor{keywordtype}{void}\ resetColor(\textcolor{keywordtype}{void})\ \{}
+\DoxyCodeLine{00521\ \textcolor{preprocessor}{\#if\ defined(\_WIN32)\ \&\&\ !defined(RLUTIL\_USE\_ANSI)}}
+\DoxyCodeLine{00522\ \ \ \ \ SetConsoleTextAttribute(GetStdHandle(STD\_OUTPUT\_HANDLE),\ (WORD)saveDefaultColor());}
+\DoxyCodeLine{00523\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00524\ \ \ \ \ RLUTIL\_PRINT(ANSI\_ATTRIBUTE\_RESET);}
+\DoxyCodeLine{00525\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00526\ \}}
+\DoxyCodeLine{00527\ }
+\DoxyCodeLine{00530\ RLUTIL\_INLINE\ \textcolor{keywordtype}{void}\ cls(\textcolor{keywordtype}{void})\ \{}
+\DoxyCodeLine{00531\ \textcolor{preprocessor}{\#if\ defined(\_WIN32)\ \&\&\ !defined(RLUTIL\_USE\_ANSI)}}
+\DoxyCodeLine{00532\ \ \ \ \ \textcolor{comment}{//\ Based\ on\ https://msdn.microsoft.com/en-\/us/library/windows/desktop/ms682022\%28v=vs.85\%29.aspx}}
+\DoxyCodeLine{00533\ \ \ \ \ \textcolor{keyword}{const}\ HANDLE\ hConsole\ =\ GetStdHandle(STD\_OUTPUT\_HANDLE);}
+\DoxyCodeLine{00534\ \ \ \ \ \textcolor{keyword}{const}\ COORD\ coordScreen\ =\ \{0,\ 0\};}
+\DoxyCodeLine{00535\ \ \ \ \ DWORD\ cCharsWritten;}
+\DoxyCodeLine{00536\ \ \ \ \ CONSOLE\_SCREEN\_BUFFER\_INFO\ csbi;}
+\DoxyCodeLine{00537\ }
+\DoxyCodeLine{00538\ \ \ \ \ GetConsoleScreenBufferInfo(hConsole,\ \&csbi);}
+\DoxyCodeLine{00539\ \ \ \ \ \textcolor{keyword}{const}\ DWORD\ dwConSize\ =\ csbi.dwSize.X\ *\ csbi.dwSize.Y;}
+\DoxyCodeLine{00540\ \ \ \ \ FillConsoleOutputCharacter(hConsole,\ (TCHAR)\textcolor{charliteral}{'\ '},\ dwConSize,\ coordScreen,\ \&cCharsWritten);}
+\DoxyCodeLine{00541\ }
+\DoxyCodeLine{00542\ \ \ \ \ GetConsoleScreenBufferInfo(hConsole,\ \&csbi);}
+\DoxyCodeLine{00543\ \ \ \ \ FillConsoleOutputAttribute(hConsole,\ csbi.wAttributes,\ dwConSize,\ coordScreen,\ \&cCharsWritten);}
+\DoxyCodeLine{00544\ }
+\DoxyCodeLine{00545\ \ \ \ \ SetConsoleCursorPosition(hConsole,\ coordScreen);}
+\DoxyCodeLine{00546\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00547\ \ \ \ \ RLUTIL\_PRINT(ANSI\_CLS);}
+\DoxyCodeLine{00548\ \ \ \ \ RLUTIL\_PRINT(ANSI\_CURSOR\_HOME);}
+\DoxyCodeLine{00549\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00550\ \}}
+\DoxyCodeLine{00551\ }
+\DoxyCodeLine{00554\ RLUTIL\_INLINE\ \textcolor{keywordtype}{void}\ locate(\textcolor{keywordtype}{int}\ x,\ \textcolor{keywordtype}{int}\ y)\ \{}
+\DoxyCodeLine{00555\ \textcolor{preprocessor}{\#if\ defined(\_WIN32)\ \&\&\ !defined(RLUTIL\_USE\_ANSI)}}
+\DoxyCodeLine{00556\ \ \ \ \ COORD\ coord;}
+\DoxyCodeLine{00557\ \ \ \ \ \textcolor{comment}{//\ TODO:\ clamping/assert\ for\ x/y\ <=\ 0?}}
+\DoxyCodeLine{00558\ \ \ \ \ coord.X\ =\ (SHORT)(x\ -\/\ 1);}
+\DoxyCodeLine{00559\ \ \ \ \ coord.Y\ =\ (SHORT)(y\ -\/\ 1);\ \textcolor{comment}{//\ Windows\ uses\ 0-\/based\ coordinates}}
+\DoxyCodeLine{00560\ \ \ \ \ SetConsoleCursorPosition(GetStdHandle(STD\_OUTPUT\_HANDLE),\ coord);}
+\DoxyCodeLine{00561\ \textcolor{preprocessor}{\#else\ }\textcolor{comment}{//\ \_WIN32\ ||\ USE\_ANSI}}
+\DoxyCodeLine{00562\ \textcolor{preprocessor}{\ \ \ \ \#ifdef\ \_\_cplusplus}}
+\DoxyCodeLine{00563\ \ \ \ \ \ \ \ \ RLUTIL\_PRINT(\textcolor{stringliteral}{"{}\(\backslash\)033["{}}\ <<\ y\ <<\ \textcolor{stringliteral}{"{};"{}}\ <<\ x\ <<\ \textcolor{stringliteral}{"{}H"{}});}
+\DoxyCodeLine{00564\ \textcolor{preprocessor}{\ \ \ \ \#else\ }\textcolor{comment}{//\ \_\_cplusplus}}
+\DoxyCodeLine{00565\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{char}\ buf[32];}
+\DoxyCodeLine{00566\ \ \ \ \ \ \ \ \ sprintf(buf,\ \textcolor{stringliteral}{"{}\(\backslash\)033[\%d;\%df"{}},\ y,\ x);}
+\DoxyCodeLine{00567\ \ \ \ \ \ \ \ \ RLUTIL\_PRINT(buf);}
+\DoxyCodeLine{00568\ \textcolor{preprocessor}{\ \ \ \ \#endif\ }\textcolor{comment}{//\ \_\_cplusplus}}
+\DoxyCodeLine{00569\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ \_WIN32\ ||\ USE\_ANSI}}
+\DoxyCodeLine{00570\ \}}
+\DoxyCodeLine{00571\ }
+\DoxyCodeLine{00574\ \textcolor{preprocessor}{\#ifdef\ \_\_cplusplus}}
+\DoxyCodeLine{00575\ RLUTIL\_INLINE\ \textcolor{keywordtype}{void}\ setString(\textcolor{keyword}{const}\ RLUTIL\_STRING\_T\ \&\ str\_)\ \{}
+\DoxyCodeLine{00576\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *\ \textcolor{keyword}{const}\ str\ =\ str\_.data();}
+\DoxyCodeLine{00577\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ len\ =\ str\_.size();}
+\DoxyCodeLine{00578\ \textcolor{preprocessor}{\#else\ }\textcolor{comment}{//\ \_\_cplusplus}}
+\DoxyCodeLine{00579\ RLUTIL\_INLINE\ \textcolor{keywordtype}{void}\ setString(RLUTIL\_STRING\_T\ str)\ \{}
+\DoxyCodeLine{00580\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ len\ =\ strlen(str);}
+\DoxyCodeLine{00581\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ \_\_cplusplus}}
+\DoxyCodeLine{00582\ \textcolor{preprocessor}{\#if\ defined(\_WIN32)\ \&\&\ !defined(RLUTIL\_USE\_ANSI)}}
+\DoxyCodeLine{00583\ \ \ \ \ HANDLE\ hConsoleOutput\ =\ GetStdHandle(STD\_OUTPUT\_HANDLE);}
+\DoxyCodeLine{00584\ \ \ \ \ DWORD\ numberOfCharsWritten;}
+\DoxyCodeLine{00585\ \ \ \ \ CONSOLE\_SCREEN\_BUFFER\_INFO\ csbi;}
+\DoxyCodeLine{00586\ }
+\DoxyCodeLine{00587\ \ \ \ \ GetConsoleScreenBufferInfo(hConsoleOutput,\ \&csbi);}
+\DoxyCodeLine{00588\ \ \ \ \ WriteConsoleOutputCharacterA(hConsoleOutput,\ str,\ len,\ csbi.dwCursorPosition,\ \&numberOfCharsWritten);}
+\DoxyCodeLine{00589\ \textcolor{preprocessor}{\#else\ }\textcolor{comment}{//\ \_WIN32\ ||\ USE\_ANSI}}
+\DoxyCodeLine{00590\ \ \ \ \ RLUTIL\_PRINT(str);}
+\DoxyCodeLine{00591\ \textcolor{preprocessor}{\ \ \ \ \#ifdef\ \_\_cplusplus}}
+\DoxyCodeLine{00592\ \ \ \ \ \ \ \ \ RLUTIL\_PRINT(\textcolor{stringliteral}{"{}\(\backslash\)033["{}}\ <<\ len\ <<\ \textcolor{charliteral}{'D'});}
+\DoxyCodeLine{00593\ \textcolor{preprocessor}{\ \ \ \ \#else\ }\textcolor{comment}{//\ \_\_cplusplus}}
+\DoxyCodeLine{00594\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{char}\ buf[3\ +\ 20\ +\ 1];\ \textcolor{comment}{//\ 20\ =\ max\ length\ of\ 64-\/bit\ unsigned\ int\ when\ printed\ as\ dec}}
+\DoxyCodeLine{00595\ \ \ \ \ \ \ \ \ sprintf(buf,\ \textcolor{stringliteral}{"{}\(\backslash\)033[\%uD"{}},\ len);}
+\DoxyCodeLine{00596\ \ \ \ \ \ \ \ \ RLUTIL\_PRINT(buf);}
+\DoxyCodeLine{00597\ \textcolor{preprocessor}{\ \ \ \ \#endif\ }\textcolor{comment}{//\ \_\_cplusplus}}
+\DoxyCodeLine{00598\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ \_WIN32\ ||\ USE\_ANSI}}
+\DoxyCodeLine{00599\ \}}
+\DoxyCodeLine{00600\ }
+\DoxyCodeLine{00603\ RLUTIL\_INLINE\ \textcolor{keywordtype}{void}\ setChar(\textcolor{keywordtype}{char}\ ch)\ \{}
+\DoxyCodeLine{00604\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ buf[]\ =\ \{ch,\ 0\};}
+\DoxyCodeLine{00605\ \ \ \ \ setString(buf);}
+\DoxyCodeLine{00606\ \}}
+\DoxyCodeLine{00607\ }
+\DoxyCodeLine{00610\ RLUTIL\_INLINE\ \textcolor{keywordtype}{void}\ setCursorVisibility(\textcolor{keywordtype}{char}\ visible)\ \{}
+\DoxyCodeLine{00611\ \textcolor{preprocessor}{\#if\ defined(\_WIN32)\ \&\&\ !defined(RLUTIL\_USE\_ANSI)}}
+\DoxyCodeLine{00612\ \ \ \ \ HANDLE\ hConsoleOutput\ =\ GetStdHandle(\ STD\_OUTPUT\_HANDLE\ );}
+\DoxyCodeLine{00613\ \ \ \ \ CONSOLE\_CURSOR\_INFO\ structCursorInfo;}
+\DoxyCodeLine{00614\ \ \ \ \ GetConsoleCursorInfo(\ hConsoleOutput,\ \&structCursorInfo\ );\ \textcolor{comment}{//\ Get\ current\ cursor\ size}}
+\DoxyCodeLine{00615\ \ \ \ \ structCursorInfo.bVisible\ =\ (visible\ ?\ TRUE\ :\ FALSE);}
+\DoxyCodeLine{00616\ \ \ \ \ SetConsoleCursorInfo(\ hConsoleOutput,\ \&structCursorInfo\ );}
+\DoxyCodeLine{00617\ \textcolor{preprocessor}{\#else\ }\textcolor{comment}{//\ \_WIN32\ ||\ USE\_ANSI}}
+\DoxyCodeLine{00618\ \ \ \ \ RLUTIL\_PRINT((visible\ ?\ ANSI\_CURSOR\_SHOW\ :\ ANSI\_CURSOR\_HIDE));}
+\DoxyCodeLine{00619\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ \_WIN32\ ||\ USE\_ANSI}}
+\DoxyCodeLine{00620\ \}}
+\DoxyCodeLine{00621\ }
+\DoxyCodeLine{00624\ RLUTIL\_INLINE\ \textcolor{keywordtype}{void}\ hidecursor(\textcolor{keywordtype}{void})\ \{}
+\DoxyCodeLine{00625\ \ \ \ \ setCursorVisibility(0);}
+\DoxyCodeLine{00626\ \}}
+\DoxyCodeLine{00627\ }
+\DoxyCodeLine{00630\ RLUTIL\_INLINE\ \textcolor{keywordtype}{void}\ showcursor(\textcolor{keywordtype}{void})\ \{}
+\DoxyCodeLine{00631\ \ \ \ \ setCursorVisibility(1);}
+\DoxyCodeLine{00632\ \}}
+\DoxyCodeLine{00633\ }
+\DoxyCodeLine{00636\ RLUTIL\_INLINE\ \textcolor{keywordtype}{void}\ msleep(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ ms)\ \{}
+\DoxyCodeLine{00637\ \textcolor{preprocessor}{\#ifdef\ \_WIN32}}
+\DoxyCodeLine{00638\ \ \ \ \ Sleep(ms);}
+\DoxyCodeLine{00639\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00640\ \ \ \ \ \textcolor{comment}{//\ usleep\ argument\ must\ be\ under\ 1\ 000\ 000}}
+\DoxyCodeLine{00641\ \ \ \ \ \textcolor{keywordflow}{if}\ (ms\ >\ 1000)\ sleep(ms/1000000);}
+\DoxyCodeLine{00642\ \ \ \ \ usleep((ms\ \%\ 1000000)\ *\ 1000);}
+\DoxyCodeLine{00643\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00644\ \}}
+\DoxyCodeLine{00645\ }
+\DoxyCodeLine{00648\ RLUTIL\_INLINE\ \textcolor{keywordtype}{int}\ trows(\textcolor{keywordtype}{void})\ \{}
+\DoxyCodeLine{00649\ \textcolor{preprocessor}{\#ifdef\ \_WIN32}}
+\DoxyCodeLine{00650\ \ \ \ \ CONSOLE\_SCREEN\_BUFFER\_INFO\ csbi;}
+\DoxyCodeLine{00651\ \ \ \ \ \textcolor{keywordflow}{if}\ (!GetConsoleScreenBufferInfo(GetStdHandle(STD\_OUTPUT\_HANDLE),\ \&csbi))}
+\DoxyCodeLine{00652\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ -\/1;}
+\DoxyCodeLine{00653\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00654\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ csbi.srWindow.Bottom\ -\/\ csbi.srWindow.Top\ +\ 1;\ \textcolor{comment}{//\ Window\ height}}
+\DoxyCodeLine{00655\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ return\ csbi.dwSize.Y;\ //\ Buffer\ height}}
+\DoxyCodeLine{00656\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00657\ \textcolor{preprocessor}{\#ifdef\ TIOCGSIZE}}
+\DoxyCodeLine{00658\ \ \ \ \ \textcolor{keyword}{struct\ }ttysize\ ts;}
+\DoxyCodeLine{00659\ \ \ \ \ ioctl(STDIN\_FILENO,\ TIOCGSIZE,\ \&ts);}
+\DoxyCodeLine{00660\ \ \ \ \ \textcolor{keywordflow}{return}\ ts.ts\_lines;}
+\DoxyCodeLine{00661\ \textcolor{preprocessor}{\#elif\ defined(TIOCGWINSZ)}}
+\DoxyCodeLine{00662\ \ \ \ \ \textcolor{keyword}{struct\ }winsize\ ts;}
+\DoxyCodeLine{00663\ \ \ \ \ ioctl(STDIN\_FILENO,\ TIOCGWINSZ,\ \&ts);}
+\DoxyCodeLine{00664\ \ \ \ \ \textcolor{keywordflow}{return}\ ts.ws\_row;}
+\DoxyCodeLine{00665\ \textcolor{preprocessor}{\#else\ }\textcolor{comment}{//\ TIOCGSIZE}}
+\DoxyCodeLine{00666\ \ \ \ \ \textcolor{keywordflow}{return}\ -\/1;}
+\DoxyCodeLine{00667\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ TIOCGSIZE}}
+\DoxyCodeLine{00668\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ \_WIN32}}
+\DoxyCodeLine{00669\ \}}
+\DoxyCodeLine{00670\ }
+\DoxyCodeLine{00673\ RLUTIL\_INLINE\ \textcolor{keywordtype}{int}\ tcols(\textcolor{keywordtype}{void})\ \{}
+\DoxyCodeLine{00674\ \textcolor{preprocessor}{\#ifdef\ \_WIN32}}
+\DoxyCodeLine{00675\ \ \ \ \ CONSOLE\_SCREEN\_BUFFER\_INFO\ csbi;}
+\DoxyCodeLine{00676\ \ \ \ \ \textcolor{keywordflow}{if}\ (!GetConsoleScreenBufferInfo(GetStdHandle(STD\_OUTPUT\_HANDLE),\ \&csbi))}
+\DoxyCodeLine{00677\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ -\/1;}
+\DoxyCodeLine{00678\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00679\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ csbi.srWindow.Right\ -\/\ csbi.srWindow.Left\ +\ 1;\ \textcolor{comment}{//\ Window\ width}}
+\DoxyCodeLine{00680\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ return\ csbi.dwSize.X;\ //\ Buffer\ width}}
+\DoxyCodeLine{00681\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00682\ \textcolor{preprocessor}{\#ifdef\ TIOCGSIZE}}
+\DoxyCodeLine{00683\ \ \ \ \ \textcolor{keyword}{struct\ }ttysize\ ts;}
+\DoxyCodeLine{00684\ \ \ \ \ ioctl(STDIN\_FILENO,\ TIOCGSIZE,\ \&ts);}
+\DoxyCodeLine{00685\ \ \ \ \ \textcolor{keywordflow}{return}\ ts.ts\_cols;}
+\DoxyCodeLine{00686\ \textcolor{preprocessor}{\#elif\ defined(TIOCGWINSZ)}}
+\DoxyCodeLine{00687\ \ \ \ \ \textcolor{keyword}{struct\ }winsize\ ts;}
+\DoxyCodeLine{00688\ \ \ \ \ ioctl(STDIN\_FILENO,\ TIOCGWINSZ,\ \&ts);}
+\DoxyCodeLine{00689\ \ \ \ \ \textcolor{keywordflow}{return}\ ts.ws\_col;}
+\DoxyCodeLine{00690\ \textcolor{preprocessor}{\#else\ }\textcolor{comment}{//\ TIOCGSIZE}}
+\DoxyCodeLine{00691\ \ \ \ \ \textcolor{keywordflow}{return}\ -\/1;}
+\DoxyCodeLine{00692\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ TIOCGSIZE}}
+\DoxyCodeLine{00693\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ \_WIN32}}
+\DoxyCodeLine{00694\ \}}
+\DoxyCodeLine{00695\ }
+\DoxyCodeLine{00704\ \textcolor{preprocessor}{\#ifdef\ \_\_cplusplus}}
+\DoxyCodeLine{00705\ RLUTIL\_INLINE\ \textcolor{keywordtype}{void}\ anykey()\ \{}
+\DoxyCodeLine{00706\ \ \ \ \ getch();}
+\DoxyCodeLine{00707\ \}}
+\DoxyCodeLine{00708\ }
+\DoxyCodeLine{00709\ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ T>\ \textcolor{keywordtype}{void}\ anykey(\textcolor{keyword}{const}\ T\&\ msg)\ \{}
+\DoxyCodeLine{00710\ \ \ \ \ RLUTIL\_PRINT(msg);}
+\DoxyCodeLine{00711\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00712\ RLUTIL\_INLINE\ \textcolor{keywordtype}{void}\ anykey(RLUTIL\_STRING\_T\ msg)\ \{}
+\DoxyCodeLine{00713\ \ \ \ \ \textcolor{keywordflow}{if}\ (msg)}
+\DoxyCodeLine{00714\ \ \ \ \ \ \ \ \ RLUTIL\_PRINT(msg);}
+\DoxyCodeLine{00715\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ \_\_cplusplus}}
+\DoxyCodeLine{00716\ \ \ \ \ getch();}
+\DoxyCodeLine{00717\ \}}
+\DoxyCodeLine{00718\ }
+\DoxyCodeLine{00719\ RLUTIL\_INLINE\ \textcolor{keywordtype}{void}\ setConsoleTitle(RLUTIL\_STRING\_T\ title)\ \{}
+\DoxyCodeLine{00720\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *\ true\_title\ =}
+\DoxyCodeLine{00721\ \textcolor{preprocessor}{\#ifdef\ \_\_cplusplus}}
+\DoxyCodeLine{00722\ \ \ \ \ \ \ \ \ title.c\_str();}
+\DoxyCodeLine{00723\ \textcolor{preprocessor}{\#else\ }\textcolor{comment}{//\ \_\_cplusplus}}
+\DoxyCodeLine{00724\ \ \ \ \ \ \ \ \ title;}
+\DoxyCodeLine{00725\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ \_\_cplusplus}}
+\DoxyCodeLine{00726\ \textcolor{preprocessor}{\#if\ defined(\_WIN32)\ \&\&\ !defined(RLUTIL\_USE\_ANSI)}}
+\DoxyCodeLine{00727\ \ \ \ \ SetConsoleTitleA(true\_title);}
+\DoxyCodeLine{00728\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00729\ \ \ \ \ RLUTIL\_PRINT(ANSI\_CONSOLE\_TITLE\_PRE);}
+\DoxyCodeLine{00730\ \ \ \ \ RLUTIL\_PRINT(true\_title);}
+\DoxyCodeLine{00731\ \ \ \ \ RLUTIL\_PRINT(ANSI\_CONSOLE\_TITLE\_POST);}
+\DoxyCodeLine{00732\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ defined(\_WIN32)\ \&\&\ !defined(RLUTIL\_USE\_ANSI)}}
+\DoxyCodeLine{00733\ \}}
+\DoxyCodeLine{00734\ }
+\DoxyCodeLine{00735\ \textcolor{comment}{//\ Classes\ are\ here\ at\ the\ end\ so\ that\ documentation\ is\ pretty.}}
+\DoxyCodeLine{00736\ }
+\DoxyCodeLine{00737\ \textcolor{preprocessor}{\#ifdef\ \_\_cplusplus}}
+\DoxyCodeLine{00742\ \textcolor{keyword}{struct\ }CursorHider\ \{}
+\DoxyCodeLine{00743\ \ \ \ \ CursorHider()\ \{\ hidecursor();\ \}}
+\DoxyCodeLine{00744\ \ \ \ \ \string~CursorHider()\ \{\ showcursor();\ \}}
+\DoxyCodeLine{00745\ \};}
+\DoxyCodeLine{00746\ }
+\DoxyCodeLine{00747\ \}\ \textcolor{comment}{//\ namespace\ rlutil}}
+\DoxyCodeLine{00748\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

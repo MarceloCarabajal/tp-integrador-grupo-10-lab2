@@ -1,0 +1,53 @@
+\doxysection{Pets\+Manager.\+h}
+\hypertarget{_pets_manager_8h_source}{}\label{_pets_manager_8h_source}\index{F:/devProjects/Facu/LabII/tp-\/integrador-\/grupo-\/10-\/lab2/include/PetsManager.h@{F:/devProjects/Facu/LabII/tp-\/integrador-\/grupo-\/10-\/lab2/include/PetsManager.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}Pet.h"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}VppConfigManager.h"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_vpp_file_8h}{VppFile.h}}"{}}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_pets_manager}{PetsManager}}\ \{}
+\DoxyCodeLine{00008\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00009\ \ \ \ \ \textcolor{keyword}{const}\ std::string\ \_folderPath\ =\ \mbox{\hyperlink{class_vpp_config_manager}{VppConfigManager}}().\mbox{\hyperlink{class_vpp_config_manager_a96295baaca646005de9df583243a4d5c}{getDataPath}}();}
+\DoxyCodeLine{00010\ \ \ \ \ \textcolor{keyword}{const}\ std::string\ \_filePath\ =\ \_folderPath\ +\ \textcolor{stringliteral}{"{}Pets.vpp"{}};}
+\DoxyCodeLine{00011\ \ \ \ \ \mbox{\hyperlink{class_vpp_file}{VppFile<Pet>}}\ \_petsFile\ =\ \mbox{\hyperlink{class_vpp_file}{VppFile<Pet>}}(\_filePath);}
+\DoxyCodeLine{00012\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \_petsFields\ =\ 7;\ \ \textcolor{comment}{//\ total\ de\ datos\ de\ un\ regisro\ Pet}}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00023\ \ \ \ \ \mbox{\hyperlink{class_pet}{Pet}}\ loadForm();}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00035\ \ \ \ \ \mbox{\hyperlink{class_pet}{Pet}}\ editForm(\textcolor{keywordtype}{int}\ regPos);}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{keywordtype}{bool}\ retryIfIdNotExists(\textcolor{keywordtype}{bool}\ exists);}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_pets_manager_a948dce950b46662ffcf36adde945630c}{load}}();}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00066\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_pets_manager_a34ea557949302022020beff2726d5595}{edit}}();}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00078\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_pets_manager_ad0faef0cd8e83251eba697575fbd9566}{show}}(\textcolor{keywordtype}{bool}\ showAndPause\ =\ \textcolor{keyword}{true});}
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00086\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_pets_manager_a7123310f5ab3a6089217b1012d3c2263}{clearDeleted}}();}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00096\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_pets_manager_af4be5e3e4a0259610bc9b8c4d3f24feb}{cancel}}();}
+\DoxyCodeLine{00097\ }
+\DoxyCodeLine{00108\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_pets_manager_a79fb51c9dd951080793b25b2008995a5}{updateOwner}}(\textcolor{keywordtype}{int}\ ownerId,\ \textcolor{keywordtype}{int}\ petId);}
+\DoxyCodeLine{00109\ }
+\DoxyCodeLine{00117\ \ \ \ \ std::string\ \mbox{\hyperlink{class_pets_manager_ad9df99a5de5b3ccef209fccb087c1490}{getNameById}}(\textcolor{keywordtype}{int}\ nId);}
+\DoxyCodeLine{00118\ }
+\DoxyCodeLine{00125\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_pets_manager_a94a13f97b014150d99249a27cf2ac393}{getOwnerIdByPetId}}(\textcolor{keywordtype}{int}\ nId);}
+\DoxyCodeLine{00126\ }
+\DoxyCodeLine{00127\ \ \ \ \ \textcolor{comment}{//\ Al\ ser\ una\ funcion\ estatica\ se\ puede\ usar\ sin\ necesaidad\ de\ instanciar\ un}}
+\DoxyCodeLine{00128\ \ \ \ \ \textcolor{comment}{//\ objeto\ de\ tipo\ "{}PetsManager"{},\ eso\ permite\ que\ se\ pueda\ pasar\ por}}
+\DoxyCodeLine{00129\ \ \ \ \ \textcolor{comment}{//\ parametro\ un\ puntero\ a\ esta\ funcion,\ lo\ que\ es\ necesario\ para\ la\ busqueda}}
+\DoxyCodeLine{00130\ \ \ \ \ \textcolor{comment}{//\ de\ registros\ con\ VppFile}}
+\DoxyCodeLine{00131\ }
+\DoxyCodeLine{00140\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_pets_manager_ad2365c0587594b5530bedd61191a82ad}{searchById}}(\mbox{\hyperlink{class_pet}{Pet}}\ reg,\ \textcolor{keywordtype}{int}\ nId);}
+\DoxyCodeLine{00141\ }
+\DoxyCodeLine{00149\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_pets_manager_af1b0f2b8724c996f08d434a9e551aaf5}{idExists}}(\textcolor{keywordtype}{int}\ nId);}
+\DoxyCodeLine{00150\ }
+\DoxyCodeLine{00158\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_pets_manager_abe9daa10e5e96c0f9a0a640376a5d3d6}{isActiveId}}(\textcolor{keywordtype}{int}\ nId);}
+\DoxyCodeLine{00159\ \};}
+
+\end{DoxyCode}

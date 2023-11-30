@@ -1,0 +1,66 @@
+\doxysection{Appointments\+Manager.\+h}
+\hypertarget{_appointments_manager_8h_source}{}\label{_appointments_manager_8h_source}\index{F:/devProjects/Facu/LabII/tp-\/integrador-\/grupo-\/10-\/lab2/include/AppointmentsManager.h@{F:/devProjects/Facu/LabII/tp-\/integrador-\/grupo-\/10-\/lab2/include/AppointmentsManager.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}Appointment.h"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}VppConfigManager.h"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_vpp_file_8h}{VppFile.h}}"{}}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00024\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_appointments_manager}{AppointmentsManager}}\ \{}
+\DoxyCodeLine{00025\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keyword}{const}\ std::string\ \_folderPath\ =\ \mbox{\hyperlink{class_vpp_config_manager}{VppConfigManager}}().\mbox{\hyperlink{class_vpp_config_manager_a96295baaca646005de9df583243a4d5c}{getDataPath}}();}
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keyword}{const}\ std::string\ \_filePath\ =\ \_folderPath\ +\ \textcolor{stringliteral}{"{}Appointments.vpp"{}};}
+\DoxyCodeLine{00028\ \ \ \ \ \mbox{\hyperlink{class_vpp_file}{VppFile<Appointment>}}\ \_appsFile\ =\ \mbox{\hyperlink{class_vpp_file}{VppFile<Appointment>}}(\_filePath);}
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \_appsFields\ =\ 7;\ \ \textcolor{comment}{//\ total\ de\ datos\ de\ un\ registro\ Appointment}}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00037\ \ \ \ \ \mbox{\hyperlink{class_appointment}{Appointment}}\ loadForm();}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00047\ \ \ \ \ \mbox{\hyperlink{class_appointment}{Appointment}}\ editForm(\textcolor{keywordtype}{int}\ regPos);}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00057\ \ \ \ \ \textcolor{keywordtype}{bool}\ retryIfIdExists(\textcolor{keywordtype}{bool}\ exists);}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00067\ \ \ \ \ \textcolor{keywordtype}{bool}\ retryIfIdNotExists(\textcolor{keywordtype}{bool}\ exists);}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00077\ \ \ \ \ \textcolor{keywordtype}{bool}\ retryInvalidDate(\textcolor{keywordtype}{bool}\ valid);}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00087\ \ \ \ \ \textcolor{keywordtype}{bool}\ retryInvalidTime(\textcolor{keywordtype}{bool}\ invalid);}
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00098\ \ \ \ \ \textcolor{keywordtype}{bool}\ validAppDate(\mbox{\hyperlink{class_date}{Date}}\ date);}
+\DoxyCodeLine{00099\ }
+\DoxyCodeLine{00110\ \ \ \ \ \textcolor{keywordtype}{bool}\ validAppTime(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_date}{Date}}\&\ date,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_time}{Time}}\&\ time);}
+\DoxyCodeLine{00111\ }
+\DoxyCodeLine{00119\ \ \ \ \ \textcolor{keywordtype}{int}\ getExpiredApps();}
+\DoxyCodeLine{00120\ }
+\DoxyCodeLine{00129\ \ \ \ \ \textcolor{keywordtype}{int}\ deleteAllExpired();}
+\DoxyCodeLine{00130\ }
+\DoxyCodeLine{00131\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00141\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_appointments_manager_a069e4ad00010f4b813590d715eece086}{load}}();}
+\DoxyCodeLine{00142\ }
+\DoxyCodeLine{00150\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_appointments_manager_a9338802e1952c8cd11460d519961a561}{edit}}();}
+\DoxyCodeLine{00151\ }
+\DoxyCodeLine{00160\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_appointments_manager_a9156ef692f8354d11e9f726199285653}{show}}(\textcolor{keywordtype}{bool}\ showAndPause\ =\ \textcolor{keyword}{true});}
+\DoxyCodeLine{00161\ }
+\DoxyCodeLine{00169\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_appointments_manager_a2b84bf3a2e5cc30d858a40c301c8b135}{clearExpired}}();}
+\DoxyCodeLine{00170\ }
+\DoxyCodeLine{00179\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_appointments_manager_a96c4436898310ec37d9e8adc29f6fb82}{clearDeleted}}();}
+\DoxyCodeLine{00180\ }
+\DoxyCodeLine{00189\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_appointments_manager_aaa0ad6992aed314e496ce791aff0caf2}{cancel}}();}
+\DoxyCodeLine{00190\ }
+\DoxyCodeLine{00197\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_appointments_manager_a629bec2b4a31bc21fea46d4f85c362f6}{getActiveAppsCount}}();}
+\DoxyCodeLine{00198\ }
+\DoxyCodeLine{00208\ \ \ \ \ \mbox{\hyperlink{class_appointment}{Appointment}}*\ \mbox{\hyperlink{class_appointments_manager_adbffa8ccae550729783c07b60b93b1bd}{getActiveApps}}();}
+\DoxyCodeLine{00209\ }
+\DoxyCodeLine{00218\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_appointments_manager_a4f99365916159ada78054fc181576ba0}{getPendingApps}}();}
+\DoxyCodeLine{00219\ }
+\DoxyCodeLine{00220\ \ \ \ \ \textcolor{comment}{//\ Al\ ser\ una\ funcion\ estatica\ se\ puede\ usar\ sin\ necesaidad\ de\ instanciar\ un}}
+\DoxyCodeLine{00221\ \ \ \ \ \textcolor{comment}{//\ objeto\ de\ tipo\ "{}AppointmentsManager"{},\ eso\ permite\ que\ se\ pueda\ pasar\ por}}
+\DoxyCodeLine{00222\ \ \ \ \ \textcolor{comment}{//\ parametro\ un\ puntero\ a\ esta\ funcion,\ lo\ que\ es\ necesario\ para\ la\ busqueda}}
+\DoxyCodeLine{00223\ \ \ \ \ \textcolor{comment}{//\ de\ registros\ con\ VppFile}}
+\DoxyCodeLine{00233\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_appointments_manager_a76cfcc40b36cb30947120d47fa1633c3}{searchById}}(\mbox{\hyperlink{class_appointment}{Appointment}}\ reg,\ \textcolor{keywordtype}{int}\ nId);}
+\DoxyCodeLine{00234\ }
+\DoxyCodeLine{00243\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_appointments_manager_a4a5d220a9d9c29c71c33d1986b738bb2}{idExists}}(\textcolor{keywordtype}{int}\ nId);}
+\DoxyCodeLine{00244\ \};}
+
+\end{DoxyCode}

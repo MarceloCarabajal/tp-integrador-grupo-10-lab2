@@ -1,0 +1,38 @@
+\doxysection{Vpp\+Config.\+h}
+\hypertarget{_vpp_config_8h_source}{}\label{_vpp_config_8h_source}\index{F:/devProjects/Facu/LabII/tp-\/integrador-\/grupo-\/10-\/lab2/include/VppConfig.h@{F:/devProjects/Facu/LabII/tp-\/integrador-\/grupo-\/10-\/lab2/include/VppConfig.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ VPPCONFIG\_INCLUDED}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ VPPCONFIG\_INCLUDED}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_vpp_config}{VppConfig}}\ \{}
+\DoxyCodeLine{00007\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00008\ \ \ \ \ \textcolor{keywordtype}{char}\ \_veteName[30];}
+\DoxyCodeLine{00009\ \ \ \ \ \textcolor{keywordtype}{char}\ \_SMTPServer[45];}
+\DoxyCodeLine{00010\ \ \ \ \ \textcolor{keywordtype}{char}\ \_SMTPUser[45];}
+\DoxyCodeLine{00011\ \ \ \ \ \textcolor{keywordtype}{char}\ \_SMTPPass[30];}
+\DoxyCodeLine{00012\ \ \ \ \ \textcolor{keywordtype}{int}\ \_SMTPPort;}
+\DoxyCodeLine{00013\ \ \ \ \ \textcolor{keywordtype}{bool}\ \_testMode;}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00016\ \ \ \ \ \mbox{\hyperlink{class_vpp_config}{VppConfig}}();}
+\DoxyCodeLine{00017\ \ \ \ \ \textcolor{keywordtype}{void}\ setVeteName(std::string\ vtN);}
+\DoxyCodeLine{00018\ \ \ \ \ \textcolor{keywordtype}{void}\ setSMTPServer(std::string\ srv);}
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{keywordtype}{void}\ setSMTPUser(std::string\ usr);}
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{keywordtype}{void}\ setSMTPPass(std::string\ pass);}
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keywordtype}{void}\ setSMTPPort(\textcolor{keywordtype}{int}\ p);}
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keywordtype}{void}\ setTestMode(\textcolor{keywordtype}{bool}\ testMode);}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ getVeteName();}
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ getSMTPServer();}
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ getSMTPUser();}
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ getSMTPPass();}
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keywordtype}{int}\ getSMTPPort();}
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keywordtype}{bool}\ getTestMode();}
+\DoxyCodeLine{00030\ \};}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ VPPCONFIG\_INCLUDED\ */}\textcolor{preprocessor}{}}
+
+\end{DoxyCode}
