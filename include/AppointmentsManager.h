@@ -4,12 +4,30 @@
 #include "VppConfigManager.h"
 #include "VppFile.h"
 
+/**
+ * @class AppointmentsManager
+ * @brief Clase que gestiona los turnos veterinarios.
+ *
+ * La clase AppointmentsManager se encarga de administrar los turnos
+ * veterinarios, permitiendo cargar nuevos turnos, editar turnos existentes,
+ * mostrar la lista de turnos, eliminar turnos expirados, cancelar turnos y
+ * obtener información sobre los turnos activos y pendientes.
+ *
+ * Esta clase utiliza un archivo de datos para almacenar y recuperar los
+ * registros de los turnos veterinarios. Los datos se guardan en formato VPP y
+ * se accede a ellos a través de la clase VppFile.
+ *
+ * Los turnos veterinarios contienen información como el ID del turno, el ID de
+ * la mascota, la fecha, la hora, el motivo, el estado de asistencia y el ID del
+ * cliente.
+ */
 class AppointmentsManager {
 private:
     const std::string _folderPath = VppConfigManager().getDataPath();
     const std::string _filePath = _folderPath + "Appointments.vpp";
     VppFile<Appointment> _appsFile = VppFile<Appointment>(_filePath);
     const int _appsFields = 7;  // total de datos de un registro Appointment
+
     /**
      * @brief Cargar datos para un nuevo turno.
      *
@@ -19,6 +37,7 @@ private:
      * @return Objeto Appointment con los datos del nuevo turno.
      */
     Appointment loadForm();
+
     /**
      * @brief Editar un turno existente.
      *
@@ -30,6 +49,7 @@ private:
      * vacío si no se completa el formulario.
      */
     Appointment editForm(int regPos);
+
     /**
      * @brief Reintentar si el ID ya existe.
      *
@@ -41,6 +61,7 @@ private:
      * @return Devuelve `true` para reintentar o `false` para salir.
      */
     bool retryIfIdExists(bool exists);
+
     /**
      * @brief Reintentar si el ID no existe.
      *
@@ -52,6 +73,7 @@ private:
      * @return Devuelve `true` para reintentar o `false` para salir.
      */
     bool retryIfIdNotExists(bool exists);
+
     /**
      * @brief Reintentar operación si la fecha ingresada no es válida.
      *
@@ -63,6 +85,7 @@ private:
      * @return Devuelve true si se elige reintentar, false si se elige salir.
      */
     bool retryInvalidDate(bool valid);
+
     /**
      * @brief Reintentar operación si la hora ingresada no es válida.
      *
@@ -74,6 +97,7 @@ private:
      * @return Devuelve true si se elige reintentar, false si se elige salir.
      */
     bool retryInvalidTime(bool invalid);
+
     /**
      * @brief Validar si la fecha proporcionada es válida.
      *
@@ -86,6 +110,7 @@ private:
      * actual.
      */
     bool validAppDate(Date date);
+
     /**
      * @brief Validar la hora del turno.
      *
@@ -99,6 +124,7 @@ private:
      * horario pasado; `false` en caso contrario.
      */
     bool validAppTime(const Date& date, const Time& time);
+
     /**
      * @brief Obtener el número de citas vencidas.
      *
@@ -109,6 +135,7 @@ private:
      * registradas.
      */
     int getExpiredApps();
+
     /**
      * @brief Eliminar todas las citas vencidas.
      *
@@ -134,6 +161,7 @@ public:
      * turno.
      */
     void load();
+
     /**
      * @brief Modificar un turno existente en el sistema.
      *
@@ -143,6 +171,7 @@ public:
      * exitosa.
      */
     void edit();
+
     /**
      * @brief Mostrar la lista de turnos veterinarios.
      *
@@ -154,6 +183,7 @@ public:
      * la ejecución.
      */
     void show(bool showAndPause = true);
+
     /**
      * @brief Limpiar los turnos expirados del sistema.
      *
@@ -163,6 +193,7 @@ public:
      * errores, no eliminar ningún turno o eliminarlos con éxito.
      */
     void clearExpired();
+
     /**
      * @brief Eliminar definitivamente los turnos marcados para eliminación.
      *
@@ -173,6 +204,7 @@ public:
      * eliminación.
      */
     void clearDeleted();
+
     /**
      * @brief Cancelar un turno veterinario.
      *
@@ -183,6 +215,7 @@ public:
      * cancelación o si ocurrió un error durante el proceso.
      */
     void cancel();
+
     /**
      * @brief Obtener la cantidad de turnos veterinarios activos.
      *
@@ -192,6 +225,7 @@ public:
      * @return La cantidad de turnos veterinarios activos o -1 en caso de error.
      */
     int getActiveAppsCount();
+
     /**
      * @brief Obtener los turnos veterinarios activos.
      *
@@ -205,6 +239,7 @@ public:
      * @return Un puntero al arreglo de turnos activos o NULL en caso de error.
      */
     Appointment* getActiveApps();
+
     /**
      * @brief Obtener la cantidad de turnos veterinarios pendientes.
      *
@@ -216,6 +251,7 @@ public:
      * error.
      */
     int getPendingApps();
+
     // Al ser una funcion estatica se puede usar sin necesaidad de instanciar un
     // objeto de tipo "AppointmentsManager", eso permite que se pueda pasar por
     // parametro un puntero a esta funcion, lo que es necesario para la busqueda
@@ -232,6 +268,7 @@ public:
      * @return Verdadero si los IDs coinciden, falso en caso contrario.
      */
     static bool searchById(Appointment reg, int nId);
+
     /**
      * @brief Verificar la existencia de un ID en los registros de turnos
      * veterinarios.
