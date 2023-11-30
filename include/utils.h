@@ -14,6 +14,9 @@
 #include <iomanip>
 #include <iostream>
 
+#include "VppConfigManager.h"
+#include "quickmail.h"
+
 // #include "isvalid.h", evita la dependencia circular
 //  Declaración forward de isvalid::alphanumeric
 namespace isvalid {
@@ -229,6 +232,49 @@ namespace utils {
         delete[] Tpath;
         // si el archivo no existe, devolver false
         return (dwAttrib != INVALID_FILE_ATTRIBUTES);
+    }
+
+    inline bool sendEmail(std::string to, std::string subject, std::string body,
+                          std::string from) {
+        VppConfigManager vppConfMgr;
+        VppConfig vppConfig;
+        VppConfigManager().getCredentials(vppConfig);
+
+        std::string SMTP_HOST = vppConfig.getSMTPServer();
+        std::string SMTP_USR = vppConfig.getSMTPUser();
+        std::string SMTP_PWD = vppConfig.getSMTPPass();
+        int SMTP_PORT = vppConfig.getSMTPPort();
+        std::string veteName = vppConfig.getVeteName();
+
+        quickmail_initialize();
+        quickmail mailObj = quickmail_create(from.c_str(), subject.c_str());
+
+        char *cBody = &body[0];
+
+        // HEADERS:
+        std::string headerFrom = "From: " + veteName + " <" + from + ">";
+        std::string headerReply = "Reply-To: " + veteName + " <" + from + ">";
+        std::string headerOrg = "Organization: " + veteName + " <" + from + ">";
+
+        quickmail_add_header(mailObj, headerFrom.c_str());
+        quickmail_add_header(mailObj, headerReply.c_str());
+        quickmail_add_header(mailObj, headerOrg.c_str());
+        quickmail_add_header(mailObj, "MIME-Version: 1.0");
+        quickmail_add_header(mailObj, "X-Priority: 3");
+
+        quickmail_add_body_memory(mailObj, "text/html", cBody, body.length(),
+                                  0);
+        // quickmail_add_attachment_file(mailObj, "C:\\pdf.pdf",
+        // "application/pdf");
+        quickmail_add_to(mailObj, to.c_str());
+        const char *errmsg =
+            quickmail_send(mailObj, SMTP_HOST.c_str(), SMTP_PORT,
+                           SMTP_USR.c_str(), SMTP_PWD.c_str());
+        if (errmsg != NULL) {
+            return false;
+        }
+        quickmail_destroy(mailObj);
+        return true;
     }
 }  // namespace utils
 

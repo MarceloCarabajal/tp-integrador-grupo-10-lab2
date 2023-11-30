@@ -28,7 +28,7 @@ public:
     void setStatus(bool status);
 
     int getAplicationId();
-    int getPeId();
+    int getPetId();
     Date getDateAplication();
     Date getDateRevaccination();
     const char* getNameVaccine();

@@ -310,3 +310,10 @@ std::string ClientsManager::getFullNameById(int nId) {
                            std::string(auxClient.getLastname());
     return fullName;
 }
+
+Client ClientsManager::getClientById(int nId) {
+    Client auxClient;
+    int regPos = _clientsFile.searchReg(searchById, nId);
+    auxClient = _clientsFile.readFile(regPos);
+    return auxClient;
+}

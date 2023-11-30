@@ -132,6 +132,14 @@ public:
      */
     std::string getNameById(int nId);
 
+    /**
+     * @brief Obtiene el ID del propietario por el ID de la mascota.
+     *
+     * @param nId El ID de la mascota.
+     * @return El ID del propietario correspondiente a la mascota.
+     */
+    int getOwnerIdByPetId(int nId);
+
     // Al ser una funcion estatica se puede usar sin necesaidad de instanciar un
     // objeto de tipo "PetsManager", eso permite que se pueda pasar por
     // parametro un puntero a esta funcion, lo que es necesario para la busqueda

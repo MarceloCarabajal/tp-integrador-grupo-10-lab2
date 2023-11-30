@@ -40,7 +40,7 @@ void Vaccination::setNotified(bool noti) { _notified = noti; }
 void Vaccination::setStatus(bool status) { _status = status; }
 
 int Vaccination::getAplicationId() { return _aplicationId; }
-int Vaccination::getPeId() { return _petId; }
+int Vaccination::getPetId() { return _petId; }
 Date Vaccination::getDateAplication() { return _dateAplication; }
 Date Vaccination::getDateRevaccination() { return _dateRevaccination; }
 const char* Vaccination::getNameVaccine() { return _nameVaccine; }

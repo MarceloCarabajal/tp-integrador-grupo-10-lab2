@@ -43,11 +43,12 @@ public:
      * @param recipientName El nombre del destinatario.
      * @param bodyTitle El título del cuerpo del correo.
      * @param expDate La fecha de expiración.
+     * @param veteName El nombre de la veterinaria.
      * @return true si los datos se establecieron correctamente, false en caso
      * contrario.
      */
     bool setEmailData(std::string recipientName, std::string bodyTitle,
-                      Date expDate);
+                      Date expDate, std::string veteName);
 
     /**
      * @brief Obtiene el contenido HTML de la plantilla.
