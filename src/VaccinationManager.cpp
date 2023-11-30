@@ -2,6 +2,8 @@
 
 #include <iostream>
 
+#include "ClientsManager.h"
+#include "EmailTemplate.h"
 #include "InputForm.h"
 #include "ListView.h"
 #include "PetsManager.h"
@@ -25,7 +27,7 @@ void VaccinationManager::load() {
     // Si no existe el id de vac, pedir el resto de datos
     auxVaccination = loadForm();
     // Si no se completo el form, salir
-    if (auxVaccination.getPeId() == -1) return;
+    if (auxVaccination.getPetId() == -1) return;
 
     // setear id ingresado
     auxVaccination.setAplicationId(nId);  // set del Id ingresado anteriormente
@@ -104,7 +106,7 @@ Vaccination VaccinationManager::editForm(int regPos) {
     dateAplication = auxVaccination.getDateAplication();
     dateRevaccination = auxVaccination.getDateRevaccination();
     notified = auxVaccination.getNotified();
-    petId = auxVaccination.getPeId();
+    petId = auxVaccination.getPetId();
 
     rlutil::cls();  // limpiar pantalla
 
@@ -135,7 +137,7 @@ Vaccination VaccinationManager::editForm(int regPos) {
 
     } while (!validDate);
     vaccinationForm.setStrField(" Vacuna", nameVaccine, 15);
-    vaccinationForm.setBoolField("Notificado", notified);
+    vaccinationForm.setBoolField("Notificado[SI/NO]", notified);
 
     // completar form
     bool success = vaccinationForm.fill();
@@ -158,8 +160,8 @@ void VaccinationManager::edit() {
     int nId;
     show(false);
 
-    int totalRegs= _vaccinationFile.getTotalRegisters();
-    if (totalRegs<=0) return;
+    int totalRegs = _vaccinationFile.getTotalRegisters();
+    if (totalRegs <= 0) return;
 
     std::cout << "\nIngrese el ID del vacunaciona modificar.\n";
     search.setIntField("ID Vacunacion", nId, 4);
@@ -173,7 +175,7 @@ void VaccinationManager::edit() {
     // Si se encontro, pedir datos
     Vaccination auxVaccination = editForm(regPos);
     // Si no se completo el formulario, salir
-    if (auxVaccination.getPeId() == -1) {
+    if (auxVaccination.getPetId() == -1) {
         std::cout << "No se realizara la edicion.\n";
         utils::pause();
         return;
@@ -329,7 +331,76 @@ void VaccinationManager::configAndSendNotif() {
     show(pending, totalPending);
     utils::pause();
 
+    InputForm confirmForm, emailForm;
+    bool confirm;
+    std::cout << "Desea notificar a los clientes?\n";
+    confirmForm.setBoolField("[SI/NO]", confirm);
+    if (confirmForm.fill() && confirm) {
+        std::string email;
+        std::cout << "Por favor ingrese el email de la veterinaria.\n";
+        emailForm.setEmailField(email, 45);
+        if (emailForm.fill()) {
+            std::cout << "Enviando notificaciones, por favor aguarde...\n";
+            notifyClients(pending, totalPending, email);
+            utils::pause();
+        }
+    }
+
     delete[] pending;
+}
+
+void VaccinationManager::notifyClients(Vaccination* pending, int total,
+                                       std::string veteEmail) {
+    ClientsManager clientsManager;
+    PetsManager petsManager;
+    int sentCount = 0;
+    int updated = 0;
+    for (int i = 0; i < total; i++) {
+        int clientId = petsManager.getOwnerIdByPetId(pending[i].getPetId());
+        Client auxClient = clientsManager.getClientById(clientId);
+        Date dateRevacc = pending[i].getDateRevaccination();
+        int appId = pending[i].getAplicationId();
+        if (CreateSendEmail(auxClient, veteEmail, dateRevacc)) {
+            if (updateNotifState(appId, true)) updated++;
+            sentCount++;
+        }
+    }
+    if (sentCount == 0) {
+        std::cout << "Ocurrió un error que impidió que se enviaran las "
+                     "notificaciones vía email.\n";
+    } else {
+        std::cout << "Se enviaron " << sentCount << " notificaciones.\n";
+        std::cout << "Se actualizó el estado a notificado de " << updated
+                  << " registros.\n";
+        if (sentCount != updated) {
+            std::cout
+                << "Los clientes que no pudieron ser notificados conservaran "
+                   "su estado actual.\n";
+        }
+    }
+}
+
+bool VaccinationManager::updateNotifState(int nId, bool state) {
+    int regPos = _vaccinationFile.searchReg(searchById, nId);
+    if (regPos == -1) return false;
+    Vaccination auxVaccination = _vaccinationFile.readFile(regPos);
+    auxVaccination.setNotified(state);
+    return _vaccinationFile.updateFile(auxVaccination, regPos);
+}
+
+bool VaccinationManager::CreateSendEmail(Client client, std::string from,
+                                         Date revacc) {
+    VppConfigManager confManager;
+    EmailTemplate emailHTML("data\\notification.html");
+    bool successFormat =
+        emailHTML.setEmailData(client.getName(), "Nueva notificacion", revacc,
+                               confManager.getVeteName());
+
+    if (!successFormat) return false;
+    std::string emailTo = client.getEmail();
+    bool isSent = utils::sendEmail(emailTo, "Nueva notificacion",
+                                   emailHTML.getHTML(), from.c_str());
+    return isSent;
 }
 
 // Solo compara si coincide el id

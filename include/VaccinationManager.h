@@ -1,5 +1,6 @@
 #pragma once
 
+#include "Client.h"
 #include "Vaccination.h"
 #include "VppConfigManager.h"
 #include "VppFile.h"
@@ -97,6 +98,41 @@ public:
      * @brief Configura y envía notificaciones de vacunaciones pendientes.
      */
     void configAndSendNotif();
+
+    /**
+     * @brief Notifica a los clientes sobre la vacunación pendiente.
+     *
+     * Esta función envía una notificación a los clientes sobre la vacunación
+     * pendiente,
+     *
+     * @param pending Puntero a la vacunación pendiente.
+     * @param total Número total de vacunas pendientes.
+     * @param veteEmail Correo electrónico del veterinario.
+     */
+    void notifyClients(Vaccination* pending, int total, std::string veteEmail);
+
+    /**
+     * @brief Actualiza el estado de notificación de una vacuna.
+     *
+     * @param nId El ID de la vacuna.
+     * @param state El nuevo estado de notificación.
+     * @return true si la actualización fue exitosa, false en caso contrario.
+     */
+    bool updateNotifState(int nId, bool state);
+
+    /**
+     * @brief Crea y envía un correo electrónico al cliente para recordarle la
+     * fecha de revacunación.
+     *
+     * @param client El cliente al que se enviará el correo electrónico.
+     * @param from La dirección de correo electrónico desde la cual se enviará
+     * el correo.
+     * @param revacc La fecha de revacunación que se incluirá en el correo
+     * electrónico.
+     * @return true si el correo electrónico se envió correctamente, false en
+     * caso contrario.
+     */
+    bool CreateSendEmail(Client client, std::string from, Date revacc);
 
     /**
      * @brief Elimina las vacunaciones marcadas como eliminadas.

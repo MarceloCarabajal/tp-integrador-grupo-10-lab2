@@ -39,37 +39,7 @@ void notifSound() {
     PlaySound("notification.wav", NULL, SND_FILENAME | SND_ASYNC);
 }
 
-bool sendEmail(string to, string subject, string body) {
-    quickmail_initialize();
-    quickmail mailObj =
-        quickmail_create("notificacion@vetegestion.com.ar", subject.c_str());
-
-    char *cBody = &body[0];
-
-    // HEADERS:
-    quickmail_add_header(mailObj,
-                         "From: veteName <notificacion@vetegestion.com.ar>");
-    quickmail_add_header(
-        mailObj, "Reply-To: veteName <notificacion@vetegestion.com.ar>");
-    quickmail_add_header(
-        mailObj, "Organization: veteName <notificacion@vetegestion.com.ar>");
-    quickmail_add_header(mailObj, "MIME-Version: 1.0");
-    quickmail_add_header(mailObj, "X-Priority: 3");
-
-    quickmail_add_body_memory(mailObj, "text/html", cBody, body.length(), 0);
-    // quickmail_add_attachment_file(mailObj, "C:\\pdf.pdf", "application/pdf");
-    quickmail_add_to(mailObj, to.c_str());
-    const char *errmsg =
-        quickmail_send(mailObj, SMTP_HOST, SMTP_PORT, SMTP_USR, SMTP_PWD);
-    if (errmsg != NULL) {
-        cout << "Error al enviar e-mailj:\n" << errmsg;
-        return false;
-    }
-    quickmail_destroy(mailObj);
-    return true;
-}
-
-void sendTestEmail() {
+/* void sendTestEmail() {
     std::string emailTo;
     EmailTemplate emailHTML("data\\notification.html");
     bool successFormat = emailHTML.setEmailData("Facundo", "Nueva notificacion",
@@ -93,4 +63,4 @@ void sendTestEmail() {
         cout << "Ocurrio un error :(\n";
     }
     utils::pause();
-}
+} */

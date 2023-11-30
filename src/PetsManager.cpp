@@ -153,8 +153,8 @@ Pet PetsManager::editForm(int regPos) {
             confirmForm.setBoolField("[SI/NO]", confirm);
             if (!confirmForm.fill()) return auxFormPet;
             if (!confirm) return auxFormPet;
-            int newRel = relsManager.autogenerateNew(auxPet.getOwnerId(),
-                                                     auxPet.getPetId());
+            int newRel =
+                relsManager.autogenerateNew(ownerId, auxPet.getPetId());
             if (newRel != -1) {
                 printf("Se generó una nueva relación con id #%d.\n", newRel);
             } else {
@@ -196,9 +196,8 @@ void PetsManager::edit() {
     int nId;
     show(false);
 
-    int totalRegs= _petsFile.getTotalRegisters();
-    if (totalRegs<=0) return;
-
+    int totalRegs = _petsFile.getTotalRegisters();
+    if (totalRegs <= 0) return;
 
     std::cout << "\nIngrese el ID de la mascota a modificar.\n";
     search.setIntField("ID Mascota", nId, 4);
@@ -385,7 +384,7 @@ void PetsManager::cancel() {
 bool PetsManager::updateOwner(int ownerId, int petId) {
     int regPos = _petsFile.searchReg(searchById, petId);
     if (regPos < 0) return false;
-    Pet auxPet = _petsFile.readFile(petId);
+    Pet auxPet = _petsFile.readFile(regPos);
     if (auxPet.getPetId() == -1) return false;
     auxPet.setOwnerId(ownerId);
     bool success = _petsFile.updateFile(auxPet, regPos);
@@ -397,4 +396,11 @@ std::string PetsManager::getNameById(int nId) {
     Pet auxPet = _petsFile.readFile(regPos);
     if (auxPet.getPetId() == -1) return "ERROR";
     return auxPet.getName();
+}
+
+int PetsManager::getOwnerIdByPetId(int nId) {
+    int regPos = _petsFile.searchReg(searchById, nId);
+    Pet auxPet = _petsFile.readFile(regPos);
+    if (auxPet.getPetId() == -1) return -1;
+    return auxPet.getOwnerId();
 }

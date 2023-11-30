@@ -136,8 +136,6 @@ PetRelations RelationsManager::editForm(int regPos) {
     std::cout << "Editando Relaciones de la Mascota #" << nId << std::endl;
     //  configurar form
 
-    petRelsForm.setEditMode(true, true);  // modo edicion
-
     // pedir y buscar si el id mascota ingresado existe
     petIdForm.setIntField("ID Mascota", petId, 4);
     do {
@@ -188,10 +186,8 @@ void RelationsManager::edit() {
     int nId;
     show(false);
 
-    int totalRegs= _petRelationsFile.getTotalRegisters();
-    if (totalRegs<=0) return;
-
-
+    int totalRegs = _petRelationsFile.getTotalRegisters();
+    if (totalRegs <= 0) return;
 
     std::cout << "\nIngrese el ID de la relacion a modificar.\n";
     search.setIntField("ID Relacion", nId, 4);

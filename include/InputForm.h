@@ -1,19 +1,3 @@
-/**
- * @file InputForm.h
- * @brief Archivo de cabecera que contiene la declaración de la clase InputForm.
- *
- * Este archivo define la clase InputForm, que se utiliza para crear formularios
- * de entrada y solicitar al usuario que ingrese valores para diferentes tipos
- * de campos. Los campos pueden ser de tipo cadena de caracteres, entero,
- * alfanumérico, booleano, flotante, fecha, rango, tiempo, correo electrónico y
- * servidor.
- *
- * La clase InputForm proporciona métodos para establecer los campos del
- * formulario y solicitar al usuario que ingrese los valores correspondientes.
- * También incluye métodos privados para solicitar campos específicos y validar
- * los valores ingresados por el usuario.
- *
- */
 #ifndef INPUTFORM_INCLUDED
 #define INPUTFORM_INCLUDED
 
@@ -24,38 +8,9 @@
 #include "TimeCls.h"
 
 /**
+ * @class InputForm
  * @brief Clase que representa un formulario de entrada.
  *
- * Esta clase se utiliza para crear y gestionar formularios de entrada de datos.
- * Permite solicitar al usuario diferentes tipos de campos, como cadenas de
- * caracteres, enteros, alfanuméricos, correos electrónicos, números de
- * teléfono, booleanos, números de punto flotante, fechas, rangos y campos de
- * servidor.
- *
- * Los campos se pueden configurar con nombres, límites de longitud o valor, y
- * variables de destino donde se almacenarán los valores ingresados por el
- * usuario.
- *
- * Además, la clase proporciona métodos para solicitar y validar los campos
- * ingresados por el usuario.
- *
- * Ejemplo de uso:
- *
- * InputForm form;
- *
- * // Configurar campos
- * form.setStrField("Nombre", nombre, 50);
- * form.setIntField("Edad", edad, 10);
- * form.setEmailField(email, 100);
- *
- * // Solicitar campos
- * if (form.fill()) {
- *     // Los campos se solicitaron correctamente
- *     // Realizar acciones con los valores ingresados por el usuario
- * } else {
- *     // Ocurrió un error al solicitar los campos
- *     // Mostrar mensaje de error o realizar acciones de manejo de errores
- * }
  */
 class InputForm {
 private:
@@ -135,12 +90,14 @@ private:
      * contrario.
      */
     bool requestStrFields();
+
     /**
      * @brief Solicita el campo de correo electrónico.
      *
      * @return true si se llena correctamente, false de lo contrario.
      */
     bool requestEmailField();
+
     /**
      * @brief Solicita los campos de tipo entero.
      *
@@ -151,6 +108,7 @@ private:
      * caso contrario.
      */
     bool requestIntFields();
+
     /**
      * @brief Solicita el campo de teléfono.
      *
@@ -158,6 +116,7 @@ private:
      * contrario.
      */
     bool requestPhoneField();
+
     /**
      * @brief Solicita campos alfanuméricos.
      *
@@ -167,6 +126,7 @@ private:
      * contrario.
      */
     bool requestAlphanumFields();
+
     /**
      * @brief Solicita campos booleanos al usuario.
      *
@@ -177,6 +137,7 @@ private:
      * en caso contrario.
      */
     bool requestBoolFields();
+
     /**
      * @brief Solicita los campos de tipo float.
      *
@@ -184,6 +145,7 @@ private:
      * contrario.
      */
     bool requestFloatFields();
+
     /**
      * @brief Solicita los campos de fecha.
      *
@@ -193,6 +155,7 @@ private:
      * en caso contrario.
      */
     bool requestDateFields();
+
     /**
      * @brief Solicita los campos de rango.
      *
@@ -202,6 +165,7 @@ private:
      * caso contrario.
      */
     bool requestRangeFields();
+
     /**
      * @brief Solicita los campos de hora.
      *
@@ -211,6 +175,7 @@ private:
      * contrario.
      */
     bool requestTimeFields();
+
     /**
      * @brief Solicita el campo del servidor.
      *
@@ -218,6 +183,7 @@ private:
      * @return false si ocurre un error al solicitar el campo del servidor.
      */
     bool requestSrvField();
+
     /**
      * @brief Pregunta al usuario si desea volver a intentar.
      *
