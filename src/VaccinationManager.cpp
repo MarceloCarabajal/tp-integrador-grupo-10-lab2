@@ -197,7 +197,7 @@ void VaccinationManager::show(bool showAndPause) {
     }
     // Se crea la variable que va a contener todas las celdas, segun la cantidad
     // de registros
-    std::string *cells = new std::string[totalCells];
+    std::string* cells = new std::string[totalCells];
     if (cells == NULL) {
         std::cout << "No hay memoria suficiente para mostrar las aplicaciones "
                      "realizadas.\n";
@@ -342,4 +342,45 @@ void VaccinationManager::cancel() {
         std::cout << "Ocurrió un error al intentar realizar la baja.\n";
     }
     utils::pause();
+}
+
+// Obtener la cantidad de vacunaciones pendientes de revacunacion en los
+// proximos 15 dias por defecto
+int VaccinationManager::pendingCount(int remainingDays) {
+    int totalRegs = _vaccinationFile.getTotalRegisters();
+    int totalPending = 0;
+    Date today;
+    if (totalRegs < 0) return -1;
+    for (int i = 0; i < totalRegs; i++) {
+        Vaccination auxVaccination = _vaccinationFile.readFile(i);
+        if (auxVaccination.getStatus()) {
+            Date dateRevaccination = auxVaccination.getDateRevaccination();
+            int diff = dateRevaccination - today;
+            if (diff > 0 && diff <= remainingDays) {
+                totalPending++;
+            }
+        }
+    }
+    return totalPending;
+}
+
+Vaccination* VaccinationManager::getPending(int remainingDays) {
+    int totalRegs = _vaccinationFile.getTotalRegisters();
+    int totalPending = pendingCount(remainingDays);
+    int pendingCount = 0;
+    Vaccination* pending = new Vaccination[totalPending];
+    Date today;
+    if (totalRegs < 0) return NULL;
+    for (int i = 0; i < totalRegs; i++) {
+        Vaccination auxVaccination = _vaccinationFile.readFile(i);
+        if (auxVaccination.getStatus()) {
+            Date dateRevaccination = auxVaccination.getDateRevaccination();
+            int diff = dateRevaccination - today;
+            if (diff > 0 && diff <= remainingDays) {
+                pending[pendingCount] = auxVaccination;
+                pendingCount++;
+            }
+        }
+    }
+    return pending;
 }

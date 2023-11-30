@@ -5,12 +5,11 @@
 
 class StatusBar {
 private:
-    static int _pendingNotif;
+    static int _pendingVacc;
     static int _pendingApps;
     static std::string _veteName;
 
 public:
-    StatusBar();
     static void update();
     static void show();
 };

@@ -3,23 +3,24 @@
 #include <iomanip>
 
 #include "AppointmentsManager.h"
+#include "VaccinationManager.h"
 #include "VppConfigManager.h"
 #include "rlutil.h"
 #include "utils.h"
 
-int StatusBar::_pendingNotif;  // inicializar variable estática
+int StatusBar::_pendingVacc;  // inicializar variable estática
 int StatusBar::_pendingApps;
 std::string StatusBar::_veteName;
-StatusBar::StatusBar() { _pendingNotif = 0; }
 
 void StatusBar::update() {
     VppConfigManager configMgr;
     AppointmentsManager appsManager;
+    VaccinationManager vaccManager;
 
     _veteName = configMgr.getVeteName();
     _pendingApps = appsManager.getPendingApps();
     if (_pendingApps == -1) _pendingApps = 0;
-    _pendingNotif++;  // TODO: implementar conteo notificaciones
+    _pendingVacc = vaccManager.pendingCount();
 }
 
 void StatusBar::show() {
@@ -34,7 +35,7 @@ void StatusBar::show() {
     if (configMgr.isTesting()) testMode = " | MODO DE PRUEBA ACTIVO";
 
     barText = _veteName +
-              " | Notificaciones pendientes: " + std::to_string(_pendingNotif) +
+              " | Vacunaciones Pendientes: " + std::to_string(_pendingVacc) +
               " | Turnos Pendientes: " + std::to_string(_pendingApps) +
               testMode;
 

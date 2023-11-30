@@ -24,6 +24,9 @@ public:
     void clearDeleted();
     void cancel();
 
+    Vaccination* getPending(int remainingDays);
+    int pendingCount(int remainingDays = 15);
+
     // Al ser una funcion estatica se puede usar sin necesaidad de instanciar un
     // objeto de tipo "ClientsManager", eso permite que se pueda pasar por
     // parametro un puntero a esta funcion, lo que es necesario para la busqueda
