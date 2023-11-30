@@ -142,8 +142,7 @@ void ClientsManager::edit() {
     // Si existe pero está dada de baja
     if (!isActiveId(nId)) {
         std::cout << "El cliente se encuentra dado de baja.\n";
-        std::cout << "Si desea eliminarlo definitivamente o reutilizar este "
-                     "ID, seleccione la "
+        std::cout << "Si desea eliminarlo definitivamente seleccione la "
                      "opción 'Limpiar registros' del menú.\n";
         utils::pause();
         return;

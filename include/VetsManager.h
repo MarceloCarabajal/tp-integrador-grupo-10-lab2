@@ -27,4 +27,6 @@ public:
     static bool searchById(Vet reg, int nId);
 
     bool idExists(int nId);
+    bool isActiveId(int nId);
+    
 };

@@ -18,14 +18,14 @@ void VetVisitsManager::load() {
     bool alreadyExists = false;
 
     // pedir y buscar si el id ingresado existe
-    idForm.setIntField("ID Consulta", nId, 4);
 
     do {
         if (alreadyExists) {
             if (!isActiveId(nId)) {
-                std::cout << "El ID de la consulta está dado de baja, elija otro "
-                             "ID o elimine el registro desde el menú 'Limpiar "
-                             "registros'.\n";
+                std::cout
+                    << "El ID de la consulta está dado de baja, elija otro "
+                       "ID o elimine el registro desde el menú 'Limpiar "
+                       "registros'.\n";
             } else {
                 std::cout << "El ID de la consulta ya existe, elija otro.\n";
             }
@@ -66,13 +66,13 @@ VetVisits VetVisitsManager::loadForm() {
     std::string reason, diagnosis;
     Date date;
     int clientId, petId, saleId, vetId;
-    bool alreadyExists = true;
+    bool alreadyExists = true, isActive = true;
 
     // pedir y buscar si el id mascota ingresado existe
     petIdForm.setIntField("ID Mascota", petId, 4);
     do {
         // si no existe, preguntar si quiere reintentar
-        if (!retryIfIdNotExists(alreadyExists)) return auxVetVisits;
+        if (!retryIfIdNotExists(alreadyExists, isActive)) return auxVetVisits;
         // si no completa el form, salir
         if (!petIdForm.fill()) return auxVetVisits;
         alreadyExists = petsManager.idExists(petId);
@@ -80,10 +80,12 @@ VetVisits VetVisitsManager::loadForm() {
 
     // pedir y buscar si el id cliente ingresado existe
     alreadyExists = true;
+    isActive = true;
+
     clientIdForm.setIntField("ID Cliente", clientId, 4);
     do {
         // si no existe, preguntar si quiere reintentar
-        if (!retryIfIdNotExists(alreadyExists)) return auxVetVisits;
+        if (!retryIfIdNotExists(alreadyExists, isActive)) return auxVetVisits;
         // si no completa el form, salir
         if (!clientIdForm.fill()) return auxVetVisits;
         alreadyExists = clientsManager.idExists(clientId);
@@ -91,17 +93,19 @@ VetVisits VetVisitsManager::loadForm() {
 
     // pedir y buscar si el id vete ingresado existe
     alreadyExists = true;
+    isActive = true;
+
     vetForm.setIntField("ID vete", vetId, 4);
     do {
         // si no existe, preguntar si quiere reintentar
-        if (!retryIfIdNotExists(alreadyExists)) return auxVetVisits;
+        if (!retryIfIdNotExists(alreadyExists, isActive)) return auxVetVisits;
         // si no completa el form, salir
         if (!vetForm.fill()) return auxVetVisits;
         alreadyExists = vetsManager.idExists(vetId);
     } while (!alreadyExists);  // si no existe, volver a pedir
 
     vetvisitsForm.setStrField("Motivo", reason, 30);
-    vetvisitsForm.setStrField("Diagnóstico", diagnosis, 240);
+    vetvisitsForm.setAlphanumeric("Diagnóstico", diagnosis, 240);
     vetvisitsForm.setDateField("Fecha", date);
     vetvisitsForm.setIntField("ID Venta", saleId, 4);
 
@@ -145,7 +149,7 @@ VetVisits VetVisitsManager::editForm(int regPos) {
     // configurar form
     vetvisitsForm.setEditMode(true, true);  // modo edicion
     vetvisitsForm.setStrField("Motivo", reason, 30);
-    vetvisitsForm.setStrField("Diagnóstico", diagnosis, 240);
+    vetvisitsForm.setAlphanumeric("Diagnóstico", diagnosis, 240);
     vetvisitsForm.setDateField("Fecha", date);
     vetvisitsForm.setIntField("ID Cliente", clientId, 4);
     vetvisitsForm.setIntField("ID Mascota", petId, 4);
@@ -174,7 +178,7 @@ VetVisits VetVisitsManager::editForm(int regPos) {
 void VetVisitsManager::edit() {
     InputForm search;
     int nId;
-    show();
+    show(false);
     std::cout << "\nIngrese el ID de la consulta a modificar.\n";
     search.setIntField("ID consulta ", nId, 4);
     if (!search.fill()) return;  // si no se completa, salir
@@ -185,7 +189,7 @@ void VetVisitsManager::edit() {
         return;
     }
 
-// Si existe pero está dada de baja
+    // Si existe pero está dada de baja
     if (!isActiveId(nId)) {
         std::cout << "La consulta se encuentra dada de baja.\n";
         std::cout << "Si desea eliminarla definitivamente "
@@ -223,8 +227,13 @@ void VetVisitsManager::show(bool showAndPause) {
         utils::pause();
         return;
     }
-    // Se crea la variable que va a contener todas las celdas, segun la cantidad
-    // de registros
+    if (totalRegs == 0) {
+        std::cout << "No hay registros para mostrar.\n";
+        utils::pause();
+        return;
+    }
+    // Se crea la variable que va a contener todas las celdas, segun la
+    // cantidad de registros
     std::string *cells = new std::string[totalCells];
     if (cells == NULL) {
         std::cout << "No hay memoria suficiente para mostrar las consultas.\n";
@@ -235,8 +244,10 @@ void VetVisitsManager::show(bool showAndPause) {
         VetVisits auxVetVisits = _vetVisitsFile.readFile(i);
         // Obtener todas las propiedades de la consulta
         // Guardarlas en un vector de string
-        std::string vecStr[8];
+        std::string vecStr[9];
         auxVetVisits.toVecString(vecStr);
+
+        vecStr[8] = PetsManager().getNameById(auxVetVisits.getPetId());
         for (int cell = 0; cell < _vetVisitsFields; cell++) {
             if (auxVetVisits.getStatus()) {
                 cells[rowPos + cell] = vecStr[cell];
@@ -250,16 +261,17 @@ void VetVisitsManager::show(bool showAndPause) {
         rowPos += _vetVisitsFields;
     }
     // Vector que contiene las columnas de nuestra lista
-    std::string columns[8] = {"ID CONSULTA", "ID VETE",    "ID CLIENTE",
-                              "ID MASCOTA",  "ID VENTA",   "FECHA",
-                              "MOTIVO",      "DIAGNÓSTICO"};
+    std::string columns[9] = {"ID CONSULTA", "ID VETE",     "ID CLIENTE",
+                              "ID MASCOTA",  "ID VENTA",    "FECHA",
+                              "MOTIVO",      "DIAGNÓSTICO", "NOMBRE MASCOTA"};
 
     ListView petsList;
     petsList.addCells(cells, totalCells);
-    petsList.addCols(columns, 8);
+    petsList.addCols(columns, 9);
     petsList.setTitle("CONSULTAS");
     petsList.show();
     delete[] cells;  // liberar memoria!
+    if (showAndPause) utils::pause();
 }
 
 // Solo compara si coincide el id
@@ -282,16 +294,20 @@ bool VetVisitsManager::retryIfIdExists(bool exists) {
     return true;
 }
 
-bool VetVisitsManager::retryIfIdNotExists(bool exists) {
+bool VetVisitsManager::retryIfIdNotExists(bool exists, bool isActive) {
     if (!exists) {
-        std::cout << "El ID ingresado NO EXISTE, presione cualquier tecla "
-                     "para reintentar o ESC para salir.\n";
-        if (rlutil::getkey() == rlutil::KEY_ESCAPE) return false;
-        rlutil::cls();
+        std::cout << "El ID ingresado NO EXISTE.\n";
     }
+    if (exists && !isActive) {
+        std::cout << "El ID ingresado está dado de baja.\n";
+    }
+    if (exists && isActive) return true;
+    std::cout
+        << " presione cualquier tecla para reintentar o ESC para salir.\n";
+    if (rlutil::getkey() == rlutil::KEY_ESCAPE) return false;
+    rlutil::cls();
     return true;
 }
-
 
 bool VetVisitsManager::isActiveId(int nId) {
     int regPos = _vetVisitsFile.searchReg(searchById, nId);
@@ -362,6 +378,3 @@ void VetVisitsManager::cancel() {
     }
     utils::pause();
 }
-
-
-
