@@ -439,3 +439,33 @@ void VetVisitsManager::cancel() {
     }
     utils::pause();
 }
+
+int VetVisitsManager::getActiveVetVisitsCount() {
+    int total = _vetVisitsFile.getTotalRegisters();
+    if (total < 0) return -1;
+    int active = 0;
+    for (int i = 0; i < total; i++) {
+        VetVisits auxVV = _vetVisitsFile.readFile(i);
+        if (auxVV.getStatus()) active++;
+    }
+    return active;
+}
+
+VetVisits* VetVisitsManager::getActiveVetVisits() {
+    int total = _vetVisitsFile.getTotalRegisters();
+    if (total <= 0) return NULL;
+    int totalActive = getActiveVetVisitsCount();
+    int activeCount = 0;
+    VetVisits* vetv = new VetVisits[total];
+    VetVisits* activeVetVisit = new VetVisits[totalActive];
+    if (vetv == NULL) return NULL;
+    if (activeVetVisit == NULL) return NULL;
+    if (!_vetVisitsFile.readFile(vetv, total)) return NULL;
+    for (int i = 0; i < total; i++) {
+        if (vetv[i].getStatus()) {
+            activeVetVisit[activeCount] = vetv[i];
+            activeCount++;
+        }
+    }
+    return activeVetVisit;
+}
