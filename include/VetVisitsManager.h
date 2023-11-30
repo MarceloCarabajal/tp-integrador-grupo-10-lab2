@@ -30,4 +30,5 @@ public:
     static bool searchById(VetVisits reg, int nId);
 
     bool idExists(int nId);
+    bool isActiveId(int nId);
 };

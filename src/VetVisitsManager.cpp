@@ -21,10 +21,26 @@ void VetVisitsManager::load() {
     idForm.setIntField("ID Consulta", nId, 4);
 
     do {
-        if (!retryIfIdExists(alreadyExists)) return;
+        if (alreadyExists) {
+            if (!isActiveId(nId)) {
+                std::cout << "El ID de la consulta está dado de baja, elija otro "
+                             "ID o elimine el registro desde el menú 'Limpiar "
+                             "registros'.\n";
+            } else {
+                std::cout << "El ID de la consulta ya existe, elija otro.\n";
+            }
+            std::cout << "presione cualquier tecla para reintentar o ESC para "
+                         "salir.\n";
+            if (rlutil::getkey() == rlutil::KEY_ESCAPE) return;
+            rlutil::cls();
+        }
+
+        idForm.setIntField("ID Consulta", nId, 4);
         // si no completa el form, salir
         if (!idForm.fill()) return;
-        alreadyExists = idExists(nId);
+        alreadyExists =
+            _vetVisitsFile.searchReg(searchById, nId) >= 0 ? true : false;
+        idForm.clearAll();  // limpiar form
     } while (alreadyExists);
 
     // Si no existe el turno, pedir el resto de datos
@@ -168,6 +184,16 @@ void VetVisitsManager::edit() {
         utils::pause();
         return;
     }
+
+// Si existe pero está dada de baja
+    if (!isActiveId(nId)) {
+        std::cout << "La consulta se encuentra dada de baja.\n";
+        std::cout << "Si desea eliminarla definitivamente "
+                     " seleccione laopción 'Limpiar registros' del menú.\n";
+        utils::pause();
+        return;
+    }
+
     // Si se encontro, pedir datos
     VetVisits auxVetVisits = editForm(regPos);
     // Si no se completo el formulario, salir
@@ -266,6 +292,15 @@ bool VetVisitsManager::retryIfIdNotExists(bool exists) {
     return true;
 }
 
+
+bool VetVisitsManager::isActiveId(int nId) {
+    int regPos = _vetVisitsFile.searchReg(searchById, nId);
+    if (regPos == -1) return false;
+    VetVisits auxVetVisits = _vetVisitsFile.readFile(regPos);
+    if (auxVetVisits.getStatus()) return true;
+    return false;
+}
+
 void VetVisitsManager::clearDeleted() {
     InputForm confirmForm;
     bool confirm;
@@ -327,3 +362,6 @@ void VetVisitsManager::cancel() {
     }
     utils::pause();
 }
+
+
+
