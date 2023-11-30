@@ -16,6 +16,9 @@ private:
     bool retryIfIdNotExists(bool exists, bool isActive);
 
 public:
+
+    VetVisits * getActiveVetVisits();
+    int getActiveVetVisitsCount();
     /**
      * @brief Carga una nueva consulta veterinaria, solicitando información al
      * usuario y almacenándola en el archivo. La función verifica la existencia
