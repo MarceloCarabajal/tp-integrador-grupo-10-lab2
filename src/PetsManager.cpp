@@ -104,7 +104,7 @@ Pet PetsManager::editForm(int regPos) {
     RelationsManager relsManager;
     int nId, ownerId;
     Date birthDate;
-    bool existentId, alreadyExists = true;
+    bool existentId;
 
     auxPet = _petsFile.readFile(regPos);
     if (auxPet.getPetId() == -1) {

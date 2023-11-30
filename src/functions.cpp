@@ -17,7 +17,8 @@
 using namespace std;
 
 // Credenciales SMTP
-#include "Credentials.h"
+// Ya no son necesarias, se configuran en VppConfig.vpp
+// #include "Credentials.h"
 
 std::string getCurrentDirectory() {
     char buffer[MAX_PATH];

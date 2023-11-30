@@ -35,7 +35,5 @@ public:
     int getSaleId();
     bool getStatus();
 
-    bool isValidRelation();
-
     void toVecString(std::string vStr[8]);
 };
