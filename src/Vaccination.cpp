@@ -5,7 +5,6 @@
 
 #include "utils.h"
 
-
 using namespace std;
 
 Vaccination::Vaccination() {
@@ -45,7 +44,7 @@ int Vaccination::getPeId() { return _petId; }
 Date Vaccination::getDateAplication() { return _dateAplication; }
 Date Vaccination::getDateRevaccination() { return _dateRevaccination; }
 const char* Vaccination::getNameVaccine() { return _nameVaccine; }
-bool Vaccination::getNottified() { return _notified; }
+bool Vaccination::getNotified() { return _notified; }
 bool Vaccination::getStatus() { return _status; }
 
 void Vaccination::toVecString(std::string vStr[6]) {

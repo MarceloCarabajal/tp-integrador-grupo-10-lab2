@@ -21,11 +21,13 @@ public:
     void load();
     void edit();
     void show(bool showAndPause = true);
+    void show(Vaccination* regs, int totalRegs);
+    void configAndSendNotif();
     void clearDeleted();
     void cancel();
 
-    Vaccination* getPending(int remainingDays);
-    int pendingCount(int remainingDays = 15);
+    Vaccination* getPendingToNotif(int remainingDays);
+    int pendingCount(int remainingDays = 15, bool onlyUnnotified = false);
 
     // Al ser una funcion estatica se puede usar sin necesaidad de instanciar un
     // objeto de tipo "ClientsManager", eso permite que se pueda pasar por

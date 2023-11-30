@@ -103,7 +103,7 @@ Vaccination VaccinationManager::editForm(int regPos) {
     nId = auxVaccination.getAplicationId();
     dateAplication = auxVaccination.getDateAplication();
     dateRevaccination = auxVaccination.getDateRevaccination();
-    notified = auxVaccination.getNottified();
+    notified = auxVaccination.getNotified();
     petId = auxVaccination.getPeId();
 
     rlutil::cls();  // limpiar pantalla
@@ -235,6 +235,87 @@ void VaccinationManager::show(bool showAndPause) {
 
     if (showAndPause) utils::pause();
 }
+
+void VaccinationManager::show(Vaccination* regs, int totalRegs) {
+    // calcular el total de celdas de nuestra lista, segun la cantidad de datos
+    int totalCells = totalRegs * _vaccinationFields;
+
+    // Se crea la variable que va a contener todas las celdas, segun la cantidad
+    // de registros
+    std::string* cells = new std::string[totalCells];
+    if (cells == NULL) {
+        std::cout << "No hay memoria suficiente para mostrar las aplicaciones "
+                     "realizadas.\n";
+        return;
+    }
+
+    int rowPos = 0;  // acumula la posicion actual a asignar
+    for (int i = 0; i < totalRegs; i++) {
+        // Obtener todas las propiedades del cliente
+        // Guardarlas en un vector de string
+        std::string vecStr[6];
+        regs[i].toVecString(vecStr);
+        for (int cell = 0; cell < _vaccinationFields; cell++) {
+            if (regs[i].getStatus()) {
+                cells[rowPos + cell] = vecStr[cell];
+            } else {
+                cells[rowPos + cell] = "";
+            }
+        }
+        // se incrementa la posicion de la celda segun la cantidad de datos que
+        // contiene el registro, que equivale a una fila de la lista
+        rowPos += _vaccinationFields;
+    }
+    // Vector que contiene las columnas de nuestra lista
+    std::string columns[6] = {"ID Aplicacion", "Id Mascota ",  "Vacuna",
+                              "Aplicacion",    "Revacunacion", "¿Notificado?"};
+
+    ListView VaccinationList;
+    VaccinationList.addCells(cells, totalCells);
+    VaccinationList.addCols(columns, 6);
+    VaccinationList.setTitle("Vacunaciones");
+    VaccinationList.show();
+
+    delete[] regs;
+    delete[] cells;
+}
+
+void VaccinationManager::configAndSendNotif() {
+    InputForm remainingDaysForm(true);
+    int remainingDays = 15;
+
+    std::cout << "A continuación se mostrarán las vacunaciones pendientes sin "
+                 "notificar.\n";
+    std::cout << "Por favor ingrese cantidad de días restantes para la "
+                 "revacunación.\n";
+    std::cout << "Si deja el campo vacío, se mostrarán las vacunaciones "
+                 "pendientes para los PRÓXIMOS 15 DÍAS.\n";
+
+    remainingDaysForm.setRangeField("Días[1-365]", remainingDays, 1, 365);
+    if (!remainingDaysForm.fill()) return;
+    int totalPending = pendingCount(remainingDays, true);
+    if (totalPending == -1) {
+        std::cout << "Ocurrió un error al intentar leer los registros.\n";
+        utils::pause();
+        return;
+    }
+    if (totalPending == 0) {
+        std::cout << "No se encontraron vacunaciones pendientes para el rango "
+                     "ingresado.\n";
+        utils::pause();
+        return;
+    }
+
+    Vaccination* pending = getPendingToNotif(remainingDays);
+    if (pending == NULL) {
+        std::cout << "Ocurrio un error al leer los registros.\n";
+        utils::pause();
+        return;
+    }
+    show(pending, totalPending);
+    utils::pause();
+}
+
 // Solo compara si coincide el id
 bool VaccinationManager::searchById(Vaccination reg, int nId) {
     if (reg.getAplicationId() == nId) return true;
@@ -346,7 +427,7 @@ void VaccinationManager::cancel() {
 
 // Obtener la cantidad de vacunaciones pendientes de revacunacion en los
 // proximos 15 dias por defecto
-int VaccinationManager::pendingCount(int remainingDays) {
+int VaccinationManager::pendingCount(int remainingDays, bool onlyUnnotified) {
     int totalRegs = _vaccinationFile.getTotalRegisters();
     int totalPending = 0;
     Date today;
@@ -354,6 +435,8 @@ int VaccinationManager::pendingCount(int remainingDays) {
     for (int i = 0; i < totalRegs; i++) {
         Vaccination auxVaccination = _vaccinationFile.readFile(i);
         if (auxVaccination.getStatus()) {
+            // Si solo se quieren las no notificadas, saltear las notificadas
+            if (onlyUnnotified && auxVaccination.getNotified()) continue;
             Date dateRevaccination = auxVaccination.getDateRevaccination();
             int diff = dateRevaccination - today;
             if (diff > 0 && diff <= remainingDays) {
@@ -364,9 +447,10 @@ int VaccinationManager::pendingCount(int remainingDays) {
     return totalPending;
 }
 
-Vaccination* VaccinationManager::getPending(int remainingDays) {
+Vaccination* VaccinationManager::getPendingToNotif(int remainingDays) {
     int totalRegs = _vaccinationFile.getTotalRegisters();
-    int totalPending = pendingCount(remainingDays);
+    int totalPending =
+        pendingCount(remainingDays, true);  // solo las no notificadas
     int pendingCount = 0;
     Vaccination* pending = new Vaccination[totalPending];
     Date today;

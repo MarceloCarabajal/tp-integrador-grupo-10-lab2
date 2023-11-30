@@ -32,7 +32,7 @@ public:
     Date getDateAplication();
     Date getDateRevaccination();
     const char* getNameVaccine();
-    bool getNottified();
+    bool getNotified();
     bool getStatus();
 
     void toVecString(std::string vStr[6]);
