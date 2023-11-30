@@ -57,6 +57,15 @@ ItemSale ItemSaleManager::loadForm() {
     return auxIs;
 }
 
+bool ItemSaleManager::retryIfIdNotExists(bool exists) {
+    if (!exists) {
+        std::cout << "El ID ingresado NO EXISTE, presione cualquier tecla "
+                     "para reintentar o ESC para salir.\n";
+        if (rlutil::getkey() == rlutil::KEY_ESCAPE) return false;
+        rlutil::cls();
+    }
+    return true;
+}
 /*
 ItemSale ItemSaleManagereditForm(int regPos) {
     InputForm petForm(true), clientIdForm(true);
@@ -284,12 +293,3 @@ bool ItemSaleManager::updateOwner(int ownerId, int petId) {
     return success;
 }*/
 
-bool ItemSaleManager::retryIfIdNotExists(bool exists) {
-    if (!exists) {
-        std::cout << "El ID ingresado NO EXISTE, presione cualquier tecla "
-                     "para reintentar o ESC para salir.\n";
-        if (rlutil::getkey() == rlutil::KEY_ESCAPE) return false;
-        rlutil::cls();
-    }
-    return true;
-}

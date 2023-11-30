@@ -228,7 +228,7 @@ void ProdCategoryManager::cancel() {
     InputForm searchId, confirmForm;
     int nId;
     bool confirm;
-    // mostrar vacunacion
+    // mostrar categorias
     show(false);
 
     std::cout
