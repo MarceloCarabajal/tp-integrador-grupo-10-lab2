@@ -117,6 +117,13 @@ bool VppFile<VppClass>::updateFile(VppClass reg, int regPos) {
     return success;
 }
 
+/**
+ * @brief Elimina un registro específico del archivo Vpp.
+ *
+ * @param regNumber El número de registro a eliminar.
+ * @return true si se eliminó correctamente el registro, false en caso
+ * contrario.
+ */
 template <class VppClass>
 bool VppFile<VppClass>::deleteReg(int regNumber) {
     int total = getTotalRegisters();
@@ -139,6 +146,17 @@ bool VppFile<VppClass>::deleteReg(int regNumber) {
     return true;
 }
 
+/**
+ * @brief Marca un registro para su eliminación.
+ *
+ * Esta función marca un registro específico para su eliminación.
+ * Primero lee el registro del archivo, luego cambia su estado a inactivo
+ * y finalmente actualiza el archivo con el registro modificado.
+ *
+ * @tparam VppClass El tipo de clase de registro.
+ * @param regNumber El número de registro a marcar para eliminar.
+ * @return true si el registro se marcó correctamente, false en caso contrario.
+ */
 template <class VppClass>
 bool VppFile<VppClass>::markForDelete(int regNumber) {
     VppClass reg = readFile(regNumber);
@@ -148,6 +166,17 @@ bool VppFile<VppClass>::markForDelete(int regNumber) {
     return success;
 }
 
+/**
+ * @brief Elimina todos los registros marcados en el archivo.
+ *
+ * Esta función elimina todos los registros marcados para eliminar en el
+ * archivo. Primero lee todos los registros del archivo y luego escribe
+ * nuevamente los registros que no están marcados para eliminar. Al final,
+ * devuelve el total de registros eliminados.
+ *
+ * @tparam VppClass El tipo de clase de los registros en el archivo.
+ * @return El número total de registros eliminados, o -1 si ocurre un error.
+ */
 template <class VppClass>
 int VppFile<VppClass>::deleteAllMarked() {
     int written = 0;  // acumulador registros escritos
