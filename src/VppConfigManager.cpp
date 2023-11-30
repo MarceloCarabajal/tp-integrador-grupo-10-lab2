@@ -275,6 +275,7 @@ bool VppConfigManager::exists() {
     // comprobar si existe el archivo
     DWORD dwAttrib = GetFileAttributes(Tpath);
 
+    delete[] Tpath;
     // si el archivo no existe, devolver false
     return (dwAttrib != INVALID_FILE_ATTRIBUTES);
 }

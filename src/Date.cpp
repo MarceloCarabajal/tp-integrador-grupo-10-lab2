@@ -14,6 +14,26 @@ Date::Date() {
     _year = timeVars->tm_year + 1900;  // +1900 porque los años van desde 1900
 }
 
+// Crear estructura tm con los datos de fecha
+struct tm Date::makeTm(const Date& d) {
+    std::tm tm = {0};
+    tm.tm_year = d._year - 1900;  // años desde 1900
+    tm.tm_mon = d._month - 1;     // meses desde enero (0 a 11)
+    tm.tm_mday = d._day;          // dias
+    return tm;
+}
+
+// Obtener diferencia en dias entre dos fechas
+int Date::operator-(const Date& d) {
+    struct tm thisTM = makeTm(*this);
+    struct tm dTM = makeTm(d);
+    time_t thisTime = std::mktime(&thisTM);
+    time_t dTime = std::mktime(&dTM);
+    double seconds = difftime(thisTime, dTime);
+    int daySeconds = 60 * 60 * 24;
+    return seconds / daySeconds;
+}
+
 Date::Date(int day, int month, int year) {
     setDay(day);
     setMonth(month);
@@ -67,10 +87,7 @@ bool Date::operator>(const Date& d) {
     return (*this < d || *this == d) ? false : true;
 }
 
-
-
 bool Date::operator==(const Date& d) {
     bool equal = _year == d._year && _month == d._month && _day == d._day;
     return equal;
 }
-

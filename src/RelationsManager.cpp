@@ -221,14 +221,6 @@ void RelationsManager::show(bool showAndPause) {
     // que contiene 1 registro
     int totalCells = totalRegs * _petRelationsFields;
 
-    if (VppConfigManager().isTesting()) {
-        std::cout << "Modo de prueba activado." << std::endl;
-        std::cout << _filePath << std::endl;
-    } else {
-        std::cout << "Modo de prueba desactivado." << std::endl;
-        std::cout << _filePath << std::endl;
-    }
-
     if (totalRegs < 0) {
         std::cout << "Ocurrio un error al leer los registros.\n";
         utils::pause();

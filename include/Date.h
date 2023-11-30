@@ -5,6 +5,7 @@
 class Date {
 private:
     int _day, _month, _year;
+    struct tm makeTm(const Date& d);
 
 public:
     Date();
@@ -18,7 +19,9 @@ public:
     int getYear();
 
     std::string toString();
+    bool leapYear(int y);
     bool operator<(const Date& d);
     bool operator>(const Date& d);
     bool operator==(const Date& d);
+    int operator-(const Date& d);
 };
