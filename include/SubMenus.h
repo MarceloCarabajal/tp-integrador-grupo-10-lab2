@@ -12,6 +12,7 @@
 #include "ProdCategoryManager.h"
 #include "ProductsManager.h"
 #include "RelationsManager.h"
+#include "ReportsManager.h"
 #include "SalesManager.h"
 #include "VaccinationManager.h"
 #include "VetVisitsManager.h"
@@ -106,6 +107,9 @@ private:
     static void editConfig();
     static void toggleMode();
 
+    static ReportsManager _reportsManager;
+    static void showSuccessApps();
+
 public:
     static void clients();
     static void appointments();
@@ -123,6 +127,7 @@ public:
     static void transactions();
     static void income();
     static void expense();
+    static void Reports();
 };
 
 #endif /* SUBMENUS_INCLUDED */

@@ -402,6 +402,36 @@ void AppointmentsManager::cancel() {
     utils::pause();
 }
 
+int AppointmentsManager::getActiveAppsCount() {
+    int total = _appsFile.getTotalRegisters();
+    if (total < 0) return -1;
+    int active = 0;
+    for (int i = 0; i < total; i++) {
+        Appointment auxApp = _appsFile.readFile(i);
+        if (auxApp.getStatus()) active++;
+    }
+    return active;
+}
+
+Appointment* AppointmentsManager::getActiveApps() {
+    int total = _appsFile.getTotalRegisters();
+    if (total <= 0) return NULL;
+    int totalActive = getActiveAppsCount();
+    int activeCount = 0;
+    Appointment* apps = new Appointment[total];
+    Appointment* activeApps = new Appointment[totalActive];
+    if (apps == NULL) return NULL;
+    if (activeApps == NULL) return NULL;
+    if (!_appsFile.readFile(apps, total)) return NULL;
+    for (int i = 0; i < total; i++) {
+        if (apps[i].getStatus()) {
+            activeApps[activeCount] = apps[i];
+            activeCount++;
+        }
+    }
+    return activeApps;
+}
+
 int AppointmentsManager::getPendingApps() {
     Date today;
     int total = _appsFile.getTotalRegisters();

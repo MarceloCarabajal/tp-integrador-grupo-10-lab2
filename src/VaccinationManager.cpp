@@ -276,7 +276,6 @@ void VaccinationManager::show(Vaccination* regs, int totalRegs) {
     VaccinationList.setTitle("Vacunaciones");
     VaccinationList.show();
 
-    delete[] regs;
     delete[] cells;
 }
 
@@ -288,8 +287,8 @@ void VaccinationManager::configAndSendNotif() {
                  "notificar.\n";
     std::cout << "Por favor ingrese cantidad de días restantes para la "
                  "revacunación.\n";
-    std::cout << "Si deja el campo vacío, se mostrarán las vacunaciones "
-                 "pendientes para los PRÓXIMOS 15 DÍAS.\n";
+    std::cout << "Si deja el campo vacío, se mostrarán las revacunaciones "
+                 "pendientes DESDE HOY hasta los PRÓXIMOS 15 DÍAS.\n";
 
     remainingDaysForm.setRangeField("Días Restantes [1-365]", remainingDays, 1,
                                     365);
@@ -314,8 +313,13 @@ void VaccinationManager::configAndSendNotif() {
         return;
     }
     utils::cls();
+    utils::coutCenter("Revacunaciones HASTA " + std::to_string(remainingDays) +
+                      " días");
+    std::cout << std::endl;
     show(pending, totalPending);
     utils::pause();
+
+    delete[] pending;
 }
 
 // Solo compara si coincide el id

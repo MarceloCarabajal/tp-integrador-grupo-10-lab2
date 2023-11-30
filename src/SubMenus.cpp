@@ -315,3 +315,14 @@ void SubMenus::sysConfig() {
         "2. Cambiar modo de ejecución :arrows_counterclockwise:", toggleMode);
     mnuConfig.showMenu();
 }
+
+ReportsManager SubMenus::_reportsManager = ReportsManager();
+void SubMenus::showSuccessApps() { _reportsManager.showSuccessApps(); }
+
+void SubMenus::Reports() {
+    Menu mnuReports("REPORTES:bar_chart:", true);
+
+    mnuReports.addOption("1. Turnos exitosos :white_check_mark:",
+                         showSuccessApps);
+    mnuReports.showMenu();
+}
