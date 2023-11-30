@@ -73,7 +73,7 @@ Buy BuysManager::loadForm() {
     bool validDate = false;
     while (!validDate) {
         if (!dateForm.fill()) return auxBuy;
-        validDate = validAppDate(buyDate);
+        validDate = validBuyDate(buyDate);
         if (!retryInvalidDate(validDate)) return auxBuy;
     }
 
@@ -141,7 +141,7 @@ Buy BuysManager::editForm(int regPos) {
     dateForm.setDateField("Fecha de compra", buyDate);
     bool validDate = false;
     if (!dateForm.fill()) return auxFormBuy;
-    validDate = validAppDate(buyDate);
+    validDate = validBuyDate(buyDate);
     if (!retryInvalidDate(validDate)) return auxFormBuy;
     // si no fue una fecha valida, reasignar variable para mostrarla con el
     // valor actual
@@ -339,7 +339,7 @@ void BuysManager::cancel() {
     utils::pause();
 }
 
-bool BuysManager::validAppDate(Date date) {
+bool BuysManager::validBuyDate(Date date) {
     Date today;
     if (date < today || date == today) return true;
     return false;
