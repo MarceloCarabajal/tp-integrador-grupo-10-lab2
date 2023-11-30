@@ -18,9 +18,11 @@ void StatusBar::update() {
     VaccinationManager vaccManager;
 
     _veteName = configMgr.getVeteName();
+    // si da error o no hay registros, se asigna 0
     _pendingApps = appsManager.getPendingApps();
     if (_pendingApps == -1) _pendingApps = 0;
     _pendingVacc = vaccManager.pendingCount();
+    if (_pendingVacc == -1) _pendingVacc = 0;
 }
 
 void StatusBar::show() {

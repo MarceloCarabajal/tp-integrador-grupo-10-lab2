@@ -19,6 +19,16 @@
 #include "VetsManager.h"
 #include "VppConfigManager.h"
 
+/**
+ * @class SubMenus
+ * @brief Clase que representa los submenús del sistema.
+ *
+ * Esta clase contiene los submenús del sistema, cada uno con sus respectivas
+ * funciones. Los submenús incluyen la gestión de clientes, citas, veterinarios,
+ * mascotas, relaciones, inventario, productos, categorías de productos,
+ * vacunaciones, visitas veterinarias, compras, configuración del sistema,
+ * ventas, transacciones, ingresos, gastos y reportes.
+ */
 class SubMenus {
 private:
     static ClientsManager _clientsManager;
@@ -111,22 +121,89 @@ private:
     static void showSuccessApps();
 
 public:
+    /**
+     * @brief Muestra el submenú de clientes.
+     */
     static void clients();
+
+    /**
+     * @brief Muestra el submenú de turnos.
+     */
     static void appointments();
+
+    /**
+     * @brief Muestra el submenú de veterinarios.
+     */
     static void vets();
+
+    /**
+     * @brief Muestra el submenú de mascotas.
+     */
     static void pets();
+
+    /**
+     * @brief Muestra el submenú de relaciones.
+     */
     static void relations();
+
+    /**
+     * @brief Muestra el submenú de inventario.
+     */
     static void inventory();
+
+    /**
+     * @brief Muestra el submenú de productos.
+     */
     static void products();
+
+    /**
+     * @brief Muestra el submenú de categorías de productos.
+     */
     static void productcategory();
+
+    /**
+     * @brief Muestra el submenú de vacunaciones.
+     */
     static void vaccination();
+
+    /**
+     * @brief Muestra el submenú de visitas veterinarias.
+     */
     static void vetvisits();
+
+    /**
+     * @brief Muestra el submenú de compras.
+     */
     static void buy();
+
+    /**
+     * @brief Muestra el submenú de configuración del sistema.
+     */
     static void sysConfig();
+
+    /**
+     * @brief Muestra el submenú de ventas.
+     */
     static void sale();
+
+    /**
+     * @brief Muestra el submenú de transacciones.
+     */
     static void transactions();
+
+    /**
+     * @brief Muestra el submenú de ingresos.
+     */
     static void income();
+
+    /**
+     * @brief Muestra el submenú de gastos.
+     */
     static void expense();
+
+    /**
+     * @brief Muestra el submenú de reportes.
+     */
     static void Reports();
 };
 
