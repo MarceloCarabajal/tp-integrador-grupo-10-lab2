@@ -4,9 +4,11 @@
 
 #include "InputForm.h"
 #include "ListView.h"
+#include "ProdCategoryManager.h"
 #include "ProductCategory.h"
 #include "rlutil.h"
 #include "utils.h"
+
 
 void ProductsManager::load() {
     InputForm idForm;
@@ -51,6 +53,7 @@ Product ProductsManager::loadForm() {
     int quantity, stock;
     // TODO: Ver si está bien incluirlo asi
     ProductCategory productCategory;
+    ProdCategoryManager prodMag;
 
     productForm.setStrField("Nombre", productName, 30);
     productForm.setStrField("Descripcion", description, 45);
@@ -60,7 +63,8 @@ Product ProductsManager::loadForm() {
     productForm.setIntField("Stock", stock, 4);
     productForm.setFloatField("Precio", price);
     // TODO: Ver como metemos product category
-    ////productForm. PRODUCT CATEGORY (tiene ID y nombre)
+    ////productForm. PRODUCT CATEGORY (tiene ID y nombre, deberia dejarnos cargar el ID)
+    
 
     if (!productForm.fill()) return auxProduct;
 
@@ -72,7 +76,7 @@ Product ProductsManager::loadForm() {
     auxProduct.setStock(stock);
     auxProduct.setProductCategory(productCategory);
     auxProduct.setStatus(true);
-    
+
     return auxProduct;
 }
 
@@ -134,9 +138,8 @@ void ProductsManager::edit() {
     int nId;
     show(false);
 
-    int totalRegs= _productsFile.getTotalRegisters();
-    if (totalRegs<=0) return;
-
+    int totalRegs = _productsFile.getTotalRegisters();
+    if (totalRegs <= 0) return;
 
     std::cout << "\nIngrese el ID del producto a modificar.\n";
     search.setIntField("ID Producto", nId, 4);
@@ -176,7 +179,7 @@ void ProductsManager::show(bool showAndPause) {
         utils::pause();
         return;
     }
-    
+
     if (totalRegs == 0) {
         std::cout << "No hay registros para mostrar.\n";
         utils::pause();
@@ -189,7 +192,7 @@ void ProductsManager::show(bool showAndPause) {
         std::cout << "No hay memoria suficiente para mostrar los clientes.\n";
         return;
     }
-    int rowPos = 0;   // acumula la posicion actual a asignar
+    int rowPos = 0;  // acumula la posicion actual a asignar
     for (int i = 0; i < totalRegs; i++) {
         Product auxProduct = _productsFile.readFile(i);
         // Obtener todas las propiedades del cliente
@@ -206,7 +209,7 @@ void ProductsManager::show(bool showAndPause) {
 
         // se incrementa la posicion de la celda segun la cantidad de datos que
         // contiene el registro, que equivale a una fila de la lista
-       rowPos += _productFields;
+        rowPos += _productFields;
     }
     // Vector que contiene las columnas de nuestra lista
     std::string columns[8] = {"ID",       "Nombre", "Descripcion", "Marca",
@@ -219,7 +222,7 @@ void ProductsManager::show(bool showAndPause) {
     productsList.show();
     delete[] cells;  // liberar memoria!
     if (showAndPause) utils::pause();
-} 
+}
 // Solo compara si coincide el id
 bool ProductsManager::searchById(Product reg, int nId) {
     if (reg.getProductId() == nId) return true;
@@ -229,7 +232,6 @@ bool ProductsManager::searchById(Product reg, int nId) {
 bool ProductsManager::idExists(int nId) {
     return _productsFile.searchReg(searchById, nId) >= 0 ? true : false;
 }
-
 
 void ProductsManager::clearDeleted() {
     InputForm confirmForm;

@@ -158,10 +158,7 @@ void SubMenus::loadVaccination() {
     _vaccManager.load();
     utils::pause();
 }
-void SubMenus::showVaccinations() {
-    _vaccManager.show();
-    utils::pause();
-}
+void SubMenus::showVaccinations() { _vaccManager.show(); }
 void SubMenus::editVaccination() { _vaccManager.edit(); }
 void SubMenus::cancelVaccination() { _vaccManager.cancel(); }
 void SubMenus::clearV() { _vaccManager.clearDeleted(); }
@@ -186,10 +183,7 @@ void SubMenus::loadProduct() {
     _productsManager.load();
     utils::pause();
 }
-void SubMenus::showProducts() {
-    _productsManager.show();
-    utils::pause();
-}
+void SubMenus::showProducts() { _productsManager.show(); }
 void SubMenus::editProducts() { _productsManager.edit(); }
 void SubMenus::cancelProduct() { _productsManager.cancel(); }
 void SubMenus::clearProd() { _productsManager.clearDeleted(); }
@@ -210,10 +204,7 @@ void SubMenus::loadProdCategory() {
     _catprodManager.load();
     utils::pause();
 }
-void SubMenus::showProdCategory() {
-    _catprodManager.show();
-    utils::pause();
-}
+void SubMenus::showProdCategory() { _catprodManager.show(); }
 void SubMenus::editProdCategory() { _catprodManager.edit(); }
 void SubMenus::cancelProdCategory() { _catprodManager.cancel(); }
 void SubMenus::clearPC() { _catprodManager.clearDeleted(); }
