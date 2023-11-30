@@ -1,3 +1,9 @@
+/**
+ * @file utils.h
+ * @brief Contiene funciones de utilidad para el programa.
+ *
+ * @note Este archivo depende de la biblioteca rlutil.h y fileapi.h.
+ */
 #ifndef UTILS_INCLUDED
 #define UTILS_INCLUDED
 
@@ -16,12 +22,26 @@ namespace isvalid {
 
 namespace utils {
 
+    /**
+     * @brief Pausa la ejecución del programa y espera a que el usuario presione
+     * cualquier tecla.
+     *
+     * Esta función muestra un mensaje en pantalla indicando al usuario que
+     * presione cualquier tecla para continuar. Luego, oculta el cursor y espera
+     * a que el usuario presione una tecla utilizando la biblioteca rlutil.
+     */
     inline void pause() {
         std::cout << "Presione cualquier tecla para continuar..." << std::endl;
         rlutil::hidecursor();
         rlutil::anykey();
     }
 
+    /**
+     * @brief Elimina los emojis de una cadena de texto.
+     *
+     * @param str La cadena de texto de la cual se eliminarán los emojis.
+     * @return La cadena de texto sin emojis.
+     */
     inline std::string removeEmoji(std::string str) {
         size_t firstPos = str.find(':');
         size_t secondPos = str.find(':', firstPos + 1);
@@ -32,6 +52,15 @@ namespace utils {
         return temp + "  ";  // suma 2 espacios ocupados por el emoji
     }
 
+    /**
+     * @brief Elimina los espacios en blanco al inicio y al final de una cadena
+     * de texto.
+     *
+     * @param str La cadena de texto a la que se le eliminarán los espacios en
+     * blanco.
+     * @return La cadena de texto sin los espacios en blanco al inicio y al
+     * final.
+     */
     inline std::string trim(std::string str) {
         size_t lSpaces = 0, rSpaces = 0, strEnd = 0;
         std::string temp;
@@ -63,6 +92,12 @@ namespace utils {
         return temp;
     }
 
+    /**
+     * @brief Convierte una cadena de caracteres a minúsculas.
+     *
+     * @param str La cadena de caracteres a convertir.
+     * @return La cadena de caracteres convertida a minúsculas.
+     */
     inline std::string strLower(std::string str) {
         for (size_t i = 0; i < str.length(); i++) {
             str[i] = tolower(str[i]);
@@ -70,17 +105,37 @@ namespace utils {
         return str;
     }
 
+    /**
+     * @brief Convierte una cadena de texto en un valor booleano.
+     *
+     * @param str La cadena de texto a convertir.
+     * @return true si la cadena es "si" o "sí", false en caso contrario.
+     */
     inline bool strToBool(std::string str) {
         if (strLower(str) == "si") return true;
         if (strLower(str) == "sí") return true;
         return false;
     }
 
+    /**
+     * @brief Convierte un valor booleano en una cadena de texto.
+     *
+     * @param b El valor booleano a convertir.
+     * @return La cadena de texto "Si" si el valor es verdadero, "No" si el
+     * valor es falso.
+     */
     inline std::string boolToStr(bool b) {
         if (b) return "Si";
         return "No";
     }
 
+    /**
+     * @brief Reemplaza todas las comas en una cadena de texto con puntos.
+     *
+     * @param str La cadena de texto en la que se reemplazarán las comas.
+     * @return La cadena de texto resultante después de reemplazar las comas con
+     * puntos.
+     */
     inline std::string replaceCommas(std::string str) {
         std::string temp;
         // si no hay comas, devolver str
@@ -94,7 +149,13 @@ namespace utils {
         return temp;
     }
 
-    // Obtiene la linea mas larga de un string
+    /**
+     * @brief Obtiene la longitud de la línea más larga en una cadena de texto.
+     *
+     * @param str La cadena de texto en la que se buscará la línea más larga.
+     * @return La longitud de la línea más larga encontrada. Si no hay saltos de
+     * línea, se devuelve la longitud de la cadena de texto.
+     */
     inline int getLongestLine(std::string str) {
         int maxLength = 0, charCount = 0;
         for (int i = 0; i < (int)str.length(); i++) {
@@ -109,7 +170,11 @@ namespace utils {
         return maxLength;
     }
 
-    // Imprimir un texto centrado
+    /**
+     * @brief Imprime una cadena de texto centrada en la consola.
+     *
+     * @param str La cadena de texto a imprimir.
+     */
     inline void coutCenter(std::string str) {
         // Calcular la linea mas larga
         int lTexto = getLongestLine(str);
@@ -125,6 +190,12 @@ namespace utils {
         std::cout << std::setw(rlutil::tcols() / 2 - lTexto / 2) << "";
     }
 
+    /**
+     * @brief Imprime el logo del programa en la consola.
+     *
+     * Esta función imprime el logo del programa en la consola.
+     * Utiliza la función coutCenter para centrar el logo en la pantalla.
+     */
     inline void printLogo() {
         coutCenter(R"(
   _   __    __        __    __ 
@@ -134,8 +205,19 @@ namespace utils {
                                )");
     }
 
+    /**
+     * @brief Limpia la pantalla.
+     *
+     * Esta función utiliza la biblioteca rlutil para limpiar la pantalla.
+     */
     inline void cls() { rlutil::cls(); }
 
+    /**
+     * @brief Verifica si un archivo existe en la ruta especificada.
+     *
+     * @param filePath La ruta del archivo a verificar.
+     * @return true si el archivo existe, false en caso contrario.
+     */
     inline bool fileExists(std::string filePath) {
         // convertir string a TCHAR/WCHAR
         TCHAR *Tpath = new TCHAR[filePath.size() + 1];
