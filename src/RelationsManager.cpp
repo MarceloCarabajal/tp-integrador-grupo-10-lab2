@@ -187,6 +187,12 @@ void RelationsManager::edit() {
     InputForm search;
     int nId;
     show(false);
+
+    int totalRegs= _petRelationsFile.getTotalRegisters();
+    if (totalRegs<=0) return;
+
+
+
     std::cout << "\nIngrese el ID de la relacion a modificar.\n";
     search.setIntField("ID Relacion", nId, 4);
     if (!search.fill()) return;  // si no se completa, salir

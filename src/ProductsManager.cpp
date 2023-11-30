@@ -132,7 +132,12 @@ Product ProductsManager::editForm(int regPos) {
 void ProductsManager::edit() {
     InputForm search;
     int nId;
-    show();
+    show(false);
+
+    int totalRegs= _productsFile.getTotalRegisters();
+    if (totalRegs<=0) return;
+
+
     std::cout << "\nIngrese el ID del producto a modificar.\n";
     search.setIntField("ID Producto", nId, 4);
     if (!search.fill()) return;  // si no se completa, salir
@@ -171,7 +176,6 @@ void ProductsManager::show(bool showAndPause) {
         utils::pause();
         return;
     }
-
     
     if (totalRegs == 0) {
         std::cout << "No hay registros para mostrar.\n";

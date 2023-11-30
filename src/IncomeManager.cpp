@@ -124,7 +124,12 @@ Income IncomeManager::editForm(int regPos) {
 void IncomeManager::edit() {
     InputForm search;
     int nId;
-    show();
+    show(false);
+    
+    int totalRegs= _incomeFile.getTotalRegisters();
+    if (totalRegs<=0) return;
+
+    
     std::cout << "\nIngrese el ID de la transacción a modificar.\n";
     search.setIntField("ID Transacción", nId, 4);
     if (!search.fill()) return;  // si no se completa, salir
@@ -152,7 +157,7 @@ void IncomeManager::edit() {
     utils::pause();
 }
 
-void IncomeManager::show() {
+void IncomeManager::show(bool showAndPause) {
     int totalRegs = _incomeFile.getTotalRegisters();
     // calcular el total de celdas de nuestra lista, segun la cantidad de datos
     // que contiene 1 registro
@@ -163,7 +168,6 @@ void IncomeManager::show() {
         utils::pause();
         return;
     }
-
     
     if (totalRegs == 0) {
         std::cout << "No hay registros para mostrar.\n";

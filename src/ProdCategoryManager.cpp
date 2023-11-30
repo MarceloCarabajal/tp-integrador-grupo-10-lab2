@@ -103,7 +103,11 @@ ProductCategory ProdCategoryManager::editForm(int regPos) {
 void ProdCategoryManager::edit() {
     InputForm search;
     int nId;
-    show();
+    show(false);
+
+    int totalRegs= _prodcategoryFile.getTotalRegisters();
+    if (totalRegs<=0) return;
+
     std::cout << "\nIngrese el ID de la categoria a modificar.\n";
     search.setIntField("ID Categoria", nId, 4);
     if (!search.fill()) return;  // si no se completa, salir
@@ -142,6 +146,13 @@ void ProdCategoryManager::show(bool showAndPause) {
         utils::pause();
         return;
     }
+
+    if (totalRegs == 0) {
+        std::cout << "No hay registros para mostrar.\n";
+        utils::pause();
+        return;}
+
+        
     // Se crea la variable que va a contener todas las celdas, segun la cantidad
     // de registros
     std::string *cells = new std::string[totalCells];

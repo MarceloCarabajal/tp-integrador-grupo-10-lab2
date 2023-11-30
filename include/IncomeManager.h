@@ -15,7 +15,7 @@ private:
 public:
     void load();
     void edit();
-    void show();
+    void show(bool showAndPause = true);
 
     // Al ser una funcion estatica se puede usar sin necesaidad de instanciar un
     // objeto de tipo "IncomeManager", eso permite que se pueda pasar por

@@ -6,6 +6,7 @@
 #include "ListView.h"
 #include "rlutil.h"
 #include "ItemSale.h"
+#include "utils.h"
 
 void SalesManager::load() {
     InputForm idForm;
@@ -159,7 +160,14 @@ Sale SalesManager::editForm(int regPos) {
 void SalesManager::edit() {
     InputForm search;
     int nId;
-    show();
+    show(false);
+
+int totalRegs= _salesFile.getTotalRegisters();
+if (totalRegs<=0) return;
+
+
+
+    
     std::cout << "\nIngrese el ID de la venta a modificar.\n";
     search.setIntField("ID Venta", nId, 4);
     if (!search.fill()) return;  // si no se completa, salir
@@ -187,7 +195,7 @@ void SalesManager::edit() {
     system("pause");
 }
 
-void SalesManager::show() {
+void SalesManager::show(bool showAndPause) {
     int totalRegs = _salesFile.getTotalRegisters();
     // calcular el total de celdas de nuestra lista, segun la cantidad de datos
     // que contiene 1 registro
@@ -198,13 +206,11 @@ void SalesManager::show() {
         system("pause");
         return;
     }
-
-    
     if (totalRegs == 0) {
-        std::cout << "No hay registros para mostrar.\n";
+        std::cout << "No hay clientes para mostrar.\n";
         utils::pause();
-        return;
-    }
+        return;}
+
     // Se crea la variable que va a contener todas las celdas, segun la cantidad
     // de registros
     std::string *cells = new std::string[totalCells];

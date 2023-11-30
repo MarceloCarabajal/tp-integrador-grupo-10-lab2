@@ -227,6 +227,9 @@ void AppointmentsManager::edit() {
     InputForm search;
     int nId;
     show(false);
+    int totalRegs= _appsFile.getTotalRegisters();
+    if (totalRegs<=0) return;
+
     std::cout << "\nIngrese el ID del turno a modificar.\n";
     search.setIntField("ID Turno", nId, 4);
     if (!search.fill()) return;  // si no se completa, salir
@@ -265,6 +268,12 @@ void AppointmentsManager::show(bool showAndPause) {
         utils::pause();
         return;
     }
+
+    if (totalRegs == 0) {
+        std::cout << "No hay registros para mostrar.\n";
+        utils::pause();
+        return;}
+        
     // Se crea la variable que va a contener todas las celdas, segun la cantidad
     // de registros
     std::string* cells = new std::string[totalCells];
@@ -412,36 +421,6 @@ void AppointmentsManager::cancel() {
         std::cout << "Ocurrió un error al intentar cancelar el turno.\n";
     }
     utils::pause();
-}
-
-int AppointmentsManager::getActiveAppsCount() {
-    int total = _appsFile.getTotalRegisters();
-    if (total < 0) return -1;
-    int active = 0;
-    for (int i = 0; i < total; i++) {
-        Appointment auxApp = _appsFile.readFile(i);
-        if (auxApp.getStatus()) active++;
-    }
-    return active;
-}
-
-Appointment* AppointmentsManager::getActiveApps() {
-    int total = _appsFile.getTotalRegisters();
-    if (total <= 0) return NULL;
-    int totalActive = getActiveAppsCount();
-    int activeCount = 0;
-    Appointment* apps = new Appointment[total];
-    Appointment* activeApps = new Appointment[totalActive];
-    if (apps == NULL) return NULL;
-    if (activeApps == NULL) return NULL;
-    if (!_appsFile.readFile(apps, total)) return NULL;
-    for (int i = 0; i < total; i++) {
-        if (apps[i].getStatus()) {
-            activeApps[activeCount] = apps[i];
-            activeCount++;
-        }
-    }
-    return activeApps;
 }
 
 int AppointmentsManager::getPendingApps() {

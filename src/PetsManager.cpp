@@ -195,6 +195,11 @@ void PetsManager::edit() {
     InputForm search, confirmForm;
     int nId;
     show(false);
+
+    int totalRegs= _petsFile.getTotalRegisters();
+    if (totalRegs<=0) return;
+
+
     std::cout << "\nIngrese el ID de la mascota a modificar.\n";
     search.setIntField("ID Mascota", nId, 4);
     if (!search.fill()) return;  // si no se completa, salir

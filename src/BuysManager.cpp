@@ -97,7 +97,7 @@ Buy BuysManager::loadForm() {
 }
 
 Buy BuysManager::editForm(int regPos) {
-    InputForm buyForm(true), productForm(true), dateForm(true);
+    InputForm buyForm(true), productForm(true,true), dateForm(true);
     Buy auxBuy, auxFormBuy;
     ProductsManager prodmanager;
     int nId, productId, quantity, transactionId, paymentMethod;
@@ -131,7 +131,6 @@ Buy BuysManager::editForm(int regPos) {
         if (!retryIfIdNotExists(existentId)) return auxFormBuy;
     }
 
-    /////buyForm.setEditMode(true, true);  // modo edicion
     buyForm.setRangeField("Metodo Pago[1-3]", paymentMethod, 1, 3);
     buyForm.setIntField(
         "ID Transacción", transactionId,
@@ -170,7 +169,12 @@ Buy BuysManager::editForm(int regPos) {
 void BuysManager::edit() {
     InputForm search;
     int nId;
-    show();
+    show(false);
+
+    int totalRegs= _buysFile.getTotalRegisters();
+    if (totalRegs<=0) return;
+
+
     std::cout << "\nIngrese el ID de la compra a modificar.\n";
     search.setIntField("ID Compra", nId, 4);
     if (!search.fill()) return;  // si no se completa, salir
@@ -209,6 +213,12 @@ void BuysManager::show(bool showAndPause) {
         utils::pause();
         return;
     }
+
+    if (totalRegs == 0) {
+        std::cout << "No hay registros para mostrar.\n";
+        utils::pause();
+        return;
+        }
     // Se crea la variable que va a contener todas las celdas, segun la cantidad
     // de registros
     std::string *cells = new std::string[totalCells];

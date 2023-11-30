@@ -123,7 +123,11 @@ Expense ExpenseManager::editForm(int regPos) {
 void ExpenseManager::edit() {
     InputForm search;
     int nId;
-    show();
+    show(false);
+
+    int totalRegs= _expenseFile.getTotalRegisters();
+    if (totalRegs<=0) return;
+
     std::cout << "\nIngrese el ID de la transacción a modificar.\n";
     search.setIntField("ID Transacción", nId, 4);
     if (!search.fill()) return;  // si no se completa, salir
@@ -151,7 +155,7 @@ void ExpenseManager::edit() {
     utils::pause();
 }
 
-void ExpenseManager::show() {
+void ExpenseManager::show(bool showAndPause) {
     int totalRegs = _expenseFile.getTotalRegisters();
     // calcular el total de celdas de nuestra lista, segun la cantidad de datos
     // que contiene 1 registro

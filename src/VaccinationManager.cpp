@@ -156,7 +156,11 @@ Vaccination VaccinationManager::editForm(int regPos) {
 void VaccinationManager::edit() {
     InputForm search;
     int nId;
-    show();
+    show(false);
+
+    int totalRegs= _vaccinationFile.getTotalRegisters();
+    if (totalRegs<=0) return;
+
     std::cout << "\nIngrese el ID del vacunaciona modificar.\n";
     search.setIntField("ID Vacunacion", nId, 4);
     if (!search.fill()) return;  // si no se completa, salir
@@ -196,7 +200,6 @@ void VaccinationManager::show(bool showAndPause) {
         return;
     }
 
-    
     if (totalRegs == 0) {
         std::cout << "No hay registros para mostrar.\n";
         utils::pause();

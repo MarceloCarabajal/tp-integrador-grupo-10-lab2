@@ -137,7 +137,7 @@ VetVisits VetVisitsManager::loadForm() {
 }
 
 VetVisits VetVisitsManager::editForm(int regPos) {
-    InputForm vetvisitsForm(true,true), petIdForm(true), clientIdForm(true),
+    InputForm vetvisitsForm(true, true), petIdForm(true), clientIdForm(true),
         vetForm(true);
     VetVisits auxVetVisits, auxFormVetVisits;
     RelationsManager relationsMgr;
@@ -236,6 +236,10 @@ void VetVisitsManager::edit() {
     InputForm search;
     int nId;
     show(false);
+
+    int totalRegs = _vetVisitsFile.getTotalRegisters();
+    if (totalRegs <= 0) return;
+
     std::cout << "\nIngrese el ID de la consulta a modificar.\n";
     search.setIntField("ID consulta ", nId, 4);
     if (!search.fill()) return;  // si no se completa, salir
