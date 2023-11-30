@@ -8,7 +8,6 @@
 /**
  * @class ClientsManager
  * @brief Gestor de clientes.
- *
  * Esta clase se encarga de gestionar los clientes del sistema. Permite cargar
  * nuevos clientes, modificar clientes existentes, mostrar la lista de clientes,
  * eliminar clientes y realizar consultas sobre los clientes almacenados.
@@ -29,19 +28,15 @@ private:
 
     /**
      * @brief Cargar datos para un nuevo cliente.
-     *
      * Solicita y valida los datos necesarios para crear un nuevo cliente.
-     *
      * @return Objeto `Client` con los datos del nuevo cliente.
      */
     Client loadForm();
 
     /**
      * @brief Editar un cliente existente.
-     *
      * Permite editar un cliente existente, solicitando y validando los datos
      * necesarios.
-     *
      * @param regPos Posición del cliente en los registros.
      * @return Objeto `Client` con los datos del cliente editado, o un objeto
      * vacío si no se completa el formulario.
@@ -52,12 +47,10 @@ private:
 public:
     /**
      * @brief Cargar un nuevo cliente en el sistema.
-     *
      * Solicita al usuario ingresar un ID de cliente único, verifica su
      * existencia y carga el resto de los datos necesarios para crear un nuevo
      * cliente. Si la operación se completa exitosamente, guarda el cliente en
      * el archivo.
-     *
      * Utiliza la función auxiliar `loadForm()` para obtener los detalles del
      * cliente.
      */
@@ -65,7 +58,6 @@ public:
 
     /**
      * @brief Modificar un cliente existente en el sistema.
-     *
      * Muestra la lista de clientes disponibles, solicita al usuario ingresar el
      * ID del cliente a modificar y, si existe, permite editar los detalles del
      * cliente. Guarda los cambios en el archivo de clientes si la operación es
@@ -75,11 +67,9 @@ public:
 
     /**
      * @brief Mostrar la lista de clientes.
-     *
      * Muestra en una lista los detalles de los clientes almacenados.
      * Los datos se presentan en columnas, incluyendo ID, nombre, apellido, DNI,
      * dirección, teléfono y correo electrónico.
-     *
      * @param showAndPause Indica si después de mostrar la lista se debe pausar
      * la ejecución.
      */
@@ -89,7 +79,6 @@ public:
 
     /**
      * @brief Eliminar definitivamente los clientes marcados para eliminación.
-     *
      * Busca y muestra los clientes marcados para eliminación, solicitando
      * confirmación al usuario antes de realizar la eliminación definitiva.
      * Muestra el resultado de la operación, indicando si se eliminaron con
@@ -100,7 +89,6 @@ public:
 
     /**
      * @brief Cancelar el registro de un cliente de forma provisoria.
-     *
      * Muestra la lista de clientes y solicita al usuario que ingrese el ID del
      * cliente que desea dar de baja de forma provisoria. Proporciona una
      * confirmación antes de realizar la cancelación. Muestra el resultado de la
@@ -111,11 +99,9 @@ public:
 
     /**
      * @brief Obtener el nombre completo de un cliente mediante su ID.
-     *
      * Busca el cliente con el ID proporcionado y devuelve su nombre completo
      * concatenando el nombre y apellido. Retorna "ERROR" si no se encuentra el
      * cliente.
-     *
      * @param nId El ID del cliente.
      * @return El nombre completo del cliente o "ERROR" en caso de no
      * encontrarlo.
@@ -138,10 +124,8 @@ public:
     /**
      * @brief Función de búsqueda por ID para la búsqueda en registros de
      * clientes.
-     *
      * Compara el ID de un cliente con un ID proporcionado y devuelve verdadero
      * si coinciden.
-     *
      * @param reg Objeto Cliente a comparar.
      * @param nId ID a comparar.
      * @return Verdadero si los IDs coinciden, falso en caso contrario.
@@ -150,10 +134,8 @@ public:
 
     /**
      * @brief Verificar la existencia de un ID en los registros de clientes.
-     *
      * Busca un ID en los registros y devuelve verdadero si existe, falso en
      * caso contrario.
-     *
      * @param nId ID a verificar.
      * @return Verdadero si el ID existe, falso en caso contrario.
      */
@@ -161,10 +143,8 @@ public:
 
     /**
      * @brief Verificar si un ID de cliente está activo.
-     *
      * Busca un ID en los registros y devuelve verdadero si está activo, falso
      * en caso contrario.
-     *
      * @param nId ID a verificar.
      * @return Verdadero si el ID está activo, falso en caso contrario.
      */
