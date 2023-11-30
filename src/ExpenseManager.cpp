@@ -155,6 +155,7 @@ void ExpenseManager::edit() {
     utils::pause();
 }
 
+
 void ExpenseManager::show(bool showAndPause) {
     int totalRegs = _expenseFile.getTotalRegisters();
     // calcular el total de celdas de nuestra lista, segun la cantidad de datos
