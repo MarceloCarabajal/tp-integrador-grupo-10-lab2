@@ -173,7 +173,7 @@ Appointment AppointmentsManager::editForm(int regPos) {
         std::cout
             << "Por favor cargue la relación desde el menú 'Relaciones'.\n";
         utils::pause();
-        return auxApp;
+        return auxFormApp;
     }
 
     // pedir y validar fecha

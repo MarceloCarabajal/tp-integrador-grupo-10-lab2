@@ -153,7 +153,7 @@ VetVisits VetVisitsManager::editForm(int regPos) {
     auxVetVisits = _vetVisitsFile.readFile(regPos);
     if (auxVetVisits.getVisitId() == -1) {
         std::cout << "Ocurrio un error al leer los registros.\n";
-        return auxFormVetVisits;
+        return auxVetVisits;
     }
     // Se cargan los datos para mostrarlas en el form.
     clientId = auxVetVisits.getClientId();
@@ -199,7 +199,7 @@ VetVisits VetVisitsManager::editForm(int regPos) {
         std::cout
             << "Por favor cargue la relación desde el menú 'Relaciones'.\n";
         utils::pause();
-        return auxVetVisits;
+        return auxFormVetVisits;
     }
 
     vetvisitsForm.setIntField("ID Venta", saleId, 4);
@@ -216,20 +216,20 @@ VetVisits VetVisitsManager::editForm(int regPos) {
     // completar form
     bool success = vetvisitsForm.fill();
     if (success) {  // si se completa
-        auxVetVisits.setVisitId(nId);
-        auxVetVisits.setReason(reason);
-        auxVetVisits.setDiagnosis(diagnosis);
-        auxVetVisits.setDate(date);
-        auxVetVisits.setClientId(clientId);
-        auxVetVisits.setPetId(petId);
-        auxVetVisits.setVetId(vetId);
-        auxVetVisits.setSaleId(saleId);
-        auxVetVisits.setStatus(true);
+        auxFormVetVisits.setVisitId(nId);
+        auxFormVetVisits.setReason(reason);
+        auxFormVetVisits.setDiagnosis(diagnosis);
+        auxFormVetVisits.setDate(date);
+        auxFormVetVisits.setClientId(clientId);
+        auxFormVetVisits.setPetId(petId);
+        auxFormVetVisits.setVetId(vetId);
+        auxFormVetVisits.setSaleId(saleId);
+        auxFormVetVisits.setStatus(true);
 
-        return auxVetVisits;
+        return auxFormVetVisits;
     }
     // si no se completa, devolver Mascota vacia
-    return auxVetVisits;
+    return auxFormVetVisits;
 }
 
 void VetVisitsManager::edit() {
