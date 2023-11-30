@@ -169,7 +169,7 @@ void SubMenus::showVaccinations() {
 void SubMenus::editVaccination() { _vaccManager.edit(); }
 void SubMenus::cancelVaccination() { _vaccManager.cancel(); }
 void SubMenus::clearV() { _vaccManager.clearDeleted(); }
-
+void SubMenus::sendNotif() { _vaccManager.configAndSendNotif(); }
 void SubMenus::vaccination() {
     Menu mnuVaccination("VACUNACIÓN:syringe:", true);
 
@@ -180,6 +180,8 @@ void SubMenus::vaccination() {
     mnuVaccination.addOption("3. Editar Vacunación :pencil2:", editVaccination);
     mnuVaccination.addOption("4. Baja Vacunación :x:", cancelVaccination);
     mnuVaccination.addOption("5. Limpiar registros :white_check_mark:", clearV);
+    mnuVaccination.addOption("6. Enviar notificaciones pendientes :mailbox:",
+                             sendNotif);
     mnuVaccination.showMenu();
 }
 
@@ -312,4 +314,15 @@ void SubMenus::sysConfig() {
     mnuConfig.addOption(
         "2. Cambiar modo de ejecución :arrows_counterclockwise:", toggleMode);
     mnuConfig.showMenu();
+}
+
+ReportsManager SubMenus::_reportsManager = ReportsManager();
+void SubMenus::showSuccessApps() { _reportsManager.showSuccessApps(); }
+
+void SubMenus::Reports() {
+    Menu mnuReports("REPORTES:bar_chart:", true);
+
+    mnuReports.addOption("1. Turnos exitosos :white_check_mark:",
+                         showSuccessApps);
+    mnuReports.showMenu();
 }

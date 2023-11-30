@@ -28,6 +28,8 @@ public:
     void clearExpired();
     void clearDeleted();
     void cancel();
+    int getActiveAppsCount();
+    Appointment* getActiveApps();
 
     int getPendingApps();
     // Al ser una funcion estatica se puede usar sin necesaidad de instanciar un

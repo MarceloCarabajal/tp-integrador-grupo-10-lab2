@@ -60,8 +60,7 @@ void MainManager::mainMenu() {
     _mainMenu.addOption("10.Gestion de Ventas", _subMenus.sale);
     _mainMenu.addOption("11.Gestión de Ingresos/Egresos ",
                         _subMenus.transactions);
-
-    _mainMenu.addOption("12. Enviar email", funcSubMenutest);
+    _mainMenu.addOption("12. Reportes :bar_chart:", _subMenus.Reports);
     _mainMenu.addOption("13. Configuración del sistema :gear:",
                         _subMenus.sysConfig);
 
