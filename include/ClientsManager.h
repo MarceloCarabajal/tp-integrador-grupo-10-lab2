@@ -5,12 +5,27 @@
 #include "VppConfigManager.h"
 #include "VppFile.h"
 
+/**
+ * @class ClientsManager
+ * @brief Gestor de clientes.
+ *
+ * Esta clase se encarga de gestionar los clientes del sistema. Permite cargar
+ * nuevos clientes, modificar clientes existentes, mostrar la lista de clientes,
+ * eliminar clientes y realizar consultas sobre los clientes almacenados.
+ */
 class ClientsManager {
 private:
-    const std::string _folderPath = VppConfigManager().getDataPath();
-    const std::string _filePath = _folderPath + "Clients.vpp";
-    VppFile<Client> _clientsFile = VppFile<Client>(_filePath);
-    const int _clientsFields = 7;  // total de datos de un regisro Client
+    const std::string _folderPath =
+        VppConfigManager()
+            .getDataPath(); /**< Ruta de la carpeta donde se almacenan los datos
+                               de los clientes. */
+    const std::string _filePath =
+        _folderPath + "Clients.vpp"; /**< Ruta del archivo que contiene los
+                                        datos de los clientes. */
+    VppFile<Client> _clientsFile = VppFile<Client>(
+        _filePath); /**< Archivo que almacena los registros de los clientes. */
+    const int _clientsFields =
+        7; /**< Número total de campos en un registro de cliente. */
 
     /**
      * @brief Cargar datos para un nuevo cliente.
