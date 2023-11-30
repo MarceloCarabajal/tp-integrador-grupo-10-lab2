@@ -7,6 +7,7 @@
 #include "InputForm.h"
 #include "ListView.h"
 #include "PetsManager.h"
+#include "RelationsManager.h"
 #include "VetsManager.h"
 #include "rlutil.h"
 #include "utils.h"
@@ -60,6 +61,7 @@ void VetVisitsManager::load() {
 VetVisits VetVisitsManager::loadForm() {
     InputForm vetvisitsForm, petIdForm, clientIdForm, vetForm;
     VetVisits auxVetVisits;
+    RelationsManager relationsMgr;
     PetsManager petsManager;
     ClientsManager clientsManager;
     VetsManager vetsManager;
@@ -90,6 +92,17 @@ VetVisits VetVisitsManager::loadForm() {
         if (!clientIdForm.fill()) return auxVetVisits;
         alreadyExists = clientsManager.idExists(clientId);
     } while (!alreadyExists);  // si no existe, volver a pedir
+
+    // Validar que exista una relacion activa cliente/mascota
+    bool relationExists = relationsMgr.relationExists(petId, clientId);
+    if (!relationExists) {
+        std::cout << "No existe una relación activa entre el cliente y la "
+                     "mascota ingresados.\n";
+        std::cout
+            << "Por favor cargue la relación desde el menú 'Relaciones'.\n";
+        utils::pause();
+        return auxVetVisits;
+    }
 
     // pedir y buscar si el id vete ingresado existe
     alreadyExists = true;
@@ -124,16 +137,23 @@ VetVisits VetVisitsManager::loadForm() {
 }
 
 VetVisits VetVisitsManager::editForm(int regPos) {
-    InputForm vetvisitsForm;
-    VetVisits auxVetVisits;
+    InputForm vetvisitsForm(true,true), petIdForm(true), clientIdForm(true),
+        vetForm(true);
+    VetVisits auxVetVisits, auxFormVetVisits;
+    RelationsManager relationsMgr;
+    PetsManager petsManager;
+    VetsManager vetsManager;
+    ClientsManager clientsManager;
     std::string reason, diagnosis;
     Date date;
     int clientId, petId, saleId, vetId, nId;
+    bool existentId;
+    bool isActive = true;
 
     auxVetVisits = _vetVisitsFile.readFile(regPos);
     if (auxVetVisits.getVisitId() == -1) {
         std::cout << "Ocurrio un error al leer los registros.\n";
-        return auxVetVisits;
+        return auxFormVetVisits;
     }
     // Se cargan los datos para mostrarlas en el form.
     clientId = auxVetVisits.getClientId();
@@ -145,16 +165,53 @@ VetVisits VetVisitsManager::editForm(int regPos) {
     date = auxVetVisits.getDate();
     diagnosis = auxVetVisits.getDiagnosis();
 
+    rlutil::cls();  // limpiar pantalla
     std::cout << "Editando Consulta #" << nId << std::endl;
     // configurar form
-    vetvisitsForm.setEditMode(true, true);  // modo edicion
+
     vetvisitsForm.setStrField("Motivo", reason, 30);
     vetvisitsForm.setAlphanumeric("Diagnóstico", diagnosis, 240);
     vetvisitsForm.setDateField("Fecha", date);
-    vetvisitsForm.setIntField("ID Cliente", clientId, 4);
-    vetvisitsForm.setIntField("ID Mascota", petId, 4);
+
+    clientIdForm.setIntField("ID Cliente", clientId, 4);
+    existentId = false;
+    isActive = true;
+    while (!existentId) {
+        if (!clientIdForm.fill()) return auxFormVetVisits;
+        existentId = clientsManager.idExists(clientId);
+        if (!retryIfIdNotExists(existentId, isActive)) return auxFormVetVisits;
+    }
+
+    petIdForm.setIntField("ID Mascota", petId, 4);
+    existentId = false;
+    isActive = true;
+    while (!existentId) {
+        if (!petIdForm.fill()) return auxFormVetVisits;
+        existentId = petsManager.idExists(petId);
+        if (!retryIfIdNotExists(existentId, isActive)) return auxFormVetVisits;
+    }
+
+    // Validar que exista una relacion activa cliente/mascota
+    bool relationExists = relationsMgr.relationExists(petId, clientId);
+    if (!relationExists) {
+        std::cout << "No existe una relación activa entre el cliente y la "
+                     "mascota ingresados.\n";
+        std::cout
+            << "Por favor cargue la relación desde el menú 'Relaciones'.\n";
+        utils::pause();
+        return auxVetVisits;
+    }
+
     vetvisitsForm.setIntField("ID Venta", saleId, 4);
-    vetvisitsForm.setIntField("ID Vete", vetId, 4);
+
+    vetForm.setIntField("ID Vete", vetId, 4);
+    existentId = false;
+    isActive = true;
+    while (!existentId) {
+        if (!vetForm.fill()) return auxFormVetVisits;
+        existentId = vetsManager.idExists(vetId);
+        if (!retryIfIdNotExists(existentId, isActive)) return auxFormVetVisits;
+    }
 
     // completar form
     bool success = vetvisitsForm.fill();

@@ -243,6 +243,11 @@ void PetsManager::show(bool showAndPause) {
         utils::pause();
         return;
     }
+    if (totalRegs == 0) {
+        std::cout << "No hay registros para mostrar.\n";
+        utils::pause();
+        return;
+    }
     // Se crea la variable que va a contener todas las celdas, segun la
     // cantidad de registros
     std::string *cells = new std::string[totalCells];

@@ -122,6 +122,7 @@ Appointment AppointmentsManager::editForm(int regPos) {
     InputForm appForm(true), petIdForm(true, true), clientIdForm(true),
         dateForm(true), timeForm(true);
     Appointment auxApp, auxFormApp;
+    RelationsManager relationsMgr;
     PetsManager petsManager;
     ClientsManager clientsManager;
     Date appDate;
@@ -162,6 +163,17 @@ Appointment AppointmentsManager::editForm(int regPos) {
         if (!clientIdForm.fill()) return auxFormApp;
         existentId = clientsManager.idExists(clientId);
         if (!retryIfIdNotExists(existentId)) return auxFormApp;
+    }
+
+    // Validar que exista una relacion activa cliente/mascota
+    bool relationExists = relationsMgr.relationExists(petId, clientId);
+    if (!relationExists) {
+        std::cout << "No existe una relación activa entre el cliente y la "
+                     "mascota ingresados.\n";
+        std::cout
+            << "Por favor cargue la relación desde el menú 'Relaciones'.\n";
+        utils::pause();
+        return auxApp;
     }
 
     // pedir y validar fecha
