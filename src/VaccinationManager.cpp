@@ -291,7 +291,8 @@ void VaccinationManager::configAndSendNotif() {
     std::cout << "Si deja el campo vacío, se mostrarán las vacunaciones "
                  "pendientes para los PRÓXIMOS 15 DÍAS.\n";
 
-    remainingDaysForm.setRangeField("Días[1-365]", remainingDays, 1, 365);
+    remainingDaysForm.setRangeField("Días Restantes [1-365]", remainingDays, 1,
+                                    365);
     if (!remainingDaysForm.fill()) return;
     int totalPending = pendingCount(remainingDays, true);
     if (totalPending == -1) {
@@ -312,6 +313,7 @@ void VaccinationManager::configAndSendNotif() {
         utils::pause();
         return;
     }
+    utils::cls();
     show(pending, totalPending);
     utils::pause();
 }

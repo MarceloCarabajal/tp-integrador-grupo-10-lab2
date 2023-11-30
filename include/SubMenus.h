@@ -68,6 +68,7 @@ private:
     static void editVaccination();
     static void cancelVaccination();
     static void clearV();
+    static void sendNotif();
 
     static ProdCategoryManager _catprodManager;
     static void loadProdCategory();
