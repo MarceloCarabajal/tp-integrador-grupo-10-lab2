@@ -4,6 +4,15 @@
 #include "VppConfigManager.h"
 #include "VppFile.h"
 
+/**
+ * @class RelationsManager
+ * @brief Clase para gestionar las relaciones entre mascotas y clientes.
+ *
+ * La clase RelationsManager se encarga de cargar, editar, mostrar y guardar las
+ * relaciones entre mascotas y clientes. Permite crear nuevas relaciones, editar
+ * relaciones existentes, buscar relaciones por ID de mascota y cliente, y
+ * verificar la existencia de una relación específica.
+ */
 class RelationsManager {
 private:
     const std::string _folderPath = VppConfigManager().getDataPath();

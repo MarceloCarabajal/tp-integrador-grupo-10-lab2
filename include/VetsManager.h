@@ -4,6 +4,16 @@
 #include "VppConfigManager.h"
 #include "VppFile.h"
 
+/**
+ * @class VetsManager
+ * @brief Clase que gestiona la carga, edición, visualización y eliminación de
+ * veterinarios.
+ *
+ * La clase VetsManager se encarga de administrar la información de los
+ * veterinarios, permitiendo cargar nuevos veterinarios, editar su información,
+ * mostrar la lista de veterinarios y eliminar aquellos marcados como dados de
+ * baja.
+ */
 class VetsManager {
 private:
     const std::string _folderPath = VppConfigManager().getDataPath();
