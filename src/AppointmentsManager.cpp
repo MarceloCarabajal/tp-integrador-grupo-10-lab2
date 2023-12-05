@@ -468,6 +468,7 @@ int AppointmentsManager::getPendingApps() {
             pending++;
         }
     }
+    delete[] apps;
     return pending;
 }
 
