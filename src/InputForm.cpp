@@ -7,8 +7,6 @@
 #include "rlutil.h"
 #include "utils.h"
 
-// TODO: Crear documentacion para las funciones
-
 InputForm::InputForm(bool isEditing, bool showEditingMsg) {
     _editing = isEditing;
     _showEditingMsg = showEditingMsg;

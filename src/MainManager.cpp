@@ -5,8 +5,6 @@
 #include "StatusBar.h"
 #include "VppConfigManager.h"
 #include "utils.h"
-// eliminar esto
-void funcSubMenutest() { system("pause"); }
 
 bool MainManager::checkConfig() {
     VppConfigManager vppConfigMgr;

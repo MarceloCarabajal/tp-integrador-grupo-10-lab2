@@ -16,9 +16,6 @@
 #pragma once
 
 #include <string>
-// TODO: ELiminar
-// extern std::string GLOBAL_PATH;
-
 template <class VppClass>
 class VppFile {
 public:
